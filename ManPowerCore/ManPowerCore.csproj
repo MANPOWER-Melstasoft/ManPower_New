@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A09F12C-06C3-44F9-9A54-79B79ED0A6AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ManPowerCore</RootNamespace>
+    <AssemblyName>ManPowerCore</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Common\ControllerFactory.cs" />
+    <Compile Include="Common\DAOFactory.cs" />
+    <Compile Include="Common\DataAccessObject.cs" />
+    <Compile Include="Common\DBConnection.cs" />
+    <Compile Include="Common\DBFieldAttribute.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Controller\AutFunctionController.cs" />
+    <Compile Include="Controller\AutSystemRoleFunctionController.cs" />
+    <Compile Include="Controller\BeneficiaryController.cs" />
+    <Compile Include="Controller\BeneficiaryTypeController.cs" />
+    <Compile Include="Controller\BusinessTypeController.cs" />
+    <Compile Include="Controller\CompanyVecansyRegistationDetailsController.cs" />
+    <Compile Include="Controller\ContactModeController.cs" />
+    <Compile Include="Controller\ContactTypeController.cs" />
+    <Compile Include="Controller\DepartmentUnitController.cs" />
+    <Compile Include="Controller\DepartmentUnitPositionsController.cs" />
+    <Compile Include="Controller\DepartmentUnitTypeController.cs" />
+    <Compile Include="Controller\DependantController.cs" />
+    <Compile Include="Controller\DependantTypeController.cs" />
+    <Compile Include="Controller\DesignationController.cs" />
+    <Compile Include="Controller\EducationDetailsController.cs" />
+    <Compile Include="Controller\EducationTypeController.cs" />
+    <Compile Include="Controller\EmergencyContactController.cs" />
+    <Compile Include="Controller\EmployeeContactController.cs" />
+    <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Controller\EmploymentDetailsController.cs" />
+    <Compile Include="Controller\EntrepreneurController.cs" />
+    <Compile Include="Controller\EthnicityController.cs" />
+    <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
+    <Compile Include="Controller\MarketTypeController.cs" />
+    <Compile Include="Controller\PossitionsController.cs" />
+    <Compile Include="Controller\ProgramAssigneeController.cs" />
+    <Compile Include="Controller\ProgramAttendenceController.cs" />
+    <Compile Include="Controller\ProgramBudgetController.cs" />
+    <Compile Include="Controller\ProgramCategoryController.cs" />
+    <Compile Include="Controller\ProgramController.cs" />
+    <Compile Include="Controller\ProgramPlanController.cs" />
+    <Compile Include="Controller\ProgramTargetController.cs" />
+    <Compile Include="Controller\ProgramTypeController.cs" />
+    <Compile Include="Controller\ProjectPlanResourceController.cs" />
+    <Compile Include="Controller\ProjectStatusController.cs" />
+    <Compile Include="Controller\ProjectTaskController.cs" />
+    <Compile Include="Controller\PromotionController.cs" />
+    <Compile Include="Controller\ReligionController.cs" />
+    <Compile Include="Controller\ResourcePersonController.cs" />
+    <Compile Include="Controller\ResourceProvisionProgressController.cs" />
+    <Compile Include="Controller\SystemUserController.cs" />
+    <Compile Include="Controller\TaskAllocationController.cs" />
+    <Compile Include="Controller\TaskAllocationDetailController.cs" />
+    <Compile Include="Controller\TaskTypeController.cs" />
+    <Compile Include="Controller\Test.cs" />
+    <Compile Include="Controller\TrainingRequestController.cs" />
+    <Compile Include="Controller\UserTypeController.cs" />
+    <Compile Include="Domain\AutFunction.cs" />
+    <Compile Include="Domain\AutSystem.cs" />
+    <Compile Include="Domain\AutSystemRoleFunction.cs" />
+    <Compile Include="Domain\Beneficiary.cs" />
+    <Compile Include="Domain\BeneficiaryType.cs" />
+    <Compile Include="Domain\BusinessType.cs" />
+    <Compile Include="Domain\CompanyVecansyRegistationDetails.cs" />
+    <Compile Include="Domain\ContactMode.cs" />
+    <Compile Include="Domain\ContactType.cs" />
+    <Compile Include="Domain\DepartmentUnit.cs" />
+    <Compile Include="Domain\DepartmentUnitPositions.cs" />
+    <Compile Include="Domain\DepartmentUnitType.cs" />
+    <Compile Include="Domain\Dependant.cs" />
+    <Compile Include="Domain\DependantType.cs" />
+    <Compile Include="Domain\Designation.cs" />
+    <Compile Include="Domain\DME21Model.cs" />
+    <Compile Include="Domain\EducationDetails.cs" />
+    <Compile Include="Domain\EducationType.cs" />
+    <Compile Include="Domain\EmergencyContact.cs" />
+    <Compile Include="Domain\Employee.cs" />
+    <Compile Include="Domain\EmployeeContact.cs" />
+    <Compile Include="Domain\EmploymentDetails.cs" />
+    <Compile Include="Domain\Entrepreneur.cs" />
+    <Compile Include="Domain\Ethnicity.cs" />
+    <Compile Include="Domain\InduvidualBeneficiary.cs" />
+    <Compile Include="Domain\MarketType.cs" />
+    <Compile Include="Domain\Month.cs" />
+    <Compile Include="Domain\Possitions.cs" />
+    <Compile Include="Domain\Program.cs" />
+    <Compile Include="Domain\ProgramAssignee.cs" />
+    <Compile Include="Domain\ProgramAttendence.cs" />
+    <Compile Include="Domain\ProgramBudget.cs" />
+    <Compile Include="Domain\ProgramCategory.cs" />
+    <Compile Include="Domain\ProgramPlan.cs" />
+    <Compile Include="Domain\ProgramTarget.cs" />
+    <Compile Include="Domain\ProgramType.cs" />
+    <Compile Include="Domain\ProjectPlanResource.cs" />
+    <Compile Include="Domain\ProjectStatus.cs" />
+    <Compile Include="Domain\ProjectTask.cs" />
+    <Compile Include="Domain\Promotions.cs" />
+    <Compile Include="Domain\Religion.cs" />
+    <Compile Include="Domain\ResourcePerson.cs" />
+    <Compile Include="Domain\ResourceProvisionProgress.cs" />
+    <Compile Include="Domain\SystemUser.cs" />
+    <Compile Include="Domain\TaskAllocation.cs" />
+    <Compile Include="Domain\TaskAllocationDetail.cs" />
+    <Compile Include="Domain\TaskType.cs" />
+    <Compile Include="Domain\Test.cs" />
+    <Compile Include="Domain\Training_Request.cs" />
+    <Compile Include="Domain\UserType.cs" />
+    <Compile Include="Infrastructure\AutFunctionDAO.cs" />
+    <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
+    <Compile Include="Infrastructure\BeneficiaryDAO.cs" />
+    <Compile Include="Infrastructure\BeneficiaryTypeDAO.cs" />
+    <Compile Include="Infrastructure\BusinessTypeDAO.cs" />
+    <Compile Include="Infrastructure\CompanyVecansyRegistationDetailsDAO.cs" />
+    <Compile Include="Infrastructure\ContactModeDAO.cs" />
+    <Compile Include="Infrastructure\ContactTypeDAO.cs" />
+    <Compile Include="Infrastructure\DepartmentUnitDAO.cs" />
+    <Compile Include="Infrastructure\DepartmentUnitPositionsDAO.cs" />
+    <Compile Include="Infrastructure\DepartmentUnitTypeDAO.cs" />
+    <Compile Include="Infrastructure\DependantTypeDAO.cs" />
+    <Compile Include="Infrastructure\DependentDAO.cs" />
+    <Compile Include="Infrastructure\DesignationDAO.cs" />
+    <Compile Include="Infrastructure\EducationDetailsDAO.cs" />
+    <Compile Include="Infrastructure\EducationTypeDAO.cs" />
+    <Compile Include="Infrastructure\EmergencyContactDAO.cs" />
+    <Compile Include="Infrastructure\EmployeeContactDAO.cs" />
+    <Compile Include="Infrastructure\EmployeeDAO.cs" />
+    <Compile Include="Infrastructure\EmploymentDetailsDAO.cs" />
+    <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
+    <Compile Include="Infrastructure\EthnicityDAO.cs" />
+    <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
+    <Compile Include="Infrastructure\MarketTypeDAO.cs" />
+    <Compile Include="Infrastructure\PossitionsDAO.cs" />
+    <Compile Include="Infrastructure\ProgramAssigneeDAO.cs" />
+    <Compile Include="Infrastructure\ProgramAttendenceDAO.cs" />
+    <Compile Include="Infrastructure\ProgramBudgetDAO.cs" />
+    <Compile Include="Infrastructure\ProgramCategoryDAO.cs" />
+    <Compile Include="Infrastructure\ProgramDAO.cs" />
+    <Compile Include="Infrastructure\ProgramPlanDAO.cs" />
+    <Compile Include="Infrastructure\ProgramTargetDAO.cs" />
+    <Compile Include="Infrastructure\ProgramTypeDAO.cs" />
+    <Compile Include="Infrastructure\ProjectPlanResourceDAO.cs" />
+    <Compile Include="Infrastructure\ProjectStatusDAO.cs" />
+    <Compile Include="Infrastructure\ProjectTaskDAO.cs" />
+    <Compile Include="Infrastructure\PromotionsDAO.cs" />
+    <Compile Include="Infrastructure\ReligionDAO.cs" />
+    <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
+    <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
+    <Compile Include="Infrastructure\SystemUserDAO.cs" />
+    <Compile Include="Infrastructure\TaskAllocationDAO.cs" />
+    <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
+    <Compile Include="Infrastructure\TaskTypeDAO.cs" />
+    <Compile Include="Infrastructure\Test.cs" />
+    <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
+    <Compile Include="Infrastructure\UserTypeDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -8,7 +8,31 @@
                 <asp:Label CssClass="font-weight-bold" ID="Label1" runat="server" Text="Work Type"></asp:Label>
             </div>
             <div class="col-sm-6" style="width: 90%;">
-                <asp:DropDownList Style="width: 80%; height: 40px;" ID="ddlWorkType" runat="server"></asp:DropDownList>
+                <asp:DropDownList Style="width: 80%; height: 40px; padding-left: 10px;" ID="ddlWorkType" runat="server" DataTextField="TaskTypeName" DataValueField="TaskTypeId" AutoPostBack="true"></asp:DropDownList>
+            </div>
+        </div>
+        <div class="row mb-5" style="text-align: center; width: 70%; display: none" id="ProgramDisplay" runat="server">
+            <div class="col-sm-6 my-auto">
+                <asp:Label CssClass="font-weight-bold" ID="Label4" runat="server" Text="Program Name"></asp:Label>
+            </div>
+            <div class="col-sm-6" style="width: 90%;">
+                <asp:DropDownList Style="width: 80%; height: 40px; padding-left: 10px;" ID="ddlProgram" runat="server" DataTextField="TaskTypeName" DataValueField="TaskTypeId"></asp:DropDownList>
+            </div>
+        </div>
+        <div class="row mb-5" style="text-align: center; width: 70%; display: none">
+            <div class="col-sm-6 my-auto">
+                <asp:Label CssClass="font-weight-bold" ID="Label5" runat="server" Text="Performed Duty"></asp:Label>
+            </div>
+            <div class="col-sm-6" style="width: 90%;">
+                <textarea style="width: 80%;" id="TextArea1" cols="20" rows="2"></textarea>
+            </div>
+        </div>
+        <div class="row mb-5" style="text-align: center; width: 70%; display: none">
+            <div class="col-sm-6 my-auto">
+                <asp:Label CssClass="font-weight-bold" ID="Label6" runat="server" Text="Performed Duty"></asp:Label>
+            </div>
+            <div class="col-sm-6" style="width: 90%;">
+                <textarea style="width: 80%;" id="TextArea1" cols="20" rows="2"></textarea>
             </div>
         </div>
         <div class="row mb-5" style="text-align: center; width: 70%;">

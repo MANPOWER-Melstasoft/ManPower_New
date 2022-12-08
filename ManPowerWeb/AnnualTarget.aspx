@@ -1,56 +1,73 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnnualTarget.aspx.cs" Inherits="ManPowerWeb.AnnualTarget" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnnualTarget.aspx.cs" Inherits="ManPowerWeb.AnnualTarget" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
-                    <asp:DropDownList ID="ddlYear" runat="server" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
-                        <asp:ListItem>2020</asp:ListItem>
-                        <asp:ListItem>2021</asp:ListItem>
-                        <asp:ListItem>2022</asp:ListItem>
-                        <asp:ListItem>2023</asp:ListItem>
-                    </asp:DropDownList>
+        <div class="card ml-4 p-4">
+            <h2>Annual Targets</h2>
+            <div class="mt-3">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div>
+                            <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
+                        </div>
+
+                        <div>
+                            <asp:DropDownList ID="ddlYear" runat="server" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                <asp:ListItem Value="2020">2020</asp:ListItem>
+                                <asp:ListItem Value="2021">2021</asp:ListItem>
+                                <asp:ListItem Value="2022">2022</asp:ListItem>
+                                <asp:ListItem Value="2023">2023</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
 
 
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div>
+                            <asp:Literal ID="Literal2" runat="server" Text="Month"></asp:Literal>
+                        </div>
+
+                        <div>
+                            <asp:DropDownList ID="ddlMonth" runat="server" CssClass="btn btn-primary dropdown-toggle" Width="250px">
+                                <asp:ListItem Value="1">January</asp:ListItem>
+                                <asp:ListItem Value="2">February</asp:ListItem>
+                                <asp:ListItem Value="3">March</asp:ListItem>
+                                <asp:ListItem Value="4">April</asp:ListItem>
+                                <asp:ListItem Value="5">May</asp:ListItem>
+                                <asp:ListItem Value="6">June</asp:ListItem>
+                                <asp:ListItem Value="7">July</asp:ListItem>
+                                <asp:ListItem Value="8">August</asp:ListItem>
+                                <asp:ListItem Value="9">September</asp:ListItem>
+                                <asp:ListItem Value="10">October</asp:ListItem>
+                                <asp:ListItem Value="11">November</asp:ListItem>
+                                <asp:ListItem Value="12">December</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+
+
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <asp:Literal ID="Literal2" runat="server" Text="Month"></asp:Literal>
-                    <asp:DropDownList ID="ddlMonth" runat="server">
-                        <asp:ListItem Value="1">January</asp:ListItem>
-                        <asp:ListItem Value="2">February</asp:ListItem>
-                        <asp:ListItem Value="3">March</asp:ListItem>
-                        <asp:ListItem Value="4">April</asp:ListItem>
-                        <asp:ListItem Value="5">May</asp:ListItem>
-                        <asp:ListItem Value="6">June</asp:ListItem>
-                        <asp:ListItem Value="7">July</asp:ListItem>
-                        <asp:ListItem Value="8">August</asp:ListItem>
-                        <asp:ListItem Value="9">September</asp:ListItem>
-                        <asp:ListItem Value="10">October</asp:ListItem>
-                        <asp:ListItem Value="11">November</asp:ListItem>
-                        <asp:ListItem Value="12">December</asp:ListItem>
-                    </asp:DropDownList>
-
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-3">
+                        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Search" OnClick="btnSearch_Click" />
+                        <asp:Button ID="btnAddNewTarget" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Add New Target" OnClick="btnAddNewTarget_Click" />
+                    </div>
                 </div>
             </div>
-            <div class="row mb-3 ms-1">
-                <div class="col-sm-3">
-                    <asp:Button ID="btnReset" runat="server" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529" Text="Search" />
-                    <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Add New Target" />
-                </div>
-            </div>
-        </form>
+        </div>
+
         <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
-            <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover"
-                CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True">
+            <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                CellPadding="4" GridLines="None">
                 <Columns>
-                    <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" />
-                    <asp:BoundField DataField="TargetYear" HeaderText="YEAR" />
-                    <asp:BoundField DataField="TargetMonth" HeaderText="TARGET MONTH" />
-                    <asp:BoundField DataField="StartDate" HeaderText="START DATE" />
-                    <asp:BoundField DataField="Description" HeaderText="DESCRIPTION" />
-                    <asp:BoundField DataField="Title" HeaderText="TITLE" />
+                    <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="TargetYear" HeaderText="YEAR" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="TargetMonth" HeaderText="TARGET MONTH" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="StartDate" HeaderText="START DATE" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Description" HeaderText="DESCRIPTION" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Title" HeaderText="TITLE" HeaderStyle-CssClass="table-dark" />
 
 
                 </Columns>

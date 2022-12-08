@@ -107,7 +107,9 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AddDME21.aspx" />
+    <Content Include="AddNewTarget.aspx" />
     <Content Include="AnnualTarget.aspx" />
+    <Content Include="AnnualTargetRecomendation.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1853,12 +1855,26 @@
     <Compile Include="AddDME21.aspx.designer.cs">
       <DependentUpon>AddDME21.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddNewTarget.aspx.cs">
+      <DependentUpon>AddNewTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddNewTarget.aspx.designer.cs">
+      <DependentUpon>AddNewTarget.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AnnualTarget.aspx.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AnnualTarget.aspx.designer.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AnnualTargetRecomendation.aspx.cs">
+      <DependentUpon>AnnualTargetRecomendation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnualTargetRecomendation.aspx.designer.cs">
+      <DependentUpon>AnnualTargetRecomendation.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

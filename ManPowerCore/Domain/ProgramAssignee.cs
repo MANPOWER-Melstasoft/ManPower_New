@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class ProgramAssignee
     {
 
@@ -24,9 +25,9 @@ namespace ManPowerCore.Domain
 
 
 
-         public ProgramTarget _ProgramTarget { get; set; } = new ProgramTarget();
-         public DepartmentUnitPositions _DepartmentUnitPositions { get; set; } = new DepartmentUnitPositions();
-         public Designation _Designation { get; set; } = new Designation();
+        public ProgramTarget _ProgramTarget { get; set; } = new ProgramTarget();
+        public DepartmentUnitPositions _DepartmentUnitPositions { get; set; } = new DepartmentUnitPositions();
+        public Designation _Designation { get; set; } = new Designation();
 
     }
 }

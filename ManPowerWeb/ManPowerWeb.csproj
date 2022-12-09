@@ -122,6 +122,7 @@
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
     <Content Include="DME37.aspx" />
+    <Content Include="DME37Search.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1921,6 +1922,13 @@
     </Compile>
     <Compile Include="DME37.aspx.designer.cs">
       <DependentUpon>DME37.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME37Search.aspx.cs">
+      <DependentUpon>DME37Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME37Search.aspx.designer.cs">
+      <DependentUpon>DME37Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

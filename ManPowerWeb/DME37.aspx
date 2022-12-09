@@ -228,7 +228,7 @@
                 <div class="mt-3">
                     <div class="form-row">
                         <div class="form-group col-md-2">
-                            <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-primary btn-user btn-block" />
+                            <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
 
 
                         </div>

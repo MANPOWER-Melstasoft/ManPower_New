@@ -41,9 +41,10 @@
 
                         </div>
                         <div class="form-group col-md-3">
+
                             <asp:TextBox ID="txtWebSite" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtWebSite" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtWebSite" ErrorMessage="Invalid Website Link" ForeColor="Red" ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@
                             <asp:Literal runat="server" ID="Literal4">Vacancy Type / JobPosition</asp:Literal>
 
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <asp:TextBox ID="txtVacancyType" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="txtVacancyType" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
@@ -82,7 +83,7 @@
                             <asp:Literal runat="server" ID="Literal5">Career Path/Achived Hightest Position</asp:Literal>
 
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <asp:DropDownList runat="server" CssClass="btn btn-primary dropdown-toggle" ID="ddlCareerPath">
                                 <asp:ListItem>Mangement</asp:ListItem>
                                 <asp:ListItem>Skilled</asp:ListItem>
@@ -133,7 +134,8 @@
 
                         </div>
                         <div class="form-group col-md-3">
-                            <asp:TextBox ID="txtNumberOfVacancies" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
+                            <asp:TextBox ID="txtNumberOfVacancies" TextMode="Number" min="0" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="txtNumberOfVacancies" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </div>
@@ -184,7 +186,9 @@
                         <div class="form-group col-md-3">
                             <asp:TextBox ID="txtContact" runat="server" CssClass="form-control form-control-user" placeholder="EX: 07XX XXX XXX"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator12" ControlToValidate="txtContact" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="txtContact" ValidationGroup="1"
+                                ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -198,6 +202,9 @@
                         <div class="form-group col-md-3">
                             <asp:TextBox ID="txtWhatsapp" runat="server" CssClass="form-control form-control-user" placeholder="EX: 07XX XXX XXX"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator13" ControlToValidate="txtWhatsapp" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="revMobNo" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="txtWhatsapp" ValidationGroup="1"
+                                ForeColor="Red" Display="Dynamic"></asp:RegularExpressionValidator>
 
                         </div>
                     </div>
@@ -210,9 +217,10 @@
 
                         </div>
                         <div class="form-group col-md-3">
+
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator14" ControlToValidate="txtEmail" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="txtEmail" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>

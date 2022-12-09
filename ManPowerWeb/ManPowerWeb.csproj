@@ -110,6 +110,7 @@
     <Content Include="AddNewTarget.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="AnnualTargetRecomendationView.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -120,6 +121,7 @@
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME37.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1876,6 +1878,13 @@
     <Compile Include="AnnualTargetRecomendation.aspx.designer.cs">
       <DependentUpon>AnnualTargetRecomendation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AnnualTargetRecomendationView.aspx.cs">
+      <DependentUpon>AnnualTargetRecomendationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnualTargetRecomendationView.aspx.designer.cs">
+      <DependentUpon>AnnualTargetRecomendationView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -1905,6 +1914,13 @@
     </Compile>
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME37.aspx.cs">
+      <DependentUpon>DME37.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME37.aspx.designer.cs">
+      <DependentUpon>DME37.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

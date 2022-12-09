@@ -64,7 +64,7 @@ namespace ManPowerWeb
 
         protected void btnAddNewTarget_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("AddNewTarget.aspx");
         }
     }
 

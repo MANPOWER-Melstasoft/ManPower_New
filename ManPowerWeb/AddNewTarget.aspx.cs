@@ -35,12 +35,6 @@ namespace ManPowerWeb
             DesignationController designationController = ControllerFactory.CreateDesignationController();
             listDesignation = designationController.GetAllDesignation(true, false);
 
-            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            listUsers = systemUserController.GetAllSystemUser(true, false, false);
-            listManagers = systemUserController.GetAllSystemUser(false, false, false);
-
-
-
             DepartmentUnitPositionsController unitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
             listUser = unitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
 
@@ -51,7 +45,7 @@ namespace ManPowerWeb
             allTargets = programTargetController.GetAllProgramTarget(false, false, false, false);
 
 
-            hideDiv.Visible = false;
+
 
             //diloagBox.Visible = false;
 
@@ -60,6 +54,8 @@ namespace ManPowerWeb
                 BindDataSource();
                 //hideDSDivision();
                 bindOficerRecomendation();
+                bindDSDivision();
+                hideDSDivision();
 
             }
 
@@ -69,11 +65,15 @@ namespace ManPowerWeb
         {
             DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
             listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
+            listDSDivision = _DepartmentUnitTypeController.GetDepartmentUnitType(3, true)._DepartmentUnit;
 
             ddlDistrict.DataSource = listDistrict;
-            ddlDSDivision.DataTextField = "Name";
-            ddlDSDivision.DataValueField = "DepartmentUnitId";
+            ddlDistrict.DataTextField = "Name";
+            ddlDistrict.DataValueField = "DepartmentUnitId";
             ddlDistrict.DataBind();
+
+
+
 
             PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
             PositionList = possitionsController.GetAllPossitions(false);
@@ -88,6 +88,14 @@ namespace ManPowerWeb
             ddlProgramType.DataTextField = "ProgramTypeName";
             ddlProgramType.DataValueField = "ProgramTypeId";
             ddlProgramType.DataBind();
+
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            listUsers = systemUserController.GetAllSystemUser(true, false, false);
+
+            //ddlOfficer.DataSource = listUsers;
+            //ddlOfficer.SelectedValue = "SystemUserId";
+            //ddlOfficer.Text = "Name";
+            //ddlOfficer.DataBind();
 
 
         }
@@ -109,6 +117,7 @@ namespace ManPowerWeb
             {
                 ddlProgram.Items.Clear();
             }
+
         }
 
         protected void ddlProgramType_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,7 +136,7 @@ namespace ManPowerWeb
 
             if (ddlDistrict.SelectedValue != "")
             {
-                ddlDSDivision.DataSource = listDSDivision;
+                ddlDSDivision.DataSource = listDSDivision.Where(u => u.ParentId.ToString() == ddlDistrict.SelectedValue);
                 ddlDSDivision.DataTextField = "Name";
                 ddlDSDivision.DataValueField = "DepartmentUnitId";
                 ddlDSDivision.DataBind();
@@ -157,31 +166,31 @@ namespace ManPowerWeb
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
 
-            //programTarget.ProgramTypeId = Convert.ToInt32(ddlProgramType.SelectedValue);
-            //programTarget.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
-            //programTarget.Title = ddlProgram.Text;
-            //programTarget.Description = txtDescription.Text;
-            //programTarget.Instractions = txtInstructions.Text;
-            //programTarget.VoteNumber = txtVote.Text;
-            //programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
-            //programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
-            //programTarget.TargetYear =  Convert.ToInt32(ddlYear.SelectedValue);
-            //programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
-            //programTarget.Output = Convert.ToInt32(txtOutput.Text);
-            //programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+            programTarget.ProgramTypeId = Convert.ToInt32(ddlProgramType.SelectedValue);
+            programTarget.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
+            programTarget.Title = ddlProgram.Text;
+            programTarget.Description = txtDescription.Text;
+            programTarget.Instractions = txtInstructions.Text;
+            programTarget.VoteNumber = txtVote.Text;
+            programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
+            programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
+            programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
+            programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
+            programTarget.Output = Convert.ToInt32(txtOutput.Text);
+            programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
 
-            programTarget.ProgramTypeId = Convert.ToInt32("1");
-            programTarget.ProgramId = Convert.ToInt32("1");
-            programTarget.Title = "test";
-            programTarget.Description = "test";
-            programTarget.Instractions = "test";
-            programTarget.VoteNumber = "test";
-            programTarget.NoOfProjects = Convert.ToInt32("10");
-            programTarget.EstimatedAmount = (float)Convert.ToDouble("2000");
-            programTarget.TargetYear = Convert.ToInt32("2023");
-            programTarget.TargetMonth = Convert.ToInt32("12");
-            programTarget.Output = Convert.ToInt32("100");
-            programTarget.Outcome = Convert.ToInt32("100");
+            //programTarget.ProgramTypeId = Convert.ToInt32("1");
+            //programTarget.ProgramId = Convert.ToInt32("1");
+            //programTarget.Title = "test";
+            //programTarget.Description = "test";
+            //programTarget.Instractions = "test";
+            //programTarget.VoteNumber = "test";
+            //programTarget.NoOfProjects = Convert.ToInt32("10");
+            //programTarget.EstimatedAmount = (float)Convert.ToDouble("2000");
+            //programTarget.TargetYear = Convert.ToInt32("2023");
+            //programTarget.TargetMonth = Convert.ToInt32("12");
+            //programTarget.Output = Convert.ToInt32("100");
+            //programTarget.Outcome = Convert.ToInt32("100");
 
             programTarget.IsRecommended = 0;
             programTarget.RecommendedBy = 0;
@@ -204,6 +213,7 @@ namespace ManPowerWeb
             {
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
+                btnSendToReccomendation.Enabled = true;
 
             }
             else

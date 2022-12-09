@@ -29,6 +29,24 @@ namespace ManPowerWeb
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(true, true, true, true);
 
+            foreach (var i in programTargetsList.Where(u => u.IsRecommended == 1))
+            {
+                myList.Add(i);
+            }
+            GridView1.DataSource = myList;
+            GridView1.DataBind();
+
+
+        }
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            bindSource();
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = GridView1.PageSize;
+            int pageindex = GridView1.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
+            Response.Redirect("AnnualTargetRecomendationView.aspx?ProgramTargetId=" + myList[rowIndex].ProgramTargetId.ToString());
         }
     }
 }

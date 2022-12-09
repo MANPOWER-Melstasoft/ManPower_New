@@ -1,0 +1,87 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DME37Search.aspx.cs" Inherits="ManPowerWeb.DME37Search" EnableEventValidation="false" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container">
+        <div class="card ml-4 p-4">
+            <h2>Annual Targets</h2>
+            <div class="mt-3">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div>
+                            <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
+                        </div>
+
+                        <div>
+                            <asp:DropDownList ID="ddlYear" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                <asp:ListItem Value="2020">2020</asp:ListItem>
+                                <asp:ListItem Value="2021">2021</asp:ListItem>
+                                <asp:ListItem Value="2022">2022</asp:ListItem>
+                                <asp:ListItem Value="2023">2023</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div>
+                            <asp:Literal ID="Literal2" runat="server" Text="Month"></asp:Literal>
+                        </div>
+
+                        <div>
+                            <asp:DropDownList ID="ddlMonth" runat="server" CssClass="btn btn-primary dropdown-toggle" Width="250px">
+                                <asp:ListItem Value="1">January</asp:ListItem>
+                                <asp:ListItem Value="2">February</asp:ListItem>
+                                <asp:ListItem Value="3">March</asp:ListItem>
+                                <asp:ListItem Value="4">April</asp:ListItem>
+                                <asp:ListItem Value="5">May</asp:ListItem>
+                                <asp:ListItem Value="6">June</asp:ListItem>
+                                <asp:ListItem Value="7">July</asp:ListItem>
+                                <asp:ListItem Value="8">August</asp:ListItem>
+                                <asp:ListItem Value="9">September</asp:ListItem>
+                                <asp:ListItem Value="10">October</asp:ListItem>
+                                <asp:ListItem Value="11">November</asp:ListItem>
+                                <asp:ListItem Value="12">December</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-3">
+                        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Search" />
+                        <asp:Button ID="btnAddVacancy" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Add Vacancy" OnClick="btnAddVacancy_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+            <asp:GridView Style="margin-top: 30px;" ID="gv1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                CellPadding="4" GridLines="None">
+                <Columns>
+                    <asp:BoundField DataField="Date" HeaderText="DATE" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Address" HeaderText="ADDRESS" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="WebSiteLink" HeaderText="WEBSITE LINK" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="BusinessRegistationNumber" HeaderText="BUSINESS REGISTRATION NO." HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="JobPosition" HeaderText="JOB POSITION" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Levels" HeaderText="LEVEL" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="SalaryLevel" HeaderText="SALARY LEVEL" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="NumberOfVacancy" HeaderText="NO. VACANCY" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Name" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Position" HeaderText="POSITION" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="ContactNumber" HeaderText="CONTACT NO." HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="WhatsappNumber" HeaderText="WHATSAPP NO." HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Email" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
+
+
+                </Columns>
+            </asp:GridView>
+        </div>
+
+
+    </div>
+
+</asp:Content>

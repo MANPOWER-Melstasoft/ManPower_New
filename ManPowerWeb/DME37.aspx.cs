@@ -43,6 +43,15 @@ namespace ManPowerWeb
 
 
             companyVecansyRegistationDetailsController.SaveCompanyVecansyRegistationDetails(companyVecansyRegistationDetails);
+
+            //give a alert here
+
+            Response.Redirect("DME37Search.aspx");
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DME37Search.aspx");
         }
     }
 }

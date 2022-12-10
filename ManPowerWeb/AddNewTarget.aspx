@@ -155,6 +155,8 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txtInstructions" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtInstructions" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -166,6 +168,8 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txtDescription" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="1" ControlToValidate="txtDescription" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -182,6 +186,8 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:TextBox ID="txtVote" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="txtVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -233,7 +239,8 @@
                                 <asp:Literal ID="Literal14" runat="server" Text="Physical Count"></asp:Literal>
                             </div>
                             <div class="col-md-6">
-                                <asp:TextBox ID="txtPhysicalCount" Width="250px" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:TextBox ID="txtPhysicalCount" Width="250px" runat="server" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhysicalCount" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>
@@ -247,7 +254,10 @@
                                 <asp:Literal ID="Literal15" runat="server" Text="Financial Count"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtFinancialCount" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                <asp:TextBox ID="txtFinancialCount" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtFinancialCount" ValidationGroup="1" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <br />
 
                             </div>
                         </div>
@@ -264,7 +274,8 @@
                                 <asp:Literal ID="Literal12" runat="server" Text="Output"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtOutput" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                <asp:TextBox ID="txtOutput" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtOutput" ValidationGroup="1" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>
@@ -278,7 +289,9 @@
                                 <asp:Literal ID="Literal13" runat="server" Text="Outcome"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtOutcome" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                <asp:TextBox ID="txtOutcome" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
+
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="txtOutcome" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>
@@ -305,7 +318,7 @@
                             <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-primary btn-user btn-block" />
                         </div>
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" />
+                            <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidationGroup="1" />
                         </div>
                         <div class="col-sm-6">
                             <asp:Button runat="server" ID="btnSendToReccomendation" Text="Send to Recomendation" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSendToReccomendation_Click" Enabled="false" />

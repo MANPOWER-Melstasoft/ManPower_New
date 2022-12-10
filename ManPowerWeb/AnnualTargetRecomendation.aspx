@@ -8,29 +8,17 @@
 
             <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
                 <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                    CellPadding="4" GridLines="None">
+                    CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <Columns>
-                        <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" HeaderStyle-CssClass="table-dark">
-                            <HeaderStyle CssClass="table-dark"></HeaderStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="TargetYear" HeaderText="YEAR" HeaderStyle-CssClass="table-dark">
-                            <HeaderStyle CssClass="table-dark"></HeaderStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="TargetMonth" HeaderText="MONTH" HeaderStyle-CssClass="table-dark">
-                            <HeaderStyle CssClass="table-dark"></HeaderStyle>
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Title" HeaderText="Project" HeaderStyle-CssClass="table-dark">
-
-                            <HeaderStyle CssClass="table-dark"></HeaderStyle>
-                        </asp:BoundField>
+                        <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" HeaderStyle-CssClass="table-dark"></asp:BoundField>
+                        <asp:BoundField DataField="TargetYear" HeaderText="YEAR" HeaderStyle-CssClass="table-dark"></asp:BoundField>
+                        <asp:BoundField DataField="TargetMonth" HeaderText="MONTH" HeaderStyle-CssClass="table-dark"></asp:BoundField>
+                        <asp:BoundField DataField="Title" HeaderText="Project" HeaderStyle-CssClass="table-dark"></asp:BoundField>
 
                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnView" CssClass="btn btn-success btn-user btn-block" runat="server" Width="100px" Height="35px" Text="View" OnClick="btnView_Click"></asp:LinkButton>
                             </ItemTemplate>
-
-                            <HeaderStyle CssClass="table-dark"></HeaderStyle>
-
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:TemplateField>
 

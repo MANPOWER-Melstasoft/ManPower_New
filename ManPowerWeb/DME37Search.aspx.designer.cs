@@ -15,13 +15,13 @@ namespace ManPowerWeb
     {
 
         /// <summary>
-        /// Literal1 control.
+        /// Literal3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.Literal Literal3;
 
         /// <summary>
         /// ddlYear control.
@@ -33,13 +33,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
 
         /// <summary>
-        /// Literal2 control.
+        /// Literal4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal2;
+        protected global::System.Web.UI.WebControls.Literal Literal4;
 
         /// <summary>
         /// ddlMonth control.

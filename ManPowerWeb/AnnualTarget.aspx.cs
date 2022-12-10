@@ -16,6 +16,7 @@ namespace ManPowerWeb
     {
         List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
         List<ProgramTarget> programTargetsListState = new List<ProgramTarget>();
+        bool isCLicked = false;
 
 
 
@@ -57,14 +58,42 @@ namespace ManPowerWeb
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            isCLicked = true;
+            bindDataSearch();
+
+        }
+        private void bindDataSearch()
+        {
             programTargetsListState = (List<ProgramTarget>)ViewState["programTargetsList"];
-            GridView1.DataSource = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue);
+
+            GridView1.DataSource = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue).ToList();
+
+
             GridView1.DataBind();
+            isCLicked = false;
         }
 
         protected void btnAddNewTarget_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddNewTarget.aspx");
+        }
+
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+
+            if (isCLicked == true)
+            {
+                bindDataSearch();
+                isCLicked = false;
+
+            }
+            else
+            {
+                BindDataSource();
+            }
+
         }
     }
 

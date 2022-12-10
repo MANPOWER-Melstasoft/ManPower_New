@@ -14,9 +14,9 @@ namespace ManPowerWeb
 {
     public partial class AddNewTarget : System.Web.UI.Page
     {
-        ProgramTarget programTarget = new ProgramTarget();
+
         List<ProgramTarget> searchTarget = new List<ProgramTarget>();
-        ProgramAssignee programAssignee = new ProgramAssignee();
+
         List<DepartmentUnit> listDistrict = new List<DepartmentUnit>();
         List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
         List<Designation> listDesignation = new List<Designation>();
@@ -47,6 +47,7 @@ namespace ManPowerWeb
 
 
 
+
             //diloagBox.Visible = false;
 
             if (!IsPostBack)
@@ -56,6 +57,7 @@ namespace ManPowerWeb
                 bindOficerRecomendation();
                 bindDSDivision();
                 hideDSDivision();
+                bindProgram();
 
             }
 
@@ -179,18 +181,7 @@ namespace ManPowerWeb
             programTarget.Output = Convert.ToInt32(txtOutput.Text);
             programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
 
-            //programTarget.ProgramTypeId = Convert.ToInt32("1");
-            //programTarget.ProgramId = Convert.ToInt32("1");
-            //programTarget.Title = "test";
-            //programTarget.Description = "test";
-            //programTarget.Instractions = "test";
-            //programTarget.VoteNumber = "test";
-            //programTarget.NoOfProjects = Convert.ToInt32("10");
-            //programTarget.EstimatedAmount = (float)Convert.ToDouble("2000");
-            //programTarget.TargetYear = Convert.ToInt32("2023");
-            //programTarget.TargetMonth = Convert.ToInt32("12");
-            //programTarget.Output = Convert.ToInt32("100");
-            //programTarget.Outcome = Convert.ToInt32("100");
+
 
             programTarget.IsRecommended = 0;
             programTarget.RecommendedBy = 0;
@@ -198,12 +189,7 @@ namespace ManPowerWeb
             programTarget.StartDate = DateTime.Now;
             programTarget.EndDate = DateTime.Now;
 
-            //programTarget._ProgramAssignee.Add(new ProgramAssignee()
-            //{
-            //    DesignationId = 1,
-            //    ProgramAssigneeId = selectedOfficer,
-            //    DepartmentUnitPossitionsId = depUnitPId,
-            //});
+
             int TargetResponse = programTargetController.SaveProgramTarget(programTarget);
             ViewState["TargetResponseState"] = TargetResponse.ToString();
             //
@@ -211,6 +197,14 @@ namespace ManPowerWeb
 
             if (TargetResponse != 0)
             {
+                ProgramAssignee programAssignee = new ProgramAssignee();
+                ProgramAssigneeController programAssigneeController1 = ControllerFactory.CreateProgramAssigneeController();
+                programAssignee.DesignationId = 1;
+                programAssignee.ProgramTargetId = TargetResponse;
+
+                programAssignee.DepartmentUnitPossitionsId = 5; // must change 
+
+                programAssigneeController1.SaveProgramAssignee(programAssignee);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
                 btnSendToReccomendation.Enabled = true;

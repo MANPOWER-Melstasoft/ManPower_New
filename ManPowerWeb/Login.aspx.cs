@@ -33,10 +33,11 @@ namespace ManPowerWeb
             {
                 if (systeUserList[0].UserName == systemUser.UserName && systeUserList[0].UserPwd == systemUser.UserPwd)
                 {
-                    Session["UserId"] = systemUser.SystemUserId;
-                    Session["UserTypeId"] = systemUser.UserTypeId;
-                    Session["DesignationId"] = systemUser.DesignationId;
-                    Session["Name"] = systemUser.Name;
+
+                    Session["UserId"] = systeUserList[0].SystemUserId;
+                    Session["UserTypeId"] = systeUserList[0].UserTypeId;
+                    Session["DesignationId"] = systeUserList[0].DesignationId;
+                    Session["Name"] = systeUserList[0].Name;
 
                     Response.Redirect("DME21.aspx");
                 }

@@ -9,9 +9,8 @@
     <title>Department of Manpower and Employment</title>
 
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="img/favicon.png" />
 
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"

@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,13 @@ namespace ManPowerCore.Controller
 
         int UpdateTaskAllocationApproval(int id, int status, string officer, string remarks);
 
+        int saveTaskAllocation(TaskAllocation taskAllocation);
+
         List<TaskAllocation> GetAllTaskAllocation(bool withTaskAllocationDetail, bool withDepartmentUnitPositions, bool withProjectStatus, bool withTaskType);
 
         TaskAllocation GetTaskAllocation(int id, bool withTaskAllocationDetail, bool withDepartmentUnitPositions);
+
+        List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId);
 
     }
 
@@ -43,7 +48,7 @@ namespace ManPowerCore.Controller
                 {
                     dBConnection = new DBConnection();
                     List<TaskAllocation> list = taskAllocationDAO.GetAllTaskAllocation(dBConnection);
-                    if (list.Where(u => u.TaskYearMonth.Month == j.StartTime.Month 
+                    if (list.Where(u => u.TaskYearMonth.Month == j.StartTime.Month
                     && u.CreatedUser == taskAllocation.CreatedUser).Count() != 0)
                     {
                         foreach (var prop in list.Where(u => u.TaskYearMonth.Month == j.StartTime.Month && u.CreatedUser == taskAllocation.CreatedUser))
@@ -68,6 +73,8 @@ namespace ManPowerCore.Controller
                     }
                 }
 
+
+
                 return 1;
             }
             catch (Exception)
@@ -80,6 +87,27 @@ namespace ManPowerCore.Controller
             {
                 if (dBConnection.con.State == System.Data.ConnectionState.Open)
                     dBConnection.Commit();
+            }
+        }
+
+        public int saveTaskAllocation(TaskAllocation taskAllocation)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return taskAllocationDAO.SaveTaskAllocation(taskAllocation, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dBConnection.Commit();
+                }
             }
         }
 
@@ -227,6 +255,27 @@ namespace ManPowerCore.Controller
             {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
+            }
+        }
+
+        public List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return taskAllocationDAO.GetAllTaskAllocationByDepartmentUnitPositionId(departmentUnitPositionId, dBConnection);
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
             }
         }
 

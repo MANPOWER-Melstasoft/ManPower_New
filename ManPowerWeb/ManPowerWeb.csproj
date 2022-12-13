@@ -123,6 +123,8 @@
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME22.aspx" />
+    <Content Include="DME22GetAction.aspx" />
     <Content Include="DME37.aspx" />
     <Content Include="DME37Search.aspx" />
     <Content Include="favicon.ico" />
@@ -1929,6 +1931,20 @@
     </Compile>
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22.aspx.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22.aspx.designer.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.designer.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
     </Compile>
     <Compile Include="DME37.aspx.cs">
       <DependentUpon>DME37.aspx</DependentUpon>

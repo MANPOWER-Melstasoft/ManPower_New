@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
+
     public class ProgramAttendence
     {
 
@@ -34,6 +36,6 @@ namespace ManPowerCore.Domain
 
 
         public ProgramPlan _ProgramPlan { get; set; } = new ProgramPlan();
-       
+
     }
 }

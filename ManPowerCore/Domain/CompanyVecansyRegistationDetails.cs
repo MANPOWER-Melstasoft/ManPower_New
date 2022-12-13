@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class CompanyVecansyRegistationDetails
     {
+
 
         [DBField("ID")]
         public int CompanyVacansyRegistationDetailsId { get; set; }

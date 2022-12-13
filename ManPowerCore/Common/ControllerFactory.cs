@@ -15,7 +15,7 @@ namespace ManPowerCore.Common
             ProgramAssigneeController programAssigneeController = new ProgramAssigneeControllerImpl();
             return (ProgramAssigneeController)programAssigneeController;
         }
-    
+
         public static ProgramAttendenceController CreateProgramAttendenceController()
         {
             ProgramAttendenceController programAttendenceController = new ProgramAttendenceControllerImpl();
@@ -285,6 +285,12 @@ namespace ManPowerCore.Common
 
         }
 
+        public static UserRegistrationController CreateUserRegistrationController()
+        {
+            UserRegistrationController educationDetailsController = new UserRegistrationControllerSqlImpl();
+            return (UserRegistrationController)educationDetailsController;
+
+        }
+
     }
 }
-    

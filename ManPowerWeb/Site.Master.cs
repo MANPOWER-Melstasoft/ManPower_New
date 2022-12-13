@@ -11,7 +11,17 @@ namespace ManPowerWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+                lblName.Text = Session["Name"].ToString();
+        }
+        protected void btnLogut_Click(object sender, EventArgs e)
+        {
+            if (Session["UserId"] != null)
+            {
+                Session.Abandon();
+                Response.Redirect("Login.aspx");
 
+            }
         }
     }
 }

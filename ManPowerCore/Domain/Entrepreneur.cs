@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
+
     public class Entrepreneur : Beneficiary
     {
         [DBField("BENEFICIARY_ID")]

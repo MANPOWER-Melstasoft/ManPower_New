@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
+
     public class Month
     {
         public string monthName { get; set; }

@@ -72,5 +72,8 @@ namespace ManPowerCore.Domain
         public List<ProgramAssignee> _ProgramAssignee { get; set; } = new List<ProgramAssignee>();
         public List<ProgramPlan> _ProgramPlan { get; set; } = new List<ProgramPlan>();
 
+        //public ProgramPlan _ProgramPlanSingle { get; set; } = new ProgramPlan();
+
+
     }
 }

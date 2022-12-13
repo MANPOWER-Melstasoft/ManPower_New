@@ -5,6 +5,8 @@ using System.Text;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
+
     public class ResourceProvisionProgress
     {
 

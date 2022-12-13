@@ -106,7 +106,7 @@
 
 
 
-        <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+        <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px; margin-bottom: 10px">
             <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-responsive table-bordered mt-4"
                 DataKeyNames="ProgramTargetId" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
                 <Columns>
@@ -137,8 +137,11 @@
                                     <div id="ProgramTargetId-<%# Eval("ProgramTargetId") %>" style="display: none; position: relative; left: 25px">
                                         <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table table-responsive ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId">
                                             <Columns>
+                                                <asp:BoundField DataField="ProgramPlanId" HeaderStyle-CssClass="table-dark" HeaderText="Program Plan Id" />
                                                 <asp:BoundField DataField="Date" HeaderStyle-CssClass="table-dark" HeaderText="Date" />
                                                 <asp:BoundField DataField="Location" HeaderStyle-CssClass="table-dark" HeaderText="Location" />
+                                                <asp:BoundField DataField="MaleCount" HeaderStyle-CssClass="table-dark" HeaderText="Male Count" />
+                                                <asp:BoundField DataField="FemaleCount" HeaderStyle-CssClass="table-dark" HeaderText="Female Count" />
                                                 <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="Status">
                                                     <ItemTemplate>
                                                         <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="red"> </asp:Label>

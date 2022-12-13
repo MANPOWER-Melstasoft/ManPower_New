@@ -138,6 +138,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="css\mdb.min.css.map" />
     <Content Include="css\mdb.rtl.min.css.map" />
+    <Content Include="img\favicon.png" />
+    <Content Include="img\header2.png" />
     <Content Include="img\minus.png" />
     <Content Include="img\plus.png" />
     <Content Include="js\mdb.min.js.map" />

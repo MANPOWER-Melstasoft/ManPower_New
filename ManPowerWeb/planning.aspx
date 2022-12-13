@@ -13,10 +13,15 @@
                         <div class="row">
                             <div class="col-sm-4">
 
-                                <asp:Literal ID="Literal3" runat="server" Text="Annual Plan"></asp:Literal>
+                                <asp:Literal ID="Literal3" runat="server" Text="Year"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox runat="server" ID="txtAnnualPlanCount" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:DropDownList runat="server" ID="ddlYear" CssClass="form-control form-control-user">
+                                    <asp:ListItem Value="2020">2020</asp:ListItem>
+                                    <asp:ListItem Value="2021">2021</asp:ListItem>
+                                    <asp:ListItem Value="2022">2022</asp:ListItem>
+                                    <asp:ListItem Value="2023">2023</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                     </div>
@@ -25,10 +30,23 @@
                         <div class="row">
                             <div class="col-sm-4">
 
-                                <asp:Literal ID="Literal4" runat="server" Text="Program Plan"></asp:Literal>
+                                <asp:Literal ID="Literal4" runat="server" Text="Month"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox runat="server" ID="txtProgramPlanCount" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:DropDownList runat="server" ID="ddlMonth" CssClass="form-control form-control-user">
+                                    <asp:ListItem Value="1">January</asp:ListItem>
+                                    <asp:ListItem Value="2">February</asp:ListItem>
+                                    <asp:ListItem Value="3">March</asp:ListItem>
+                                    <asp:ListItem Value="4">April</asp:ListItem>
+                                    <asp:ListItem Value="5">May</asp:ListItem>
+                                    <asp:ListItem Value="6">June</asp:ListItem>
+                                    <asp:ListItem Value="7">July</asp:ListItem>
+                                    <asp:ListItem Value="8">August</asp:ListItem>
+                                    <asp:ListItem Value="9">September</asp:ListItem>
+                                    <asp:ListItem Value="10">October</asp:ListItem>
+                                    <asp:ListItem Value="11">November</asp:ListItem>
+                                    <asp:ListItem Value="12">December</asp:ListItem>
+                                </asp:DropDownList>
 
                             </div>
                             <div class="col-md-2">
@@ -44,46 +62,35 @@
 
                     <div class="col-sm-6">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col">
 
-                                <asp:Literal ID="Literal1" runat="server" Text="Not Program "></asp:Literal>
+                                <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-primary" Text="Search" OnClick="btnSearch_Click"></asp:Button>
                             </div>
-                            <div class="col-md-4">
-                                <asp:TextBox runat="server" ID="txtNotProgramCount" CssClass="form-control form-control-user"></asp:TextBox>
+                            <div class="col">
+
+                                <asp:Button runat="server" ID="btnShowAll" CssClass="btn btn-primary" Text="Show All" OnClick="btnShowAll_Click"></asp:Button>
                             </div>
+
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-4">
 
-                                <asp:Literal ID="Literal2" runat="server" Text="Completed Plan"></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:TextBox runat="server" ID="txtCompletedCount" CssClass="form-control form-control-user"></asp:TextBox>
-
-                            </div>
-                            <div class="col-md-2">
-                            </div>
-                        </div>
-                    </div>
 
 
 
                 </div>
 
 
-                <div class="row mb-3 ms-1">
+                <div class="row mb-3 ms-1 mt-5">
 
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-4">
 
-                                <asp:Literal ID="Literal5" runat="server" Text="Search"></asp:Literal>
+                                <asp:Literal ID="Literal5" runat="server" Text="Allocated Target Count"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList runat="server" ID="ddlSearch" CssClass="form-control form-control-user"></asp:DropDownList>
+                                <asp:TextBox runat="server" ID="txtTargetCount" CssClass="form-control form-control-user"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -97,46 +104,11 @@
 
         </div>
 
-        <%--        <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
-            <asp:GridView Style="margin-top: 30px;" ID="gvAnnualPlan" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                CellPadding="4" GridLines="None" OnRowDataBound="gvAnnualPlan_RowDataBound">
-                <Columns>
-                    <asp:TemplateField>
-                        <ItemTemplate>
-                            <img alt="" style="cursor: pointer; margin-top: -6px" src="images/plus.png" />
-                            <asp:Panel ID="pnlPlandetails" runat="server">
-                                <asp:GridView runat="server" ID="gvPlanDetails" CssClass="table table-responsive ChildGrid" EmptyDataText="No Data found">
-                                    <Columns>
-                                        <asp:BoundField DataField="Description" HeaderText="PROGRAM NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                        <asp:BoundField HeaderText="REPORTING MANGER" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
 
-                                        <asp:BoundField HeaderText="DATE" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                        <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
-                                    </Columns>
-                                </asp:GridView>
-                            </asp:Panel>
-
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="Description" HeaderText="PROGRAM NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField HeaderText="REPORTING MANGER" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-
-                    <asp:BoundField HeaderText="DATE" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
-                        <ItemTemplate>
-                            <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" OnClick="btnAddPlan_Click">Add Program Plan</asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-warning" OnClick="btnEdit_Click">Edit</asp:LinkButton>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                </Columns>
-            </asp:GridView>
-
-        </div>--%>
 
         <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
             <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-responsive table-bordered mt-4"
-                DataKeyNames="ProgramTargetId" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" headerstyle->
+                DataKeyNames="ProgramTargetId" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
                 <Columns>
                     <asp:TemplateField HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
@@ -144,10 +116,14 @@
                                 <img alt="Details" id="imageProgramTargetId-<%# Eval("ProgramTargetId") %> " src="img/plus.png" border="0" />
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:BoundField DataField="_ProgramTarget.ProgramTargetId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+
                     <asp:BoundField DataField="_ProgramTarget.Description" HeaderText="Description" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetYear" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetMonth" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField HeaderText="Target Count" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.EstimatedAmount" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.NoOfProjects" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.Instractions" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField HeaderText="Planned Count" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:TemplateField HeaderText="ACTION" HeaderStyle-Width="300px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
                         <ItemTemplate>
@@ -159,7 +135,7 @@
                             <tr>
                                 <td colspan=" 100%">
                                     <div id="ProgramTargetId-<%# Eval("ProgramTargetId") %>" style="display: none; position: relative; left: 25px">
-                                        <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table table-responsive ChildGrid" EmptyDataText="No Item Found">
+                                        <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table table-responsive ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId">
                                             <Columns>
                                                 <asp:BoundField DataField="Date" HeaderStyle-CssClass="table-dark" HeaderText="Date" />
                                                 <asp:BoundField DataField="Location" HeaderStyle-CssClass="table-dark" HeaderText="Location" />
@@ -174,7 +150,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton runat="server" ID="btnEdit" CssClass="btn btn-warning" OnClick="btnEdit_Click" Enabled='<%#Eval("ProjectStatusId").ToString() != "4" ?true:false %>'>Edit</asp:LinkButton>
+                                                        <asp:LinkButton runat="server" CommandName="Edit" ID="btnEdit" CssClass="btn btn-warning" OnClick="btnEdit_Click" Enabled='<%#Eval("ProjectStatusId").ToString() != "4" ?true:false %>'>Edit</asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

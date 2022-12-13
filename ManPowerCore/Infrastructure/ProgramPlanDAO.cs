@@ -16,6 +16,8 @@ namespace ManPowerCore.Infrastructure
         int SaveProgramPlan(ProgramPlan programPlan, DBConnection dbConnection);
         int UpdateProgramPlan(ProgramPlan programPlan, DBConnection dbConnection);
 
+        int UpdateProgramPlanComplete(int statusId, int projectTargetId, DBConnection dbConnection);
+
         List<ProgramPlan> GetAllProgramPlanByProgramTargetId(int programTargetId, DBConnection dBConnection);
         List<ProgramPlan> GetAllProgramPlanByProgramCategoryId(int programCategoryId, DBConnection dbConnection);
         List<ProgramPlan> GetAllProgramPlanByProjectStatusId(int projectStatusId, DBConnection dbConnection);
@@ -86,7 +88,7 @@ namespace ManPowerCore.Infrastructure
 
 
 
-            dbConnection.cmd.ExecuteNonQuery();
+
 
 
             return dbConnection.cmd.ExecuteNonQuery();
@@ -127,6 +129,16 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@FemaleCount", programPlan.FemaleCount);
 
 
+
+            return dbConnection.cmd.ExecuteNonQuery();
+        }
+
+        public int UpdateProgramPlanComplete(int statusId, int projectTargetId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "UPDATE PROGRAM_PLAN SET PROJECT_STATUS_ID = " + statusId + "WHERE PROGRAM_TARGET_ID = " + projectTargetId + " ";
 
             return dbConnection.cmd.ExecuteNonQuery();
         }

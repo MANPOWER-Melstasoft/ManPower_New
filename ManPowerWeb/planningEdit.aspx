@@ -151,7 +151,7 @@
                         <div class="col-sm-4">
 
                             <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click1" ValidationGroup="1" />
-                            <asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success" />
+                            <asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success" OnClick="btnComplete_Click" />
 
                         </div>
 

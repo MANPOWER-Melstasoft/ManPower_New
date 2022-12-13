@@ -35,6 +35,7 @@ namespace ManPowerWeb
 
 
             programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+            ViewState["programTargetId"] = programTargetId;
             programTargetName = Request.QueryString["ProgramName"];
             txtProgramName.Text = programTargetName;
             ddlResourcePerson.DataSource = resourcePeopleList;
@@ -88,6 +89,19 @@ namespace ManPowerWeb
 
             }
 
+        }
+
+        protected void btnComplete_Click(object sender, EventArgs e)
+        {
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+            programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+
+            int response = programPlanController.UpdateProgramPlanComplete(4, programTargetId);
+            if (response != 0)
+            {
+                Response.Redirect("planning.aspx");
+
+            }
         }
     }
 }

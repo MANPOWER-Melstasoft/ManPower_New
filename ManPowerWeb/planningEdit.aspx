@@ -150,6 +150,22 @@
                     <div class="row">
                         <div class="col-sm-4">
 
+                            <asp:Literal ID="Literal9" runat="server" Text="Upload Documnents"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="true" />
+                            <asp:Label ID="lblListOfUploadedFiles" runat="server" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 ms-1">
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
                             <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click1" ValidationGroup="1" />
                             <asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success" OnClick="btnComplete_Click" />
 

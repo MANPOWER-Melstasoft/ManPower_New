@@ -26,6 +26,8 @@ namespace ManPowerCore.Controller
         ProgramTarget GetProgramTarget(int id, bool withProgram, bool withProgramType, bool withProgramAssignee, bool withProgramPlan);
 
         List<ProgramTarget> GetAllProgramTarget(int runType);
+        List<ProgramTarget> GetAllProgramTargetWithPlan();
+
     }
 
     public class ProgramTargetControllerImpl : ProgramTargetController
@@ -340,6 +342,53 @@ namespace ManPowerCore.Controller
             }
 
         }
+
+        public List<ProgramTarget> GetAllProgramTargetWithPlan()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                List<ProgramTarget> list = programTargetDAO.GetAllProgramTarget(dBConnection);
+
+                //ProgramPlanDAO programPlanDAO = DAOFactory.CreateProgramPlanDAO();
+                //ProjectStatusDAO projectStatusDAO = DAOFactory.CreateProjectStatusDAO();
+                //List<ProgramPlan> listPlan = programPlanDAO.GetAllProgramPlan(dBConnection);
+                //List<ProjectStatus> listProjectStatus = projectStatusDAO.GetAllProjectStatus(dBConnection);
+
+
+
+                //foreach (var target in list)
+                //{
+                //    target._ProgramPlan = listPlan.Where(x => x.ProgramTargetId == target.ProgramTargetId).ToList();
+
+
+                //    if (target._ProgramPlan.Count > 0)
+                //    {
+                //        target._ProgramPlan[0]._ProjectStatus = listProjectStatus.Where(x => x.ProjectStatusId == target._ProgramPlan[0].ProjectStatusId).Single();
+
+                //        break;
+
+                //    }
+
+
+                //}
+
+                return list;
+
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
 
     }
 }

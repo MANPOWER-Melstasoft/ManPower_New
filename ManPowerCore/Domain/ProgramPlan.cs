@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class ProgramPlan
     {
 
@@ -85,7 +86,7 @@ namespace ManPowerCore.Domain
         //GET_PROGRAM_BUDGET
 
 
-        public List<ProgramAttendence> _ProgramAttendence { get; set; } 
+        public List<ProgramAttendence> _ProgramAttendence { get; set; }
         public List<ProgramBudget> _ProgramBudget { get; set; }
         public List<ProjectTask> _ProjectTask { get; set; }
 

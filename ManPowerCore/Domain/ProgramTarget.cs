@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class ProgramTarget
     {
 
@@ -70,6 +71,9 @@ namespace ManPowerCore.Domain
         public ProgramType _ProgramType { get; set; } = new ProgramType();
         public List<ProgramAssignee> _ProgramAssignee { get; set; } = new List<ProgramAssignee>();
         public List<ProgramPlan> _ProgramPlan { get; set; } = new List<ProgramPlan>();
+
+        //public ProgramPlan _ProgramPlanSingle { get; set; } = new ProgramPlan();
+
 
     }
 }

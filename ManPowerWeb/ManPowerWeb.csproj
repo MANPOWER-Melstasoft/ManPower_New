@@ -106,16 +106,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AddDME21.aspx" />
+    <Content Include="AddNewTarget.aspx" />
     <Content Include="AnnualTarget.aspx" />
+    <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="AnnualTargetRecomendationView.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\mdb.min.css" />
+    <Content Include="css\mdb.rtl.min.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DME21.aspx" />
+    <Content Include="DME37.aspx" />
+    <Content Include="DME37Search.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -127,6 +136,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="css\mdb.min.css.map" />
+    <Content Include="css\mdb.rtl.min.css.map" />
+    <Content Include="img\minus.png" />
+    <Content Include="img\plus.png" />
+    <Content Include="js\mdb.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="img\undraw_profile.svg" />
@@ -138,8 +152,12 @@
     <Content Include="js\demo\chart-bar-demo.js" />
     <Content Include="js\demo\chart-pie-demo.js" />
     <Content Include="js\demo\datatables-demo.js" />
+    <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="Login.aspx" />
+    <Content Include="planning.aspx" />
+    <Content Include="planningEdit.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1844,12 +1862,40 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDME21.aspx.cs">
+      <DependentUpon>AddDME21.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDME21.aspx.designer.cs">
+      <DependentUpon>AddDME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewTarget.aspx.cs">
+      <DependentUpon>AddNewTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddNewTarget.aspx.designer.cs">
+      <DependentUpon>AddNewTarget.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AnnualTarget.aspx.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AnnualTarget.aspx.designer.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AnnualTargetRecomendation.aspx.cs">
+      <DependentUpon>AnnualTargetRecomendation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnualTargetRecomendation.aspx.designer.cs">
+      <DependentUpon>AnnualTargetRecomendation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AnnualTargetRecomendationView.aspx.cs">
+      <DependentUpon>AnnualTargetRecomendationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnualTargetRecomendationView.aspx.designer.cs">
+      <DependentUpon>AnnualTargetRecomendationView.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -1874,8 +1920,51 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DME21.aspx.cs">
+      <DependentUpon>DME21.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME21.aspx.designer.cs">
+      <DependentUpon>DME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME37.aspx.cs">
+      <DependentUpon>DME37.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME37.aspx.designer.cs">
+      <DependentUpon>DME37.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME37Search.aspx.cs">
+      <DependentUpon>DME37Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME37Search.aspx.designer.cs">
+      <DependentUpon>DME37Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncryptDecryptQueryString.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planning.aspx.cs">
+      <DependentUpon>planning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planning.aspx.designer.cs">
+      <DependentUpon>planning.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="planningEdit.aspx.cs">
+      <DependentUpon>planningEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="planningEdit.aspx.designer.cs">
+      <DependentUpon>planningEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

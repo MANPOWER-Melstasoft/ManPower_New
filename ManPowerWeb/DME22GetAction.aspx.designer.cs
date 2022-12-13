@@ -11,25 +11,25 @@ namespace ManPowerWeb
 {
 
 
-    public partial class DME21
+    public partial class DME22GetAction
     {
 
         /// <summary>
-        /// DME21GridView control.
+        /// DME22GetActionGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DME21GridView;
+        protected global::System.Web.UI.WebControls.GridView DME22GetActionGridView;
 
         /// <summary>
-        /// btnApproval control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnApproval;
+        protected global::System.Web.UI.WebControls.LinkButton btnSave;
     }
 }

@@ -118,6 +118,8 @@
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME22.aspx" />
+    <Content Include="DME22GetAction.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1889,6 +1891,20 @@
     </Compile>
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22.aspx.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22.aspx.designer.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.designer.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

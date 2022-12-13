@@ -15,7 +15,7 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateTaskAllocation(TaskAllocation taskAllocation, DBConnection dbConnection);
 
-        int UpdateTaskAllocation(int id, int status, string officer, string remarks,  DBConnection dbConnection);
+        int UpdateTaskAllocation(int id, int status, string officer, string remarks, DBConnection dbConnection);
 
         int DeleteTaskAllocation(int id, DBConnection dbConnection);
 
@@ -56,11 +56,11 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO TASK_ALLOCATION(DEPARTMENT_UNIT_POSSITIONS_ID,TASK_YEAR_MONTH" +
                                             ",CREATED_DATE,CREATED_USER,STATUS_ID,RECOMMENDED_BY,RECOMMENDED_DATE,APPROVED_BY,APPROVED_DATE) " +
                                             "VALUES(@DepartmetUnitPossitionsId,@TaskYearMonth,@CreatedDate,@CreatedUser,@StatusId," +
-                                            "@RecommendedBy,@RecommendedDate,@ApprovedBy,@ApprovedDate) SELECT SCOPE_IDENTITY() ";
+                                            "@RecommendedBy,@RecommendedDate,@ApprovedBy,@ApprovedDate) SELECT SCOPE_IDENTITY()";
 
 
 
-            
+
             dbConnection.cmd.Parameters.AddWithValue("@DepartmetUnitPossitionsId", taskAllocation.DepartmetUnitPossitionsId);
             dbConnection.cmd.Parameters.AddWithValue("@TaskYearMonth", taskAllocation.TaskYearMonth);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", taskAllocation.CreatedDate);
@@ -98,7 +98,7 @@ namespace ManPowerCore.Infrastructure
         }
 
 
-        public int UpdateTaskAllocation(int id, int status, string officer, string remarks , DBConnection dbConnection)
+        public int UpdateTaskAllocation(int id, int status, string officer, string remarks, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
@@ -154,6 +154,8 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<TaskAllocation>(dbConnection.dr);
 
         }
+
+
 
         public int DeleteTaskAllocation(int id, DBConnection dbConnection)
         {

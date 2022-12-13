@@ -17,8 +17,10 @@ namespace ManPowerCore.Controller
 
         int UpdateProgramAssignee(ProgramAssignee programAssignee);
 
+        List<ProgramAssignee> GetProgramAssignee();
+
         List<ProgramAssignee> GetAllProgramAssignee(bool withProgramTarget, bool withDepartmentUnitPositions, bool withDesignation);
-        
+
         ProgramAssignee GetProgramAssignee(int id, bool withProgramTarget, bool withDepartmentUnitPositions, bool withDesignation);
     }
 
@@ -130,6 +132,45 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
 
+        }
+
+        public List<ProgramAssignee> GetProgramAssignee()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                List<ProgramAssignee> list = programAssigneeDAO.GetAllProgramAssignee(dBConnection);
+
+                DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                List<DepartmentUnitPositions> listDepartmentUnitPositions = departmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
+                ProgramTargetDAO programTargetDAO = DAOFactory.CreateProgramTargetDAO();
+                List<ProgramTarget> listTarget = programTargetDAO.GetAllProgramTarget(dBConnection);
+
+                foreach (var x in list)
+                {
+                    x._DepartmentUnitPositions = listDepartmentUnitPositions.Where(u => u.DepartmetUnitPossitionsId == x.DepartmentUnitPossitionsId).Single();
+
+                    x._ProgramTarget = listTarget.Where(u => u.ProgramTargetId == x.ProgramTargetId).Single();
+
+
+                }
+
+
+                return list;
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
         }
 
         public ProgramAssignee GetProgramAssignee(int id, bool withProgramTarget, bool withDepartmentUnitPositions, bool withDesignation)

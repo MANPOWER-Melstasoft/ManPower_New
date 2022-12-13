@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+
+
+    [Serializable]
     public class SystemUser
     {
         [DBField("ID")]
@@ -37,7 +40,7 @@ namespace ManPowerCore.Domain
         public string UserPwd { get; set; }
 
         [DBField("RESET_CODE")]
-        public string ResetCode{ get; set; }
+        public string ResetCode { get; set; }
 
         [DBField("VALIDITY_PERIOD")]
         public string ValidityPeriod { get; set; }
@@ -64,7 +67,7 @@ namespace ManPowerCore.Domain
         public List<DepartmentUnitPositions> _DepartmentUnitPositions { get; set; }
         public UserType _UserType { get; set; } = new UserType();
         public Designation _Designation { get; set; } = new Designation();
-        
+
 
     }
 }

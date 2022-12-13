@@ -52,14 +52,14 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            int id = getMaxProgramPlanId(dbConnection);
+            //int id = getMaxProgramPlanId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_PLAN(ID,PROJECT_STATUS_ID,PROGRAM_CATEGORY_ID,PROGRAM_TARGET_ID,DATE," +
+            dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_PLAN(PROJECT_STATUS_ID,PROGRAM_CATEGORY_ID,PROGRAM_TARGET_ID,DATE," +
                                             "LOCATION,OUTCOME,OUTPUT,ACTUAL_OUTPUT,IS_APPROVED,APPROVED_BY,APPROVED_DATE," +
                                             "TOTAL_ESTIMATED_AMOUNT,APPROVED_AMOUNT,ACTUAL_AMOUNT,MALE_COUNT,FEMALE_COUNT) " +
 
-                                 "VALUES(@id,@ProjectStatusId,@ProgramCategoryId,@ProgramTargetId,@Date,@Location,@Outcome" +
+                                 "VALUES(@ProjectStatusId,@ProgramCategoryId,@ProgramTargetId,@Date,@Location,@Outcome," +
                                  "@Output,@ActualOutput,@IsApproved,@ApprovedBy,@ApprovedDate,@TotalEstimatedAmount," +
                                  "@ApprovedAmount,@ActualAmount,@MaleCount,@FemaleCount) ";
 
@@ -98,12 +98,12 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_PLAN SET PROJECT_STATUS_ID = @ProjectStatusId ," +
-            " PROGRAM_CATEGORY_ID = @ProgramCategoryId, PROGRAM_TARGET_ID = @ProgramTargetId," +
+            " PROGRAM_CATEGORY_ID = @ProgramCategoryId," +
             " DATE = @Date, LOCATION = @Location,OUTCOME = @Outcome , OUTPUT = @Output ," +
             " ACTUAL_OUTPUT = @ActualOutput, IS_APPROVED = @IsApproved, APPROVED_BY =@ApprovedBy ," +
             " APPROVED_DATE = @ApprovedDate ,TOTAL_ESTIMATED_AMOUNT = @TotalEstimatedAmount,APPROVED_AMOUNT = @ApprovedAmount," +
             " ACTUAL_AMOUNT = @ActualAmount, MALE_COUNT = @MaleCount ," +
-            " FEMALE_COUNT = @FemaleCount WHERE ID = @ProgramPlanId ";
+            " FEMALE_COUNT = @FemaleCount WHERE PROGRAM_TARGET_ID = @ProgramTargetId ";
 
 
 
@@ -136,7 +136,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROJECT_STATUS_ID=4 ORDER BY ID ";
+            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

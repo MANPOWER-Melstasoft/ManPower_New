@@ -31,12 +31,12 @@ namespace ManPowerCore.Domain
         public string Email { get; set; }
 
         [DBField("CONTACT_NUMBER")]
-        public int ContactNumber { get; set; }
+        public string ContactNumber { get; set; }
 
         [DBField("USER_NAME")]
         public string UserName { get; set; }
 
-        [DBField("USER_PWD")]
+        [DBField("User_Password")]
         public string UserPwd { get; set; }
 
         [DBField("RESET_CODE")]

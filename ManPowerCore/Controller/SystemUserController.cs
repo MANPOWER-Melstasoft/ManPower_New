@@ -18,6 +18,7 @@ namespace ManPowerCore.Controller
         List<SystemUser> GetAllSystemUser(string runUserName);
         List<SystemUser> GetAllSystemUser(string runUserName, string runPassword);
         List<SystemUser> GetAllSystemUser(string runUserName, string runEmail, int runContactNumber, int runEmpNumber);
+        int UpdateLastLoginDate(SystemUser systemUser);
     }
 
     public class SystemUserControllerImpl : SystemUserController
@@ -96,7 +97,7 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 List<SystemUser> list = systemUserDAO.CheckSystemUserLoginPassword(runUserName, runPassword, dBConnection);
 
-               
+
 
 
                 //     If Password is iccorect    
@@ -200,7 +201,7 @@ namespace ManPowerCore.Controller
 
                     SystemUser systemUser = new SystemUser();
                     systemUser.UserName = runUserName;
-                    
+
 
 
 
@@ -369,6 +370,27 @@ namespace ManPowerCore.Controller
             {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
+            }
+        }
+
+        public int UpdateLastLoginDate(SystemUser systemUser)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                var systemUserDetails = systemUserDAO.UpdateLastLoginDate(systemUser, dBConnection);
+                return systemUserDetails;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
             }
         }
     }

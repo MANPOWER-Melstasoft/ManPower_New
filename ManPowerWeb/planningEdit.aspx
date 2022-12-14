@@ -48,6 +48,7 @@
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox runat="server" ID="txtDate" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:Label runat="server" ID="lblDate" ForeColor="Red"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtDate" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </div>

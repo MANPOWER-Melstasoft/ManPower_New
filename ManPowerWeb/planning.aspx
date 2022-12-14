@@ -81,25 +81,7 @@
                 </div>
 
 
-                <div class="row mb-3 ms-1 mt-5">
 
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-4">
-
-                                <asp:Literal ID="Literal5" runat="server" Text="Allocated Target Count"></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:TextBox runat="server" ID="txtTargetCount" CssClass="form-control form-control-user"></asp:TextBox>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
             </div>
 
         </div>
@@ -122,9 +104,15 @@
                     <asp:BoundField DataField="_ProgramTarget.TargetYear" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetMonth" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.EstimatedAmount" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField DataField="_ProgramTarget.NoOfProjects" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.Instractions" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField HeaderText="Planned Count" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+
+                    <asp:BoundField DataField="_ProgramTarget.NoOfProjects" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:TemplateField HeaderText="Planned Count" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
+                        <ItemTemplate>
+                            <asp:Label runat="server" ID="lblPlannedCount"></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="ACTION" HeaderStyle-Width="300px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" OnClick="btnAddPlan_Click">Add Program Plan</asp:LinkButton>

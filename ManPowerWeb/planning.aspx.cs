@@ -58,7 +58,6 @@ namespace ManPowerWeb
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlansList = programPlanController.GetAllProgramPlan();
             filterWithMonthYear = programAssigneesFilter.Where(u => u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue && u._ProgramTarget.TargetYear.ToString() == ddlYear.SelectedValue).ToList();
-            txtTargetCount.Text = filterWithMonthYear.Count.ToString();
 
 
 
@@ -71,13 +70,16 @@ namespace ManPowerWeb
             else
             {
                 gvAnnaualPlan.DataSource = programAssigneesFilter;
-                txtTargetCount.Text = "";
                 ViewState["programTargetsStates"] = programAssigneesFilter;
             }
 
 
             gvAnnaualPlan.DataBind();
             gvAnnaualPlan.Columns[1].Visible = false;
+
+
+
+
 
 
 
@@ -167,19 +169,32 @@ namespace ManPowerWeb
         {
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlansList = programPlanController.GetAllProgramPlan();
+
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string programTargetID = gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString();
                 GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
 
 
+
                 programPlansList = programPlansList.Where(x => x.ProgramTargetId.ToString() == programTargetID).ToList();
+
+                ViewState["programPlansListCount"] = programPlansList.Count();
+
+                Label lbl = e.Row.FindControl("lblPlannedCount") as Label;
+                lbl.Text = programPlansList.Count.ToString();
+
+
+
+
                 gvPlanDetails.DataSource = programPlansList;
                 gvPlanDetails.DataBind();
 
 
 
             }
+
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -201,7 +216,19 @@ namespace ManPowerWeb
         //        GridView Childgrid = (GridView)(Gv2Row.Parent.Parent);
         //        GridViewRow Gv1Row = (GridViewRow)(Childgrid.NamingContainer);
         //        int b = Gv1Row.RowIndex;
+
+
         //    }
         //}
+
+        //   foreach (GridViewRow row in gvAnnaualPlan.Rows)
+        //    {
+
+
+        //        Label lbl1 = (Label)row.FindControl("lblPlannedCount");
+        //lbl1.Text = ViewState["programPlansListCount"].ToString();
+        //lbl1.Text = programPlansList.Count.ToString()};
+
+
     }
 }

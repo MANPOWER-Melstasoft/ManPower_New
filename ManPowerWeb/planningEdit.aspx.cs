@@ -40,6 +40,7 @@ namespace ManPowerWeb
 
                 }
 
+
                 dataSource();
 
             }
@@ -80,8 +81,6 @@ namespace ManPowerWeb
 
 
 
-
-            programPlan.Date = DateTime.Now;
             programPlan.ProjectStatusId = 2;
             programPlan.ProgramName = "";
             programPlan.FinancialSource = "";
@@ -104,6 +103,7 @@ namespace ManPowerWeb
             programPlan.Coordinater = ddlResourcePerson.SelectedValue;
             programPlan.ProgramPlanId = programPlanId;
 
+            lblDate.Text = txtDate.Text;
 
             if (Uploader.HasFile)
             {
@@ -121,14 +121,23 @@ namespace ManPowerWeb
                 }
             }
 
-
-
-            int response = programPlanController.UpdateProgramPlan(programPlan);
-            if (response != 0)
+            if (DateTime.Parse(txtDate.Text) <= DateTime.Now)
             {
-                Response.Redirect("planning.aspx");
-
+                lblDate.Text = "Invalid Date";
             }
+            else
+            {
+                programPlan.Date = DateTime.Parse(txtDate.Text);
+
+                int response = programPlanController.UpdateProgramPlan(programPlan);
+                if (response != 0)
+                {
+                    Response.Redirect("planning.aspx");
+
+                }
+            }
+
+
 
         }
 

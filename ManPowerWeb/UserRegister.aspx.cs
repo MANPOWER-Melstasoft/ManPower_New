@@ -33,12 +33,13 @@ namespace ManPowerWeb
             {
                 SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
                 List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(false, false, false);
-                SystemUser systemUser = new SystemUser();
+                SystemUser systemUserTst = new SystemUser();
 
-                systemUser = systemUserList.Where(x => x.UserName.ToLower() == txtUserName.Text.ToLower()).FirstOrDefault();
+                systemUserTst = systemUserList.Where(x => x.UserName.ToLower() == txtUserName.Text.ToLower()).FirstOrDefault();
 
-                if (systemUser == null)
+                if (systemUserTst == null)
                 {
+                    SystemUser systemUser = new SystemUser();
                     systemUser.Name = txtName.Text;
                     systemUser.UserName = txtUserName.Text.ToLower();
                     systemUser.Email = txtEmail.Text;
@@ -62,10 +63,12 @@ namespace ManPowerWeb
 
                     Clear();
 
+                    lblErrorUser.Text = "";
                     lblSuccessMsg.Text = "Record Updated Successfully!";
                 }
                 else
                 {
+                    lblSuccessMsg.Text = "";
                     lblErrorUser.Text = "Username Already Taken!";
                 }
             }
@@ -168,7 +171,6 @@ namespace ManPowerWeb
                 ddlDepartmentUnit.DataValueField = "DepartmentUnitId";
                 ddlDepartmentUnit.DataTextField = "Name";
                 ddlDepartmentUnit.DataBind();
-                //ddlDepartmentUnit.Items.Insert(0, new ListItem("-- select department unit --", ""));
             }
             else
             {
@@ -192,13 +194,6 @@ namespace ManPowerWeb
             ddlUserType.SelectedIndex = 0;
             ddlDepartmentType.SelectedIndex = 0;
             ddlDepartmentUnit.Items.Clear();
-            //lblCompany.Text = "N/A";
-            //lblCompanyUnit.Text = "N/A";
-            //lblDescription.Text = "N/A";
-            //lblNature.Text = "N/A";
-            //lblPlaintiff.Text = "N/A";
-            //lblDefendant.Text = "N/A";
-
         }
 
     }

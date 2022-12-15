@@ -114,6 +114,7 @@ namespace ManPowerCore.Infrastructure
         }
 
         public List<TaskAllocationDetail> GetAllTaskAllocationDetail(DBConnection dbConnection)
+
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
@@ -125,7 +126,16 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<TaskAllocationDetail>(dbConnection.dr);
 
         }
+        public List<TaskAllocationDetail> GetTaskAllocationDetail(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
 
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION_DETAIL";
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TaskAllocationDetail>(dbConnection.dr);
+        }
         public TaskAllocationDetail GetTaskAllocationDetail(int id, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)

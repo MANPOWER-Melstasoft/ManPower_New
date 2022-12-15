@@ -14,6 +14,8 @@ namespace ManPowerCore.Controller
 
         int SaveTaskAllocationDetail(TaskAllocationDetail taskAllocationDetail);
         int UpdateTaskAllocationDetail(TaskAllocationDetail taskAllocationDetail);
+
+        List<TaskAllocationDetail> GetAllTaskAllocationDetail();
         List<TaskAllocationDetail> GetAllTaskAllocationDetail(bool withProjectTask, bool withTaskType, bool withTaskAllocation);
         TaskAllocationDetail GetTaskAllocationDetail(int id, bool withProjectTask, bool withTaskType, bool withTaskAllocation);
         int DeleteTaskAllocationDetail(int allocationId, int detailId);
@@ -37,6 +39,27 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 taskAllocationDetailDAO.SaveTaskAllocationDetail(taskAllocationDetail, dBConnection);
                 return 1;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+        public List<TaskAllocationDetail> GetAllTaskAllocationDetail()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocationDetail> listTaskAllocationDetail = taskAllocationDetailDAO.GetAllTaskAllocationDetail(dBConnection);
+                return listTaskAllocationDetail;
             }
             catch (Exception)
             {
@@ -158,25 +181,26 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                //if (withProjectTask)
-                //{
-                //    ProjectTaskDAO _ProjectTaskController = DAOFactory.CreateProjectTaskDAO();
-                //    List<ProjectTask> listProjectTask = _ProjectTaskController.GetAllProjectTask(dBConnection);
-
-                //   foreach (var item in list)
-                //    {
-                //       item._ProjectTask = listProjectTask.Where(a => a.ProjectTaskId == item.TaskAllocationId).Single();
-                //   }
-                //}
 
                 if (withProjectTask)
                 {
-                    ProjectTaskDAO _ProjectTaskDAO = DAOFactory.CreateProjectTaskDAO();
+                    ProjectTaskDAO _ProjectTaskController = DAOFactory.CreateProjectTaskDAO();
+                    List<ProjectTask> listProjectTask = _ProjectTaskController.GetAllProjectTask(dBConnection);
+
                     foreach (var item in list)
                     {
-                        item._ProjectTask = _ProjectTaskDAO.GetProjectTaskByTaskAllocationDetailId(item.TaskAllocationDetailId, dBConnection);
+                        item._ProjectTask = listProjectTask.Where(a => a.TaskAllocationDetailId == item.TaskAllocationDetailId).ToList();
                     }
                 }
+
+                //if (withProjectTask)
+                //{
+                //    ProjectTaskDAO _ProjectTaskDAO = DAOFactory.CreateProjectTaskDAO();
+                //    foreach (var item in list)
+                //    {
+                //        item._ProjectTask = _ProjectTaskDAO.GetProjectTaskByTaskAllocationDetailId(item.TaskAllocationDetailId, dBConnection);
+                //    }
+                //}
 
 
                 return list;

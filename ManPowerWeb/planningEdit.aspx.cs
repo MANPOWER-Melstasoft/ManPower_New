@@ -30,7 +30,7 @@ namespace ManPowerWeb
                 {
                     programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
                 }
-                if (Request.QueryString["ProgramplanId"] != null)
+                if (Request.QueryString["ProgramName"] != null)
                 {
                     programTargetName = Request.QueryString["ProgramName"];
                 }

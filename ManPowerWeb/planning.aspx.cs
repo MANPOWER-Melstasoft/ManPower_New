@@ -158,7 +158,7 @@ namespace ManPowerWeb
             programPlansList = programPlansList.Where(x => x.ProgramTargetId == PrTargetId).ToList();
 
 
-            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramName=" + prName + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
+            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramName=" + programPlansList[rowindexChild].ProgramName + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
 
         }
 

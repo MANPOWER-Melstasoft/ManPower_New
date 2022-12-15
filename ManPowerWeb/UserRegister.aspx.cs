@@ -38,9 +38,6 @@ namespace ManPowerWeb
                 List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
                 departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
 
-                DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
-                DepartmentUnitPositions departmentUnitPositions = new DepartmentUnitPositions();
-
                 systemUser.Name = txtName.Text;
                 systemUser.UserName = txtUserName.Text;
                 systemUser.Email = txtEmail.Text;
@@ -52,14 +49,11 @@ namespace ManPowerWeb
                 systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
                 systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
 
+                systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
+                systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
+                systemUser.ParentId = departmentUnitList[0].ParentId;
+
                 systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
-
-                departmentUnitPositions.SystemUserId = systemUser.SystemUserId;
-                departmentUnitPositions.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
-                departmentUnitPositions.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
-                departmentUnitPositions.ParentId = departmentUnitList[0].ParentId;
-
-                departmentUnitPositionsController.SaveDepartmentUnitPositions(departmentUnitPositions);
 
                 Clear();
 

@@ -30,7 +30,7 @@ namespace ManPowerWeb
 
             if (systeUserList.Count != 0)
             {
-                if (systeUserList[0].UserName == systemUser.UserName && systeUserList[0].UserPwd == systemUser.UserPwd)
+                if (systeUserList[0].UserName.ToLower() == systemUser.UserName.ToLower() && systeUserList[0].UserPwd == systemUser.UserPwd)
                 {
 
                     Session["UserId"] = systeUserList[0].SystemUserId;
@@ -40,7 +40,7 @@ namespace ManPowerWeb
 
                     systemUserController.UpdateLastLoginDate(systeUserList[0]);
 
-                    Response.Redirect("DME21.aspx");
+                    Response.Redirect("Dashboard.aspx");
                 }
                 else
                 {

@@ -29,8 +29,35 @@ namespace ManPowerCore.Controller
         {
             try
             {
+                int output = -1;
                 dBConnection = new DBConnection();
-                return systemUserDAO.SaveSystemUser(systemUser, dBConnection);
+
+                systemUser.SystemUserId = systemUserDAO.SaveSystemUser(systemUser, dBConnection);
+
+                DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+                DepartmentUnitPositions departmentUnitPositions = new DepartmentUnitPositions();
+                departmentUnitPositions.SystemUserId = systemUser.SystemUserId;
+                departmentUnitPositions.PossitionsId = systemUser.PossitionsId;
+                departmentUnitPositions.DepartmentUnitId = systemUser.DepartmentUnitId;
+                departmentUnitPositions.ParentId = systemUser.ParentId;
+                departmentUnitPositionsDAO.SaveDepartmentUnitPositions(departmentUnitPositions, dBConnection);
+
+
+                AutSystemRoleFunctionDAO autSystemRoleFunctionDAO = DAOFactory.CreateAutSystemRoleFunctionDAO();
+                List<AutSystemRoleFunction> autSystemRoleFunctionList = autSystemRoleFunctionDAO.GetAllAutSystemRoleFunctionById(systemUser.UserTypeId, dBConnection);
+
+                AutUserFunctionDAO autUserFunctionDAO = DAOFactory.CreateAutUserFunctionDAO();
+                AutUserFunction autUserFunction = new AutUserFunction();
+
+                foreach (var function in autSystemRoleFunctionList)
+                {
+                    autUserFunction.AutFunctionId = function.AutFunctionId;
+                    autUserFunction.AutUserId = systemUser.SystemUserId;
+
+                    output = autUserFunctionDAO.Save(autUserFunction, dBConnection);
+                }
+
+                return output;
             }
             catch (Exception)
             {

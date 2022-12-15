@@ -19,6 +19,8 @@ namespace ManPowerCore.Infrastructure
     {
         public List<AutFunction> GetAllAutFunctionById(int AutFunctionId, DBConnection dbConnection)
         {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM AUT_FUNCTION where ID = " + AutFunctionId + " ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
@@ -32,6 +34,8 @@ namespace ManPowerCore.Infrastructure
 
         public List<AutFunction> GetAllAutFunction(DBConnection dbConnection)
         {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
             dbConnection.cmd.CommandText = "SELECT * FROM AUT_FUNCTION";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 

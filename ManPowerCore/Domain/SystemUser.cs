@@ -64,6 +64,11 @@ namespace ManPowerCore.Domain
         public DateTime CreatedDate { get; set; }
 
 
+
+        public int PossitionsId { get; set; }
+        public int DepartmentUnitId { get; set; }
+        public int ParentId { get; set; }
+
         public List<DepartmentUnitPositions> _DepartmentUnitPositions { get; set; }
         public UserType _UserType { get; set; } = new UserType();
         public Designation _Designation { get; set; } = new Designation();

@@ -105,8 +105,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.aspx" />
     <Content Include="About.aspx" />
-    <Content Include="AddDepartmentUnit.aspx" />
+    <Content Include="AddDepartment.aspx" />
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
     <Content Include="AddPosition.aspx" />
@@ -123,6 +124,7 @@
     <Content Include="css\mdb.rtl.min.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
     <Content Include="DME37.aspx" />
@@ -1867,12 +1869,19 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddDepartmentUnit.aspx.cs">
-      <DependentUpon>AddDepartmentUnit.aspx</DependentUpon>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddDepartmentUnit.aspx.designer.cs">
-      <DependentUpon>AddDepartmentUnit.aspx</DependentUpon>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddDepartment.aspx.cs">
+      <DependentUpon>AddDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDepartment.aspx.designer.cs">
+      <DependentUpon>AddDepartment.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddDME21.aspx.cs">
       <DependentUpon>AddDME21.aspx</DependentUpon>
@@ -1931,6 +1940,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

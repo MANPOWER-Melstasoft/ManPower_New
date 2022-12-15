@@ -18,7 +18,7 @@ namespace ManPowerCore.Domain
         [DBField("URL")]
         public string Url { get; set; }
 
-        [DBField("MENU_ICON")]
+        [DBField("MENU_FA_ICON")]
         public string MenuIcon { get; set; }
     }
 }

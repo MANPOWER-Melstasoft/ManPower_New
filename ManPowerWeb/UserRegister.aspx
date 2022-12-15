@@ -32,6 +32,7 @@
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="1"
                                     ControlToValidate="txtUserName" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                <asp:Label ID="lblErrorUser" runat="server" Text="" ForeColor="Red"></asp:Label>
                             </div>
                         </div>
                     </div>

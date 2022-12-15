@@ -32,32 +32,42 @@ namespace ManPowerWeb
             if (VallidatePassword())
             {
                 SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+                List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(false, false, false);
                 SystemUser systemUser = new SystemUser();
 
-                DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
-                List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
-                departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
+                systemUser = systemUserList.Where(x => x.UserName.ToLower() == txtUserName.Text.ToLower()).FirstOrDefault();
 
-                systemUser.Name = txtName.Text;
-                systemUser.UserName = txtUserName.Text;
-                systemUser.Email = txtEmail.Text;
-                systemUser.ContactNumber = txtContactNumber.Text;
-                systemUser.EmpNumber = Convert.ToInt32(txtEmpNumber.Text);
-                systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1");
-                systemUser.CreatedDate = DateTime.Now;
-                systemUser.CreatedUser = Session["UserId"].ToString();
-                systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
-                systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
+                if (systemUser == null)
+                {
+                    systemUser.Name = txtName.Text;
+                    systemUser.UserName = txtUserName.Text.ToLower();
+                    systemUser.Email = txtEmail.Text;
+                    systemUser.ContactNumber = txtContactNumber.Text;
+                    systemUser.EmpNumber = Convert.ToInt32(txtEmpNumber.Text);
+                    systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1");
+                    systemUser.CreatedDate = DateTime.Now;
+                    systemUser.CreatedUser = Session["UserId"].ToString();
+                    systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
+                    systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
 
-                systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
-                systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
-                systemUser.ParentId = departmentUnitList[0].ParentId;
+                    DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
+                    List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+                    departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
 
-                systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
+                    systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
+                    systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
+                    systemUser.ParentId = departmentUnitList[0].ParentId;
 
-                Clear();
+                    systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
 
-                lblSuccessMsg.Text = "Record Updated Successfully!";
+                    Clear();
+
+                    lblSuccessMsg.Text = "Record Updated Successfully!";
+                }
+                else
+                {
+                    lblErrorUser.Text = "Username Already Taken!";
+                }
             }
 
 

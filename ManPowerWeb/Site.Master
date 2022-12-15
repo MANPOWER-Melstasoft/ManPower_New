@@ -36,10 +36,7 @@
 
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center">
-                    <div class="sidebar-brand-icon">
-                        <i class="fas fa-laugh-wink"></i>
-                    </div>
-                    <div class="sidebar-brand-text mx-3">SB Admin</div>
+                    <img src="img/header2.png" width="110%" height="250%" />
                 </a>
 
                 <!-- Divider -->

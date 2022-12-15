@@ -108,6 +108,7 @@
     <Content Include="About.aspx" />
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
+    <Content Include="AddPosition.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
     <Content Include="AnnualTargetRecomendationView.aspx" />
@@ -1878,6 +1879,13 @@
     </Compile>
     <Compile Include="AddNewTarget.aspx.designer.cs">
       <DependentUpon>AddNewTarget.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPosition.aspx.cs">
+      <DependentUpon>AddPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPosition.aspx.designer.cs">
+      <DependentUpon>AddPosition.aspx</DependentUpon>
     </Compile>
     <Compile Include="AnnualTarget.aspx.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>

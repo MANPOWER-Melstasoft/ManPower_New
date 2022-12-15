@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AddDepartmentUnit.aspx" />
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
     <Content Include="AddPosition.aspx" />
@@ -1866,6 +1867,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDepartmentUnit.aspx.cs">
+      <DependentUpon>AddDepartmentUnit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDepartmentUnit.aspx.designer.cs">
+      <DependentUpon>AddDepartmentUnit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddDME21.aspx.cs">
       <DependentUpon>AddDME21.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

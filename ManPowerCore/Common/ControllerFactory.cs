@@ -292,5 +292,12 @@ namespace ManPowerCore.Common
 
         }
 
+        public static AutUserFunctionController CreateAutUserFunctionController()
+        {
+            AutUserFunctionController autUserFunctionController = new AutUserFunctionControllerSqlImpl();
+            return (AutUserFunctionController)autUserFunctionController;
+
+        }
+
     }
 }

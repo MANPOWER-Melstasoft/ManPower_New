@@ -299,5 +299,11 @@ namespace ManPowerCore.Common
             return (UserRegistrationDAO)userRegistrationDAO;
         }
 
+        public static AutUserFunctionDAO CreateAutUserFunctionDAO()
+        {
+            AutUserFunctionDAO autUserFunctionDAO = new AutUserFunctionDAOSqlImpl();
+            return (AutUserFunctionDAO)autUserFunctionDAO;
+        }
+
     }
 }

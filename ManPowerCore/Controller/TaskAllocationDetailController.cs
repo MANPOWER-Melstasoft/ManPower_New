@@ -17,7 +17,9 @@ namespace ManPowerCore.Controller
         List<TaskAllocationDetail> GetAllTaskAllocationDetail(bool withProjectTask, bool withTaskType, bool withTaskAllocation);
         TaskAllocationDetail GetTaskAllocationDetail(int id, bool withProjectTask, bool withTaskType, bool withTaskAllocation);
         int DeleteTaskAllocationDetail(int allocationId, int detailId);
+        List<TaskAllocationDetail> GetTaskAllocationDetail(int depId, DateTime date);
 
+        List<TaskAllocationDetail> GetAllTaskAllocationDetailByTaskAllocationId(int taskId);
     }
 
     public class TaskAllocationDetailControllerImpl : TaskAllocationDetailController
@@ -26,7 +28,7 @@ namespace ManPowerCore.Controller
         DBConnection dBConnection;
         TaskAllocationDetailDAO taskAllocationDetailDAO = DAOFactory.CreateTaskAllocationDetailDAO();
 
-
+        TaskTypeDAO taskTypeDAO = DAOFactory.CreateTaskTypeDAO();
         public int SaveTaskAllocationDetail(TaskAllocationDetail taskAllocationDetail)
         {
 
@@ -35,6 +37,36 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 taskAllocationDetailDAO.SaveTaskAllocationDetail(taskAllocationDetail, dBConnection);
                 return 1;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<TaskAllocationDetail> GetTaskAllocationDetail(int depId, DateTime date)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocationDetail> listTaskAllocationDetail = taskAllocationDetailDAO.GetTaskAllocationDetail(dBConnection, depId, date);
+
+                List<TaskType> listTaskType = taskTypeDAO.GetAllTaskType(dBConnection);
+
+                foreach (var taskName in listTaskAllocationDetail)
+                {
+                    taskName._TaskType = listTaskType.Where(x => x.TaskTypeId == taskName.TaskTypeId).Single();
+                }
+
+                return listTaskAllocationDetail;
             }
             catch (Exception)
             {
@@ -71,6 +103,33 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public List<TaskAllocationDetail> GetAllTaskAllocationDetailByTaskAllocationId(int taskId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocationDetail> listTaskAllocationDetail = taskAllocationDetailDAO.GetAllTaskAllocationDetailByTaskAllocationId(taskId, dBConnection);
+                List<TaskType> listTaskType = taskTypeDAO.GetAllTaskType(dBConnection);
+
+                foreach (var taskName in listTaskAllocationDetail)
+                {
+                    taskName._TaskType = listTaskType.Where(x => x.TaskTypeId == taskName.TaskTypeId).Single();
+                }
+                return listTaskAllocationDetail;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
 
         public List<TaskAllocationDetail> GetAllTaskAllocationDetail(bool withProjectTask, bool withTaskType, bool withTaskAllocation)
         {
@@ -197,7 +256,7 @@ namespace ManPowerCore.Controller
                 //}
 
                 return 1;
-                
+
             }
             catch
             {

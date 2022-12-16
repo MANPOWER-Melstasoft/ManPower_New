@@ -127,6 +127,8 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME22.aspx" />
+    <Content Include="DME22GetAction.aspx" />
     <Content Include="DME37.aspx" />
     <Content Include="DME37Search.aspx" />
     <Content Include="favicon.ico" />
@@ -164,6 +166,7 @@
     <Content Include="Login.aspx" />
     <Content Include="planning.aspx" />
     <Content Include="planningEdit.aspx" />
+    <Content Include="ProgramCalander.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1962,6 +1965,20 @@
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DME22.aspx.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22.aspx.designer.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.designer.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DME37.aspx.cs">
       <DependentUpon>DME37.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2001,6 +2018,13 @@
     <Compile Include="planningEdit.aspx.designer.cs">
       <DependentUpon>planningEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProgramCalander.aspx.cs">
+      <DependentUpon>ProgramCalander.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProgramCalander.aspx.designer.cs">
+      <DependentUpon>ProgramCalander.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -2033,6 +2057,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SystemDocuments\ProgramPlanResources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2222,6 +2247,9 @@
       <Project>{9a09f12c-06c3-44f9-9a54-79b79ed0a6ad}</Project>
       <Name>ManPowerCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

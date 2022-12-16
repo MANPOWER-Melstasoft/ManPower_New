@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DME21.aspx.cs" Inherits="ManPowerWeb.DME21" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DME21.aspx.cs" Inherits="ManPowerWeb.DME21" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>DME21</h2>
@@ -15,16 +15,24 @@
             CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
-                <asp:BoundField DataField="date" HeaderText="Date" />
-                <asp:BoundField HeaderText="Work Type" />
-                <asp:BoundField HeaderText="Performed Duty" />
-                <asp:BoundField HeaderText="Work Attended place" />
+                <asp:BoundField DataField="StartTime.Date" HeaderText="Date" />
+                <asp:BoundField DataField="_TaskType.TaskTypeName" HeaderText="Work Type" />
+                <asp:BoundField DataField="TaskDescription" HeaderText="Performed Duty" />
+                <asp:BoundField DataField="WorkLocation" HeaderText="Work Attended place" />
                 <asp:TemplateField HeaderText="Add DME21">
                     <ItemTemplate>
-                        <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnAdd" runat="server">Add DME21</asp:LinkButton>
+                        <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnAdd" runat="server" OnClick="btnAdd_Click">Add DME21</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Edit DME21">
+                    <ItemTemplate>
+                        <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnEdit" runat="server" OnClick="btnEdit_Click">Edit DME21</asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+    </div>
+    <div style="margin-top: 20px; margin-bottom: 20px;">
+        <asp:LinkButton ID="btnApproval" CssClass="btn btn-outline-primary btn-lg btn-block" runat="server">Send to Approval</asp:LinkButton>
     </div>
 </asp:Content>

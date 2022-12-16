@@ -11,25 +11,16 @@ namespace ManPowerWeb
 {
 
 
-    public partial class DME21
+    public partial class ProgramCalander
     {
 
         /// <summary>
-        /// DME21GridView control.
+        /// Calendar1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DME21GridView;
-
-        /// <summary>
-        /// btnApproval control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnApproval;
+        protected global::System.Web.UI.WebControls.Calendar Calendar1;
     }
 }

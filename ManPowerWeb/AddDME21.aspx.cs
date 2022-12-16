@@ -173,10 +173,10 @@ namespace ManPowerWeb
                     taskAllocation.TaskYearMonth = date;
                     taskAllocation.CreatedDate = DateTime.Today.Date;
                     taskAllocation.CreatedUser = "Amila";
-                    taskAllocation.StatusId = 1;
-                    taskAllocation.RecommendedBy = "";
+                    taskAllocation.StatusId = 0;
+                    taskAllocation.RecommendedBy = 0;
                     taskAllocation.RecommendedDate = DateTime.Today;
-                    taskAllocation.ApprovedBy = "";
+                    taskAllocation.ApprovedBy = 0;
                     taskAllocation.ApprovedDate = "";
 
                     int taskAllocationId1 = allocation.saveTaskAllocation(taskAllocation);

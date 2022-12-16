@@ -144,7 +144,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION_DETAIL WHERE TASK_ALLOCATION_ID  = " + taskAllocationId + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION_DETAIL WHERE TASK_ALLOCATION_ID  = " + taskAllocationId;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

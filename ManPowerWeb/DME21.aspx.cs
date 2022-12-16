@@ -19,8 +19,14 @@ namespace ManPowerWeb
         private string monthName = DateTime.Now.AddMonths(1).ToString("MMMM");
         //List<TaskAllocationDetail> taskallocationDetailList = new List<TaskAllocationDetail>();
         List<TaskAllocationDetail> taskallocationDetailList1 = new List<TaskAllocationDetail>();
+
+        List<TaskAllocation> taskAllocationList;
+
+        TaskAllocation taskAllocation = new TaskAllocation();
         public string Year { get { return selectedYear; } }
         public string Month { get { return monthName; } }
+
+        public int depId = 4;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -81,6 +87,31 @@ namespace ManPowerWeb
 
             string url = "AddDME21.aspx?" + "date=" + taskallocationDetailList1[rowIndex].StartTime.ToString("yyyy-MM-dd") + "&taskAllocationDetailId=" + taskallocationDetailList1[rowIndex].TaskAllocationDetailId;
             Response.Redirect(url);
+        }
+
+        protected void btnApproval_Click(object sender, EventArgs e)
+        {
+            TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();
+
+            taskAllocationList = allocation.GetAllTaskAllocation(false, false, false, false);
+
+            int taskAllocationId = 0;
+
+            foreach (var i in taskAllocationList)
+            {
+                if (i.DepartmetUnitPossitionsId == depId && i.TaskYearMonth.Month == month && i.TaskYearMonth.Year == DateTime.Now.AddMonths(1).Year)
+                {
+                    taskAllocationId = i.TaskAllocationId;
+                }
+            }
+
+            taskAllocation = allocation.GetTaskAllocation(taskAllocationId, false, false);
+
+            taskAllocation.TaskAllocationId = taskAllocationId;
+            taskAllocation.StatusId = 1;
+            taskAllocation.RecommendedBy = 4;
+
+            int value = allocation.UpdateTaskAllocation(taskAllocation);
         }
     }
 }

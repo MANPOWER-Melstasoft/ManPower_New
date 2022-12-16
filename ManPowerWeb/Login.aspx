@@ -43,19 +43,22 @@
                             <div class="form-outline" style="font-weight: 700">
                                 <label class="form-label" for="inputUserName">User Name</label>
                                 <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control "></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server"
-                                    ControlToValidate="txtUserName" ErrorMessage="Username is Required">*</asp:RequiredFieldValidator>
-
-
+                                <div class="d-flex text-danger">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server"
+                                        ControlToValidate="txtUserName" ErrorMessage="Username is Required">*</asp:RequiredFieldValidator>
+                                </div>
                             </div>
                             <div class="form-outline mb-4" style="font-weight: 700">
                                 <label for="inputPassword" class="form-label">Password</label>
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control " TextMode="Password"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                    ControlToValidate="txtPassword" ErrorMessage="Password Required">*</asp:RequiredFieldValidator>
-
+                                <div class="d-flex text-danger">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                        ControlToValidate="txtPassword" ErrorMessage="Password Required">*</asp:RequiredFieldValidator>
+                                    <div class="mt-3">
+                                        <asp:Label ID="lblErrorMsg" runat="server" Text=""></asp:Label>
+                                    </div>
+                                </div>
                             </div>
-                            <asp:Label ID="lblErrorMsg" runat="server" Text="" ForeColor="#800040" BackColor="#ffc6c6"></asp:Label>
                             <div class="form-outline mb-4">
                                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="alert alert-danger" />
                             </div>

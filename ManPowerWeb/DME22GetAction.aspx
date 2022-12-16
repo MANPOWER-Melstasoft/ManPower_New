@@ -30,6 +30,6 @@
         </asp:GridView>
     </div>
     <div>
-        <asp:LinkButton CssClass="btn btn-outline-primary btn-lg btn-block" ID="btnSave" runat="server" OnClick="btnSave_Click">Save DME22</asp:LinkButton>
+        <asp:LinkButton CssClass="btn btn-outline-primary btn-lg btn-block" ID="btnSave" runat="server" OnClick="btnSave_Click">Save And Send to Approval DME22</asp:LinkButton>
     </div>
 </asp:Content>

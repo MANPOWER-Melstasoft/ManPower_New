@@ -51,6 +51,7 @@
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
     <Compile Include="Controller\AutSystemRoleFunctionController.cs" />
+    <Compile Include="Controller\AutUserFunctionController.cs" />
     <Compile Include="Controller\BeneficiaryController.cs" />
     <Compile Include="Controller\BeneficiaryTypeController.cs" />
     <Compile Include="Controller\BusinessTypeController.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
     <Compile Include="Domain\AutSystemRoleFunction.cs" />
+    <Compile Include="Domain\AutUserFunction.cs" />
     <Compile Include="Domain\Beneficiary.cs" />
     <Compile Include="Domain\BeneficiaryType.cs" />
     <Compile Include="Domain\BusinessType.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="Domain\UserType.cs" />
     <Compile Include="Infrastructure\AutFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
+    <Compile Include="Infrastructure\AutUserFunctionDAO.cs" />
     <Compile Include="Infrastructure\BeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\BeneficiaryTypeDAO.cs" />
     <Compile Include="Infrastructure\BusinessTypeDAO.cs" />

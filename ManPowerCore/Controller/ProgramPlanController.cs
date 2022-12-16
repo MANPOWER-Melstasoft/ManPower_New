@@ -15,7 +15,7 @@ namespace ManPowerCore.Controller
         int SaveProgramPlan(ProgramPlan programPlan);
 
         int UpdateProgramPlan(ProgramPlan programPlan);
-        int UpdateProgramPlanComplete(int statusId, int projectTargetId);
+        int UpdateProgramPlanComplete(int statusId, int id);
         List<ProgramPlan> GetAllProgramPlan();
 
         List<ProgramPlan> GetAllProgramPlan(bool withProgramAttendence, bool withProgramBudget, bool withProgramTarget, bool withProgramCategory, bool withProjectStatus, bool withProjectTask);
@@ -95,13 +95,13 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int UpdateProgramPlanComplete(int statusId, int projectTargetId)
+        public int UpdateProgramPlanComplete(int statusId, int id)
         {
 
             try
             {
                 dBConnection = new DBConnection();
-                var programPlans = programPlanDAO.UpdateProgramPlanComplete(statusId, projectTargetId, dBConnection);
+                var programPlans = programPlanDAO.UpdateProgramPlanComplete(statusId, id, dBConnection);
                 return 1;
             }
             catch (Exception)

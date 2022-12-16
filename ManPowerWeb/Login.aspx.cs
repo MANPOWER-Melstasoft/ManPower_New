@@ -24,14 +24,13 @@ namespace ManPowerWeb
 
             SystemUser systemUser = new SystemUser();
             systemUser.UserName = txtUserName.Text;
-            systemUser.UserPwd = txtPassword.Text;
-            //FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1"); ;
+            systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1"); ;
 
             List<SystemUser> systeUserList = systemUserController.GetAllSystemUser(systemUser.UserName);
 
             if (systeUserList.Count != 0)
             {
-                if (systeUserList[0].UserName == systemUser.UserName && systeUserList[0].UserPwd == systemUser.UserPwd)
+                if (systeUserList[0].UserName.ToLower() == systemUser.UserName.ToLower() && systeUserList[0].UserPwd == systemUser.UserPwd)
                 {
 
                     Session["UserId"] = systeUserList[0].SystemUserId;
@@ -39,7 +38,9 @@ namespace ManPowerWeb
                     Session["DesignationId"] = systeUserList[0].DesignationId;
                     Session["Name"] = systeUserList[0].Name;
 
-                    Response.Redirect("DME21.aspx");
+                    systemUserController.UpdateLastLoginDate(systeUserList[0]);
+
+                    Response.Redirect("Default.aspx");
                 }
                 else
                 {

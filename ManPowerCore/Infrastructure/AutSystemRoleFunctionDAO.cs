@@ -17,6 +17,9 @@ namespace ManPowerCore.Infrastructure
     {
         public List<AutSystemRoleFunction> GetAllAutSystemRoleFunctionById(int UserTypeId, DBConnection dbConnection)
         {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM AUT_SYSTEM_ROLE_FUNCTION where USER_Type_ID = " + UserTypeId + " and AUT_SYSTEM_ID = 1 ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;

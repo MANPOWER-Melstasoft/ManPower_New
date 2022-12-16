@@ -155,7 +155,7 @@ namespace ManPowerWeb
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             listOficerRecomendation = systemUserController.GetAllSystemUser(false, false, false);
 
-            ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2);
+            ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.UserTypeId != Convert.ToInt32(Session["UserId"]));
             ddlOficerRecomended.DataTextField = "Name";
             ddlOficerRecomended.DataValueField = "SystemUserId";
             ddlOficerRecomended.DataBind();

@@ -20,7 +20,9 @@ namespace ManPowerWeb
         List<TaskAllocationDetail> taskAllocationDetail = new List<TaskAllocationDetail>();
         List<TaskAllocationDetail> taskAllocationDetailFilter = new List<TaskAllocationDetail>();
         List<ProgramPlan> programPlans = new List<ProgramPlan>();
+        List<ProgramPlan> programPlansFilterWithSystemUser = new List<ProgramPlan>();
         List<ProgramPlan> programPlansFilterWithProgramPlanId = new List<ProgramPlan>();
+        List<ProgramAssignee> programAssignees = new List<ProgramAssignee>();
         int PrTargetId;
         string prName;
 
@@ -58,21 +60,26 @@ namespace ManPowerWeb
         {
             e.Day.IsSelectable = false;
             TaskAllocationDetailController taskAllocationDetailController = ControllerFactory.CreateTaskAllocationDetailController();
-            taskAllocationDetail = taskAllocationDetailController.GetAllTaskAllocationDetail(true, false, false);
+            taskAllocationDetail = taskAllocationDetailController.GetAllTaskAllocationDetail(true, false, true);
             Literal literal1 = new Literal();
             literal1.Text = "<br/>";
             e.Cell.Controls.Add(literal1);
             Label label1 = new Label();
             DateTime dates = e.Day.Date;
             string datesString = dates.ToShortDateString();
-            taskAllocationDetailFilter = taskAllocationDetail.Where(x => x.StartTime.ToShortDateString() == datesString).ToList();
+            taskAllocationDetailFilter = taskAllocationDetail.Where(x => x.StartTime.ToShortDateString() == datesString && x._TaskAllocation._DepartmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"])).ToList();
 
             if (taskAllocationDetailFilter.Count > 0)
             {
                 //label1.Text = taskAllocationDetailFilter[0].TaskDescription;
                 ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
 
+
+
                 programPlans = programPlanController.GetAllProgramPlan();
+
+
+
 
                 foreach (TaskAllocationDetail row in taskAllocationDetailFilter)
                 {

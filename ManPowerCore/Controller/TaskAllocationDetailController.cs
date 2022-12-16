@@ -4,6 +4,7 @@ using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -160,14 +161,17 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 List<TaskAllocationDetail> list = taskAllocationDetailDAO.GetAllTaskAllocationDetail(dBConnection);
+                TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+                List<TaskAllocation> listTaskAllocation = taskAllocationController.GetAllTaskAllocationWithDepartmentUnitPosition();
 
                 if (withTaskAllocation)
                 {
                     TaskAllocationDAO _TaskAllocationDAO = DAOFactory.CreateTaskAllocationDAO();
                     foreach (var item in list)
                     {
-                        item._TaskAllocation = _TaskAllocationDAO.GetTaskAllocation(item.TaskAllocationDetailId, dBConnection);
+                        item._TaskAllocation = listTaskAllocation.Where(x => x.TaskAllocationId == item.TaskAllocationId).Single();
                     }
+
                 }
 
                 if (withTaskType)
@@ -190,7 +194,9 @@ namespace ManPowerCore.Controller
                     foreach (var item in list)
                     {
                         item._ProjectTask = listProjectTask.Where(a => a.TaskAllocationDetailId == item.TaskAllocationDetailId).ToList();
+
                     }
+
                 }
 
                 //if (withProjectTask)

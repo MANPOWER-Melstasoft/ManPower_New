@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,7 @@
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
     <Compile Include="Controller\AutSystemRoleFunctionController.cs" />
+    <Compile Include="Controller\AutUserFunctionController.cs" />
     <Compile Include="Controller\BeneficiaryController.cs" />
     <Compile Include="Controller\BeneficiaryTypeController.cs" />
     <Compile Include="Controller\BusinessTypeController.cs" />
@@ -96,10 +98,12 @@
     <Compile Include="Controller\TaskTypeController.cs" />
     <Compile Include="Controller\Test.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
+    <Compile Include="Controller\UserRegistrationController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
     <Compile Include="Domain\AutSystemRoleFunction.cs" />
+    <Compile Include="Domain\AutUserFunction.cs" />
     <Compile Include="Domain\Beneficiary.cs" />
     <Compile Include="Domain\BeneficiaryType.cs" />
     <Compile Include="Domain\BusinessType.cs" />
@@ -148,9 +152,11 @@
     <Compile Include="Domain\TaskType.cs" />
     <Compile Include="Domain\Test.cs" />
     <Compile Include="Domain\Training_Request.cs" />
+    <Compile Include="Domain\UserRegistation.cs" />
     <Compile Include="Domain\UserType.cs" />
     <Compile Include="Infrastructure\AutFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
+    <Compile Include="Infrastructure\AutUserFunctionDAO.cs" />
     <Compile Include="Infrastructure\BeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\BeneficiaryTypeDAO.cs" />
     <Compile Include="Infrastructure\BusinessTypeDAO.cs" />
@@ -197,6 +203,7 @@
     <Compile Include="Infrastructure\TaskTypeDAO.cs" />
     <Compile Include="Infrastructure\Test.cs" />
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
+    <Compile Include="Infrastructure\UserRegistrationDAO.cs" />
     <Compile Include="Infrastructure\UserTypeDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

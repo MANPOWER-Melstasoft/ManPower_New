@@ -31,6 +31,6 @@ namespace ManPowerCore.Domain
         public Possitions _Possitions { get; set; } = new Possitions();
         public DepartmentUnit _DepartmentUnit { get; set; } = new DepartmentUnit();
 
-      
+
     }
 }

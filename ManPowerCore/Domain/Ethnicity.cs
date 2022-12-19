@@ -6,10 +6,11 @@ using System.Text;
 namespace ManPowerCore.Domain
 {
     [Serializable]
+
     public class Ethnicity
     {
         [DBField("ID")]
-        public int EthnicityId{ get; set; }
+        public int EthnicityId { get; set; }
 
         [DBField("NAME")]
         public string EthnicityName { get; set; }

@@ -15,6 +15,8 @@ namespace ManPowerCore.Controller
         int SaveProgramPlan(ProgramPlan programPlan);
 
         int UpdateProgramPlan(ProgramPlan programPlan);
+        int UpdateProgramPlanComplete(int statusId, int id);
+        List<ProgramPlan> GetAllProgramPlan();
 
         List<ProgramPlan> GetAllProgramPlan(bool withProgramAttendence, bool withProgramBudget, bool withProgramTarget, bool withProgramCategory, bool withProjectStatus, bool withProjectTask);
 
@@ -31,6 +33,26 @@ namespace ManPowerCore.Controller
         DBConnection dBConnection;
         ProgramPlanDAO programPlanDAO = DAOFactory.CreateProgramPlanDAO();
 
+
+        public List<ProgramPlan> GetAllProgramPlan()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return programPlanDAO.GetAllProgramPlan(dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
         public int SaveProgramPlan(ProgramPlan programPlan)
         {
 
@@ -60,7 +82,29 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 var programPlans = programPlanDAO.UpdateProgramPlan(programPlan, dBConnection);
-                return programPlans;
+                return 1;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateProgramPlanComplete(int statusId, int id)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+                var programPlans = programPlanDAO.UpdateProgramPlanComplete(statusId, id, dBConnection);
+                return 1;
             }
             catch (Exception)
             {

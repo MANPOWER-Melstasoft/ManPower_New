@@ -11,7 +11,7 @@ namespace ManPowerCore.Common
     public class DAOFactory
     {
 
-        
+
         public static TrainingRequestDAO CreateTrainingRequestDAO()
         {
             TrainingRequestDAO trainingdao = new TrainingRequestDAOImpl();
@@ -31,7 +31,7 @@ namespace ManPowerCore.Common
             return (ProgramAttendenceDAO)programAttendenceDAO;
         }
 
-      
+
 
         public static ProgramBudgetDAO CreateProgramBudgetDAO()
         {
@@ -78,7 +78,7 @@ namespace ManPowerCore.Common
 
         public static UserTypeDAO CreateUserTypeDAO()
         {
-           UserTypeDAO aa = new UserTypeDAOImpl();
+            UserTypeDAO aa = new UserTypeDAOImpl();
             return (UserTypeDAO)aa;
         }
 
@@ -291,6 +291,18 @@ namespace ManPowerCore.Common
         {
             EducationDetailsDAO educationDetailsDAO = new EducationDetailsDAOImpl();
             return (EducationDetailsDAO)educationDetailsDAO;
+        }
+
+        public static UserRegistrationDAO CreateUserRegistrationDAO()
+        {
+            UserRegistrationDAO userRegistrationDAO = new UserRegistrationDAOSqlImpl();
+            return (UserRegistrationDAO)userRegistrationDAO;
+        }
+
+        public static AutUserFunctionDAO CreateAutUserFunctionDAO()
+        {
+            AutUserFunctionDAO autUserFunctionDAO = new AutUserFunctionDAOSqlImpl();
+            return (AutUserFunctionDAO)autUserFunctionDAO;
         }
 
         public static ServiceTypeDAO CreateServiceTypeDAO()

@@ -18,6 +18,7 @@ namespace ManPowerCore.Infrastructure
         List<TaskAllocationDetail> GetAllTaskAllocationDetailByTaskAllocationId(int taskAllocationId, DBConnection dbConnection);
         List<TaskAllocationDetail> GetTaskAllocationDetailByTaskTypeId(int TaskTypeId, DBConnection dbConnection);
         int DeleteTaskAllocationDetail(int id, DBConnection dbConnection);
+        List<TaskAllocationDetail> GetTaskAllocationDetail(DBConnection dbConnection, int depId, DateTime date);
 
     }
 
@@ -52,17 +53,17 @@ namespace ManPowerCore.Infrastructure
                                             ",TASK_DESCRIPTION,WORK_LOCATION,IS_COMPLETED,NOT_COMPLETED_REASON,START_TIME,END_TIME,REMARKS,AMENDMENTS) " +
                                             "VALUES(@TaskTypeId,@TaskAllocationId,@TaskDescription,@WorkLocation,@Isconmpleated,@NotCompleatedReason,@StartTime,@EndTime,@TaskRemarks,@TaskAmendments) ";
 
-                                          
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskTypeId", taskAllocationDetail.TaskTypeId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationId", taskAllocationDetail.TaskAllocationId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskDescription", taskAllocationDetail.TaskDescription);
-                                            dbConnection.cmd.Parameters.AddWithValue("@WorkLocation", taskAllocationDetail.WorkLocation);
-                                            dbConnection.cmd.Parameters.AddWithValue("@Isconmpleated", taskAllocationDetail.Isconmpleated);
-                                            dbConnection.cmd.Parameters.AddWithValue("@NotCompleatedReason", taskAllocationDetail.NotCompleatedReason);
-                                            dbConnection.cmd.Parameters.AddWithValue("@StartTime", taskAllocationDetail.StartTime);
-                                            dbConnection.cmd.Parameters.AddWithValue("@EndTime", taskAllocationDetail.EndTime);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskRemarks", taskAllocationDetail.TaskRemarks);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskAmendments", taskAllocationDetail.TaskAmendments);
+
+            dbConnection.cmd.Parameters.AddWithValue("@TaskTypeId", taskAllocationDetail.TaskTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationId", taskAllocationDetail.TaskAllocationId);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskDescription", taskAllocationDetail.TaskDescription);
+            dbConnection.cmd.Parameters.AddWithValue("@WorkLocation", taskAllocationDetail.WorkLocation);
+            dbConnection.cmd.Parameters.AddWithValue("@Isconmpleated", taskAllocationDetail.Isconmpleated);
+            dbConnection.cmd.Parameters.AddWithValue("@NotCompleatedReason", taskAllocationDetail.NotCompleatedReason);
+            dbConnection.cmd.Parameters.AddWithValue("@StartTime", taskAllocationDetail.StartTime);
+            dbConnection.cmd.Parameters.AddWithValue("@EndTime", taskAllocationDetail.EndTime);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskRemarks", taskAllocationDetail.TaskRemarks);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskAmendments", taskAllocationDetail.TaskAmendments);
 
 
             dbConnection.cmd.ExecuteNonQuery();
@@ -76,18 +77,18 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION_DETAIL SET TASK_TYPE_ID = @TaskTypeId, TASK_ALLOCATION_ID = @TaskAllocationId, " +
                                            "TASK_DESCRIPTION = @TaskDescription, WORK_LOCATION = @WorkLocation, IS_COMPLETED = @Isconmpleated, NOT_COMPLETED_REASON=@NotCompleatedReason, START_TIME = @StartTime, END_TIME = @EndTime, REMARKS=@TaskRemarks, AMENDMENTS=@TaskAmendments WHERE ID = @TaskAllocationDetailId";
-                                          
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationDetailId", taskAllocationDetail.TaskAllocationDetailId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskTypeId", taskAllocationDetail.TaskTypeId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationId", taskAllocationDetail.TaskAllocationId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskDescription", taskAllocationDetail.TaskDescription);
-                                            dbConnection.cmd.Parameters.AddWithValue("@WorkLocation", taskAllocationDetail.WorkLocation);
-                                            dbConnection.cmd.Parameters.AddWithValue("@Isconmpleated", taskAllocationDetail.Isconmpleated);
-                                            dbConnection.cmd.Parameters.AddWithValue("@NotCompleatedReason", taskAllocationDetail.NotCompleatedReason);
-                                            dbConnection.cmd.Parameters.AddWithValue("@StartTime", taskAllocationDetail.StartTime);
-                                            dbConnection.cmd.Parameters.AddWithValue("@EndTime", taskAllocationDetail.EndTime);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskRemarks", taskAllocationDetail.TaskRemarks);
-                                            dbConnection.cmd.Parameters.AddWithValue("@TaskAmendments", taskAllocationDetail.TaskAmendments);
+
+            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationDetailId", taskAllocationDetail.TaskAllocationDetailId);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskTypeId", taskAllocationDetail.TaskTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationId", taskAllocationDetail.TaskAllocationId);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskDescription", taskAllocationDetail.TaskDescription);
+            dbConnection.cmd.Parameters.AddWithValue("@WorkLocation", taskAllocationDetail.WorkLocation);
+            dbConnection.cmd.Parameters.AddWithValue("@Isconmpleated", taskAllocationDetail.Isconmpleated);
+            dbConnection.cmd.Parameters.AddWithValue("@NotCompleatedReason", taskAllocationDetail.NotCompleatedReason);
+            dbConnection.cmd.Parameters.AddWithValue("@StartTime", taskAllocationDetail.StartTime);
+            dbConnection.cmd.Parameters.AddWithValue("@EndTime", taskAllocationDetail.EndTime);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskRemarks", taskAllocationDetail.TaskRemarks);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskAmendments", taskAllocationDetail.TaskAmendments);
 
 
 
@@ -97,7 +98,23 @@ namespace ManPowerCore.Infrastructure
             return 1;
         }
 
+
+
+        public List<TaskAllocationDetail> GetTaskAllocationDetail(DBConnection dbConnection, int depID, DateTime date)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Task_allocation_detail WHERE Task_allocation_ID = (SELECT ID FROM Task_allocation WHERE Department_Unit_Possitions_Id ="
+                + depID + "AND MONTH(Task_Year_Month) =" + date.Month + "AND YEAR(Task_Year_Month) =" + date.Year + ")";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TaskAllocationDetail>(dbConnection.dr);
+        }
+
         public List<TaskAllocationDetail> GetAllTaskAllocationDetail(DBConnection dbConnection)
+
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
@@ -109,7 +126,16 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<TaskAllocationDetail>(dbConnection.dr);
 
         }
+        public List<TaskAllocationDetail> GetTaskAllocationDetail(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
 
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION_DETAIL";
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TaskAllocationDetail>(dbConnection.dr);
+        }
         public TaskAllocationDetail GetTaskAllocationDetail(int id, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
@@ -128,7 +154,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION_DETAIL WHERE TASK_ALLOCATION_ID  = " + taskAllocationId + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION_DETAIL WHERE TASK_ALLOCATION_ID  = " + taskAllocationId;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

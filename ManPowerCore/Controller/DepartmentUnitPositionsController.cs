@@ -15,6 +15,8 @@ namespace ManPowerCore.Controller
     {
         int SaveDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions);
         int UpdateDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions);
+        DepartmentUnitPositions departmentUnitPositionsWIthSystemUser(int programTargetid);
+
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(bool withTaskAllocation, bool withProgramAssignee, bool withSystemUser, bool withPossitions, bool withDepartmentUnit);
         DepartmentUnitPositions GetDepartmentUnitPositions(int id, bool withTaskAllocation, bool withProgramAssignee, bool withSystemUser, bool withPossitions, bool withDepartmentUnit);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(int runSystemUserId);
@@ -211,7 +213,28 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public DepartmentUnitPositions departmentUnitPositionsWIthSystemUser(int programTargetid)
+        {
 
+            try
+            {
+                dBConnection = new DBConnection();
+                DepartmentUnitPositions departmentUnitPositionswithSystemUser = departmentUnitPositionsDAO.departmentUnitPositionsWIthSystemUser(programTargetid, dBConnection);
+
+                return departmentUnitPositionswithSystemUser;
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
 
 
     }

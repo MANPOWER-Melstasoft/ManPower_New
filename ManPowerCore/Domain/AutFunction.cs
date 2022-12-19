@@ -22,5 +22,8 @@ namespace ManPowerCore.Domain
 
         [DBField("MENU_ICON")]
         public string MenuIcon { get; set; }
+
+
+        public string Status { get; set; }
     }
 }

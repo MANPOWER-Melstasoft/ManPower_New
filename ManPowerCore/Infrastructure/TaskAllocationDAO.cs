@@ -15,15 +15,19 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateTaskAllocation(TaskAllocation taskAllocation, DBConnection dbConnection);
 
-        int UpdateTaskAllocation(int id, int status, string officer, string remarks,  DBConnection dbConnection);
+        int UpdateTaskAllocation(int id, int status, string officer, string remarks, DBConnection dbConnection);
 
         int DeleteTaskAllocation(int id, DBConnection dbConnection);
 
         List<TaskAllocation> GetAllTaskAllocation(DBConnection dbConnection);
 
+        List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId, DBConnection dbConnection);
+
         TaskAllocation GetTaskAllocation(int id, DBConnection dbConnection);
 
         List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId, DBConnection dbConnection);
+
+        List<TaskAllocation> GetTaskAllocationDme22Approve(int PositionId, DBConnection dbConnection);
 
     }
 
@@ -47,6 +51,30 @@ namespace ManPowerCore.Infrastructure
             return orderId;
         }
 
+        public List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION WHERE RECOMMENDED_BY=" + PositionId + "AND STATUS_ID=" + 1;
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TaskAllocation>(dbConnection.dr);
+        }
+
+        public List<TaskAllocation> GetTaskAllocationDme22Approve(int PositionId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION WHERE RECOMMENDED_BY=" + PositionId + "AND STATUS_ID=" + 8;
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TaskAllocation>(dbConnection.dr);
+        }
+
         public int SaveTaskAllocation(TaskAllocation taskAllocation, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
@@ -56,11 +84,11 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO TASK_ALLOCATION(DEPARTMENT_UNIT_POSSITIONS_ID,TASK_YEAR_MONTH" +
                                             ",CREATED_DATE,CREATED_USER,STATUS_ID,RECOMMENDED_BY,RECOMMENDED_DATE,APPROVED_BY,APPROVED_DATE) " +
                                             "VALUES(@DepartmetUnitPossitionsId,@TaskYearMonth,@CreatedDate,@CreatedUser,@StatusId," +
-                                            "@RecommendedBy,@RecommendedDate,@ApprovedBy,@ApprovedDate) SELECT SCOPE_IDENTITY() ";
+                                            "@RecommendedBy,@RecommendedDate,@ApprovedBy,@ApprovedDate) SELECT SCOPE_IDENTITY()";
 
 
 
-            
+
             dbConnection.cmd.Parameters.AddWithValue("@DepartmetUnitPossitionsId", taskAllocation.DepartmetUnitPossitionsId);
             dbConnection.cmd.Parameters.AddWithValue("@TaskYearMonth", taskAllocation.TaskYearMonth);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", taskAllocation.CreatedDate);
@@ -79,11 +107,11 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION SET DEPARTMENT_UNIT_POSSITIONS_ID = @DepartmetUnitPossitionsId, TASK_YEAR_MONT = @TaskYearMonth " +
+            dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION SET DEPARTMENT_UNIT_POSSITIONS_ID = @DepartmetUnitPossitionsId, TASK_YEAR_MONTH = @TaskYearMonth " +
                                            ", CREATED_DATE = @CreatedDate, CREATED_USER = @CreatedUser, STATUS_ID = @StatusId, RECOMMENDED_BY = @RecommendedBy, " +
                                            "RECOMMENDED_DATE = @RecommendedDate, APPROVED_BY = @ApprovedBy, APPROVED_DATE = @ApprovedDate  WHERE ID = @TaskAllocationId ";
 
-            dbConnection.cmd.Parameters.AddWithValue("@id", taskAllocation.TaskAllocationId);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationId", taskAllocation.TaskAllocationId);
             dbConnection.cmd.Parameters.AddWithValue("@DepartmetUnitPossitionsId", taskAllocation.DepartmetUnitPossitionsId);
             dbConnection.cmd.Parameters.AddWithValue("@TaskYearMonth", taskAllocation.TaskYearMonth);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", taskAllocation.CreatedDate);
@@ -98,7 +126,7 @@ namespace ManPowerCore.Infrastructure
         }
 
 
-        public int UpdateTaskAllocation(int id, int status, string officer, string remarks , DBConnection dbConnection)
+        public int UpdateTaskAllocation(int id, int status, string officer, string remarks, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
@@ -134,10 +162,13 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION WHERE ID = " + id + " ";
+            TaskAllocation taskAllocations = new TaskAllocation();
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
-            return dataAccessObject.GetSingleOject<TaskAllocation>(dbConnection.dr);
+
+            taskAllocations = dataAccessObject.GetSingleOject<TaskAllocation>(dbConnection.dr);
+            return taskAllocations;
 
         }
 
@@ -154,6 +185,8 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<TaskAllocation>(dbConnection.dr);
 
         }
+
+
 
         public int DeleteTaskAllocation(int id, DBConnection dbConnection)
         {

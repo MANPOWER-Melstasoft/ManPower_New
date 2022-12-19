@@ -11,6 +11,7 @@ namespace ManPowerCore.Domain
     public class CompanyVecansyRegistationDetails
     {
 
+
         [DBField("ID")]
         public int CompanyVacansyRegistationDetailsId { get; set; }
 

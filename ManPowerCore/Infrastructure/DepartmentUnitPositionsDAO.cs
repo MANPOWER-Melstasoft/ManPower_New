@@ -12,6 +12,8 @@ namespace ManPowerCore.Infrastructure
     {
         int SaveDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions, DBConnection dbConnection);
         int UpdateDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions, DBConnection dbConnection);
+
+        DepartmentUnitPositions departmentUnitPositionsWIthSystemUser(int programTargetid, DBConnection dbConnection);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(DBConnection dbConnection);
         DepartmentUnitPositions GetDepartmentUnitPositions(int id, DBConnection dbConnection);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositionsByDepartmentUnitId(int departmentUnitId, DBConnection dbConnection);
@@ -20,7 +22,7 @@ namespace ManPowerCore.Infrastructure
 
         List<DepartmentUnitPositions> GetAllUsersBySystemUserId(int runSystemUserId, DBConnection dbConnection);
 
-
+        List<DepartmentUnitPositions> GetDepartmentUnitPositionsBYPId(int ParentID, DBConnection dbConnection);
 
     }
 
@@ -76,12 +78,27 @@ namespace ManPowerCore.Infrastructure
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
+
+
         public List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<DepartmentUnitPositions>(dbConnection.dr);
+
+        }
+
+        public List<DepartmentUnitPositions> GetDepartmentUnitPositionsBYPId(int ParentID, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ParentId =" + ParentID;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -150,6 +167,17 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<DepartmentUnitPositions>(dbConnection.dr);
+        }
+        public DepartmentUnitPositions departmentUnitPositionsWIthSystemUser(int programTargetid, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT System_User_Id FROM Department_Unit_Possitions WHERE Id =(SELECT Department_Unit_Possitions_Id FROM Program_Assignee WHERE Program_Target_Id =" + programTargetid + ")";
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<DepartmentUnitPositions>(dbConnection.dr);
+
         }
     }
 }

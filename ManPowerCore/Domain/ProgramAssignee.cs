@@ -29,5 +29,7 @@ namespace ManPowerCore.Domain
         public DepartmentUnitPositions _DepartmentUnitPositions { get; set; } = new DepartmentUnitPositions();
         public Designation _Designation { get; set; } = new Designation();
 
+        public List<DepartmentUnitPositions> _DepartmentUnitPositionsList { get; set; } = new List<DepartmentUnitPositions>();
+
     }
 }

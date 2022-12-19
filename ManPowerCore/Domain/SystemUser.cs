@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
-    [Serializable]
 
+
+    [Serializable]
     public class SystemUser
     {
         [DBField("ID")]
@@ -30,16 +31,16 @@ namespace ManPowerCore.Domain
         public string Email { get; set; }
 
         [DBField("CONTACT_NUMBER")]
-        public int ContactNumber { get; set; }
+        public string ContactNumber { get; set; }
 
         [DBField("USER_NAME")]
         public string UserName { get; set; }
 
-        [DBField("USER_PWD")]
+        [DBField("User_Password")]
         public string UserPwd { get; set; }
 
         [DBField("RESET_CODE")]
-        public string ResetCode{ get; set; }
+        public string ResetCode { get; set; }
 
         [DBField("VALIDITY_PERIOD")]
         public string ValidityPeriod { get; set; }
@@ -63,10 +64,15 @@ namespace ManPowerCore.Domain
         public DateTime CreatedDate { get; set; }
 
 
+
+        public int PossitionsId { get; set; }
+        public int DepartmentUnitId { get; set; }
+        public int ParentId { get; set; }
+
         public List<DepartmentUnitPositions> _DepartmentUnitPositions { get; set; }
         public UserType _UserType { get; set; } = new UserType();
         public Designation _Designation { get; set; } = new Designation();
-        
+
 
     }
 }

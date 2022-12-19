@@ -12,7 +12,7 @@ namespace ManPowerCore.Domain
     public class DepartmentUnitType
     {
         [DBField("ID")]
-        public int DepartmentUnitTypeId{ get; set; }
+        public int DepartmentUnitTypeId { get; set; }
 
         [DBField("NAME")]
         public string Name { get; set; }

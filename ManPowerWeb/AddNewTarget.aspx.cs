@@ -97,11 +97,16 @@ namespace ManPowerWeb
             DepartmentUnitPositionsController unitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
             listUser = unitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
 
+            List<SystemUser> listSystemUseer = new List<SystemUser>();
+            foreach (var item in listUser)
+            {
+                listSystemUseer.Add(item._SystemUser);
+            }
 
-            //ddlOfficer.DataSource = listUser;
-            //ddlOfficer.DataValueField = "_SystemUser.SystemUserId";
-            //ddlOfficer.DataTextField = "_SystemUser.Name";
-            //ddlOfficer.DataBind();
+            ddlOfficer.DataSource = listSystemUseer;
+            ddlOfficer.DataValueField = "SystemUserId";
+            ddlOfficer.DataTextField = "Name";
+            ddlOfficer.DataBind();
 
         }
 

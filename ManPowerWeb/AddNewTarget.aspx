@@ -34,6 +34,7 @@
                                         <asp:Literal ID="Literal2" runat="server" Text="Target"></asp:Literal>
                                     </div>
                                     <div class="col-md-4">
+
                                         <asp:RadioButtonList ID="rbTarget" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rbTarget_SelectedIndexChanged">
                                             <asp:ListItem Value="1">District Level</asp:ListItem>
                                             <asp:ListItem Value="2">DS Division Level</asp:ListItem>
@@ -44,6 +45,8 @@
                                     <%--<asp:RadioButton ID="rbDsDivisonLevel" runat="server" Text="DS Division Level" GroupName="Target" />
                                 </div>--%>
                                         </asp:RadioButtonList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="rbTarget" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                                     </div>
                                 </div>
                             </div>
@@ -318,7 +321,7 @@
                             <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-primary btn-user btn-block" />
                         </div>
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidationGroup="1" />
+                            <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidateRequestMode="Enabled" ValidationGroup="1" />
                         </div>
                         <div class="col-sm-6">
                             <asp:Button runat="server" ID="btnSendToReccomendation" Text="Send to Recomendation" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSendToReccomendation_Click" Enabled="false" />

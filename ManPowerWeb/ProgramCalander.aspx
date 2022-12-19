@@ -15,6 +15,7 @@
             <NextPrevStyle Font-Size="9pt" ForeColor="#FFFFCC" />
             <DayHeaderStyle BackColor="#FFCC66" Font-Bold="True" Height="10px" />
             <TitleStyle BackColor="#3a60d0" Font-Bold="True" Font-Size="9pt" ForeColor="#FFFFCC" />
+
         </asp:Calendar>
     </div>
 

@@ -28,6 +28,8 @@ namespace ManPowerCore.Controller
         List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId);
 
         List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId);
+        List<TaskAllocation> GetAllTaskAllocationWithDepartmentUnitPosition();
+
 
     }
 
@@ -89,6 +91,34 @@ namespace ManPowerCore.Controller
             {
                 if (dBConnection.con.State == System.Data.ConnectionState.Open)
                     dBConnection.Commit();
+            }
+        }
+        public List<TaskAllocation> GetAllTaskAllocationWithDepartmentUnitPosition()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+                List<TaskAllocation> taskAllocationList = taskAllocationDAO.GetAllTaskAllocation(dBConnection).ToList();
+                List<DepartmentUnitPositions> departmentUnitPositions = departmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection).ToList();
+
+                foreach (var item in taskAllocationList)
+                {
+                    item._DepartmentUnitPositions = departmentUnitPositions.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+                return taskAllocationList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dBConnection.Commit();
+                }
             }
         }
 

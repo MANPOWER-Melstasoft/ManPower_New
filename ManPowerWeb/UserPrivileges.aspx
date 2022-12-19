@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserPrevilages.aspx.cs" Inherits="ManPowerWeb.UserPrevilages" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserPrivileges.aspx.cs" Inherits="ManPowerWeb.UserPrevilages" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -6,7 +6,7 @@
 
     <div class="card o-hidden border-0 shadow-lg my-3">
         <div class="card-header d-flex align-items-center justify-content-center" style="height: 5%">
-            <h5 class="text-center  mt-3 mb-3">User Previlages</h5>
+            <h5 class="text-center  mt-3 mb-3">User Privileges</h5>
         </div>
 
         <div class="card-body">

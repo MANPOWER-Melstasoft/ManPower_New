@@ -96,16 +96,13 @@ namespace ManPowerWeb
                         }
                     }
                 }
-
-                gvUserPrevilages.DataSource = autFunctionList;
-                gvUserPrevilages.DataBind();
-
-                ViewState["previlagesList"] = autFunctionList;
             }
-            else
-            {
-                gvUserPrevilages.Visible = false;
-            }
+
+            gvUserPrevilages.DataSource = autFunctionList;
+            gvUserPrevilages.DataBind();
+
+            ViewState["previlagesList"] = autFunctionList;
+
         }
     }
 }

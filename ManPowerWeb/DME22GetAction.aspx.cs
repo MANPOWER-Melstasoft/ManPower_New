@@ -23,6 +23,8 @@ namespace ManPowerWeb
         public string Month { get { return monthName; } }
 
         public string Remark;
+
+        public TaskAllocation taskAllocationObj = new TaskAllocation();
         protected void Page_Load(object sender, EventArgs e)
         {
             taskAllocationId = Convert.ToInt32(Request.QueryString["taskAllocationId"]);
@@ -55,20 +57,20 @@ namespace ManPowerWeb
             for (int rowIndex = 0; rowIndex < DME22GetActionGridView.Rows.Count; rowIndex++)
             {
 
-                taskallocationDetailList[rowIndex].TaskAllocationDetailId = taskallocationDetailList[rowIndex].TaskAllocationDetailId;
-                taskallocationDetailList[rowIndex].TaskTypeId = taskallocationDetailList[rowIndex].TaskTypeId;
-                taskallocationDetailList[rowIndex].TaskAllocationId = taskallocationDetailList[rowIndex].TaskAllocationId;
-                taskallocationDetailList[rowIndex].TaskDescription = taskallocationDetailList[rowIndex].TaskDescription;
-                taskallocationDetailList[rowIndex].WorkLocation = taskallocationDetailList[rowIndex].WorkLocation;
                 taskallocationDetailList[rowIndex].Isconmpleated = int.Parse(((DropDownList)DME22GetActionGridView.Rows[rowIndex].FindControl("ddlStatus")).SelectedValue);
-                taskallocationDetailList[rowIndex].NotCompleatedReason = ((TextBox)DME22GetActionGridView.Rows[rowIndex].FindControl("txtRemark")).Text; ;
-                taskallocationDetailList[rowIndex].StartTime = taskallocationDetailList[rowIndex].StartTime;
-                taskallocationDetailList[rowIndex].EndTime = taskallocationDetailList[rowIndex].EndTime;
-                taskallocationDetailList[rowIndex].TaskRemarks = taskallocationDetailList[rowIndex].TaskRemarks;
+                taskallocationDetailList[rowIndex].NotCompleatedReason = ((TextBox)DME22GetActionGridView.Rows[rowIndex].FindControl("txtRemark")).Text;
                 taskallocationDetailList[rowIndex].TaskAmendments = "";
 
                 taskAllocationDetail.UpdateTaskAllocationDetail(taskallocationDetailList[rowIndex]);
             }
+
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+
+            taskAllocationObj.StatusId = 8;
+            taskAllocationObj.ApprovedBy = 4;
+
+            taskAllocationController.UpdateTaskAllocation(taskAllocationObj);
+
 
             string url = "DME22.aspx";
             Response.Redirect(url);

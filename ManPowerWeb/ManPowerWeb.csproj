@@ -116,6 +116,8 @@
     <Content Include="AnnualTargetRecomendationView.aspx" />
     <Content Include="ApproveDME21.aspx" />
     <Content Include="ApproveDME21Render.aspx" />
+    <Content Include="ApproveDME22.aspx" />
+    <Content Include="ApproveDME22Render.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1944,6 +1946,20 @@
     </Compile>
     <Compile Include="ApproveDME21Render.aspx.designer.cs">
       <DependentUpon>ApproveDME21Render.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveDME22.aspx.cs">
+      <DependentUpon>ApproveDME22.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveDME22.aspx.designer.cs">
+      <DependentUpon>ApproveDME22.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveDME22Render.aspx.cs">
+      <DependentUpon>ApproveDME22Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveDME22Render.aspx.designer.cs">
+      <DependentUpon>ApproveDME22Render.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

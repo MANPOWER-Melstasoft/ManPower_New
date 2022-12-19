@@ -67,6 +67,7 @@
     <Compile Include="Controller\EmergencyContactController.cs" />
     <Compile Include="Controller\EmployeeContactController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Controller\EmployeeServiceController.cs" />
     <Compile Include="Controller\EmploymentDetailsController.cs" />
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Controller\ReligionController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
+    <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\SystemUserController.cs" />
     <Compile Include="Controller\TaskAllocationController.cs" />
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Domain\EmergencyContact.cs" />
     <Compile Include="Domain\Employee.cs" />
     <Compile Include="Domain\EmployeeContact.cs" />
+    <Compile Include="Domain\EmployeeServices.cs" />
     <Compile Include="Domain\EmploymentDetails.cs" />
     <Compile Include="Domain\Entrepreneur.cs" />
     <Compile Include="Domain\Ethnicity.cs" />
@@ -138,6 +141,7 @@
     <Compile Include="Domain\Religion.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
+    <Compile Include="Domain\ServiceType.cs" />
     <Compile Include="Domain\SystemUser.cs" />
     <Compile Include="Domain\TaskAllocation.cs" />
     <Compile Include="Domain\TaskAllocationDetail.cs" />
@@ -164,6 +168,7 @@
     <Compile Include="Infrastructure\EmergencyContactDAO.cs" />
     <Compile Include="Infrastructure\EmployeeContactDAO.cs" />
     <Compile Include="Infrastructure\EmployeeDAO.cs" />
+    <Compile Include="Infrastructure\EmployeeServicesDAO.cs" />
     <Compile Include="Infrastructure\EmploymentDetailsDAO.cs" />
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
@@ -185,6 +190,7 @@
     <Compile Include="Infrastructure\ReligionDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
+    <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\SystemUserDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />

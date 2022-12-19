@@ -13,13 +13,13 @@ namespace ManPowerCore.Domain
         public int BenificiaryId { get; set; }
 
         [DBField("NIC")]
-        public string Nic { get; set; }
+        public string BeneficiaryNic { get; set; }
 
         [DBField("NAME")]
         public string InduvidualBeneficiaryName { get; set; }
 
         [DBField("GENDER")]
-        public string Gender { get; set; }
+        public string BeneficiaryGender { get; set; }
 
         [DBField("DATE_OF_BIRTH")]
         public DateTime DateOfBirth { get; set; }
@@ -28,7 +28,7 @@ namespace ManPowerCore.Domain
         public string PersonalAddress { get; set; }
 
         [DBField("EMAIL")]
-        public string Email { get; set; }
+        public string BeneficiaryEmail { get; set; }
 
         [DBField("JOB_PREFERENCE")]
         public string JobPreference { get; set; }
@@ -46,7 +46,7 @@ namespace ManPowerCore.Domain
         public string AddressOfSchool { get; set; }
 
         [DBField("GRADE")]
-        public string Grade { get; set; }
+        public string SchoolGrade { get; set; }
 
         [DBField("PARENT_NIC")]
         public string ParentNic { get; set; }

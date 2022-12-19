@@ -10,8 +10,6 @@ namespace ManPowerCore.Domain
     [Serializable]
     public class ProgramTarget
     {
-
-
         [DBField("ID")]
         public int ProgramTargetId { get; set; }
 

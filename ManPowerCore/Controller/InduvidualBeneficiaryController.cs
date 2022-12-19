@@ -30,7 +30,8 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return induvidualBeneficiaryDAO.SaveInduvidualBeneficiary(induvidualBeneficiary, dBConnection);
+                int id = induvidualBeneficiaryDAO.SaveInduvidualBeneficiary(induvidualBeneficiary, dBConnection);
+                return id;
             }
             catch (Exception)
             {

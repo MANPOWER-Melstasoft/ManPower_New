@@ -293,5 +293,16 @@ namespace ManPowerCore.Common
             return (EducationDetailsDAO)educationDetailsDAO;
         }
 
+        public static ServiceTypeDAO CreateServiceTypeDAO()
+        {
+            ServiceTypeDAO serviceTypeDAO = new ServiceTypeDAOImpl();
+            return (ServiceTypeDAO)serviceTypeDAO;
+        }
+
+        public static EmployeeServicesDAO CreateEmployeeServicesDAO()
+        {
+            EmployeeServicesDAO employeeServicesDAO = new EmployeeServicesDAOImpl();
+            return (EmployeeServicesDAO)employeeServicesDAO;
+        }
     }
 }

@@ -26,6 +26,9 @@ namespace ManPowerCore.Controller
         ProgramTarget GetProgramTarget(int id, bool withProgram, bool withProgramType, bool withProgramAssignee, bool withProgramPlan);
 
         List<ProgramTarget> GetAllProgramTarget(int runType);
+
+        List<ProgramTarget> getUpcomingFilter(DateTime startDate, int type);
+
     }
 
     public class ProgramTargetControllerImpl : ProgramTargetController
@@ -180,10 +183,6 @@ namespace ManPowerCore.Controller
                         item._ProgramPlan = _ProgramPlanDAO.GetAllProgramPlanByProgramTargetId(item.ProgramTypeId, dBConnection);
                     }
                 }
-
-
-
-
                 return list;
 
             }
@@ -325,6 +324,29 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 List<ProgramTarget> list = programTargetDAO.GetAllProgramTargetFilter(runType, dBConnection);
+                return list;
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+
+        }
+
+        public List<ProgramTarget> getUpcomingFilter(DateTime startDate, int type)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+                List<ProgramTarget> list = programTargetDAO.UpcomingFilter(startDate, type, dBConnection);
                 return list;
             }
 

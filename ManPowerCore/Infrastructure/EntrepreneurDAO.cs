@@ -31,7 +31,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO BENEFICIARY(BENEFICIARY_TYPE_ID,DISTRICT,DIVISIONAL_SECRETERY) " +
                                            "VALUES(@BeneficiaryTypeId,@District,@DivisionalSecretery) SELECT SCOPE_IDENTITY() ";
 
-            dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryTypeId", 1);
+            dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryTypeId", 2);
             dbConnection.cmd.Parameters.AddWithValue("@District", entrepreneur.District);
             dbConnection.cmd.Parameters.AddWithValue("@DivisionalSecretery", entrepreneur.DivisionalSecretery);
 
@@ -41,7 +41,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO ENTREPRENEUR(BENEFICIARY_ID,MARKET_TYPE_ID, BUSINESS_TYPE_ID, NATURE_OF_BUSINESS, BUSINESS_START_DATE, AVG_MONTHLY_INCOME, NUMBER_OF_WORKERS, CONTACT_NUMBER, BRN, EMAIL) " +
 
-                                           "VALUES(@BenificiaryId, @MarketTypeId, @BusinessTypeId, @NatureOfBusiness, @BusinessStartDate, @AvgMonthlyIncome, @NumberOfWorkers, @ContactNumber, @Brn, @Email )";
+                                           "VALUES(@BenificiaryId, @MarketTypeId, @BusinessTypeId, @NatureOfBusiness, @BusinessStartDate, @AvgMonthlyIncome, @NumberOfWorkers, @ContactNumber, @EntBrn, @EntEmail )";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@BenificiaryId", entrepreneur.BeneficiaryId);
@@ -52,8 +52,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@AvgMonthlyIncome", entrepreneur.AvgMonthlyIncome);
             dbConnection.cmd.Parameters.AddWithValue("@NumberOfWorkers", entrepreneur.NumberOfWorkers);
             dbConnection.cmd.Parameters.AddWithValue("@ContactNumber", entrepreneur.ContactNumber);
-            dbConnection.cmd.Parameters.AddWithValue("@Brn", entrepreneur.Brn);
-            dbConnection.cmd.Parameters.AddWithValue("@Email", entrepreneur.Email);
+            dbConnection.cmd.Parameters.AddWithValue("@EntBrn", entrepreneur.EntBrn);
+            dbConnection.cmd.Parameters.AddWithValue("@EntEmail", entrepreneur.EntEmail);
 
             dbConnection.cmd.ExecuteNonQuery();
 

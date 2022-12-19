@@ -88,8 +88,6 @@ namespace ManPowerWeb
             ddlProgramType.DataTextField = "ProgramTypeName";
             ddlProgramType.DataValueField = "ProgramTypeId";
             ddlProgramType.DataBind();
-
-
         }
 
 
@@ -212,10 +210,6 @@ namespace ManPowerWeb
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
 
             }
-
-
-
-
         }
 
         protected void rbTarget_SelectedIndexChanged(object sender, EventArgs e)

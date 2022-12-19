@@ -110,6 +110,8 @@
     <Content Include="AddNewTarget.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="CompletedPrograms.aspx" />
+    <Content Include="CompletedProgramsView.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -120,6 +122,8 @@
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME24.aspx" />
+    <Content Include="EntRegistration.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -144,6 +148,8 @@
     <Content Include="js\demo\datatables-demo.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="PersonalFiles.aspx" />
+    <Content Include="RPReggistration.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -173,6 +179,11 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UpcomingPrograms.aspx" />
+    <Content Include="UpcomingprogramsView.aspx" />
+    <Content Include="VacancyReg.aspx" />
+    <Content Include="VacancyRegSearch.aspx" />
+    <Content Include="VacancyRegView.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1885,6 +1896,20 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CompletedPrograms.aspx.cs">
+      <DependentUpon>CompletedPrograms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompletedPrograms.aspx.designer.cs">
+      <DependentUpon>CompletedPrograms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompletedProgramsView.aspx.cs">
+      <DependentUpon>CompletedProgramsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompletedProgramsView.aspx.designer.cs">
+      <DependentUpon>CompletedProgramsView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1906,10 +1931,38 @@
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DME24.aspx.cs">
+      <DependentUpon>DME24.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME24.aspx.designer.cs">
+      <DependentUpon>DME24.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EntRegistration.aspx.cs">
+      <DependentUpon>EntRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EntRegistration.aspx.designer.cs">
+      <DependentUpon>EntRegistration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="PersonalFiles.aspx.cs">
+      <DependentUpon>PersonalFiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFiles.aspx.designer.cs">
+      <DependentUpon>PersonalFiles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RPReggistration.aspx.cs">
+      <DependentUpon>RPReggistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RPReggistration.aspx.designer.cs">
+      <DependentUpon>RPReggistration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1923,6 +1976,41 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UpcomingPrograms.aspx.cs">
+      <DependentUpon>UpcomingPrograms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpcomingPrograms.aspx.designer.cs">
+      <DependentUpon>UpcomingPrograms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpcomingprogramsView.aspx.cs">
+      <DependentUpon>UpcomingprogramsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpcomingprogramsView.aspx.designer.cs">
+      <DependentUpon>UpcomingprogramsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacancyReg.aspx.cs">
+      <DependentUpon>VacancyReg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacancyReg.aspx.designer.cs">
+      <DependentUpon>VacancyReg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacancyRegSearch.aspx.cs">
+      <DependentUpon>VacancyRegSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacancyRegSearch.aspx.designer.cs">
+      <DependentUpon>VacancyRegSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacancyRegView.aspx.cs">
+      <DependentUpon>VacancyRegView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacancyRegView.aspx.designer.cs">
+      <DependentUpon>VacancyRegView.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

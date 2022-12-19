@@ -285,6 +285,20 @@ namespace ManPowerCore.Common
 
         }
 
+        public static ServiceTypeController CreateServiceTypeController()
+        {
+            ServiceTypeController serviceTypeController = new ServiceTypeControllerImpl();
+            return (ServiceTypeController)serviceTypeController;
+
+        }
+
+        public static EmployeeServiceController CreateEmployeeServiceController()
+        {
+            EmployeeServiceController employeeServiceController = new EmployeeServiceControllerImpl();
+            return (EmployeeServiceController)employeeServiceController;
+
+        }
+
     }
 }
     

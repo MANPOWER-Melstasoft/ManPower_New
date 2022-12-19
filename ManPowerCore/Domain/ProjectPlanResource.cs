@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class ProjectPlanResource
     {
         [DBField("RESOURCE_PERSON_ID")]

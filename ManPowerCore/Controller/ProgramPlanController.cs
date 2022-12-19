@@ -19,7 +19,9 @@ namespace ManPowerCore.Controller
         List<ProgramPlan> GetAllProgramPlan(bool withProgramAttendence, bool withProgramBudget, bool withProgramTarget, bool withProgramCategory, bool withProjectStatus, bool withProjectTask);
 
         ProgramPlan GetProgramPlan(int id, bool withProgramAttendence, bool withProgramBudget, bool withProgramTarget, bool withProgramCategory, bool withProjectStatus, bool withProjectTask);
-        List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, bool withProgramTarget);
+        //List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, bool withProgramTarget);
+
+        List<ProgramPlan> getCompletedProgramsFilter(DateTime startDate);
     }
 
     public class ProgramPlanControllerImpl : ProgramPlanController
@@ -229,39 +231,62 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, bool withProgramTarget)
+        //public List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, bool withProgramTarget)
+        //{
+        //    DBConnection dbConnection = new DBConnection();
+        //    try
+        //    {
+        //        ProgramPlanDAO DAO = DAOFactory.CreateProgramPlanDAO();
+        //        List<ProgramPlan> _ProgramPlan = DAO.GetAllProgramPlanByDateTypeDistrict(date, programType, districtId, dbConnection);
+
+
+        //        if (withProgramTarget)
+        //        {
+        //            ProgramTargetDAO _ProgramTargetDAO = DAOFactory.CreateProgramTargetDAO();
+        //            foreach (var item in _ProgramPlan)
+        //            {
+        //                item._ProgramTarget = _ProgramTargetDAO.GetProgramTarget(item.ProgramTargetId, dbConnection);
+
+        //                ProgramAssigneeDAO programAssigneeDAO = DAOFactory.CreateProgramAssigneeDAO();
+        //                item._ProgramTarget._ProgramAssignee = programAssigneeDAO.GetAllProgramAssigneeByProgramTargetId(item.ProgramTargetId, dbConnection);
+        //            }
+        //        }
+
+        //        return _ProgramPlan;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        dbConnection.RollBack();
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        if (dbConnection.con.State == System.Data.ConnectionState.Open)
+        //            dbConnection.Commit();
+        //    }
+        //}
+
+        public List<ProgramPlan> getCompletedProgramsFilter(DateTime startDate)
         {
-            DBConnection dbConnection = new DBConnection();
+
             try
             {
-                ProgramPlanDAO DAO = DAOFactory.CreateProgramPlanDAO();
-                List<ProgramPlan> _ProgramPlan = DAO.GetAllProgramPlanByDateTypeDistrict(date, programType, districtId, dbConnection);
-
-
-                if (withProgramTarget)
-                {
-                    ProgramTargetDAO _ProgramTargetDAO = DAOFactory.CreateProgramTargetDAO();
-                    foreach (var item in _ProgramPlan)
-                    {
-                        item._ProgramTarget = _ProgramTargetDAO.GetProgramTarget(item.ProgramTargetId, dbConnection);
-
-                        ProgramAssigneeDAO programAssigneeDAO = DAOFactory.CreateProgramAssigneeDAO();
-                        item._ProgramTarget._ProgramAssignee = programAssigneeDAO.GetAllProgramAssigneeByProgramTargetId(item.ProgramTargetId, dbConnection);
-                    }
-                }
-
-                return _ProgramPlan;
+                dBConnection = new DBConnection();
+                List<ProgramPlan> list = programPlanDAO.completedProgramsFiter(startDate, dBConnection);
+                return list;
             }
-            catch (Exception ex)
+
+            catch (Exception)
             {
-                dbConnection.RollBack();
+                dBConnection.RollBack();
                 throw;
             }
             finally
             {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open)
-                    dbConnection.Commit();
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
             }
+
         }
     }
 }

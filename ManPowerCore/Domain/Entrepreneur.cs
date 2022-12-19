@@ -28,15 +28,15 @@ namespace ManPowerCore.Domain
         public double AvgMonthlyIncome { get; set; }
 
         [DBField("NUMBER_OF_WORKERS")]
-        public string NumberOfWorkers { get; set; }
+        public int NumberOfWorkers { get; set; }
 
         [DBField("CONTACT_NUMBER")]
-        public string ContactNumber { get; set; }
+        public int ContactNumber { get; set; }
 
         [DBField("BRN")]
-        public string Brn { get; set; }
+        public string EntBrn { get; set; }
 
         [DBField("EMAIL")]
-        public string Email { get; set; }
+        public string EntEmail { get; set; }
     }
 }

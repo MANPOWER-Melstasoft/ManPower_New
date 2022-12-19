@@ -118,6 +118,12 @@
                             <a class="collapse-item" href="404.html">404 Page</a>
                             <a class="collapse-item" href="blank.html">Blank Page</a>
                             <a class="collapse-item" href="AnnualTarget.aspx">Annual Targets</a>
+                            <a class="collapse-item" href="CompletedPrograms.aspx">Completed Programs</a>
+                            <a class="collapse-item" href="UpcomingPrograms.aspx">Upcomming Programs</a>
+                            <a class="collapse-item" href="RPReggistration.aspx">Individual Beneficiaries</a>
+                            <a class="collapse-item" href="EntRegistration.aspx">Entrepreneur Registration</a>
+                            <a class="collapse-item" href="VacancyRegSearch.aspx">Vacancy Registration</a>
+                            <a class="collapse-item" href="PersonalFiles.aspx">Personal Files</a>
                         </div>
                     </div>
                 </li>

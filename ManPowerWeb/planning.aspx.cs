@@ -46,7 +46,7 @@ namespace ManPowerWeb
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
             programAssignees = programAssigneeController.GetProgramAssignee();
 
-            systemUserId = 3;
+            systemUserId = Convert.ToInt32(Session["UserId"]);
             programAssigneesFilter = programAssignees.Where(u => u._DepartmentUnitPositions.SystemUserId == systemUserId).ToList();
             //&& u._ProgramTarget.TargetMonth.ToString() == ddlYear.SelectedValue && u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue
 
@@ -158,7 +158,7 @@ namespace ManPowerWeb
             programPlansList = programPlansList.Where(x => x.ProgramTargetId == PrTargetId).ToList();
 
 
-            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramName=" + prName + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
+            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramName=" + programPlansList[rowindexChild].ProgramName + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
 
         }
 

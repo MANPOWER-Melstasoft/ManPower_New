@@ -65,9 +65,9 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_TARGET(PROGRAM_TYPE_ID,PROGRAM_ID,TITLE,DESCRIPTION," +
                                             "START_DATE,END_DATE,OUTCOME,VOTE_NUMBER,NO_OF_PROJECTS,ESTIMATED_AMOUNT,TARGET_YEAR," +
-                                            "TARGET_MONTH,OUTPUT,INSTRACTIONS,IS_RECOMMENDED,RECOMMENDED_BY,RECOMMENDED_DATE) " +
+                                            "TARGET_MONTH,OUTPUT,INSTRACTIONS,IS_RECOMMENDED,RECOMMENDED_BY,RECOMMENDED_DATE,Remarks,Created_By) " +
 
-                                 "VALUES(@ProgramTypeId,@ProgramId,@Title,@Description,@StartDate,@EndDate,@Outcome,@VoteNumber,@NoOfProjects,@EstimatedAmount,@TargetYear,@TargetMonth,@Output,@Instractions,@IsRecommended,@RecommendedBy,@RecommendedDate) SELECT SCOPE_IDENTITY() ";
+                                 "VALUES(@ProgramTypeId,@ProgramId,@Title,@Description,@StartDate,@EndDate,@Outcome,@VoteNumber,@NoOfProjects,@EstimatedAmount,@TargetYear,@TargetMonth,@Output,@Instractions,@IsRecommended,@RecommendedBy,@RecommendedDate,@Remarks,@CreatedBy) SELECT SCOPE_IDENTITY() ";
 
 
             //dbConnection.cmd.Parameters.AddWithValue("@id", id);
@@ -88,6 +88,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@IsRecommended", programTarget.IsRecommended);
             dbConnection.cmd.Parameters.AddWithValue("@RecommendedBy", programTarget.RecommendedBy);
             dbConnection.cmd.Parameters.AddWithValue("@RecommendedDate", programTarget.RecommendedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Remarks", programTarget.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedBy", programTarget.CreatedBy);
 
             return Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
         }
@@ -101,7 +103,7 @@ namespace ManPowerCore.Infrastructure
                 " TITLE = @Title, DESCRIPTION = @Description , START_DATE = @StartDate,END_DATE = @EndDate , OUTCOME = @Outcome , VOTE_NUMBER = @VoteNumber," +
                 " NO_OF_PROJECTS = @NoOfProjects, ESTIMATED_AMOUNT = @EstimatedAmount, TARGET_YEAR = @TargetYear," +
                 " TARGET_MONTH = @TargetMonth ,OUTPUT = @Output, INSTRACTIONS = @Instractions," +
-                " IS_RECOMMENDED = @IsRecommended , RECOMMENDED_BY = @RecommendedBy, RECOMMENDED_DATE = @RecommendedDate  WHERE ID = @ProgramTargetId";
+                " IS_RECOMMENDED = @IsRecommended , RECOMMENDED_BY = @RecommendedBy, RECOMMENDED_DATE = @RecommendedDate,Remarks=@Remarks,Created_By=@CreatedBy WHERE ID = @ProgramTargetId";
 
 
 
@@ -123,6 +125,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@IsRecommended", programTarget.IsRecommended);
             dbConnection.cmd.Parameters.AddWithValue("@RecommendedBy", programTarget.RecommendedBy);
             dbConnection.cmd.Parameters.AddWithValue("@RecommendedDate", programTarget.RecommendedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Remarks", programTarget.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedBy", programTarget.CreatedBy);
 
 
 

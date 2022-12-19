@@ -24,6 +24,9 @@ namespace ManPowerCore.Infrastructure
     {
         public List<ProjectTask> GetAllProjectTask(DBConnection dbConnection)
         {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
             dbConnection.cmd.CommandText = "SELECT * FROM PROJECT_TASK ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();

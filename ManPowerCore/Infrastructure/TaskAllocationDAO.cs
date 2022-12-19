@@ -148,10 +148,13 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION WHERE ID = " + id + " ";
+            TaskAllocation taskAllocations = new TaskAllocation();
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
-            return dataAccessObject.GetSingleOject<TaskAllocation>(dbConnection.dr);
+
+            taskAllocations = dataAccessObject.GetSingleOject<TaskAllocation>(dbConnection.dr);
+            return taskAllocations;
 
         }
 

@@ -27,6 +27,8 @@ namespace ManPowerCore.Infrastructure
 
         List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId, DBConnection dbConnection);
 
+        List<TaskAllocation> GetTaskAllocationDme22Approve(int PositionId, DBConnection dbConnection);
+
     }
 
     public class TaskAllocationDAOImpl : TaskAllocationDAO
@@ -55,6 +57,18 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION WHERE RECOMMENDED_BY=" + PositionId + "AND STATUS_ID=" + 1;
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TaskAllocation>(dbConnection.dr);
+        }
+
+        public List<TaskAllocation> GetTaskAllocationDme22Approve(int PositionId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION WHERE RECOMMENDED_BY=" + PositionId + "AND STATUS_ID=" + 8;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

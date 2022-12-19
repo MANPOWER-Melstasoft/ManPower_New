@@ -57,8 +57,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO COMPANY_USER( DESIGNATION_ID, USER_TYPE_ID, EMP_NUMBER, NAME, EMAIL," +
-                " CONTACT_NUMBER, USER_NAME, USER_PWD,CREATED_DATE) values (@DesignationId,@UserTypeId,@EmpNumber,@Name,@Email,@ContactNumber," +
-                "@UserName,@UserPwd,@CreatedDate) SELECT SCOPE_IDENTITY() ";
+                " CONTACT_NUMBER, USER_NAME, USER_PASSWORD, CREATED_DATE, CREATED_USER) values (@DesignationId,@UserTypeId,@EmpNumber,@Name,@Email,@ContactNumber," +
+                "@UserName,@UserPwd,@CreatedDate, @CREATED_USER) SELECT SCOPE_IDENTITY() ";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", systemuser.DesignationId);
@@ -75,7 +75,7 @@ namespace ManPowerCore.Infrastructure
             //dbConnection.cmd.Parameters.AddWithValue("INVALIDE_LOGIN_COUNT", DBNull.Value);
             //dbConnection.cmd.Parameters.AddWithValue("LAST_LOGIN_DATE", DBNull.Value);
             //dbConnection.cmd.Parameters.AddWithValue("IS_ACTIVE", DBNull.Value);
-            //dbConnection.cmd.Parameters.AddWithValue("CREATED_USER", DBNull.Value);
+            dbConnection.cmd.Parameters.AddWithValue("@CREATED_USER", systemuser.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", systemuser.CreatedDate);
 
             // dbConnection.cmd.CommandType = System.Data.CommandType.Text;
@@ -90,7 +90,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE COMPANY_USER SET DESIGNATION_ID = '" + systemuser.DesignationId + "', USER_TYPE_ID = '" + systemuser.UserTypeId + "', EMP_NUMBER = '" + systemuser.EmpNumber + "', NAME = '" + systemuser.Name + "', EMAIL = '" + systemuser.Email + "', CONTACT_NUMBER = '" + systemuser.ContactNumber + "', USER_NAME = '" + systemuser.UserName + "', USER_PWD = '" + systemuser.UserPwd + "', RESET_CODE = '" + systemuser.ResetCode + "', VALIDITY_PERIOD = '" + systemuser.ValidityPeriod + "', RESET_CODE_VALIDITY_PERIOD = '" + systemuser.ResetCodeValidityPeriod + "', INVALIDE_LOGIN_COUNT = '" + systemuser.InvalideLoginCount + "', LAST_LOGIN_DATE = '" + systemuser.LastLoginDate + "', IS_ACTIVE = '" + systemuser.IsActive + "', CREATED_USER = '" + systemuser.CreatedUser + "', CREATED_DATE = '" + systemuser.CreatedDate + "' WHERE ID = " + systemuser.SystemUserId;
+            dbConnection.cmd.CommandText = "UPDATE COMPANY_USER SET DESIGNATION_ID = '" + systemuser.DesignationId + "', USER_TYPE_ID = '" + systemuser.UserTypeId + "', EMP_NUMBER = '" + systemuser.EmpNumber + "', NAME = '" + systemuser.Name + "', EMAIL = '" + systemuser.Email + "', CONTACT_NUMBER = '" + systemuser.ContactNumber + "', USER_NAME = '" + systemuser.UserName + "', USER_PASSWORD = '" + systemuser.UserPwd + "', RESET_CODE = '" + systemuser.ResetCode + "', VALIDITY_PERIOD = '" + systemuser.ValidityPeriod + "', RESET_CODE_VALIDITY_PERIOD = '" + systemuser.ResetCodeValidityPeriod + "', INVALIDE_LOGIN_COUNT = '" + systemuser.InvalideLoginCount + "', LAST_LOGIN_DATE = '" + systemuser.LastLoginDate + "', IS_ACTIVE = '" + systemuser.IsActive + "', CREATED_USER = '" + systemuser.CreatedUser + "', CREATED_DATE = '" + systemuser.CreatedDate + "' WHERE ID = " + systemuser.SystemUserId;
 
             return dbConnection.cmd.ExecuteNonQuery();
         }
@@ -229,7 +229,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE COMPANY_USER SET LAST_LOGIN_DATE = GETDATE() WHERE USER_NAME = '" + systemuser.UserName + "' ";
+            dbConnection.cmd.CommandText = "UPDATE COMPANY_USER SET LAST_LOGIN_DATE = GETDATE() WHERE Id = " + systemuser.SystemUserId;
             return dbConnection.cmd.ExecuteNonQuery();
 
         }

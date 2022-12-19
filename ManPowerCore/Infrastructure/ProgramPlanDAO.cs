@@ -16,7 +16,7 @@ namespace ManPowerCore.Infrastructure
         int SaveProgramPlan(ProgramPlan programPlan, DBConnection dbConnection);
         int UpdateProgramPlan(ProgramPlan programPlan, DBConnection dbConnection);
 
-        int UpdateProgramPlanComplete(int statusId, int projectTargetId, DBConnection dbConnection);
+        int UpdateProgramPlanComplete(int statusId, int id, DBConnection dbConnection);
 
         List<ProgramPlan> GetAllProgramPlanByProgramTargetId(int programTargetId, DBConnection dBConnection);
         List<ProgramPlan> GetAllProgramPlanByProgramCategoryId(int programCategoryId, DBConnection dbConnection);
@@ -105,7 +105,7 @@ namespace ManPowerCore.Infrastructure
             " ACTUAL_OUTPUT = @ActualOutput, IS_APPROVED = @IsApproved, APPROVED_BY =@ApprovedBy ," +
             " APPROVED_DATE = @ApprovedDate ,TOTAL_ESTIMATED_AMOUNT = @TotalEstimatedAmount,APPROVED_AMOUNT = @ApprovedAmount," +
             " ACTUAL_AMOUNT = @ActualAmount, MALE_COUNT = @MaleCount ," +
-            " FEMALE_COUNT = @FemaleCount WHERE PROGRAM_TARGET_ID = @ProgramTargetId ";
+            " FEMALE_COUNT = @FemaleCount,Financial_Source=@FinancialResource WHERE ID = @ProgramPlanId ";
 
 
 
@@ -127,18 +127,19 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ActualAmount", programPlan.ActualAmount);
             dbConnection.cmd.Parameters.AddWithValue("@MaleCount", programPlan.MaleCount);
             dbConnection.cmd.Parameters.AddWithValue("@FemaleCount", programPlan.FemaleCount);
+            dbConnection.cmd.Parameters.AddWithValue("@FinancialResource", programPlan.FinancialSource);
 
 
 
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int UpdateProgramPlanComplete(int statusId, int projectTargetId, DBConnection dbConnection)
+        public int UpdateProgramPlanComplete(int statusId, int id, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE PROGRAM_PLAN SET PROJECT_STATUS_ID = " + statusId + "WHERE PROGRAM_TARGET_ID = " + projectTargetId + " ";
+            dbConnection.cmd.CommandText = "UPDATE PROGRAM_PLAN SET PROJECT_STATUS_ID = " + statusId + "WHERE ID = " + id + " ";
 
             return dbConnection.cmd.ExecuteNonQuery();
         }

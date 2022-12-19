@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
+
     public class AutSystemRoleFunction
     {
         [DBField("AUT_SYSTEM_ID")]
@@ -15,7 +17,7 @@ namespace ManPowerCore.Domain
         [DBField("USER_Type_ID")]
         public int UserTypeId { get; set; }
 
-        [DBField("AUT_FUNCTION_ID")] 
+        [DBField("AUT_FUNCTION_ID")]
         public int AutFunctionId { get; set; }
     }
 }

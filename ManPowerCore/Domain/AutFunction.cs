@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
+
     public class AutFunction
     {
         [DBField("ID")]
@@ -20,5 +22,8 @@ namespace ManPowerCore.Domain
 
         [DBField("MENU_ICON")]
         public string MenuIcon { get; set; }
+
+
+        public string Status { get; set; }
     }
 }

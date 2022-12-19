@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
         int Delete(AutUserFunction autUserFunction, DBConnection dbConnection);
         List<AutUserFunction> GetAllAutUserFunctionByUserId(int AutUserId, DBConnection dbConnection);
         List<AutUserFunction> GetAllAutUserFunction(DBConnection dbConnection);
+        AutUserFunction GetAutUserFunction(AutUserFunction autUserFunction, DBConnection dbConnection);
+
     }
 
     public class AutUserFunctionDAOSqlImpl : AutUserFunctionDAO
@@ -69,6 +71,22 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<AutUserFunction>(dbConnection.dr);
+        }
+
+        public AutUserFunction GetAutUserFunction(AutUserFunction autUserFunction, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT * FROM aut_user_function WHERE aut_user_id = @AutUserId AND aut_function_id = @AutFunctionId";
+
+            dbConnection.cmd.Parameters.AddWithValue("@AutFunctionId", autUserFunction.AutFunctionId);
+            dbConnection.cmd.Parameters.AddWithValue("@AutUserId", autUserFunction.AutUserId);
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<AutUserFunction>(dbConnection.dr);
         }
 
     }

@@ -17,6 +17,7 @@ namespace ManPowerCore.Controller
         int Delete(AutUserFunction autUserFunction);
         List<AutUserFunction> GetAllAutUserFunctionByUserId(bool withFunctions, int AutUserId);
         List<AutUserFunction> GetAllAutUserFunction(bool withFunctions);
+        int Change(AutUserFunction autUserFunction);
     }
 
     public class AutUserFunctionControllerSqlImpl : AutUserFunctionController
@@ -144,6 +145,39 @@ namespace ManPowerCore.Controller
                 }
 
                 return autUserFunctionList;
+
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
+        public int Change(AutUserFunction autUserFunction)
+        {
+            DBConnection dbConnection = null;
+            try
+            {
+                int output = 0;
+                dbConnection = new DBConnection();
+                AutUserFunction autUserFunctionTest = autUserFunctionDAO.GetAutUserFunction(autUserFunction, dbConnection);
+                if (autUserFunctionTest.AutFunctionId == 0 && autUserFunctionTest.AutUserId == 0)
+                {
+                    output = autUserFunctionDAO.Save(autUserFunction, dbConnection);
+                }
+                else
+                {
+                    output = autUserFunctionDAO.Delete(autUserFunction, dbConnection);
+
+                }
+
+                return output;
 
             }
             catch (Exception ex)

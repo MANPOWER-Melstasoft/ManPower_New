@@ -320,7 +320,7 @@ namespace ManPowerCore.Controller
 
                     foreach (var item in list)
                     {
-                        item._UserType = listUserType.Where(a => a.UserTypeId == item.SystemUserId).Single();
+                        item._UserType = listUserType.Where(a => a.UserTypeId == item.UserTypeId).Single();
                     }
                 }
 

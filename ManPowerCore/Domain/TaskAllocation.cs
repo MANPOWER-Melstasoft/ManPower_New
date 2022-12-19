@@ -31,13 +31,13 @@ namespace ManPowerCore.Domain
         public int StatusId { get; set; }
 
         [DBField("RECOMMENDED_BY")]
-        public string RecommendedBy { get; set; }
+        public int RecommendedBy { get; set; }
 
         [DBField("RECOMMENDED_DATE")]
         public DateTime RecommendedDate { get; set; }
 
         [DBField("APPROVED_BY")]
-        public string ApprovedBy { get; set; }
+        public int ApprovedBy { get; set; }
 
         [DBField("APPROVED_DATE")]
         public string ApprovedDate { get; set; }
@@ -51,8 +51,7 @@ namespace ManPowerCore.Domain
         public DepartmentUnitPositions _DepartmentUnitPositions { get; set; } = new DepartmentUnitPositions();
         public ProjectStatus _ProjectStatus { get; set; } = new ProjectStatus();
         public TaskType _TaskType { get; set; } = new TaskType();
-
-
+        public SystemUser _SystemUser { get; set; } = new SystemUser();
 
     }
 }

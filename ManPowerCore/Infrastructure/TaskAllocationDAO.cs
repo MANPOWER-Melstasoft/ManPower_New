@@ -21,6 +21,8 @@ namespace ManPowerCore.Infrastructure
 
         List<TaskAllocation> GetAllTaskAllocation(DBConnection dbConnection);
 
+        List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId, DBConnection dbConnection);
+
         TaskAllocation GetTaskAllocation(int id, DBConnection dbConnection);
 
         List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId, DBConnection dbConnection);
@@ -45,6 +47,18 @@ namespace ManPowerCore.Infrastructure
 
 
             return orderId;
+        }
+
+        public List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION WHERE RECOMMENDED_BY=" + PositionId + "AND STATUS_ID=" + 1;
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TaskAllocation>(dbConnection.dr);
         }
 
         public int SaveTaskAllocation(TaskAllocation taskAllocation, DBConnection dbConnection)
@@ -79,11 +93,11 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION SET DEPARTMENT_UNIT_POSSITIONS_ID = @DepartmetUnitPossitionsId, TASK_YEAR_MONT = @TaskYearMonth " +
+            dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION SET DEPARTMENT_UNIT_POSSITIONS_ID = @DepartmetUnitPossitionsId, TASK_YEAR_MONTH = @TaskYearMonth " +
                                            ", CREATED_DATE = @CreatedDate, CREATED_USER = @CreatedUser, STATUS_ID = @StatusId, RECOMMENDED_BY = @RecommendedBy, " +
                                            "RECOMMENDED_DATE = @RecommendedDate, APPROVED_BY = @ApprovedBy, APPROVED_DATE = @ApprovedDate  WHERE ID = @TaskAllocationId ";
 
-            dbConnection.cmd.Parameters.AddWithValue("@id", taskAllocation.TaskAllocationId);
+            dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationId", taskAllocation.TaskAllocationId);
             dbConnection.cmd.Parameters.AddWithValue("@DepartmetUnitPossitionsId", taskAllocation.DepartmetUnitPossitionsId);
             dbConnection.cmd.Parameters.AddWithValue("@TaskYearMonth", taskAllocation.TaskYearMonth);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", taskAllocation.CreatedDate);

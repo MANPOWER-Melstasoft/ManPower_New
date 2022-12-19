@@ -25,6 +25,8 @@ namespace ManPowerCore.Controller
 
         TaskAllocation GetTaskAllocation(int id, bool withTaskAllocationDetail, bool withDepartmentUnitPositions);
 
+        List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId);
+
         List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId);
         List<TaskAllocation> GetAllTaskAllocationWithDepartmentUnitPosition();
 
@@ -120,6 +122,38 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocation> list = taskAllocationDAO.GetTaskAllocationDme21Approve(PositionId, dBConnection);
+
+
+                DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                List<DepartmentUnitPositions> departmentUnitPositionList = _DepartmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
+                foreach (var item in list)
+                {
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+
+                return list;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
         public int saveTaskAllocation(TaskAllocation taskAllocation)
         {
             try
@@ -197,6 +231,7 @@ namespace ManPowerCore.Controller
                 if (withTaskAllocationDetail)
                 {
                     TaskAllocationDetailDAO _TaskAllocationDetailDAO = DAOFactory.CreateTaskAllocationDetailDAO();
+
                     foreach (var item in list)
                     {
                         item._TaskAllocationDetail = _TaskAllocationDetailDAO.GetAllTaskAllocationDetailByTaskAllocationId(item.TaskAllocationId, dBConnection);
@@ -207,9 +242,12 @@ namespace ManPowerCore.Controller
                 if (withDepartmentUnitPositions)
                 {
                     DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                    List<DepartmentUnitPositions> departmentUnitPositionList = _DepartmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
                     foreach (var item in list)
                     {
-                        item._DepartmentUnitPositions = _DepartmentUnitPositionsDAO.GetDepartmentUnitPositions(item.TaskAllocationId, dBConnection);
+                        item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                     }
                 }
 

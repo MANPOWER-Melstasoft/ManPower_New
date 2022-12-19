@@ -22,7 +22,7 @@ namespace ManPowerCore.Infrastructure
 
         List<DepartmentUnitPositions> GetAllUsersBySystemUserId(int runSystemUserId, DBConnection dbConnection);
 
-
+        List<DepartmentUnitPositions> GetDepartmentUnitPositionsBYPId(int ParentID, DBConnection dbConnection);
 
     }
 
@@ -78,12 +78,27 @@ namespace ManPowerCore.Infrastructure
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
+
+
         public List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<DepartmentUnitPositions>(dbConnection.dr);
+
+        }
+
+        public List<DepartmentUnitPositions> GetDepartmentUnitPositionsBYPId(int ParentID, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ParentId =" + ParentID;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

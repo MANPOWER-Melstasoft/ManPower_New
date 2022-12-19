@@ -11,52 +11,34 @@ namespace ManPowerWeb
 {
 
 
-    public partial class SiteMaster
+    public partial class ApproveDME21Render
     {
 
         /// <summary>
-        /// ltSideBar control.
+        /// gvDME21Approve control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltSideBar;
+        protected global::System.Web.UI.WebControls.GridView gvDME21Approve;
 
         /// <summary>
-        /// lblName control.
+        /// btnApprove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.LinkButton btnApprove;
 
         /// <summary>
-        /// btnLogut control.
+        /// btnReject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogut;
-
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
-
-        /// <summary>
-        /// btnLogoutmodel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogoutmodel;
+        protected global::System.Web.UI.WebControls.LinkButton btnReject;
     }
 }

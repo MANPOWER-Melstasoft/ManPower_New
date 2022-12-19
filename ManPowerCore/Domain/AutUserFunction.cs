@@ -9,15 +9,14 @@ namespace ManPowerCore.Domain
 {
     [Serializable]
 
-    public class AutSystemRoleFunction
+    public class AutUserFunction
     {
-        [DBField("AUT_SYSTEM_ID")]
-        public int AutSystemId { get; set; }
-
-        [DBField("USER_Type_ID")]
-        public int UserTypeId { get; set; }
-
         [DBField("AUT_FUNCTION_ID")]
         public int AutFunctionId { get; set; }
+
+        [DBField("AUT_USER_ID")]
+        public int AutUserId { get; set; }
+
+        public AutFunction autFunction { get; set; }
     }
 }

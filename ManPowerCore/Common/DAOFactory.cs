@@ -304,6 +304,18 @@ namespace ManPowerCore.Common
             AutUserFunctionDAO autUserFunctionDAO = new AutUserFunctionDAOSqlImpl();
             return (AutUserFunctionDAO)autUserFunctionDAO;
         }
+        public static LeaveTypeDAO CreateLeaveTypeDAO()
+        {
+            LeaveTypeDAO leaveTypeDAO = new LeaveTypeDAOSqlImpl();
+            return (LeaveTypeDAO)leaveTypeDAO;
+
+        }
+        public static StaffLeaveAllocationDAO CreateStaffLeaveAllocationDAO()
+        {
+            StaffLeaveAllocationDAO staffLeaveAllocationDAO = new StaffLeaveAllocationDAOSqlImpl();
+            return (StaffLeaveAllocationDAO)staffLeaveAllocationDAO;
+
+        }
 
     }
 }

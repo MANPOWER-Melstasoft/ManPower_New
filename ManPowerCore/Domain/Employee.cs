@@ -28,7 +28,7 @@ namespace ManPowerCore.Domain
         public string EmployeePassportNumber { get; set; }
 
         [DBField("LEAVE_NUMBER")]
-        public int leaveNumber { get; set; }
+        public int LeaveNumber { get; set; }
 
         [DBField("PERMANENT_ADDRESS")]
         public string Adress { get; set; }

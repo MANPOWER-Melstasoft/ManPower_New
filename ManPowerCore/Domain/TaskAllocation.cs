@@ -40,7 +40,7 @@ namespace ManPowerCore.Domain
         public int ApprovedBy { get; set; }
 
         [DBField("APPROVED_DATE")]
-        public string ApprovedDate { get; set; }
+        public DateTime ApprovedDate { get; set; }
 
         [DBField("COMMENTS")]
         public string ApprovalComments { get; set; }

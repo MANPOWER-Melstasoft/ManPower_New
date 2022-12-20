@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddNewTarget.aspx.cs" Inherits="ManPowerWeb.AddNewTarget" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddNewTarget.aspx.cs" Inherits="ManPowerWeb.AddNewTarget" EnableEventValidation="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
+    <%--  <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>--%>
     <div class="container mb-3" id="mainContainer" runat="server">
 
 
@@ -9,144 +9,144 @@
             <h2>Add New Target</h2>
             <br />
             <div class="form-group">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-                                        <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlYear" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
-                                            <asp:ListItem Value="2020">2020</asp:ListItem>
-                                            <asp:ListItem Value="2021">2021</asp:ListItem>
-                                            <asp:ListItem Value="2022">2022</asp:ListItem>
-                                            <asp:ListItem Value="2023">2023</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
+                <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>--%>
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
                             </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                    <asp:ListItem Value="2020">2020</asp:ListItem>
+                                    <asp:ListItem Value="2021">2021</asp:ListItem>
+                                    <asp:ListItem Value="2022">2022</asp:ListItem>
+                                    <asp:ListItem Value="2023">2023</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
 
-                            <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-                                        <asp:Literal ID="Literal2" runat="server" Text="Target"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-4">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal2" runat="server" Text="Target"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
 
-                                        <asp:RadioButtonList ID="rbTarget" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rbTarget_SelectedIndexChanged">
-                                            <asp:ListItem Value="1">District Level</asp:ListItem>
-                                            <asp:ListItem Value="2">DS Division Level</asp:ListItem>
-                                            <%--   <div class="mr-5">
+                                <asp:RadioButtonList ID="rbTarget" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rbTarget_SelectedIndexChanged">
+                                    <asp:ListItem Value="1">District Level</asp:ListItem>
+                                    <asp:ListItem Value="2">DS Division Level</asp:ListItem>
+                                    <%--   <div class="mr-5">
                                     <%--<asp:RadioButton ID="rbDistrictLevel" runat="server" Text="District Level" GroupName="Target" />-%>
                                 </div>
                                 <div>
                                     <%--<asp:RadioButton ID="rbDsDivisonLevel" runat="server" Text="DS Division Level" GroupName="Target" />
                                 </div>--%>
-                                        </asp:RadioButtonList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="rbTarget" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="rbTarget" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
-                                    </div>
-                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <%--     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <%--     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>--%>
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-                                        <asp:Literal ID="Literal3" runat="server" Text="District"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal3" runat="server" Text="District"></asp:Literal>
                             </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
 
-                            <%--    <%if (rbTarget.SelectedValue == "2")
+                    <%--    <%if (rbTarget.SelectedValue == "2")
                                 { %>--%>
 
-                            <div class="col-sm-6" id="hideDiv" runat="server">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-                                        <asp:Literal ID="Literal4" runat="server" Text="DS Division"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlDSDivision" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
+                    <div class="col-sm-6" id="hideDiv" runat="server">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal4" runat="server" Text="DS Division"></asp:Literal>
                             </div>
-
-                            <%--       <%} %>--%>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlDSDivision" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                </asp:DropDownList>
+                            </div>
                         </div>
-                        <%--   </ContentTemplate>
+                    </div>
+
+                    <%--       <%} %>--%>
+                </div>
+                <%--   </ContentTemplate>
                 </asp:UpdatePanel>--%>
 
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-                                        <asp:Literal ID="Literal5" runat="server" Text="Position"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlPosition" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal5" runat="server" Text="Position"></asp:Literal>
                             </div>
-
-                            <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-
-                                        <asp:Literal ID="Literal6" runat="server" Text="Officer Name"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlOfficer" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlPosition" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                </asp:DropDownList>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal6" runat="server" Text="Officer Name"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlOfficer" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-                        <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>--%>
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-                                        <asp:Literal ID="Literal7" runat="server" Text="Program Type"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:DropDownList ID="ddlProgramType" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlProgramType_SelectedIndexChanged">
-                                        </asp:DropDownList>
-
-                                    </div>
-                                </div>
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal7" runat="server" Text="Program Type"></asp:Literal>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4">
-                                        <asp:Literal ID="Literal9" runat="server" Text="Program"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList ID="ddlProgram" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
-                                        </asp:DropDownList>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlProgramType" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlProgramType_SelectedIndexChanged">
+                                </asp:DropDownList>
 
-                                    </div>
-                                </div>
                             </div>
-
                         </div>
-                    </ContentTemplate>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal9" runat="server" Text="Program"></asp:Literal>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:DropDownList ID="ddlProgram" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                </asp:DropDownList>
 
-                </asp:UpdatePanel>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <%-- </ContentTemplate>--%>
+
+                <%--  </asp:UpdatePanel>--%>
 
                 <div class="row mb-3 ms-1">
 
@@ -329,6 +329,7 @@
                     </div>
                 </div>
             </div>
+
             <%---------------------dialog box----------------------%>
             <asp:Panel ID="pnlDialogBox" runat="server" Visible="false" CssClass="w3-container">
                 <div id="id01" class="w3-modal">
@@ -382,6 +383,12 @@
             <%--------------end of dialog box--------------------%>
         </div>
 
+        <%-- </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>--%>
     </div>
-
+    </div>
+    </div>
 </asp:Content>

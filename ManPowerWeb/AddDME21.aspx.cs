@@ -177,7 +177,7 @@ namespace ManPowerWeb
                     taskAllocation.RecommendedBy = 0;
                     taskAllocation.RecommendedDate = DateTime.Today;
                     taskAllocation.ApprovedBy = 0;
-                    taskAllocation.ApprovedDate = "";
+                    taskAllocation.ApprovedDate = DateTime.Today;
 
                     int taskAllocationId1 = allocation.saveTaskAllocation(taskAllocation);
 

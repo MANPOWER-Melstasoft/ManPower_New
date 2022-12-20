@@ -10,7 +10,7 @@ namespace ManPowerCore.Infrastructure
 {
     public interface EmployeeDAO
     {
-        //List<Employee> GetAllEmployee(DBConnection dbConnection);
+        List<Employee> GetAllEmployee(DBConnection dbConnection);
 
         //Employee GetEmployeeById(int id, DBConnection dbConnection);
 
@@ -39,7 +39,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeNIC", emp.EmployeeNIC);
             dbConnection.cmd.Parameters.AddWithValue("@NicIssueDate", emp.NicIssueDate);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeePassportNumber", emp.EmployeePassportNumber);
-            dbConnection.cmd.Parameters.AddWithValue("@leaveNumber", emp.leaveNumber);
+            dbConnection.cmd.Parameters.AddWithValue("@leaveNumber", emp.LeaveNumber);
             dbConnection.cmd.Parameters.AddWithValue("@Adress", emp.Adress);
             dbConnection.cmd.Parameters.AddWithValue("@TelephoneNumber", emp.TelephoneNumber);
             dbConnection.cmd.Parameters.AddWithValue("@EmpFax", emp.EmpFax);
@@ -80,30 +80,19 @@ namespace ManPowerCore.Infrastructure
         //    return dbConnection.cmd.ExecuteNonQuery();
         //}
 
-        //public List<ProgramType> GetAllProgramType(DBConnection dbConnection)
-        //{
-        //    if (dbConnection.dr != null)
-        //        dbConnection.dr.Close();
+        public List<Employee> GetAllEmployee(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
 
-        //    dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_TYPE ORDER BY NAME ";
+            dbConnection.cmd.CommandText = "SELECT * FROM Employee ";
 
-        //    dbConnection.dr = dbConnection.cmd.ExecuteReader();
-        //    DataAccessObject dataAccessObject = new DataAccessObject();
-        //    return dataAccessObject.ReadCollection<ProgramType>(dbConnection.dr);
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<Employee>(dbConnection.dr);
 
-        //}
+        }
 
-        //public ProgramType GetProgramType(int id, DBConnection dbConnection)
-        //{
-        //    if (dbConnection.dr != null)
-        //        dbConnection.dr.Close();
 
-        //    dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_TYPE WHERE ID = " + id + " ";
-
-        //    dbConnection.dr = dbConnection.cmd.ExecuteReader();
-        //    DataAccessObject dataAccessObject = new DataAccessObject();
-        //    return dataAccessObject.GetSingleOject<ProgramType>(dbConnection.dr);
-
-        //}
     }
 }

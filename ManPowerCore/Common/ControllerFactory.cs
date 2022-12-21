@@ -299,6 +299,19 @@ namespace ManPowerCore.Common
 
         }
 
+        public static LeaveTypeController CreateLeaveTypeController()
+        {
+            LeaveTypeController leaveTypeController = new LeaveTypeControllerImpl();
+            return (LeaveTypeController)leaveTypeController;
+        }
+
+        public static StaffLeaveAllocationController CreateStaffLeaveAllocationController()
+        {
+            StaffLeaveAllocationController staffLeaveAllocationController = new StaffLeaveAllocationControllerImpl();
+            return (StaffLeaveAllocationController)staffLeaveAllocationController;
+        }
+    }
+}
         public static ServiceTypeController CreateServiceTypeController()
         {
             ServiceTypeController serviceTypeController = new ServiceTypeControllerImpl();

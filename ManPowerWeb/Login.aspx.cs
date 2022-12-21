@@ -37,6 +37,7 @@ namespace ManPowerWeb
                     Session["UserTypeId"] = systeUserList[0].UserTypeId;
                     Session["DesignationId"] = systeUserList[0].DesignationId;
                     Session["Name"] = systeUserList[0].Name;
+                    Session["EmpNumber"] = systeUserList[0].EmpNumber;
 
                     systemUserController.UpdateLastLoginDate(systeUserList[0]);
 

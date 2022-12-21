@@ -12,6 +12,7 @@ namespace ManPowerCore.Controller
     public interface EmployeeController
     {
         int SaveEmployee(Employee emp);
+        List<Employee> GetAllEmployees();
     }
 
     public class EmployeeControllerImpl : EmployeeController
@@ -100,8 +101,28 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
         }
+        public List<Employee> GetAllEmployees()
+        {
+            DBConnection dBConnection = new DBConnection();
+            EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+            try
+            {
+                List<Employee> employeesList = employeeDAO.GetAllEmployee(dBConnection);
+                return employeesList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                return null;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
 
-        
+
     }
 
 }

@@ -66,8 +66,11 @@ namespace ManPowerWeb
 
             TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
 
+            taskAllocationObj = taskAllocationController.GetTaskAllocation(taskAllocationId, false, false);
+
             taskAllocationObj.StatusId = 8;
             taskAllocationObj.ApprovedBy = 4;
+
 
             taskAllocationController.UpdateTaskAllocation(taskAllocationObj);
 

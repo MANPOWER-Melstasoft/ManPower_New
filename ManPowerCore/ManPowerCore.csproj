@@ -76,6 +76,7 @@
     <Compile Include="Controller\EthnicityController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
+    <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
     <Compile Include="Controller\PossitionsController.cs" />
     <Compile Include="Controller\ProgramAssigneeController.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
+    <Compile Include="Controller\StaffLeaveAllocationController.cs" />
     <Compile Include="Controller\SystemUserController.cs" />
     <Compile Include="Controller\TaskAllocationController.cs" />
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="Domain\Ethnicity.cs" />
     <Compile Include="Domain\InduvidualBeneficiary.cs" />
     <Compile Include="Domain\MaintenanceCategory.cs" />
+    <Compile Include="Domain\LeaveType.cs" />
     <Compile Include="Domain\MarketType.cs" />
     <Compile Include="Domain\Month.cs" />
     <Compile Include="Domain\Possitions.cs" />
@@ -154,6 +157,7 @@
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
     <Compile Include="Domain\ServiceType.cs" />
+    <Compile Include="Domain\StaffLeaveAllocation.cs" />
     <Compile Include="Domain\SystemUser.cs" />
     <Compile Include="Domain\TaskAllocation.cs" />
     <Compile Include="Domain\TaskAllocationDetail.cs" />
@@ -191,6 +195,7 @@
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
+    <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />
     <Compile Include="Infrastructure\PossitionsDAO.cs" />
     <Compile Include="Infrastructure\ProgramAssigneeDAO.cs" />
@@ -210,6 +215,7 @@
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
+    <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
     <Compile Include="Infrastructure\SystemUserDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />

@@ -105,12 +105,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.aspx" />
     <Content Include="About.aspx" />
+    <Content Include="AddDepartment.aspx" />
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
+    <Content Include="AddPosition.aspx" />
+    <Content Include="AddTrainingRequest.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="CompletedPrograms.aspx" />
+    <Content Include="CompletedProgramsView.aspx" />
     <Content Include="AnnualTargetRecomendationView.aspx" />
+    <Content Include="ApplyLeaves.aspx" />
+    <Content Include="ApproveDME21.aspx" />
+    <Content Include="ApproveDME21Render.aspx" />
+    <Content Include="ApproveDME22.aspx" />
+    <Content Include="ApproveDME22Render.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -121,8 +132,13 @@
     <Content Include="css\mdb.rtl.min.css" />
     <Content Include="css\sb-admin-2.css" />
     <Content Include="css\sb-admin-2.min.css" />
+    <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME24.aspx" />
+    <Content Include="EntRegistration.aspx" />
+    <Content Include="DME22.aspx" />
+    <Content Include="DME22GetAction.aspx" />
     <Content Include="DME37.aspx" />
     <Content Include="DME37Search.aspx" />
     <Content Include="favicon.ico" />
@@ -138,6 +154,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="css\mdb.min.css.map" />
     <Content Include="css\mdb.rtl.min.css.map" />
+    <Content Include="img\favicon.png" />
+    <Content Include="img\header2.png" />
     <Content Include="img\minus.png" />
     <Content Include="img\plus.png" />
     <Content Include="js\mdb.min.js.map" />
@@ -155,9 +173,15 @@
     <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="MaintenanceRequest.aspx" />
+    <Content Include="PersonalFiles.aspx" />
+    <Content Include="RPReggistration.aspx" />
+    <Content Include="LeaveAllocation.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="planning.aspx" />
     <Content Include="planningEdit.aspx" />
+    <Content Include="ProgramCalander.aspx" />
+    <Content Include="RequestTraining.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -187,6 +211,14 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="UpcomingPrograms.aspx" />
+    <Content Include="UpcomingprogramsView.aspx" />
+    <Content Include="VacancyReg.aspx" />
+    <Content Include="VacancyRegSearch.aspx" />
+    <Content Include="VacancyRegView.aspx" />
+    <Content Include="UserPrivileges.aspx" />
+    <Content Include="UserRegister.aspx" />
+    <Content Include="VehicleMeintenance.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1857,11 +1889,26 @@
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="VMUploadDocuments.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddDepartment.aspx.cs">
+      <DependentUpon>AddDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDepartment.aspx.designer.cs">
+      <DependentUpon>AddDepartment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddDME21.aspx.cs">
       <DependentUpon>AddDME21.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1875,6 +1922,20 @@
     </Compile>
     <Compile Include="AddNewTarget.aspx.designer.cs">
       <DependentUpon>AddNewTarget.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPosition.aspx.cs">
+      <DependentUpon>AddPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPosition.aspx.designer.cs">
+      <DependentUpon>AddPosition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddTrainingRequest.aspx.cs">
+      <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddTrainingRequest.aspx.designer.cs">
+      <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="AnnualTarget.aspx.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>
@@ -1897,6 +1958,41 @@
     <Compile Include="AnnualTargetRecomendationView.aspx.designer.cs">
       <DependentUpon>AnnualTargetRecomendationView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApplyLeaves.aspx.cs">
+      <DependentUpon>ApplyLeaves.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApplyLeaves.aspx.designer.cs">
+      <DependentUpon>ApplyLeaves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveDME21.aspx.cs">
+      <DependentUpon>ApproveDME21.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveDME21.aspx.designer.cs">
+      <DependentUpon>ApproveDME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveDME21Render.aspx.cs">
+      <DependentUpon>ApproveDME21Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveDME21Render.aspx.designer.cs">
+      <DependentUpon>ApproveDME21Render.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveDME22.aspx.cs">
+      <DependentUpon>ApproveDME22.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveDME22.aspx.designer.cs">
+      <DependentUpon>ApproveDME22.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveDME22Render.aspx.cs">
+      <DependentUpon>ApproveDME22Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveDME22Render.aspx.designer.cs">
+      <DependentUpon>ApproveDME22Render.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -1906,12 +2002,33 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CompletedPrograms.aspx.cs">
+      <DependentUpon>CompletedPrograms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompletedPrograms.aspx.designer.cs">
+      <DependentUpon>CompletedPrograms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompletedProgramsView.aspx.cs">
+      <DependentUpon>CompletedProgramsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompletedProgramsView.aspx.designer.cs">
+      <DependentUpon>CompletedProgramsView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1926,6 +2043,34 @@
     </Compile>
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME24.aspx.cs">
+      <DependentUpon>DME24.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME24.aspx.designer.cs">
+      <DependentUpon>DME24.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EntRegistration.aspx.cs">
+      <DependentUpon>EntRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EntRegistration.aspx.designer.cs">
+      <DependentUpon>EntRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22.aspx.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22.aspx.designer.cs">
+      <DependentUpon>DME22.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22GetAction.aspx.designer.cs">
+      <DependentUpon>DME22GetAction.aspx</DependentUpon>
     </Compile>
     <Compile Include="DME37.aspx.cs">
       <DependentUpon>DME37.aspx</DependentUpon>
@@ -1944,6 +2089,27 @@
     <Compile Include="EncryptDecryptQueryString.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRequest.aspx.cs">
+      <DependentUpon>MaintenanceRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRequest.aspx.designer.cs">
+      <DependentUpon>MaintenanceRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalFiles.aspx.cs">
+      <DependentUpon>PersonalFiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFiles.aspx.designer.cs">
+      <DependentUpon>PersonalFiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveAllocation.aspx.cs">
+      <DependentUpon>LeaveAllocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveAllocation.aspx.designer.cs">
+      <DependentUpon>LeaveAllocation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -1966,7 +2132,28 @@
     <Compile Include="planningEdit.aspx.designer.cs">
       <DependentUpon>planningEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProgramCalander.aspx.cs">
+      <DependentUpon>ProgramCalander.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProgramCalander.aspx.designer.cs">
+      <DependentUpon>ProgramCalander.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestTraining.aspx.cs">
+      <DependentUpon>RequestTraining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestTraining.aspx.designer.cs">
+      <DependentUpon>RequestTraining.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RPReggistration.aspx.cs">
+      <DependentUpon>RPReggistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RPReggistration.aspx.designer.cs">
+      <DependentUpon>RPReggistration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1981,6 +2168,62 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="UpcomingPrograms.aspx.cs">
+      <DependentUpon>UpcomingPrograms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpcomingPrograms.aspx.designer.cs">
+      <DependentUpon>UpcomingPrograms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpcomingprogramsView.aspx.cs">
+      <DependentUpon>UpcomingprogramsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpcomingprogramsView.aspx.designer.cs">
+      <DependentUpon>UpcomingprogramsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacancyReg.aspx.cs">
+      <DependentUpon>VacancyReg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacancyReg.aspx.designer.cs">
+      <DependentUpon>VacancyReg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacancyRegSearch.aspx.cs">
+      <DependentUpon>VacancyRegSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacancyRegSearch.aspx.designer.cs">
+      <DependentUpon>VacancyRegSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VacancyRegView.aspx.cs">
+      <DependentUpon>VacancyRegView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VacancyRegView.aspx.designer.cs">
+      <DependentUpon>VacancyRegView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPrivileges.aspx.cs">
+      <DependentUpon>UserPrivileges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPrivileges.aspx.designer.cs">
+      <DependentUpon>UserPrivileges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserRegister.aspx.cs">
+      <DependentUpon>UserRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserRegister.aspx.designer.cs">
+      <DependentUpon>UserRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleMeintenance.aspx.cs">
+      <DependentUpon>VehicleMeintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VehicleMeintenance.aspx.designer.cs">
+      <DependentUpon>VehicleMeintenance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1988,9 +2231,17 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="VMUploadDocuments.aspx.cs">
+      <DependentUpon>VMUploadDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMUploadDocuments.aspx.designer.cs">
+      <DependentUpon>VMUploadDocuments.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SystemDocuments\ProgramPlanResources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2180,6 +2431,9 @@
       <Project>{9a09f12c-06c3-44f9-9a54-79b79ed0a6ad}</Project>
       <Name>ManPowerCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -15,10 +15,11 @@ namespace ManPowerWeb
     {
         List<ProjectStatus> projectStatuses = new List<ProjectStatus>();
         List<ProgramTarget> programTargets = new List<ProgramTarget>();
-        List<ProgramTarget> programTargetsStates = new List<ProgramTarget>();
+        List<ProgramAssignee> programTargetsStates = new List<ProgramAssignee>();
         List<ProgramPlan> programPlansList = new List<ProgramPlan>();
         List<ProgramAssignee> programAssignees = new List<ProgramAssignee>();
         List<ProgramAssignee> programAssigneesFilter = new List<ProgramAssignee>();
+        List<ProgramAssignee> filterWithMonthYear = new List<ProgramAssignee>();
         int systemUserId;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,26 +27,17 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
 
+                bindGrid(false);
 
-                bindDataSource();
-                bindGrid();
             }
 
         }
 
-        private void bindDataSource()
-        {
-            ProjectStatusController projectStatusController = ControllerFactory.CreateProjectStatusController();
-            projectStatuses = projectStatusController.GetAllProjectStatus(true);
-            ddlSearch.DataSource = projectStatuses;
-            ddlSearch.DataValueField = "ProjectStatusId";
-            ddlSearch.DataTextField = "ProjectStatusName";
-            ddlSearch.DataBind();
-        }
 
-        private void bindGrid()
+
+        private void bindGrid(bool ifSearch)
         {
-            int completedCount = 0;
+
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargets = programTargetController.GetAllProgramTargetWithPlan();
 
@@ -54,8 +46,9 @@ namespace ManPowerWeb
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
             programAssignees = programAssigneeController.GetProgramAssignee();
 
-            systemUserId = 3;
+            systemUserId = Convert.ToInt32(Session["UserId"]);
             programAssigneesFilter = programAssignees.Where(u => u._DepartmentUnitPositions.SystemUserId == systemUserId).ToList();
+            //&& u._ProgramTarget.TargetMonth.ToString() == ddlYear.SelectedValue && u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue
 
             //systemUserId = departmentUnitPositionsController.departmentUnitPositionsWIthSystemUser();
 
@@ -64,22 +57,34 @@ namespace ManPowerWeb
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlansList = programPlanController.GetAllProgramPlan();
+            filterWithMonthYear = programAssigneesFilter.Where(u => u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue && u._ProgramTarget.TargetYear.ToString() == ddlYear.SelectedValue).ToList();
 
-            ViewState["programTargetsStates"] = programAssigneesFilter;
-            gvAnnaualPlan.DataSource = programAssigneesFilter;
-            gvAnnaualPlan.DataBind();
 
-            txtAnnualPlanCount.Text = programTargets.Count.ToString();
-            txtProgramPlanCount.Text = programPlansList.Count.ToString();
 
-            foreach (ProgramPlan plan in programPlansList.Where(x => x.ProjectStatusId == 4))
+
+            if (ifSearch == true)
             {
-
-                completedCount++;
+                gvAnnaualPlan.DataSource = filterWithMonthYear;
+                ViewState["programTargetsStates"] = filterWithMonthYear;
+            }
+            else
+            {
+                gvAnnaualPlan.DataSource = programAssigneesFilter;
+                ViewState["programTargetsStates"] = programAssigneesFilter;
             }
 
-            txtCompletedCount.Text = completedCount.ToString();
-            txtNotProgramCount.Text = (programTargets.Count - programPlansList.Count).ToString();
+
+            gvAnnaualPlan.DataBind();
+            gvAnnaualPlan.Columns[1].Visible = false;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,7 +94,7 @@ namespace ManPowerWeb
         protected void btnAddPlan_Click(object sender, EventArgs e)
         {
 
-            programTargetsStates = (List<ProgramTarget>)(ViewState["programTargetsStates"]);
+            programTargetsStates = (List<ProgramAssignee>)(ViewState["programTargetsStates"]);
             ProgramPlan programPlan = new ProgramPlan();
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
@@ -113,11 +118,13 @@ namespace ManPowerWeb
             programPlan.FemaleCount = 0;
             programPlan.Remark = "";
             programPlan.ProgramTargetId = programTargetsStates[rowIndex].ProgramTargetId;
-            programPlan.ProgramName = programTargetsStates[rowIndex].Description;
+            programPlan.ProgramName = programTargetsStates[rowIndex]._ProgramTarget.Description;
             programPlan.Coordinater = "";
 
 
             programPlanController.SaveProgramPlan(programPlan);
+
+            Response.Redirect(Request.RawUrl);
 
 
 
@@ -126,42 +133,102 @@ namespace ManPowerWeb
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            GridViewRow Gv2Row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            GridView Childgrid = (GridView)(Gv2Row.Parent.Parent);
+            GridViewRow Gv1Row = (GridViewRow)(Childgrid.NamingContainer);
+            rowIndex = Gv1Row.RowIndex;
+
+            int rowindexChild = Gv2Row.RowIndex;
+
             int pagesize = gvAnnaualPlan.PageSize;
             int pageindex = gvAnnaualPlan.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
 
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            programTargets = programTargetController.GetAllProgramTargetWithPlan();
 
-            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + programTargets[rowIndex].ProgramTargetId.ToString() + "&ProgramName=" + programTargets[rowIndex].Description);
+            var PrTargetId = int.Parse(gvAnnaualPlan.Rows[rowIndex].Cells[1].Text);
+            var prName = gvAnnaualPlan.Rows[rowIndex].Cells[2].Text;
+
+
+
+
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+            programPlansList = programPlanController.GetAllProgramPlan();
+
+            programPlansList = programPlansList.Where(x => x.ProgramTargetId == PrTargetId).ToList();
+
+
+            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramName=" + programPlansList[rowindexChild].ProgramName + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
+
         }
 
 
 
-        protected void gvAnnualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
-                ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-                programTargets = programTargetController.GetAllProgramTargetWithPlan();
-                gvPlanDetails.DataSource = programTargets;
-                gvPlanDetails.DataBind();
-            }
-        }
 
         protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlansList = programPlanController.GetAllProgramPlan();
+
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string programTargetID = gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString();
                 GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
-                gvPlanDetails.DataSource = programPlansList.Where(x => x.ProgramTargetId.ToString() == programTargetID);
+
+
+
+                programPlansList = programPlansList.Where(x => x.ProgramTargetId.ToString() == programTargetID).ToList();
+
+                ViewState["programPlansListCount"] = programPlansList.Count();
+
+                Label lbl = e.Row.FindControl("lblPlannedCount") as Label;
+                lbl.Text = programPlansList.Count.ToString();
+
+
+
+
+                gvPlanDetails.DataSource = programPlansList;
                 gvPlanDetails.DataBind();
 
+
+
             }
+
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            bindGrid(true);
+
+        }
+
+        protected void btnShowAll_Click(object sender, EventArgs e)
+        {
+            bindGrid(false);
+        }
+
+        //protected void gvPlanDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "Edit")
+        //    {
+        //        GridViewRow Gv2Row = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //        GridView Childgrid = (GridView)(Gv2Row.Parent.Parent);
+        //        GridViewRow Gv1Row = (GridViewRow)(Childgrid.NamingContainer);
+        //        int b = Gv1Row.RowIndex;
+
+
+        //    }
+        //}
+
+        //   foreach (GridViewRow row in gvAnnaualPlan.Rows)
+        //    {
+
+
+        //        Label lbl1 = (Label)row.FindControl("lblPlannedCount");
+        //lbl1.Text = ViewState["programPlansListCount"].ToString();
+        //lbl1.Text = programPlansList.Count.ToString()};
+
+
     }
 }

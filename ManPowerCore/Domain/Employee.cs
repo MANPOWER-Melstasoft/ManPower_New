@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class Employee
     {
         [DBField("ID")]
@@ -27,36 +28,6 @@ namespace ManPowerCore.Domain
         [DBField("PASSPORT_NUMBER")]
         public string EmployeePassportNumber { get; set; }
 
-        [DBField("LEAVE_NUMBER")]
-        public int leaveNumber { get; set; }
-
-        [DBField("PERMANENT_ADDRESS")]
-        public string Adress { get; set; }
-
-        [DBField("TELEPHONE")]
-        public int TelephoneNumber { get; set; }
-
-        [DBField("FAX")]
-        public int EmpFax { get; set; }
-
-        [DBField("MOBILE")]
-        public int empMobile { get; set; }
-
-        [DBField("PERSONAL_EMAIL")]
-        public string Email { get; set; }
-
-        [DBField("PERSONAL_FILE_NUMBER")]
-        public int FileNumber { get; set; }
-
-        [DBField("APPOINTMENT_LETTER_NUMBER")]
-        public int AppointmentLetterNumber { get; set; }
-
-        [DBField("SERVICE_TYPE")]
-        public int ServiceType { get; set; }
-
-        [DBField("EMPLOYEE_NUMBER")]
-        public int EmpNumber { get; set; }
-
         [DBField("INITIAL")]
         public string EmpInitials { get; set; }
 
@@ -72,17 +43,9 @@ namespace ManPowerCore.Domain
         [DBField("DATE_OF_BIRTH")]
         public DateTime DOB { get; set; }
 
-        [DBField("RETAIREMENT_DATE")]
-        public DateTime RetirementDate { get; set; }
-
-        [DBField("PLACE_OF_BIRTH")]
-        public string PlaceOfBirth { get; set; }
-
         [DBField("MARITAL_STATUS")]
         public string MaritalStatus { get; set; }
 
-        [DBField("MARRIED_DATE")]
-        public DateTime MarriedDate { get; set; }
 
         [DBField("SUPERVISOR_ID")]
         public int SupervisorId { get; set; }
@@ -92,10 +55,53 @@ namespace ManPowerCore.Domain
 
 
 
+        //[DBField("LEAVE_NUMBER")]
+        //public int leaveNumber { get; set; }
+
+        //[DBField("PERMANENT_ADDRESS")]
+        //public string Adress { get; set; }
+
+        //[DBField("TELEPHONE")]
+        //public int TelephoneNumber { get; set; }
+
+        //[DBField("FAX")]
+        //public int EmpFax { get; set; }
+
+        //[DBField("MOBILE")]
+        //public int empMobile { get; set; }
+
+        //[DBField("PERSONAL_EMAIL")]
+        //public string Email { get; set; }
+
+        //[DBField("PERSONAL_FILE_NUMBER")]
+        //public int FileNumber { get; set; }
+
+        //[DBField("APPOINTMENT_LETTER_NUMBER")]
+        //public int AppointmentLetterNumber { get; set; }
+
+        //[DBField("SERVICE_TYPE")]
+        //public int ServiceType { get; set; }
+
+        //[DBField("EMPLOYEE_NUMBER")]
+        //public int EmpNumber { get; set; }
+
+        
+
+        //[DBField("RETAIREMENT_DATE")]
+        //public DateTime RetirementDate { get; set; }
+
+        //[DBField("PLACE_OF_BIRTH")]
+        //public string PlaceOfBirth { get; set; }
+
+        
+
+
+
         public EmergencyContact _EmergencyContact { get; set; } = new EmergencyContact();
         public List<EmployeeContact> _EmployeeContact { get; set; } = new List<EmployeeContact>();
         public List<Dependant> _Dependant { get; set; } = new List<Dependant>();
         public List<EmploymentDetails> _EmploymentDetails { get; set; } = new List<EmploymentDetails>();
         public List<EducationDetails> _EducationDetails { get; set; } = new List<EducationDetails>();
+        public List<EmployeeServices> _EmployeeServices { get; set; } = new List<EmployeeServices>();
     }
 }

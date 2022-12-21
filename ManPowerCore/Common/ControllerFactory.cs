@@ -15,7 +15,7 @@ namespace ManPowerCore.Common
             ProgramAssigneeController programAssigneeController = new ProgramAssigneeControllerImpl();
             return (ProgramAssigneeController)programAssigneeController;
         }
-    
+
         public static ProgramAttendenceController CreateProgramAttendenceController()
         {
             ProgramAttendenceController programAttendenceController = new ProgramAttendenceControllerImpl();
@@ -285,6 +285,88 @@ namespace ManPowerCore.Common
 
         }
 
+        public static UserRegistrationController CreateUserRegistrationController()
+        {
+            UserRegistrationController educationDetailsController = new UserRegistrationControllerSqlImpl();
+            return (UserRegistrationController)educationDetailsController;
+
+        }
+
+        public static AutUserFunctionController CreateAutUserFunctionController()
+        {
+            AutUserFunctionController autUserFunctionController = new AutUserFunctionControllerSqlImpl();
+            return (AutUserFunctionController)autUserFunctionController;
+
+        }
+
+        public static LeaveTypeController CreateLeaveTypeController()
+        {
+            LeaveTypeController leaveTypeController = new LeaveTypeControllerImpl();
+            return (LeaveTypeController)leaveTypeController;
+        }
+
+        public static StaffLeaveAllocationController CreateStaffLeaveAllocationController()
+        {
+            StaffLeaveAllocationController staffLeaveAllocationController = new StaffLeaveAllocationControllerImpl();
+            return (StaffLeaveAllocationController)staffLeaveAllocationController;
+        }
+
+        public static StaffLeaveControllerImpl CreateStaffLeaveControllerImpl()
+        {
+            StaffLeaveController staffLeaveController = new StaffLeaveControllerImpl();
+            return (StaffLeaveControllerImpl)staffLeaveController;
+
+        }
+
+
+        public static ServiceTypeController CreateServiceTypeController()
+        {
+            ServiceTypeController serviceTypeController = new ServiceTypeControllerImpl();
+            return (ServiceTypeController)serviceTypeController;
+
+        }
+
+        public static EmployeeServiceController CreateEmployeeServiceController()
+        {
+            EmployeeServiceController employeeServiceController = new EmployeeServiceControllerImpl();
+            return (EmployeeServiceController)employeeServiceController;
+
+        }
+
+        public static ContractTypeController CreateContractTypeController()
+        {
+            ContractTypeController contractTypeController = new ContractTypeControllerImpl();
+            return (ContractTypeController)contractTypeController;
+
+        }
+
+        public static VehicleMaintenanceController CreateVehicleMaintenanceController()
+        {
+            VehicleMaintenanceController vehicleMaintenanceController = new VehicleMaintenanceControllerImpl();
+            return (VehicleMaintenanceController)vehicleMaintenanceController;
+
+        }
+
+        public static VehicleMaintenaceQuatationController CreateVehicleMaintenaceQuatationController()
+        {
+            VehicleMaintenaceQuatationController vehicleMaintenaceQuatationController = new VehicleMaintenaceQuatationControllerImpl();
+            return (VehicleMaintenaceQuatationController)vehicleMaintenaceQuatationController;
+
+        }
+
+        public static QuatationController CreateQuatationController()
+        {
+            QuatationController quatationController = new QuatationControllerImpl();
+            return (QuatationController)quatationController;
+
+        }
+
+        public static MaintenanceCategoryController CreateMaintenanceCategoryController()
+        {
+            MaintenanceCategoryController maintenanceCategoryController = new MaintenanceCategoryControllerImpl();
+            return (MaintenanceCategoryController)maintenanceCategoryController;
+
+        }
+
     }
 }
-    

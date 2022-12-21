@@ -11,7 +11,7 @@ namespace ManPowerCore.Common
     public class DAOFactory
     {
 
-        
+
         public static TrainingRequestDAO CreateTrainingRequestDAO()
         {
             TrainingRequestDAO trainingdao = new TrainingRequestDAOImpl();
@@ -31,7 +31,7 @@ namespace ManPowerCore.Common
             return (ProgramAttendenceDAO)programAttendenceDAO;
         }
 
-      
+
 
         public static ProgramBudgetDAO CreateProgramBudgetDAO()
         {
@@ -78,7 +78,7 @@ namespace ManPowerCore.Common
 
         public static UserTypeDAO CreateUserTypeDAO()
         {
-           UserTypeDAO aa = new UserTypeDAOImpl();
+            UserTypeDAO aa = new UserTypeDAOImpl();
             return (UserTypeDAO)aa;
         }
 
@@ -291,6 +291,77 @@ namespace ManPowerCore.Common
         {
             EducationDetailsDAO educationDetailsDAO = new EducationDetailsDAOImpl();
             return (EducationDetailsDAO)educationDetailsDAO;
+        }
+
+        public static UserRegistrationDAO CreateUserRegistrationDAO()
+        {
+            UserRegistrationDAO userRegistrationDAO = new UserRegistrationDAOSqlImpl();
+            return (UserRegistrationDAO)userRegistrationDAO;
+        }
+
+        public static AutUserFunctionDAO CreateAutUserFunctionDAO()
+        {
+            AutUserFunctionDAO autUserFunctionDAO = new AutUserFunctionDAOSqlImpl();
+            return (AutUserFunctionDAO)autUserFunctionDAO;
+        }
+        public static LeaveTypeDAO CreateLeaveTypeDAO()
+        {
+            LeaveTypeDAO leaveTypeDAO = new LeaveTypeDAOSqlImpl();
+            return (LeaveTypeDAO)leaveTypeDAO;
+
+        }
+        public static StaffLeaveAllocationDAO CreateStaffLeaveAllocationDAO()
+        {
+            StaffLeaveAllocationDAO staffLeaveAllocationDAO = new StaffLeaveAllocationDAOSqlImpl();
+            return (StaffLeaveAllocationDAO)staffLeaveAllocationDAO;
+
+        }
+
+        public static ServiceTypeDAO CreateServiceTypeDAO()
+        {
+            ServiceTypeDAO serviceTypeDAO = new ServiceTypeDAOImpl();
+            return (ServiceTypeDAO)serviceTypeDAO;
+        }
+
+        public static EmployeeServicesDAO CreateEmployeeServicesDAO()
+        {
+            EmployeeServicesDAO employeeServicesDAO = new EmployeeServicesDAOImpl();
+            return (EmployeeServicesDAO)employeeServicesDAO;
+        }
+
+        public static ContractTypeDAO CreateContractTypeDAO()
+        {
+            ContractTypeDAO contractTypeDAO = new ContractTypeDAOImpl();
+            return (ContractTypeDAO)contractTypeDAO;
+        }
+
+        public static VehicleMaintenanceDAO CreateVehicleMaintenanceDAO()
+        {
+            VehicleMaintenanceDAO vehicleMaintenanceDAO = new VehicleMaintenanceDAOImpl();
+            return (VehicleMaintenanceDAO)vehicleMaintenanceDAO;
+        }
+
+        public static VehicleMaintenaceQuatationDAO CreateVehicleMaintenaceQuatationDAO()
+        {
+            VehicleMaintenaceQuatationDAO vehicleMaintenaceQuatationDAO = new VehicleMaintenaceQuatationDAOImpl();
+            return (VehicleMaintenaceQuatationDAO)vehicleMaintenaceQuatationDAO;
+        }
+
+        public static QuatationDAO CreateQuatationDAO()
+        {
+            QuatationDAO quatationDAO = new QuatationDAOImpl();
+            return (QuatationDAO)quatationDAO;
+        }
+
+        public static MaintenanceCategoryDAO CreateMaintenanceCategoryDAO()
+        {
+            MaintenanceCategoryDAO maintenanceCategoryDAO = new MaintenanceCategoryDAOImpl();
+            return (MaintenanceCategoryDAO)maintenanceCategoryDAO;
+        }
+        public static StaffLeaveDAO CreateStaffLeaveDAO()
+        {
+            StaffLeaveDAO staffLeaveDAO = new StaffLeaveDAOSqlImpl();
+            return (StaffLeaveDAO)staffLeaveDAO;
         }
 
     }

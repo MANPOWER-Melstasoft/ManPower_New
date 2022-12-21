@@ -18,6 +18,7 @@ namespace ManPowerCore.Controller
         List<SystemUser> GetAllSystemUser(string runUserName);
         List<SystemUser> GetAllSystemUser(string runUserName, string runPassword);
         List<SystemUser> GetAllSystemUser(string runUserName, string runEmail, int runContactNumber, int runEmpNumber);
+        int UpdateLastLoginDate(SystemUser systemUser);
     }
 
     public class SystemUserControllerImpl : SystemUserController
@@ -28,8 +29,35 @@ namespace ManPowerCore.Controller
         {
             try
             {
+                int output = -1;
                 dBConnection = new DBConnection();
-                return systemUserDAO.SaveSystemUser(systemUser, dBConnection);
+
+                systemUser.SystemUserId = systemUserDAO.SaveSystemUser(systemUser, dBConnection);
+
+                DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+                DepartmentUnitPositions departmentUnitPositions = new DepartmentUnitPositions();
+                departmentUnitPositions.SystemUserId = systemUser.SystemUserId;
+                departmentUnitPositions.PossitionsId = systemUser.PossitionsId;
+                departmentUnitPositions.DepartmentUnitId = systemUser.DepartmentUnitId;
+                departmentUnitPositions.ParentId = systemUser.ParentId;
+                departmentUnitPositionsDAO.SaveDepartmentUnitPositions(departmentUnitPositions, dBConnection);
+
+
+                AutSystemRoleFunctionDAO autSystemRoleFunctionDAO = DAOFactory.CreateAutSystemRoleFunctionDAO();
+                List<AutSystemRoleFunction> autSystemRoleFunctionList = autSystemRoleFunctionDAO.GetAllAutSystemRoleFunctionById(systemUser.UserTypeId, dBConnection);
+
+                AutUserFunctionDAO autUserFunctionDAO = DAOFactory.CreateAutUserFunctionDAO();
+                AutUserFunction autUserFunction = new AutUserFunction();
+
+                foreach (var function in autSystemRoleFunctionList)
+                {
+                    autUserFunction.AutFunctionId = function.AutFunctionId;
+                    autUserFunction.AutUserId = systemUser.SystemUserId;
+
+                    output = autUserFunctionDAO.Save(autUserFunction, dBConnection);
+                }
+
+                return output;
             }
             catch (Exception)
             {
@@ -96,7 +124,7 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 List<SystemUser> list = systemUserDAO.CheckSystemUserLoginPassword(runUserName, runPassword, dBConnection);
 
-               
+
 
 
                 //     If Password is iccorect    
@@ -200,7 +228,7 @@ namespace ManPowerCore.Controller
 
                     SystemUser systemUser = new SystemUser();
                     systemUser.UserName = runUserName;
-                    
+
 
 
 
@@ -292,7 +320,7 @@ namespace ManPowerCore.Controller
 
                     foreach (var item in list)
                     {
-                        item._UserType = listUserType.Where(a => a.UserTypeId == item.SystemUserId).Single();
+                        item._UserType = listUserType.Where(a => a.UserTypeId == item.UserTypeId).Single();
                     }
                 }
 
@@ -369,6 +397,27 @@ namespace ManPowerCore.Controller
             {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
+            }
+        }
+
+        public int UpdateLastLoginDate(SystemUser systemUser)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                var systemUserDetails = systemUserDAO.UpdateLastLoginDate(systemUser, dBConnection);
+                return systemUserDetails;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
             }
         }
     }

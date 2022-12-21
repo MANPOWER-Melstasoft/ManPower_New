@@ -94,11 +94,19 @@ namespace ManPowerWeb
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             listUsers = systemUserController.GetAllSystemUser(true, false, false);
 
-            //ddlOfficer.DataSource = listUsers;
-            //ddlOfficer.SelectedValue = "SystemUserId";
-            //ddlOfficer.Text = "Name";
-            //ddlOfficer.DataBind();
+            DepartmentUnitPositionsController unitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            listUser = unitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
 
+            List<SystemUser> listSystemUseer = new List<SystemUser>();
+            foreach (var item in listUser)
+            {
+                listSystemUseer.Add(item._SystemUser);
+            }
+
+            ddlOfficer.DataSource = listSystemUseer;
+            ddlOfficer.DataValueField = "SystemUserId";
+            ddlOfficer.DataTextField = "Name";
+            ddlOfficer.DataBind();
 
         }
 
@@ -155,7 +163,7 @@ namespace ManPowerWeb
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             listOficerRecomendation = systemUserController.GetAllSystemUser(false, false, false);
 
-            ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2);
+            ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.UserTypeId != Convert.ToInt32(Session["UserId"]));
             ddlOficerRecomended.DataTextField = "Name";
             ddlOficerRecomended.DataValueField = "SystemUserId";
             ddlOficerRecomended.DataBind();
@@ -170,7 +178,8 @@ namespace ManPowerWeb
 
             programTarget.ProgramTypeId = Convert.ToInt32(ddlProgramType.SelectedValue);
             programTarget.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
-            programTarget.Title = ddlProgram.Text;
+
+            programTarget.Title = ddlProgram.SelectedItem.Text;
             programTarget.Description = txtDescription.Text;
             programTarget.Instractions = txtInstructions.Text;
             programTarget.VoteNumber = txtVote.Text;
@@ -180,6 +189,7 @@ namespace ManPowerWeb
             programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
             programTarget.Output = Convert.ToInt32(txtOutput.Text);
             programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+            programTarget.CreatedBy = Convert.ToInt32(Session["UserId"]);
 
 
 
@@ -188,6 +198,7 @@ namespace ManPowerWeb
             programTarget.RecommendedDate = DateTime.Now;
             programTarget.StartDate = DateTime.Now;
             programTarget.EndDate = DateTime.Now;
+            programTarget.Remarks = txtRemarks.Text;
 
 
             int TargetResponse = programTargetController.SaveProgramTarget(programTarget);
@@ -216,10 +227,6 @@ namespace ManPowerWeb
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
 
             }
-
-
-
-
         }
 
         protected void rbTarget_SelectedIndexChanged(object sender, EventArgs e)

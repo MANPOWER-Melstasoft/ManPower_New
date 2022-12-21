@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,19 @@ namespace ManPowerCore.Controller
 
         int UpdateTaskAllocationApproval(int id, int status, string officer, string remarks);
 
+        int saveTaskAllocation(TaskAllocation taskAllocation);
+
         List<TaskAllocation> GetAllTaskAllocation(bool withTaskAllocationDetail, bool withDepartmentUnitPositions, bool withProjectStatus, bool withTaskType);
 
         TaskAllocation GetTaskAllocation(int id, bool withTaskAllocationDetail, bool withDepartmentUnitPositions);
+
+        List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId);
+
+        List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId);
+        List<TaskAllocation> GetAllTaskAllocationWithDepartmentUnitPosition();
+
+
+        List<TaskAllocation> GetTaskAllocationDme22Approve(int PositionId);
 
     }
 
@@ -43,7 +54,7 @@ namespace ManPowerCore.Controller
                 {
                     dBConnection = new DBConnection();
                     List<TaskAllocation> list = taskAllocationDAO.GetAllTaskAllocation(dBConnection);
-                    if (list.Where(u => u.TaskYearMonth.Month == j.StartTime.Month 
+                    if (list.Where(u => u.TaskYearMonth.Month == j.StartTime.Month
                     && u.CreatedUser == taskAllocation.CreatedUser).Count() != 0)
                     {
                         foreach (var prop in list.Where(u => u.TaskYearMonth.Month == j.StartTime.Month && u.CreatedUser == taskAllocation.CreatedUser))
@@ -68,6 +79,8 @@ namespace ManPowerCore.Controller
                     }
                 }
 
+
+
                 return 1;
             }
             catch (Exception)
@@ -80,6 +93,120 @@ namespace ManPowerCore.Controller
             {
                 if (dBConnection.con.State == System.Data.ConnectionState.Open)
                     dBConnection.Commit();
+            }
+        }
+        public List<TaskAllocation> GetAllTaskAllocationWithDepartmentUnitPosition()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+                List<TaskAllocation> taskAllocationList = taskAllocationDAO.GetAllTaskAllocation(dBConnection).ToList();
+                List<DepartmentUnitPositions> departmentUnitPositions = departmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection).ToList();
+
+                foreach (var item in taskAllocationList)
+                {
+                    item._DepartmentUnitPositions = departmentUnitPositions.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+                return taskAllocationList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dBConnection.Commit();
+                }
+            }
+        }
+
+        public List<TaskAllocation> GetTaskAllocationDme21Approve(int PositionId)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocation> list = taskAllocationDAO.GetTaskAllocationDme21Approve(PositionId, dBConnection);
+
+
+                DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                List<DepartmentUnitPositions> departmentUnitPositionList = _DepartmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
+                foreach (var item in list)
+                {
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+
+                return list;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<TaskAllocation> GetTaskAllocationDme22Approve(int PositionId)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocation> list = taskAllocationDAO.GetTaskAllocationDme22Approve(PositionId, dBConnection);
+
+
+                DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                List<DepartmentUnitPositions> departmentUnitPositionList = _DepartmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
+                foreach (var item in list)
+                {
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+
+                return list;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+        public int saveTaskAllocation(TaskAllocation taskAllocation)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return taskAllocationDAO.SaveTaskAllocation(taskAllocation, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dBConnection.Commit();
+                }
             }
         }
 
@@ -139,6 +266,7 @@ namespace ManPowerCore.Controller
                 if (withTaskAllocationDetail)
                 {
                     TaskAllocationDetailDAO _TaskAllocationDetailDAO = DAOFactory.CreateTaskAllocationDetailDAO();
+
                     foreach (var item in list)
                     {
                         item._TaskAllocationDetail = _TaskAllocationDetailDAO.GetAllTaskAllocationDetailByTaskAllocationId(item.TaskAllocationId, dBConnection);
@@ -149,9 +277,12 @@ namespace ManPowerCore.Controller
                 if (withDepartmentUnitPositions)
                 {
                     DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                    List<DepartmentUnitPositions> departmentUnitPositionList = _DepartmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
                     foreach (var item in list)
                     {
-                        item._DepartmentUnitPositions = _DepartmentUnitPositionsDAO.GetDepartmentUnitPositions(item.TaskAllocationId, dBConnection);
+                        item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                     }
                 }
 
@@ -227,6 +358,27 @@ namespace ManPowerCore.Controller
             {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
+            }
+        }
+
+        public List<TaskAllocation> GetAllTaskAllocationByDepartmentUnitPositionId(int departmentUnitPositionId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return taskAllocationDAO.GetAllTaskAllocationByDepartmentUnitPositionId(departmentUnitPositionId, dBConnection);
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
             }
         }
 

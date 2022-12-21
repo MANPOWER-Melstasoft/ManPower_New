@@ -33,7 +33,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO BENEFICIARY(BENEFICIARY_TYPE_ID,DISTRICT,DIVISIONAL_SECRETERY) " +
                                            "VALUES(@BeneficiaryTypeId,@District,@DivisionalSecretery) SELECT SCOPE_IDENTITY() ";
 
-            dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryTypeId", induvidualBeneficiary.BeneficiaryTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryTypeId", 1);
             dbConnection.cmd.Parameters.AddWithValue("@District", induvidualBeneficiary.District);
             dbConnection.cmd.Parameters.AddWithValue("@DivisionalSecretery", induvidualBeneficiary.DivisionalSecretery);
 
@@ -44,26 +44,25 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO INDUVIDUAL_BENEFICIARY(ID,NIC, NAME, GENDER, DATE_OF_BIRTH , PERSONAL_ADDRESS, EMAIL, JOB_PREFERENCE, CONTACT_NUMBER, WHATSAPP_NUMBER, SCHOOL_NAME, ADDRESS_OF_SCHOOL, GRADE, PARENT_NIC) " +
 
-                                           "VALUES(@BenificiaryId,@Nic ,@InduvidualBeneficiaryName, @Gender, @DateOfBirth, @PersonalAddress, @Email, @JobPreference, @ContactNumber, @WhatsappNumber, @SchoolName, @AddressOfSchool, @Grade, @ParentNic)";
+                                           "VALUES(@BenificiaryId,@BeneficiaryNic ,@InduvidualBeneficiaryName, @BeneficiaryGender, @DateOfBirth, @PersonalAddress, @BeneficiaryEmail, @JobPreference, @ContactNumber, @WhatsappNumber, @SchoolName, @AddressOfSchool, @SchoolGrade, @ParentNic)";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@BenificiaryId", induvidualBeneficiary.BeneficiaryId);
-            dbConnection.cmd.Parameters.AddWithValue("@Nic", induvidualBeneficiary.Nic);
+            dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryNic", induvidualBeneficiary.BeneficiaryNic);
             dbConnection.cmd.Parameters.AddWithValue("@InduvidualBeneficiaryName", induvidualBeneficiary.InduvidualBeneficiaryName);
-            dbConnection.cmd.Parameters.AddWithValue("@Gender", induvidualBeneficiary.Gender);
+            dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryGender", induvidualBeneficiary.BeneficiaryGender);
             dbConnection.cmd.Parameters.AddWithValue("@DateOfBirth", induvidualBeneficiary.DateOfBirth);
             dbConnection.cmd.Parameters.AddWithValue("@PersonalAddress", induvidualBeneficiary.PersonalAddress);
-            dbConnection.cmd.Parameters.AddWithValue("@Email", induvidualBeneficiary.Email);
+            dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryEmail", induvidualBeneficiary.BeneficiaryEmail);
             dbConnection.cmd.Parameters.AddWithValue("@JobPreference", induvidualBeneficiary.JobPreference);
             dbConnection.cmd.Parameters.AddWithValue("@ContactNumber", induvidualBeneficiary.ContactNumber);
             dbConnection.cmd.Parameters.AddWithValue("@WhatsappNumber", induvidualBeneficiary.WhatsappNumber);
             dbConnection.cmd.Parameters.AddWithValue("@SchoolName", induvidualBeneficiary.SchoolName);
             dbConnection.cmd.Parameters.AddWithValue("@AddressOfSchool", induvidualBeneficiary.AddressOfSchool);
-            dbConnection.cmd.Parameters.AddWithValue("@Grade", induvidualBeneficiary.Grade);
+            dbConnection.cmd.Parameters.AddWithValue("@SchoolGrade", induvidualBeneficiary.SchoolGrade);
             dbConnection.cmd.Parameters.AddWithValue("@ParentNic", induvidualBeneficiary.ParentNic);
 
             dbConnection.cmd.ExecuteNonQuery();
-
 
             return 1;
         }

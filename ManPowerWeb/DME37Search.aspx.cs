@@ -69,7 +69,7 @@ namespace ManPowerWeb
         {
             comapnyVacancyRegListState = (List<CompanyVecansyRegistationDetails>)ViewState["comapnyVacancyRegList"];
 
-            gv1.DataSource = comapnyVacancyRegListState.Where(u => u.Date.Year.ToString() == ddlYear.SelectedValue && u.Date.Month.ToString() == ddlMonth.SelectedValue).ToList();
+            gv1.DataSource = comapnyVacancyRegListState.Where(u => u.VDate.Year.ToString() == ddlYear.SelectedValue && u.VDate.Month.ToString() == ddlMonth.SelectedValue).ToList();
             gv1.DataBind();
         }
     }

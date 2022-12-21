@@ -16,10 +16,10 @@ namespace ManPowerCore.Domain
         public int CompanyVacansyRegistationDetailsId { get; set; }
 
         [DBField("DATE")]
-        public DateTime Date { get; set; }
+        public DateTime VDate { get; set; }
 
         [DBField("ADDRESS")]
-        public string Address { get; set; }
+        public string VAddress { get; set; }
 
         [DBField("WEBSITE_LINK")]
         public string WebSiteLink { get; set; }
@@ -40,10 +40,10 @@ namespace ManPowerCore.Domain
         public int NumberOfVacancy { get; set; }
 
         [DBField("NAME")]
-        public string Name { get; set; }
+        public string ContactPersonName { get; set; }
 
         [DBField("POSITION")]
-        public string Position { get; set; }
+        public string ContactPersonPosition { get; set; }
 
         [DBField("CONTACT_NUMBER")]
         public string ContactNumber { get; set; }
@@ -52,10 +52,10 @@ namespace ManPowerCore.Domain
         public string WhatsappNumber { get; set; }
 
         [DBField("LEVELS")]
-        public string Levels { get; set; }
+        public string VLevels { get; set; }
 
         [DBField("Email")]
-        public string Email { get; set; }
+        public string ContactPersonEmail { get; set; }
 
 
 

@@ -317,5 +317,46 @@ namespace ManPowerCore.Common
 
         }
 
+        public static ServiceTypeDAO CreateServiceTypeDAO()
+        {
+            ServiceTypeDAO serviceTypeDAO = new ServiceTypeDAOImpl();
+            return (ServiceTypeDAO)serviceTypeDAO;
+        }
+
+        public static EmployeeServicesDAO CreateEmployeeServicesDAO()
+        {
+            EmployeeServicesDAO employeeServicesDAO = new EmployeeServicesDAOImpl();
+            return (EmployeeServicesDAO)employeeServicesDAO;
+        }
+
+        public static ContractTypeDAO CreateContractTypeDAO()
+        {
+            ContractTypeDAO contractTypeDAO = new ContractTypeDAOImpl();
+            return (ContractTypeDAO)contractTypeDAO;
+        }
+
+        public static VehicleMaintenanceDAO CreateVehicleMaintenanceDAO()
+        {
+            VehicleMaintenanceDAO vehicleMaintenanceDAO = new VehicleMaintenanceDAOImpl();
+            return (VehicleMaintenanceDAO)vehicleMaintenanceDAO;
+        }
+
+        public static VehicleMaintenaceQuatationDAO CreateVehicleMaintenaceQuatationDAO()
+        {
+            VehicleMaintenaceQuatationDAO vehicleMaintenaceQuatationDAO = new VehicleMaintenaceQuatationDAOImpl();
+            return (VehicleMaintenaceQuatationDAO)vehicleMaintenaceQuatationDAO;
+        }
+
+        public static QuatationDAO CreateQuatationDAO()
+        {
+            QuatationDAO quatationDAO = new QuatationDAOImpl();
+            return (QuatationDAO)quatationDAO;
+        }
+
+        public static MaintenanceCategoryDAO CreateMaintenanceCategoryDAO()
+        {
+            MaintenanceCategoryDAO maintenanceCategoryDAO = new MaintenanceCategoryDAOImpl();
+            return (MaintenanceCategoryDAO)maintenanceCategoryDAO;
+        }
     }
 }

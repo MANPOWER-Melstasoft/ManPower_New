@@ -236,7 +236,7 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);
         }
     }
-
-
-
 }
+
+
+

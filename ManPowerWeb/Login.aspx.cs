@@ -40,7 +40,7 @@ namespace ManPowerWeb
 
                     systemUserController.UpdateLastLoginDate(systeUserList[0]);
 
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("Dashboard.aspx");
                 }
                 else
                 {

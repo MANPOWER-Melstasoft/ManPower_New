@@ -358,5 +358,11 @@ namespace ManPowerCore.Common
             MaintenanceCategoryDAO maintenanceCategoryDAO = new MaintenanceCategoryDAOImpl();
             return (MaintenanceCategoryDAO)maintenanceCategoryDAO;
         }
+        public static StaffLeaveDAO CreateStaffLeaveDAO()
+        {
+            StaffLeaveDAO staffLeaveDAO = new StaffLeaveDAOSqlImpl();
+            return (StaffLeaveDAO)staffLeaveDAO;
+        }
+
     }
 }

@@ -14,8 +14,10 @@
                                 <asp:Literal ID="Literal3" runat="server" Text="Date Of Commencing Leave"></asp:Literal>
                             </div>
                             <div class="col-md-6">
+
                                 <asp:TextBox runat="server" ID="txtDateCommencing" CssClass="form-control form-control-user" TextMode="Date">
                                 </asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtDateCommencing" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
                     </div>
@@ -28,8 +30,12 @@
                                 <asp:Literal ID="Literal4" runat="server" Text="Number Of Dates"></asp:Literal>
                             </div>
                             <div class="col-md-6">
+
                                 <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" min="0">
                                 </asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                                <asp:RangeValidator runat="server" ControlToValidate="txtNoOfDates" ErrorMessage="Invalid number"
+                                    Type="Integer" MinimumValue="1" MaximumValue="1000" ForeColor="Red"></asp:RangeValidator>
 
                             </div>
 
@@ -48,8 +54,10 @@
                                 <asp:Literal ID="Literal1" runat="server" Text="Date of Resuming"></asp:Literal>
                             </div>
                             <div class="col-md-6">
-                                <asp:TextBox runat="server" ID="txtDateResuming" CssClass="form-control form-control-user">
+
+                                <asp:TextBox runat="server" ID="txtDateResuming" TextMode="Date" CssClass="form-control form-control-user">
                                 </asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtDateResuming" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
 
                             </div>
 
@@ -78,6 +86,29 @@
 
 
                 </div>
+
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                                <asp:Literal ID="Literal6" runat="server" Text="Day Type"></asp:Literal>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:DropDownList runat="server" ID="ddlDayType" CssClass="form-control form-control-user">
+                                    <asp:ListItem Value="1">Morning-Half</asp:ListItem>
+                                    <asp:ListItem Value="2">Evening-Half</asp:ListItem>
+                                    <asp:ListItem Value="3">Full Day</asp:ListItem>
+                                </asp:DropDownList>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">
                         <div class="row">
@@ -86,8 +117,11 @@
                                 <asp:Literal ID="Literal5" runat="server" Text="Reason for Leave"></asp:Literal>
                             </div>
                             <div class="col-md-6">
+
                                 <asp:TextBox runat="server" ID="txtLeaveReason" CssClass="form-control form-control-user" TextMode="MultiLine">
                                 </asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtLeaveReason" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+
 
                             </div>
 
@@ -103,7 +137,7 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                <asp:Button runat="server" ID="btnApplyLeave" Text="Apply Leave " CssClass="form-control form-control-user btn-primary"></asp:Button>
+                                <asp:Button runat="server" ID="btnApplyLeave" Text="Apply Leave " CssClass="form-control form-control-user btn-primary" OnClick="btnApplyLeave_Click" ValidationGroup="1"></asp:Button>
 
                             </div>
 

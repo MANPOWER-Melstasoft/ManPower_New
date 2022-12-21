@@ -5,6 +5,7 @@ using System.Text;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class EducationDetails
     {
         [DBField("ID")]

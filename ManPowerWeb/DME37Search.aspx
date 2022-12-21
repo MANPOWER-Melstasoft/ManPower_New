@@ -86,20 +86,20 @@
             <asp:GridView Style="margin-top: 30px;" ID="gv1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                 CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="gv1_PageIndexChanging">
                 <Columns>
-                    <asp:BoundField DataField="Date" DataFormatString="{0:yyyy/MM/dd}" HeaderText="DATE" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="VDate" DataFormatString="{0:yyyy/MM/dd}" HeaderText="DATE" HeaderStyle-CssClass="table-dark" />
 
-                    <asp:BoundField DataField="Address" HeaderText="ADDRESS" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="VAddress" HeaderText="ADDRESS" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="WebSiteLink" HeaderText="WEBSITE LINK" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="BusinessRegistationNumber" HeaderText="BUSINESS REGISTRATION NO." HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="JobPosition" HeaderText="JOB POSITION" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="Levels" HeaderText="LEVEL" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="VLevels" HeaderText="LEVEL" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="SalaryLevel" HeaderText="SALARY LEVEL" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="NumberOfVacancy" HeaderText="NO. VACANCY" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="Name" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="Position" HeaderText="POSITION" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="ContactPersonName" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="ContactPersonPosition" HeaderText="POSITION" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="ContactNumber" HeaderText="CONTACT NO." HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="WhatsappNumber" HeaderText="WHATSAPP NO." HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="Email" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="ContactPersonEmail" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
 
 
                 </Columns>

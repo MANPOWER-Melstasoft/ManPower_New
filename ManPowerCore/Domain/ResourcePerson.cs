@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace ManPowerCore.Domain
 {
     [Serializable]
-
     public class ResourcePerson
     {
         [DBField("ID")]

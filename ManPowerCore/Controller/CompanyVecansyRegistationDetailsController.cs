@@ -29,7 +29,8 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return companyVecansyRegistationDetailsDAO.SaveCompanyVecansyRegistationDetails(companyVecansyRegistationDetails, dBConnection);
+                int id = companyVecansyRegistationDetailsDAO.SaveCompanyVecansyRegistationDetails(companyVecansyRegistationDetails, dBConnection);
+                return id;
             }
             catch (Exception)
             {

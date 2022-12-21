@@ -170,7 +170,7 @@
                             <asp:Literal ID="lblEmpNumber" runat="server" Text="Emp Number"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-                            <asp:TextBox ID="txtEmpNumber" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtEmpNumber" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="1"
                                     ControlToValidate="txtEmpNumber" ErrorMessage="Required">*</asp:RequiredFieldValidator>

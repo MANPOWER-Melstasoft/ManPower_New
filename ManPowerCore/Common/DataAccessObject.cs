@@ -121,7 +121,6 @@ namespace ManPowerCore.Common
             return item;
         }
 
-
         #region IDisposable Members
 
         public void Dispose()

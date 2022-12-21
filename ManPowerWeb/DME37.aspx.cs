@@ -26,20 +26,20 @@ namespace ManPowerWeb
 
 
             companyVecansyRegistationDetails.CompanyVacansyRegistationDetailsId = 1;
-            companyVecansyRegistationDetails.Date = DateTime.Today;
-            companyVecansyRegistationDetails.Address = txtAddress.Text;
+            companyVecansyRegistationDetails.VDate = DateTime.Today;
+            companyVecansyRegistationDetails.VAddress = txtAddress.Text;
             companyVecansyRegistationDetails.WebSiteLink = txtWebSite.Text;
             companyVecansyRegistationDetails.BusinessRegistationNumber = txtRegNo.Text;
             companyVecansyRegistationDetails.JobPosition = txtVacancyType.Text;
             companyVecansyRegistationDetails.CareerPath = ddlCareerPath.Text;
             companyVecansyRegistationDetails.SalaryLevel = txtSalaryLevel.Text;
             companyVecansyRegistationDetails.NumberOfVacancy = Convert.ToInt32(txtNumberOfVacancies.Text);
-            companyVecansyRegistationDetails.Name = txtName.Text;
-            companyVecansyRegistationDetails.Position = txtPosition.Text;
+            companyVecansyRegistationDetails.ContactPersonName = txtName.Text;
+            companyVecansyRegistationDetails.ContactPersonPosition = txtPosition.Text;
             companyVecansyRegistationDetails.ContactNumber = txtContact.Text;
             companyVecansyRegistationDetails.WhatsappNumber = txtWhatsapp.Text;
-            companyVecansyRegistationDetails.Levels = ddlLevel.Text;
-            companyVecansyRegistationDetails.Email = txtEmail.Text;
+            companyVecansyRegistationDetails.VLevels = ddlLevel.Text;
+            companyVecansyRegistationDetails.ContactPersonEmail = txtEmail.Text;
 
 
             companyVecansyRegistationDetailsController.SaveCompanyVecansyRegistationDetails(companyVecansyRegistationDetails);

@@ -103,7 +103,6 @@
                     <div class="col-sm-6">
                         <div class="row mb-3">
                             <div class="col-sm-4">
-
                                 <asp:Literal ID="Literal6" runat="server" Text="Officer Name"></asp:Literal>
                             </div>
                             <div class="col-md-4">

@@ -53,27 +53,29 @@ namespace ManPowerCore.Infrastructure
                                             "CAREER_PATH,SALARY_LEVEL,NUMBER_OF_VACANCY,NAME,POSITION,CONTACT_NUMBER,WHATSAPP_NUMBER," +
                                             "LEVELS,EMAIL) " +
 
-                                 "VALUES(@Date,@Address,@WebSiteLink,@BusinessRegistationNumber,@JobPosition,@CareerPath,@SalaryLevel,@NumberOfVacancy,@Name,@Position,@ContactNumber,@WhatsappNumber,@Levels,@Email) ";
+                                 "VALUES(@VDate,@VAddress,@WebSiteLink,@BusinessRegistationNumber,@JobPosition,@CareerPath,@SalaryLevel,@NumberOfVacancy,@ContactPersonEmail,@ContactPersonPosition,@ContactNumber,@WhatsappNumber,@VLevels,@ContactPersonName) ";
 
 
             //dbConnection.cmd.Parameters.AddWithValue("@id", id);
-            dbConnection.cmd.Parameters.AddWithValue("@Date", companyVecansyRegistationDetails.Date);
-            dbConnection.cmd.Parameters.AddWithValue("@Address", companyVecansyRegistationDetails.Address);
+            dbConnection.cmd.Parameters.AddWithValue("@VDate", companyVecansyRegistationDetails.VDate);
+            dbConnection.cmd.Parameters.AddWithValue("@VAddress", companyVecansyRegistationDetails.VAddress);
             dbConnection.cmd.Parameters.AddWithValue("@WebSiteLink", companyVecansyRegistationDetails.WebSiteLink);
             dbConnection.cmd.Parameters.AddWithValue("@BusinessRegistationNumber", companyVecansyRegistationDetails.BusinessRegistationNumber);
             dbConnection.cmd.Parameters.AddWithValue("@JobPosition", companyVecansyRegistationDetails.JobPosition);
             dbConnection.cmd.Parameters.AddWithValue("@CareerPath", companyVecansyRegistationDetails.CareerPath);
             dbConnection.cmd.Parameters.AddWithValue("@SalaryLevel", companyVecansyRegistationDetails.SalaryLevel);
             dbConnection.cmd.Parameters.AddWithValue("@NumberOfVacancy", companyVecansyRegistationDetails.NumberOfVacancy);
-            dbConnection.cmd.Parameters.AddWithValue("@Name", companyVecansyRegistationDetails.Name);
-            dbConnection.cmd.Parameters.AddWithValue("@Position", companyVecansyRegistationDetails.Position);
+            dbConnection.cmd.Parameters.AddWithValue("@ContactPersonEmail", companyVecansyRegistationDetails.ContactPersonEmail);
+            dbConnection.cmd.Parameters.AddWithValue("@ContactPersonPosition", companyVecansyRegistationDetails.ContactPersonPosition);
             dbConnection.cmd.Parameters.AddWithValue("@ContactNumber", companyVecansyRegistationDetails.ContactNumber);
             dbConnection.cmd.Parameters.AddWithValue("@WhatsappNumber", companyVecansyRegistationDetails.WhatsappNumber);
-            dbConnection.cmd.Parameters.AddWithValue("@Levels", companyVecansyRegistationDetails.Levels);
-            dbConnection.cmd.Parameters.AddWithValue("@Email", companyVecansyRegistationDetails.Email);
+            dbConnection.cmd.Parameters.AddWithValue("@VLevels", companyVecansyRegistationDetails.VLevels);
+            dbConnection.cmd.Parameters.AddWithValue("@ContactPersonName", companyVecansyRegistationDetails.ContactPersonName);
 
 
-            return dbConnection.cmd.ExecuteNonQuery();
+            dbConnection.cmd.ExecuteNonQuery();
+
+            return 1;
         }
 
         public int UpdateCompanyVecansyRegistationDetails(CompanyVecansyRegistationDetails companyVecansyRegistationDetails, DBConnection dbConnection)
@@ -89,20 +91,20 @@ namespace ManPowerCore.Infrastructure
 
 
             dbConnection.cmd.Parameters.AddWithValue("@CompanyVecansyRegistationDetailsId", companyVecansyRegistationDetails.CompanyVacansyRegistationDetailsId);
-            dbConnection.cmd.Parameters.AddWithValue("@Date", companyVecansyRegistationDetails.Date);
-            dbConnection.cmd.Parameters.AddWithValue("@Address", companyVecansyRegistationDetails.Address);
+            dbConnection.cmd.Parameters.AddWithValue("@VDate", companyVecansyRegistationDetails.VDate);
+            dbConnection.cmd.Parameters.AddWithValue("@VAddress", companyVecansyRegistationDetails.VAddress);
             dbConnection.cmd.Parameters.AddWithValue("@WebSiteLink", companyVecansyRegistationDetails.WebSiteLink);
             dbConnection.cmd.Parameters.AddWithValue("@BusinessRegistationNumber", companyVecansyRegistationDetails.BusinessRegistationNumber);
             dbConnection.cmd.Parameters.AddWithValue("@JobPosition", companyVecansyRegistationDetails.JobPosition);
             dbConnection.cmd.Parameters.AddWithValue("@CareerPath", companyVecansyRegistationDetails.CareerPath);
             dbConnection.cmd.Parameters.AddWithValue("@SalaryLevel", companyVecansyRegistationDetails.SalaryLevel);
             dbConnection.cmd.Parameters.AddWithValue("@NumberOfVacancy", companyVecansyRegistationDetails.NumberOfVacancy);
-            dbConnection.cmd.Parameters.AddWithValue("@Name", companyVecansyRegistationDetails.Name);
-            dbConnection.cmd.Parameters.AddWithValue("@Position", companyVecansyRegistationDetails.Position);
+            dbConnection.cmd.Parameters.AddWithValue("@ContactPersonName", companyVecansyRegistationDetails.ContactPersonName);
+            dbConnection.cmd.Parameters.AddWithValue("@ContactPersonPosition", companyVecansyRegistationDetails.ContactPersonPosition);
             dbConnection.cmd.Parameters.AddWithValue("@ContactNumber", companyVecansyRegistationDetails.ContactNumber);
             dbConnection.cmd.Parameters.AddWithValue("@WhatsappNumber", companyVecansyRegistationDetails.WhatsappNumber);
-            dbConnection.cmd.Parameters.AddWithValue("@Levels", companyVecansyRegistationDetails.Levels);
-            dbConnection.cmd.Parameters.AddWithValue("@Email", companyVecansyRegistationDetails.Email);
+            dbConnection.cmd.Parameters.AddWithValue("@VLevels", companyVecansyRegistationDetails.VLevels);
+            dbConnection.cmd.Parameters.AddWithValue("@ContactPersonName", companyVecansyRegistationDetails.ContactPersonName);
 
 
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
+    [Serializable]
     public class EmployeeContact
     {
         [DBField("ID")]
@@ -21,6 +22,6 @@ namespace ManPowerCore.Domain
         [DBField("CONTACT_DETAIL")]
         public string ContactDetials { get; set; }
 
-        public Employee _Employee { get; set; } = new Employee();
+        //public Employee _Employee { get; set; } = new Employee();
     }
 }

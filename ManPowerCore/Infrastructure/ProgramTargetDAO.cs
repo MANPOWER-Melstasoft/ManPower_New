@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace ManPowerCore.Infrastructure
 {
     public interface ProgramTargetDAO
@@ -26,6 +28,8 @@ namespace ManPowerCore.Infrastructure
         int UpdateProgramTargetApprovalRecomended(int id, int recomendedby, int status, DBConnection dbConnection);
 
         List<ProgramTarget> GetAllProgramTargetFilter(int runYear, int runMonth, DBConnection dbConnection);
+        
+        List<ProgramTarget> UpcomingFilter(DateTime startDate, int type, DBConnection dbConnection);
 
         List<ProgramTarget> GetAllProgramTargetFilter(int runType, DBConnection dbConnection);
 
@@ -167,6 +171,20 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_TARGET  WHERE TARGET_YEAR = " + runYear + " AND TARGET_MONTH = " + runMonth + " ORDER BY ID ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<ProgramTarget>(dbConnection.dr);
+
+        }
+
+
+        public List<ProgramTarget> UpcomingFilter(DateTime startDate, int type, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_TARGET  WHERE START_DATE = " + startDate + " AND PROGRAM_TYPE_ID = " + type + " ORDER BY ID ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

@@ -182,10 +182,6 @@ namespace ManPowerCore.Controller
                         item._ProgramPlan = _ProgramPlanDAO.GetAllProgramPlanByProgramTargetId(item.ProgramTypeId, dBConnection);
                     }
                 }
-
-
-
-
                 return list;
 
             }

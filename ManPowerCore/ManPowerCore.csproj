@@ -58,6 +58,7 @@
     <Compile Include="Controller\CompanyVecansyRegistationDetailsController.cs" />
     <Compile Include="Controller\ContactModeController.cs" />
     <Compile Include="Controller\ContactTypeController.cs" />
+    <Compile Include="Controller\ContractTypeController.cs" />
     <Compile Include="Controller\DepartmentUnitController.cs" />
     <Compile Include="Controller\DepartmentUnitPositionsController.cs" />
     <Compile Include="Controller\DepartmentUnitTypeController.cs" />
@@ -69,10 +70,13 @@
     <Compile Include="Controller\EmergencyContactController.cs" />
     <Compile Include="Controller\EmployeeContactController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Controller\EmployeeServiceController.cs" />
     <Compile Include="Controller\EmploymentDetailsController.cs" />
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
+    <Compile Include="Controller\MaintenanceCategoryController.cs" />
+    <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
     <Compile Include="Controller\PossitionsController.cs" />
     <Compile Include="Controller\ProgramAssigneeController.cs" />
@@ -87,9 +91,12 @@
     <Compile Include="Controller\ProjectStatusController.cs" />
     <Compile Include="Controller\ProjectTaskController.cs" />
     <Compile Include="Controller\PromotionController.cs" />
+    <Compile Include="Controller\QuatationController.cs" />
     <Compile Include="Controller\ReligionController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
+    <Compile Include="Controller\ServiceTypeController.cs" />
+    <Compile Include="Controller\StaffLeaveAllocationController.cs" />
     <Compile Include="Controller\SystemUserController.cs" />
     <Compile Include="Controller\TaskAllocationController.cs" />
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
@@ -98,6 +105,8 @@
     <Compile Include="Controller\TrainingRequestController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />
+    <Compile Include="Controller\VehicleMaintenaceQuatationController.cs" />
+    <Compile Include="Controller\VehicleMaintenanceController.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
     <Compile Include="Domain\AutSystemRoleFunction.cs" />
@@ -108,6 +117,7 @@
     <Compile Include="Domain\CompanyVecansyRegistationDetails.cs" />
     <Compile Include="Domain\ContactMode.cs" />
     <Compile Include="Domain\ContactType.cs" />
+    <Compile Include="Domain\ContractType.cs" />
     <Compile Include="Domain\DepartmentUnit.cs" />
     <Compile Include="Domain\DepartmentUnitPositions.cs" />
     <Compile Include="Domain\DepartmentUnitType.cs" />
@@ -120,10 +130,13 @@
     <Compile Include="Domain\EmergencyContact.cs" />
     <Compile Include="Domain\Employee.cs" />
     <Compile Include="Domain\EmployeeContact.cs" />
+    <Compile Include="Domain\EmployeeServices.cs" />
     <Compile Include="Domain\EmploymentDetails.cs" />
     <Compile Include="Domain\Entrepreneur.cs" />
     <Compile Include="Domain\Ethnicity.cs" />
     <Compile Include="Domain\InduvidualBeneficiary.cs" />
+    <Compile Include="Domain\MaintenanceCategory.cs" />
+    <Compile Include="Domain\LeaveType.cs" />
     <Compile Include="Domain\MarketType.cs" />
     <Compile Include="Domain\Month.cs" />
     <Compile Include="Domain\Possitions.cs" />
@@ -139,9 +152,12 @@
     <Compile Include="Domain\ProjectStatus.cs" />
     <Compile Include="Domain\ProjectTask.cs" />
     <Compile Include="Domain\Promotions.cs" />
+    <Compile Include="Domain\Quatation.cs" />
     <Compile Include="Domain\Religion.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
+    <Compile Include="Domain\ServiceType.cs" />
+    <Compile Include="Domain\StaffLeaveAllocation.cs" />
     <Compile Include="Domain\SystemUser.cs" />
     <Compile Include="Domain\TaskAllocation.cs" />
     <Compile Include="Domain\TaskAllocationDetail.cs" />
@@ -150,6 +166,8 @@
     <Compile Include="Domain\Training_Request.cs" />
     <Compile Include="Domain\UserRegistation.cs" />
     <Compile Include="Domain\UserType.cs" />
+    <Compile Include="Domain\VehicleMaintenanceQuatation.cs" />
+    <Compile Include="Domain\VehicleMeintenance.cs" />
     <Compile Include="Infrastructure\AutFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutUserFunctionDAO.cs" />
@@ -159,6 +177,7 @@
     <Compile Include="Infrastructure\CompanyVecansyRegistationDetailsDAO.cs" />
     <Compile Include="Infrastructure\ContactModeDAO.cs" />
     <Compile Include="Infrastructure\ContactTypeDAO.cs" />
+    <Compile Include="Infrastructure\ContractTypeDAO.cs" />
     <Compile Include="Infrastructure\DepartmentUnitDAO.cs" />
     <Compile Include="Infrastructure\DepartmentUnitPositionsDAO.cs" />
     <Compile Include="Infrastructure\DepartmentUnitTypeDAO.cs" />
@@ -170,10 +189,13 @@
     <Compile Include="Infrastructure\EmergencyContactDAO.cs" />
     <Compile Include="Infrastructure\EmployeeContactDAO.cs" />
     <Compile Include="Infrastructure\EmployeeDAO.cs" />
+    <Compile Include="Infrastructure\EmployeeServicesDAO.cs" />
     <Compile Include="Infrastructure\EmploymentDetailsDAO.cs" />
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
+    <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
+    <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />
     <Compile Include="Infrastructure\PossitionsDAO.cs" />
     <Compile Include="Infrastructure\ProgramAssigneeDAO.cs" />
@@ -188,9 +210,12 @@
     <Compile Include="Infrastructure\ProjectStatusDAO.cs" />
     <Compile Include="Infrastructure\ProjectTaskDAO.cs" />
     <Compile Include="Infrastructure\PromotionsDAO.cs" />
+    <Compile Include="Infrastructure\QuatationDAO.cs" />
     <Compile Include="Infrastructure\ReligionDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
+    <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
+    <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
     <Compile Include="Infrastructure\SystemUserDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
@@ -199,6 +224,8 @@
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
     <Compile Include="Infrastructure\UserRegistrationDAO.cs" />
     <Compile Include="Infrastructure\UserTypeDAO.cs" />
+    <Compile Include="Infrastructure\VehicleMaintenaceQuatationDAO.cs" />
+    <Compile Include="Infrastructure\VehicleMaintenanceDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

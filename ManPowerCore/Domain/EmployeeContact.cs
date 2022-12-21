@@ -21,6 +21,6 @@ namespace ManPowerCore.Domain
         [DBField("CONTACT_DETAIL")]
         public string ContactDetials { get; set; }
 
-        public Employee _Employee { get; set; } = new Employee();
+        //public Employee _Employee { get; set; } = new Employee();
     }
 }

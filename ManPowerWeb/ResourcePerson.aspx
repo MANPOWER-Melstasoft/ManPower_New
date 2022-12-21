@@ -1,8 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EntRegistration.aspx.cs" Inherits="ManPowerWeb.EntRegistration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResourcePerson.aspx.cs" Inherits="ManPowerWeb.ResourcePerson" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-    <h2>Developed Entrepreneur / Self Employers Details</h2>
+    <h2>Resource Person</h2>
         <br /><br />
+
+		<div class="row">
+			<div class="col-3">
+				<label>Business Type : </label>
+			</div>
+			<div class="col-9">
+				<asp:DropDownList ID="businessType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
+					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+			</div>
+		</div><br />
 
 		<div class="row">
 			<div class="col-3">
@@ -41,15 +51,7 @@
 			</div>
 		</div><br /> 
 
-		<div class="row">
-			<div class="col-3">
-				<label>Business Type : </label>
-			</div>
-			<div class="col-9">
-				<asp:DropDownList ID="businessType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
-			</div>
-		</div><br />
+		
 
 		<div class="row">
 			<div class="col-3">

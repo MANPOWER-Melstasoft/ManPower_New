@@ -28,8 +28,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYMENT_DETAIL(DESIGNATION_ID,CONTRACT_TYPE_ID,EMPLOYEE_ID,COMPANY_NAME,START_DATE, " +
-                "END_DATE,IS_RESIGNED,RETIREMENT_DATE,EPF_NUMBER)" +
-                " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf)"; 
+                "END_DATE,IS_RESIGNED,RETIREMENT_DATE,EPF_NUMBER,EMPNO)" +
+                " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf,@EmpNumber)"; 
 
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", empDetails.DesignationId);
             dbConnection.cmd.Parameters.AddWithValue("@ContractTypeId", empDetails.ContractTypeId);
@@ -40,6 +40,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@IsResigned", empDetails.IsResigned);
             dbConnection.cmd.Parameters.AddWithValue("@RetirementDate", empDetails.RetirementDate);
             dbConnection.cmd.Parameters.AddWithValue("@Epf", empDetails.Epf);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpNumber", empDetails.EmpNumber);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;
@@ -53,7 +54,7 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandText = "UPDATE EMPLOYEE_DETAILS SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID " +
                 "COMPANY_NAME = @CompanyName, START_DATE = @StartDate,END_DATE = @EndDate,IS_RESIGNED = @IsResigned" +
-                "RETIREMENT_DATE = @RetirementDate, EPF_NUMBER = @Epf WHERE ID = @EmploymentDetailId ";
+                "RETIREMENT_DATE = @RetirementDate, EPF_NUMBER = @Epf, EMPNO = @EmpNumber WHERE ID = @EmploymentDetailId ";
 
             dbConnection.cmd.Parameters.AddWithValue("@EmploymentDetailId", empDetails.EmploymentDetailId);
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", empDetails.DesignationId);
@@ -64,6 +65,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@IsResigned", empDetails.IsResigned);
             dbConnection.cmd.Parameters.AddWithValue("@RetirementDate", empDetails.RetirementDate);
             dbConnection.cmd.Parameters.AddWithValue("@Epf", empDetails.Epf);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpNumber", empDetails.EmpNumber);
 
 
             dbConnection.cmd.ExecuteNonQuery();

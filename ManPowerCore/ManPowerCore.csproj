@@ -97,6 +97,7 @@
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\StaffLeaveAllocationController.cs" />
+    <Compile Include="Controller\StaffLeaveController.cs" />
     <Compile Include="Controller\SystemUserController.cs" />
     <Compile Include="Controller\TaskAllocationController.cs" />
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
     <Compile Include="Domain\ServiceType.cs" />
+    <Compile Include="Domain\StaffLeave.cs" />
     <Compile Include="Domain\StaffLeaveAllocation.cs" />
     <Compile Include="Domain\SystemUser.cs" />
     <Compile Include="Domain\TaskAllocation.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
+    <Compile Include="Infrastructure\StaffLeaveDAO.cs" />
     <Compile Include="Infrastructure\SystemUserDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />

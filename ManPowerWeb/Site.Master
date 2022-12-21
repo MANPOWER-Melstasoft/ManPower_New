@@ -43,11 +43,6 @@
                 <hr class="sidebar-divider my-0">
                 <hr class="sidebar-divider">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Planing
-                </div>
-
                 <!-- Nav Item - Charts -->
                 <asp:Literal ID="ltSideBar" runat="server">  </asp:Literal>
 

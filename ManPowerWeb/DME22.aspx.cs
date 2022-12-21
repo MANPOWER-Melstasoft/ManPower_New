@@ -12,7 +12,7 @@ namespace ManPowerWeb
 {
     public partial class DME22 : System.Web.UI.Page
     {
-        string[] year = { "2021", "2022", "2023" };
+        int[] year = { DateTime.Now.Year - 1, DateTime.Now.Year, DateTime.Now.Year + 1 };
         List<TaskAllocation> taskAllocationList = new List<TaskAllocation>();
         int depId = 4;
 

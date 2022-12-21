@@ -88,10 +88,9 @@ namespace ManPowerCore.Infrastructure
 
 
 
-            dbConnection.cmd.ExecuteNonQuery();
 
 
-            return dbConnection.cmd.ExecuteNonQuery();
+
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
@@ -114,11 +113,11 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programPlan.ProgramPlanId);
             dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusId", programPlan.ProjectStatusId);
             dbConnection.cmd.Parameters.AddWithValue("@ProgramCategoryId", programPlan.ProgramCategoryId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramTargetId", programPlan.ProgramTargetId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", programPlan.Date);
             dbConnection.cmd.Parameters.AddWithValue("@Location", programPlan.Location);
             dbConnection.cmd.Parameters.AddWithValue("@Outcome", programPlan.Outcome);
             dbConnection.cmd.Parameters.AddWithValue("@Output", programPlan.Output);
-            dbConnection.cmd.Parameters.AddWithValue("@Output", programPlan.ProgramOutput);
             dbConnection.cmd.Parameters.AddWithValue("@ActualOutput", programPlan.ActualOutput);
             dbConnection.cmd.Parameters.AddWithValue("@IsApproved", programPlan.IsApproved);
             dbConnection.cmd.Parameters.AddWithValue("@ApprovedBy", programPlan.ApprovedBy);
@@ -149,8 +148,8 @@ namespace ManPowerCore.Infrastructure
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
+
             dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN";
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROJECT_STATUS_ID=4 ORDER BY ID ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -170,24 +169,12 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.GetSingleOject<ProgramPlan>(dbConnection.dr);
 
         }
-        public List<ProgramPlan> GetAllProgramPlanByProgramTargetId(int programTargetId, DBConnection dbConnection)
-        public List<ProgramPlan> completedProgramsFiter(DateTime startDate, DBConnection dbConnection)
-        {
-            if (dbConnection.dr != null)
-                dbConnection.dr.Close();
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROGRAM_TARGET_ID = " + programTargetId + " ";
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE DATE = " + startDate + "  ORDER BY ID ";
 
-            dbConnection.dr = dbConnection.cmd.ExecuteReader();
-            DataAccessObject dataAccessObject = new DataAccessObject();
-
-        }
-        public List<ProgramPlan> GetAllProgramPlanByProgramCategoryId(int programCategoryId, DBConnection dbConnection)
         public List<ProgramPlan> GetAllProgramPlanByProgramTargetId(int programTargetId, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROGRAM_CATEGORY_ID = " + programCategoryId + " ";
+
             dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROGRAM_TARGET_ID = " + programTargetId + " ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
@@ -195,24 +182,37 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);
         }
 
-        public List<ProgramPlan> GetAllProgramPlanByProjectStatusId(int projectStatusId, DBConnection dbConnection)
         public List<ProgramPlan> GetAllProgramPlanByProgramCategoryId(int programCategoryId, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROGRAM_CATEGORY_ID = " + programCategoryId + " ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);
+        }
+
+
+        public List<ProgramPlan> GetAllProgramPlanByProjectStatusId(int projectStatusId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
             dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROJECT_STATUS_ID = " + projectStatusId + " ";
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROGRAM_CATEGORY_ID = " + programCategoryId + " ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);
         }
-        public List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, DBConnection dbConnection)
-        public List<ProgramPlan> GetAllProgramPlanByProjectStatusId(int projectStatusId, DBConnection dbConnection)
 
+        public List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, DBConnection dbConnection)
         {
+
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
+
             string dateSql = "";
             if (date != null)
                 dateSql = " AND pp.Date = '" + DateTime.ParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + "' ";
@@ -224,20 +224,19 @@ namespace ManPowerCore.Infrastructure
             string districtIdSql = "";
             if (districtId != 0)
                 districtIdSql = " AND du.Parent_Id = " + districtId + " ";
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM_PLAN WHERE PROJECT_STATUS_ID = " + projectStatusId + " ";
+
             dbConnection.cmd.CommandText = "select pp.* from Program_Plan pp " +
                                             "inner join Program_Target pt on pt.Id = pp.Program_Target_Id " +
                                             "inner join Program_Assignee pa on pa.Program_Target_Id = pt.Id " +
                                             "inner join Department_Unit_Possitions dup on dup.Id = pa.Department_Unit_Possitions_Id " +
                                             "inner join Department_Unit du on du.Id = dup.Department_Unit_Id " +
                                             "WHERE pp.PROJECT_STATUS_ID = 4" + dateSql + programTypeSql + districtIdSql;
-
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);
-
+        }
     }
-
-
-
 }
+
+
+

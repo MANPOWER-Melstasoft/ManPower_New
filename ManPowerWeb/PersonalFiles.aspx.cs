@@ -4,7 +4,12 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -22,50 +27,52 @@ namespace ManPowerWeb
         string[] mmStatus = { "Married", "Single" };
         int[] attempt = { 1, 2, 3 };
         string[] conformation = { "Yes", "No" };
+        string[] isResigned = { "Yes", "No" };
         int[] yearslist =
         {
-            (DateTime.Today.Year) - 37,
-            (DateTime.Today.Year) - 36,
-            (DateTime.Today.Year) - 35,
-            (DateTime.Today.Year) - 34,
-            (DateTime.Today.Year) - 33,
-            (DateTime.Today.Year) - 32,
-            (DateTime.Today.Year) - 31,
-            (DateTime.Today.Year) - 30,
-            (DateTime.Today.Year) - 29,
-            (DateTime.Today.Year) - 28,
-            (DateTime.Today.Year) - 27,
-            (DateTime.Today.Year) - 26,
-            (DateTime.Today.Year) - 25,
-            (DateTime.Today.Year) - 24,
-            (DateTime.Today.Year) - 23,
-            (DateTime.Today.Year) - 22,
-            (DateTime.Today.Year) - 21,
-            (DateTime.Today.Year) - 20,
-            (DateTime.Today.Year) - 19,
-            (DateTime.Today.Year) - 18,
-            (DateTime.Today.Year) - 17,
-            (DateTime.Today.Year) - 16,
-            (DateTime.Today.Year) - 15,
-            (DateTime.Today.Year) - 14,
-            (DateTime.Today.Year) - 13,
-            (DateTime.Today.Year) - 12,
-            (DateTime.Today.Year) - 11,
-            (DateTime.Today.Year) - 10,
-            (DateTime.Today.Year) - 9,
-            (DateTime.Today.Year) - 8,
-            (DateTime.Today.Year) - 7,
-            (DateTime.Today.Year) - 6,
-            (DateTime.Today.Year) - 5,
-            (DateTime.Today.Year) - 4,
-            (DateTime.Today.Year) - 3,
-            (DateTime.Today.Year) - 2,
-            (DateTime.Today.Year) - 1,
             (DateTime.Today.Year),
+            (DateTime.Today.Year) - 1,
+            (DateTime.Today.Year) - 2,
+            (DateTime.Today.Year) - 3,
+            (DateTime.Today.Year) - 4,
+            (DateTime.Today.Year) - 5,
+            (DateTime.Today.Year) - 6,
+            (DateTime.Today.Year) - 7,
+            (DateTime.Today.Year) - 8,
+            (DateTime.Today.Year) - 9,
+            (DateTime.Today.Year) - 10,
+            (DateTime.Today.Year) - 12,
+            (DateTime.Today.Year) - 13,
+            (DateTime.Today.Year) - 14,
+            (DateTime.Today.Year) - 15,
+            (DateTime.Today.Year) - 16,
+            (DateTime.Today.Year) - 17,
+            (DateTime.Today.Year) - 18,
+            (DateTime.Today.Year) - 19,
+            (DateTime.Today.Year) - 20,
+            (DateTime.Today.Year) - 21,
+            (DateTime.Today.Year) - 22,
+            (DateTime.Today.Year) - 23,
+            (DateTime.Today.Year) - 24,
+            (DateTime.Today.Year) - 25,
+            (DateTime.Today.Year) - 26,
+            (DateTime.Today.Year) - 27,
+            (DateTime.Today.Year) - 28,
+            (DateTime.Today.Year) - 29,
+            (DateTime.Today.Year) - 30,
+            (DateTime.Today.Year) - 31,
+            (DateTime.Today.Year) - 32,
+            (DateTime.Today.Year) - 33,
+            (DateTime.Today.Year) - 34,
+            (DateTime.Today.Year) - 35,
+            (DateTime.Today.Year) - 36,
+            (DateTime.Today.Year) - 37,
+            (DateTime.Today.Year) - 38
         };
 
 
         List<ContactType> contactTypes = new List<ContactType>();
+        List<ContractType> contractTypes = new List<ContractType>();
         List<Designation> designation = new List<Designation>();
         List<Ethnicity> ethnicityList = new List<Ethnicity>();
         List<Religion> religionList = new List<Religion>();
@@ -104,6 +111,9 @@ namespace ManPowerWeb
 
             ContactTypeController ct = ControllerFactory.CreateContactTypeController();
             contactTypes = ct.GetAllContactType();
+
+            ContractTypeController ctrType = ControllerFactory.CreateContractTypeController();
+            contractTypes = ctrType.GetAllContractType();
 
             DependantTypeController dt = ControllerFactory.CreateDependantTypeController();
             dependantTypes = dt.GetAllDependantType();
@@ -148,14 +158,27 @@ namespace ManPowerWeb
             ddlService.DataTextField = "ServiceTypeName";
             ddlService.DataBind();
 
+            ddContract.DataSource = contractTypes;
+            ddContract.DataValueField = "ContractTypeId";
+            ddContract.DataTextField = "ContractTypeName";
+            ddContract.DataBind();
+
+            ddlDesignation.DataSource = designation;
+            ddlDesignation.DataValueField = "DesignationId";
+            ddlDesignation.DataTextField = "DesigntionName";
+            ddlDesignation.DataBind();
+
             ddlAttempt.DataSource = attempt;
             ddlAttempt.DataBind();
 
             ddlYear.DataSource = yearslist;
             ddlYear.DataBind();
 
-            ddlConformation.DataSource = conformation;
-            ddlConformation.DataBind();
+            //ddlConformation.DataSource = conformation;
+            //ddlConformation.DataBind();
+
+            //ddlIsResigned.DataSource = isResigned;
+            //ddlIsResigned.DataBind();
 
         }
 
@@ -171,7 +194,6 @@ namespace ManPowerWeb
                 dependant.Add(new Dependant
                 {
                     DependantTypeId = int.Parse(ddlDependant.SelectedValue),
-                    EmpId = 0,
                     FirstName = dependantFname.Text,
                     LastName = dependantLname.Text,
                     DependantNIC = depNic.Text,
@@ -191,7 +213,6 @@ namespace ManPowerWeb
                 dependant.Add(new Dependant
                 {
                     DependantTypeId = int.Parse(ddlDependant.SelectedValue),
-                    EmpId = 0,
                     FirstName = dependantFname.Text,
                     LastName = dependantLname.Text,
                     DependantNIC = depNic.Text,
@@ -228,9 +249,166 @@ namespace ManPowerWeb
             mCertificateNo.Text = null;
             workingCompany.Text = null;
             city.Text = null;
-
-
+             
         }
+
+        protected void addEmployment(object sender, EventArgs e)
+        {
+            if (employmentDetails.Count == 0 && ViewState["employmentDetails"] != null)
+            {
+                employmentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"];
+            }
+
+            employmentDetails.Add(new EmploymentDetails()
+            {
+                ContractTypeId = int.Parse(ddContract.SelectedValue),
+                DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                CompanyName = companyName.Text,
+                EmpID = int.Parse(empNo.Text),
+                StartDate = Convert.ToDateTime(sDate.Text),
+                EndDate = Convert.ToDateTime(eDate.Text),
+                IsResigned = int.Parse(reseg.SelectedValue),
+                RetirementDate = Convert.ToDateTime(retiredDate.Text),
+                Epf = int.Parse(epf.Text)
+            }) ;
+
+            companyName.Text = null;
+            empNo.Text = null;
+            sDate.Text = null;
+            eDate.Text = null;
+            retiredDate.Text = null;
+            epf.Text = null;
+
+
+            ViewState["employmentDetails"] = employmentDetails;
+            emplDetailsGV.DataSource = employmentDetails;
+            emplDetailsGV.DataBind();
+        }
+
+
+        protected void addEducation(object sender, EventArgs e)
+        {
+            if (educationDetails.Count == 0 && ViewState["educationDetails"] != null)
+            {
+                educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+            }
+
+            educationDetails.Add(new EducationDetails()
+            {
+                EmployeeId = 0,
+                EducationTypeId = int.Parse(ddlEducation.SelectedValue),
+                StudiedInstitute = uni.Text,
+                NoOfAttempts = int.Parse (ddlAttempt.SelectedValue),
+                ExamYear = int.Parse(ddlYear.SelectedValue),
+                ExamIndex = index.Text,
+                ExamSubject = sub.Text,
+                ExamStream = stream.Text,
+                ExamGrade = grade.Text,
+                ExamStatus = status.Text
+            });
+
+
+            uni.Text = null;
+            index.Text = null;
+            sub.Text = null;
+            stream.Text = null;
+            grade.Text = null;
+            status.Text = null;
+            
+            ViewState["educationDetails"] = educationDetails;
+            educationGV.DataSource = educationDetails;
+            educationGV.DataBind();
+        }
+
+        protected void addServices(object sender, EventArgs e)
+        {
+            if (employeeServices.Count == 0 && ViewState["employeeServices"] != null)
+            {
+                employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
+            }
+
+            employeeServices.Add(new EmployeeServices()
+            {
+                ServicesTypeId = int.Parse(ddlService.SelectedValue),
+                AppointmentDate = Convert.ToDateTime(appointmentDate.Text),
+                DateAssumedDuty = dateAssumedDuty.Text,
+                MethodOfRecruitment = method.Text,
+                MediumOfRecruitment = medium.Text,
+                ServiceConfirmed = int.Parse(confirmation.Text)
+            });
+
+            appointmentDate.Text = null;
+            dateAssumedDuty.Text = null;
+            method.Text = null;
+            medium.Text = null;
+
+            ViewState["employeeServices"] = employeeServices;
+            servicesGV.DataSource = employeeServices;
+            servicesGV.DataBind();
+        }
+
+        protected void submit(object sender, EventArgs e)
+        {
+            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+            Employee emp = new Employee();
+
+            emp.ReligionId = int.Parse(ddlReligion.SelectedValue);
+            emp.EthnicityId = int.Parse(ddlEthnicity.SelectedValue);
+            emp.EmployeeNIC = nic.Text;
+            emp.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
+            emp.EmployeePassportNumber = empPassport.Text;
+            emp.EmpInitials = initial.Text;
+            emp.LastName = lname.Text;
+            emp.NameWithInitials = nameOfInitials.Text;
+            emp.EmpGender = ddlGender.SelectedValue;
+            emp.DOB = Convert.ToDateTime(dob.Text);
+            emp.MaritalStatus = ddlMaritalStatus.SelectedValue;
+            emp.SupervisorId = 0;
+            emp.ManagerId = 0;
+
+            emp._Dependant = (List<Dependant>)ViewState["dependant"];
+            emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"]; ;
+            emp._EducationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+            emp._EmployeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
+
+            emp._EmergencyContact.Name = ecName.Text;
+            emp._EmergencyContact.DependentToEmployee = ecRelationship.Text;
+            emp._EmergencyContact.EmgAddress = ecAddress.Text;
+            emp._EmergencyContact.EmgTelephone = int.Parse(landLine.Text);
+            emp._EmergencyContact.EmgMobile = int.Parse(ecMobile.Text);
+            emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
+
+            int result1 = employeeController.SaveEmployee(emp);
+
+            if (result1 == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
+
+            }
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            //date.Text = null;
+            //address.Text = null;
+            //link.Text = null;
+            //regNo.Text = null;
+            //position.Text = null;
+            //salary.Text = null;
+            //NoOfVacancy.Text = null;
+            //name.Text = null;
+            //position.Text = null;
+            //contact.Text = null;
+            //whatsapp.Text = null;
+            //email.Text = null;
+            //position.Text = null;
+        }
+
+
 
 
         protected void page1NextClick(object sender, EventArgs e)

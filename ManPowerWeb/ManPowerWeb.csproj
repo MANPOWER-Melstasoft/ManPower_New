@@ -171,6 +171,7 @@
     <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="MaintenanceRequest.aspx" />
     <Content Include="PersonalFiles.aspx" />
     <Content Include="RPReggistration.aspx" />
     <Content Include="Login.aspx" />
@@ -213,6 +214,7 @@
     <Content Include="VacancyRegView.aspx" />
     <Content Include="UserPrivileges.aspx" />
     <Content Include="UserRegister.aspx" />
+    <Content Include="VehicleMeintenance.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -1883,6 +1885,7 @@
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="VMUploadDocuments.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -2069,6 +2072,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MaintenanceRequest.aspx.cs">
+      <DependentUpon>MaintenanceRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRequest.aspx.designer.cs">
+      <DependentUpon>MaintenanceRequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PersonalFiles.aspx.cs">
       <DependentUpon>PersonalFiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2175,12 +2185,26 @@
     <Compile Include="UserRegister.aspx.designer.cs">
       <DependentUpon>UserRegister.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VehicleMeintenance.aspx.cs">
+      <DependentUpon>VehicleMeintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VehicleMeintenance.aspx.designer.cs">
+      <DependentUpon>VehicleMeintenance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="VMUploadDocuments.aspx.cs">
+      <DependentUpon>VMUploadDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VMUploadDocuments.aspx.designer.cs">
+      <DependentUpon>VMUploadDocuments.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

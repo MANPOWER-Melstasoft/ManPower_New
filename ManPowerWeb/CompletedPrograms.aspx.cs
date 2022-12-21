@@ -50,7 +50,7 @@ namespace ManPowerWeb
             //searchList = programPlanController.getCompletedProgramsFilter(date);
             
             searchList = (List<ProgramPlan>)ViewState["ProgramPlanlist"];
-            GridView1.DataSource = searchList.Where(u => u.ConductDate.Date == date.Date);
+            GridView1.DataSource = searchList.Where(u => u.Date.Date == date.Date);
             GridView1.DataBind();
         }
 

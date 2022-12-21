@@ -26,16 +26,16 @@ namespace ManPowerCore.Domain
 
 
         [DBField("DATE")]
-        public DateTime ConductDate { get; set; }
+        public DateTime Date { get; set; }
 
         [DBField("LOCATION")]
-        public string ConductLocation { get; set; }
+        public string Location { get; set; }
 
         [DBField("OUTCOME")]
-        public int ProgramOutcome { get; set; }
+        public int Outcome { get; set; }
 
         [DBField("OUTPUT")]
-        public int ProgramOutput { get; set; }
+        public int Output { get; set; }
 
         [DBField("ACTUAL_OUTPUT")]
         public int ActualOutput { get; set; }
@@ -64,14 +64,14 @@ namespace ManPowerCore.Domain
         [DBField("FEMALE_COUNT")]
         public int FemaleCount { get; set; }
 
-        [DBField("COORDINATEROFFICER")]
+        [DBField("COORDINATER")]
         public string Coordinater { get; set; }
 
         [DBField("REMARK")]
-        public string ProgramRemark { get; set; }
+        public string Remark { get; set; }
 
-        [DBField("PROGRAMNAME")]
-        public string Name { get; set; }
+        [DBField("PROGRAM_NAME")]
+        public string ProgramName { get; set; }
 
         [DBField("FINANCIAL_SOURCE")]
         public string FinancialSource { get; set; }

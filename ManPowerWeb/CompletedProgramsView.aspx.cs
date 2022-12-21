@@ -24,16 +24,16 @@ namespace ManPowerWeb
 
             foreach (var i in pp.Where(u => u.ProgramPlanId == int.Parse(id)))
             {
-                pName.Text = i.Name;
-                place.Text = i.ConductLocation;
-                date.Text = Convert.ToString(i.ConductDate);
+                pName.Text = i.ProgramName;
+                place.Text = i.Location;
+                date.Text = Convert.ToString(i.Date);
                 officer.Text = i.Coordinater;
                 male.Text = Convert.ToString(i.MaleCount);
                 female.Text = Convert.ToString(i.FemaleCount);
                 total.Text = Convert.ToString(i.TotalEstimatedAmount);
                 finSource.Text = i.FinancialSource;
-                outcome1.Text = Convert.ToString(i.ProgramOutcome);
-                output1.Text = Convert.ToString(i.ProgramOutput);
+                outcome1.Text = Convert.ToString(i.Outcome);
+                output1.Text = Convert.ToString(i.Output);
                 output2.Text = Convert.ToString(i.ActualOutput);
                 amt1.Text = Convert.ToString(i.ApprovedAmount);
                 amt2.Text = Convert.ToString(i.ActualAmount);

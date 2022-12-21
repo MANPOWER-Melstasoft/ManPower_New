@@ -34,6 +34,6 @@ namespace ManPowerCore.Domain
         [DBField("OFFICE_PHONE")]
         public int OfficePhone { get; set; }
 
-        public Employee _Employee { get; set; } = new Employee();
+        //public Employee _Employee { get; set; } = new Employee();
     }
 }

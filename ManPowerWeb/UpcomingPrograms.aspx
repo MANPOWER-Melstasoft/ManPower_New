@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpcomingPrograms.aspx.cs" Inherits="ManPowerWeb.UpcomingPrograms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="container" style="margin:40px;padding:30px">
+        <div class="container">
             <h2>Upcomming Programs</h2>
         <br /><br />
 

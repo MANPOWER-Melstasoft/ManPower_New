@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VacancyReg.aspx.cs" Inherits="ManPowerWeb.VacancyReg" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="margin:40px;padding:30px">
+    <div class="container">
     <h2>Company / Vacancy Registration Details</h2>
         <br /><br />
 

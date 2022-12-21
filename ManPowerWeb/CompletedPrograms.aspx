@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CompletedPrograms.aspx.cs" Inherits="ManPowerWeb.CompletedPrograms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="margin:40px;padding:30px">
+    <div class="container">
         <h2>Completed Programs</h2>
         <br /><br />
 
@@ -43,8 +43,8 @@
             <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                 CellPadding="4" GridLines="None">
                 <Columns>
-                    <asp:BoundField DataField="ConductDate" HeaderText="Date" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="ConductLocation" HeaderText="Location" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Date" HeaderText="Date" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="Location" HeaderText="Location" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="ApprovedDate" HeaderText="Approved Date" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="MaleCount" HeaderText="Male Count" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="FemaleCount" HeaderText="Female Count" HeaderStyle-CssClass="table-dark" />

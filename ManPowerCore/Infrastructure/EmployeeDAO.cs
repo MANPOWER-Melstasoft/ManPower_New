@@ -24,25 +24,16 @@ namespace ManPowerCore.Infrastructure
         public int SaveEmployee(Employee emp, DBConnection dbConnection)
         {
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(REIGION_ID,ETHNICITY_ID,NIC,NIC_ISSUE_DATE,PASSPORT_NUMBER" +
-                                            ",INITIAL,LAST_NAME,NAME_DENOTE_BY_INITIAL,GENDER,DATE_OF_BIRTH" +
-                                            ",MARITAL_STATUS,SUPERVISOR_ID,MANAGER_ID) " +
+            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,NIC_Issue_Date,Passport_Number" +
+                                            ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
+                                            ",Marital_Status,Supervisor_Id,Manager_Id) " +
 
                                             "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber " +
                                             ", @EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
                                             ", @MaritalStatus,@SupervisorId,@ManagerId) SELECT SCOPE_IDENTITY() ";
 
 
-            //dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(REIGION_ID,ETHNICITY_ID,NIC,NIC_ISSUE_DATE,PASSPORT_NUMBER" +
-            //                                ",LEAVE_NUMBER,PERMANENT_ADDRESS,TELEPHONE,FAX,MOBILE,PERSONA_EMAIL,PERSONA_FILE_NUMBER,APPOINTMENT_LETTER_NUMBER" +
-            //                                ",SERVICE_TYPE,EMPLOYEE_NUMBER,INITIAL,LAST_NAME,NAME_DENOTE_BY_INITIAL,GENDER,DATE_OF_BIRTH,RETIREMENT_DATE" +
-            //                                ",PLACE_OF_BIRTH,MARITAL_STATUS,SUPERVISOR_ID,MANAGER_ID) " +
-
-            //                                "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber,@leaveNumber " +
-            //                                ", @Adress,@TelephoneNumber,@EmpFax,@empMobile,@Email,@FileNumber,@AppointmentLetterNumber " +
-            //                                ", @ServiceType,@EmpNumber,@EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
-            //                                ", @RetirementDate,@PlaceOfBirth,@MaritalStatus,@SupervisorId,@ManagerId) SELECT SCOPE_IDENTITY() ";
-
+            
             dbConnection.cmd.Parameters.AddWithValue("@ReligionId", emp.ReligionId);
             dbConnection.cmd.Parameters.AddWithValue("@EthnicityId", emp.EthnicityId);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeNIC", emp.EmployeeNIC);
@@ -56,6 +47,17 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@NameWithInitials", emp.NameWithInitials);
             dbConnection.cmd.Parameters.AddWithValue("@EmpGender", emp.EmpGender);
             dbConnection.cmd.Parameters.AddWithValue("@DOB", emp.DOB);
+
+            //dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(REIGION_ID,ETHNICITY_ID,NIC,NIC_ISSUE_DATE,PASSPORT_NUMBER" +
+            //                                ",LEAVE_NUMBER,PERMANENT_ADDRESS,TELEPHONE,FAX,MOBILE,PERSONA_EMAIL,PERSONA_FILE_NUMBER,APPOINTMENT_LETTER_NUMBER" +
+            //                                ",SERVICE_TYPE,EMPLOYEE_NUMBER,INITIAL,LAST_NAME,NAME_DENOTE_BY_INITIAL,GENDER,DATE_OF_BIRTH,RETIREMENT_DATE" +
+            //                                ",PLACE_OF_BIRTH,MARITAL_STATUS,SUPERVISOR_ID,MANAGER_ID) " +
+
+            //                                "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber,@leaveNumber " +
+            //                                ", @Adress,@TelephoneNumber,@EmpFax,@empMobile,@Email,@FileNumber,@AppointmentLetterNumber " +
+            //                                ", @ServiceType,@EmpNumber,@EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
+            //                                ", @RetirementDate,@PlaceOfBirth,@MaritalStatus,@SupervisorId,@ManagerId) SELECT SCOPE_IDENTITY() ";
+
 
             //dbConnection.cmd.Parameters.AddWithValue("@leaveNumber", emp.leaveNumber);
             //dbConnection.cmd.Parameters.AddWithValue("@Adress", emp.Adress);
@@ -73,7 +75,8 @@ namespace ManPowerCore.Infrastructure
             //dbConnection.cmd.Parameters.AddWithValue("@SupervisorId", emp.SupervisorId);
             //dbConnection.cmd.Parameters.AddWithValue("@ManagerId", emp.ManagerId);
 
-            return Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            int result = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            return result;
         }
 
         //public int UpdateProgramType(ProgramType programType, DBConnection dbConnection)

@@ -27,13 +27,12 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_DETAILS(DESIGNATION_ID,EMPLOYEE_ID,COMPANY_NAME,START_DATE " +
+            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYMENT_DETAIL(DESIGNATION_ID,CONTRACT_TYPE_ID,EMPLOYEE_ID,COMPANY_NAME,START_DATE, " +
                 "END_DATE,IS_RESIGNED,RETIREMENT_DATE,EPF_NUMBER)" +
-                " VALUES(@DesignationId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf)"; 
-
-
+                " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf)"; 
 
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", empDetails.DesignationId);
+            dbConnection.cmd.Parameters.AddWithValue("@ContractTypeId", empDetails.ContractTypeId);
             dbConnection.cmd.Parameters.AddWithValue("@EmpID", empDetails.EmpID);
             dbConnection.cmd.Parameters.AddWithValue("@CompanyName", empDetails.CompanyName);
             dbConnection.cmd.Parameters.AddWithValue("@StartDate", empDetails.StartDate);

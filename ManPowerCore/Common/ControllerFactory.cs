@@ -299,8 +299,6 @@ namespace ManPowerCore.Common
 
         }
 
-    }
-}
         public static ServiceTypeController CreateServiceTypeController()
         {
             ServiceTypeController serviceTypeController = new ServiceTypeControllerImpl();
@@ -312,6 +310,41 @@ namespace ManPowerCore.Common
         {
             EmployeeServiceController employeeServiceController = new EmployeeServiceControllerImpl();
             return (EmployeeServiceController)employeeServiceController;
+
+        }
+
+        public static ContractTypeController CreateContractTypeController()
+        {
+            ContractTypeController contractTypeController = new ContractTypeControllerImpl();
+            return (ContractTypeController)contractTypeController;
+
+        }
+
+        public static VehicleMaintenanceController CreateVehicleMaintenanceController()
+        {
+            VehicleMaintenanceController vehicleMaintenanceController = new VehicleMaintenanceControllerImpl();
+            return (VehicleMaintenanceController)vehicleMaintenanceController;
+
+        }
+
+        public static VehicleMaintenaceQuatationController CreateVehicleMaintenaceQuatationController()
+        {
+            VehicleMaintenaceQuatationController vehicleMaintenaceQuatationController = new VehicleMaintenaceQuatationControllerImpl();
+            return (VehicleMaintenaceQuatationController)vehicleMaintenaceQuatationController;
+
+        }
+
+        public static QuatationController CreateQuatationController()
+        {
+            QuatationController quatationController = new QuatationControllerImpl();
+            return (QuatationController)quatationController;
+
+        }
+
+        public static MaintenanceCategoryController CreateMaintenanceCategoryController()
+        {
+            MaintenanceCategoryController maintenanceCategoryController = new MaintenanceCategoryControllerImpl();
+            return (MaintenanceCategoryController)maintenanceCategoryController;
 
         }
 

@@ -102,5 +102,6 @@ namespace ManPowerCore.Domain
         public List<Dependant> _Dependant { get; set; } = new List<Dependant>();
         public List<EmploymentDetails> _EmploymentDetails { get; set; } = new List<EmploymentDetails>();
         public List<EducationDetails> _EducationDetails { get; set; } = new List<EducationDetails>();
+        public List<EmployeeServices> _EmployeeServices { get; set; } = new List<EmployeeServices>();
     }
 }

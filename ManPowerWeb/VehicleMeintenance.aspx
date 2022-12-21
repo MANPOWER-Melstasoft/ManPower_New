@@ -1,18 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VacancyRegSearch.aspx.cs" Inherits="ManPowerWeb.VacancyRegSearch" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VehicleMeintenance.aspx.cs" Inherits="ManPowerWeb.VehicleMeintenance" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="container">
-            <h2>Vacancy Registration</h2>
+            <h2>Vehicle Maintenance</h2>
         <br /><br />
 
         <div class="row">
 			<div class="col-6">
 				<div class="row">
 					<div class="col-3">
-						<label>Year : </label>
+						<label>Category : </label>
 					</div>
 					<div class="col-7">
-						<asp:DropDownList ID="ddlYear" Width="250px" runat="server" AutoPostBack="true" CssClass="btn  btn-primary dropdown-toggle"
+						<asp:DropDownList ID="ddlCategory" Width="250px" runat="server" AutoPostBack="true" CssClass="btn  btn-primary dropdown-toggle"
 								data-bs-toggle="dropdown" aria-expanded="false">
 						</asp:DropDownList>					
 					</div>
@@ -21,16 +20,29 @@
 			<div class="col-6">
 				<div class="row">
 					<div class="col-5">
-						<label>Career Path :</label>
+						<label>Date :</label>
 					</div>
 					<div class="col-7">
-						<asp:DropDownList ID="ddlPosition" Width="250px" runat="server" AutoPostBack="true" CssClass="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false">
-						</asp:DropDownList>
+						<asp:TextBox ID="date" runat="server" name="date" Width="250px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-6">
+				<div class="row">
+					<div class="col-3">
+						<label>Key Word : </label>
+					</div>
+					<div class="col-7">
+						<asp:TextBox ID="keywrd" runat="server" name="date" Width="250px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
 
 			<br /><br />
 		<asp:Button ID="Button1" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" style="width:120px;" />
@@ -38,7 +50,7 @@
 		<br /><br />
 
 		<a href="VacancyReg.aspx">
-			<asp:Button ID="Button2" runat="server" Text="Add New Vacancy" OnClick="isClicked"  CssClass="btn btn-primary" style="width:200px;" />
+			<asp:Button ID="Button2" runat="server" Text="Request Maintenance" OnClick="isClicked"  CssClass="btn btn-primary" style="width:200px;" />
 		</a>
 
 		<div class="table-responsive" style="width: 100%;">

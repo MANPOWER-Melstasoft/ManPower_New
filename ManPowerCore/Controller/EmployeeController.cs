@@ -24,15 +24,16 @@ namespace ManPowerCore.Controller
         DependentDAO dependentDAO = DAOFactory.CreateDependentDAO();
         EducationDetailsDAO educationDetailsDAO = DAOFactory.CreateEducationDetailsDAO();
         EmergencyContactDAO emergencyContactDAO = DAOFactory.CreateEmergencyContactDAO();
+        EmployeeServicesDAO employeeServicesDAO = DAOFactory.CreateEmployeeServicesDAO();
 
         public int SaveEmployee(Employee emp)
         {
-            int id = 0;
+            int id = 2;
 
             try
             {
                 dBConnection = new DBConnection();
-                id = employeeDAO.SaveEmployee(emp, dBConnection);
+                //id = employeeDAO.SaveEmployee(emp, dBConnection);
 
                 if (emp._EmployeeContact.Count > 0)
                 {
@@ -70,8 +71,21 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                emp._EmergencyContact.EmployeeId = id;
-                emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
+                if (emp._EmployeeServices.Count > 0)
+                {
+                    foreach (var item in emp._EmployeeServices)
+                    {
+                        item.EmpId = id;
+                        employeeServicesDAO.SaveEmployeeServices(item, dBConnection);
+                    }
+                }
+
+                if(id != 0)
+                {
+                    emp._EmergencyContact.EmployeeId = id;
+                    emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
+                }
+                
 
                 return 1;
             }

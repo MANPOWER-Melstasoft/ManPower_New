@@ -317,5 +317,11 @@ namespace ManPowerCore.Common
 
         }
 
+        public static StaffLeaveDAO CreateStaffLeaveDAO()
+        {
+            StaffLeaveDAO staffLeaveDAO = new StaffLeaveDAOSqlImpl();
+            return (StaffLeaveDAO)staffLeaveDAO;
+        }
+
     }
 }

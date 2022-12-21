@@ -310,5 +310,12 @@ namespace ManPowerCore.Common
             StaffLeaveAllocationController staffLeaveAllocationController = new StaffLeaveAllocationControllerImpl();
             return (StaffLeaveAllocationController)staffLeaveAllocationController;
         }
+
+        public static StaffLeaveControllerImpl CreateStaffLeaveControllerImpl()
+        {
+            StaffLeaveController staffLeaveController = new StaffLeaveControllerImpl();
+            return (StaffLeaveControllerImpl)staffLeaveController;
+
+        }
     }
 }

@@ -29,12 +29,12 @@ namespace ManPowerCore.Controller
 
         public int SaveEmployee(Employee emp)
         {
-            int id = 2;
+            int id = 0;
 
             try
             {
                 dBConnection = new DBConnection();
-                //id = employeeDAO.SaveEmployee(emp, dBConnection);
+                id = employeeDAO.SaveEmployee(emp, dBConnection);
 
                 if (emp._EmployeeContact.Count > 0)
                 {
@@ -74,6 +74,7 @@ namespace ManPowerCore.Controller
 
                 if (emp._EmployeeServices.Count > 0)
                 {
+                    
                     foreach (var item in emp._EmployeeServices)
                     {
                         item.EmpId = id;

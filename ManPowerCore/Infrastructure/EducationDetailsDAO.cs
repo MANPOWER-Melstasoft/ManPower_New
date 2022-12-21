@@ -21,26 +21,26 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(EMPLOYEE_ID,EDUCATION_TYPE_ID,INSTITUTE,ATTEMPT,YEAR" +
-                                            ",INDEX,SUBJECT,STREAM,GRADE,STATUS) " +
+            dbConnection.cmd.CommandText = "INSERT INTO EDUCATION_DETAILS(EMPLOYEE_ID,EDUCATION_TYPE_ID,INSTITUTE,ATTEMPT,YEAR,INDEX_NO,SUBJECT,STREAM,GRADE,STATUS) " +
 
-                                            "VALUES(@EmployeeId,@EducationTypeId,@ExamIndex,@NoOfAttempts,@ExamYear,@ExamIndex " +
-                                            ", @ExamSubject,@ExamStream,@ExamGrade,@ExamStatus) ";
+                                            "VALUES(@EmployeId,@EduTypeId,@Institute,@Attempts,@Year,@Index,@Subject,@Stream,@Grade,@Status) ";
 
 
 
-            dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", educationDetails.EmployeeId);
-            dbConnection.cmd.Parameters.AddWithValue("@EducationTypeId", educationDetails.EducationTypeId);
-            dbConnection.cmd.Parameters.AddWithValue("@ExamIndex", educationDetails.ExamIndex);
-            dbConnection.cmd.Parameters.AddWithValue("@NoOfAttempts", educationDetails.NoOfAttempts);
-            dbConnection.cmd.Parameters.AddWithValue("@ExamYear", educationDetails.ExamYear);
-            dbConnection.cmd.Parameters.AddWithValue("@ExamIndex", educationDetails.ExamIndex);
-            dbConnection.cmd.Parameters.AddWithValue("@ExamSubject", educationDetails.ExamSubject);
-            dbConnection.cmd.Parameters.AddWithValue("@ExamStream", educationDetails.ExamStream);
-            dbConnection.cmd.Parameters.AddWithValue("@ExamGrade", educationDetails.ExamGrade);
-            dbConnection.cmd.Parameters.AddWithValue("@ExamStatus", educationDetails.ExamStatus);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeId", educationDetails.EmployeeId);
+            dbConnection.cmd.Parameters.AddWithValue("@EduTypeId", educationDetails.EducationTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@Institute", educationDetails.StudiedInstitute);
+            dbConnection.cmd.Parameters.AddWithValue("@Index", educationDetails.ExamIndex);
+            dbConnection.cmd.Parameters.AddWithValue("@Attempts", educationDetails.NoOfAttempts);
+            dbConnection.cmd.Parameters.AddWithValue("@Year", educationDetails.ExamYear);
+            dbConnection.cmd.Parameters.AddWithValue("@Subject", educationDetails.ExamSubject);
+            dbConnection.cmd.Parameters.AddWithValue("@Stream", educationDetails.ExamStream);
+            dbConnection.cmd.Parameters.AddWithValue("@Grade", educationDetails.ExamGrade);
+            dbConnection.cmd.Parameters.AddWithValue("@Status", educationDetails.ExamStatus);
+
 
             dbConnection.cmd.ExecuteNonQuery();
+            dbConnection.cmd.Parameters.Clear();
             return 1;
         }
     }

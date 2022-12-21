@@ -16,7 +16,7 @@ namespace ManPowerCore.Domain
         [DBField("EMPLOYEE_ID")]
         public int EmployeeId { get; set; }
 
-        [DBField("CONTACT_PERSON_NAME")]
+        [DBField("CONTACT_PERSON_NME")]
         public string Name { get; set; }
 
         [DBField("DEPENDENT_TYPE_TO_EMPLOYEE")]

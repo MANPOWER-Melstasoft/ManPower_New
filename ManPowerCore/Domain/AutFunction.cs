@@ -23,6 +23,8 @@ namespace ManPowerCore.Domain
         [DBField("MENU_ICON")]
         public string MenuIcon { get; set; }
 
+        [DBField("HEAD_SECTION")]
+        public int head { get; set; }
 
         public string Status { get; set; }
     }

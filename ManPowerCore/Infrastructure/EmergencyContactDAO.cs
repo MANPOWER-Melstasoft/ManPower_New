@@ -21,13 +21,13 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO EMERGENCY_CONTACT(EMPLOYEE_ID,CONTACT_PERSON_NAME,DEPENDENT_TYPE_TO_EMPLOYEE,ADDRESS, " +
+            dbConnection.cmd.CommandText = "INSERT INTO EMERGENCY_CONTACT(EMPLOYEE_ID,CONTACT_PERSON_NME,DEPENDENT_TYPE_TO_EMPLOYEE,ADDRESS_OF_EMEGENCY_PERSON, " +
                 "MOBILE,TELEPHONE,OFFICE_PHONE)" +
-                "VALUES(@EmployeeId,@Name,@DependentToEmployee,@EmgAddress,@EmgTelephone,@EmgMobile,@OfficePhone)";
+                "VALUES(@EmplId,@Name,@DependentToEmployee,@EmgAddress,@EmgTelephone,@EmgMobile,@OfficePhone)";
 
 
 
-            dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", emergencyContact.EmployeeId);
+            dbConnection.cmd.Parameters.AddWithValue("@EmplId", emergencyContact.EmployeeId);
             dbConnection.cmd.Parameters.AddWithValue("@Name", emergencyContact.Name);
             dbConnection.cmd.Parameters.AddWithValue("@DependentToEmployee", emergencyContact.DependentToEmployee);
             dbConnection.cmd.Parameters.AddWithValue("@EmgAddress", emergencyContact.EmgAddress);
@@ -36,6 +36,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@OfficePhone", emergencyContact.OfficePhone);
 
             dbConnection.cmd.ExecuteNonQuery();
+            dbConnection.cmd.Parameters.Clear();
             return 1;
         }
     }

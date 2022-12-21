@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResourcePerson.aspx.cs" Inherits="ManPowerWeb.ResourcePerson" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResourcePersonReg.aspx.cs" Inherits="ManPowerWeb.ResourcePersonReg" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="padding-left:30px;">
     <h2>Resource Person</h2>
@@ -9,8 +9,8 @@
 				<label>Resource Person Type : </label>
 			</div>
 			<div class="col-9">
-				<asp:DropDownList ID="rpType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"Ty
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+				<asp:TextBox ID="rptype" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+				<asp:RequiredFieldValidator ControlToValidate="rptype" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
 		</div><br />
 
@@ -22,7 +22,7 @@
 				<asp:TextBox ID="nic" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="nic" ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
-		</div>
+		</div><br />
 
 		<div class="row">
 			<div class="col-3">
@@ -32,7 +32,7 @@
 				<asp:TextBox ID="name" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="name" ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
-		</div>
+		</div><br />
 
 		<div class="row">
 			<div class="col-3">
@@ -42,7 +42,7 @@
 				<asp:TextBox ID="desig" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="desig" ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
-		</div>
+		</div><br />
 
 		<div class="row">
 			<div class="col-3">
@@ -52,7 +52,7 @@
 				<asp:TextBox ID="workPlace" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="workPlace" ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
-		</div>
+		</div><br />
 
 		<div class="row">
 			<div class="col-3">
@@ -62,7 +62,7 @@
 				<asp:TextBox ID="qalifications" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="qalifications" ID="RequiredFieldValidator17" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
-		</div>
+		</div><br />
 
 		<div class="row">
 			<div class="col-3">
@@ -72,7 +72,7 @@
 				<asp:TextBox ID="address" runat="server"  Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="address" ID="RequiredFieldValidator18" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
-		</div>
+		</div><br />
 
 		<div class="row">
 			<div class="col-3">

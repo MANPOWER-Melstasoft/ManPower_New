@@ -175,7 +175,7 @@
     <Content Include="js\sb-admin-2.min.js" />
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="PersonalFiles.aspx" />
-    <Content Include="ResourcePerson.aspx" />
+    <Content Include="ResourcePersonReg.aspx" />
     <Content Include="RPReggistration.aspx" />
     <Content Include="LeaveAllocation.aspx" />
     <Content Include="Login.aspx" />
@@ -2148,12 +2148,12 @@
     <Compile Include="RequestTraining.aspx.designer.cs">
       <DependentUpon>RequestTraining.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ResourcePerson.aspx.cs">
-      <DependentUpon>ResourcePerson.aspx</DependentUpon>
+    <Compile Include="ResourcePersonReg.aspx.cs">
+      <DependentUpon>ResourcePersonReg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ResourcePerson.aspx.designer.cs">
-      <DependentUpon>ResourcePerson.aspx</DependentUpon>
+    <Compile Include="ResourcePersonReg.aspx.designer.cs">
+      <DependentUpon>ResourcePersonReg.aspx</DependentUpon>
     </Compile>
     <Compile Include="RPReggistration.aspx.cs">
       <DependentUpon>RPReggistration.aspx</DependentUpon>

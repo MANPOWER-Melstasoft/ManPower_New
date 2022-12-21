@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EntRegistration.aspx.cs" Inherits="ManPowerWeb.EntRegistration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
+    <div class="container" style="padding-left:30px;">
     <h2>Developed Entrepreneur / Self Employers Details</h2>
         <br /><br />
 

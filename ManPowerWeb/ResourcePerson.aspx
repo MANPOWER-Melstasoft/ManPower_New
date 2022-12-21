@@ -1,30 +1,78 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResourcePerson.aspx.cs" Inherits="ManPowerWeb.ResourcePerson" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container">
+    <div class="container" style="padding-left:30px;">
     <h2>Resource Person</h2>
         <br /><br />
 
 		<div class="row">
 			<div class="col-3">
-				<label>Business Type : </label>
+				<label>Resource Person Type : </label>
 			</div>
 			<div class="col-9">
-				<asp:DropDownList ID="businessType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
+				<asp:DropDownList ID="rpType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"Ty
 					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
 			</div>
 		</div><br />
 
 		<div class="row">
 			<div class="col-3">
-				<label>Business Registration Number :</label>
+				<label>NIC :</label>
 			</div>
 			<div class="col-9">
-				<asp:TextBox ID="regNo" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="regNo" ForeColor="Red">*</asp:RequiredFieldValidator>
+				<asp:TextBox ID="nic" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+				<asp:RequiredFieldValidator ControlToValidate="nic" ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
 		</div>
 
-		<br/>
+		<div class="row">
+			<div class="col-3">
+				<label>Name :</label>
+			</div>
+			<div class="col-9">
+				<asp:TextBox ID="name" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+				<asp:RequiredFieldValidator ControlToValidate="name" ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-3">
+				<label>Designation :</label>
+			</div>
+			<div class="col-9">
+				<asp:TextBox ID="desig" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+				<asp:RequiredFieldValidator ControlToValidate="desig" ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-3">
+				<label>Work Place :</label>
+			</div>
+			<div class="col-9">
+				<asp:TextBox ID="workPlace" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+				<asp:RequiredFieldValidator ControlToValidate="workPlace" ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-3">
+				<label>Qualifications :</label>
+			</div>
+			<div class="col-9">
+				<asp:TextBox ID="qalifications" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+				<asp:RequiredFieldValidator ControlToValidate="qalifications" ID="RequiredFieldValidator17" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-3">
+				<label>Persnal Address :</label>
+			</div>
+			<div class="col-9">
+				<asp:TextBox ID="address" runat="server"  Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+				<asp:RequiredFieldValidator ControlToValidate="address" ID="RequiredFieldValidator18" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-3">
@@ -42,6 +90,19 @@
 
 		<div class="row">
 			<div class="col-3">
+				<label>Whatsapp Number : </label>
+			</div>
+			<div class="col-9">
+				<asp:TextBox ID="whatsapp" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+				<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="whatsapp" ForeColor="Red">*</asp:RequiredFieldValidator>
+				<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="whatsapp" ValidationGroup="1"
+                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
+			</div>
+		</div><br />
+
+		<div class="row">
+			<div class="col-3">
 				<label>Email : </label>
 			</div>
 			<div class="col-9">
@@ -50,120 +111,6 @@
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="email" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">Invalid Email</asp:RegularExpressionValidator>
 			</div>
 		</div><br /> 
-
-		
-
-		<div class="row">
-			<div class="col-3">
-				<label>Nature of Business : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="nature" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="nature" ForeColor="Red">*</asp:RequiredFieldValidator>
-			</div>
-		</div><br /> 
-
-		<div class="row">
-			<div class="col-3">
-				<label>Start Date : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="sDate" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="sDate" ForeColor="Red">*</asp:RequiredFieldValidator>
-			</div>
-		</div>
-		<br />
-
-
-		<div class="row">
-			<div class="col-3">
-				<label>Average Monthly Income : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="income" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="income" ForeColor="Red">*</asp:RequiredFieldValidator>
-				<asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="income" runat="server" ErrorMessage="Should be a Nummeric Value" ForeColor="Red" ValidationExpression="\d+$">Should be a Nummeric Value</asp:RegularExpressionValidator>
-			</div>
-		</div><br /> 
-
-		
-
-		<div class="row">
-			<div class="col-3">
-				<label>Number of Workers : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="workers" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="workers" ForeColor="Red">*</asp:RequiredFieldValidator>
-				<asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="workers" runat="server" ErrorMessage="Should be a Nummeric Value" ForeColor="Red" ValidationExpression="\d+$">Should be a Nummeric Value</asp:RegularExpressionValidator>
-			</div>
-		</div><br /> 
-
-		<div class="row">
-			<div class="col-3">
-				<label>Market Type : </label>
-			</div>
-			<div class="col-9">
-				<asp:DropDownList ID="marketType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
-			</div>
-		</div><br />
-
-		<div class="row">
-			<div class="col-3">
-				<label>District : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="district" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="district" ForeColor="Red">*</asp:RequiredFieldValidator>
-			</div>
-		</div><br />
-
-		<div class="row">
-			<div class="col-3">
-				<label>Divisional Secretary : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="ds" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="ds" ForeColor="Red">*</asp:RequiredFieldValidator>
-			</div>
-		</div><br /><br />
-
-		<h4><b>Facilitatin for Business Plan Preparation</b></h4>
-		<br />
-
-		<div class="row">
-			<div class="col-3">
-				<label>Date : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="date" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
-				<asp:RequiredFieldValidator ControlToValidate="date" ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
-			</div>
-		</div><br />
-
-		<div class="row">
-			<div class="col-3">
-				<label>Bank Loan Arrangement : </label>
-			</div>
-			<div class="col-9">
-				<asp:DropDownList ID="bankLoan" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
-			</div>
-		</div><br /> <br />
-
-		<div class="row">
-			<div class="col-3">
-				<label>Facilitation Type : </label>
-			</div>
-			<div class="col-9">
-				<asp:TextBox ID="fType" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-				<asp:RequiredFieldValidator ControlToValidate="fType" ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
-			</div>
-		</div><br />
-
-
-		<br />
 
 		<div class="row">
 			<div class="col-2">

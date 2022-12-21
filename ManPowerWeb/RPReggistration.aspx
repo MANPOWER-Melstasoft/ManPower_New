@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RPReggistration.aspx.cs" Inherits="ManPowerWeb.RPReggistration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="container">
+    <div class="container" style="padding-left:30px;">
     <h2>Individual Beneficiary Registration</h2>
         <br /><br />
 

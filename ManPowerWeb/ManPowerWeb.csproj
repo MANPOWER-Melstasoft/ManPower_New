@@ -111,6 +111,7 @@
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
     <Content Include="AddPosition.aspx" />
+    <Content Include="AddTrainingRequest.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
     <Content Include="CompletedPrograms.aspx" />
@@ -180,6 +181,7 @@
     <Content Include="planning.aspx" />
     <Content Include="planningEdit.aspx" />
     <Content Include="ProgramCalander.aspx" />
+    <Content Include="RequestTraining.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1928,6 +1930,13 @@
     <Compile Include="AddPosition.aspx.designer.cs">
       <DependentUpon>AddPosition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddTrainingRequest.aspx.cs">
+      <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddTrainingRequest.aspx.designer.cs">
+      <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AnnualTarget.aspx.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2131,6 +2140,13 @@
       <DependentUpon>ProgramCalander.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestTraining.aspx.cs">
+      <DependentUpon>RequestTraining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestTraining.aspx.designer.cs">
+      <DependentUpon>RequestTraining.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RPReggistration.aspx.cs">
       <DependentUpon>RPReggistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

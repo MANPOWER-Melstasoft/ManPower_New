@@ -50,7 +50,7 @@ namespace ManPowerWeb
         {
 
             ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
-            resourcePeopleList = resourcePersonController.GetAllResourcePerson();
+            //resourcePeopleList = resourcePersonController.GetAllResourcePerson();
 
 
 

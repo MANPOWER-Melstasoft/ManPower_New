@@ -28,7 +28,7 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           // BindDataSource();
+            // BindDataSource();
             //diloagBox.Visible = false;
 
             if (!IsPostBack)
@@ -49,7 +49,7 @@ namespace ManPowerWeb
             programPlans = programPlanController.GetAllProgramPlan(false, false, false, false, false, false);
 
             ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
-            resName = resourcePersonController.GetAllResourcePerson();
+            //resName = resourcePersonController.GetAllResourcePerson();
 
             ProgramController programController = ControllerFactory.CreateProgramController();
             program = programController.GetAllProgram(false);
@@ -125,7 +125,7 @@ namespace ManPowerWeb
             program = programController.GetAllProgram(false);
             if (ddlResourcePerson.SelectedValue != "")
             {
-                ddlResourcePerson.DataSource = resName.Where(u => u.ResoursePersonId.ToString() == ddlResourcePerson.SelectedValue);
+                //ddlResourcePerson.DataSource = resName.Where(u => u.ResoursePersonId.ToString() == ddlResourcePerson.SelectedValue);
                 ddlResourcePerson.DataBind();
                 ddlResourcePerson.DataTextField = "Name";
                 ddlResourcePerson.DataValueField = "ResoursePersonId";

@@ -47,7 +47,7 @@
                     </div>
                     <div class="row mb-3" style="padding-top: 20px;">
                         <div class="col-sm-6" style="padding-left: 60px;">
-                            <asp:Button ID="btnSave" runat="server" Text="Submit to Approval" CssClass="btn btn-secondary btn-user " BackColor="#51E567 " BorderColor="#51E567" Style="width: 200px;" />
+                            <asp:Button ID="btnSave" runat="server" Text="Submit to Approval" CssClass="btn btn-secondary btn-user " BackColor="#51E567 " BorderColor="#51E567" Style="width: 200px;" OnClick="btnSave_Click" />
                         </div>
                         <div class="col-sm-6" style="padding-left: 60px;">
                             <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-secondary btn-user " BackColor="#565656" BorderColor="#565656" Style="width: 200px;" />

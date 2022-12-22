@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="PersonalFiles.aspx.cs" Inherits="ManPowerWeb.PersonalFiles" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="true" CodeBehind="PersonalFiles.aspx.cs" Inherits="ManPowerWeb.PersonalFiles" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" >
 	<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 	<asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -10,7 +10,7 @@
 		<%--<%int count = 0; %>
 		<%if (Count == 0) { %>--%>
 
-		<div id="id0" runat="server">
+		<div id="id1" runat="server">
 			<h4><b>Personal Details</b></h4>
 
 			<br />
@@ -22,6 +22,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="lname" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="lname" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -33,6 +34,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="initial" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="initial" ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -46,6 +48,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="nameOfInitials" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="nameOfInitials" ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -87,7 +90,7 @@
 						</div>
 					</div>
 				</div>
-			</div><br />
+			</div><br /><br />
 
 			<div class="row">
 				<div class="col-6">
@@ -97,6 +100,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="dob" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="dob" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -122,6 +126,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="nic" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="nic" ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -133,6 +138,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="nicIssuedDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="nicIssuedDate" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -146,6 +152,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="empPassport" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="empPassport" ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -155,7 +162,7 @@
 
 			<div class="row justify-content-end">
 				<div class="col-3">
-					<asp:Button runat="server" ID="page1" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px"  onClick="page1NextClick"/>
+					<asp:Button runat="server" ID="page1" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px"  onClick="page1NextClick" ValidationGroup="1"/>
 				</div>
 			</div><br />
 		</div>
@@ -167,7 +174,7 @@
 
 		<%else if (Count == 1) { %>--%>
 
-		<div id="id1" runat="server">
+		<div id="id2" runat="server">
 
 
 			<h4><b>Employement Details</b></h4>
@@ -198,7 +205,7 @@
 						</div>
 					</div>
 				</div>
-			</div><br />
+			</div><br /><br />
 
 			<div class="row">
 				<div class="col-6">
@@ -208,6 +215,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="companyName" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="companyName" ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -219,6 +227,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="empNo" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="empNo" ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -232,6 +241,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="sDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="sDate" ID="RequiredFieldValidator12" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -243,6 +253,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="eDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="eDate" ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -256,6 +267,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="retiredDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="retiredDate" ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -266,7 +278,8 @@
 							<label>Epf : </label>
 						</div>
 						<div class="col-8">
-							<asp:TextBox ID="epf" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:TextBox ID="epf" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="epf" ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -289,7 +302,7 @@
 				</div>
 			</div><br />
 
-			<asp:Button runat="server" ID="Button3" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addEmployment"/>
+			<asp:Button runat="server" ID="Button3" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addEmployment" ValidationGroup="2"/>
 
 			<br /><br />
 
@@ -314,7 +327,7 @@
 					<asp:Button runat="server" ID="page21" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page2PrevClick"/>
 				</div>
 				<div class="col-3" style="text-align:end">
-					<asp:Button runat="server" ID="page22" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page2NextClick" />
+					<asp:Button runat="server" ID="page22" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page2NextClick"/>
 				</div>
 			</div><br />
 
@@ -325,7 +338,7 @@
 
 		<%-----------------------------------------------------------%>
 
-		<div id="id2" runat="server">
+		<div id="id3" runat="server">
 			<h4><b>Dependant Details</b></h4>
 
 			<br />
@@ -349,6 +362,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="dependantRelationship" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="dependantRelationship" ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -362,7 +376,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="dependantFname" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-						</div>
+							<asp:RequiredFieldValidator ControlToValidate="dependantFname" ID="RequiredFieldValidator17" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						</div>
 					</div>
 				</div>
 
@@ -373,7 +387,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="dependantLname" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-						</div>
+							<asp:RequiredFieldValidator ControlToValidate="dependantLname" ID="RequiredFieldValidator18" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						</div>
 					</div>
 				</div>
 			</div><br />
@@ -386,7 +400,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="depDob" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
-						</div>
+							<asp:RequiredFieldValidator ControlToValidate="depDob" ID="RequiredFieldValidator19" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						</div>
 					</div>
 				</div>
 
@@ -396,8 +410,8 @@
 							<label>Birth Certificate Number : </label>
 						</div>
 						<div class="col-8" style="text-align:right">
-							<asp:TextBox ID="bcNumber" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-						</div>
+							<asp:TextBox ID="bcNumber" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="empNo" ID="RequiredFieldValidator20" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						</div>
 					</div>
 				</div>
 			</div><br />
@@ -410,6 +424,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="ppNumber" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="ppNumber" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						
 						</div>
 					</div>
 				</div>
@@ -421,6 +436,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="sickness" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="sickness" ID="RequiredFieldValidator22" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						
 						</div>
 					</div>
 				</div>
@@ -437,6 +453,7 @@
 								</div>
 								<div class="col-8">
 									<asp:TextBox ID="mDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+									<asp:RequiredFieldValidator ControlToValidate="mDate" ID="RequiredFieldValidator23" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
 								</div>
 							</div>
 						</div>
@@ -447,7 +464,8 @@
 									<label>Marriage Certificate Number : </label>
 								</div>
 								<div class="col-8">
-									<asp:TextBox ID="mCertificateNo" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+									<asp:TextBox ID="mCertificateNo" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+									<asp:RequiredFieldValidator ControlToValidate="mCertificateNo" ID="RequiredFieldValidator24" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
 								</div>
 							</div>
 						</div>
@@ -461,6 +479,7 @@
 								</div>
 								<div class="col-8">
 									<asp:TextBox ID="depNic" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+									<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator25" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
 								</div>
 							</div>
 						</div>
@@ -472,6 +491,7 @@
 								</div>
 								<div class="col-8">
 									<asp:TextBox ID="workingCompany" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+									<asp:RequiredFieldValidator ControlToValidate="workingCompany" ID="RequiredFieldValidator26" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
 								</div>
 							</div>
 						</div>
@@ -480,7 +500,7 @@
 
 		<br /><br />
 
-			<asp:Button runat="server" ID="add" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addDependant"/>
+			<asp:Button runat="server" ID="add" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addDependant" ValidationGroup="3"/>
 
 			<br /><br />
 
@@ -507,15 +527,15 @@
 				<asp:Button runat="server" ID="page31" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page3PrevClick"/>
 			</div>
 			<div class="col-3"  style="text-align:end">
-				<asp:Button runat="server" ID="page32" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page3NextClick" />
+				<asp:Button runat="server" ID="page32" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page3NextClick"/>
 			</div>
 		</div><br />
 	</div>
 
 		<%---------------------------------------------------------%>
 
-		<div id="id3" runat="server">
-			<h4><b>Contact Details</b></h4>
+		<div id="id4" runat="server">
+			<h4><b>Employee Contact Details</b></h4>
 
 			<br />
 			<div class="row">
@@ -526,6 +546,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="address" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="address" ID="RequiredFieldValidator27" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -537,6 +558,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="devsec" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="devsec" ID="RequiredFieldValidator28" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -550,6 +572,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="city" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="city" ID="RequiredFieldValidator29" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -561,6 +584,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="district" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="district" ID="RequiredFieldValidator30" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -574,6 +598,10 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="telephone" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="telephone" ID="RequiredFieldValidator31" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="telephone" ValidationGroup="4"
+                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -584,7 +612,8 @@
 							<label>Postal Code : </label>
 						</div>
 						<div class="col-8" style="text-align:right">
-							<asp:TextBox ID="postalCode" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:TextBox ID="postalCode" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator32" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -598,6 +627,9 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="email" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator33" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ValidationGroup="4" ID="RegularExpressionValidator4" ControlToValidate="email" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+							Invalid Email</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -605,9 +637,19 @@
 
 		<br /><br />
 
+			<div class="row justify-content-around">
+			<div class="col-9">
+				<asp:Button runat="server" ID="Button1" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page4PrevClick"/>
+			</div>
+			<div class="col-3"  style="text-align:end">
+				<asp:Button runat="server" ID="Button6" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page4NextClick" ValidationGroup="4"/>
+			</div>
+		</div><br />
+		</div>
+
 		<%--<% } %>--%>
 
-
+		<div id="id5" runat="server">
 			<h4><b>Emergency Contact Details</b></h4>
 
 			<br /><br />
@@ -619,6 +661,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="ecName" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator34" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -630,6 +673,10 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="landLine" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator35" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="5"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="landLine" ValidationGroup="5"
+                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -643,6 +690,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="ecRelationship" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator36" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="5"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -654,6 +702,10 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="ecOfficePhone" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator37" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="5"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="ecMobile" ValidationGroup="5"
+                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -667,6 +719,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="ecAddress" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="ecAddress" ID="RequiredFieldValidator38" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="5"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -678,6 +731,10 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="ecMobile" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator39" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="5"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ID="revMobNo" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="ecMobile" ValidationGroup="5"
+                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -691,6 +748,9 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="ecEmail" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator40" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="5"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ValidationGroup="5" ID="RegularExpressionValidator2" ControlToValidate="ecEmail" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+							Invalid Email</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -702,10 +762,10 @@
 
 		<div class="row justify-content-around">
 			<div class="col-9">
-				<asp:Button runat="server" ID="page41" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page4PrevClick"/>
+				<asp:Button runat="server" ID="page41" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page5PrevClick"/>
 			</div>
 			<div class="col-3"  style="text-align:end">
-				<asp:Button runat="server" ID="page42" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page4NextClick" />
+				<asp:Button runat="server" ID="page42" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page5NextClick" ValidationGroup="5"/>
 			</div>
 		</div><br />
 	</div>
@@ -713,7 +773,7 @@
 		
 		<%-----------------------------------------------------------%>
 
-		<div id="id4" runat="server">
+		<div id="id6" runat="server">
 			<h4><b>Education Details</b></h4>
 
 			<br /><br />
@@ -737,6 +797,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="uni" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="uni" ID="RequiredFieldValidator41" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -776,6 +837,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="index" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="index" ID="RequiredFieldValidator42" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -787,6 +849,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="sub" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="sub" ID="RequiredFieldValidator43" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -800,6 +863,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="stream" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="stream" ID="RequiredFieldValidator44" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -811,6 +875,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="grade" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="grade" ID="RequiredFieldValidator45" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -824,13 +889,14 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="status" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="status" ID="RequiredFieldValidator46" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
 				
 			</div><br />
 
-			<asp:Button runat="server" ID="Button4" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addEducation"/>
+			<asp:Button runat="server" ID="Button4" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addEducation" ValidationGroup="6"/>
 
 			<br /><br />
 
@@ -855,15 +921,16 @@
 
 		<div class="row justify-content-around">
 			<div class="col-9">
-				<asp:Button runat="server" ID="aa" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page5PrevClick"/>
+				<asp:Button runat="server" ID="aa" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page6PrevClick"/>
 			</div>
 			<div class="col-3"  style="text-align:end">
-				<asp:Button runat="server" ID="Button2" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page5NextClick" />
+				<asp:Button runat="server" ID="Button2" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width ="130px" onClick="page6NextClick"/>
 			</div>
 		</div><br />
 	</div>
 
-		<div id="id5" runat="server">
+
+		<div id="id7" runat="server">
 			<h4><b>Employee Services Details</b></h4>
 
 			<br /><br />
@@ -887,6 +954,7 @@
 						</div>
 						<div class="col-8" style="text-align:right">
 							<asp:TextBox ID="appointmentDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="appointmentDate" ID="RequiredFieldValidator47" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -900,6 +968,7 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="dateAssumedDuty" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="dateAssumedDuty" ID="RequiredFieldValidator48" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
@@ -916,6 +985,7 @@
 							</div>
 							<div class="col-8" style="text-align:right">
 								<asp:TextBox ID="medium" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+								<asp:RequiredFieldValidator ControlToValidate="medium" ID="RequiredFieldValidator49" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7"  ForeColor="Red">*</asp:RequiredFieldValidator>
 							</div>
 						</div>
 					</div>
@@ -927,6 +997,7 @@
 							</div>
 							<div class="col-8" style="text-align:right">
 								<asp:TextBox ID="method" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+								<asp:RequiredFieldValidator ControlToValidate="method" ID="RequiredFieldValidator50" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7"  ForeColor="Red">*</asp:RequiredFieldValidator>
 							</div>
 						</div>
 					</div>
@@ -945,13 +1016,13 @@
                                     <asp:ListItem Value="1">Yes</asp:ListItem>
                                     <asp:ListItem Value="2">No</asp:ListItem>
                                 </asp:RadioButtonList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="confirmation" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="confirmation" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
 			</div><br />
 
-			<asp:Button runat="server" ID="Button5" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addServices"/>
+			<asp:Button runat="server" ID="Button5" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addServices" ValidationGroup="7"/>
 
 			<br /><br />
 
@@ -964,7 +1035,7 @@
 						<asp:BoundField HeaderText="Date Assumed Duty" DataField="DateAssumedDuty" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Method Of Recruitment" DataField="MethodOfRecruitment" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Medium Of Recruitment" DataField="MediumOfRecruitment" HeaderStyle-CssClass="table-dark" />
-<%--						<asp:BoundField HeaderText="Service Confirmed" DataField="ServiceConfirmed" HeaderStyle-CssClass="table-dark" />--%>
+<%--				    <asp:BoundField HeaderText="Service Confirmed" DataField="ServiceConfirmed" HeaderStyle-CssClass="table-dark" />--%>
 					</Columns>
 				</asp:GridView>
 			</div>
@@ -976,7 +1047,7 @@
 
 		<div class="row justify-content-around">
 			<div class="col-9">
-				<asp:Button runat="server" ID="nn" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page6PrevClick"/>
+				<asp:Button runat="server" ID="nn" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  Width ="130px" onClick="page7PrevClick"/>
 			</div>
 			<div class="col-3"  style="text-align:end">
 				<asp:Button runat="server" ID="mm" Text="Submit" CssClass="btn btn-danger btn-user btn-block" Width ="130px" onClick="submit"/>

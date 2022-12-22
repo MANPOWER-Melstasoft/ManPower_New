@@ -26,7 +26,7 @@ namespace ManPowerCore.Domain
         [DBField("YEAR")]
         public int ExamYear { get; set; }
 
-        [DBField("INDEX")]
+        [DBField("INDEX_NO")]
         public string ExamIndex { get; set; }
 
         [DBField("SUBJECT")]

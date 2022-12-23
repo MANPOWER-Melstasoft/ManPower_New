@@ -109,6 +109,7 @@
     <Compile Include="Controller\UserTypeController.cs" />
     <Compile Include="Controller\VehicleMaintenaceQuatationController.cs" />
     <Compile Include="Controller\VehicleMaintenanceController.cs" />
+    <Compile Include="Controller\VoteAllocationController.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
     <Compile Include="Domain\AutSystemRoleFunction.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Domain\UserType.cs" />
     <Compile Include="Domain\VehicleMaintenanceQuatation.cs" />
     <Compile Include="Domain\VehicleMeintenance.cs" />
+    <Compile Include="Domain\VoteAllocation.cs" />
     <Compile Include="Infrastructure\AutFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutUserFunctionDAO.cs" />
@@ -232,6 +234,7 @@
     <Compile Include="Infrastructure\UserTypeDAO.cs" />
     <Compile Include="Infrastructure\VehicleMaintenaceQuatationDAO.cs" />
     <Compile Include="Infrastructure\VehicleMaintenanceDAO.cs" />
+    <Compile Include="Infrastructure\VoteAllocationDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

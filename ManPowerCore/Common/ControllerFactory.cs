@@ -1,4 +1,5 @@
 ﻿using ManPowerCore.Controller;
+using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -378,6 +379,12 @@ namespace ManPowerCore.Common
             TrainingRequestController trainingRequestController = new TrainingRequestControllerImpl();
             return (TrainingRequestController)trainingRequestController;
 
+        }
+
+        public static VoteAllocationController CreateVoteAllocationController()
+        {
+            VoteAllocationController voteAllocationController = new VoteAllocationControllerImpl();
+            return (VoteAllocationController)voteAllocationController;
         }
 
     }

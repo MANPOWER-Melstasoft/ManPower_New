@@ -370,5 +370,11 @@ namespace ManPowerCore.Common
             return (ReportDAO)reportDAO;
         }
 
+        public static VoteAllocationDAO CreateVoteAllocationDAO()
+        {
+            VoteAllocationDAO voteAllocationDAO = new VoteAllocationDAOSqlImpl();
+            return (VoteAllocationDAO)voteAllocationDAO;
+        }
+
     }
 }

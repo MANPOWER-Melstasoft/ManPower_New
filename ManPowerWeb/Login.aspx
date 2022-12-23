@@ -64,7 +64,7 @@
                             </div>
                             <div class="form-group d-flex justify-content-center">
                                 <a class="small" href="#"></a>
-                                <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary btn-block" Width="400px" Font-Bold="true" OnClick="btnLogin_Click" />
+                                &nbsp;<asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary btn-lg" Font-Bold="true" OnClick="btnLogin_Click" />
                             </div>
 
                         </div>

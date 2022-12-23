@@ -155,8 +155,8 @@ namespace ManPowerCore.Controller
             {
                 if (dBConnection.con.State == System.Data.ConnectionState.Open)
                     dBConnection.Commit();
-            }
         }
-
     }
+
+}
 }

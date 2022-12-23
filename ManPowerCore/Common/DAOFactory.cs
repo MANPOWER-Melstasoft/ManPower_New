@@ -364,10 +364,10 @@ namespace ManPowerCore.Common
             return (StaffLeaveDAO)staffLeaveDAO;
         }
 
-        public static VoteTypeDAO CreateVoteTypeDAO()
+        public static ReportDAO CreateReportDAO()
         {
-            VoteTypeDAO voteTypeDAO = new VoteTypeDAOSqlImpl();
-            return (VoteTypeDAO)voteTypeDAO;
+            ReportDAO reportDAO = new ReportDAOSqlImpl();
+            return (ReportDAO)reportDAO;
         }
 
         public static VoteAllocationDAO CreateVoteAllocationDAO()
@@ -375,6 +375,18 @@ namespace ManPowerCore.Common
             VoteAllocationDAO voteAllocationDAO = new VoteAllocationDAOSqlImpl();
             return (VoteAllocationDAO)voteAllocationDAO;
         }
+
+        public static VoteTypeDAO CreateVoteTypeDAO()
+        {
+            VoteTypeDAO voteTypeDAO = new VoteTypeDAOSqlImpl();
+            return (VoteTypeDAO)voteTypeDAO;
+        }
+
+        //public static VoteAllocationDAO CreateVoteAllocationDAO()
+        //{
+        //    VoteAllocationDAO voteAllocationDAO = new VoteAllocationDAOSqlImpl();
+        //    return (VoteAllocationDAO)voteAllocationDAO;
+        //}
 
         public static VoteLedgerDAO CreateVoteLedgerDAO()
         {

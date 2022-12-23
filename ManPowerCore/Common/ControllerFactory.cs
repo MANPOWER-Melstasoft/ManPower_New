@@ -1,4 +1,5 @@
 ﻿using ManPowerCore.Controller;
+using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -367,12 +368,23 @@ namespace ManPowerCore.Common
             return (MaintenanceCategoryController)maintenanceCategoryController;
 
         }
+        public static ReportController CreateReportController()
+        {
+            ReportController reportController = new ReportControllerImpl();
+            return (ReportController)reportController;
+        }
 
         public static TrainingRequestController CreateTrainingRequestController()
         {
             TrainingRequestController trainingRequestController = new TrainingRequestControllerImpl();
             return (TrainingRequestController)trainingRequestController;
 
+        }
+
+        public static VoteAllocationController CreateVoteAllocationController()
+        {
+            VoteAllocationController voteAllocationController = new VoteAllocationControllerImpl();
+            return (VoteAllocationController)voteAllocationController;
         }
 
         public static VoteTypeController CreateVoteTypeController()
@@ -382,12 +394,12 @@ namespace ManPowerCore.Common
 
         }
 
-        public static VoteAllocationController CreateVoteAllocationController()
-        {
-            VoteAllocationController voteAllocationController = new VoteAllocationControllerImpl();
-            return (VoteAllocationController)voteAllocationController;
+        //public static VoteAllocationController CreateVoteAllocationController()
+        //{
+        //    VoteAllocationController voteAllocationController = new VoteAllocationControllerImpl();
+        //    return (VoteAllocationController)voteAllocationController;
 
-        }
+        //}
 
         public static VoteLedgerController CreateVoteLedgerController()
         {

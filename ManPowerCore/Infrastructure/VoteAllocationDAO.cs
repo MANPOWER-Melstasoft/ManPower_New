@@ -2,6 +2,7 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,7 +79,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             if (with0)
-                dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation";
+            dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation";
             else
                 dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation WHERE Is_Active = 1";
 

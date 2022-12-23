@@ -18,7 +18,7 @@
                                 <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="form-control form-control-user" Width="250px">
+                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlVote" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="txtVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>

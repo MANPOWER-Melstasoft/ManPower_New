@@ -27,6 +27,7 @@ namespace ManPowerWeb
         List<ProgramTarget> allTargets = new List<ProgramTarget>();
         List<Possitions> PositionList = new List<Possitions>();
         List<Program> program = new List<Program>();
+        List<VoteAllocation> voteAllocationList = new List<VoteAllocation>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -60,12 +61,15 @@ namespace ManPowerWeb
                 bindProgram();
 
                 int year = DateTime.Now.Year;
+                ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
                 for (int i = year; i <= year + 5; i++)
                 {
                     ListItem li = new ListItem(i.ToString());
                     ddlYear.Items.Add(li);
                 }
                 ddlYear.Items.FindByText(year.ToString()).Selected = true;
+
+
 
             }
 
@@ -116,6 +120,9 @@ namespace ManPowerWeb
             ddlOfficer.DataTextField = "Name";
             ddlOfficer.DataBind();
 
+
+
+
         }
 
 
@@ -165,6 +172,17 @@ namespace ManPowerWeb
             }
         }
 
+        private void bindVote(string year)
+        {
+            VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+
+            voteAllocationList = voteAllocationController.getallVoteAllocation();
+            ddlVote.DataSource = voteAllocationList;
+            ddlVote.DataTextField = "VoteNumber";
+            ddlVote.DataValueField = "VoteId";
+            ddlVote.DataBind();
+        }
+
         private void bindOficerRecomendation()
         {
             List<SystemUser> listOficerRecomendation = new List<SystemUser>();
@@ -190,7 +208,7 @@ namespace ManPowerWeb
             programTarget.Title = ddlProgram.SelectedItem.Text;
             programTarget.Description = txtDescription.Text;
             programTarget.Instractions = txtInstructions.Text;
-            programTarget.VoteNumber = txtVote.Text;
+            programTarget.VoteNumber = ddlVote.SelectedItem.Text;
             programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
@@ -279,6 +297,12 @@ namespace ManPowerWeb
         protected void btnSendToReccomendation_Click(object sender, EventArgs e)
         {
             pnlDialogBox.Visible = true;
+        }
+
+        protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlYear.SelectedIndex != -1)
+                bindVote(ddlYear.Text);
         }
     }
 }

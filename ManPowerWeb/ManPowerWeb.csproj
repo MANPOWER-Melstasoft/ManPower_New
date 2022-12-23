@@ -111,9 +111,14 @@
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
     <Content Include="AddPosition.aspx" />
+    <Content Include="AddProgram.aspx" />
     <Content Include="AddTrainingRequest.aspx" />
+    <Content Include="AddVoteAllocation.aspx" />
+    <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="ApproveLeave.aspx" />
+    <Content Include="ApproveLeaveView.aspx" />
     <Content Include="CompletedPrograms.aspx" />
     <Content Include="CompletedProgramsView.aspx" />
     <Content Include="AnnualTargetRecomendationView.aspx" />
@@ -135,6 +140,7 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME21Front.aspx" />
     <Content Include="DME24.aspx" />
     <Content Include="EntRegistration.aspx" />
     <Content Include="DME22.aspx" />
@@ -173,6 +179,7 @@
     <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="LeaveBalance.aspx" />
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="PersonalFiles.aspx" />
     <Content Include="ResourcePersonReg.aspx" />
@@ -1931,12 +1938,33 @@
     <Compile Include="AddPosition.aspx.designer.cs">
       <DependentUpon>AddPosition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddProgram.aspx.cs">
+      <DependentUpon>AddProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddProgram.aspx.designer.cs">
+      <DependentUpon>AddProgram.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddTrainingRequest.aspx.cs">
       <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AddTrainingRequest.aspx.designer.cs">
       <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVoteAllocation.aspx.cs">
+      <DependentUpon>AddVoteAllocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVoteAllocation.aspx.designer.cs">
+      <DependentUpon>AddVoteAllocation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVoteType.aspx.cs">
+      <DependentUpon>AddVoteType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVoteType.aspx.designer.cs">
+      <DependentUpon>AddVoteType.aspx</DependentUpon>
     </Compile>
     <Compile Include="AnnualTarget.aspx.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>
@@ -1994,6 +2022,20 @@
     <Compile Include="ApproveDME22Render.aspx.designer.cs">
       <DependentUpon>ApproveDME22Render.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveLeave.aspx.cs">
+      <DependentUpon>ApproveLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLeave.aspx.designer.cs">
+      <DependentUpon>ApproveLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveLeaveView.aspx.cs">
+      <DependentUpon>ApproveLeaveView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLeaveView.aspx.designer.cs">
+      <DependentUpon>ApproveLeaveView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -2045,6 +2087,13 @@
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DME21Front.aspx.cs">
+      <DependentUpon>DME21Front.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME21Front.aspx.designer.cs">
+      <DependentUpon>DME21Front.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DME24.aspx.cs">
       <DependentUpon>DME24.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2090,6 +2139,13 @@
     <Compile Include="EncryptDecryptQueryString.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveBalance.aspx.cs">
+      <DependentUpon>LeaveBalance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveBalance.aspx.designer.cs">
+      <DependentUpon>LeaveBalance.aspx</DependentUpon>
     </Compile>
     <Compile Include="MaintenanceRequest.aspx.cs">
       <DependentUpon>MaintenanceRequest.aspx</DependentUpon>

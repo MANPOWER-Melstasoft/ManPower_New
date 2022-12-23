@@ -31,7 +31,7 @@ namespace ManPowerCore.Infrastructure
 
         public int AddRequest(Training_Request trainingrequest, DBConnection dbConnection)
         {
-            dbConnection.cmd.CommandText = "INSERT INTO TRAINING_REQUEST(PROGRAM_DATE,PROGRAM_ID,REQUESTED_DATE,IS_APPROVED,APPROVED_BY,APPROVED_DATE,IS_ACTIVE) VALUES('" + trainingrequest.ProgramDate + "','" + trainingrequest.ProgramId + "','" + trainingrequest.ApprovedBy + "','" + trainingrequest.ApprovedDate + "',1) SELECT SCOPE_IDENTITY()";
+            dbConnection.cmd.CommandText = "INSERT INTO TRAINING_REQUEST(EMPLOYEE_ID,PROGRAM_DATE,PROGRAM_ID,REQUESTED_DATE,Requested_user_id,APPROVED_BY,APPROVED_DATE,Status_ID,Training_Category,Institute,Content_type,Doc_Upload) VALUES('" + trainingrequest.Employee_Id + "','" + trainingrequest.ProgramDate + "','" + trainingrequest.ProgramId + "','" + trainingrequest.RequestedDate + "','" + trainingrequest.RequestedUserID + "', '" + trainingrequest.ApprovedBy + "', '" + trainingrequest.ApprovedDate + "', '" + trainingrequest.StatusID + "', '" + trainingrequest.TrainingCategory + "','" + trainingrequest.Institute + "', '" + trainingrequest.Content + "', '" + trainingrequest.DocUpload + "') SELECT SCOPE_IDENTITY()";
             return Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
         }
     }

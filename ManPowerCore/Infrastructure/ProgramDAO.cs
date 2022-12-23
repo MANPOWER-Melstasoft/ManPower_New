@@ -56,8 +56,6 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ProgramName", program.ProgramName);
             dbConnection.cmd.Parameters.AddWithValue("@ProgramType", program.ProgramType);
 
-            dbConnection.cmd.ExecuteNonQuery();
-
             return dbConnection.cmd.ExecuteNonQuery();
         }
 

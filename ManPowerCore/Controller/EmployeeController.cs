@@ -13,6 +13,8 @@ namespace ManPowerCore.Controller
     {
         int SaveEmployee(Employee emp);
         List<Employee> GetAllEmployees();
+
+        List<Employee> GetAllEmployees(bool withEmployeeDetails);
     }
 
     public class EmployeeControllerImpl : EmployeeController
@@ -81,12 +83,12 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                if(id != 0)
+                if (id != 0)
                 {
                     emp._EmergencyContact.EmployeeId = id;
                     emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
                 }
-                
+
 
                 return 1;
             }
@@ -108,6 +110,42 @@ namespace ManPowerCore.Controller
             try
             {
                 List<Employee> employeesList = employeeDAO.GetAllEmployee(dBConnection);
+                return employeesList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                return null;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+        public List<Employee> GetAllEmployees(bool withEmployeeDetails)
+        {
+            DBConnection dBConnection = new DBConnection();
+            EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+            try
+            {
+                List<Employee> employeesList = employeeDAO.GetAllEmployee(dBConnection);
+                List<EmploymentDetails> employeeDetailList = new List<EmploymentDetails>();
+
+
+                if (withEmployeeDetails)
+                {
+                    EmploymentDetailsDAO employmentDetailsDAO = DAOFactory.CreateEmploymentDetailsDAO();
+                    employeeDetailList = employmentDetailsDAO.GetAllEmploymentDetails(dBConnection);
+
+                    foreach (var item in employeesList)
+                    {
+
+                        item._EmploymentDetailsSingle = employeeDetailList.Where(x => x.EmpID == item.EmployeeId).Single();
+                    }
+
+
+                }
                 return employeesList;
             }
             catch (Exception)

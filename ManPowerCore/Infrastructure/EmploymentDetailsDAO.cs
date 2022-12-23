@@ -27,9 +27,9 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYMENT_DETAIL(DESIGNATION_ID,CONTRACT_TYPE_ID,EMPLOYEE_ID,COMPANY_NAME,START_DATE, " +
+            dbConnection.cmd.CommandText = "INSERT INTO Employment_Detail(DESIGNATION_ID,CONTRACT_TYPE_ID,EMPLOYEE_ID,COMPANY_NAME,START_DATE, " +
                 "END_DATE,IS_RESIGNED,RETIREMENT_DATE,EPF_NUMBER)" +
-                " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf)"; 
+                " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf)";
 
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", empDetails.DesignationId);
             dbConnection.cmd.Parameters.AddWithValue("@ContractTypeId", empDetails.ContractTypeId);
@@ -51,7 +51,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE_DETAILS SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID " +
+            dbConnection.cmd.CommandText = "UPDATE Employment_Detail SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID " +
                 "COMPANY_NAME = @CompanyName, START_DATE = @StartDate,END_DATE = @EndDate,IS_RESIGNED = @IsResigned" +
                 "RETIREMENT_DATE = @RetirementDate, EPF_NUMBER = @Epf WHERE ID = @EmploymentDetailId ";
 
@@ -76,7 +76,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM EMPLOYEE_DETAILS ";
+            dbConnection.cmd.CommandText = "SELECT * FROM Employment_Detail ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -89,7 +89,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM EMPLOYEE_DETAILS WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM Employment_Detail WHERE ID = " + id + " ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

@@ -30,8 +30,8 @@ namespace ManPowerCore.Common
         {
             //con = new OdbcConnection(System.Configuration.ConfigurationSettings.AppSettings["dbConString"].ToString());
             //cmd = new OdbcCommand();
-            con = new SqlConnection("Data Source=119.235.4.30,1441;Initial Catalog=MAN_POWER;User ID=sa;Password=Bell123");
-            //con = new SqlConnection("Data Source=DESKTOP-VCVURVP;Initial Catalog=MAN_POWER;Integrated Security=True");
+            //con = new SqlConnection("Data Source=119.235.4.30,1441;Initial Catalog=MAN_POWER;User ID=sa;Password=Bell123");
+            con = new SqlConnection("Data Source=DESKTOP-VCVURVP;Initial Catalog=MAN_POWER;Integrated Security=True");
             cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;

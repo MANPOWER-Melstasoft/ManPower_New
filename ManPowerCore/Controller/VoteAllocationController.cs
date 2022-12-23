@@ -16,6 +16,9 @@ namespace ManPowerCore.Controller
         int ChangeRemain(VoteAllocation voteAllocation);
         List<VoteAllocation> GetAllVoteAllocation(bool with0);
         VoteAllocation GetVoteAllocation(int id);
+        VoteAllocation CheckVoteAllocationExists(int typeId, DateTime year);
+        VoteAllocation CheckVoteAllocationNumberExists(string Number);
+
     }
     public class VoteAllocationControllerImpl : VoteAllocationController
     {
@@ -104,6 +107,44 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return voteAllocationDAO.GetVoteAllocation(id, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public VoteAllocation CheckVoteAllocationExists(int typeId, DateTime year)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return voteAllocationDAO.CheckVoteAllocationExists(typeId, year, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public VoteAllocation CheckVoteAllocationNumberExists(string Number)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return voteAllocationDAO.CheckVoteAllocationNumberExists(Number, dBConnection);
             }
             catch (Exception)
             {

@@ -15,6 +15,8 @@ namespace ManPowerCore.Infrastructure
         int ChangeRemain(VoteAllocation voteAllocation, DBConnection dbConnection);
         List<VoteAllocation> GetAllVoteAllocation(bool with0, DBConnection dbConnection);
         VoteAllocation GetVoteAllocation(int id, DBConnection dbConnection);
+        VoteAllocation CheckVoteAllocationExists(int typeId, DateTime year, DBConnection dbConnection);
+        VoteAllocation CheckVoteAllocationNumberExists(string Number, DBConnection dbConnection);
 
     }
 
@@ -91,6 +93,35 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation WHERE ID = " + id;
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<VoteAllocation>(dbConnection.dr);
+        }
+
+        public VoteAllocation CheckVoteAllocationExists(int typeId, DateTime year, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation WHERE Vote_Type_ID = @typeId AND YEAR(Year_Allocation) = @year";
+
+            dbConnection.cmd.Parameters.AddWithValue("@typeId", typeId);
+            dbConnection.cmd.Parameters.AddWithValue("@year", year.Year);
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<VoteAllocation>(dbConnection.dr);
+        }
+
+        public VoteAllocation CheckVoteAllocationNumberExists(string Number, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation WHERE Vote_Number = @Number";
+
+            dbConnection.cmd.Parameters.AddWithValue("@Number", Number);
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

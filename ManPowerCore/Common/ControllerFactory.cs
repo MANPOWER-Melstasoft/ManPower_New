@@ -367,6 +367,11 @@ namespace ManPowerCore.Common
             return (MaintenanceCategoryController)maintenanceCategoryController;
 
         }
+        public static ReportController CreateReportController()
+        {
+            ReportController reportController = new ReportControllerImpl();
+            return (ReportController)reportController;
+        }
 
         public static TrainingRequestController CreateTrainingRequestController()
         {

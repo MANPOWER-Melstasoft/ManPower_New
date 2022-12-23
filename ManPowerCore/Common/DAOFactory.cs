@@ -364,5 +364,11 @@ namespace ManPowerCore.Common
             return (StaffLeaveDAO)staffLeaveDAO;
         }
 
+        public static ReportDAO CreateReportDAO()
+        {
+            ReportDAO reportDAO = new ReportDAOSqlImpl();
+            return (ReportDAO)reportDAO;
+        }
+
     }
 }

@@ -50,10 +50,11 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO PROGRAM(NAME) " +
-                                           "VALUES(@@ProgramName)";
+            dbConnection.cmd.CommandText = "INSERT INTO PROGRAM(NAME, Program_Type_Id) " +
+                                           "VALUES(@ProgramName, @ProgramType)";
 
             dbConnection.cmd.Parameters.AddWithValue("@ProgramName", program.ProgramName);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramType", program.ProgramType);
 
             dbConnection.cmd.ExecuteNonQuery();
 

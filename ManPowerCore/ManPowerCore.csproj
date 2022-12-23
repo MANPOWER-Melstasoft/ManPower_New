@@ -170,6 +170,9 @@
     <Compile Include="Domain\UserType.cs" />
     <Compile Include="Domain\VehicleMaintenanceQuatation.cs" />
     <Compile Include="Domain\VehicleMeintenance.cs" />
+    <Compile Include="Domain\VoteAllocation.cs" />
+    <Compile Include="Domain\VoteLedger.cs" />
+    <Compile Include="Domain\VoteType.cs" />
     <Compile Include="Infrastructure\AutFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutUserFunctionDAO.cs" />

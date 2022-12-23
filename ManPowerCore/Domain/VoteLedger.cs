@@ -8,25 +8,19 @@ using System.Threading.Tasks;
 namespace ManPowerCore.Domain
 {
     [Serializable]
-    public class VoteAllocation
+    public class VoteLedger
     {
         [DBField("ID")]
         public int Id { get; set; }
 
-        [DBField("Vote_Type_ID")]
-        public int VoteTypeId { get; set; }
+        [DBField("From_Vote")]
+        public int FromVote { get; set; }
 
-        [DBField("Year_Allocation")]
-        public DateTime Year { get; set; }
-
-        [DBField("Vote_Number")]
-        public string VoteNumber { get; set; }
+        [DBField("To_Vote")]
+        public int ToVote { get; set; }
 
         [DBField("Amount")]
         public float Amount { get; set; }
-
-        [DBField("Reamin_Amount")]
-        public float RemainAmount { get; set; }
 
         [DBField("Created_By")]
         public int CreatedBy { get; set; }
@@ -34,12 +28,20 @@ namespace ManPowerCore.Domain
         [DBField("Created_Date")]
         public DateTime CreatedDate { get; set; }
 
+        [DBField("Approved_By")]
+        public int ApprovedBy { get; set; }
+
+        [DBField("Approved_Date")]
+        public DateTime ApprovedDate { get; set; }
+
         [DBField("Is_Active")]
         public int IsActive { get; set; }
 
-
-        public VoteType voteType { get; set; }
+        public VoteAllocation fromVoteAllocation { get; set; }
+        public VoteAllocation toVoteAllocation { get; set; }
 
         public SystemUser createdUser { get; set; }
+        public SystemUser ApprovedUser { get; set; }
+
     }
 }

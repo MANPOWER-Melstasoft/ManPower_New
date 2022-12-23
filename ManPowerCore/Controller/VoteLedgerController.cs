@@ -9,28 +9,25 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Controller
 {
-    public interface VoteAllocationController
+    public interface VoteLedgerController
     {
-        int Save(VoteAllocation voteAllocation);
+        int Save(VoteLedger voteLedger);
         int Delete(int id);
-        int ChangeRemain(VoteAllocation voteAllocation);
-        List<VoteAllocation> GetAllVoteAllocation(bool with0);
-        VoteAllocation GetVoteAllocation(int id);
-        VoteAllocation CheckVoteAllocationExists(int typeId, DateTime year);
-        VoteAllocation CheckVoteAllocationNumberExists(string Number);
-
+        int ApproveVoteLedger(VoteLedger voteLedger);
+        List<VoteLedger> GetAllVoteLedger(bool with0);
+        VoteLedger GetVoteLedger(int id);
     }
-    public class VoteAllocationControllerImpl : VoteAllocationController
+    public class VoteLedgerControllerImpl : VoteLedgerController
     {
         DBConnection dBConnection;
-        VoteAllocationDAO voteAllocationDAO = DAOFactory.CreateVoteAllocationDAO();
+        VoteLedgerDAO voteLedgerDAO = DAOFactory.CreateVoteLedgerDAO();
 
-        public int Save(VoteAllocation voteAllocation)
+        public int Save(VoteLedger voteLedger)
         {
             try
             {
                 dBConnection = new DBConnection();
-                return voteAllocationDAO.Save(voteAllocation, dBConnection);
+                return voteLedgerDAO.Save(voteLedger, dBConnection);
             }
             catch (Exception)
             {
@@ -49,7 +46,7 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return voteAllocationDAO.Delete(id, dBConnection);
+                return voteLedgerDAO.Delete(id, dBConnection);
             }
             catch (Exception)
             {
@@ -63,12 +60,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int ChangeRemain(VoteAllocation voteAllocation)
+        public int ApproveVoteLedger(VoteLedger voteLedger)
         {
             try
             {
                 dBConnection = new DBConnection();
-                return voteAllocationDAO.ChangeRemain(voteAllocation, dBConnection);
+                return voteLedgerDAO.ApproveVoteLedger(voteLedger, dBConnection);
             }
             catch (Exception)
             {
@@ -82,12 +79,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<VoteAllocation> GetAllVoteAllocation(bool with0)
+        public List<VoteLedger> GetAllVoteLedger(bool with0)
         {
             try
             {
                 dBConnection = new DBConnection();
-                return voteAllocationDAO.GetAllVoteAllocation(with0, dBConnection);
+                return voteLedgerDAO.GetAllVoteLedger(with0, dBConnection);
             }
             catch (Exception)
             {
@@ -101,12 +98,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public VoteAllocation GetVoteAllocation(int id)
+        public VoteLedger GetVoteLedger(int id)
         {
             try
             {
                 dBConnection = new DBConnection();
-                return voteAllocationDAO.GetVoteAllocation(id, dBConnection);
+                return voteLedgerDAO.GetVoteLedger(id, dBConnection);
             }
             catch (Exception)
             {
@@ -120,43 +117,5 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public VoteAllocation CheckVoteAllocationExists(int typeId, DateTime year)
-        {
-            try
-            {
-                dBConnection = new DBConnection();
-                return voteAllocationDAO.CheckVoteAllocationExists(typeId, year, dBConnection);
-            }
-            catch (Exception)
-            {
-                dBConnection.RollBack();
-                throw;
-            }
-            finally
-            {
-                if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                    dBConnection.Commit();
-            }
-        }
-
-        public VoteAllocation CheckVoteAllocationNumberExists(string Number)
-        {
-            try
-            {
-                dBConnection = new DBConnection();
-                return voteAllocationDAO.CheckVoteAllocationNumberExists(Number, dBConnection);
-            }
-            catch (Exception)
-            {
-                dBConnection.RollBack();
-                throw;
-            }
-            finally
-            {
-                if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                    dBConnection.Commit();
-        }
     }
-
-}
 }

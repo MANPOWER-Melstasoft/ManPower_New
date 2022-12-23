@@ -61,14 +61,13 @@ namespace ManPowerWeb
                 bindProgram();
 
                 int year = DateTime.Now.Year;
-                ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
                 for (int i = year; i <= year + 5; i++)
                 {
                     ListItem li = new ListItem(i.ToString());
                     ddlYear.Items.Add(li);
                 }
                 ddlYear.Items.FindByText(year.ToString()).Selected = true;
-
+                ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
 
 
             }
@@ -176,10 +175,10 @@ namespace ManPowerWeb
         {
             VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
 
-            voteAllocationList = voteAllocationController.getallVoteAllocation();
+            voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
             ddlVote.DataSource = voteAllocationList;
             ddlVote.DataTextField = "VoteNumber";
-            ddlVote.DataValueField = "VoteId";
+            ddlVote.DataValueField = "Id";
             ddlVote.DataBind();
         }
 

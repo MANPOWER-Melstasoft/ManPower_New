@@ -111,7 +111,10 @@
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
     <Content Include="AddPosition.aspx" />
+    <Content Include="AddProgram.aspx" />
     <Content Include="AddTrainingRequest.aspx" />
+    <Content Include="AddVoteAllocation.aspx" />
+    <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
     <Content Include="ApproveLeave.aspx" />
@@ -1935,12 +1938,33 @@
     <Compile Include="AddPosition.aspx.designer.cs">
       <DependentUpon>AddPosition.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddProgram.aspx.cs">
+      <DependentUpon>AddProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddProgram.aspx.designer.cs">
+      <DependentUpon>AddProgram.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddTrainingRequest.aspx.cs">
       <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AddTrainingRequest.aspx.designer.cs">
       <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVoteAllocation.aspx.cs">
+      <DependentUpon>AddVoteAllocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVoteAllocation.aspx.designer.cs">
+      <DependentUpon>AddVoteAllocation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVoteType.aspx.cs">
+      <DependentUpon>AddVoteType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVoteType.aspx.designer.cs">
+      <DependentUpon>AddVoteType.aspx</DependentUpon>
     </Compile>
     <Compile Include="AnnualTarget.aspx.cs">
       <DependentUpon>AnnualTarget.aspx</DependentUpon>

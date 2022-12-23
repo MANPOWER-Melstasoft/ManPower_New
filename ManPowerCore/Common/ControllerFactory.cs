@@ -387,5 +387,26 @@ namespace ManPowerCore.Common
             return (VoteAllocationController)voteAllocationController;
         }
 
+        public static VoteTypeController CreateVoteTypeController()
+        {
+            VoteTypeController voteTypeController = new VoteTypeControllerImpl();
+            return (VoteTypeController)voteTypeController;
+
+        }
+
+        //public static VoteAllocationController CreateVoteAllocationController()
+        //{
+        //    VoteAllocationController voteAllocationController = new VoteAllocationControllerImpl();
+        //    return (VoteAllocationController)voteAllocationController;
+
+        //}
+
+        public static VoteLedgerController CreateVoteLedgerController()
+        {
+            VoteLedgerController voteLedgerController = new VoteLedgerControllerImpl();
+            return (VoteLedgerController)voteLedgerController;
+
+        }
+
     }
 }

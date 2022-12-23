@@ -376,5 +376,23 @@ namespace ManPowerCore.Common
             return (VoteAllocationDAO)voteAllocationDAO;
         }
 
+        public static VoteTypeDAO CreateVoteTypeDAO()
+        {
+            VoteTypeDAO voteTypeDAO = new VoteTypeDAOSqlImpl();
+            return (VoteTypeDAO)voteTypeDAO;
+        }
+
+        //public static VoteAllocationDAO CreateVoteAllocationDAO()
+        //{
+        //    VoteAllocationDAO voteAllocationDAO = new VoteAllocationDAOSqlImpl();
+        //    return (VoteAllocationDAO)voteAllocationDAO;
+        //}
+
+        public static VoteLedgerDAO CreateVoteLedgerDAO()
+        {
+            VoteLedgerDAO voteLedgerDAO = new VoteLedgerDAOSqlImpl();
+            return (VoteLedgerDAO)voteLedgerDAO;
+        }
+
     }
 }

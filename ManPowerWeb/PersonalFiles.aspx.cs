@@ -92,12 +92,13 @@ namespace ManPowerWeb
             {
                 BindDataSource();
 
-                id0.Visible = true;
-                id1.Visible = false;
+                id1.Visible = true;
                 id2.Visible = false;
                 id3.Visible = false;
                 id4.Visible = false;
                 id5.Visible = false;
+                id6.Visible = false;
+                id7.Visible = false;
             }
         }
 
@@ -173,12 +174,6 @@ namespace ManPowerWeb
 
             ddlYear.DataSource = yearslist;
             ddlYear.DataBind();
-
-            //ddlConformation.DataSource = conformation;
-            //ddlConformation.DataBind();
-
-            //ddlIsResigned.DataSource = isResigned;
-            //ddlIsResigned.DataBind();
 
         }
 
@@ -264,7 +259,7 @@ namespace ManPowerWeb
                 ContractTypeId = int.Parse(ddContract.SelectedValue),
                 DesignationId = int.Parse(ddlDesignation.SelectedValue),
                 CompanyName = companyName.Text,
-                EmpID = int.Parse(empNo.Text),
+                EmpNumber = empNo.Text,
                 StartDate = Convert.ToDateTime(sDate.Text),
                 EndDate = Convert.ToDateTime(eDate.Text),
                 IsResigned = int.Parse(reseg.SelectedValue),
@@ -295,7 +290,6 @@ namespace ManPowerWeb
 
             educationDetails.Add(new EducationDetails()
             {
-                EmployeeId = 0,
                 EducationTypeId = int.Parse(ddlEducation.SelectedValue),
                 StudiedInstitute = uni.Text,
                 NoOfAttempts = int.Parse (ddlAttempt.SelectedValue),
@@ -413,112 +407,142 @@ namespace ManPowerWeb
 
         protected void page1NextClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
-            id1.Visible = true;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-        }
-
-        protected void page2PrevClick(object sender, EventArgs e)
-        {
-            id0.Visible = true;
-            id1.Visible = false;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-        }
-
-        protected void page2NextClick(object sender, EventArgs e)
-        {
-            id0.Visible = false;
             id1.Visible = false;
             id2.Visible = true;
             id3.Visible = false;
             id4.Visible = false;
             id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void page3PrevClick(object sender, EventArgs e)
+        protected void page2PrevClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
             id1.Visible = true;
             id2.Visible = false;
             id3.Visible = false;
             id4.Visible = false;
             id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void page3NextClick(object sender, EventArgs e)
+        protected void page2NextClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = true;
             id4.Visible = false;
             id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void page4PrevClick(object sender, EventArgs e)
+        protected void page3PrevClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
             id1.Visible = false;
             id2.Visible = true;
             id3.Visible = false;
             id4.Visible = false;
             id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void page4NextClick(object sender, EventArgs e)
+        protected void page3NextClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = false;
             id4.Visible = true;
             id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void page5PrevClick(object sender, EventArgs e)
+        protected void page4PrevClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
+
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = true;
             id4.Visible = false;
             id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void page5NextClick(object sender, EventArgs e)
+        protected void page4NextClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
+
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = false;
             id4.Visible = false;
             id5.Visible = true;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void page6PrevClick(object sender, EventArgs e)
+        protected void page5PrevClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
+
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = false;
             id4.Visible = true;
             id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = false;
         }
 
-        protected void pageChange(object sender, EventArgs e)
+        protected void page5NextClick(object sender, EventArgs e)
         {
-            id0.Visible = false;
-            id1.Visible = true;
+
+            id1.Visible = false;
             id2.Visible = false;
             id3.Visible = false;
             id4.Visible = false;
             id5.Visible = false;
+            id6.Visible = true;
+            id7.Visible = false;
         }
+
+        protected void page6PrevClick(object sender, EventArgs e)
+        {
+
+            id1.Visible = false;
+            id2.Visible = false;
+            id3.Visible = false;
+            id4.Visible = false;
+            id5.Visible = true;
+            id6.Visible = false;
+            id7.Visible = false;
+        }
+
+        protected void page6NextClick(object sender, EventArgs e)
+        {
+
+            id1.Visible = false;
+            id2.Visible = false;
+            id3.Visible = false;
+            id4.Visible = false;
+            id5.Visible = false;
+            id6.Visible = false;
+            id7.Visible = true;
+        }
+
+        protected void page7PrevClick(object sender, EventArgs e)
+        {
+
+            id1.Visible = false;
+            id2.Visible = false;
+            id3.Visible = false;
+            id4.Visible = false;
+            id5.Visible = false;
+            id6.Visible = true;
+            id7.Visible = false;
+        }
+
     }
 }

@@ -137,6 +137,7 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
+    <Content Include="DME21Front.aspx" />
     <Content Include="DME24.aspx" />
     <Content Include="EntRegistration.aspx" />
     <Content Include="DME22.aspx" />
@@ -178,6 +179,7 @@
     <Content Include="LeaveBalance.aspx" />
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="PersonalFiles.aspx" />
+    <Content Include="ResourcePersonReg.aspx" />
     <Content Include="RPReggistration.aspx" />
     <Content Include="LeaveAllocation.aspx" />
     <Content Include="Login.aspx" />
@@ -2061,6 +2063,13 @@
     <Compile Include="DME21.aspx.designer.cs">
       <DependentUpon>DME21.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DME21Front.aspx.cs">
+      <DependentUpon>DME21Front.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME21Front.aspx.designer.cs">
+      <DependentUpon>DME21Front.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DME24.aspx.cs">
       <DependentUpon>DME24.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2171,6 +2180,13 @@
     <Compile Include="RequestTraining.aspx.designer.cs">
       <DependentUpon>RequestTraining.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ResourcePersonReg.aspx.cs">
+      <DependentUpon>ResourcePersonReg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourcePersonReg.aspx.designer.cs">
+      <DependentUpon>ResourcePersonReg.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RPReggistration.aspx.cs">
       <DependentUpon>RPReggistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2266,6 +2282,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SystemDocuments\ProgramPlanResources\" />
+    <Folder Include="SystemDocuments\Quatations\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

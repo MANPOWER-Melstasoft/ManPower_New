@@ -373,5 +373,12 @@ namespace ManPowerCore.Common
             return (ReportController)reportController;
         }
 
+        public static TrainingRequestController CreateTrainingRequestController()
+        {
+            TrainingRequestController trainingRequestController = new TrainingRequestControllerImpl();
+            return (TrainingRequestController)trainingRequestController;
+
+        }
+
     }
 }

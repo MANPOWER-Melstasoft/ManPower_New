@@ -408,5 +408,11 @@ namespace ManPowerCore.Common
 
         }
 
+        public static OfficerListController CreateOfficerListController()
+        {
+            OfficerListController officerListController = new OfficerListControllerImpl();
+            return (OfficerListController)officerListController;
+        }
+
     }
 }

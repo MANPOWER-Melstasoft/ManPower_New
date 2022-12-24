@@ -12,7 +12,7 @@ namespace ManPowerCore.Controller
     public interface ProgramTargetController
     {
 
-        int SaveProgramTarget(ProgramTarget programTarget);
+        int SaveProgramTarget(ProgramTarget programTarget, ProgramAssignee programAssignee);
 
         int UpdateProgramTarget(ProgramTarget programAssignee);
 
@@ -35,8 +35,9 @@ namespace ManPowerCore.Controller
 
         DBConnection dBConnection;
         ProgramTargetDAO programTargetDAO = DAOFactory.CreateProgramTargetDAO();
+        ProgramAssigneeDAO programAssigneeDAO = DAOFactory.CreateProgramAssigneeDAO();
 
-        public int SaveProgramTarget(ProgramTarget programTarget)
+        public int SaveProgramTarget(ProgramTarget programTarget, ProgramAssignee programAssignee)
         {
 
             try
@@ -44,17 +45,13 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 int id = programTargetDAO.SaveProgramTarget(programTarget, dBConnection);
 
-                if (programTarget._ProgramAssignee.Count > 0)
-                {
-                    ProgramAssigneeDAO programAssigneeDAO = DAOFactory.CreateProgramAssigneeDAO();
-                    foreach (var item in programTarget._ProgramAssignee)
-                    {
-                        item.ProgramTargetId = id;
-                        programAssigneeDAO.SaveProgramAssignee(item, dBConnection);
-                    }
-                }
 
-                return id;
+                programAssignee.ProgramTargetId = id;
+                programAssigneeDAO.SaveProgramAssignee(programAssignee, dBConnection);
+
+
+
+                return 1;
 
             }
             catch (Exception)

@@ -72,7 +72,7 @@
                                 <asp:Literal ID="Literal4" runat="server" Text="DS Division"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlDSDivision" runat="server" CssClass="form-control form-control-user" Width="250px">
+                                <asp:DropDownList ID="ddlDSDivision" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDSDivision_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -190,6 +190,54 @@
                         </div>
                     </div>
 
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal18" runat="server" Text="Type"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control form-control-user" Width="250px" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" AutoPostBack="true">
+                                    <asp:ListItem Value="1">Annualy</asp:ListItem>
+                                    <asp:ListItem Value="2">FIrst Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="3">Second Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="4">Third Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="5">Fourth Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="6">Monthly</asp:ListItem>
+                                </asp:DropDownList>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mb-3 ms-1" runat="server" id="divMonth">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal19" runat="server" Text="Start Date"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="ddlStartDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal20" runat="server" Text="End Date"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtEndDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -200,6 +248,7 @@
 
                 <h5>Target: physical / financial :</h5>
                 <br />
+
 
 
                 <div class="row mb-3 ms-1">

@@ -21,6 +21,7 @@ namespace ManPowerWeb
             autUserFunction = autUserFunctionController.GetAutUserFunction(autUserFunction);
             if (autUserFunction.AutUserId == 0)
             {
+                HttpContext.Current.Response.Redirect("401.aspx");
                 return false;
             }
             else

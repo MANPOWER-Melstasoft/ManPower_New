@@ -14,7 +14,7 @@ namespace ManPowerWeb
     public partial class UserPrevilages : System.Web.UI.Page
     {
         UserPrevilage userPrevilage = new UserPrevilage();
-        int functionId = 10;
+        int functionId = 1046;
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -193,7 +193,7 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public AutUserFunction GetAllAutUserFunction(AutUserFunction autUserFunction)
+        public AutUserFunction GetAutUserFunction(AutUserFunction autUserFunction)
         {
             DBConnection dbConnection = null;
             try

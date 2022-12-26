@@ -2246,6 +2246,7 @@
     <Compile Include="UpcomingprogramsView.aspx.designer.cs">
       <DependentUpon>UpcomingprogramsView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserPrevilage.cs" />
     <Compile Include="VacancyReg.aspx.cs">
       <DependentUpon>VacancyReg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

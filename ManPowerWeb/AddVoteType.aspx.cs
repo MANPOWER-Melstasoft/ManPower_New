@@ -13,9 +13,18 @@ namespace ManPowerWeb
 {
     public partial class AddVoteType : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 1048;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
+            {
+                if (!IsPostBack)
+                {
+                    BindDataSource();
+                }
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -27,6 +36,7 @@ namespace ManPowerWeb
             voteTypeController.Save(voteType);
 
             Clear();
+            BindDataSource();
 
             lblSuccessMsg.Text = "Record Updated Successfully!";
         }
@@ -39,6 +49,21 @@ namespace ManPowerWeb
         private void Clear()
         {
             txtVoteDetails.Text = string.Empty;
+        }
+
+        private void BindDataSource()
+        {
+            VoteTypeController voteTypeController = ControllerFactory.CreateVoteTypeController();
+            List<VoteType> voteTypeList = voteTypeController.GetAllVoteType(false);
+            gvVoteType.DataSource = voteTypeList;
+            gvVoteType.DataBind();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvVoteType.PageIndex = e.NewPageIndex;
+            BindDataSource();
+
         }
     }
 }

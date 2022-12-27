@@ -16,9 +16,9 @@ namespace ManPowerCore.Controller
 
         int UpdateProgram(Program program);
 
-        List<Program> GetAllProgram(bool withProgramTarget);
+        List<Program> GetAllProgram(bool withProgramTarget, bool withProgramType);
 
-        Program GetProgram(int id,bool withProgramTarget );
+        Program GetProgram(int id, bool withProgramTarget);
     }
 
     public class ProgramControllerImpl : ProgramController
@@ -73,7 +73,7 @@ namespace ManPowerCore.Controller
         }
 
 
-        public List<Program> GetAllProgram(bool withProgramTarget)
+        public List<Program> GetAllProgram(bool withProgramTarget, bool withProgramType)
         {
             try
             {
@@ -86,6 +86,17 @@ namespace ManPowerCore.Controller
                     foreach (var item in list)
                     {
                         item._ProgramTarget = _ProgramTargetDAO.GetAllProgramTargetByProgramId(item.ProgramId, dBConnection);
+                    }
+                }
+
+                if (withProgramType)
+                {
+                    ProgramTypeDAO programTypeDAO = DAOFactory.CreateProgramTypeDAO();
+                    List<ProgramType> programTypeList = programTypeDAO.GetAllProgramType(dBConnection);
+
+                    foreach (var item in list)
+                    {
+                        item._ProgramType = programTypeList.Where(x => x.ProgramTypeId == item.ProgramType).Single();
                     }
                 }
                 return list;
@@ -117,7 +128,7 @@ namespace ManPowerCore.Controller
                     program._ProgramTarget = _ProgramTargetDAO.GetAllProgramTargetByProgramId(program.ProgramId, dbConnection);
                 }
 
-                return program; 
+                return program;
             }
             catch (Exception ex)
             {

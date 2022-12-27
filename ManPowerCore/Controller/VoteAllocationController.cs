@@ -87,7 +87,18 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return voteAllocationDAO.GetAllVoteAllocation(with0, dBConnection);
+                List<VoteAllocation> voteAllocationList = voteAllocationDAO.GetAllVoteAllocation(with0, dBConnection);
+
+                VoteTypeDAO voteTypeDAO = DAOFactory.CreateVoteTypeDAO();
+                List<VoteType> voteTypeList = voteTypeDAO.GetAllVoteType(true, dBConnection);
+
+                foreach (var item in voteAllocationList)
+                {
+                    item.voteType = voteTypeList.Where(x => x.Id == item.VoteTypeId).Single();
+                    item.DisplayYear = item.Year.Year;
+                }
+
+                return voteAllocationList;
             }
             catch (Exception)
             {
@@ -155,8 +166,8 @@ namespace ManPowerCore.Controller
             {
                 if (dBConnection.con.State == System.Data.ConnectionState.Open)
                     dBConnection.Commit();
+            }
         }
-    }
 
-}
+    }
 }

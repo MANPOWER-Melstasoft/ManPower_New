@@ -13,12 +13,19 @@ namespace ManPowerWeb
 {
     public partial class AddVoteAllocation : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 1047;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
             {
-                BindYearList();
-                BindVoteTypeList();
+                if (!IsPostBack)
+                {
+                    BindYearList();
+                    BindVoteTypeList();
+                    BindDataSource();
+                }
             }
         }
 
@@ -46,6 +53,7 @@ namespace ManPowerWeb
                     voteAllocationController.Save(voteAllocation);
 
                     Clear();
+                    BindDataSource();
 
                     lblErrorMsg.Text = string.Empty;
                     lblSuccessMsg.Text = "Record Updated Successfully!";
@@ -127,6 +135,21 @@ namespace ManPowerWeb
 
             ddlYear.DataBind();
             ddlYear.Items.Insert(0, new ListItem("-- select year --", ""));
+
+        }
+
+        private void BindDataSource()
+        {
+            VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+            List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+            gvVoteAllocation.DataSource = voteAllocationList;
+            gvVoteAllocation.DataBind();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvVoteAllocation.PageIndex = e.NewPageIndex;
+            BindDataSource();
 
         }
     }

@@ -105,7 +105,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="401.aspx" />
     <Content Include="404.aspx" />
+    <Content Include="500.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AddDepartment.aspx" />
     <Content Include="AddDME21.aspx" />
@@ -1906,12 +1908,26 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="401.aspx.cs">
+      <DependentUpon>401.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="401.aspx.designer.cs">
+      <DependentUpon>401.aspx</DependentUpon>
+    </Compile>
     <Compile Include="404.aspx.cs">
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="500.aspx.cs">
+      <DependentUpon>500.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="500.aspx.designer.cs">
+      <DependentUpon>500.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddDepartment.aspx.cs">
       <DependentUpon>AddDepartment.aspx</DependentUpon>
@@ -2249,6 +2265,7 @@
     <Compile Include="UpcomingprogramsView.aspx.designer.cs">
       <DependentUpon>UpcomingprogramsView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserPrevilage.cs" />
     <Compile Include="VacancyReg.aspx.cs">
       <DependentUpon>VacancyReg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

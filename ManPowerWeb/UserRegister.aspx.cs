@@ -14,17 +14,21 @@ namespace ManPowerWeb
 {
     public partial class UserRegister : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 24;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
             {
-                BindDesignationList();
-                BindUserTypeList();
-                BindPositionList();
-                BindDepartmentList();
+                if (!IsPostBack)
+                {
+                    BindDesignationList();
+                    BindUserTypeList();
+                    BindPositionList();
+                    BindDepartmentList();
+                }
             }
-
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
@@ -127,7 +131,7 @@ namespace ManPowerWeb
         private void BindPositionList()
         {
             PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
-            List<Possitions> possitionList = possitionsController.GetAllPossitions(false);
+            List<Possitions> possitionList = possitionsController.GetAllPossitions(false, false);
 
 
             ddlPosition.DataSource = possitionList;

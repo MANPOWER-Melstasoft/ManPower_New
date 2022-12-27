@@ -37,6 +37,7 @@ namespace ManPowerCore.Domain
         [DBField("Is_Active")]
         public int IsActive { get; set; }
 
+        public int DisplayYear { get; set; }
 
         public VoteType voteType { get; set; }
 

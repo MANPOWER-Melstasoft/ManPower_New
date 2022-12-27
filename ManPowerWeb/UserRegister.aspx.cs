@@ -131,7 +131,7 @@ namespace ManPowerWeb
         private void BindPositionList()
         {
             PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
-            List<Possitions> possitionList = possitionsController.GetAllPossitions(false);
+            List<Possitions> possitionList = possitionsController.GetAllPossitions(false, false);
 
 
             ddlPosition.DataSource = possitionList;

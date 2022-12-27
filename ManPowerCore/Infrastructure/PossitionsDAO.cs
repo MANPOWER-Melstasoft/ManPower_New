@@ -12,7 +12,7 @@ namespace ManPowerCore.Infrastructure
     {
 
         int SavePosition(Possitions possitions, DBConnection dbConnection);
-        List<Possitions> GetAllPossitions(DBConnection dbConnection);
+        List<Possitions> GetAllPossitions(bool with0, DBConnection dbConnection);
         Possitions GetPossitions(int id, DBConnection dbConnection);
         List<Possitions> GetAllPossitionsById(int runPosition, DBConnection dbConnection);
         List<Possitions> CheckPossitionsByName(string runPositionName, DBConnection dbConnection);
@@ -62,12 +62,19 @@ namespace ManPowerCore.Infrastructure
 
 
 
-        public List<Possitions> GetAllPossitions(DBConnection dbConnection)
+        public List<Possitions> GetAllPossitions(bool with0, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM POSSITIONS ";
+            string cmd = "SELECT * FROM POSSITIONS WHERE Is_Active = 1";
+
+            if (with0)
+            {
+                cmd = "SELECT * FROM POSSITIONS ";
+            }
+            dbConnection.cmd.CommandText = cmd;
+
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

@@ -12,7 +12,7 @@ namespace ManPowerCore.Controller
     public interface PossitionsController
     {
         int SavePosition(Possitions possitions);
-        List<Possitions> GetAllPossitions(bool withDepartmentUnitPositions);
+        List<Possitions> GetAllPossitions(bool with0, bool withDepartmentUnitPositions);
         Possitions GetPossitions(int id, bool withDepartmentUnitPositions);
         List<Possitions> GetAllPossitions(int runPosition);
         List<Possitions> GetAllPossitions(string runPositionName);
@@ -67,12 +67,12 @@ namespace ManPowerCore.Controller
         }
 
 
-        public List<Possitions> GetAllPossitions(bool withDepartmentUnitPositions)
+        public List<Possitions> GetAllPossitions(bool with0, bool withDepartmentUnitPositions)
         {
             try
             {
                 dBConnection = new DBConnection();
-                List<Possitions> list = possitionsDAO.GetAllPossitions(dBConnection);
+                List<Possitions> list = possitionsDAO.GetAllPossitions(with0, dBConnection);
 
                 if (withDepartmentUnitPositions)
                 {
@@ -104,7 +104,7 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                List<Possitions> list = possitionsDAO.GetAllPossitionsById(runPosition,dBConnection);
+                List<Possitions> list = possitionsDAO.GetAllPossitionsById(runPosition, dBConnection);
                 return list;
             }
             catch (Exception)
@@ -120,7 +120,7 @@ namespace ManPowerCore.Controller
 
         }
 
-                public Possitions GetPossitions(int id, bool withDepartmentUnitPositions)
+        public Possitions GetPossitions(int id, bool withDepartmentUnitPositions)
         {
             DBConnection dbConnection = new DBConnection();
             try

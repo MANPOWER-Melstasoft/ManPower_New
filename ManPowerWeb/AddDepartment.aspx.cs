@@ -15,11 +15,17 @@ namespace ManPowerWeb
 {
     public partial class AddDepartmentUnit : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 36;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
             {
-                BindDepartmentList();
+                if (!IsPostBack)
+                {
+                    BindDepartmentList();
+                }
             }
         }
 

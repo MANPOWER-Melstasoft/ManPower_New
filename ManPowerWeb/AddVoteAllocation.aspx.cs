@@ -13,12 +13,18 @@ namespace ManPowerWeb
 {
     public partial class AddVoteAllocation : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 1047;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
             {
-                BindYearList();
-                BindVoteTypeList();
+                if (!IsPostBack)
+                {
+                    BindYearList();
+                    BindVoteTypeList();
+                }
             }
         }
 

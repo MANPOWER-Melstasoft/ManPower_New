@@ -12,9 +12,12 @@ namespace ManPowerWeb
 {
     public partial class AddPosition : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 37;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId)) { }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

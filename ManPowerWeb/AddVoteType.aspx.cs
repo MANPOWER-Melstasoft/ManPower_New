@@ -13,9 +13,12 @@ namespace ManPowerWeb
 {
     public partial class AddVoteType : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 1048;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId)) { }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

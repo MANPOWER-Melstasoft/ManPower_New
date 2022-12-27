@@ -31,6 +31,22 @@
                             </div>
                         </div>
                     </div>
+                    <%if (ddlDepartment.SelectedItem.Value == "1")
+                        {%>
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <asp:Literal ID="Literal1" runat="server" Text="Unit/Division"></asp:Literal>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtUnit" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <div class="d-flex text-danger">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="1"
+                                    ControlToValidate="txtUnit" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                        } %>
                     <%if (ddlDepartment.SelectedItem.Value == "2")
                         {%>
                     <div class="row mb-3">

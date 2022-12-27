@@ -31,6 +31,11 @@ namespace ManPowerWeb
             DepartmentUnit departmentUnit = new DepartmentUnit();
             departmentUnit.DepartmentUnitTypeId = Convert.ToInt32(ddlDepartment.SelectedValue);
 
+            if (ddlDepartment.SelectedValue == "1")
+            {
+                departmentUnit.Name = txtUnit.Text;
+                parentId = 1;
+            }
             if (ddlDepartment.SelectedValue == "2")
             {
                 departmentUnit.Name = txtDistrict.Text;
@@ -85,7 +90,7 @@ namespace ManPowerWeb
             ddlDepartment.DataValueField = "DepartmentUnitTypeId";
             ddlDepartment.DataTextField = "Name";
             ddlDepartment.DataBind();
-            ddlDepartment.Items.RemoveAt(0);
+            //ddlDepartment.Items.RemoveAt(0);
             ddlDepartment.Items.Insert(0, new ListItem("-- select department --", ""));
 
         }

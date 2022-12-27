@@ -17,6 +17,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 BindProgramTypeList();
+                BindDataSource();
             }
         }
 
@@ -30,6 +31,7 @@ namespace ManPowerWeb
             programController.SaveProgram(program);
 
             Clear();
+            BindDataSource();
 
             lblSuccessMsg.Text = "Record Updated Successfully!";
         }
@@ -56,6 +58,21 @@ namespace ManPowerWeb
             ddlProgramType.DataTextField = "ProgramTypeName";
             ddlProgramType.DataBind();
             ddlProgramType.Items.Insert(0, new ListItem("-- select program type --", ""));
+
+        }
+
+        private void BindDataSource()
+        {
+            ProgramController programController = ControllerFactory.CreateProgramController();
+            List<Program> programList = programController.GetAllProgram(false, true);
+            gvProgram.DataSource = programList;
+            gvProgram.DataBind();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProgram.PageIndex = e.NewPageIndex;
+            BindDataSource();
 
         }
     }

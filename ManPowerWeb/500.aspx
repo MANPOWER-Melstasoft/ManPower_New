@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="404.aspx.cs" Inherits="ManPowerWeb._404" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="500.aspx.cs" Inherits="ManPowerWeb._500" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Department of Manpower and Employment - 404</title>
+    <title>Department of Manpower and Employment - 500</title>
 
     <link rel="icon" type="image/x-icon" href="img/favicon.png" />
 
@@ -40,8 +40,8 @@
 
                 <!-- 404 Error Text -->
                 <div class="text-center">
-                    <div class="error mx-auto" data-text="404">404</div>
-                    <p class="lead text-gray-800 mb-5">Page Not Found</p>
+                    <div class="error mx-auto" data-text="500">500</div>
+                    <p class="lead text-gray-800 mb-5">Internal Server Error</p>
                     <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
                     <a href="Dashboard.aspx">&larr; Back to Dashboard</a>
                 </div>
@@ -77,3 +77,4 @@
 </body>
 
 </html>
+

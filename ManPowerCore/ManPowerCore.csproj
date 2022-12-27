@@ -78,6 +78,7 @@
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
+    <Compile Include="Controller\OfficerListController.cs" />
     <Compile Include="Controller\PossitionsController.cs" />
     <Compile Include="Controller\ProgramAssigneeController.cs" />
     <Compile Include="Controller\ProgramAttendenceController.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Domain\LeaveType.cs" />
     <Compile Include="Domain\MarketType.cs" />
     <Compile Include="Domain\Month.cs" />
+    <Compile Include="Domain\OfficerList.cs" />
     <Compile Include="Domain\Possitions.cs" />
     <Compile Include="Domain\Program.cs" />
     <Compile Include="Domain\ProgramAssignee.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />
+    <Compile Include="Infrastructure\OfficerListDAO.cs" />
     <Compile Include="Infrastructure\PossitionsDAO.cs" />
     <Compile Include="Infrastructure\ProgramAssigneeDAO.cs" />
     <Compile Include="Infrastructure\ProgramAttendenceDAO.cs" />

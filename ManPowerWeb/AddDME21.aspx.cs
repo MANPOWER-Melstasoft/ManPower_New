@@ -78,7 +78,7 @@ namespace ManPowerWeb
         private void ProgramDataBind()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
-            programList = programController.GetAllProgram(false);
+            programList = programController.GetAllProgram(false, false);
             ddlProgram.DataSource = programList;
             ddlProgram.DataBind();
         }

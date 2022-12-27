@@ -91,7 +91,7 @@ namespace ManPowerWeb
 
 
             PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
-            PositionList = possitionsController.GetAllPossitions(false);
+            PositionList = possitionsController.GetAllPossitions(false, false);
             ddlPosition.DataSource = PositionList;
             ddlPosition.DataTextField = "PositionName";
             ddlPosition.DataValueField = "PossitionId";
@@ -147,7 +147,7 @@ namespace ManPowerWeb
         private void bindProgram()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false);
+            program = programController.GetAllProgram(false, false);
             if (ddlProgramType.SelectedValue != "")
             {
                 ddlProgram.DataSource = program.Where(u => u.ProgramType.ToString() == ddlProgramType.SelectedValue);

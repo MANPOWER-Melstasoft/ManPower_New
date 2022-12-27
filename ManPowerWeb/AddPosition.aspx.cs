@@ -17,7 +17,13 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId)) { }
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
+            {
+                if (!IsPostBack)
+                {
+                    BindDataSource();
+                }
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -29,6 +35,7 @@ namespace ManPowerWeb
             possitionsController.SavePosition(possitions);
 
             Clear();
+            BindDataSource();
 
             lblSuccessMsg.Text = "Record Updated Successfully!";
         }
@@ -41,6 +48,21 @@ namespace ManPowerWeb
         private void Clear()
         {
             txtName.Text = string.Empty;
+        }
+
+        private void BindDataSource()
+        {
+            PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
+            List<Possitions> positionList = possitionsController.GetAllPossitions(false, false);
+            gvPosition.DataSource = positionList;
+            gvPosition.DataBind();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvPosition.PageIndex = e.NewPageIndex;
+            BindDataSource();
+
         }
     }
 }

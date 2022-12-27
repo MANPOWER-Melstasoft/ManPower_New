@@ -53,4 +53,15 @@
 
         </div>
     </div>
+
+    <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+        <asp:GridView Style="margin-top: 30px;" ID="gvProgram" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+            CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
+            <Columns>
+                <asp:BoundField DataField="ProgramId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="ProgramName" HeaderText="PROGRAM NAME" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="_ProgramType.ProgramTypeName" HeaderText="PROGRAM TYPE" HeaderStyle-CssClass="table-dark" />
+            </Columns>
+        </asp:GridView>
+    </div>
 </asp:Content>

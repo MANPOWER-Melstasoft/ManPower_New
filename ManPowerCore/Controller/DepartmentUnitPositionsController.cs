@@ -107,7 +107,7 @@ namespace ManPowerCore.Controller
                 if (withPossitions)
                 {
                     PossitionsDAO _PossitionsController = DAOFactory.CreatePossitionsDAO();
-                    List<Possitions> listPossitions = _PossitionsController.GetAllPossitions(dBConnection);
+                    List<Possitions> listPossitions = _PossitionsController.GetAllPossitions(true, dBConnection);
 
                     foreach (var item in list)
                     {

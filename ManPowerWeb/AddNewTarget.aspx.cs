@@ -67,7 +67,7 @@ namespace ManPowerWeb
                     ListItem li = new ListItem(i.ToString());
                     ddlYear.Items.Add(li);
                 }
-                ddlYear.Items.FindByText(year.ToString()).Selected = true;
+                //ddlYear.Items.FindByText(year.ToString()).Selected = true;
                 ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
 
 
@@ -84,7 +84,10 @@ namespace ManPowerWeb
             ddlDistrict.DataSource = listDistrict;
             ddlDistrict.DataTextField = "Name";
             ddlDistrict.DataValueField = "DepartmentUnitId";
+
             ddlDistrict.DataBind();
+            ddlDistrict.Items.Insert(0, new ListItem("Select District", ""));
+
 
 
 
@@ -96,13 +99,18 @@ namespace ManPowerWeb
             ddlPosition.DataTextField = "PositionName";
             ddlPosition.DataValueField = "PossitionId";
             ddlPosition.DataBind();
+            ddlPosition.Items.Insert(0, new ListItem("Select Position", ""));
+
 
             ProgramTypeController programTypeController = ControllerFactory.CreateProgramTypeController();
             listProgramType = programTypeController.GetAllProgramType(false);
             ddlProgramType.DataSource = listProgramType;
             ddlProgramType.DataTextField = "ProgramTypeName";
             ddlProgramType.DataValueField = "ProgramTypeId";
+
             ddlProgramType.DataBind();
+            ddlProgramType.Items.Insert(0, new ListItem("Select Program Type", ""));
+
 
             //SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             //listUsers = systemUserController.GetAllSystemUser(true, false, false);
@@ -140,6 +148,8 @@ namespace ManPowerWeb
             ddlOfficer.DataValueField = "SystemUserId";
             ddlOfficer.DataTextField = "Name";
             ddlOfficer.DataBind();
+            ddlOfficer.Items.Insert(0, new ListItem("Select Officer", ""));
+
         }
 
 
@@ -153,7 +163,10 @@ namespace ManPowerWeb
                 ddlProgram.DataSource = program.Where(u => u.ProgramType.ToString() == ddlProgramType.SelectedValue);
                 ddlProgram.DataTextField = "ProgramName";
                 ddlProgram.DataValueField = "ProgramId";
+
                 ddlProgram.DataBind();
+                ddlProgram.Items.Insert(0, new ListItem("Select Program ", ""));
+
             }
             else
             {
@@ -192,6 +205,8 @@ namespace ManPowerWeb
                 ddlDSDivision.DataTextField = "Name";
                 ddlDSDivision.DataValueField = "DepartmentUnitId";
                 ddlDSDivision.DataBind();
+                ddlDSDivision.Items.Insert(0, new ListItem("Select Division", ""));
+
             }
             else
             {

@@ -20,6 +20,8 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlYear" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlYear" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -59,6 +61,8 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlDistrict" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -74,6 +78,8 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlDSDivision" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDSDivision_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlDSDivision" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -92,6 +98,8 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlPosition" runat="server" CssClass="form-control form-control-user" Width="250px">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlPosition" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -104,6 +112,8 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlOfficer" runat="server" CssClass="form-control form-control-user" Width="250px">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlOfficer" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -121,6 +131,8 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlProgramType" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlProgramType_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlProgramType" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
 
                             </div>
                         </div>
@@ -133,6 +145,8 @@
                             <div class="col-md-6">
                                 <asp:DropDownList ID="ddlProgram" runat="server" CssClass="form-control form-control-user" Width="250px">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlProgram" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
 
                             </div>
                         </div>
@@ -204,6 +218,7 @@
                                     <asp:ListItem Value="5">Fourth Quarterly</asp:ListItem>
                                     <asp:ListItem Value="6">Monthly</asp:ListItem>
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" ValidationGroup="1" ControlToValidate="ddlType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>

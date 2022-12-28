@@ -11,7 +11,7 @@
 						<label>Date : </label>
 					</div>
 					<div class="col-7">
-						<asp:TextBox ID="TextBox4" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+						<asp:TextBox ID="TextBox4" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 					</div>
 				</div>
 			</div>
@@ -64,6 +64,12 @@
                     <asp:BoundField HeaderText="Outcome" DataField="Outcome" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Number of Projects" DataField="NoOfProjects" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Estimated Amount" DataField="EstimatedAmount" HeaderStyle-CssClass="table-dark" />
+					<%--<asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
+						<ItemTemplate>
+							<asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
+								a href ='<%#"UpcomingprogramsView.aspx?id="+DataBinder.Eval(Container.DataItem,"ProgramTargetId") %>'/>
+						</ItemTemplate>
+					</asp:TemplateField>--%>
                 </Columns>
             </asp:GridView>
 			</div>

@@ -46,8 +46,7 @@
 				<label>Business Type : </label>
 			</div>
 			<div class="col-9">
-				<asp:DropDownList ID="businessType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+				<asp:DropDownList ID="businessType" Width="230px" runat="server" AutoPostBack="true"  CssClass="dropdown-toggle form-control"></asp:DropDownList>
 			</div>
 		</div><br />
 
@@ -66,7 +65,7 @@
 				<label>Start Date : </label>
 			</div>
 			<div class="col-9">
-				<asp:TextBox ID="sDate" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+				<asp:TextBox ID="sDate" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 				<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="sDate" ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
 		</div>
@@ -102,8 +101,7 @@
 				<label>Market Type : </label>
 			</div>
 			<div class="col-9">
-				<asp:DropDownList ID="marketType" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+				<asp:DropDownList ID="marketType" Width="230px" runat="server" AutoPostBack="true"  CssClass="dropdown-toggle form-control"></asp:DropDownList>
 			</div>
 		</div><br />
 
@@ -135,7 +133,7 @@
 				<label>Date : </label>
 			</div>
 			<div class="col-9">
-				<asp:TextBox ID="date" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+				<asp:TextBox ID="date" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="date" ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
 		</div><br />
@@ -145,8 +143,7 @@
 				<label>Bank Loan Arrangement : </label>
 			</div>
 			<div class="col-9">
-				<asp:DropDownList ID="bankLoan" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+				<asp:DropDownList ID="bankLoan" Width="230px" runat="server" AutoPostBack="true"  CssClass="dropdown-toggle form-control"></asp:DropDownList>
 			</div>
 		</div><br /> <br />
 

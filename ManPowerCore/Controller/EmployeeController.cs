@@ -113,6 +113,12 @@ namespace ManPowerCore.Controller
             try
             {
                 List<Employee> employeesList = employeeDAO.GetAllEmployee(dBConnection);
+
+                foreach (var item in employeesList)
+                {
+                    item.fullName = item.EmpInitials + item.LastName;
+                }
+
                 return employeesList;
             }
             catch (Exception)

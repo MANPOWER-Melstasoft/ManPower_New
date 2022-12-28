@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class RPReggistration
+    public partial class IndividualBene
     {
 
         /// <summary>

@@ -11,35 +11,26 @@ namespace ManPowerWeb
 {
 
 
-    public partial class VehicleMeintenance
+    public partial class ResourcePersonRegSearch
     {
 
         /// <summary>
-        /// ddlCategory control.
+        /// desig control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        protected global::System.Web.UI.WebControls.TextBox desig;
 
         /// <summary>
-        /// date control.
+        /// ddlType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox date;
-
-        /// <summary>
-        /// keywrd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox keywrd;
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
 
         /// <summary>
         /// Button1 control.

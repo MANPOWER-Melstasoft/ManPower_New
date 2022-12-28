@@ -1,0 +1,179 @@
+﻿@page "/test"
+@using Radzen
+@inject IJSRuntime JSRuntime
+@using System.Text.Json
+
+<div id="main">
+
+    <RadzenCard>
+        <div class="row">
+            <div class="col-7">
+                <h5>Monthly target : physical / financial : </h5><br />
+
+                <label class="label">Month</label>
+                <RadzenDropDown AllowClear="true" TValue="string" Class="w-100" Placeholder="" Data="@months"
+                                SelectedItem="month" @bind-Value="month" Style="margin-bottom:10px;font-size:0.9em;" />
+
+                <div class="row">
+                    <div class="col-5">
+                        <label class="label">Physical Count</label>
+                        <input type="number" Placeholder="Ex: 10" @bind="phyCount" Style="margin-bottom:10px;font-size:0.9em;"></input>
+
+                        <label class="label">Financial Count</label>
+                        <input type="number" Placeholder="Ex: 100000" @bind="finCount" Style="margin-bottom:10px;font-size:0.9em;"></input>
+                    </div>
+                </div>
+
+                <br />
+                <input type="button" class="primary-btn" value="Add" @onclick="() => onClick_add(month,phyCount,finCount)" /> &nbsp;&nbsp;
+
+                <RadzenCheckBox @bind-Value="isChecked" Name="CheckBox1" TValue="bool" />
+                <RadzenLabel Text="Show Details" Component="CheckBox1" Style="margin-left: 8px; vertical-align: middle;" />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row" style="padding:40px;font-size:1em;">
+            @if (isChecked == true)
+            {
+                <table class="table primary-table" style="font-size:0.9em;">
+                    <thead class="table-active">
+                        <tr>
+                            <th scope="col">Month</th>
+                            <th scope="col">Physical Count</th>
+                            <th scope="col">Financial Count</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in tableDetails)
+                        {
+                            @*var id = item.id + 1;*@
+                            <tr @key="@item">
+                                <td>@item.inputMonth</td>
+                                <td>@item.inputPhyCount</td>
+                                <td>@item.inputFinCount</td>
+                                <td>
+                                    <input type="button" class="primary-btn" value="Delete" @onclick="@(() => tableDetails.Remove(item))" style="height:30px;width:100px;font-size:0.9em;" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </RadzenCard>
+    
+    @*<div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <RadzenTemplateForm Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
+                <RadzenFieldset Text="Personal information">
+                    <div class="row mb-5">
+                        <div class="col-md-4">
+                            <RadzenLabel Text="First Name" />
+                        </div>
+                        <div class="col">
+                            <RadzenTextBox style="display: block" Name="FirstName" @bind-Value=@model.FirstName Class="w-100" />
+                            <RadzenRequiredValidator Component="FirstName" Text="First name is required" Popup=@popup Style="position: absolute" />
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-md-4">
+                            <RadzenLabel Text="Last Name" />
+                        </div>
+                        <div class="col">
+                            <RadzenTextBox style="display: block" Name="LastName" @bind-Value=@model.LastName Class="w-100" />
+                            <RadzenRequiredValidator Component="LastName" Text="Last name is required" Popup=@popup Style="position: absolute" />
+                        </div>
+                    </div>
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Submit"></RadzenButton>
+                </RadzenFieldset>
+            </RadzenTemplateForm>
+        </div>
+    </div>*@
+</div>
+
+
+@code {
+
+    string[] months = { "01", "02", "03", "04" };
+
+    class TableDetails
+    {
+        public string inputMonth { get; set; }
+        public int inputPhyCount { get; set; }
+        public float inputFinCount { get; set; }
+    }
+
+    List<TableDetails> tableDetails = new List<TableDetails>();  
+
+    private bool isChecked = false;
+
+
+    private string month = "";
+    private int phyCount = 0;
+    private float finCount = 0;
+
+
+    async void onClick_add(string month, int phyCount, float finCount)
+    {
+        if (!String.IsNullOrWhiteSpace(month) && !String.IsNullOrWhiteSpace(phyCount.ToString()) && !String.IsNullOrWhiteSpace(finCount.ToString()))
+        {
+            tableDetails.Add(new TableDetails()
+                {
+                    inputMonth = month,
+                    inputPhyCount = phyCount,
+                    inputFinCount = finCount,
+                });
+            await JSRuntime.InvokeAsync<object>("ErrorAlert", "success", "", "successfully added to the list");
+            onClick_clear();
+        }
+        else 
+        {
+            await JSRuntime.InvokeAsync<object>("ErrorAlert", "error", "", "Please fill all the required data");
+                onClick_clear();
+        }
+    }
+
+
+    private void onClick_clear()
+    {
+        month = "";
+        phyCount = 0;
+        finCount = 0;
+
+    }
+
+
+    //async void SelectLocation(ChangeEventArgs e)
+    //{
+    //    SelectLocation = "";
+    //    if (!string.IsNullOrWhiteSpace(e.Value.ToString()))
+    //    {
+    //        SelectLocation = e.Value.ToString();
+    //        JobLocations = await LocationData.GetLocations(e.Value.ToString());
+    //        GetJobs();
+    //    }
+    //    StateHasChanged();
+
+    class Model
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    bool popup;
+
+    Model model = new Model();
+
+    void OnSubmit(Model model)
+    {
+        Console.WriteLine($"Submit: {JsonSerializer.Serialize(model, new JsonSerializerOptions() { WriteIndented = true })}");
+    }
+
+    void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
+    {
+        Console.WriteLine($"InvalidSubmit: {JsonSerializer.Serialize(args, new JsonSerializerOptions() { WriteIndented = true })}");
+    }
+}

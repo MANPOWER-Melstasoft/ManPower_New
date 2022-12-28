@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RPReggistration.aspx.cs" Inherits="ManPowerWeb.RPReggistration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IndividualBene.aspx.cs" Inherits="ManPowerWeb.IndividualBene" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container" style="padding-left:30px;">
@@ -44,7 +44,7 @@
 				<label>Date of Birth : </label>
 			</div>
 			<div class="col-9">
-				<asp:TextBox ID="dob" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+				<asp:TextBox ID="dob" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 				<asp:RequiredFieldValidator ControlToValidate="dob" ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 			</div>
 		</div>

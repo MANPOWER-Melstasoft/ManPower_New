@@ -15,6 +15,8 @@ namespace ManPowerCore.Controller
         List<Employee> GetAllEmployees();
 
         List<Employee> GetAllEmployees(bool withEmployeeDetails);
+
+        Employee GetEmployeeById(int id);
     }
 
     public class EmployeeControllerImpl : EmployeeController
@@ -76,7 +78,7 @@ namespace ManPowerCore.Controller
 
                 if (emp._EmployeeServices.Count > 0)
                 {
-                    
+
                     foreach (var item in emp._EmployeeServices)
                     {
                         item.EmpId = id;
@@ -148,6 +150,27 @@ namespace ManPowerCore.Controller
 
                 }
                 return employeesList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                return null;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public Employee GetEmployeeById(int id)
+        {
+            DBConnection dBConnection = new DBConnection();
+            EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+            try
+            {
+                Employee employee = employeeDAO.GetEmployeeById(id, dBConnection);
+                return employee;
             }
             catch (Exception)
             {

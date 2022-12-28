@@ -9,7 +9,7 @@
 				<label>Date : </label>
 			</div>
 			<div class="col-8">
-				<asp:TextBox ID="date" runat="server" name="date" Width="250px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+				<asp:TextBox ID="date" runat="server" name="date" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 			</div>
 		</div><br />
 

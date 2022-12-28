@@ -19,6 +19,7 @@ namespace ManPowerCore.Domain
         public int LeaveBalannce { get; set; }
 
         public int NoOfDays { get; set; }
+        public int EmployeeId { get; set; }
 
 
 

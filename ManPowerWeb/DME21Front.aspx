@@ -13,12 +13,12 @@
                 <asp:DropDownList ID="ddlMonth" runat="server" Style="width: 200px; height: 40px; padding-left: 10px;" DataTextField="monthName" DataValueField="monthNumber"></asp:DropDownList>
             </div>
             <div class="col-sm-4">
-                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-lg btn-outline-primary" Style="width: 200px;">Search</asp:LinkButton>
+                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-lg btn-outline-primary" Style="width: 200px;" OnClick="btnSearch_Click">Search</asp:LinkButton>
             </div>
         </div>
         <div class="row mb-5" style="margin-left: 100px;">
             <div class="col-sm-4">
-                <asp:LinkButton ID="btnAddDME21" runat="server" CssClass="btn btn-lg btn-outline-primary" Style="width: 200px;" OnClick="btnAddDME21_Click">Add New DME21</asp:LinkButton>
+                <asp:LinkButton ID="btnAddDME21" runat="server" Style="width: 200px;" OnClick="btnAddDME21_Click">Add New DME21</asp:LinkButton>
             </div>
         </div>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">
@@ -26,12 +26,12 @@
                 CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="Year" HeaderText="Year" />
-                    <asp:BoundField DataField="Month" HeaderText="Month" />
-                    <asp:BoundField DataField="Status" HeaderText="Status" />
+                    <asp:BoundField DataField="TaskYearMonth.Year" HeaderText="Year" />
+                    <asp:BoundField DataField="TaskYearMonth.Month" HeaderText="Month" />
+                    <asp:BoundField DataField="_ProjectStatus.ProjectStatusName" HeaderText="Status" />
                     <asp:TemplateField HeaderText="View Details">
                         <ItemTemplate>
-                            <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnAction" runat="server">View Details</asp:LinkButton>
+                            <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnAction" runat="server" OnClick="btnAction_Click">View Details</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

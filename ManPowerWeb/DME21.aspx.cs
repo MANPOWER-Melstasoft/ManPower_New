@@ -44,6 +44,7 @@ namespace ManPowerWeb
             for (int i = 0; i < new DateTime(Convert.ToInt32(selectedYear), month, 01).AddMonths(1).AddDays(-1).Day; i++)
             {
                 int flag = 0;
+
                 foreach (var j in taskallocationDetailList1)
                 {
                     if (j.StartTime == new DateTime(Convert.ToInt32(selectedYear), month, 01).AddDays(i).Date)
@@ -63,6 +64,48 @@ namespace ManPowerWeb
 
             DME21GridView.DataSource = taskallocationDetailList1;
             DME21GridView.DataBind();
+
+            foreach (GridViewRow row in DME21GridView.Rows)
+            {
+                if (row.Cells[1].Text == "&nbsp;")
+                {
+                    ((LinkButton)row.FindControl("btnAdd")).Enabled = true;
+                    ((LinkButton)row.FindControl("btnEdit")).Enabled = false;
+                    ((LinkButton)row.FindControl("btnEdit")).CssClass = "btn btn-outline-secondary disabled";
+                }
+                else
+                {
+                    ((LinkButton)row.FindControl("btnAdd")).Enabled = false;
+                    ((LinkButton)row.FindControl("btnEdit")).Enabled = true;
+                    ((LinkButton)row.FindControl("btnAdd")).CssClass = "btn btn-outline-secondary disabled";
+                }
+            }
+
+            int flag1 = 0;
+
+            foreach (var item in taskallocationDetailList1)
+            {
+                if (item.TaskTypeId == 0)
+                {
+                    flag1 = 1;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            if (flag1 == 0)
+            {
+                btnApproval.Enabled = true;
+                btnApproval.CssClass = "btn btn-outline-secondary";
+            }
+            else
+            {
+                btnApproval.Enabled = false;
+                btnApproval.CssClass = "btn btn-outline-secondary disabled";
+            }
+
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -109,9 +152,12 @@ namespace ManPowerWeb
 
             taskAllocation.TaskAllocationId = taskAllocationId;
             taskAllocation.StatusId = 1;
-            taskAllocation.RecommendedBy = 4;
+            taskAllocation.DME21RecommendedBy1 = 4;
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);
+
+            string url = "DME21Front.aspx";
+            Response.Redirect(url);
         }
     }
 }

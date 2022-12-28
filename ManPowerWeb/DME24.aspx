@@ -33,7 +33,7 @@
 				<label>Program Conducted Date : </label>
 			</div>
 			<div class="col-9">
-				<asp:TextBox ID="TextBox4" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+				<asp:TextBox ID="TextBox4" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 			</div>
 		</div>
 		<br />

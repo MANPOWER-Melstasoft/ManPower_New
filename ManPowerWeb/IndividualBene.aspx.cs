@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class RPReggistration : System.Web.UI.Page
+    public partial class IndividualBene : System.Web.UI.Page
     {
         string[] gen = { "Male", "Female" };
         string[] scl = { "School", "Non School" };

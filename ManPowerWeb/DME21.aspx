@@ -32,7 +32,7 @@
             </Columns>
         </asp:GridView>
     </div>
-    <div style="margin-top: 20px; margin-bottom: 20px;">
-        <asp:LinkButton ID="btnApproval" CssClass="btn btn-outline-primary btn-lg btn-block" runat="server" OnClick="btnApproval_Click">Send to Approval</asp:LinkButton>
+    <div style="margin-top: 20px; margin-bottom: 20px; text-align: end">
+        <asp:LinkButton ID="btnApproval" runat="server" OnClick="btnApproval_Click" Style="width: 250px;">Send to Approval</asp:LinkButton>
     </div>
 </asp:Content>

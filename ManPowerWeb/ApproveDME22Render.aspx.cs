@@ -41,6 +41,7 @@ namespace ManPowerWeb
             taskAllocation = allocation.GetTaskAllocation(taskAllocationID, false, false);
 
             taskAllocation.TaskAllocationId = taskAllocationID;
+            taskAllocation.DME22_ApprovedBy = 4;
             taskAllocation.StatusId = 6;
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);

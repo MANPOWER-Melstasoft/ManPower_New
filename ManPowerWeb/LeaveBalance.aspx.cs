@@ -1,5 +1,6 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
+using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,16 +13,54 @@ namespace ManPowerWeb
 {
     public partial class LeaveBalance : System.Web.UI.Page
     {
-        DataTable leaveTable = new DataTable();
+        List<Report> leaveListFromTable = new List<Report>();
         protected void Page_Load(object sender, EventArgs e)
         {
             ReportController reportController = ControllerFactory.CreateReportController();
-            leaveTable = reportController.GetLeaveBalance();
+            leaveListFromTable = reportController.GetLeaveBalance();
+
+            if (!IsPostBack)
+            {
+                bindData();
+            }
+
+        }
+
+        private void bindData()
+        {
+            gvLeaveBalance.DataSource = leaveListFromTable;
+            int sumEntiletment = 0;
+            int sumApprovedLeaves = 0;
+            int sumPendingApproval = 0;
+            int sumLeaveBalance = 0;
+
+            foreach (var leave in leaveListFromTable)
+            {
+                sumEntiletment += Convert.ToInt32(leave.Entitlement);
+                sumApprovedLeaves += Convert.ToInt32(leave.ApprovedLeaves);
+                sumPendingApproval += Convert.ToInt32(leave.PendingApproval);
+                sumLeaveBalance += Convert.ToInt32(leave.LeaveBalannce);
+            }
+            gvLeaveBalance.Columns[0].FooterText = "Summary";
+            gvLeaveBalance.Columns[1].FooterText = sumEntiletment.ToString();
+            gvLeaveBalance.Columns[2].FooterText = sumApprovedLeaves.ToString();
+            gvLeaveBalance.Columns[3].FooterText = sumPendingApproval.ToString();
+            gvLeaveBalance.Columns[4].FooterText = sumLeaveBalance.ToString();
+
+            gvLeaveBalance.DataBind();
+
+
+        }
+
+        protected void gvLeaveBalance_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
 
 
 
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
 
-
+            }
         }
     }
 }

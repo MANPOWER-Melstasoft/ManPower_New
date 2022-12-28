@@ -13,7 +13,7 @@
                 <asp:DropDownList ID="ddlMonth" runat="server" Style="width: 200px; height: 40px; padding-left: 10px;" DataTextField="monthName" DataValueField="monthNumber"></asp:DropDownList>
             </div>
             <div class="col-sm-4">
-                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-lg btn-outline-primary" Style="width: 200px;">Search</asp:LinkButton>
+                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-lg btn-outline-primary" Style="width: 200px;" OnClick="btnSearch_Click">Search</asp:LinkButton>
             </div>
         </div>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">
@@ -23,7 +23,7 @@
                 <Columns>
                     <asp:BoundField DataField="TaskYearMonth.Year" HeaderText="Year" />
                     <asp:BoundField DataField="TaskYearMonth.Month" HeaderText="Month" />
-                    <asp:BoundField HeaderText="Status" />
+                    <asp:BoundField DataField="_ProjectStatus.ProjectStatusName" HeaderText="Status" />
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
                             <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnAction" runat="server" OnClick="btnAction_Click1">Get Action</asp:LinkButton>

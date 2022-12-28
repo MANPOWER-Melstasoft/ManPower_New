@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <div class="card">
+        <div class="card p-4">
             <h2>Leave Balance</h2>
             <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
                 <asp:GridView Style="margin-top: 30px;" ID="gvLeaveBalance" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
@@ -16,6 +16,13 @@
                         <asp:BoundField DataField="LeaveBalannce" HeaderText="Leave Balance" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                     </Columns>
                 </asp:GridView>
+            </div>
+
+            <div class="row mb-5 ms-1 mt-4">
+                <div class="col-sm-2">
+                    <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
+
+                </div>
             </div>
         </div>
 

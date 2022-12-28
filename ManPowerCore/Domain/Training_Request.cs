@@ -18,13 +18,13 @@ namespace ManPowerCore.Domain
         public int Employee_Id { get; set; }
 
         [DBField("PROGRAM_DATE")]
-        public DateTime? ProgramDate { get; set; }
+        public DateTime ProgramDate { get; set; }
 
         [DBField("PROGRAM_ID")]
         public int ProgramId { get; set; }
 
         [DBField("REQUESTED_DATE")]
-        public DateTime? RequestedDate { get; set; }
+        public DateTime RequestedDate { get; set; }
 
         [DBField("Requested_user_id")]
         public int RequestedUserID { get; set; }
@@ -33,7 +33,7 @@ namespace ManPowerCore.Domain
         public int ApprovedBy { get; set; }
 
         [DBField("APPROVED_DATE")]
-        public DateTime? ApprovedDate { get; set; }
+        public DateTime ApprovedDate { get; set; }
 
         [DBField("Status_ID")]
         public int StatusID { get; set; }
@@ -49,5 +49,11 @@ namespace ManPowerCore.Domain
 
         [DBField("Doc_Upload")]
         public string DocUpload { get; set; }
+
+        public Employee Employee { get; set; }
+
+        public Program Program { get; set; }
+
+        public ProjectStatus Status { get; set; }
     }
 }

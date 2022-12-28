@@ -53,6 +53,8 @@ namespace ManPowerCore.Domain
         [DBField("MANAGER_ID")]
         public int ManagerId { get; set; }
 
+        public string fullName { get; set; }
+
 
 
         //[DBField("LEAVE_NUMBER")]
@@ -85,7 +87,7 @@ namespace ManPowerCore.Domain
         //[DBField("EMPLOYEE_NUMBER")]
         //public int EmpNumber { get; set; }
 
-        
+
 
         //[DBField("RETAIREMENT_DATE")]
         //public DateTime RetirementDate { get; set; }
@@ -93,7 +95,7 @@ namespace ManPowerCore.Domain
         //[DBField("PLACE_OF_BIRTH")]
         //public string PlaceOfBirth { get; set; }
 
-        
+
 
 
 

@@ -81,12 +81,12 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                if(id != 0)
+                if (id != 0)
                 {
                     emp._EmergencyContact.EmployeeId = id;
                     emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
                 }
-                
+
 
                 return 1;
             }
@@ -108,6 +108,12 @@ namespace ManPowerCore.Controller
             try
             {
                 List<Employee> employeesList = employeeDAO.GetAllEmployee(dBConnection);
+
+                foreach (var item in employeesList)
+                {
+                    item.fullName = item.EmpInitials + item.LastName;
+                }
+
                 return employeesList;
             }
             catch (Exception)

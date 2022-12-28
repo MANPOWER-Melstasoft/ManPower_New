@@ -51,7 +51,7 @@
                     <asp:Button ID="btnRegister" runat="server" Text="Search" CssClass="btn btn-primary btn-user " ValidationGroup="1" Style="width: 200px;" />
                 </div>
                 <div class="col-sm-6" style="padding-left: 60px;">
-                    <asp:Button ID="btnReset" runat="server" Text="Request Training" CssClass="btn btn-secondary btn-user " BackColor="#565656" BorderColor="#565656" Style="width: 200px;" />
+                    <asp:Button ID="btnAdd" runat="server" Text="Request Training" CssClass="btn btn-secondary btn-user " BackColor="#565656" BorderColor="#565656" Style="width: 200px;" OnClick="btnAdd_Click" />
                 </div>
             </div>
             <div class="col-sm-6 m-3">
@@ -63,12 +63,15 @@
                 CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="TaskYearMonth.Year" HeaderText="Year" />
-                    <asp:BoundField DataField="TaskYearMonth.Month" HeaderText="Month" />
-                    <asp:BoundField HeaderText="Status" />
+                    <asp:BoundField DataField="ProgramDate" HeaderText="Program Date" />
+                    <asp:BoundField DataField="Employee_Id" HeaderText="Employee Id" />
+                    <asp:BoundField DataField="Employee.fullName" HeaderText="Employee Name" />
+                    <asp:BoundField DataField="Program.ProgramName" HeaderText="Program" />
+                    <asp:BoundField DataField="Institute" HeaderText="Institute" />
+                    <asp:BoundField DataField="Status.ProjectStatusName" HeaderText="Status" />
                     <asp:TemplateField HeaderText="Action">
                         <ItemTemplate>
-                            <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnAction" runat="server">Get Action</asp:LinkButton>
+                            <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btnAction" runat="server" Style="width: 150px;" OnClick="btnAction_Click">Update</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

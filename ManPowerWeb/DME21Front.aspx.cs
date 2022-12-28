@@ -1,6 +1,9 @@
-﻿using ManPowerCore.Domain;
+﻿using ManPowerCore.Common;
+using ManPowerCore.Controller;
+using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,11 +14,16 @@ namespace ManPowerWeb
     public partial class DME21Front : System.Web.UI.Page
     {
         int[] year = { DateTime.Now.Year - 1, DateTime.Now.Year, DateTime.Now.Year + 1 };
+        List<TaskAllocation> TaskAllocationList1 = new List<TaskAllocation>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindYear();
-            BindMonth();
-            BindDataSource();
+            if (!IsPostBack)
+            {
+                BindYear();
+                BindMonth();
+                BindDataSource();
+            }
         }
         private void BindYear()
         {
@@ -46,15 +54,43 @@ namespace ManPowerWeb
 
         private void BindDataSource()
         {
-            List<GridDME21> monthList = new List<GridDME21>
-            {
-                new GridDME21 {Year= 2022, Month= 10 , Status="Completed"},
-                new GridDME21 {Year= 2022, Month= 11 , Status="Not Completed"},
-                new GridDME21 {Year= 2022, Month= 12 , Status="InProgress"}
-            };
 
-            gvDME21Front.DataSource = monthList;
+            int flag1 = 0;
+
+            int depId = 4;
+
+            TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();
+
+
+            TaskAllocationList1 = allocation.DME21Front(depId);
+
+            gvDME21Front.DataSource = TaskAllocationList1;
             gvDME21Front.DataBind();
+
+            List<TaskAllocation> taskAllocationList = new List<TaskAllocation>();
+
+            taskAllocationList = allocation.GetAllTaskAllocation(false, false, false, false);
+
+
+
+            foreach (var i in taskAllocationList)
+            {
+                if (i.DepartmetUnitPossitionsId == depId && i.TaskYearMonth.Month == DateTime.Now.AddMonths(1).Month && i.TaskYearMonth.Year == DateTime.Now.AddMonths(1).Year && i.StatusId > 0)
+                {
+                    flag1 = 1;
+                }
+            }
+
+            if (flag1 == 1)
+            {
+                btnAddDME21.Enabled = false;
+                btnAddDME21.CssClass = "btn btn-outline-secondary disabled";
+            }
+            else
+            {
+                btnAddDME21.Enabled = true;
+                btnAddDME21.CssClass = "btn btn-outline-secondary";
+            }
         }
 
         protected void btnAddDME21_Click(object sender, EventArgs e)
@@ -62,14 +98,31 @@ namespace ManPowerWeb
             string Url = "dme21.aspx";
             Response.Redirect(Url);
         }
+
+        protected void btnAction_Click(object sender, EventArgs e)
+        {
+
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string url = "DME21FrontRender.aspx?" + "taskAllocationID=" + TaskAllocationList1[rowIndex].TaskAllocationId;
+            Response.Redirect(url);
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            int year = Convert.ToInt32(ddlYear.SelectedValue);
+            int month = Convert.ToInt32(ddlMonth.SelectedValue);
+
+            BindDataSource();
+
+            TaskAllocationList1 = TaskAllocationList1.Where(x => x.TaskYearMonth.Year == year && x.TaskYearMonth.Month == month).ToList();
+
+            gvDME21Front.DataSource = TaskAllocationList1;
+            gvDME21Front.DataBind();
+
+        }
     }
 
-    public class GridDME21
-    {
-        public int Year { get; set; }
-
-        public int Month { get; set; }
-
-        public String Status { get; set; }
-    }
 }

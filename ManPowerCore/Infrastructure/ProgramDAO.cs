@@ -49,21 +49,12 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            int id = getMaxProgramId(dbConnection);
-
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO PROGRAM(ID,NAME,IS_ACTIVE) " +
+            dbConnection.cmd.CommandText = "INSERT INTO PROGRAM(NAME, Program_Type_Id) " +
+                                           "VALUES(@ProgramName, @ProgramType)";
 
-                                           "VALUES(@id,@ProgramName,@IsActive)";
-
-
-                               
-                                dbConnection.cmd.Parameters.AddWithValue("@ProgramName", program.ProgramName);
-                                dbConnection.cmd.Parameters.AddWithValue("@IsActive", program.IsActive);
-
-
-            dbConnection.cmd.ExecuteNonQuery();
-
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramName", program.ProgramName);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramType", program.ProgramType);
 
             return dbConnection.cmd.ExecuteNonQuery();
         }
@@ -101,7 +92,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM PROGRAM WHERE ID = " + id;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

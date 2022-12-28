@@ -78,6 +78,7 @@
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
+    <Compile Include="Controller\OfficerListController.cs" />
     <Compile Include="Controller\PossitionsController.cs" />
     <Compile Include="Controller\ProgramAssigneeController.cs" />
     <Compile Include="Controller\ProgramAttendenceController.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Controller\PromotionController.cs" />
     <Compile Include="Controller\QuatationController.cs" />
     <Compile Include="Controller\ReligionController.cs" />
+    <Compile Include="Controller\ReportController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
@@ -108,6 +110,9 @@
     <Compile Include="Controller\UserTypeController.cs" />
     <Compile Include="Controller\VehicleMaintenaceQuatationController.cs" />
     <Compile Include="Controller\VehicleMaintenanceController.cs" />
+    <Compile Include="Controller\VoteAllocationController.cs" />
+    <Compile Include="Controller\VoteLedgerController.cs" />
+    <Compile Include="Controller\VoteTypeController.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
     <Compile Include="Domain\AutSystemRoleFunction.cs" />
@@ -140,6 +145,7 @@
     <Compile Include="Domain\LeaveType.cs" />
     <Compile Include="Domain\MarketType.cs" />
     <Compile Include="Domain\Month.cs" />
+    <Compile Include="Domain\OfficerList.cs" />
     <Compile Include="Domain\Possitions.cs" />
     <Compile Include="Domain\Program.cs" />
     <Compile Include="Domain\ProgramAssignee.cs" />
@@ -155,6 +161,7 @@
     <Compile Include="Domain\Promotions.cs" />
     <Compile Include="Domain\Quatation.cs" />
     <Compile Include="Domain\Religion.cs" />
+    <Compile Include="Domain\Report.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
     <Compile Include="Domain\ServiceType.cs" />
@@ -170,6 +177,9 @@
     <Compile Include="Domain\UserType.cs" />
     <Compile Include="Domain\VehicleMaintenanceQuatation.cs" />
     <Compile Include="Domain\VehicleMeintenance.cs" />
+    <Compile Include="Domain\VoteAllocation.cs" />
+    <Compile Include="Domain\VoteLedger.cs" />
+    <Compile Include="Domain\VoteType.cs" />
     <Compile Include="Infrastructure\AutFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutUserFunctionDAO.cs" />
@@ -199,6 +209,7 @@
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />
+    <Compile Include="Infrastructure\OfficerListDAO.cs" />
     <Compile Include="Infrastructure\PossitionsDAO.cs" />
     <Compile Include="Infrastructure\ProgramAssigneeDAO.cs" />
     <Compile Include="Infrastructure\ProgramAttendenceDAO.cs" />
@@ -214,6 +225,7 @@
     <Compile Include="Infrastructure\PromotionsDAO.cs" />
     <Compile Include="Infrastructure\QuatationDAO.cs" />
     <Compile Include="Infrastructure\ReligionDAO.cs" />
+    <Compile Include="Infrastructure\ReportDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
@@ -229,6 +241,9 @@
     <Compile Include="Infrastructure\UserTypeDAO.cs" />
     <Compile Include="Infrastructure\VehicleMaintenaceQuatationDAO.cs" />
     <Compile Include="Infrastructure\VehicleMaintenanceDAO.cs" />
+    <Compile Include="Infrastructure\VoteAllocationDAO.cs" />
+    <Compile Include="Infrastructure\VoteLedgerDAO.cs" />
+    <Compile Include="Infrastructure\VoteTypeDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

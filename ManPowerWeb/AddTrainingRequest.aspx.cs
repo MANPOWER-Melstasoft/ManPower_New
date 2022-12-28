@@ -54,7 +54,7 @@ namespace ManPowerWeb
         {
             ProgramController programControl = ControllerFactory.CreateProgramController();
 
-            programList = programControl.GetAllProgram(false);
+            programList = programControl.GetAllProgram(false, false);
 
             ddlProgram.DataSource = programList;
             ddlProgram.DataValueField = "ProgramId";

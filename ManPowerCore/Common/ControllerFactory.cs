@@ -1,4 +1,5 @@
 ﻿using ManPowerCore.Controller;
+using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -367,12 +368,50 @@ namespace ManPowerCore.Common
             return (MaintenanceCategoryController)maintenanceCategoryController;
 
         }
+        public static ReportController CreateReportController()
+        {
+            ReportController reportController = new ReportControllerImpl();
+            return (ReportController)reportController;
+        }
 
         public static TrainingRequestController CreateTrainingRequestController()
         {
             TrainingRequestController trainingRequestController = new TrainingRequestControllerImpl();
             return (TrainingRequestController)trainingRequestController;
 
+        }
+
+        public static VoteAllocationController CreateVoteAllocationController()
+        {
+            VoteAllocationController voteAllocationController = new VoteAllocationControllerImpl();
+            return (VoteAllocationController)voteAllocationController;
+        }
+
+        public static VoteTypeController CreateVoteTypeController()
+        {
+            VoteTypeController voteTypeController = new VoteTypeControllerImpl();
+            return (VoteTypeController)voteTypeController;
+
+        }
+
+        //public static VoteAllocationController CreateVoteAllocationController()
+        //{
+        //    VoteAllocationController voteAllocationController = new VoteAllocationControllerImpl();
+        //    return (VoteAllocationController)voteAllocationController;
+
+        //}
+
+        public static VoteLedgerController CreateVoteLedgerController()
+        {
+            VoteLedgerController voteLedgerController = new VoteLedgerControllerImpl();
+            return (VoteLedgerController)voteLedgerController;
+
+        }
+
+        public static OfficerListController CreateOfficerListController()
+        {
+            OfficerListController officerListController = new OfficerListControllerImpl();
+            return (OfficerListController)officerListController;
         }
 
     }

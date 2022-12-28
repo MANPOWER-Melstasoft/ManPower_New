@@ -13,6 +13,8 @@ namespace ManPowerCore.Controller
     {
         int SaveEmployee(Employee emp);
         List<Employee> GetAllEmployees();
+
+        List<Employee> GetAllEmployees(bool withEmployeeDetails);
     }
 
     public class EmployeeControllerImpl : EmployeeController
@@ -29,12 +31,12 @@ namespace ManPowerCore.Controller
 
         public int SaveEmployee(Employee emp)
         {
-            int id = 2;
+            int id = 0;
 
             try
             {
                 dBConnection = new DBConnection();
-                //id = employeeDAO.SaveEmployee(emp, dBConnection);
+                id = employeeDAO.SaveEmployee(emp, dBConnection);
 
                 if (emp._EmployeeContact.Count > 0)
                 {
@@ -74,6 +76,7 @@ namespace ManPowerCore.Controller
 
                 if (emp._EmployeeServices.Count > 0)
                 {
+                    
                     foreach (var item in emp._EmployeeServices)
                     {
                         item.EmpId = id;
@@ -114,6 +117,42 @@ namespace ManPowerCore.Controller
                     item.fullName = item.EmpInitials + item.LastName;
                 }
 
+                return employeesList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                return null;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+        public List<Employee> GetAllEmployees(bool withEmployeeDetails)
+        {
+            DBConnection dBConnection = new DBConnection();
+            EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+            try
+            {
+                List<Employee> employeesList = employeeDAO.GetAllEmployee(dBConnection);
+                List<EmploymentDetails> employeeDetailList = new List<EmploymentDetails>();
+
+
+                if (withEmployeeDetails)
+                {
+                    EmploymentDetailsDAO employmentDetailsDAO = DAOFactory.CreateEmploymentDetailsDAO();
+                    employeeDetailList = employmentDetailsDAO.GetAllEmploymentDetails(dBConnection);
+
+                    foreach (var item in employeesList)
+                    {
+
+                        item._EmploymentDetailsSingle = employeeDetailList.Where(x => x.EmpID == item.EmployeeId).Single();
+                    }
+
+
+                }
                 return employeesList;
             }
             catch (Exception)

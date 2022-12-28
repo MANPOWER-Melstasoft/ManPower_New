@@ -103,6 +103,8 @@ namespace ManPowerCore.Domain
         public List<EmployeeContact> _EmployeeContact { get; set; } = new List<EmployeeContact>();
         public List<Dependant> _Dependant { get; set; } = new List<Dependant>();
         public List<EmploymentDetails> _EmploymentDetails { get; set; } = new List<EmploymentDetails>();
+
+        public EmploymentDetails _EmploymentDetailsSingle { get; set; } = new EmploymentDetails();
         public List<EducationDetails> _EducationDetails { get; set; } = new List<EducationDetails>();
         public List<EmployeeServices> _EmployeeServices { get; set; } = new List<EmployeeServices>();
     }

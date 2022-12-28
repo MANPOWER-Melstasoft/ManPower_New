@@ -49,7 +49,7 @@ namespace ManPowerWeb
 
 
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false);
+            program = programController.GetAllProgram(false, false);
             ddlProgram.DataSource = program;
             ddlProgram.DataTextField = "ProgramName";
             ddlProgram.DataValueField = "ProgramId";

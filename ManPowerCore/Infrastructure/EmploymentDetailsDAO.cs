@@ -52,7 +52,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE_DETAILS SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID " +
+            dbConnection.cmd.CommandText = "UPDATE Employment_Detail SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID " +
                 "COMPANY_NAME = @CompanyName, START_DATE = @StartDate,END_DATE = @EndDate,IS_RESIGNED = @IsResigned" +
                 "RETIREMENT_DATE = @RetirementDate, EPF_NUMBER = @Epf, EMPNO = @EmpNumber WHERE ID = @EmploymentDetailId ";
 
@@ -91,7 +91,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM EMPLOYEE_DETAILS WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM Employment_Detail WHERE ID = " + id + " ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

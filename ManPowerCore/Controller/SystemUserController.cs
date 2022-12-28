@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ManPowerCore.Controller
 {
@@ -62,7 +63,7 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
-
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally
@@ -83,7 +84,7 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
-
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally
@@ -106,6 +107,7 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally
@@ -183,7 +185,7 @@ namespace ManPowerCore.Controller
                     catch (Exception)
                     {
                         dBConnection.RollBack();
-
+                        HttpContext.Current.Response.Redirect("500.aspx");
                         throw;
                     }
                     finally
@@ -214,7 +216,7 @@ namespace ManPowerCore.Controller
                 catch (Exception)
                 {
                     dBConnection.RollBack();
-
+                    HttpContext.Current.Response.Redirect("500.aspx");
                     throw;
                 }
                 finally
@@ -239,7 +241,7 @@ namespace ManPowerCore.Controller
                 catch (Exception)
                 {
                     dBConnection.RollBack();
-
+                    HttpContext.Current.Response.Redirect("500.aspx");
                     throw;
                 }
                 finally
@@ -259,6 +261,7 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally
@@ -288,6 +291,7 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally
@@ -346,6 +350,7 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally
@@ -391,6 +396,7 @@ namespace ManPowerCore.Controller
             catch (Exception ex)
             {
                 dbConnection.RollBack();
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally
@@ -411,7 +417,7 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
-
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally

@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,7 @@ namespace ManPowerWeb
         List<ProgramTarget> allTargets = new List<ProgramTarget>();
         List<Possitions> PositionList = new List<Possitions>();
         List<Program> program = new List<Program>();
+        List<VoteAllocation> voteAllocationList = new List<VoteAllocation>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -47,7 +49,6 @@ namespace ManPowerWeb
 
 
 
-
             //diloagBox.Visible = false;
 
             if (!IsPostBack)
@@ -58,6 +59,17 @@ namespace ManPowerWeb
                 bindDSDivision();
                 hideDSDivision();
                 bindProgram();
+
+
+                int year = DateTime.Now.Year;
+                for (int i = year; i <= year + 5; i++)
+                {
+                    ListItem li = new ListItem(i.ToString());
+                    ddlYear.Items.Add(li);
+                }
+                //ddlYear.Items.FindByText(year.ToString()).Selected = true;
+                ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
+
 
             }
 
@@ -72,41 +84,71 @@ namespace ManPowerWeb
             ddlDistrict.DataSource = listDistrict;
             ddlDistrict.DataTextField = "Name";
             ddlDistrict.DataValueField = "DepartmentUnitId";
+
             ddlDistrict.DataBind();
+            ddlDistrict.Items.Insert(0, new ListItem("Select District", ""));
+
+
 
 
 
 
             PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
-            PositionList = possitionsController.GetAllPossitions(false);
+            PositionList = possitionsController.GetAllPossitions(false, false);
             ddlPosition.DataSource = PositionList;
             ddlPosition.DataTextField = "PositionName";
             ddlPosition.DataValueField = "PossitionId";
             ddlPosition.DataBind();
+            ddlPosition.Items.Insert(0, new ListItem("Select Position", ""));
+
 
             ProgramTypeController programTypeController = ControllerFactory.CreateProgramTypeController();
             listProgramType = programTypeController.GetAllProgramType(false);
             ddlProgramType.DataSource = listProgramType;
             ddlProgramType.DataTextField = "ProgramTypeName";
             ddlProgramType.DataValueField = "ProgramTypeId";
+
             ddlProgramType.DataBind();
+            ddlProgramType.Items.Insert(0, new ListItem("Select Program Type", ""));
 
-            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            listUsers = systemUserController.GetAllSystemUser(true, false, false);
 
+            //SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            //listUsers = systemUserController.GetAllSystemUser(true, false, false);
+
+
+
+        }
+
+        private void bindOfficerList()
+        {
             DepartmentUnitPositionsController unitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
             listUser = unitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
 
-            List<SystemUser> listSystemUseer = new List<SystemUser>();
-            foreach (var item in listUser)
-            {
-                listSystemUseer.Add(item._SystemUser);
-            }
+            OfficerListController officerListController = ControllerFactory.CreateOfficerListController();
 
-            ddlOfficer.DataSource = listSystemUseer;
+            List<OfficerList> listSystemUseerOfficer = new List<OfficerList>();
+            listSystemUseerOfficer = officerListController.getOfficerList();
+
+
+            if (rbTarget.SelectedValue == "1")
+            {
+                ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+            }
+            else if (rbTarget.SelectedValue == "2")
+            {
+                ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+            }
+            else
+            {
+                ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+            }
             ddlOfficer.DataValueField = "SystemUserId";
             ddlOfficer.DataTextField = "Name";
             ddlOfficer.DataBind();
+            ddlOfficer.Items.Insert(0, new ListItem("Select Officer", ""));
 
         }
 
@@ -115,13 +157,16 @@ namespace ManPowerWeb
         private void bindProgram()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false);
+            program = programController.GetAllProgram(false, false);
             if (ddlProgramType.SelectedValue != "")
             {
                 ddlProgram.DataSource = program.Where(u => u.ProgramType.ToString() == ddlProgramType.SelectedValue);
                 ddlProgram.DataTextField = "ProgramName";
                 ddlProgram.DataValueField = "ProgramId";
+
                 ddlProgram.DataBind();
+                ddlProgram.Items.Insert(0, new ListItem("Select Program ", ""));
+
             }
             else
             {
@@ -137,7 +182,17 @@ namespace ManPowerWeb
 
         protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bindDSDivision();
+            if (rbTarget.SelectedValue == "2")
+            {
+                bindDSDivision();
+            }
+            else
+            {
+                bindOfficerList();
+
+            }
+
+
         }
         private void bindDSDivision()
         {
@@ -150,11 +205,25 @@ namespace ManPowerWeb
                 ddlDSDivision.DataTextField = "Name";
                 ddlDSDivision.DataValueField = "DepartmentUnitId";
                 ddlDSDivision.DataBind();
+                ddlDSDivision.Items.Insert(0, new ListItem("Select Division", ""));
+
             }
             else
             {
                 ddlDSDivision.Items.Clear();
             }
+
+        }
+
+        private void bindVote(string year)
+        {
+            VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+
+            voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+            ddlVote.DataSource = voteAllocationList.Where(x => Convert.ToDateTime(x.Year).Year.ToString() == year);
+            ddlVote.DataTextField = "VoteNumber";
+            ddlVote.DataValueField = "Id";
+            ddlVote.DataBind();
         }
 
         private void bindOficerRecomendation()
@@ -173,8 +242,14 @@ namespace ManPowerWeb
         {
 
             ProgramTarget programTarget = new ProgramTarget();
+            ProgramAssignee programAssignee = new ProgramAssignee();
+
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+
+            List<DepartmentUnitPositions> getdepartmentUnitPositionsIdList = new List<DepartmentUnitPositions>();
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            getdepartmentUnitPositionsIdList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(Convert.ToInt32(ddlOfficer.SelectedValue));
 
             programTarget.ProgramTypeId = Convert.ToInt32(ddlProgramType.SelectedValue);
             programTarget.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
@@ -182,13 +257,22 @@ namespace ManPowerWeb
             programTarget.Title = ddlProgram.SelectedItem.Text;
             programTarget.Description = txtDescription.Text;
             programTarget.Instractions = txtInstructions.Text;
-            programTarget.VoteNumber = txtVote.Text;
+            programTarget.VoteNumber = ddlVote.SelectedValue;
             programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
             programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
             programTarget.Output = Convert.ToInt32(txtOutput.Text);
-            programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+            if (txtOutcome.Text != "")
+            {
+                programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+
+            }
+            else
+            {
+                programTarget.Outcome = 0;
+
+            }
             programTarget.CreatedBy = Convert.ToInt32(Session["UserId"]);
 
 
@@ -196,36 +280,32 @@ namespace ManPowerWeb
             programTarget.IsRecommended = 0;
             programTarget.RecommendedBy = 0;
             programTarget.RecommendedDate = DateTime.Now;
-            programTarget.StartDate = DateTime.Now;
-            programTarget.EndDate = DateTime.Now;
+            programTarget.StartDate = Convert.ToDateTime(ddlStartDate.Text);
+            programTarget.EndDate = Convert.ToDateTime(txtEndDate.Text);
+
             programTarget.Remarks = txtRemarks.Text;
 
+            programAssignee.DesignationId = 1;
+            programAssignee.DepartmentUnitPossitionsId = getdepartmentUnitPositionsIdList[0].DepartmetUnitPossitionsId;
 
-            int TargetResponse = programTargetController.SaveProgramTarget(programTarget);
+
+
+
+
+            int TargetResponse = programTargetController.SaveProgramTarget(programTarget, programAssignee);
             ViewState["TargetResponseState"] = TargetResponse.ToString();
             //
 
 
             if (TargetResponse != 0)
             {
-                ProgramAssignee programAssignee = new ProgramAssignee();
-                ProgramAssigneeController programAssigneeController1 = ControllerFactory.CreateProgramAssigneeController();
-                programAssignee.DesignationId = 1;
-                programAssignee.ProgramTargetId = TargetResponse;
-
-                programAssignee.DepartmentUnitPossitionsId = 5; // must change 
-
-                programAssigneeController1.SaveProgramAssignee(programAssignee);
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 btnSendToReccomendation.Enabled = true;
 
             }
             else
             {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
-
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
         }
 
@@ -271,6 +351,62 @@ namespace ManPowerWeb
         protected void btnSendToReccomendation_Click(object sender, EventArgs e)
         {
             pnlDialogBox.Visible = true;
+        }
+
+        protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlYear.SelectedIndex > 0)
+            {
+                bindVote(ddlYear.Text);
+                bindStartDateEndDate();
+            }
+        }
+
+        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            bindStartDateEndDate();
+
+        }
+
+        private void bindStartDateEndDate()
+        {
+            if (ddlType.SelectedValue == "1")
+            {
+                ddlStartDate.Text = ddlYear.SelectedItem.Text + "-01-01";
+                txtEndDate.Text = ddlYear.SelectedItem.Text + "-12-31";
+            }
+            else if (ddlType.SelectedValue == "2")
+            {
+                ddlStartDate.Text = ddlYear.SelectedItem.Text + "-01-01";
+                txtEndDate.Text = ddlYear.SelectedItem.Text + "-03-30";
+            }
+            else if (ddlType.SelectedValue == "3")
+            {
+                ddlStartDate.Text = ddlYear.SelectedItem.Text + "-04-01";
+                txtEndDate.Text = ddlYear.SelectedItem.Text + "-06-30";
+            }
+            else if (ddlType.SelectedValue == "4")
+            {
+                ddlStartDate.Text = ddlYear.SelectedItem.Text + "-07-01";
+                txtEndDate.Text = ddlYear.SelectedItem.Text + "-09-30";
+            }
+            else if (ddlType.SelectedValue == "5")
+            {
+                ddlStartDate.Text = ddlYear.SelectedItem.Text + "-10-01";
+                txtEndDate.Text = ddlYear.SelectedItem.Text + "-12-31";
+            }
+            else
+            {
+                ddlStartDate.Text = "";
+                txtEndDate.Text = "";
+            }
+
+        }
+
+        protected void ddlDSDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindOfficerList();
         }
     }
 }

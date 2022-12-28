@@ -42,4 +42,13 @@
         </div>
     </div>
 
+    <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+        <asp:GridView Style="margin-top: 30px;" ID="gvPosition" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+            CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
+            <Columns>
+                <asp:BoundField DataField="PossitionId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="PositionName" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
+            </Columns>
+        </asp:GridView>
+    </div>
 </asp:Content>

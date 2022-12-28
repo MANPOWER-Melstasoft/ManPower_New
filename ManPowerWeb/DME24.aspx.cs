@@ -28,7 +28,7 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           // BindDataSource();
+            // BindDataSource();
             //diloagBox.Visible = false;
 
             if (!IsPostBack)
@@ -49,10 +49,10 @@ namespace ManPowerWeb
             programPlans = programPlanController.GetAllProgramPlan(false, false, false, false, false, false);
 
             ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
-            resName = resourcePersonController.GetAllResourcePerson();
+            //resName = resourcePersonController.GetAllResourcePerson();
 
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false);
+            program = programController.GetAllProgram(false, false);
 
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
             pa = programAssigneeController.GetAllProgramAssignee(false, false, false);
@@ -98,7 +98,7 @@ namespace ManPowerWeb
         private void bindProgram()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false);
+            program = programController.GetAllProgram(false, false);
             if (ddlProgramName.SelectedValue != "")
             {
                 ddlProgramName.DataSource = program.Where(u => u.ProgramId.ToString() == ddlProgramName.SelectedValue);
@@ -122,10 +122,10 @@ namespace ManPowerWeb
         private void bindResourcePerson()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false);
+            program = programController.GetAllProgram(false, false);
             if (ddlResourcePerson.SelectedValue != "")
             {
-                ddlResourcePerson.DataSource = resName.Where(u => u.ResoursePersonId.ToString() == ddlResourcePerson.SelectedValue);
+                //ddlResourcePerson.DataSource = resName.Where(u => u.ResoursePersonId.ToString() == ddlResourcePerson.SelectedValue);
                 ddlResourcePerson.DataBind();
                 ddlResourcePerson.DataTextField = "Name";
                 ddlResourcePerson.DataValueField = "ResoursePersonId";

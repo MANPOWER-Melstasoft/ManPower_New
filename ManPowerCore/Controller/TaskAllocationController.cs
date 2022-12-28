@@ -33,6 +33,13 @@ namespace ManPowerCore.Controller
 
         List<TaskAllocation> GetTaskAllocationDme22Approve(int PositionId);
 
+        List<TaskAllocation> GetRecommend1TaskAllocation(int PositionId);
+
+        List<TaskAllocation> GetRecommend2TaskAllocation(int PositionId);
+
+        List<TaskAllocation> DME21Front(int PositionId);
+
+        List<TaskAllocation> DME22(int PositionId);
     }
 
 
@@ -382,6 +389,171 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public List<TaskAllocation> GetRecommend1TaskAllocation(int PositionId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocation> list = taskAllocationDAO.GetAllTaskAllocation(dBConnection);
+
+
+                DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                List<DepartmentUnitPositions> departmentUnitPositionList = _DepartmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
+                SystemUserController SystemUser = ControllerFactory.CreateSystemUserController();
+
+                List<SystemUser> systemUserList = new List<SystemUser>();
+
+                list = list.Where(x => x.DepartmetUnitPossitionsId == PositionId && x.StatusId == 1).ToList();
+
+                systemUserList = SystemUser.GetAllSystemUser(false, false, false);
+
+                foreach (var item in list)
+                {
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+
+                foreach (var item in list)
+                {
+                    item._SystemUser = systemUserList.Where(x => x.SystemUserId == item._DepartmentUnitPositions.SystemUserId).Single();
+                }
+
+                return list;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<TaskAllocation> GetRecommend2TaskAllocation(int PositionId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocation> list = taskAllocationDAO.GetAllTaskAllocation(dBConnection);
+
+
+                DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                List<DepartmentUnitPositions> departmentUnitPositionList = _DepartmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
+                SystemUserController SystemUser = ControllerFactory.CreateSystemUserController();
+
+                List<SystemUser> systemUserList = new List<SystemUser>();
+
+                list = list.Where(x => x.DepartmetUnitPossitionsId == PositionId && x.StatusId == 2008).ToList();
+
+                systemUserList = SystemUser.GetAllSystemUser(false, false, false);
+
+                foreach (var item in list)
+                {
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+
+                foreach (var item in list)
+                {
+                    item._SystemUser = systemUserList.Where(x => x.SystemUserId == item._DepartmentUnitPositions.SystemUserId).Single();
+                }
+
+                return list;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<TaskAllocation> DME21Front(int PositionId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocation> listTaskAllocation = new List<TaskAllocation>();
+
+                listTaskAllocation = taskAllocationDAO.GetAllTaskAllocation(dBConnection);
+
+                listTaskAllocation = listTaskAllocation.Where(x => x.DepartmetUnitPossitionsId == PositionId && x.StatusId > 0).ToList();
+
+                ProjectStatusDAO projectStatusDAO = DAOFactory.CreateProjectStatusDAO();
+
+                List<ProjectStatus> listProjectStatus = new List<ProjectStatus>();
+
+                listProjectStatus = projectStatusDAO.GetAllProjectStatus(dBConnection);
+
+                foreach (var item in listTaskAllocation)
+                {
+                    item._ProjectStatus = listProjectStatus.Where(x => x.ProjectStatusId == item.StatusId).Single();
+                }
+
+                return listTaskAllocation;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<TaskAllocation> DME22(int PositionId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<TaskAllocation> listTaskAllocation = new List<TaskAllocation>();
+
+                listTaskAllocation = taskAllocationDAO.GetAllTaskAllocation(dBConnection);
+
+                listTaskAllocation = listTaskAllocation.Where(x => x.DepartmetUnitPossitionsId == PositionId && (x.StatusId == 2 || x.StatusId == 6 || x.StatusId == 8)).ToList();
+
+                ProjectStatusDAO projectStatusDAO = DAOFactory.CreateProjectStatusDAO();
+
+                List<ProjectStatus> listProjectStatus = new List<ProjectStatus>();
+
+                listProjectStatus = projectStatusDAO.GetAllProjectStatus(dBConnection);
+
+                foreach (var item in listTaskAllocation)
+                {
+                    item._ProjectStatus = listProjectStatus.Where(x => x.ProjectStatusId == item.StatusId).Single();
+                }
+
+                return listTaskAllocation;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
     }
 
 }

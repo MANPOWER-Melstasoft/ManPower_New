@@ -1,4 +1,5 @@
 ﻿//using ManPowerCore.Infrastructure;
+using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -362,6 +363,43 @@ namespace ManPowerCore.Common
         {
             StaffLeaveDAO staffLeaveDAO = new StaffLeaveDAOSqlImpl();
             return (StaffLeaveDAO)staffLeaveDAO;
+        }
+
+        public static ReportDAO CreateReportDAO()
+        {
+            ReportDAO reportDAO = new ReportDAOSqlImpl();
+            return (ReportDAO)reportDAO;
+        }
+
+        public static VoteAllocationDAO CreateVoteAllocationDAO()
+        {
+            VoteAllocationDAO voteAllocationDAO = new VoteAllocationDAOSqlImpl();
+            return (VoteAllocationDAO)voteAllocationDAO;
+        }
+
+        public static VoteTypeDAO CreateVoteTypeDAO()
+        {
+            VoteTypeDAO voteTypeDAO = new VoteTypeDAOSqlImpl();
+            return (VoteTypeDAO)voteTypeDAO;
+        }
+
+        //public static VoteAllocationDAO CreateVoteAllocationDAO()
+        //{
+        //    VoteAllocationDAO voteAllocationDAO = new VoteAllocationDAOSqlImpl();
+        //    return (VoteAllocationDAO)voteAllocationDAO;
+        //}
+
+        public static VoteLedgerDAO CreateVoteLedgerDAO()
+        {
+            VoteLedgerDAO voteLedgerDAO = new VoteLedgerDAOSqlImpl();
+            return (VoteLedgerDAO)voteLedgerDAO;
+        }
+
+        public static OfficerListDAO CreateOfficerListDAO()
+        {
+            OfficerListDAO officerListDAO = new OfficerListDAOSqlImpl();
+            return (OfficerListDAO)officerListDAO;
+
         }
 
     }

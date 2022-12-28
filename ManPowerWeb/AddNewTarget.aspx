@@ -18,12 +18,10 @@
                                 <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
-                                    <asp:ListItem Value="2020">2020</asp:ListItem>
-                                    <asp:ListItem Value="2021">2021</asp:ListItem>
-                                    <asp:ListItem Value="2022">2022</asp:ListItem>
-                                    <asp:ListItem Value="2023">2023</asp:ListItem>
+                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlYear" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -61,8 +59,10 @@
                                 <asp:Literal ID="Literal3" runat="server" Text="District"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlDistrict" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -76,8 +76,10 @@
                                 <asp:Literal ID="Literal4" runat="server" Text="DS Division"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlDSDivision" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                <asp:DropDownList ID="ddlDSDivision" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlDSDivision_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlDSDivision" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -94,8 +96,10 @@
                                 <asp:Literal ID="Literal5" runat="server" Text="Position"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlPosition" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                <asp:DropDownList ID="ddlPosition" runat="server" CssClass="form-control form-control-user" Width="250px">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlPosition" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -106,8 +110,10 @@
                                 <asp:Literal ID="Literal6" runat="server" Text="Officer Name"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlOfficer" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                <asp:DropDownList ID="ddlOfficer" runat="server" CssClass="form-control form-control-user" Width="250px">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlOfficer" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                             </div>
                         </div>
                     </div>
@@ -123,8 +129,10 @@
                                 <asp:Literal ID="Literal7" runat="server" Text="Program Type"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlProgramType" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlProgramType_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlProgramType" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlProgramType_SelectedIndexChanged">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlProgramType" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
 
                             </div>
                         </div>
@@ -135,8 +143,10 @@
                                 <asp:Literal ID="Literal9" runat="server" Text="Program"></asp:Literal>
                             </div>
                             <div class="col-md-6">
-                                <asp:DropDownList ID="ddlProgram" runat="server" CssClass="btn  btn-primary dropdown-toggle" Width="250px">
+                                <asp:DropDownList ID="ddlProgram" runat="server" CssClass="form-control form-control-user" Width="250px">
                                 </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlProgram" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
 
                             </div>
                         </div>
@@ -187,13 +197,62 @@
                                 <asp:Literal ID="Literal17" runat="server" Text="Vote"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtVote" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="txtVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                <asp:DropDownList ID="ddlVote" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal18" runat="server" Text="Type"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control form-control-user" Width="250px" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" AutoPostBack="true">
+                                    <asp:ListItem Value="1">Annualy</asp:ListItem>
+                                    <asp:ListItem Value="2">FIrst Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="3">Second Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="4">Third Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="5">Fourth Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="6">Monthly</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" ValidationGroup="1" ControlToValidate="ddlType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mb-3 ms-1" runat="server" id="divMonth">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal19" runat="server" Text="Start Date"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="ddlStartDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal20" runat="server" Text="End Date"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtEndDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -206,6 +265,7 @@
                 <br />
 
 
+
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">
                         <div class="row mb-3">
@@ -213,7 +273,7 @@
                                 <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="btn btn-primary dropdown-toggle" Width="250px">
+                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px">
                                     <asp:ListItem Value="1">January</asp:ListItem>
                                     <asp:ListItem Value="2">February</asp:ListItem>
                                     <asp:ListItem Value="3">March</asp:ListItem>
@@ -293,7 +353,6 @@
                             <div class="col-md-4">
                                 <asp:TextBox ID="txtOutcome" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
 
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ControlToValidate="txtOutcome" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>
@@ -388,6 +447,5 @@
                     </Triggers>
                 </asp:UpdatePanel>--%>
     </div>
-    </div>
-    </div>
+
 </asp:Content>

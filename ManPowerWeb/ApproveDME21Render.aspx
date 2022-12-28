@@ -13,10 +13,10 @@
             </Columns>
         </asp:GridView>
     </div>
-    <div style="margin-top: 20px; margin-bottom: 20px;">
-        <asp:LinkButton ID="btnApprove" CssClass="btn btn-outline-success btn-lg btn-block" runat="server" OnClick="btnApprove_Click">Approve DME21</asp:LinkButton>
+    <div style="margin-top: 20px; margin-bottom: 20px; text-align: center">
+        <asp:LinkButton ID="btnApprove" CssClass="btn btn-outline-success" runat="server" OnClick="btnApprove_Click" Style="width: 250px;">Approve DME21</asp:LinkButton>
     </div>
-    <div style="margin-top: 20px; margin-bottom: 20px;">
-        <asp:LinkButton ID="btnReject" CssClass="btn btn-outline-danger btn-lg btn-block" runat="server" OnClick="btnReject_Click">Reject DME21</asp:LinkButton>
+    <div style="margin-top: 20px; margin-bottom: 20px; text-align: center">
+        <asp:LinkButton ID="btnReject" CssClass="btn btn-outline-danger" runat="server" OnClick="btnReject_Click" Style="width: 250px;">Reject DME21</asp:LinkButton>
     </div>
 </asp:Content>

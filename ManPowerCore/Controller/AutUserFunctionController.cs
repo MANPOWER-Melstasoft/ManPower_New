@@ -18,6 +18,7 @@ namespace ManPowerCore.Controller
         List<AutUserFunction> GetAllAutUserFunctionByUserId(bool withFunctions, int AutUserId);
         List<AutUserFunction> GetAllAutUserFunction(bool withFunctions);
         int Change(AutUserFunction autUserFunction);
+        AutUserFunction GetAutUserFunction(AutUserFunction autUserFunction);
     }
 
     public class AutUserFunctionControllerSqlImpl : AutUserFunctionController
@@ -192,5 +193,25 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public AutUserFunction GetAutUserFunction(AutUserFunction autUserFunction)
+        {
+            DBConnection dbConnection = null;
+            try
+            {
+                dbConnection = new DBConnection();
+                return autUserFunctionDAO.GetAutUserFunction(autUserFunction, dbConnection);
+
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
     }
 }

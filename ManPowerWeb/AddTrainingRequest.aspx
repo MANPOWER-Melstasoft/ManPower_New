@@ -42,12 +42,12 @@
                             <asp:Literal ID="Literal2" runat="server" Text="Upload University Application :"></asp:Literal>
                         </div>
                         <div class="col-md-6" style="text-align: center">
-                            <asp:LinkButton ID="btnUpload" runat="server" CssClass="form-control form-control-user">Upload Document</asp:LinkButton>
+                            <asp:FileUpload ID="FileUploader" runat="server" Style="padding-top: 10px;"></asp:FileUpload>
                         </div>
                     </div>
                     <div class="row mb-3" style="padding-top: 20px;">
                         <div class="col-sm-6" style="padding-left: 60px;">
-                            <asp:Button ID="btnSave" runat="server" Text="Submit to Approval" CssClass="btn btn-secondary btn-user " BackColor="#51E567 " BorderColor="#51E567" Style="width: 200px;" />
+                            <asp:Button ID="btnSave" runat="server" Text="Submit to Approval" CssClass="btn btn-secondary btn-user " BackColor="#51E567 " BorderColor="#51E567" Style="width: 200px;" OnClick="btnSave_Click" ValidationGroup="1" />
                         </div>
                         <div class="col-sm-6" style="padding-left: 60px;">
                             <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-secondary btn-user " BackColor="#565656" BorderColor="#565656" Style="width: 200px;" />

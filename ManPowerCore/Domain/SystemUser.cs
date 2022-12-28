@@ -69,7 +69,7 @@ namespace ManPowerCore.Domain
         public int DepartmentUnitId { get; set; }
         public int ParentId { get; set; }
 
-        public List<DepartmentUnitPositions> _DepartmentUnitPositions { get; set; }
+        public DepartmentUnitPositions _DepartmentUnitPositions { get; set; }
         public UserType _UserType { get; set; } = new UserType();
         public Designation _Designation { get; set; } = new Designation();
 

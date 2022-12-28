@@ -13,11 +13,17 @@ namespace ManPowerWeb
 {
     public partial class UserPrevilages : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 1046;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
             {
-                BindUser();
+                if (!IsPostBack)
+                {
+                    BindUser();
+                }
             }
         }
 

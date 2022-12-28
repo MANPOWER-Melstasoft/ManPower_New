@@ -45,13 +45,7 @@ namespace ManPowerWeb
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            //GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
 
-            //int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-            //int taskAllocationDetailID = taskallocationDetailList[rowIndex].TaskAllocationDetailId;
-
-            //TaskAllocationDetail taskAllocationDetailObject = new TaskAllocationDetail();
             taskallocationDetailList = taskAllocationDetail.GetAllTaskAllocationDetailByTaskAllocationId(taskAllocationId);
 
             for (int rowIndex = 0; rowIndex < DME22GetActionGridView.Rows.Count; rowIndex++)
@@ -69,7 +63,7 @@ namespace ManPowerWeb
             taskAllocationObj = taskAllocationController.GetTaskAllocation(taskAllocationId, false, false);
 
             taskAllocationObj.StatusId = 8;
-            taskAllocationObj.ApprovedBy = 4;
+            taskAllocationObj.DME22_ApprovedBy = 4;
 
 
             taskAllocationController.UpdateTaskAllocation(taskAllocationObj);

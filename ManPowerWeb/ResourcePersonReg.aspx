@@ -9,10 +9,9 @@
 				<label>Resource Person Type : </label>
 			</div>
 			<div class="col-9">
-				<asp:TextBox ID="rptype" runat="server"  Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-				<asp:RequiredFieldValidator ControlToValidate="rptype" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+				<asp:DropDownList ID="ddlType" runat="server" CssClass="dropdown-toggle form-control" Width="230px"></asp:DropDownList>
 			</div>
-		</div><br />
+		</div><br /><br />
 
 		<div class="row">
 			<div class="col-3">

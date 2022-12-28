@@ -99,7 +99,7 @@
 							<label>Date of Birth : </label>
 						</div>
 						<div class="col-8">
-							<asp:TextBox ID="dob" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:TextBox ID="dob" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="dob" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
@@ -137,7 +137,7 @@
 							<label>NIC Issued Date : </label>
 						</div>
 						<div class="col-8">
-							<asp:TextBox ID="nicIssuedDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:TextBox ID="nicIssuedDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="nicIssuedDate" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
@@ -240,7 +240,7 @@
 							<label>Start Date : </label>
 						</div>
 						<div class="col-8" style="text-align:right">
-							<asp:TextBox ID="sDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:TextBox ID="sDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="sDate" ID="RequiredFieldValidator12" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
@@ -252,7 +252,7 @@
 							<label>End Date : </label>
 						</div>
 						<div class="col-8" style="text-align:right">
-							<asp:TextBox ID="eDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:TextBox ID="eDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="eDate" ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
@@ -266,7 +266,7 @@
 							<label>Retired Date : </label>
 						</div>
 						<div class="col-8">
-							<asp:TextBox ID="retiredDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:TextBox ID="retiredDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="retiredDate" ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
@@ -399,7 +399,7 @@
 							<label>Date of Birth: </label>
 						</div>
 						<div class="col-8" style="text-align:right">
-							<asp:TextBox ID="depDob" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:TextBox ID="depDob" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="depDob" ID="RequiredFieldValidator19" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						</div>
 					</div>
 				</div>
@@ -452,7 +452,7 @@
 									<label>Marriage Date : </label>
 								</div>
 								<div class="col-8">
-									<asp:TextBox ID="mDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+									<asp:TextBox ID="mDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 									<asp:RequiredFieldValidator ControlToValidate="mDate" ID="RequiredFieldValidator23" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
 								</div>
 							</div>
@@ -953,7 +953,7 @@
 							<label>Date of Appointment: </label>
 						</div>
 						<div class="col-8" style="text-align:right">
-							<asp:TextBox ID="appointmentDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="DateTimeLocal"></asp:TextBox>
+							<asp:TextBox ID="appointmentDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="appointmentDate" ID="RequiredFieldValidator47" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>

@@ -15,9 +15,14 @@ namespace ManPowerWeb
 {
     public partial class ResourcePersonReg : System.Web.UI.Page
     {
-        //string[] type = { "DME", "External" };
+        string[] type = { "DME", "External" };
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                ddlType.DataSource = type;
+                ddlType.DataBind();
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -25,7 +30,7 @@ namespace ManPowerWeb
             ResourcePersonController rp = ControllerFactory.CreateResourcePersonController();
             ResourcePerson resourcePerson = new ResourcePerson();
 
-            resourcePerson.ResourcePersonType = rptype.Text;
+            resourcePerson.ResourcePersonType = ddlType.SelectedValue;
             resourcePerson.Name = name.Text;
             resourcePerson.Designation = desig.Text;
             resourcePerson.NIC = nic.Text;
@@ -45,7 +50,6 @@ namespace ManPowerWeb
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-                rptype.Text = null;
                 desig.Text = null;
                 nic.Text = null;
                 workPlace.Text = null;
@@ -60,7 +64,7 @@ namespace ManPowerWeb
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            rptype.Text = null;
+           
             desig.Text = null;
             nic.Text = null;
             workPlace.Text = null;

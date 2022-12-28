@@ -86,8 +86,6 @@
                     <asp:BoundField DataField="StartDate" HeaderText="START DATE" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Description" HeaderText="DESCRIPTION" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Title" HeaderText="TITLE" HeaderStyle-CssClass="table-dark" />
-
-
                 </Columns>
             </asp:GridView>
         </div>

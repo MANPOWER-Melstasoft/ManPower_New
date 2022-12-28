@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class MaintenanceRequest
+    public partial class MaintenanceApprovalView
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox fielNo;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-
-        /// <summary>
         /// date control.
         /// </summary>
         /// <remarks>
@@ -42,22 +33,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox date;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// category control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
-        /// ddlCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        protected global::System.Web.UI.WebControls.TextBox category;
 
         /// <summary>
         /// requestedBy control.
@@ -69,15 +51,6 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox requestedBy;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-
-        /// <summary>
         /// vNo control.
         /// </summary>
         /// <remarks>
@@ -85,15 +58,6 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox vNo;
-
-        /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
         /// description control.
@@ -105,40 +69,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox description;
 
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// approval control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-
-        /// <summary>
-        /// Uploader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload Uploader;
-
-        /// <summary>
-        /// lblListOfUploadedFiles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblListOfUploadedFiles;
-
-        /// <summary>
-        /// RequiredFieldValidator6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.TextBox approval;
 
         /// <summary>
         /// Button3 control.
@@ -150,13 +87,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
-        /// btnSave control.
+        /// acceptBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button acceptBtn;
+
+        /// <summary>
+        /// rejectReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox rejectReason;
 
         /// <summary>
         /// Button1 control.

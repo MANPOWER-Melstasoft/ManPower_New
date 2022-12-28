@@ -226,6 +226,7 @@
     <Content Include="Styles\sweetalert.css" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
+    <Content Include="UserList.aspx" />
     <Content Include="VacancyReg.aspx" />
     <Content Include="VacancyRegSearch.aspx" />
     <Content Include="VacancyRegView.aspx" />
@@ -2264,6 +2265,13 @@
     </Compile>
     <Compile Include="UpcomingprogramsView.aspx.designer.cs">
       <DependentUpon>UpcomingprogramsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPrevilage.cs" />
     <Compile Include="VacancyReg.aspx.cs">

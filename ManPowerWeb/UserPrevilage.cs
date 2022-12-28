@@ -12,21 +12,29 @@ namespace ManPowerWeb
     {
         public bool checkPrevilage(int userId, int functionId)
         {
-            AutUserFunctionController autUserFunctionController = ControllerFactory.CreateAutUserFunctionController();
-            AutUserFunction autUserFunction = new AutUserFunction
+            if (userId != 0)
             {
-                AutUserId = userId,
-                AutFunctionId = functionId
-            };
-            autUserFunction = autUserFunctionController.GetAutUserFunction(autUserFunction);
-            if (autUserFunction.AutUserId == 0)
-            {
-                HttpContext.Current.Response.Redirect("401.aspx");
-                return false;
+                AutUserFunctionController autUserFunctionController = ControllerFactory.CreateAutUserFunctionController();
+                AutUserFunction autUserFunction = new AutUserFunction
+                {
+                    AutUserId = userId,
+                    AutFunctionId = functionId
+                };
+                autUserFunction = autUserFunctionController.GetAutUserFunction(autUserFunction);
+                if (autUserFunction.AutUserId == 0)
+                {
+                    HttpContext.Current.Response.Redirect("401.aspx");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
-                return true;
+                HttpContext.Current.Response.Redirect("Login.aspx");
+                return false;
             }
         }
     }

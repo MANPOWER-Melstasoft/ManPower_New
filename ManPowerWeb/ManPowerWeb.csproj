@@ -119,6 +119,8 @@
     <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="ApprovedTraining.aspx" />
+    <Content Include="ApproveTrainingRequest.aspx" />
     <Content Include="ApproveLeave.aspx" />
     <Content Include="ApproveLeaveView.aspx" />
     <Content Include="CompletedPrograms.aspx" />
@@ -143,6 +145,7 @@
     <Content Include="Default.aspx" />
     <Content Include="DME21.aspx" />
     <Content Include="DME21Front.aspx" />
+    <Content Include="DMe21FrontRender.aspx" />
     <Content Include="DME24.aspx" />
     <Content Include="EntRegistration.aspx" />
     <Content Include="DME22.aspx" />
@@ -184,6 +187,11 @@
     <Content Include="LeaveBalance.aspx" />
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="PersonalFiles.aspx" />
+    <Content Include="Recommend1DME21.aspx" />
+    <Content Include="Recommend1DME21Render.aspx" />
+    <Content Include="Recommend2DME21.aspx" />
+    <Content Include="Recommend2Dme21Render.aspx" />
+    <Content Include="ResourcePerson.aspx" />
     <Content Include="ResourcePersonReg.aspx" />
     <Content Include="RPReggistration.aspx" />
     <Content Include="LeaveAllocation.aspx" />
@@ -2042,6 +2050,20 @@
     <Compile Include="ApproveDME22Render.aspx.designer.cs">
       <DependentUpon>ApproveDME22Render.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApprovedTraining.aspx.cs">
+      <DependentUpon>ApprovedTraining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovedTraining.aspx.designer.cs">
+      <DependentUpon>ApprovedTraining.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveTrainingRequest.aspx.cs">
+      <DependentUpon>ApproveTrainingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveTrainingRequest.aspx.designer.cs">
+      <DependentUpon>ApproveTrainingRequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveLeave.aspx.cs">
       <DependentUpon>ApproveLeave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2113,6 +2135,13 @@
     </Compile>
     <Compile Include="DME21Front.aspx.designer.cs">
       <DependentUpon>DME21Front.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DMe21FrontRender.aspx.cs">
+      <DependentUpon>DMe21FrontRender.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DMe21FrontRender.aspx.designer.cs">
+      <DependentUpon>DMe21FrontRender.aspx</DependentUpon>
     </Compile>
     <Compile Include="DME24.aspx.cs">
       <DependentUpon>DME24.aspx</DependentUpon>
@@ -2217,6 +2246,34 @@
       <DependentUpon>ProgramCalander.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recommend1DME21.aspx.cs">
+      <DependentUpon>Recommend1DME21.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recommend1DME21.aspx.designer.cs">
+      <DependentUpon>Recommend1DME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Recommend1DME21Render.aspx.cs">
+      <DependentUpon>Recommend1DME21Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recommend1DME21Render.aspx.designer.cs">
+      <DependentUpon>Recommend1DME21Render.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Recommend2DME21.aspx.cs">
+      <DependentUpon>Recommend2DME21.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recommend2DME21.aspx.designer.cs">
+      <DependentUpon>Recommend2DME21.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Recommend2Dme21Render.aspx.cs">
+      <DependentUpon>Recommend2Dme21Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recommend2Dme21Render.aspx.designer.cs">
+      <DependentUpon>Recommend2Dme21Render.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RequestTraining.aspx.cs">
       <DependentUpon>RequestTraining.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

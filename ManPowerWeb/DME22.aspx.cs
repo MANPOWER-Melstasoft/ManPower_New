@@ -19,9 +19,12 @@ namespace ManPowerWeb
         TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindYear();
-            BindMonth();
-            BindDataSource();
+            if (!IsPostBack)
+            {
+                BindYear();
+                BindMonth();
+                BindDataSource();
+            }
         }
 
         private void BindYear()
@@ -53,9 +56,22 @@ namespace ManPowerWeb
 
         private void BindDataSource()
         {
-            taskAllocationList = allocation.GetAllTaskAllocationByDepartmentUnitPositionId(depId);
+            taskAllocationList = allocation.DME22(depId);
             DME22GridView.DataSource = taskAllocationList;
             DME22GridView.DataBind();
+
+            foreach (GridViewRow row in DME22GridView.Rows)
+            {
+                if (row.Cells[2].Text == "Inprogress")
+                {
+                    ((LinkButton)row.FindControl("btnAction")).Enabled = true;
+                }
+                else
+                {
+                    ((LinkButton)row.FindControl("btnAction")).Enabled = false;
+                    ((LinkButton)row.FindControl("btnAction")).CssClass = "btn btn-outline-secondary disabled";
+                }
+            }
         }
 
         protected void btnAction_Click1(object sender, EventArgs e)
@@ -66,6 +82,19 @@ namespace ManPowerWeb
 
             string url = "DME22GetAction.aspx?" + "taskAllocationId=" + taskAllocationList[rowIndex].TaskAllocationId.ToString();
             Response.Redirect(url);
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            int year = Convert.ToInt32(ddlYear.SelectedValue);
+            int month = Convert.ToInt32(ddlMonth.SelectedValue);
+
+            BindDataSource();
+
+            taskAllocationList = taskAllocationList.Where(x => x.TaskYearMonth.Year == year && x.TaskYearMonth.Month == month).ToList();
+
+            DME22GridView.DataSource = taskAllocationList;
+            DME22GridView.DataBind();
         }
     }
 }

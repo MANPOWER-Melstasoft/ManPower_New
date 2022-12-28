@@ -53,6 +53,8 @@ namespace ManPowerCore.Domain
         [DBField("MANAGER_ID")]
         public int ManagerId { get; set; }
 
+        public string fullName { get; set; }
+
 
 
         //[DBField("LEAVE_NUMBER")]

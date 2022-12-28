@@ -10,9 +10,8 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveDME22Render : System.Web.UI.Page
+    public partial class Recommend2Dme21Render : System.Web.UI.Page
     {
-
         List<TaskAllocationDetail> taskAllocationDetailList;
         public int taskAllocationID;
         protected void Page_Load(object sender, EventArgs e)
@@ -28,8 +27,8 @@ namespace ManPowerWeb
 
             taskAllocationDetailList = taskAllocationDetail.GetAllTaskAllocationDetailByTaskAllocationId(taskAllocationID);
 
-            gvDME22Approve.DataSource = taskAllocationDetailList;
-            gvDME22Approve.DataBind();
+            gvDME21Recommend2.DataSource = taskAllocationDetailList;
+            gvDME21Recommend2.DataBind();
         }
 
         protected void btnApprove_Click(object sender, EventArgs e)
@@ -41,8 +40,8 @@ namespace ManPowerWeb
             taskAllocation = allocation.GetTaskAllocation(taskAllocationID, false, false);
 
             taskAllocation.TaskAllocationId = taskAllocationID;
-            taskAllocation.DME22_ApprovedBy = 4;
-            taskAllocation.StatusId = 6;
+            taskAllocation.DME21ApprovedBy = 4;
+            taskAllocation.StatusId = 2010;
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);
         }

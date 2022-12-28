@@ -30,14 +30,14 @@ namespace ManPowerCore.Domain
         [DBField("STATUS_ID")]
         public int StatusId { get; set; }
 
-        [DBField("RECOMMENDED_BY")]
-        public int RecommendedBy { get; set; }
+        [DBField("DME21_Recommended_by1")]
+        public int DME21RecommendedBy1 { get; set; }
 
         [DBField("RECOMMENDED_DATE")]
         public DateTime RecommendedDate { get; set; }
 
-        [DBField("APPROVED_BY")]
-        public int ApprovedBy { get; set; }
+        [DBField("DME22_Approved_by")]
+        public int DME22_ApprovedBy { get; set; }
 
         [DBField("APPROVED_DATE")]
         public DateTime ApprovedDate { get; set; }
@@ -45,6 +45,11 @@ namespace ManPowerCore.Domain
         [DBField("COMMENTS")]
         public string ApprovalComments { get; set; }
 
+        [DBField("DME21_Recommended_by2")]
+        public int DME21RecommendedBy2 { get; set; }
+
+        [DBField("DME21_Approved_by")]
+        public int DME21ApprovedBy { get; set; }
 
 
         public List<TaskAllocationDetail> _TaskAllocationDetail { get; set; } = new List<TaskAllocationDetail>();

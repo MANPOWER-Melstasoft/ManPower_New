@@ -29,7 +29,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYMENT_DETAIL(DESIGNATION_ID,CONTRACT_TYPE_ID,EMPLOYEE_ID,COMPANY_NAME,START_DATE, " +
                 "END_DATE,IS_RESIGNED,RETIREMENT_DATE,EPF_NUMBER,EMPNO)" +
-                " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf,@EmpNumber)"; 
+                " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf,@EmpNumber)";
 
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", empDetails.DesignationId);
             dbConnection.cmd.Parameters.AddWithValue("@ContractTypeId", empDetails.ContractTypeId);
@@ -78,7 +78,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM Employment_Detail ";
+            dbConnection.cmd.CommandText = "SELECT * FROM Employment_Detail";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

@@ -141,6 +141,8 @@
     <Content Include="DME22GetAction.aspx" />
     <Content Include="DME37.aspx" />
     <Content Include="DME37Search.aspx" />
+    <Content Include="EntRegistrationSearch.aspx" />
+    <Content Include="EntView.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -158,6 +160,8 @@
     <Content Include="img\header2.png" />
     <Content Include="img\minus.png" />
     <Content Include="img\plus.png" />
+    <Content Include="IndividualBeneSearch.aspx" />
+    <Content Include="IndividualBeneView.aspx" />
     <Content Include="js\mdb.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="img\undraw_posting_photo.svg" />
@@ -173,10 +177,15 @@
     <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="MaintenanceApproval.aspx" />
+    <Content Include="MaintenanceApprovalView.aspx" />
     <Content Include="MaintenanceRequest.aspx" />
+    <Content Include="MaintenanceRequestView.aspx" />
     <Content Include="PersonalFiles.aspx" />
     <Content Include="ResourcePersonReg.aspx" />
-    <Content Include="RPReggistration.aspx" />
+    <Content Include="ResourcePersonRegSearch.aspx" />
+    <Content Include="ResourcePersonView.aspx" />
+    <Content Include="IndividualBene.aspx" />
     <Content Include="LeaveAllocation.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="planning.aspx" />
@@ -219,7 +228,7 @@
     <Content Include="VacancyRegView.aspx" />
     <Content Include="UserPrivileges.aspx" />
     <Content Include="UserRegister.aspx" />
-    <Content Include="VehicleMeintenance.aspx" />
+    <Content Include="VehicleMeintenanceSearch.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.js" />
@@ -2088,8 +2097,50 @@
       <DependentUpon>DME37Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="EncryptDecryptQueryString.cs" />
+    <Compile Include="EntRegistrationSearch.aspx.cs">
+      <DependentUpon>EntRegistrationSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EntRegistrationSearch.aspx.designer.cs">
+      <DependentUpon>EntRegistrationSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EntView.aspx.cs">
+      <DependentUpon>EntView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EntView.aspx.designer.cs">
+      <DependentUpon>EntView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IndividualBeneSearch.aspx.cs">
+      <DependentUpon>IndividualBeneSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndividualBeneSearch.aspx.designer.cs">
+      <DependentUpon>IndividualBeneSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IndividualBeneView.aspx.cs">
+      <DependentUpon>IndividualBeneView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndividualBeneView.aspx.designer.cs">
+      <DependentUpon>IndividualBeneView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceApproval.aspx.cs">
+      <DependentUpon>MaintenanceApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceApproval.aspx.designer.cs">
+      <DependentUpon>MaintenanceApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceApprovalView.aspx.cs">
+      <DependentUpon>MaintenanceApprovalView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceApprovalView.aspx.designer.cs">
+      <DependentUpon>MaintenanceApprovalView.aspx</DependentUpon>
     </Compile>
     <Compile Include="MaintenanceRequest.aspx.cs">
       <DependentUpon>MaintenanceRequest.aspx</DependentUpon>
@@ -2097,6 +2148,13 @@
     </Compile>
     <Compile Include="MaintenanceRequest.aspx.designer.cs">
       <DependentUpon>MaintenanceRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRequestView.aspx.cs">
+      <DependentUpon>MaintenanceRequestView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRequestView.aspx.designer.cs">
+      <DependentUpon>MaintenanceRequestView.aspx</DependentUpon>
     </Compile>
     <Compile Include="PersonalFiles.aspx.cs">
       <DependentUpon>PersonalFiles.aspx</DependentUpon>
@@ -2155,12 +2213,26 @@
     <Compile Include="ResourcePersonReg.aspx.designer.cs">
       <DependentUpon>ResourcePersonReg.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RPReggistration.aspx.cs">
-      <DependentUpon>RPReggistration.aspx</DependentUpon>
+    <Compile Include="ResourcePersonRegSearch.aspx.cs">
+      <DependentUpon>ResourcePersonRegSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RPReggistration.aspx.designer.cs">
-      <DependentUpon>RPReggistration.aspx</DependentUpon>
+    <Compile Include="ResourcePersonRegSearch.aspx.designer.cs">
+      <DependentUpon>ResourcePersonRegSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourcePersonView.aspx.cs">
+      <DependentUpon>ResourcePersonView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourcePersonView.aspx.designer.cs">
+      <DependentUpon>ResourcePersonView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IndividualBene.aspx.cs">
+      <DependentUpon>IndividualBene.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndividualBene.aspx.designer.cs">
+      <DependentUpon>IndividualBene.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -2225,12 +2297,12 @@
     <Compile Include="UserRegister.aspx.designer.cs">
       <DependentUpon>UserRegister.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VehicleMeintenance.aspx.cs">
-      <DependentUpon>VehicleMeintenance.aspx</DependentUpon>
+    <Compile Include="VehicleMeintenanceSearch.aspx.cs">
+      <DependentUpon>VehicleMeintenanceSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VehicleMeintenance.aspx.designer.cs">
-      <DependentUpon>VehicleMeintenance.aspx</DependentUpon>
+    <Compile Include="VehicleMeintenanceSearch.aspx.designer.cs">
+      <DependentUpon>VehicleMeintenanceSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

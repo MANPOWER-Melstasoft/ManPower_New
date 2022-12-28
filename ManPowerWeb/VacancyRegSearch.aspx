@@ -54,7 +54,7 @@
                     <asp:BoundField HeaderText="Salary Level" DataField="SalaryLevel" HeaderStyle-CssClass="table-dark" />
 					<asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
 						<ItemTemplate>
-							<asp:LinkButton ID="LinkButton1" runat="server" Text="View" OnClick="viewDetails" CssClass="btn btn-success"
+							<asp:LinkButton ID="LinkButton1" runat="server" Text="View" OnClick="viewDetails" CssClass="btn btn-info" Width="100px"
 								a href ='<%#"VacancyRegView.aspx?id="+DataBinder.Eval(Container.DataItem,"CompanyVacansyRegistationDetailsId") %>'/>
 <%--							<asp:Button ID="Button3" runat="server" Text="View" OnClick="viewDetails" />--%>
 						</ItemTemplate>

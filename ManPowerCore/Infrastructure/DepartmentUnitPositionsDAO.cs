@@ -17,7 +17,7 @@ namespace ManPowerCore.Infrastructure
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(DBConnection dbConnection);
         DepartmentUnitPositions GetDepartmentUnitPositions(int id, DBConnection dbConnection);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositionsByDepartmentUnitId(int departmentUnitId, DBConnection dbConnection);
-        List<DepartmentUnitPositions> GetAllDepartmentUnitPositionsBySystemUserId(int systemUserId, DBConnection dbConnection);
+        DepartmentUnitPositions GetAllDepartmentUnitPositionsBySystemUserId(int systemUserId, DBConnection dbConnection);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositionByPossitionId(int possitionId, DBConnection dbConnection);
 
         List<DepartmentUnitPositions> GetAllUsersBySystemUserId(int runSystemUserId, DBConnection dbConnection);
@@ -133,7 +133,7 @@ namespace ManPowerCore.Infrastructure
         }
 
 
-        public List<DepartmentUnitPositions> GetAllDepartmentUnitPositionsBySystemUserId(int systemUserId, DBConnection dbConnection)
+        public DepartmentUnitPositions GetAllDepartmentUnitPositionsBySystemUserId(int systemUserId, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
@@ -142,7 +142,7 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
-            return dataAccessObject.ReadCollection<DepartmentUnitPositions>(dbConnection.dr);
+            return dataAccessObject.GetSingleOject<DepartmentUnitPositions>(dbConnection.dr);
         }
 
         public List<DepartmentUnitPositions> GetAllDepartmentUnitPositionByPossitionId(int possitionId, DBConnection dbConnection)

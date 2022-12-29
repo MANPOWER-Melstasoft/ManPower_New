@@ -42,7 +42,7 @@ namespace ManPowerCore.Domain
         public int Epf { get; set; }
 
         [DBField("EMPNO")]
-        public string EmpNumber { get; set; }
+        public int EmpNumber { get; set; }
 
         //public Employee _Employee { get; set; } = new Employee();
     }

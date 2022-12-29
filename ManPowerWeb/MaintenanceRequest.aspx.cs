@@ -21,7 +21,7 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             if (!IsPostBack)
             {
@@ -53,6 +53,9 @@ namespace ManPowerWeb
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            listUsers = systemUserController.GetAllSystemUser(true, false, false);
+
             foreach (var i in listUsers.Where(u => u.SystemUserId == Convert.ToInt32(Session["UserId"])))
             {
                 empId = i.EmpNumber;

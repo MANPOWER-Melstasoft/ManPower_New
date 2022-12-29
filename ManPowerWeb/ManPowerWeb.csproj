@@ -198,7 +198,6 @@
     <Content Include="Recommend1DME21Render.aspx" />
     <Content Include="Recommend2DME21.aspx" />
     <Content Include="Recommend2Dme21Render.aspx" />
-    <Content Include="ResourcePerson.aspx" />
     <Content Include="ResourcePersonReg.aspx" />
     <Content Include="ResourcePersonRegSearch.aspx" />
     <Content Include="ResourcePersonView.aspx" />

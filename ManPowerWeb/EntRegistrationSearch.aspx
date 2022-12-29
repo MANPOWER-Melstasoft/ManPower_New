@@ -40,7 +40,7 @@
 
 		<div class="table-responsive" style="width: 100%;">
             <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                CellPadding="4" GridLines="None">
+                CellPadding="4" GridLines="None" OnRowDataBound="GridView1_RowDataBound">
                 <Columns>
 					<asp:BoundField HeaderText="Market Type" DataField="MarketTypeId" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Business Type" DataField="BusinessTypeId" HeaderStyle-CssClass="table-dark" />

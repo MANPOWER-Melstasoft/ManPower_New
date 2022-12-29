@@ -20,7 +20,7 @@ namespace ManPowerWeb
             entrepreneurs = entrepreneurctrl.GetAllEntrepreneur();
             string id = Request.QueryString["id"];
 
-            foreach (var i in entrepreneurs.Where(u => u.BeneficiaryId == int.Parse(id)))
+            foreach (var i in entrepreneurs.Where(u => u.BenificiaryId == int.Parse(id)))
             {
                 regNo.Text = i.EntBrn;
                 contact.Text = i.ContactNumber.ToString();

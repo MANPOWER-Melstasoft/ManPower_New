@@ -23,6 +23,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 bindData();
+                ViewState["PreviousPage"] = Request.UrlReferrer;
             }
 
         }
@@ -66,7 +67,11 @@ namespace ManPowerWeb
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ApproveLeaveView.aspx");
+            // Response.Redirect("ApproveLeaveView.aspx");
+            if (ViewState["PreviousPage"] != null)
+            {
+                Response.Redirect(ViewState["PreviousPage"].ToString());
+            }
         }
     }
 }

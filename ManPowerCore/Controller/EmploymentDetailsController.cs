@@ -3,9 +3,6 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ManPowerCore.Controller
 {
@@ -101,7 +98,7 @@ namespace ManPowerCore.Controller
             try
             {
                 EmploymentDetailsDAO DAO = DAOFactory.CreateEmploymentDetailsDAO();
-                EmploymentDetails list = DAO.GetEmploymentDetailsById(id,dBConnection);
+                EmploymentDetails list = DAO.GetEmploymentDetailsById(id, dBConnection);
                 return list;
             }
             catch (Exception ex)

@@ -135,10 +135,10 @@
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6 d-flex">
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnApprove" Text="Approve" CssClass="btn btn-primary btn-user btn-block" />
+                            <asp:Button runat="server" ID="btnApprove" Text="Approve" CssClass="btn btn-primary btn-user btn-block" OnClick="btnApprove_Click" />
                         </div>
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnReject" Text="Reject" CssClass="btn btn-danger btn-user btn-block" />
+                            <asp:Button runat="server" ID="btnReject" Text="Reject" CssClass="btn btn-danger btn-user btn-block" OnClick="btnReject_Click" />
                         </div>
                         <div class="col-sm-6">
                             <asp:Button runat="server" ID="btnViewLeave" Text="View Leave Balance" CssClass="btn btn-success btn-user btn-block" OnClick="btnViewLeave_Click" />

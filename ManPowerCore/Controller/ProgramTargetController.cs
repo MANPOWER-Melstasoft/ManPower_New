@@ -51,7 +51,7 @@ namespace ManPowerCore.Controller
 
 
 
-                return 1;
+                return id;
 
             }
             catch (Exception)

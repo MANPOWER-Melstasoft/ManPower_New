@@ -45,5 +45,7 @@ namespace ManPowerWeb
         {
             Response.Redirect("IndividualBene.aspx");
         }
+
+        
     }
 }

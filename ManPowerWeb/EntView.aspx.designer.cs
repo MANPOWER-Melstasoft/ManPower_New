@@ -96,24 +96,6 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox marketType;
 
         /// <summary>
-        /// district control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox district;
-
-        /// <summary>
-        /// ds control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ds;
-
-        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

@@ -48,7 +48,7 @@
 			<div class="col-9">
 				<asp:DropDownList ID="businessType" Width="230px" runat="server" AutoPostBack="true"  CssClass="dropdown-toggle form-control"></asp:DropDownList>
 			</div>
-		</div><br />
+		</div><br /><br />
 
 		<div class="row">
 			<div class="col-3">
@@ -103,7 +103,7 @@
 			<div class="col-9">
 				<asp:DropDownList ID="marketType" Width="230px" runat="server" AutoPostBack="true"  CssClass="dropdown-toggle form-control"></asp:DropDownList>
 			</div>
-		</div><br />
+		</div><br /><br />
 
 		<div class="row">
 			<div class="col-3">

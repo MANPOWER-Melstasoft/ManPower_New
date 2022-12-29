@@ -22,7 +22,7 @@ namespace ManPowerWeb
         List<TaskType> taskTypeList = new List<TaskType>();
         List<Program> programList = new List<Program>();
         List<TaskAllocation> taskAllocationList;
-        public int depId = 4;
+        public int depId;
         public int flag = 0;
         public int worktype;
         public int programId;
@@ -37,6 +37,8 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             date1 = Request.QueryString["date"].ToString();
+
+            depId = Convert.ToInt32(Session["DepUnitPositionId"]);
 
             rowIndex = Convert.ToInt32(Request.QueryString["taskAllocationDetailId"]);
             TaskAllocationDetailController allocationDetail = ControllerFactory.CreateTaskAllocationDetailController();

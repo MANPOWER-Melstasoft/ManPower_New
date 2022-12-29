@@ -2,6 +2,7 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,10 @@ namespace ManPowerCore.Infrastructure
     public interface StaffLeaveDAO
     {
         int saveStaffLeave(StaffLeave staffLeave, DBConnection dBConnection);
+
+        List<StaffLeave> getStaffLeaves(DBConnection dbConnection);
+
+        StaffLeave getStaffLeaveById(int id, DBConnection dbConnection);
     }
     public class StaffLeaveDAOSqlImpl : StaffLeaveDAO
     {
@@ -40,6 +45,29 @@ namespace ManPowerCore.Infrastructure
 
             return dBConnection.cmd.ExecuteNonQuery();
 
+        }
+        public List<StaffLeave> getStaffLeaves(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Staff_Leave";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<StaffLeave>(dbConnection.dr);
+        }
+
+        public StaffLeave getStaffLeaveById(int id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Staff_Leave WHERE Id=" + id + "";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<StaffLeave>(dbConnection.dr);
         }
     }
 }

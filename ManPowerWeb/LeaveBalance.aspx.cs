@@ -17,7 +17,8 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             ReportController reportController = ControllerFactory.CreateReportController();
-            leaveListFromTable = reportController.GetLeaveBalance();
+            int employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
+            leaveListFromTable = reportController.GetLeaveBalanceByEmployeeId(employeId);
 
             if (!IsPostBack)
             {
@@ -61,6 +62,11 @@ namespace ManPowerWeb
             {
 
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ApproveLeaveView.aspx");
         }
     }
 }

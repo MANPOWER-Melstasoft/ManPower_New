@@ -14,11 +14,11 @@ namespace ManPowerCore.Controller
         List<Training_Request> GetAllTrainingRequests();
         int AddRequest(Training_Request trainingrequest);
 
-        List<Training_Request> GetAllPendingTrainingRequest();
+        List<Training_Request> GetAllPendingTrainingRequest(int depId);
 
-        List<Training_Request> GetAllApprovedTrainingRequest();
+        List<Training_Request> GetAllApprovedTrainingRequest(int DepId);
 
-        List<Training_Request> GetOnlyPendingTrainingRequest();
+        List<Training_Request> GetOnlyPendingTrainingRequest(int depId);
 
         int UpdateTrainingRequest(Training_Request trainingrequest);
 
@@ -72,7 +72,7 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<Training_Request> GetAllPendingTrainingRequest()
+        public List<Training_Request> GetAllPendingTrainingRequest(int depId)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace ManPowerCore.Controller
 
                 statusList = statusController.GetAllProjectStatus(false);
 
-                trainingRequestList = trainingRequestList.Where(x => x.StatusID == 1 || x.StatusID == 7).ToList();
+                trainingRequestList = trainingRequestList.Where(x => x.StatusID == 1 || x.StatusID == 7 && x.RequestedUserID == depId).ToList();
 
                 foreach (var item in trainingRequestList)
                 {
@@ -126,7 +126,7 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<Training_Request> GetAllApprovedTrainingRequest()
+        public List<Training_Request> GetAllApprovedTrainingRequest(int DepId)
         {
             try
             {
@@ -148,7 +148,7 @@ namespace ManPowerCore.Controller
 
                 statusList = statusController.GetAllProjectStatus(false);
 
-                trainingRequestList = trainingRequestList.Where(x => x.StatusID == 1008).ToList();
+                trainingRequestList = trainingRequestList.Where(x => x.StatusID == 1008 && x.RequestedUserID == DepId).ToList();
 
                 foreach (var item in trainingRequestList)
                 {
@@ -180,7 +180,7 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<Training_Request> GetOnlyPendingTrainingRequest()
+        public List<Training_Request> GetOnlyPendingTrainingRequest(int depId)
         {
             try
             {
@@ -202,7 +202,7 @@ namespace ManPowerCore.Controller
 
                 statusList = statusController.GetAllProjectStatus(false);
 
-                trainingRequestList = trainingRequestList.Where(x => x.StatusID == 1).ToList();
+                trainingRequestList = trainingRequestList.Where(x => x.StatusID == 1 && x.ApprovedBy == depId).ToList();
 
                 foreach (var item in trainingRequestList)
                 {

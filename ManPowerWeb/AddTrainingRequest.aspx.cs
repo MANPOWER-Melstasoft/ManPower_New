@@ -89,8 +89,8 @@ namespace ManPowerWeb
                 TrainingRequest.ProgramDate = Convert.ToDateTime(txtDate.Value);
                 TrainingRequest.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
                 TrainingRequest.RequestedDate = DateTime.Now;
-                TrainingRequest.RequestedUserID = 4;
-                TrainingRequest.ApprovedBy = 4;
+                TrainingRequest.RequestedUserID = Convert.ToInt32(Session["DepUnitPositionId"]);
+                TrainingRequest.ApprovedBy = Convert.ToInt32(Session["DepUnitParentId"]);
                 TrainingRequest.ApprovedDate = DateTime.Now;
                 TrainingRequest.StatusID = 1;
                 TrainingRequest.TrainingCategory = ddlTrainingCategory.SelectedItem.Text;
@@ -120,8 +120,8 @@ namespace ManPowerWeb
                 TrainingRequest.ProgramDate = Convert.ToDateTime(txtDate.Value);
                 TrainingRequest.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
                 TrainingRequest.RequestedDate = DateTime.Now;
-                TrainingRequest.RequestedUserID = 4;
-                TrainingRequest.ApprovedBy = 4;
+                TrainingRequest.RequestedUserID = Convert.ToInt32(Session["DepUnitPositionId"]);
+                TrainingRequest.ApprovedBy = Convert.ToInt32(Session["DepUnitParentId"]);
                 TrainingRequest.ApprovedDate = DateTime.Now;
                 TrainingRequest.StatusID = 1;
                 TrainingRequest.TrainingCategory = ddlTrainingCategory.SelectedItem.Text;

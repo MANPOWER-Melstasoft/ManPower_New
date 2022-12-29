@@ -69,7 +69,7 @@ namespace ManPowerWeb
             TrainingRequest = trainingRequestController.GetTraining_Request(trainingRequestId);
 
             ddlEmployNo.SelectedValue = TrainingRequest.Employee_Id.ToString();
-            txtDate.Value = TrainingRequest.ProgramDate.ToString("MM.dd.yyyy");
+            txtDate.Value = TrainingRequest.ProgramDate.ToString("yyyy-MM-dd");
             //string date = TrainingRequest.ProgramDate.ToString("dd. MM. yyyy");
             //txtDate.Value = date;
             ddlProgram.SelectedValue = TrainingRequest.ProgramId.ToString();

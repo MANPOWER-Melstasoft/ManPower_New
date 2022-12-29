@@ -573,31 +573,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Button btnSave;
 
         /// <summary>
-        /// btnSendToReccomendation control.
+        /// btnSendToRecommendation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSendToReccomendation;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSendToRecommendation;
 
         /// <summary>
-        /// pnlDialogBox control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDialogBox;
-
-        /// <summary>
-        /// ddlSelectRecomendation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSelectRecomendation;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
         /// ddlOficerRecomended control.
@@ -607,15 +598,6 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlOficerRecomended;
-
-        /// <summary>
-        /// btnCancelDialog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelDialog;
 
         /// <summary>
         /// btnSend control.

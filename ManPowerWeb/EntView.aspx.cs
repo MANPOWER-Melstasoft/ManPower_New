@@ -20,7 +20,7 @@ namespace ManPowerWeb
             entrepreneurs = entrepreneurctrl.GetAllEntrepreneur();
             string id = Request.QueryString["id"];
 
-            foreach (var i in entrepreneurs.Where(u => u.BeneficiaryId == int.Parse(id)))
+            foreach (var i in entrepreneurs.Where(u => u.BenificiaryId == int.Parse(id)))
             {
                 regNo.Text = i.EntBrn;
                 contact.Text = i.ContactNumber.ToString();
@@ -29,8 +29,8 @@ namespace ManPowerWeb
                 sDate.Text = i.BusinessStartDate.ToString();
                 income.Text = i.AvgMonthlyIncome.ToString();
                 workers.Text = i.NumberOfWorkers.ToString();
-                district.Text = i.District;
-                ds.Text = i.DivisionalSecretery;
+                //district.Text = i.District;
+                //ds.Text = i.DivisionalSecretery;
                 
                 if(i.MarketTypeId == 1)
                 {

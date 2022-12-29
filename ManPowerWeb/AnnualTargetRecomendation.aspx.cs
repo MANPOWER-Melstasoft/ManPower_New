@@ -15,6 +15,11 @@ namespace ManPowerWeb
         List<ProgramTarget> myList = new List<ProgramTarget>();
         List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
 
+
+        List<ProgramTarget> programTargetsListPending = new List<ProgramTarget>();
+        List<ProgramTarget> programTargetsListApproved = new List<ProgramTarget>();
+        List<ProgramTarget> programTargetsListReject = new List<ProgramTarget>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,11 +34,27 @@ namespace ManPowerWeb
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(true, true, true, true);
 
-            foreach (var i in programTargetsList.Where(u => u.IsRecommended == 1))
+            ViewState["All"] = programTargetsList;
+            ViewState["pending"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
+            ViewState["Approved"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
+            ViewState["Rejected"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
+
+            if (ddlStatus.SelectedValue == "0")
             {
-                myList.Add(i);
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["All"];
             }
-            GridView1.DataSource = myList;
+            else if (ddlStatus.SelectedValue == "1")
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["pending"];
+            }
+            else if (ddlStatus.SelectedValue == "2")
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["Approved"];
+            }
+            else
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["Rejected"];
+            }
             GridView1.DataBind();
 
 
@@ -46,15 +67,37 @@ namespace ManPowerWeb
             int pagesize = GridView1.PageSize;
             int pageindex = GridView1.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
-            Response.Redirect("AnnualTargetRecomendationView.aspx?ProgramTargetId=" + myList[rowIndex].ProgramTargetId.ToString());
+            Response.Redirect("AnnualTargetRecomendationView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-            bindSource();
+            this.bindSource();
+
         }
 
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+            if (ddlStatus.SelectedValue == "0")
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["All"];
+            }
+            else if (ddlStatus.SelectedValue == "1")
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["pending"];
+            }
+            else if (ddlStatus.SelectedValue == "2")
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["Approved"];
+            }
+            else
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["Rejected"];
+            }
+            GridView1.DataBind();
+
+        }
     }
 }

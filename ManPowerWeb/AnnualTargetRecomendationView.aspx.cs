@@ -32,6 +32,12 @@ namespace ManPowerWeb
             ddlProgramType.DataBind();
 
             bindData();
+            int status = Convert.ToInt32(Request.QueryString["Status"]);
+            if (status == 0)
+            {
+                btnAccept.Visible = true;
+                btnReject.Visible = true;
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -43,6 +49,7 @@ namespace ManPowerWeb
         private void bindData()
         {
             ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(true, true, true, true);
 
@@ -78,9 +85,29 @@ namespace ManPowerWeb
         protected void btnAccept_Click(object sender, EventArgs e)
         {
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 1);
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Recomendation Accepted');", true);
+            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 1);
+
+            if (TargetResponse != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                Response.Redirect("AnnualTargetRecomendation.aspx");
+
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
+
+
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 2);
             Response.Redirect("AnnualTargetRecomendation.aspx");
+
 
 
         }

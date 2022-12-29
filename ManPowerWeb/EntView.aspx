@@ -92,7 +92,7 @@
 			</div>
 		</div><br />
 
-		<div class="row">
+		<%--<div class="row">
 			<div class="col-3">
 				<label>District : </label>
 			</div>
@@ -108,7 +108,7 @@
 			<div class="col-9">
 				<asp:TextBox ID="ds" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 			</div>
-		</div><br /><br />
+		</div><br /><br />--%>
 
 
 		<br />

@@ -63,5 +63,38 @@ namespace ManPowerWeb
         {
             Response.Redirect("EntRegistration.aspx");
         }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.Cells[0].Text == "1")
+                {
+                    e.Row.Cells[0].Text = "Agriculture";
+                }
+                else if (e.Row.Cells[0].Text == "2")
+                {
+                    e.Row.Cells[0].Text = "Production";
+                }
+                else if (e.Row.Cells[0].Text == "3")
+                {
+                    e.Row.Cells[0].Text = "Service";
+                }
+
+                if (e.Row.Cells[1].Text == "1")
+                {
+                    e.Row.Cells[1].Text = "Local";
+                }
+                else if (e.Row.Cells[1].Text == "2")
+                {
+                    e.Row.Cells[1].Text = "Foreign";
+                }
+                else if (e.Row.Cells[1].Text == "3")
+                {
+                    e.Row.Cells[1].Text = "Local and Foreign";
+                }
+
+            }
+        }
     }
 }

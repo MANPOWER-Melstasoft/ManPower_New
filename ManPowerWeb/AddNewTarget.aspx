@@ -96,7 +96,7 @@
                                 <asp:Literal ID="Literal5" runat="server" Text="Position"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlPosition" runat="server" CssClass="form-control form-control-user" Width="250px">
+                                <asp:DropDownList ID="ddlPosition" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlPosition_SelectedIndexChanged">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlPosition" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
@@ -382,64 +382,72 @@
                             <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidateRequestMode="Enabled" ValidationGroup="1" />
                         </div>
                         <div class="col-sm-6">
-                            <asp:Button runat="server" ID="btnSendToReccomendation" Text="Send to Recomendation" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSendToReccomendation_Click" Enabled="false" />
+                            <button runat="server" type="button" id="btnSendToRecommendation" class="btn btn-primary btn-user btn-block" data-toggle="modal" data-target="#myModal" visible="false">Send to Recomendation</button>
+
                         </div>
                     </div>
                 </div>
             </div>
 
             <%---------------------dialog box----------------------%>
-            <asp:Panel ID="pnlDialogBox" runat="server" Visible="false" CssClass="w3-container">
-                <div id="id01" class="w3-modal">
-                    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width: 40%;">
 
-                        <div class="w3-center">
-                            <br>
-                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-display-topright" title="Close Modal">&times;</span>
-                            <h2>Recommondation</h2>
+
+
+            <!-- Trigger the modal with a button -->
+
+            <!-- Modal -->
+            <div class="modal fade-out" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+
+                            <h4 class="modal-title">Recommondation</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-
-                        <div class="w3-container" action="/action_page.php" style="padding: 70px">
-                            <div class="w3-section">
+                        <div class="modal-body">
+                            <div>
                                 <label><b>Recommondation Type</b></label>
-                                <asp:DropDownList ID="ddlSelectRecomendation" runat="server" CssClass="btn btn-primary dropdown-toggle">
+                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control form-control-user">
                                     <asp:ListItem Value="1">Send to recommondation</asp:ListItem>
-                                    <asp:ListItem Value="2">Send to approval</asp:ListItem>
+                                    <%--                                        <asp:ListItem Value="2">Send to approval</asp:ListItem>--%>
                                 </asp:DropDownList>
-                                <%--  <select class="btn btn-primary dropdown-toggle" aria-label="Default select example" required>
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Send to recommondation</option>
-                                    <option value="2">Send to approval</option>
-                                </select>--%>
+
 
                                 <br />
                                 <br />
 
                                 <label><b>Officer Name</b></label>
 
-                                <asp:DropDownList ID="ddlOficerRecomended" runat="server" CssClass="btn btn-primary dropdown-toggle"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlOficerRecomended" runat="server" CssClass="form-control form-control-user"></asp:DropDownList>
                             </div>
+
+
+
+
                         </div>
+                        <div class="modal-footer">
 
-                        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                            <div class="row justify-content-evenly">
-                                <div class="col-4">
-                                    <asp:Button ID="btnCancelDialog" runat="server" Text="Cancel" CssClass="btn btn-primary btn-user btn-block" OnClick="btnCancelDialog_Click" />
-
-                                </div>
-                                <div class="col-4">
-                                    <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSend_Click" />
-                                </div>
+                            <div class="col-4">
+                                <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="btn btn-success btn-user btn-block" OnClick="btnSend_Click1" />
                             </div>
-                        </div>
 
+
+                        </div>
                     </div>
+
                 </div>
-            </asp:Panel>
+            </div>
 
-
-            <%--------------end of dialog box--------------------%>
         </div>
+
+
+
+
+
+        <%--------------end of dialog box--------------------%>
+
 
         <%-- </ContentTemplate>
                     <Triggers>

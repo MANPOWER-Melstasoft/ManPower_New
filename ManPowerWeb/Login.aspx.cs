@@ -30,6 +30,7 @@ namespace ManPowerWeb
 
             List<SystemUser> systeUserList = systemUserController.GetAllSystemUser(systemUser.UserName);
 
+
             if (systeUserList.Count != 0)
             {
                 if (systeUserList[0].UserName.ToLower() == systemUser.UserName.ToLower() && systeUserList[0].UserPwd == systemUser.UserPwd)

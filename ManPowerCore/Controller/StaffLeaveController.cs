@@ -16,6 +16,7 @@ namespace ManPowerCore.Controller
 
         List<StaffLeave> getStaffLeaves(bool withEmployeeDetails);
 
+        int updateStaffLeaves(StaffLeave staffLeave);
         StaffLeave getStaffLeaveById(int id);
         Employee GetemployeeDetailsByEmployeeId(int EmployeeId);
     }
@@ -108,6 +109,33 @@ namespace ManPowerCore.Controller
             }
 
 
+        }
+
+        public int updateStaffLeaves(StaffLeave staffLeave)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+
+                StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
+
+                return staffLeaveDAO.updateStaffLeave(staffLeave, dBConnection);
+
+
+
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
         }
 
         public StaffLeave getStaffLeaveById(int id)

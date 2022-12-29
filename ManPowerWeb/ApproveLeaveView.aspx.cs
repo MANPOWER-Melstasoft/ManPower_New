@@ -42,12 +42,6 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-
-
-
-
-
-
         }
 
         protected void btnViewLeave_Click(object sender, EventArgs e)
@@ -55,6 +49,51 @@ namespace ManPowerWeb
             int employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
             Response.Redirect("LeaveBalance.aspx?EmpId=" + employeId);
 
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
+            StaffLeave staffLeave = new StaffLeave();
+            staffLeave.ApprovedBy = 0;
+            staffLeave.ApprovedDate = DateTime.Now;
+            staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+
+            int response = staffLeaveController.updateStaffLeaves(staffLeave);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success')", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+
+            }
+
+        }
+
+        protected void btnApprove_Click(object sender, EventArgs e)
+        {
+            StaffLeave staffLeave = new StaffLeave();
+            staffLeave.ApprovedBy = Convert.ToInt32(Session["UserId"]);
+            staffLeave.ApprovedDate = DateTime.Now;
+            staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+
+            int response = staffLeaveController.updateStaffLeaves(staffLeave);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success')", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+
+            }
         }
     }
 }

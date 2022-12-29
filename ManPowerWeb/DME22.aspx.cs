@@ -14,11 +14,12 @@ namespace ManPowerWeb
     {
         int[] year = { DateTime.Now.Year - 1, DateTime.Now.Year, DateTime.Now.Year + 1 };
         List<TaskAllocation> taskAllocationList = new List<TaskAllocation>();
-        int depId = 4;
+        int depId;
 
         TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();
         protected void Page_Load(object sender, EventArgs e)
         {
+            depId = Convert.ToInt32(Session["DepUnitPositionId"]);
             if (!IsPostBack)
             {
                 BindYear();

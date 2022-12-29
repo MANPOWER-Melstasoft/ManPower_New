@@ -244,7 +244,7 @@ namespace ManPowerWeb
             mCertificateNo.Text = null;
             workingCompany.Text = null;
             city.Text = null;
-             
+
         }
 
         protected void addEmployment(object sender, EventArgs e)
@@ -265,7 +265,7 @@ namespace ManPowerWeb
                 IsResigned = int.Parse(reseg.SelectedValue),
                 RetirementDate = Convert.ToDateTime(retiredDate.Text),
                 Epf = int.Parse(epf.Text)
-            }) ;
+            });
 
             companyName.Text = null;
             //empNo.Text = null;
@@ -294,7 +294,7 @@ namespace ManPowerWeb
             {
                 EducationTypeId = int.Parse(ddlEducation.SelectedValue),
                 StudiedInstitute = uni.Text,
-                NoOfAttempts = int.Parse (ddlAttempt.SelectedValue),
+                NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
                 ExamYear = int.Parse(ddlYear.SelectedValue),
                 ExamIndex = index.Text,
                 ExamSubject = sub.Text,
@@ -310,7 +310,7 @@ namespace ManPowerWeb
             stream.Text = null;
             grade.Text = null;
             status.Text = null;
-            
+
             ViewState["educationDetails"] = educationDetails;
             educationGV.DataSource = educationDetails;
             educationGV.DataBind();

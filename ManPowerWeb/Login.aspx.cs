@@ -21,12 +21,15 @@ namespace ManPowerWeb
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            DepartmentUnitPositionsController DepUnitPositionController = ControllerFactory.CreateDepartmentUnitPositionsController();
 
+            DepartmentUnitPositions DepartmentUnitPosition = new DepartmentUnitPositions();
             SystemUser systemUser = new SystemUser();
             systemUser.UserName = txtUserName.Text;
             systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1"); ;
 
             List<SystemUser> systeUserList = systemUserController.GetAllSystemUser(systemUser.UserName);
+
 
             if (systeUserList.Count != 0)
             {
@@ -38,6 +41,11 @@ namespace ManPowerWeb
                     Session["DesignationId"] = systeUserList[0].DesignationId;
                     Session["Name"] = systeUserList[0].Name;
                     Session["EmpNumber"] = systeUserList[0].EmpNumber;
+
+                    DepartmentUnitPosition = DepUnitPositionController.departmentUnitPositionWithPID(systeUserList[0].SystemUserId);
+
+                    Session["DepUnitPositionId"] = DepartmentUnitPosition.DepartmetUnitPossitionsId;
+                    Session["DepUnitParentId"] = DepartmentUnitPosition.ParentId;
 
                     systemUserController.UpdateLastLoginDate(systeUserList[0]);
 

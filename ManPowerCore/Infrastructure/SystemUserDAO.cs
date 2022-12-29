@@ -24,6 +24,7 @@ namespace ManPowerCore.Infrastructure
         List<SystemUser> CheckInvaliedLogingCount(string runUserName, DBConnection dbConnection);
         int ResetInvaliedAttempts(SystemUser systemuser, DBConnection dbConnection);
         int UpdateLastLoginDate(SystemUser systemuser, DBConnection dbConnection);
+        SystemUser CheckEmpNumberExists(int Number, DBConnection dbConnection);
     }
 
     public class SystemUserDAOImpl : SystemUserDAO
@@ -234,5 +235,17 @@ namespace ManPowerCore.Infrastructure
 
         }
 
+
+        public SystemUser CheckEmpNumberExists(int Number, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT *  FROM COMPANY_USER WHERE Emp_Number = " + Number;
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<SystemUser>(dbConnection.dr);
+        }
     }
 }

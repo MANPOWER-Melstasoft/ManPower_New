@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <div class="card ml-4 p-4">
+        <div class="card  p-4">
             <h2>Approve Leave</h2>
 
 
@@ -30,7 +30,7 @@
                                 <asp:Literal ID="Literal1" runat="server" Text="District"></asp:Literal>
                             </div>
                             <div class="col-md-6">
-                                <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -81,17 +81,17 @@
         </div>
 
 
-        <div class="table-responsive" style="width: 100%;">
+        <div class="table-responsive">
             <asp:GridView Style="margin-top: 30px;" ID="gvApproveLeave" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                 CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="gvApproveLeave_RowDataBound">
                 <Columns>
                     <asp:BoundField HeaderText="DATE" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="EmployeeNIC" HeaderText="NIC" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="EmpInitials" HeaderText="INITIAL NAME" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="_EmploymentDetailsSingle.CompanyName" HeaderText="LAST NAME" HeaderStyle-CssClass="table-dark" />
-                    <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
+                    <asp:BoundField DataField=" _EMployeeDetails.EmployeeNIC" HeaderText="NIC" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField=" _EMployeeDetails.EmpInitials" HeaderText="INITIAL NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField=" _EMployeeDetails._EmploymentDetailsSingle.CompanyName" HeaderText="LAST NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
-                            <asp:LinkButton runat="server" Text="View" CssClass="btn btn-success">
+                            <asp:LinkButton runat="server" Text="View" ID="btnView" CssClass="btn btn-success btn-user btn-block" Width="100px" Height="35px" OnClick="btnView_Click">
 
                             </asp:LinkButton>
 

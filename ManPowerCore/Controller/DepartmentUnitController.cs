@@ -82,7 +82,7 @@ namespace ManPowerCore.Controller
             }
         }
 
-                public List<DepartmentUnit> GetAllDepartmentUnit(bool withDepartmentUnitPositions, bool withDepartmentUnitType)
+        public List<DepartmentUnit> GetAllDepartmentUnit(bool withDepartmentUnitPositions, bool withDepartmentUnitType)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace ManPowerCore.Controller
                 return _DepartmentUnit;
             }
 
-               
+
             catch (Exception ex)
             {
                 dbConnection.RollBack();

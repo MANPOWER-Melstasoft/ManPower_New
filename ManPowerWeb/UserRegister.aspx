@@ -174,6 +174,7 @@
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="1"
                                     ControlToValidate="txtEmpNumber" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                <asp:Label ID="lblEmpNumError" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
                     </div>

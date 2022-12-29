@@ -25,6 +25,7 @@ namespace ManPowerWeb
                 if (!IsPostBack)
                 {
                     BindDepartmentList();
+                    BindDataSource();
                 }
             }
         }
@@ -68,6 +69,7 @@ namespace ManPowerWeb
                 departmentUnitController.SaveDepartmentUnit(departmentUnit);
 
                 Clear();
+                BindDataSource();
                 lblErrorMsg.Text = "";
                 lblSuccessMsg.Text = "Record Updated Successfully!";
 
@@ -135,6 +137,21 @@ namespace ManPowerWeb
             {
                 BindDistricList();
             }
+        }
+
+        private void BindDataSource()
+        {
+            DepartmentUnitController departmentUnitController2 = ControllerFactory.CreateDepartmentUnitController();
+            List<DepartmentUnit> DepList = departmentUnitController2.GetAllDepartmentUnit(true, false);
+            gvDepartment.DataSource = DepList;
+            gvDepartment.DataBind();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvDepartment.PageIndex = e.NewPageIndex;
+            BindDataSource();
+
         }
     }
 }

@@ -15,14 +15,17 @@ namespace ManPowerWeb
         List<Training_Request> trainingRequestList = new List<Training_Request>();
 
         Training_Request trainingRequestObj = new Training_Request();
+
+        public int depPositionID;
         protected void Page_Load(object sender, EventArgs e)
         {
+            depPositionID = Convert.ToInt32(Session["DepUnitPositionId"]);
             BindDataSource();
         }
         public void BindDataSource()
         {
             TrainingRequestController trainingRequestController = ControllerFactory.CreateTrainingRequestController();
-            trainingRequestList = trainingRequestController.GetOnlyPendingTrainingRequest();
+            trainingRequestList = trainingRequestController.GetOnlyPendingTrainingRequest(depPositionID);
 
             gvApproveTraining.DataSource = trainingRequestList;
             gvApproveTraining.DataBind();

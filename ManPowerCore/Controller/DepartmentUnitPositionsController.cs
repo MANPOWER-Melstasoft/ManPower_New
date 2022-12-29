@@ -21,6 +21,8 @@ namespace ManPowerCore.Controller
         DepartmentUnitPositions GetDepartmentUnitPositions(int id, bool withTaskAllocation, bool withProgramAssignee, bool withSystemUser, bool withPossitions, bool withDepartmentUnit);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(int runSystemUserId);
 
+        DepartmentUnitPositions departmentUnitPositionWithPID(int userID);
+
     }
 
     public class DepartmentUnitPositionsControllerImpl : DepartmentUnitPositionsController
@@ -222,6 +224,38 @@ namespace ManPowerCore.Controller
                 DepartmentUnitPositions departmentUnitPositionswithSystemUser = departmentUnitPositionsDAO.departmentUnitPositionsWIthSystemUser(programTargetid, dBConnection);
 
                 return departmentUnitPositionswithSystemUser;
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public DepartmentUnitPositions departmentUnitPositionWithPID(int userID)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                List<DepartmentUnitPositions> list = departmentUnitPositionsDAO.GetAllDepartmentUnitPositions(dBConnection);
+
+                DepartmentUnitPositions DepUnitPosition = new DepartmentUnitPositions();
+
+                foreach (var item in list)
+                {
+                    if (item.SystemUserId == userID)
+                    {
+                        DepUnitPosition = item;
+                    }
+                }
+
+                return DepUnitPosition;
             }
 
             catch (Exception)

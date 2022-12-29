@@ -57,7 +57,7 @@ namespace ManPowerWeb
 
             int flag1 = 0;
 
-            int depId = 4;
+            int depId = Convert.ToInt32(Session["DepUnitPositionId"]);
 
             TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();
 

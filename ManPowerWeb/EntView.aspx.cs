@@ -29,8 +29,8 @@ namespace ManPowerWeb
                 sDate.Text = i.BusinessStartDate.ToString();
                 income.Text = i.AvgMonthlyIncome.ToString();
                 workers.Text = i.NumberOfWorkers.ToString();
-                district.Text = i.District;
-                ds.Text = i.DivisionalSecretery;
+                //district.Text = i.District;
+                //ds.Text = i.DivisionalSecretery;
                 
                 if(i.MarketTypeId == 1)
                 {

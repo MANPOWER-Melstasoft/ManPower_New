@@ -46,6 +46,8 @@ namespace ManPowerCore.Domain
         [DBField("No_Of_Leave")]
         public int NoOfLeaves { get; set; }
 
+        public Employee _EMployeeDetails { get; set; }
+
 
     }
 }

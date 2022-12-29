@@ -12,7 +12,7 @@ namespace ManPowerCore.Infrastructure
     {
         List<Employee> GetAllEmployee(DBConnection dbConnection);
 
-        //Employee GetEmployeeById(int id, DBConnection dbConnection);
+        Employee GetEmployeeById(int id, DBConnection dbConnection);
 
         int SaveEmployee(Employee emp, DBConnection dbConnection);
 
@@ -33,7 +33,7 @@ namespace ManPowerCore.Infrastructure
                                             ", @MaritalStatus,@SupervisorId,@ManagerId) SELECT SCOPE_IDENTITY() ";
 
 
-            
+
             dbConnection.cmd.Parameters.AddWithValue("@ReligionId", emp.ReligionId);
             dbConnection.cmd.Parameters.AddWithValue("@EthnicityId", emp.EthnicityId);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeNIC", emp.EmployeeNIC);
@@ -106,6 +106,18 @@ namespace ManPowerCore.Infrastructure
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<Employee>(dbConnection.dr);
 
+        }
+
+        public Employee GetEmployeeById(int id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Employee WHERE ID=" + id + " ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<Employee>(dbConnection.dr);
         }
 
 

@@ -15,6 +15,7 @@ namespace ManPowerWeb
         List<SystemUser> systemUsers = new List<SystemUser>();
         List<DepartmentUnit> departmentUnitsList = new List<DepartmentUnit>();
         List<Employee> employeesList = new List<Employee>();
+        List<StaffLeave> staffLeaveList = new List<StaffLeave>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,10 +42,16 @@ namespace ManPowerWeb
             ddlHo.DataBind();
             ddlDistrict.DataBind();
 
-            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
-            employeesList = employeeController.GetAllEmployees(true);
 
-            gvApproveLeave.DataSource = employeesList;
+
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+
+
+            staffLeaveList = staffLeaveController.getStaffLeaves(true);
+
+
+
+            gvApproveLeave.DataSource = staffLeaveList;
             gvApproveLeave.DataBind();
 
 
@@ -72,6 +79,18 @@ namespace ManPowerWeb
 
         protected void gvApproveLeave_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+        }
+
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+            staffLeaveList = staffLeaveController.getStaffLeaves(true);
+
+            Response.Redirect("ApproveLeaveView.aspx?EmpId=" + staffLeaveList[rowIndex].EmployeeId.ToString() + "&Id=" + staffLeaveList[rowIndex].StaffLeaveId);
+
 
         }
     }

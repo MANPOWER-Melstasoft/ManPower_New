@@ -259,7 +259,7 @@ namespace ManPowerWeb
                 ContractTypeId = int.Parse(ddContract.SelectedValue),
                 DesignationId = int.Parse(ddlDesignation.SelectedValue),
                 CompanyName = companyName.Text,
-                EmpNumber = Convert.ToInt32(empNo.Text),
+                //EmpNumber = 0,
                 StartDate = Convert.ToDateTime(sDate.Text),
                 EndDate = Convert.ToDateTime(eDate.Text),
                 IsResigned = int.Parse(reseg.SelectedValue),
@@ -268,7 +268,7 @@ namespace ManPowerWeb
             });
 
             companyName.Text = null;
-            empNo.Text = null;
+            //empNo.Text = null;
             sDate.Text = null;
             eDate.Text = null;
             retiredDate.Text = null;
@@ -283,6 +283,8 @@ namespace ManPowerWeb
 
         protected void addEducation(object sender, EventArgs e)
         {
+
+            retiredDate.Text = DateTime.Today.ToString();
             if (educationDetails.Count == 0 && ViewState["educationDetails"] != null)
             {
                 educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
@@ -381,6 +383,7 @@ namespace ManPowerWeb
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
+                Response.Redirect("PersonalFiles.aspx");
 
             }
         }

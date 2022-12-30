@@ -43,7 +43,7 @@ namespace ManPowerWeb
 
                 if (systemUserTst == null)
                 {
-                    if (CheckExistsEmpNum(Convert.ToInt32(txtEmpNumber.Text), systemUserController) && CheckAvailableEmpNum(Convert.ToInt32(txtEmpNumber.Text)))
+                    if (CheckAvailableEmpNum(Convert.ToInt32(txtEmpNumber.Text)) && CheckExistsEmpNum(Convert.ToInt32(txtEmpNumber.Text), systemUserController))
                     {
                         SystemUser systemUser = new SystemUser();
                         systemUser.Name = txtName.Text;
@@ -83,6 +83,18 @@ namespace ManPowerWeb
 
         }
 
+        private int GetParentId(int userType, int depId)
+        {
+            int parentId = 0;
+
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            List<DepartmentUnitPositions> departmentUnitPositionsList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
+
+
+
+            return parentId;
+        }
+
         private bool CheckExistsEmpNum(int Number, SystemUserController s)
         {
             SystemUser systemUser = s.CheckEmpNumberExists(Number);
@@ -98,19 +110,19 @@ namespace ManPowerWeb
             {
                 lblSuccessMsg.Text = string.Empty;
                 lblErrorUser.Text = string.Empty;
-                lblEmpNumError.Text = "Already Exists!";
+                lblEmpNumError.Text = "Already Used!";
                 return false;
             }
         }
 
         private bool CheckAvailableEmpNum(int Number)
         {
-            EmploymentDetailsController employmentDetailsController = ControllerFactory.CreateEmploymentDetailsController();
-            List<EmploymentDetails> employmentDetailsList = employmentDetailsController.GetAllEmploymentDetails();
+            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+            List<Employee> employeeList = employeeController.GetAllEmployees();
             int flag = 0;
-            foreach (var item in employmentDetailsList)
+            foreach (var item in employeeList)
             {
-                if (item.EmpNumber == Number)
+                if (item.EmployeeId == Number)
                 {
                     flag = 1;
                     break;
@@ -252,6 +264,7 @@ namespace ManPowerWeb
             ddlUserType.SelectedIndex = 0;
             ddlDepartmentType.SelectedIndex = 0;
             ddlDepartmentUnit.Items.Clear();
+            lblSuccessMsg.Text = string.Empty;
         }
 
     }

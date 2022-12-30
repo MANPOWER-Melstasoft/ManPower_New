@@ -64,13 +64,13 @@ namespace ManPowerCore.Domain
         [DBField("FEMALE_COUNT")]
         public int FemaleCount { get; set; }
 
-        [DBField("COORDINATER")]
+        [DBField("CoordinaterOfficer")]
         public string Coordinater { get; set; }
 
         [DBField("REMARK")]
         public string Remark { get; set; }
 
-        [DBField("PROGRAM_NAME")]
+        [DBField("ProgramName")]
         public string ProgramName { get; set; }
 
         [DBField("FINANCIAL_SOURCE")]

@@ -126,6 +126,7 @@
                                         <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table table-responsive ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId">
                                             <Columns>
                                                 <asp:BoundField DataField="ProgramPlanId" HeaderStyle-CssClass="table-dark" HeaderText="Program Plan Id" />
+                                                <asp:BoundField DataField="ProgramName" HeaderStyle-CssClass="table-dark" HeaderText="Program Name" />
                                                 <asp:BoundField DataField="Date" HeaderStyle-CssClass="table-dark" HeaderText="Date" />
                                                 <asp:BoundField DataField="Location" HeaderStyle-CssClass="table-dark" HeaderText="Location" />
                                                 <asp:BoundField DataField="MaleCount" HeaderStyle-CssClass="table-dark" HeaderText="Male Count" />

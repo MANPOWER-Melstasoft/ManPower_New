@@ -43,35 +43,35 @@ namespace ManPowerWeb
 
                 if (systemUserTst == null)
                 {
-                    //if (CheckExistsEmpNum(Convert.ToInt32(txtEmpNumber.Text), systemUserController) && CheckAvailableEmpNum(Convert.ToInt32(txtEmpNumber.Text)))
-                    //{
-                    SystemUser systemUser = new SystemUser();
-                    systemUser.Name = txtName.Text;
-                    systemUser.UserName = txtUserName.Text.ToLower();
-                    systemUser.Email = txtEmail.Text;
-                    systemUser.ContactNumber = txtContactNumber.Text;
-                    systemUser.EmpNumber = Convert.ToInt32(txtEmpNumber.Text);
-                    systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1");
-                    systemUser.CreatedDate = DateTime.Now;
-                    systemUser.CreatedUser = Session["UserId"].ToString();
-                    systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
-                    systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
+                    if (CheckAvailableEmpNum(Convert.ToInt32(txtEmpNumber.Text)) && CheckExistsEmpNum(Convert.ToInt32(txtEmpNumber.Text), systemUserController))
+                    {
+                        SystemUser systemUser = new SystemUser();
+                        systemUser.Name = txtName.Text;
+                        systemUser.UserName = txtUserName.Text.ToLower();
+                        systemUser.Email = txtEmail.Text;
+                        systemUser.ContactNumber = txtContactNumber.Text;
+                        systemUser.EmpNumber = Convert.ToInt32(txtEmpNumber.Text);
+                        systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1");
+                        systemUser.CreatedDate = DateTime.Now;
+                        systemUser.CreatedUser = Session["UserId"].ToString();
+                        systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
+                        systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
 
-                    DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
-                    List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
-                    departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
+                        DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
+                        List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+                        departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
 
-                    systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
-                    systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
-                    systemUser.ParentId = departmentUnitList[0].ParentId;
+                        systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
+                        systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
+                        systemUser.ParentId = departmentUnitList[0].ParentId;
 
-                    systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
+                        systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
 
-                    Clear();
+                        Clear();
 
-                    lblErrorUser.Text = "";
-                    lblSuccessMsg.Text = "Record Updated Successfully!";
-                    //}
+                        lblErrorUser.Text = "";
+                        lblSuccessMsg.Text = "Record Updated Successfully!";
+                    }
                 }
                 else
                 {
@@ -81,6 +81,18 @@ namespace ManPowerWeb
             }
 
 
+        }
+
+        private int GetParentId(int userType, int depId)
+        {
+            int parentId = 0;
+
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            List<DepartmentUnitPositions> departmentUnitPositionsList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
+
+
+
+            return parentId;
         }
 
         private bool CheckExistsEmpNum(int Number, SystemUserController s)
@@ -98,19 +110,19 @@ namespace ManPowerWeb
             {
                 lblSuccessMsg.Text = string.Empty;
                 lblErrorUser.Text = string.Empty;
-                lblEmpNumError.Text = "Already Exists!";
+                lblEmpNumError.Text = "Already Used!";
                 return false;
             }
         }
 
         private bool CheckAvailableEmpNum(int Number)
         {
-            EmploymentDetailsController employmentDetailsController = ControllerFactory.CreateEmploymentDetailsController();
-            List<EmploymentDetails> employmentDetailsList = employmentDetailsController.GetAllEmploymentDetails();
+            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+            List<Employee> employeeList = employeeController.GetAllEmployees();
             int flag = 0;
-            foreach (var item in employmentDetailsList)
+            foreach (var item in employeeList)
             {
-                if (item.EmpNumber == Number)
+                if (item.EmployeeId == Number)
                 {
                     flag = 1;
                     break;
@@ -252,6 +264,7 @@ namespace ManPowerWeb
             ddlUserType.SelectedIndex = 0;
             ddlDepartmentType.SelectedIndex = 0;
             ddlDepartmentUnit.Items.Clear();
+            lblSuccessMsg.Text = string.Empty;
         }
 
     }

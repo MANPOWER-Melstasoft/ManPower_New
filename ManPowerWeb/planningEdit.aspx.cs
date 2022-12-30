@@ -16,8 +16,11 @@ namespace ManPowerWeb
     {
         List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
         List<ProgramTarget> programTargets = new List<ProgramTarget>();
+        List<ProgramPlan> programPlansList = new List<ProgramPlan>();
+        List<ProgramPlan> programPlansListBind = new List<ProgramPlan>();
+
+
         int programTargetId;
-        string programTargetName;
         int programPlanId;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,10 +33,7 @@ namespace ManPowerWeb
                 {
                     programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
                 }
-                if (Request.QueryString["ProgramName"] != null)
-                {
-                    programTargetName = Request.QueryString["ProgramName"];
-                }
+
                 if (Request.QueryString["ProgramplanId"] != null)
                 {
                     programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
@@ -50,24 +50,45 @@ namespace ManPowerWeb
         {
 
             ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
-            //resourcePeopleList = resourcePersonController.GetAllResourcePerson();
+            resourcePeopleList = resourcePersonController.GetAllResourcePerson();
 
 
 
             ViewState["programTargetId"] = programTargetId;
 
-            txtProgramName.Text = programTargetName;
+
             txtManger.Text = programPlanId.ToString();
             ddlResourcePerson.DataSource = resourcePeopleList;
             ddlResourcePerson.DataValueField = "ResoursePersonId";
             ddlResourcePerson.DataTextField = "Name";
             ddlResourcePerson.DataBind();
+
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+
+
+            programPlansList = programPlanController.GetAllProgramPlan();
+
+            programPlansListBind = programPlansList.Where(x => x.ProgramPlanId == programPlanId).ToList();
+
+            txtProgramName.Text = programPlansListBind[0].ProgramName;
+            txtDate.Text = programPlansListBind[0].Date.ToString("yyyy-MM-dd");
+            txtBudget.Text = programPlansListBind[0].ApprovedAmount.ToString();
+            txtFemaleCount.Text = programPlansListBind[0].FemaleCount.ToString();
+            txtMaleCount.Text = programPlansListBind[0].MaleCount.ToString();
+            txtLocation.Text = programPlansListBind[0].Location.ToString();
+            ddlResourcePerson.Text = programPlansListBind[0].Coordinater.ToString();
+            txtEstimateAmount.Text = Request.QueryString["EstimateAmount"];
+
+
+
+
         }
 
 
 
         protected void btnSave_Click1(object sender, EventArgs e)
         {
+            bool validationflag = false;
             ProgramPlan programPlan = new ProgramPlan();
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
 
@@ -82,7 +103,7 @@ namespace ManPowerWeb
 
 
             programPlan.ProjectStatusId = 2;
-            programPlan.ProgramName = "";
+            programPlan.ProgramName = txtProgramName.Text;
             programPlan.FinancialSource = "";
             programPlan.ProgramCategoryId = 1;
             programPlan.Location = txtLocation.Text;
@@ -92,18 +113,27 @@ namespace ManPowerWeb
             programPlan.IsApproved = 0;
             programPlan.ApprovedBy = "";
             programPlan.ApprovedDate = DateTime.Now;
-            programPlan.TotalEstimatedAmount = (float)Convert.ToDouble(txtBudget.Text);
-            programPlan.ApprovedAmount = 0;
+            programPlan.TotalEstimatedAmount = (float)Convert.ToDouble(txtEstimateAmount.Text);
+
+            if ((float)Convert.ToDouble(txtEstimateAmount.Text) > (float)Convert.ToDouble(txtBudget.Text))
+            {
+                programPlan.ApprovedAmount = (float)Convert.ToDouble(txtBudget.Text);
+                validationflag = true;
+            }
+            else
+            {
+                lblBudget.Text = "Invalid Budget";
+                validationflag = false;
+
+            }
             programPlan.ActualAmount = 0;
             programPlan.MaleCount = int.Parse(txtMaleCount.Text);
             programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
             programPlan.Remark = "";
             programPlan.ProgramTargetId = programTargetId;
-            programPlan.ProgramName = programTargetName;
-            programPlan.Coordinater = ddlResourcePerson.SelectedValue;
+            programPlan.Coordinater = ddlResourcePerson.SelectedItem.Text;
             programPlan.ProgramPlanId = programPlanId;
 
-            lblDate.Text = txtDate.Text;
 
             if (Uploader.HasFile)
             {
@@ -124,16 +154,25 @@ namespace ManPowerWeb
             if (DateTime.Parse(txtDate.Text) <= DateTime.Now)
             {
                 lblDate.Text = "Invalid Date";
+                validationflag = false;
             }
-            else
+
+
+            if (validationflag)
             {
                 programPlan.Date = DateTime.Parse(txtDate.Text);
+
 
                 int response = programPlanController.UpdateProgramPlan(programPlan);
                 if (response != 0)
                 {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                     Response.Redirect("planning.aspx");
 
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
                 }
             }
 
@@ -150,6 +189,8 @@ namespace ManPowerWeb
             int response = programPlanController.UpdateProgramPlanComplete(4, programPlanId);
             if (response != 0)
             {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Completed!', 'Program plan Completed !', 'success')", true);
+
                 Response.Redirect("planning.aspx");
 
             }

@@ -1,6 +1,7 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,8 @@ namespace ManPowerWeb
             List<SystemUser> systeUserList = systemUserController.GetAllSystemUser(systemUser.UserName);
 
 
+
+
             if (systeUserList.Count != 0)
             {
                 if (systeUserList[0].UserName.ToLower() == systemUser.UserName.ToLower() && systeUserList[0].UserPwd == systemUser.UserPwd)
@@ -41,6 +44,19 @@ namespace ManPowerWeb
                     Session["DesignationId"] = systeUserList[0].DesignationId;
                     Session["Name"] = systeUserList[0].Name;
                     Session["EmpNumber"] = systeUserList[0].EmpNumber;
+
+                    EmploymentDetailsController employmentDetailsController = ControllerFactory.CreateEmploymentDetailsController();
+                    List<EmploymentDetails> employmentDetailsList = employmentDetailsController.GetAllEmploymentDetails();
+
+                    foreach (var item in employmentDetailsList)
+                    {
+                        if (item.EmpNumber == systeUserList[0].EmpNumber)
+                        {
+
+                            Session["EmpId"] = item.EmpID;
+
+                        }
+                    }
 
                     DepartmentUnitPosition = DepUnitPositionController.departmentUnitPositionWithPID(systeUserList[0].SystemUserId);
 

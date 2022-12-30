@@ -14,7 +14,7 @@
                             <asp:Literal ID="Literal3" runat="server" Text="Program Name"></asp:Literal>
                         </div>
                         <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtProgramName" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtProgramName" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -83,15 +83,31 @@
                     <div class="row">
                         <div class="col-sm-4">
 
+                            <asp:Literal ID="Literal10" runat="server" Text="Estimate Amount"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:TextBox runat="server" ID="txtEstimateAmount" CssClass="form-control form-control-user" TextMode="Number" Enabled="false"></asp:TextBox>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
                             <asp:Literal ID="Literal5" runat="server" Text="Budget"></asp:Literal>
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox runat="server" ID="txtBudget" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                            <asp:Label runat="server" ID="lblBudget" ForeColor="Red"></asp:Label>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtBudget" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </div>
                     </div>
                 </div>
+
+
             </div>
 
             <h5><b>Count</b></h5>

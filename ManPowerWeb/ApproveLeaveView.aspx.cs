@@ -64,7 +64,7 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success')", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success')", true);
             }
             else
             {

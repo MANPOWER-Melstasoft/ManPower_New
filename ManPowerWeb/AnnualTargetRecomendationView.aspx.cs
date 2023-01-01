@@ -21,6 +21,8 @@ namespace ManPowerWeb
         List<Possitions> PositionList = new List<Possitions>();
         List<Program> program = new List<Program>();
         List<DepartmentUnitPositions> listUser = new List<DepartmentUnitPositions>();
+        List<VoteAllocation> voteAllocationList = new List<VoteAllocation>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -62,23 +64,38 @@ namespace ManPowerWeb
             ddlProgram.DataValueField = "ProgramId";
             ddlProgram.DataBind();
 
+            VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+
+            voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+
+
+
+
             foreach (var i in programTargetsList.Where(u => u.ProgramTargetId == ProgramTargetId))
             {
                 myList.Add(i);
             }
 
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUser = systemUserController.GetSystemUser(myList[0].CreatedBy, false, false, false);
+
+            voteAllocationList = voteAllocationList.Where(x => x.Id == Convert.ToInt32(myList[0].VoteNumber)).ToList();
+
+            lblofficer.Text = systemUser.Name;
             ddlYear.SelectedValue = Convert.ToString(myList[0].TargetYear);
             ddlMonth.Text = myList[0].TargetMonth.ToString();
             txtDescription.Text = myList[0].Description;
+            txtVote.Text = voteAllocationList[0].VoteNumber;
             ddlMonth.Text = myList[0].TargetMonth.ToString();
             txtInstructions.Text = myList[0].Instractions.ToString();
             txtOutcome.Text = myList[0].Outcome.ToString();
+            txtFinancialCount.Text = myList[0].EstimatedAmount.ToString();
             txtOutput.Text = myList[0].Output.ToString();
             txtPhysicalCount.Text = myList[0].NoOfProjects.ToString();
             ddlProgramType.SelectedValue = myList[0].ProgramTypeId.ToString();
             ddlProgram.SelectedValue = myList[0].ProgramId.ToString();
 
-            txtVote.Text = myList[0].VoteNumber;
+
 
         }
 

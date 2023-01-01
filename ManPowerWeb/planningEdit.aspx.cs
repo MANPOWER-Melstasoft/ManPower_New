@@ -18,10 +18,11 @@ namespace ManPowerWeb
         List<ProgramTarget> programTargets = new List<ProgramTarget>();
         List<ProgramPlan> programPlansList = new List<ProgramPlan>();
         List<ProgramPlan> programPlansListBind = new List<ProgramPlan>();
-
+        SystemUser systemUser = new SystemUser();
 
         int programTargetId;
         int programPlanId;
+        int RecommendedBy;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,6 +38,14 @@ namespace ManPowerWeb
                 if (Request.QueryString["ProgramplanId"] != null)
                 {
                     programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
+
+                }
+
+                if (Request.QueryString["RBy"] != null)
+                {
+                    RecommendedBy = Convert.ToInt32(Request.QueryString["RBy"]);
+                    SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+                    systemUser = systemUserController.GetSystemUser(RecommendedBy, false, false, false);
 
                 }
 
@@ -57,7 +66,7 @@ namespace ManPowerWeb
             ViewState["programTargetId"] = programTargetId;
 
 
-            txtManger.Text = programPlanId.ToString();
+            txtManger.Text = systemUser.Name;
             ddlResourcePerson.DataSource = resourcePeopleList;
             ddlResourcePerson.DataValueField = "ResoursePersonId";
             ddlResourcePerson.DataTextField = "Name";

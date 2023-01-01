@@ -55,12 +55,15 @@ namespace ManPowerWeb
             {
                 BindDataSource();
                 //hideDSDivision();
-                bindOficerRecomendation();
+
+
                 bindDSDivision();
                 hideDSDivision();
                 bindProgram();
 
 
+
+                bindOficerRecomendation();
                 int year = DateTime.Now.Year;
                 for (int i = year; i <= year + 5; i++)
                 {
@@ -245,10 +248,16 @@ namespace ManPowerWeb
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             listOficerRecomendation = systemUserController.GetAllSystemUser(false, false, false);
 
-            ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.UserTypeId != Convert.ToInt32(Session["UserId"]));
-            ddlOficerRecomended.DataTextField = "Name";
-            ddlOficerRecomended.DataValueField = "SystemUserId";
-            ddlOficerRecomended.DataBind();
+            if (ddlOfficer.SelectedValue != "")
+            {
+                int userId = Convert.ToInt32(Session["UserId"]);
+                int selectedOfficerid = Convert.ToInt32(ViewState["SelectedOfficer"]);
+                ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.SystemUserId != userId && u.SystemUserId != selectedOfficerid);
+                ddlOficerRecomended.DataTextField = "Name";
+                ddlOficerRecomended.DataValueField = "SystemUserId";
+                ddlOficerRecomended.DataBind();
+            }
+
 
         }
 
@@ -263,6 +272,8 @@ namespace ManPowerWeb
 
             List<DepartmentUnitPositions> getdepartmentUnitPositionsIdList = new List<DepartmentUnitPositions>();
             DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+
+            ViewState["SelectedOfficer"] = ddlOfficer.SelectedValue;
             getdepartmentUnitPositionsIdList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(Convert.ToInt32(ddlOfficer.SelectedValue));
 
             programTarget.ProgramTypeId = Convert.ToInt32(ddlProgramType.SelectedValue);
@@ -299,7 +310,8 @@ namespace ManPowerWeb
 
             programTarget.Remarks = txtRemarks.Text;
 
-            programAssignee.DesignationId = 1;
+            programAssignee.DesignationId = 1;  // 
+
             programAssignee.DepartmentUnitPossitionsId = getdepartmentUnitPositionsIdList[0].DepartmetUnitPossitionsId;
 
 
@@ -315,6 +327,7 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 btnSendToRecommendation.Visible = true;
+                bindOficerRecomendation();
 
             }
             else
@@ -428,6 +441,7 @@ namespace ManPowerWeb
 
             }
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send Recommendation Succesfully!', 'success')", true);
+            Response.Redirect(Request.RawUrl);
         }
 
 

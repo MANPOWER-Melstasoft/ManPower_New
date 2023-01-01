@@ -27,6 +27,12 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
 
+                int year = DateTime.Now.Year;
+                for (int i = year; i <= year + 5; i++)
+                {
+                    ListItem li = new ListItem(i.ToString());
+                    ddlYear.Items.Add(li);
+                }
                 bindGrid(false);
 
             }
@@ -49,7 +55,7 @@ namespace ManPowerWeb
             systemUserId = Convert.ToInt32(Session["UserId"]);
 
 
-            programAssigneesFilter = programAssignees.Where(u => u._DepartmentUnitPositions.SystemUserId == systemUserId && u._ProgramTarget.IsRecommended == 1).ToList();
+            programAssigneesFilter = programAssignees.Where(u => u._DepartmentUnitPositions.SystemUserId == systemUserId && u._ProgramTarget.IsRecommended == 2).ToList();
             //&& u._ProgramTarget.TargetMonth.ToString() == ddlYear.SelectedValue && u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue
 
             //systemUserId = departmentUnitPositionsController.departmentUnitPositionsWIthSystemUser();

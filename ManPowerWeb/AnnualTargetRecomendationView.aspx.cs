@@ -33,10 +33,10 @@ namespace ManPowerWeb
 
             bindData();
             int status = Convert.ToInt32(Request.QueryString["Status"]);
-            if (status == 0)
+            if (status == 1)
             {
                 btnAccept.Visible = true;
-                btnReject.Visible = true;
+                btnModalReject.Visible = true;
             }
         }
 
@@ -85,12 +85,11 @@ namespace ManPowerWeb
         protected void btnAccept_Click(object sender, EventArgs e)
         {
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 1);
+            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 2, "");
 
             if (TargetResponse != 0)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                Response.Redirect("AnnualTargetRecomendation.aspx");
 
 
             }
@@ -99,16 +98,28 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
 
-
-        }
-
-        protected void btnReject_Click(object sender, EventArgs e)
-        {
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 2);
             Response.Redirect("AnnualTargetRecomendation.aspx");
 
 
+        }
+
+
+        protected void btnReject_Click1(object sender, EventArgs e)
+        {
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 3, txtrejectReason.Text);
+
+            if (TargetResponse != 0)
+            {
+
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected Succesfully!', 'success')", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
+
+            Response.Redirect("AnnualTargetRecomendation.aspx");
 
         }
     }

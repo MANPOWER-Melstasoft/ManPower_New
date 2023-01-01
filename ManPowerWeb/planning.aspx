@@ -17,10 +17,6 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:DropDownList runat="server" ID="ddlYear" CssClass="form-control form-control-user">
-                                    <asp:ListItem Value="2020">2020</asp:ListItem>
-                                    <asp:ListItem Value="2021">2021</asp:ListItem>
-                                    <asp:ListItem Value="2022">2022</asp:ListItem>
-                                    <asp:ListItem Value="2023">2023</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>

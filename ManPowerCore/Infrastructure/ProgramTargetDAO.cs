@@ -24,11 +24,11 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateProgramTarget(ProgramTarget programTarget, DBConnection dbConnection);
 
-        int UpdateProgramTargetApproval(int id, int status, DBConnection dbConnection);
+        int UpdateProgramTargetApproval(int id, int status, string reason, DBConnection dbConnection);
         int UpdateProgramTargetApprovalRecomended(int id, int recomendedby, int status, DBConnection dbConnection);
 
         List<ProgramTarget> GetAllProgramTargetFilter(int runYear, int runMonth, DBConnection dbConnection);
-        
+
         List<ProgramTarget> UpcomingFilter(DateTime startDate, int type, DBConnection dbConnection);
 
         List<ProgramTarget> GetAllProgramTargetFilter(int runType, DBConnection dbConnection);
@@ -139,12 +139,16 @@ namespace ManPowerCore.Infrastructure
         }
 
 
-        public int UpdateProgramTargetApproval(int id, int status, DBConnection dbConnection)
+        public int UpdateProgramTargetApproval(int id, int status, string reason, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE PROGRAM_TARGET SET IS_RECOMMENDED = " + status + " WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "UPDATE PROGRAM_TARGET SET IS_RECOMMENDED = @Status,Reject_Remarks= @RejectReason WHERE ID=@Id";
+
+            dbConnection.cmd.Parameters.AddWithValue("@Id", id);
+            dbConnection.cmd.Parameters.AddWithValue("@Status", status);
+            dbConnection.cmd.Parameters.AddWithValue("@RejectReason", reason);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

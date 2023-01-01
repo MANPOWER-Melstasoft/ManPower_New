@@ -33,11 +33,11 @@ namespace ManPowerWeb
         {
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(true, true, true, true);
-
+            programTargetsList = programTargetsList.Where(x => x.RecommendedBy == Convert.ToInt32(Session["UserId"])).ToList();
             ViewState["All"] = programTargetsList;
-            ViewState["pending"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
-            ViewState["Approved"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
-            ViewState["Rejected"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
+            ViewState["pending"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
+            ViewState["Approved"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
+            ViewState["Rejected"] = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
 
             if (ddlStatus.SelectedValue == "0")
             {

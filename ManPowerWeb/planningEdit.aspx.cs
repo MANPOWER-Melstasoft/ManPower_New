@@ -76,7 +76,11 @@ namespace ManPowerWeb
             txtFemaleCount.Text = programPlansListBind[0].FemaleCount.ToString();
             txtMaleCount.Text = programPlansListBind[0].MaleCount.ToString();
             txtLocation.Text = programPlansListBind[0].Location.ToString();
-            ddlResourcePerson.Text = programPlansListBind[0].Coordinater.ToString();
+            if (programPlansListBind[0].Coordinater != null)
+            {
+                ddlResourcePerson.Text = programPlansListBind[0].Coordinater.ToString();
+
+            }
             txtEstimateAmount.Text = Request.QueryString["EstimateAmount"];
 
 
@@ -103,6 +107,7 @@ namespace ManPowerWeb
 
 
             programPlan.ProjectStatusId = 2;
+
             programPlan.ProgramName = txtProgramName.Text;
             programPlan.FinancialSource = "";
             programPlan.ProgramCategoryId = 1;

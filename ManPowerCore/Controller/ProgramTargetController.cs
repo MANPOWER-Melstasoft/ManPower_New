@@ -16,7 +16,7 @@ namespace ManPowerCore.Controller
 
         int UpdateProgramTarget(ProgramTarget programAssignee);
 
-        int UpdateProgramTargetApproval(int id, int status);
+        int UpdateProgramTargetApproval(int id, int status, string reason);
         int UpdateProgramTargetApprovalRecomended(int id, int recomendedby, int status);
 
         List<ProgramTarget> GetAllProgramTarget(bool withProgram, bool withProgramType, bool withProgramAssignee, bool withProgramPlan);
@@ -89,13 +89,13 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int UpdateProgramTargetApproval(int id, int status)
+        public int UpdateProgramTargetApproval(int id, int status, string reason)
         {
 
             try
             {
                 dBConnection = new DBConnection();
-                var taregts = programTargetDAO.UpdateProgramTargetApproval(id, status, dBConnection);
+                var taregts = programTargetDAO.UpdateProgramTargetApproval(id, status, reason, dBConnection);
                 return taregts;
             }
             catch (Exception)

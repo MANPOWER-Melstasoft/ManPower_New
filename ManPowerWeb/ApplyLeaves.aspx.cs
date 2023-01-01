@@ -47,7 +47,7 @@ namespace ManPowerWeb
             staffLeave.DayTypeId = int.Parse(ddlDayType.SelectedValue);
 
             //must change
-            staffLeave.EmployeeId = 25;
+            staffLeave.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
 
             if (ddlDayType.SelectedValue == "3")
             {
@@ -63,6 +63,24 @@ namespace ManPowerWeb
             staffLeave.ResumingDate = DateTime.Now;
             staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
             staffLeave.LeaveStatusId = 1;
+
+
+            if (Uploader.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
+                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+
+                        // staffLeave.(column database)  programPlan.FinancialSource = uploadFile.FileName;
+
+                    }
+                }
+            }
 
             int response = staffLeaveController.saveStaffLeave(staffLeave);
 
@@ -81,7 +99,7 @@ namespace ManPowerWeb
 
         protected void btnLeaveBalance_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LeaveBalance.aspx?EmpId=" + 25);
+            Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpNumber"]));
 
         }
     }

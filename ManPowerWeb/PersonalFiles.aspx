@@ -267,7 +267,7 @@
 							<label>Is Resigned : </label>
 						</div>
 						<div class="col-8">
-							<asp:RadioButtonList ID="reseg" runat="server" AutoPostBack="true" >
+							<asp:RadioButtonList ID="reseg" runat="server" AutoPostBack="true">
                                     <asp:ListItem Value="1">Yes</asp:ListItem>
                                     <asp:ListItem Value="2">No</asp:ListItem>
                                 </asp:RadioButtonList>
@@ -631,6 +631,30 @@
 			</div><br />
 
 		<br /><br />
+
+			<%--<div class="row">
+				
+			</div><br />
+
+			<asp:Button runat="server" ID="Button7" Text="Add" CssClass="btn btn-primary btn-user btn-block"  Width ="130px" OnClick="addContact" ValidationGroup="2"/>
+
+			<br /><br />
+
+			<div cssClass="table-responsive" style="width: 100%;">
+				<asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+					CellPadding="4" GridLines="None">
+					<Columns>
+						<asp:BoundField HeaderText="Employee Id" DataField="EmpID" HeaderStyle-CssClass="table-dark" />
+						<asp:BoundField HeaderText="Company Name" DataField="CompanyName" HeaderStyle-CssClass="table-dark" />
+						<asp:BoundField HeaderText="Start Date" DataField="StartDate" HeaderStyle-CssClass="table-dark" />
+						<asp:BoundField HeaderText="End Date" DataField="EndDate" HeaderStyle-CssClass="table-dark" />
+						<asp:BoundField HeaderText="Retirement Date" DataField="RetirementDate" HeaderStyle-CssClass="table-dark" />
+						<asp:BoundField HeaderText="Epf" DataField="epf" HeaderStyle-CssClass="table-dark" />
+					</Columns>
+				</asp:GridView>
+			</div>
+			
+			<br /><br />--%>
 
 			<div class="row justify-content-around">
 			<div class="col-9">

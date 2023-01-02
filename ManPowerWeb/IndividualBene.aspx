@@ -169,6 +169,9 @@
 
 		<div class="row">
 			<div class="col-2">
+				<asp:Button runat="server" ID="Button2" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="isClicked" ValidationGroup="1" />
+			</div>
+			<div class="col-2">
 				<asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidationGroup="1" />
 			</div>
 			<div class="col-2">

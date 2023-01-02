@@ -101,6 +101,7 @@ namespace ManPowerWeb
 
         protected void btnAction_Click(object sender, EventArgs e)
         {
+            BindDataSource();
 
             GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
 

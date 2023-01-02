@@ -14,7 +14,7 @@ namespace ManPowerWeb
     {
         public int positionID;
         List<TaskAllocation> taskAllocationList = new List<TaskAllocation>();
-        List<SystemUser> systemUserList = new List<SystemUser>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             positionID = Convert.ToInt32(Session["DepUnitPositionId"]);

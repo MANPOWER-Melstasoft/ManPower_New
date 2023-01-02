@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="card">
-        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Approve DME21</h2>
+        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Recommendation 1 of DME21</h2>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">
             <asp:GridView ID="gvDME21Recommend1" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
                 CellPadding="4" ForeColor="#333333" GridLines="None">

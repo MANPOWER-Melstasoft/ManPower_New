@@ -152,7 +152,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION ORDER BY TASK_YEAR_MONTH ";
+            dbConnection.cmd.CommandText = "SELECT * FROM TASK_ALLOCATION";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

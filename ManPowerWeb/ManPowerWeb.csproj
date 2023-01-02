@@ -2463,6 +2463,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="SystemDocuments\ProgramPlanResources\" />
     <Folder Include="SystemDocuments\Quatations\" />
+    <Folder Include="SystemDocuments\StaffLeaveResources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

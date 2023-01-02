@@ -21,6 +21,8 @@ namespace ManPowerWeb
         List<Possitions> PositionList = new List<Possitions>();
         List<Program> program = new List<Program>();
         List<DepartmentUnitPositions> listUser = new List<DepartmentUnitPositions>();
+        List<VoteAllocation> voteAllocationList = new List<VoteAllocation>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,10 +35,10 @@ namespace ManPowerWeb
 
             bindData();
             int status = Convert.ToInt32(Request.QueryString["Status"]);
-            if (status == 0)
+            if (status == 1)
             {
                 btnAccept.Visible = true;
-                btnReject.Visible = true;
+                btnModalReject.Visible = true;
             }
         }
 
@@ -62,35 +64,49 @@ namespace ManPowerWeb
             ddlProgram.DataValueField = "ProgramId";
             ddlProgram.DataBind();
 
+            VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+
+            voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+
+
+
+
             foreach (var i in programTargetsList.Where(u => u.ProgramTargetId == ProgramTargetId))
             {
                 myList.Add(i);
             }
 
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUser = systemUserController.GetSystemUser(myList[0].CreatedBy, false, false, false);
+
+            voteAllocationList = voteAllocationList.Where(x => x.Id == Convert.ToInt32(myList[0].VoteNumber)).ToList();
+
+            lblofficer.Text = systemUser.Name;
             ddlYear.SelectedValue = Convert.ToString(myList[0].TargetYear);
             ddlMonth.Text = myList[0].TargetMonth.ToString();
             txtDescription.Text = myList[0].Description;
+            txtVote.Text = voteAllocationList[0].VoteNumber;
             ddlMonth.Text = myList[0].TargetMonth.ToString();
             txtInstructions.Text = myList[0].Instractions.ToString();
             txtOutcome.Text = myList[0].Outcome.ToString();
+            txtFinancialCount.Text = myList[0].EstimatedAmount.ToString();
             txtOutput.Text = myList[0].Output.ToString();
             txtPhysicalCount.Text = myList[0].NoOfProjects.ToString();
             ddlProgramType.SelectedValue = myList[0].ProgramTypeId.ToString();
             ddlProgram.SelectedValue = myList[0].ProgramId.ToString();
 
-            txtVote.Text = myList[0].VoteNumber;
+
 
         }
 
         protected void btnAccept_Click(object sender, EventArgs e)
         {
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 1);
+            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 2, "");
 
             if (TargetResponse != 0)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                Response.Redirect("AnnualTargetRecomendation.aspx");
 
 
             }
@@ -99,16 +115,28 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
 
-
-        }
-
-        protected void btnReject_Click(object sender, EventArgs e)
-        {
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 2);
             Response.Redirect("AnnualTargetRecomendation.aspx");
 
 
+        }
+
+
+        protected void btnReject_Click1(object sender, EventArgs e)
+        {
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 3, txtrejectReason.Text);
+
+            if (TargetResponse != 0)
+            {
+
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected Succesfully!', 'success')", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
+
+            Response.Redirect("AnnualTargetRecomendation.aspx");
 
         }
     }

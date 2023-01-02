@@ -59,9 +59,9 @@
 
                         <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="Status">
                             <ItemTemplate>
-                                <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "0" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
-                                <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "1" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
-                                <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "2" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
+                                <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                                <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "2" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
+                                <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "3" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
 
                             </ItemTemplate>
                         </asp:TemplateField>

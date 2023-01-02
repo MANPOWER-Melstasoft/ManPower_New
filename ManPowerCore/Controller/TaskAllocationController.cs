@@ -406,13 +406,13 @@ namespace ManPowerCore.Controller
 
                 List<SystemUser> systemUserList = new List<SystemUser>();
 
-                list = list.Where(x => x.DepartmetUnitPossitionsId == PositionId && x.StatusId == 1).ToList();
+                list = list.Where(x => x.DME21RecommendedBy1 == PositionId && x.StatusId == 1).ToList();
 
                 systemUserList = SystemUser.GetAllSystemUser(false, false, false);
 
                 foreach (var item in list)
                 {
-                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                 }
 
                 foreach (var item in list)
@@ -451,13 +451,13 @@ namespace ManPowerCore.Controller
 
                 List<SystemUser> systemUserList = new List<SystemUser>();
 
-                list = list.Where(x => x.DepartmetUnitPossitionsId == PositionId && x.StatusId == 2008).ToList();
+                list = list.Where(x => x.DME21RecommendedBy2 == PositionId && x.StatusId == 2008).ToList();
 
                 systemUserList = SystemUser.GetAllSystemUser(false, false, false);
 
                 foreach (var item in list)
                 {
-                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                 }
 
                 foreach (var item in list)

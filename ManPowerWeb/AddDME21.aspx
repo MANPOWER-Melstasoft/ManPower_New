@@ -32,7 +32,7 @@
                         <asp:TextBox TextMode="MultiLine" runat="server" Style="width: 80%;" ID="txtRemarks" name="txtRemarks" cols="20" Rows="2"></asp:TextBox>
                     </div>
                 </div>
-                <div class="row mb-5" style="text-align: center; width: 70%;">
+                <div class="row mb-5" style="text-align: center; width: 70%;" runat="server" id="divDuty" visible="true">
                     <div class="col-sm-6 my-auto">
                         <asp:Label CssClass="font-weight-bold" ID="label2" runat="server" Text="Performed Duty"></asp:Label>
                     </div>
@@ -40,7 +40,7 @@
                         <asp:TextBox runat="server" Style="width: 80%;" ID="txtDuty" TextMode="MultiLine" name="txtDuty" cols="20" Rows="2"></asp:TextBox>
                     </div>
                 </div>
-                <div class="row mb-5" style="text-align: center; width: 70%;">
+                <div class="row mb-5" style="text-align: center; width: 70%;" runat="server" visible="true" id="divPlace">
                     <div class="col-sm-6 my-auto">
                         <asp:Label CssClass="font-weight-bold" ID="label3" runat="server" Text="Work Attended Place"></asp:Label>
                     </div>

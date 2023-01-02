@@ -22,7 +22,7 @@ namespace ManPowerWeb
         List<TaskType> taskTypeList = new List<TaskType>();
         List<Program> programList = new List<Program>();
         List<TaskAllocation> taskAllocationList;
-        public int depId = 4;
+        public int depId;
         public int flag = 0;
         public int worktype;
         public int programId;
@@ -33,10 +33,15 @@ namespace ManPowerWeb
         public int rowIndex;
 
         public DateTime date;
+        public string name;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             date1 = Request.QueryString["date"].ToString();
+
+            depId = Convert.ToInt32(Session["DepUnitPositionId"]);
+
+            name = Session["Name"].ToString();
 
             rowIndex = Convert.ToInt32(Request.QueryString["taskAllocationDetailId"]);
             TaskAllocationDetailController allocationDetail = ControllerFactory.CreateTaskAllocationDetailController();
@@ -88,12 +93,22 @@ namespace ManPowerWeb
             if (ddlWorkType.SelectedValue == "1")
             {
                 ProgramDisplay.Visible = true;
+                divDuty.Visible = true;
+                divPlace.Visible = true;
 
             }
             else if (ddlWorkType.SelectedValue == "3")
             {
                 OtherDisplay.Visible = true;
+                divDuty.Visible = true;
+                divPlace.Visible = true;
             }
+            else if (ddlWorkType.SelectedValue == "2")
+            {
+                divDuty.Visible = false;
+                divPlace.Visible = false;
+            }
+
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
@@ -172,7 +187,7 @@ namespace ManPowerWeb
                     taskAllocation.DepartmetUnitPossitionsId = depId;
                     taskAllocation.TaskYearMonth = date;
                     taskAllocation.CreatedDate = DateTime.Today.Date;
-                    taskAllocation.CreatedUser = "Amila";
+                    taskAllocation.CreatedUser = name;
                     taskAllocation.StatusId = 0;
                     taskAllocation.DME21RecommendedBy1 = 0;
                     taskAllocation.RecommendedDate = DateTime.Today;

@@ -36,7 +36,7 @@ namespace ManPowerWeb
                 whatsapp.Text = i.WhatsappNumber;
                 
 
-                if (i.SchoolName == null)
+                if (String.IsNullOrEmpty(i.SchoolName))
                 {
                     sclName.Text = "-";
                     sclAddress.Text = "-";

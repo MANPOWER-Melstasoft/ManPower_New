@@ -26,8 +26,6 @@ namespace ManPowerWeb
         public string Year { get { return selectedYear; } }
         public string Month { get { return monthName; } }
 
-        public int depId = 4;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             BindDataSource();
@@ -35,7 +33,7 @@ namespace ManPowerWeb
 
         public void BindDataSource()
         {
-            int positionId = 4;
+            int positionId = Convert.ToInt32(Session["DepUnitPositionId"]);
 
             TaskAllocationDetailController taskAllocationDetail = ControllerFactory.CreateTaskAllocationDetailController();
 
@@ -140,6 +138,8 @@ namespace ManPowerWeb
 
             int taskAllocationId = 0;
 
+            int depId = Convert.ToInt32(Session["DepUnitPositionId"]);
+
             foreach (var i in taskAllocationList)
             {
                 if (i.DepartmetUnitPossitionsId == depId && i.TaskYearMonth.Month == month && i.TaskYearMonth.Year == DateTime.Now.AddMonths(1).Year)
@@ -152,7 +152,7 @@ namespace ManPowerWeb
 
             taskAllocation.TaskAllocationId = taskAllocationId;
             taskAllocation.StatusId = 1;
-            taskAllocation.DME21RecommendedBy1 = 4;
+            taskAllocation.DME21RecommendedBy1 = Convert.ToInt32(Session["DepUnitParentId"]);
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);
 

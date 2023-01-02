@@ -105,6 +105,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtRemarks;
 
         /// <summary>
+        /// divDuty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDuty;
+
+        /// <summary>
         /// label2 control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDuty;
+
+        /// <summary>
+        /// divPlace control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPlace;
 
         /// <summary>
         /// label3 control.

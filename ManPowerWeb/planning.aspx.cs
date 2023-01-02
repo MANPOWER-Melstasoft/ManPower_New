@@ -27,6 +27,12 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
 
+                int year = DateTime.Now.Year;
+                for (int i = year; i <= year + 5; i++)
+                {
+                    ListItem li = new ListItem(i.ToString());
+                    ddlYear.Items.Add(li);
+                }
                 bindGrid(false);
 
             }
@@ -47,7 +53,9 @@ namespace ManPowerWeb
             programAssignees = programAssigneeController.GetProgramAssignee();
 
             systemUserId = Convert.ToInt32(Session["UserId"]);
-            programAssigneesFilter = programAssignees.Where(u => u._DepartmentUnitPositions.SystemUserId == systemUserId).ToList();
+
+
+            programAssigneesFilter = programAssignees.Where(u => u._DepartmentUnitPositions.SystemUserId == systemUserId && u._ProgramTarget.IsRecommended == 2).ToList();
             //&& u._ProgramTarget.TargetMonth.ToString() == ddlYear.SelectedValue && u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue
 
             //systemUserId = departmentUnitPositionsController.departmentUnitPositionsWIthSystemUser();
@@ -76,15 +84,7 @@ namespace ManPowerWeb
 
             gvAnnaualPlan.DataBind();
             gvAnnaualPlan.Columns[1].Visible = false;
-
-
-
-
-
-
-
-
-
+            gvAnnaualPlan.Columns[7].Visible = false;
 
 
 
@@ -148,6 +148,8 @@ namespace ManPowerWeb
 
             var PrTargetId = int.Parse(gvAnnaualPlan.Rows[rowIndex].Cells[1].Text);
             var prName = gvAnnaualPlan.Rows[rowIndex].Cells[2].Text;
+            var EstimateAmount = gvAnnaualPlan.Rows[rowIndex].Cells[5].Text;
+            var recommendedBy = gvAnnaualPlan.Rows[rowIndex].Cells[7].Text;
 
 
 
@@ -158,7 +160,7 @@ namespace ManPowerWeb
             programPlansList = programPlansList.Where(x => x.ProgramTargetId == PrTargetId).ToList();
 
 
-            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramName=" + programPlansList[rowindexChild].ProgramName + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
+            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId + "&EstimateAmount=" + EstimateAmount + "&RBy=" + recommendedBy);
 
         }
 
@@ -167,6 +169,7 @@ namespace ManPowerWeb
 
         protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlansList = programPlanController.GetAllProgramPlan();
 
@@ -176,21 +179,35 @@ namespace ManPowerWeb
                 string programTargetID = gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString();
                 GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
 
+                LinkButton button = (LinkButton)e.Row.FindControl("btnAddPlan");
+                Label lbl = e.Row.FindControl("lblPlannedCount") as Label;
 
 
                 programPlansList = programPlansList.Where(x => x.ProgramTargetId.ToString() == programTargetID).ToList();
 
                 ViewState["programPlansListCount"] = programPlansList.Count();
 
-                Label lbl = e.Row.FindControl("lblPlannedCount") as Label;
+
                 lbl.Text = programPlansList.Count.ToString();
-
-
-
-
                 gvPlanDetails.DataSource = programPlansList;
                 gvPlanDetails.DataBind();
 
+
+
+
+
+                if (lbl.Text != "" && e.Row.Cells[8].Text != "")
+                {
+
+                    if (Convert.ToInt32(lbl.Text) < Convert.ToInt32(e.Row.Cells[8].Text))
+                    {
+                        button.Enabled = true;
+                    }
+                    else
+                    {
+                        button.Enabled = false;
+                    }
+                }
 
 
             }

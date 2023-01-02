@@ -45,7 +45,9 @@ namespace ManPowerWeb
             staffLeave.LeaveDate = DateTime.Parse(txtDateCommencing.Text);
             staffLeave.CreatedDate = DateTime.Now;
             staffLeave.DayTypeId = int.Parse(ddlDayType.SelectedValue);
-            staffLeave.EmployeeId = 1;
+
+            //must change
+            staffLeave.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
 
             if (ddlDayType.SelectedValue == "3")
             {
@@ -62,14 +64,42 @@ namespace ManPowerWeb
             staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
             staffLeave.LeaveStatusId = 1;
 
+
+            if (Uploader.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
+                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+
+                        // staffLeave.(column database)  programPlan.FinancialSource = uploadFile.FileName;
+
+                    }
+                }
+            }
+
             int response = staffLeaveController.saveStaffLeave(staffLeave);
 
             if (response != 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 Response.Redirect(Request.RawUrl);
             }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
 
+
+        }
+
+        protected void btnLeaveBalance_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpNumber"]));
 
         }
     }

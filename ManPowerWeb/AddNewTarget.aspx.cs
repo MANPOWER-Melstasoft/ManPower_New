@@ -55,12 +55,15 @@ namespace ManPowerWeb
             {
                 BindDataSource();
                 //hideDSDivision();
-                bindOficerRecomendation();
+
+
                 bindDSDivision();
                 hideDSDivision();
                 bindProgram();
 
 
+
+                bindOficerRecomendation();
                 int year = DateTime.Now.Year;
                 for (int i = year; i <= year + 5; i++)
                 {
@@ -129,22 +132,33 @@ namespace ManPowerWeb
             List<OfficerList> listSystemUseerOfficer = new List<OfficerList>();
             listSystemUseerOfficer = officerListController.getOfficerList();
 
-
-            if (rbTarget.SelectedValue == "1")
+            if (ddlPosition.SelectedValue != "")
             {
-                ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                if (rbTarget.SelectedValue == "1")
+                {
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
-            }
-            else if (rbTarget.SelectedValue == "2")
-            {
-                ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                }
+                else if (rbTarget.SelectedValue == "2")
+                {
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
+                }
+                else
+                {
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                }
             }
+
             else
             {
-                ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Warning!', 'Pleace select a position 'warning')", true);
 
             }
+
+
+
             ddlOfficer.DataValueField = "SystemUserId";
             ddlOfficer.DataTextField = "Name";
             ddlOfficer.DataBind();
@@ -185,6 +199,8 @@ namespace ManPowerWeb
             if (rbTarget.SelectedValue == "2")
             {
                 bindDSDivision();
+                bindOfficerList();
+
             }
             else
             {
@@ -232,10 +248,17 @@ namespace ManPowerWeb
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             listOficerRecomendation = systemUserController.GetAllSystemUser(false, false, false);
 
-            ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.UserTypeId != Convert.ToInt32(Session["UserId"]));
-            ddlOficerRecomended.DataTextField = "Name";
-            ddlOficerRecomended.DataValueField = "SystemUserId";
-            ddlOficerRecomended.DataBind();
+            if (ddlOfficer.SelectedValue != "")
+            {
+                int userId = Convert.ToInt32(Session["UserId"]);
+                int selectedOfficerid = Convert.ToInt32(ViewState["SelectedOfficer"]);
+                ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.SystemUserId != userId && u.SystemUserId != selectedOfficerid);
+                ddlOficerRecomended.DataTextField = "Name";
+                ddlOficerRecomended.DataValueField = "SystemUserId";
+                ddlOficerRecomended.DataBind();
+            }
+
+
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -249,6 +272,8 @@ namespace ManPowerWeb
 
             List<DepartmentUnitPositions> getdepartmentUnitPositionsIdList = new List<DepartmentUnitPositions>();
             DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+
+            ViewState["SelectedOfficer"] = ddlOfficer.SelectedValue;
             getdepartmentUnitPositionsIdList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(Convert.ToInt32(ddlOfficer.SelectedValue));
 
             programTarget.ProgramTypeId = Convert.ToInt32(ddlProgramType.SelectedValue);
@@ -285,7 +310,8 @@ namespace ManPowerWeb
 
             programTarget.Remarks = txtRemarks.Text;
 
-            programAssignee.DesignationId = 1;
+            programAssignee.DesignationId = 1;  // 
+
             programAssignee.DepartmentUnitPossitionsId = getdepartmentUnitPositionsIdList[0].DepartmetUnitPossitionsId;
 
 
@@ -300,7 +326,8 @@ namespace ManPowerWeb
             if (TargetResponse != 0)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                btnSendToReccomendation.Enabled = true;
+                btnSendToRecommendation.Visible = true;
+                bindOficerRecomendation();
 
             }
             else
@@ -326,31 +353,16 @@ namespace ManPowerWeb
             }
         }
 
-        protected void btnSend_Click(object sender, EventArgs e)
-        {
-            int TargetResponseBtn = Convert.ToInt32(ViewState["TargetResponseState"]);
 
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            int selectedOficerRecomendation = Convert.ToInt32(ddlOficerRecomended.SelectedValue);
-
-
-            foreach (var prop in allTargets.Where(u => u.IsRecommended == 0 && u.ProgramTargetId == TargetResponseBtn))
-            {
-                programTargetController.UpdateProgramTargetApprovalRecomended(TargetResponseBtn, selectedOficerRecomendation, 1);
-
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Sent Sucessfully');", true);
-            pnlDialogBox.Visible = false;
-        }
 
         protected void btnCancelDialog_Click(object sender, EventArgs e)
         {
-            pnlDialogBox.Visible = false;
+            // pnlDialogBox.Visible = false;
         }
 
         protected void btnSendToReccomendation_Click(object sender, EventArgs e)
         {
-            pnlDialogBox.Visible = true;
+            //pnlDialogBox.Visible = true;
         }
 
         protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
@@ -408,5 +420,30 @@ namespace ManPowerWeb
         {
             bindOfficerList();
         }
+
+        protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindOfficerList();
+        }
+
+        protected void btnSend_Click1(object sender, EventArgs e)
+        {
+
+            int TargetResponseBtn = Convert.ToInt32(ViewState["TargetResponseState"]);
+
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            int selectedOficerRecomendation = Convert.ToInt32(ddlOficerRecomended.SelectedValue);
+
+
+            foreach (var prop in allTargets.Where(u => u.IsRecommended == 0 && u.ProgramTargetId == TargetResponseBtn))
+            {
+                programTargetController.UpdateProgramTargetApprovalRecomended(TargetResponseBtn, selectedOficerRecomendation, 1);
+
+            }
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send Recommendation Succesfully!', 'success')", true);
+            Response.Redirect(Request.RawUrl);
+        }
+
+
     }
 }

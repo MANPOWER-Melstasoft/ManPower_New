@@ -12,12 +12,12 @@ namespace ManPowerWeb
 {
     public partial class Recommend1_DME21 : System.Web.UI.Page
     {
-        public int positionID = 4;
+        public int positionID;
         List<TaskAllocation> taskAllocationList = new List<TaskAllocation>();
-        List<SystemUser> systemUserList = new List<SystemUser>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
             BindDataSource();
 
         }

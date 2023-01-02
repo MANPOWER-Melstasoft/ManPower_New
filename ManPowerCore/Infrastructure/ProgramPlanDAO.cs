@@ -105,7 +105,7 @@ namespace ManPowerCore.Infrastructure
             " ACTUAL_OUTPUT = @ActualOutput, IS_APPROVED = @IsApproved, APPROVED_BY =@ApprovedBy ," +
             " APPROVED_DATE = @ApprovedDate ,TOTAL_ESTIMATED_AMOUNT = @TotalEstimatedAmount,APPROVED_AMOUNT = @ApprovedAmount," +
             " ACTUAL_AMOUNT = @ActualAmount, MALE_COUNT = @MaleCount ," +
-            " FEMALE_COUNT = @FemaleCount,Financial_Source=@FinancialResource WHERE ID = @ProgramPlanId ";
+            " FEMALE_COUNT = @FemaleCount,Financial_Source=@FinancialResource,ProgramName=@programName,CoordinaterOfficer=@cordinateOfficer WHERE ID = @ProgramPlanId ";
 
 
 
@@ -127,6 +127,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ActualAmount", programPlan.ActualAmount);
             dbConnection.cmd.Parameters.AddWithValue("@MaleCount", programPlan.MaleCount);
             dbConnection.cmd.Parameters.AddWithValue("@FemaleCount", programPlan.FemaleCount);
+            dbConnection.cmd.Parameters.AddWithValue("@programName", programPlan.ProgramName);
+            dbConnection.cmd.Parameters.AddWithValue("@cordinateOfficer", programPlan.Coordinater);
             dbConnection.cmd.Parameters.AddWithValue("@FinancialResource", programPlan.FinancialSource);
 
 

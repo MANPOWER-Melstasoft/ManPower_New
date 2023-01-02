@@ -20,6 +20,7 @@ namespace ManPowerCore.Controller
         List<SystemUser> GetAllSystemUser(string runUserName, string runPassword);
         List<SystemUser> GetAllSystemUser(string runUserName, string runEmail, int runContactNumber, int runEmpNumber);
         int UpdateLastLoginDate(SystemUser systemUser);
+        SystemUser CheckEmpNumberExists(int Number);
     }
 
     public class SystemUserControllerImpl : SystemUserController
@@ -418,6 +419,25 @@ namespace ManPowerCore.Controller
             {
                 dBConnection.RollBack();
                 HttpContext.Current.Response.Redirect("500.aspx");
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public SystemUser CheckEmpNumberExists(int Number)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return systemUserDAO.CheckEmpNumberExists(Number, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
                 throw;
             }
             finally

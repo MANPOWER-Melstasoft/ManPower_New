@@ -57,7 +57,7 @@ namespace ManPowerWeb
 
             int flag1 = 0;
 
-            int depId = 4;
+            int depId = Convert.ToInt32(Session["DepUnitPositionId"]);
 
             TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();
 
@@ -101,6 +101,7 @@ namespace ManPowerWeb
 
         protected void btnAction_Click(object sender, EventArgs e)
         {
+            BindDataSource();
 
             GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
 

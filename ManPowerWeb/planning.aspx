@@ -17,10 +17,6 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:DropDownList runat="server" ID="ddlYear" CssClass="form-control form-control-user">
-                                    <asp:ListItem Value="2020">2020</asp:ListItem>
-                                    <asp:ListItem Value="2021">2021</asp:ListItem>
-                                    <asp:ListItem Value="2022">2022</asp:ListItem>
-                                    <asp:ListItem Value="2023">2023</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -105,6 +101,7 @@
                     <asp:BoundField DataField="_ProgramTarget.TargetMonth" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.EstimatedAmount" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.Instractions" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.RecommendedBy" HeaderText="Recommended By" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
 
                     <asp:BoundField DataField="_ProgramTarget.NoOfProjects" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:TemplateField HeaderText="Planned Count" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
@@ -126,6 +123,7 @@
                                         <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table table-responsive ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId">
                                             <Columns>
                                                 <asp:BoundField DataField="ProgramPlanId" HeaderStyle-CssClass="table-dark" HeaderText="Program Plan Id" />
+                                                <asp:BoundField DataField="ProgramName" HeaderStyle-CssClass="table-dark" HeaderText="Program Name" />
                                                 <asp:BoundField DataField="Date" HeaderStyle-CssClass="table-dark" HeaderText="Date" />
                                                 <asp:BoundField DataField="Location" HeaderStyle-CssClass="table-dark" HeaderText="Location" />
                                                 <asp:BoundField DataField="MaleCount" HeaderStyle-CssClass="table-dark" HeaderText="Male Count" />

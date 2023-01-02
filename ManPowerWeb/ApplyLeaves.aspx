@@ -127,17 +127,35 @@
 
                         </div>
                     </div>
-
-
-
                 </div>
 
+
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                                <asp:Literal ID="Literal7" runat="server" Text="Upload Leave Form"></asp:Literal>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="true" />
+                                <asp:Label ID="lblListOfUploadedFiles" runat="server" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">
                         <div class="row">
 
                             <div class="col-md-6">
                                 <asp:Button runat="server" ID="btnApplyLeave" Text="Apply Leave " CssClass="form-control form-control-user btn-primary" OnClick="btnApplyLeave_Click" ValidationGroup="1"></asp:Button>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:Button runat="server" ID="btnLeaveBalance" Text="View My Leave Balance " CssClass="form-control form-control-user btn-primary" OnClick="btnLeaveBalance_Click"></asp:Button>
 
                             </div>
 

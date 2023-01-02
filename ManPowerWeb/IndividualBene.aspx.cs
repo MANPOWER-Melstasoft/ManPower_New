@@ -96,5 +96,10 @@ namespace ManPowerWeb
             contact.Text = "";
             whatsapp.Text = "";
         }
+
+        protected void isClicked(object sender, EventArgs e)
+        {
+            Response.Redirect("IndividualBeneSearch.aspx");
+        }
     }
 }

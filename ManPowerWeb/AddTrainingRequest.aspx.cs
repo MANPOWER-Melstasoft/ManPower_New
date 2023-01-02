@@ -69,7 +69,7 @@ namespace ManPowerWeb
             TrainingRequest = trainingRequestController.GetTraining_Request(trainingRequestId);
 
             ddlEmployNo.SelectedValue = TrainingRequest.Employee_Id.ToString();
-            txtDate.Value = TrainingRequest.ProgramDate.ToString("MM.dd.yyyy");
+            txtDate.Value = TrainingRequest.ProgramDate.ToString("yyyy-MM-dd");
             //string date = TrainingRequest.ProgramDate.ToString("dd. MM. yyyy");
             //txtDate.Value = date;
             ddlProgram.SelectedValue = TrainingRequest.ProgramId.ToString();
@@ -89,8 +89,8 @@ namespace ManPowerWeb
                 TrainingRequest.ProgramDate = Convert.ToDateTime(txtDate.Value);
                 TrainingRequest.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
                 TrainingRequest.RequestedDate = DateTime.Now;
-                TrainingRequest.RequestedUserID = 4;
-                TrainingRequest.ApprovedBy = 4;
+                TrainingRequest.RequestedUserID = Convert.ToInt32(Session["DepUnitPositionId"]);
+                TrainingRequest.ApprovedBy = Convert.ToInt32(Session["DepUnitParentId"]);
                 TrainingRequest.ApprovedDate = DateTime.Now;
                 TrainingRequest.StatusID = 1;
                 TrainingRequest.TrainingCategory = ddlTrainingCategory.SelectedItem.Text;
@@ -120,8 +120,8 @@ namespace ManPowerWeb
                 TrainingRequest.ProgramDate = Convert.ToDateTime(txtDate.Value);
                 TrainingRequest.ProgramId = Convert.ToInt32(ddlProgram.SelectedValue);
                 TrainingRequest.RequestedDate = DateTime.Now;
-                TrainingRequest.RequestedUserID = 4;
-                TrainingRequest.ApprovedBy = 4;
+                TrainingRequest.RequestedUserID = Convert.ToInt32(Session["DepUnitPositionId"]);
+                TrainingRequest.ApprovedBy = Convert.ToInt32(Session["DepUnitParentId"]);
                 TrainingRequest.ApprovedDate = DateTime.Now;
                 TrainingRequest.StatusID = 1;
                 TrainingRequest.TrainingCategory = ddlTrainingCategory.SelectedItem.Text;

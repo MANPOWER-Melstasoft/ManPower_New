@@ -244,7 +244,7 @@ namespace ManPowerWeb
             mCertificateNo.Text = null;
             workingCompany.Text = null;
             city.Text = null;
-             
+
         }
 
         protected void addEmployment(object sender, EventArgs e)
@@ -254,21 +254,41 @@ namespace ManPowerWeb
                 employmentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"];
             }
 
-            employmentDetails.Add(new EmploymentDetails()
+            if(reseg.SelectedValue == "1")
             {
-                ContractTypeId = int.Parse(ddContract.SelectedValue),
-                DesignationId = int.Parse(ddlDesignation.SelectedValue),
-                CompanyName = companyName.Text,
-                EmpNumber = empNo.Text,
-                StartDate = Convert.ToDateTime(sDate.Text),
-                EndDate = Convert.ToDateTime(eDate.Text),
-                IsResigned = int.Parse(reseg.SelectedValue),
-                RetirementDate = Convert.ToDateTime(retiredDate.Text),
-                Epf = int.Parse(epf.Text)
-            }) ;
+                employmentDetails.Add(new EmploymentDetails()
+                {
+                    ContractTypeId = int.Parse(ddContract.SelectedValue),
+                    DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                    CompanyName = companyName.Text,
+                    //EmpNumber = 0,
+                    StartDate = Convert.ToDateTime(sDate.Text),
+                    EndDate = Convert.ToDateTime(eDate.Text),
+                    IsResigned = int.Parse(reseg.SelectedValue),
+                    RetirementDate = Convert.ToDateTime(retiredDate.Text),
+                    Epf = int.Parse(epf.Text)
+                });
+            }
+            else
+            {
+                employmentDetails.Add(new EmploymentDetails()
+                {
+                    ContractTypeId = int.Parse(ddContract.SelectedValue),
+                    DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                    CompanyName = companyName.Text,
+                    //EmpNumber = 0,
+                    StartDate = Convert.ToDateTime(sDate.Text),
+                    EndDate = Convert.ToDateTime(eDate.Text),
+                    IsResigned = int.Parse(reseg.SelectedValue),
+                    RetirementDate = DateTime.Today,
+                    Epf = int.Parse(epf.Text)
+                }) ;
+            }
+
+            
 
             companyName.Text = null;
-            empNo.Text = null;
+            //empNo.Text = null;
             sDate.Text = null;
             eDate.Text = null;
             retiredDate.Text = null;
@@ -283,6 +303,8 @@ namespace ManPowerWeb
 
         protected void addEducation(object sender, EventArgs e)
         {
+
+            retiredDate.Text = DateTime.Today.ToString();
             if (educationDetails.Count == 0 && ViewState["educationDetails"] != null)
             {
                 educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
@@ -292,7 +314,7 @@ namespace ManPowerWeb
             {
                 EducationTypeId = int.Parse(ddlEducation.SelectedValue),
                 StudiedInstitute = uni.Text,
-                NoOfAttempts = int.Parse (ddlAttempt.SelectedValue),
+                NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
                 ExamYear = int.Parse(ddlYear.SelectedValue),
                 ExamIndex = index.Text,
                 ExamSubject = sub.Text,
@@ -308,7 +330,7 @@ namespace ManPowerWeb
             stream.Text = null;
             grade.Text = null;
             status.Text = null;
-            
+
             ViewState["educationDetails"] = educationDetails;
             educationGV.DataSource = educationDetails;
             educationGV.DataBind();
@@ -340,6 +362,33 @@ namespace ManPowerWeb
             servicesGV.DataSource = employeeServices;
             servicesGV.DataBind();
         }
+
+        //protected void addContact(object sender, EventArgs e)
+        //{
+        //    if (employeeContact.Count == 0 && ViewState["employeeContact"] != null)
+        //    {
+        //        employeeContact = (List<EmployeeContact>)ViewState["employeeContact"];
+        //    }
+
+        //    employeeContact.Add(new EmployeeContact()
+        //    {
+        //        ServicesTypeId = int.Parse(ddlService.SelectedValue),
+        //        AppointmentDate = Convert.ToDateTime(appointmentDate.Text),
+        //        DateAssumedDuty = dateAssumedDuty.Text,
+        //        MethodOfRecruitment = method.Text,
+        //        MediumOfRecruitment = medium.Text,
+        //        ServiceConfirmed = int.Parse(confirmation.Text)
+        //    });
+
+        //    appointmentDate.Text = null;
+        //    dateAssumedDuty.Text = null;
+        //    method.Text = null;
+        //    medium.Text = null;
+
+        //    ViewState["employeeContact"] = employeeContact;
+        //    servicesGV.DataSource = employeeContact;
+        //    servicesGV.DataBind();
+        //}
 
         protected void submit(object sender, EventArgs e)
         {
@@ -381,6 +430,7 @@ namespace ManPowerWeb
             else
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
+                Response.Redirect("PersonalFiles.aspx");
 
             }
         }

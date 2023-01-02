@@ -104,5 +104,10 @@ namespace ManPowerWeb
             date.Text = "";
             fType.Text = "";
         }
+
+        protected void isClicked(object sender, EventArgs e)
+        {
+            Response.Redirect("EntRegistrationSearch.aspx");
+        }
     }
 }

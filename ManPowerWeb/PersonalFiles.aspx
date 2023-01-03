@@ -59,8 +59,7 @@
 							<label>Gender : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlGender" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlGender" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -73,8 +72,7 @@
 							<label>Ethnicity : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlEthnicity" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlEthnicity" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -85,8 +83,7 @@
 							<label>Religion : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlReligion" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlReligion" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -111,8 +108,7 @@
 							<label>Marital Status : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlMaritalStatus" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlMaritalStatus" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -153,6 +149,30 @@
 						<div class="col-8">
 							<asp:TextBox ID="empPassport" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="empPassport" ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+						</div>
+					</div>
+				</div>
+			</div><br />
+
+			<div class="row">
+				<div class="col-6">
+					<div class="row">
+						<div class="col-4" >
+							<label>District : </label>
+						</div>
+						<div class="col-8">
+							<asp:DropDownList ID="ddlDistrict" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-6">
+					<div class="row">
+						<div class="col-4" >
+							<label>DS Division : </label>
+						</div>
+						<div class="col-8">
+							<asp:DropDownList ID="ddlDS" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>

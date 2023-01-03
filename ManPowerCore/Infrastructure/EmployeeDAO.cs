@@ -26,11 +26,11 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,NIC_Issue_Date,Passport_Number" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
-                                            ",Marital_Status,Supervisor_Id,Manager_Id) " +
+                                            ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id) " +
 
                                             "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber " +
                                             ", @EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
-                                            ", @MaritalStatus,@SupervisorId,@ManagerId) SELECT SCOPE_IDENTITY() ";
+                                            ", @MaritalStatus,@SupervisorId,@ManagerId,@DSDivisionId,@DistrictId) SELECT SCOPE_IDENTITY() ";
 
 
 
@@ -47,6 +47,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@NameWithInitials", emp.NameWithInitials);
             dbConnection.cmd.Parameters.AddWithValue("@EmpGender", emp.EmpGender);
             dbConnection.cmd.Parameters.AddWithValue("@DOB", emp.DOB);
+            dbConnection.cmd.Parameters.AddWithValue("@DSDivisionId", emp.DSDivisionId);
+            dbConnection.cmd.Parameters.AddWithValue("@DistrictId", emp.DistrictId);
 
             //dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(REIGION_ID,ETHNICITY_ID,NIC,NIC_ISSUE_DATE,PASSPORT_NUMBER" +
             //                                ",LEAVE_NUMBER,PERMANENT_ADDRESS,TELEPHONE,FAX,MOBILE,PERSONA_EMAIL,PERSONA_FILE_NUMBER,APPOINTMENT_LETTER_NUMBER" +

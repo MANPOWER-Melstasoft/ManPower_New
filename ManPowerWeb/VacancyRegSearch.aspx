@@ -36,6 +36,9 @@
 		<asp:Button ID="Button1" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" style="width:120px;" />
 
 		<br /><br />
+		<asp:Button ID="Button3" runat="server" Text="Reset" OnClick="reset" CssClass="btn btn-primary" style="width:120px;" />
+
+		<br /><br />
 
 		<a href="VacancyReg.aspx">
 			<asp:Button ID="Button2" runat="server" Text="Add New Vacancy" OnClick="isClicked"  CssClass="btn btn-primary" style="width:200px;" />

@@ -26,10 +26,6 @@
 
             </div>
 
-
-
-
-
             <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
                 <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                     CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">

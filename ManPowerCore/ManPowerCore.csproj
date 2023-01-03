@@ -65,6 +65,7 @@
     <Compile Include="Controller\DependantController.cs" />
     <Compile Include="Controller\DependantTypeController.cs" />
     <Compile Include="Controller\DesignationController.cs" />
+    <Compile Include="Controller\DistricDsParentController.cs" />
     <Compile Include="Controller\EducationDetailsController.cs" />
     <Compile Include="Controller\EducationTypeController.cs" />
     <Compile Include="Controller\EmergencyContactController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Domain\Dependant.cs" />
     <Compile Include="Domain\DependantType.cs" />
     <Compile Include="Domain\Designation.cs" />
+    <Compile Include="Domain\DistricDsParent.cs" />
     <Compile Include="Domain\DME21Model.cs" />
     <Compile Include="Domain\EducationDetails.cs" />
     <Compile Include="Domain\EducationType.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Infrastructure\DependantTypeDAO.cs" />
     <Compile Include="Infrastructure\DependentDAO.cs" />
     <Compile Include="Infrastructure\DesignationDAO.cs" />
+    <Compile Include="Infrastructure\DistricDsParentDAO.cs" />
     <Compile Include="Infrastructure\EducationDetailsDAO.cs" />
     <Compile Include="Infrastructure\EducationTypeDAO.cs" />
     <Compile Include="Infrastructure\EmergencyContactDAO.cs" />

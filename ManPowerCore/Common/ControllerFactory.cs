@@ -414,5 +414,10 @@ namespace ManPowerCore.Common
             return (OfficerListController)officerListController;
         }
 
+        public static DistricDsParentController CreateDistricDsParentController()
+        {
+            DistricDsParentController districDsParentController = new DistricDsParentControllerImpl();
+            return (DistricDsParentController)districDsParentController;
+        }
     }
 }

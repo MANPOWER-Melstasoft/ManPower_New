@@ -60,6 +60,11 @@ namespace ManPowerWeb
             Response.Redirect("VacancyReg.aspx");
         }
 
+        protected void reset(object sender, EventArgs e)
+        {
+            Response.Redirect("VacancyRegSearch.aspx");
+        }
+
         protected void viewDetails(object sender, EventArgs e)
         {
             GridViewRow gridViewRow = (GridViewRow)((LinkButton)sender).NamingContainer;

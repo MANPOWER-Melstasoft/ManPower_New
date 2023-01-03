@@ -51,5 +51,10 @@ namespace ManPowerWeb
             Response.Redirect("ResourcePersonReg.aspx");
         }
 
+        protected void reset(object sender, EventArgs e)
+        {
+            Response.Redirect("ResourcePersonRegSearch.aspx");
+        }
+
     }
 }

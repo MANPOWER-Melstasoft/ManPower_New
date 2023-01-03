@@ -87,6 +87,7 @@ namespace ManPowerWeb
         List<ServiceType> serviceTypeList = new List<ServiceType>();
         List<DepartmentUnit> listDistrict = new List<DepartmentUnit>();
         List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
+        List<DepartmentUnit> filter = new List<DepartmentUnit>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -132,7 +133,7 @@ namespace ManPowerWeb
 
             //DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
-            listDistrict = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 2).ToList();
+            listDistrict = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 2 || u.DepartmentUnitTypeId == 1).ToList();
             
 
             ddlGender.DataSource = gen;
@@ -201,14 +202,12 @@ namespace ManPowerWeb
         {
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
             listDSDivision = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 3 && u.ParentId == int.Parse(ddlDistrict.SelectedValue)).ToList();
-
             if (ddlDistrict.SelectedValue != "")
             {
                 ddlDS.DataSource = listDSDivision.Where(u => u.ParentId.ToString() == ddlDistrict.SelectedValue);
                 ddlDS.DataTextField = "Name";
                 ddlDS.DataValueField = "DepartmentUnitId";
                 ddlDS.DataBind();
-                
             }
             else
             {
@@ -437,6 +436,9 @@ namespace ManPowerWeb
 
         protected void submit(object sender, EventArgs e)
         {
+            DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+            filter = departmentUnitController.GetAllDepartmentUnit(false,false);
+
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
             Employee emp = new Employee();
 
@@ -453,8 +455,26 @@ namespace ManPowerWeb
             emp.MaritalStatus = ddlMaritalStatus.SelectedValue;
             emp.SupervisorId = 0;
             emp.ManagerId = 0;
-            emp.DSDivisionId = int.Parse(ddlDS.SelectedValue);
             emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
+
+            if(ddlDS.SelectedValue != "")
+            {
+                emp.DSDivisionId = int.Parse(ddlDS.SelectedValue);
+                foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDS.SelectedValue)))
+                {
+                    emp.UnitType = i.DepartmentUnitTypeId;
+                }
+            }
+            else 
+            {
+                emp.DSDivisionId = 0;
+                foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue)))
+                {
+                    emp.UnitType = i.DepartmentUnitTypeId;
+                }
+            }
+
+            
 
             emp._Dependant = (List<Dependant>)ViewState["dependant"];
             emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"]; ;

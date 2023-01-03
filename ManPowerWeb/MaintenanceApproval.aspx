@@ -32,6 +32,9 @@
 			<br /><br />
 		<asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" style="width:120px;"/>
 
+		<br /><br />
+		<asp:Button ID="Button2" runat="server" Text="Reset" CssClass="btn btn-primary" OnClick="reset" style="width:120px;"/>
+
 		<br /><br /><br />
 
 		<div class="table-responsive" style="width: 100%;">

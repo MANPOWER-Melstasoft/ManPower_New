@@ -88,7 +88,7 @@
                     <asp:BoundField HeaderText="DATE" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmployeeNIC" HeaderText="NIC" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmpInitials" HeaderText="INITIAL NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField=" _EMployeeDetails._EmploymentDetailsSingle.CompanyName" HeaderText="LAST NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField=" _EMployeeDetails.LastName" HeaderText="LAST NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:LinkButton runat="server" Text="View" ID="btnView" CssClass="btn btn-success btn-user btn-block" Width="100px" Height="35px" OnClick="btnView_Click">

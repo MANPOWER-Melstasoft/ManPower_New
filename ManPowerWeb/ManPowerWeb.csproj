@@ -112,6 +112,7 @@
     <Content Include="AddDepartment.aspx" />
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
+    <Content Include="AddParent.aspx" />
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
     <Content Include="AddTrainingRequest.aspx" />
@@ -1966,6 +1967,13 @@
     </Compile>
     <Compile Include="AddNewTarget.aspx.designer.cs">
       <DependentUpon>AddNewTarget.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddParent.aspx.cs">
+      <DependentUpon>AddParent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddParent.aspx.designer.cs">
+      <DependentUpon>AddParent.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddPosition.aspx.cs">
       <DependentUpon>AddPosition.aspx</DependentUpon>

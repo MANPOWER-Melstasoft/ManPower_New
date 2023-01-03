@@ -1,6 +1,7 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -57,13 +58,13 @@ namespace ManPowerWeb
                         systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
                         systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
 
-                        DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
-                        List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
-                        departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
+                        //DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
+                        //List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+                        //departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
 
                         systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
                         systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
-                        systemUser.ParentId = departmentUnitList[0].ParentId;
+                        systemUser.ParentId = GetParentId();
 
                         systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
 
@@ -83,15 +84,65 @@ namespace ManPowerWeb
 
         }
 
-        private int GetParentId(int userType, int depId)
+        private int GetParentId()
         {
             int parentId = 0;
+            int userType = Convert.ToInt32(ddlUserType.SelectedValue);
+            int depType = Convert.ToInt32(ddlDepartmentType.SelectedValue);
+            int depId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
 
             DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
             List<DepartmentUnitPositions> departmentUnitPositionsList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
 
+            if (userType == 1 || (userType == 2 && depType == 1))
+            {
+                return parentId;
+            }
 
+            if (userType == 3 && (depType == 1 || depType == 2 || depType == 3))
+            {
+                foreach (var x in departmentUnitPositionsList)
+                {
+                    if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 2)
+                    {
+                        parentId = x.DepartmetUnitPossitionsId;
+                    }
+                }
+                if (parentId == 0)
+                {
+                    lblManagerError.Text = "There is no Manager to this Unit!";
+                }
+                return parentId;
+            }
 
+            if (userType == 2 && (depType == 2 || depType == 3))
+            {
+                DistricDsParentController districDsParentController = ControllerFactory.CreateDistricDsParentController();
+                List<DistricDsParent> districDsParentList = districDsParentController.GetAllDistricDsParent(false, false);
+                int userId = 0;
+                foreach (var x in districDsParentList)
+                {
+                    if (x.DepartmentId == depId)
+                    {
+                        userId = x.ParentUserId;
+                    }
+                }
+                if (userId != 0)
+                {
+                    foreach (var x in departmentUnitPositionsList)
+                    {
+                        if (x.SystemUserId == userId)
+                        {
+                            parentId = x.DepartmetUnitPossitionsId;
+                        }
+                    }
+                }
+                else
+                {
+                    lblManagerError.Text = "There is no Manager to this Unit!";
+                }
+                return parentId;
+            }
             return parentId;
         }
 

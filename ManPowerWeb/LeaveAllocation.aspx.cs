@@ -55,9 +55,9 @@ namespace ManPowerWeb
 
             staffLeaveAllocation.EmployeesID = Convert.ToInt32(ddlStaff.SelectedValue);
             staffLeaveAllocation.Entitlement = txtEntitlement.Text;
-            staffLeaveAllocation.LeaveYear = 10;
+            //staffLeaveAllocation.LeaveYear = 10;
             staffLeaveAllocation.LeaveTypeId = Convert.ToInt32(ddlLeaveType.SelectedValue);
-            staffLeaveAllocation.NoOfDays = 10;
+            // staffLeaveAllocation.NoOfDays = 10;
             staffLeaveAllocation.MonthLimit = Convert.ToInt32(txtPerMontLimit.Text);
             staffLeaveAllocation.MonthLimitAppliedTo = DateTime.Parse(txtAppliedTo.Text);
 
@@ -65,7 +65,7 @@ namespace ManPowerWeb
 
             if (response == 1)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success')", true);
                 Response.Redirect(Request.RawUrl);
 
             }

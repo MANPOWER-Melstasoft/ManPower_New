@@ -99,6 +99,8 @@ namespace ManPowerWeb
 
         protected void btnLeaveBalance_Click(object sender, EventArgs e)
         {
+
+
             Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpNumber"]));
 
         }

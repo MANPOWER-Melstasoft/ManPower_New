@@ -57,7 +57,7 @@
 				<label>Start Date : </label>
 			</div>
 			<div class="col-9">
-				<asp:TextBox ID="sDate" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+				<asp:TextBox ID="sDate" runat="server" name="date" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
 			</div>
 		</div>
 		<br />

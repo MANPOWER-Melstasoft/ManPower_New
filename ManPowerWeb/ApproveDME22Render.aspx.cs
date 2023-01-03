@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -58,6 +59,23 @@ namespace ManPowerWeb
             taskAllocation.StatusId = 7;
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);
+        }
+
+        protected void gvDME22Approve_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.Cells[4].Text == "1")
+                {
+                    e.Row.Cells[4].Text = "Completed";
+                    e.Row.Cells[4].ForeColor = Color.Green;
+                }
+                else
+                {
+                    e.Row.Cells[4].Text = "Not completed";
+                    e.Row.Cells[4].ForeColor = Color.Red;
+                }
+            }
         }
     }
 }

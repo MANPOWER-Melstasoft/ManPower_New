@@ -21,6 +21,7 @@ namespace ManPowerWeb
         private DateTime start;
 
         private List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
+        private List<ProgramTarget> TargetsList = new List<ProgramTarget>();
         private List<ProgramTarget> myList = new List<ProgramTarget>();
         List<ProgramTarget> myList2 = new List<ProgramTarget>();
         private List<ProgramAssignee> asignee = new List<ProgramAssignee>();
@@ -68,13 +69,21 @@ namespace ManPowerWeb
             //ProgramController programController = ControllerFactory.CreateProgramController();
             //program = programController.GetAllProgram(false);
 
+            //List<ProgramTarget> TargetsList = programTargetController.GetAllProgramTarget(false, false, true, false);
+
+            //foreach (var i in programTargetsList)
+            //{
+            //    if (i.TargetMonth == DateTime.Today.Month)
+            //    {
+            //    }
+            //}
 
 
-            foreach (var i in unitPositions.Where(u => u.SystemUserId == 13))
+            foreach (var i in unitPositions.Where(u => u.SystemUserId == Convert.ToInt32(Session["UserId"])))
             {
                 foreach (var j in asignee.Where(u => u.DepartmentUnitPossitionsId == i.DepartmetUnitPossitionsId))
                 {
-                    foreach (var k in programTargetsList.Where(u => u.ProgramTargetId == j.ProgramTargetId))
+                    foreach (var k in programTargetsList.Where(u => u.ProgramTargetId == j.ProgramTargetId && u.StartDate >= DateTime.Today.Date))
                     {
                         myList.Add(k);
                     }

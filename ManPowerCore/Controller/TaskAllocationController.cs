@@ -147,7 +147,7 @@ namespace ManPowerCore.Controller
 
                 foreach (var item in list)
                 {
-                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                 }
 
                 return list;
@@ -180,7 +180,7 @@ namespace ManPowerCore.Controller
 
                 foreach (var item in list)
                 {
-                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.PossitionsId == item.DepartmetUnitPossitionsId).Single();
+                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                 }
 
                 return list;

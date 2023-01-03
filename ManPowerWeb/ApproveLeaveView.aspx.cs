@@ -42,6 +42,18 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
+            if (staffLeave.ApprovedBy >= 0)
+            {
+                btnApprove.Visible = false;
+                btnReject.Visible = false;
+
+            }
+            else
+            {
+                btnApprove.Visible = true;
+                btnReject.Visible = true;
+            }
+
         }
 
         protected void btnViewLeave_Click(object sender, EventArgs e)
@@ -72,6 +84,8 @@ namespace ManPowerWeb
 
             }
 
+            Response.Redirect("ApproveLeave.aspx");
+
         }
 
         protected void btnApprove_Click(object sender, EventArgs e)
@@ -94,6 +108,8 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
 
             }
+
+            Response.Redirect("ApproveLeave.aspx");
         }
     }
 }

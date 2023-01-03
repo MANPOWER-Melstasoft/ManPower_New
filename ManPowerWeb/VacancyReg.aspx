@@ -58,8 +58,7 @@
 				<label>Carrer Path / Achived Highest Position : </label>
 			</div>
 			<div class="col-8">
-				<asp:DropDownList ID="achivedPosition" Width="250px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+				<asp:DropDownList ID="ddlPositions" Width="250px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 			</div>
 		</div><br />
 
@@ -68,8 +67,7 @@
 				<label>Level : </label>
 			</div>
 			<div class="col-8">
-				<asp:DropDownList ID="ddl2" Width="250px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+				<asp:DropDownList ID="ddlLevel" Width="250px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 			</div>
 		</div><br /> 
 

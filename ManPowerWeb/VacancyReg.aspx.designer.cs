@@ -60,22 +60,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox vanacnyType;
 
         /// <summary>
-        /// achivedPosition control.
+        /// ddlPositions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList achivedPosition;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPositions;
 
         /// <summary>
-        /// ddl2 control.
+        /// ddlLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLevel;
 
         /// <summary>
         /// salary control.

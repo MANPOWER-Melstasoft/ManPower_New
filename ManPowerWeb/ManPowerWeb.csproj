@@ -241,6 +241,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SpecialAmendment.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
@@ -2395,6 +2396,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialAmendment.aspx.cs">
+      <DependentUpon>SpecialAmendment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpecialAmendment.aspx.designer.cs">
+      <DependentUpon>SpecialAmendment.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>

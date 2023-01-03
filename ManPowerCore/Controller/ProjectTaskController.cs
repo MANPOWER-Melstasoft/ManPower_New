@@ -11,7 +11,7 @@ namespace ManPowerCore.Controller
 {
     public interface ProjectTaskController
     {
-
+        int saveProjectTask(ProjectTask projectTask);
         List<ProjectTask> GetAllProjectTask(bool withTaskAllocationDetail);
         ProjectTask GetProjectTask(int id, bool withTaskAllocationDetail);
 
@@ -23,13 +23,35 @@ namespace ManPowerCore.Controller
 
         DBConnection dBConnection;
         ProjectTaskDAO projectTaskDAO = DAOFactory.CreateProjectTaskDAO();
+
+        public int saveProjectTask(ProjectTask projectTask)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+                projectTaskDAO.saveProjectTask(projectTask, dBConnection);
+                return 1;
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
         public List<ProjectTask> GetAllProjectTask(bool withTaskAllocationDetail)
         {
-           
-                try
-                {
-                    dBConnection = new DBConnection();
-                    List<ProjectTask> list = projectTaskDAO.GetAllProjectTask(dBConnection);
+
+            try
+            {
+                dBConnection = new DBConnection();
+                List<ProjectTask> list = projectTaskDAO.GetAllProjectTask(dBConnection);
 
                 if (withTaskAllocationDetail)
                 {
@@ -43,20 +65,20 @@ namespace ManPowerCore.Controller
 
                 return list;
 
-                }
-                catch (Exception)
-                {
-                    dBConnection.RollBack();
-                    throw;
-                }
-                finally
-                {
-                    if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                        dBConnection.Commit();
-                }
-
             }
-        
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+
+        }
+
 
         public ProjectTask GetProjectTask(int id, bool withTaskAllocationDetail)
         {

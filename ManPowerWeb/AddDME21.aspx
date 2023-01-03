@@ -21,7 +21,7 @@
                         <asp:Label CssClass="font-weight-bold" ID="Label4" runat="server" Text="Program Name"></asp:Label>
                     </div>
                     <div class="col-sm-6" style="width: 90%;">
-                        <asp:DropDownList Style="width: 80%; height: 40px; padding-left: 10px;" ID="ddlProgram" runat="server" DataTextField="ProgramName" DataValueField="ProgramId"></asp:DropDownList>
+                        <asp:DropDownList Style="width: 80%; height: 40px; padding-left: 10px;" ID="ddlProgram" runat="server" DataTextField="ProgramName" DataValueField="ProgramPlanId"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="row mb-5" style="text-align: center; width: 70%;" runat="server" visible="false" id="OtherDisplay">

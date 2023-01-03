@@ -194,6 +194,7 @@
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="MaintenanceRequestView.aspx" />
     <Content Include="PersonalFiles.aspx" />
+    <Content Include="ProgramTargetView.aspx" />
     <Content Include="Recommend1DME21.aspx" />
     <Content Include="Recommend1DME21Render.aspx" />
     <Content Include="Recommend2DME21.aspx" />
@@ -2301,6 +2302,13 @@
     </Compile>
     <Compile Include="ProgramCalander.aspx.designer.cs">
       <DependentUpon>ProgramCalander.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramTargetView.aspx.cs">
+      <DependentUpon>ProgramTargetView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProgramTargetView.aspx.designer.cs">
+      <DependentUpon>ProgramTargetView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recommend1DME21.aspx.cs">

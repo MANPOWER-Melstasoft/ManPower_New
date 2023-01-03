@@ -86,6 +86,12 @@
                     <asp:BoundField DataField="StartDate" HeaderText="START DATE" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Description" HeaderText="DESCRIPTION" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Title" HeaderText="TITLE" HeaderStyle-CssClass="table-dark" />
+                    <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
+						<ItemTemplate>
+							<asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
+								a href ='<%#"ProgramTargetView.aspx?id="+DataBinder.Eval(Container.DataItem,"ProgramTargetId") %>'/>
+						</ItemTemplate>
+					</asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>

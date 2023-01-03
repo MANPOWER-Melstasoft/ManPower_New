@@ -65,6 +65,11 @@ namespace ManPowerWeb
             Response.Redirect("MaintenanceRequest.aspx");
         }
 
+        protected void reset(object sender, EventArgs e)
+        {
+            Response.Redirect("VehicleMeintenanceSearch.aspx");
+        }
+
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if(e.Row.RowType == DataControlRowType.DataRow)

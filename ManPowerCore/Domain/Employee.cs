@@ -59,6 +59,9 @@ namespace ManPowerCore.Domain
         [DBField("DISTRICT_ID")]
         public int DistrictId { get; set; }
 
+        [DBField("UNIT_TYPE")]
+        public int UnitType { get; set; }
+
         public string fullName { get; set; }
 
 

@@ -85,6 +85,8 @@ namespace ManPowerWeb
         List<EducationDetails> educationDetails = new List<EducationDetails>();
         List<EmployeeServices> employeeServices = new List<EmployeeServices>();
         List<ServiceType> serviceTypeList = new List<ServiceType>();
+        List<DepartmentUnit> listDistrict = new List<DepartmentUnit>();
+        List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -128,6 +130,11 @@ namespace ManPowerWeb
             ServiceTypeController stc = ControllerFactory.CreateServiceTypeController();
             serviceTypeList = stc.GetAllServiceType();
 
+            //DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
+            DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+            listDistrict = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 2).ToList();
+            
+
             ddlGender.DataSource = gen;
             ddlGender.DataBind();
 
@@ -168,6 +175,18 @@ namespace ManPowerWeb
             ddlDesignation.DataValueField = "DesignationId";
             ddlDesignation.DataTextField = "DesigntionName";
             ddlDesignation.DataBind();
+             
+            ddlDistrict.DataSource = listDistrict;
+            ddlDistrict.DataTextField = "Name";
+            ddlDistrict.DataValueField = "DepartmentUnitId";
+            ddlDistrict.DataBind();
+            ddlDistrict.Items.Insert(0, new ListItem("- Select -", ""));
+
+
+            ddlDS.DataSource = listDSDivision;
+            ddlDS.DataTextField = "Name";
+            ddlDS.DataValueField = "DepartmentUnitId";
+            ddlDS.DataBind();
 
             ddlAttempt.DataSource = attempt;
             ddlAttempt.DataBind();
@@ -175,6 +194,32 @@ namespace ManPowerWeb
             ddlYear.DataSource = yearslist;
             ddlYear.DataBind();
 
+        }
+
+
+        private void bindDSDivision()
+        {
+            DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+            listDSDivision = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 3 && u.ParentId == int.Parse(ddlDistrict.SelectedValue)).ToList();
+
+            if (ddlDistrict.SelectedValue != "")
+            {
+                ddlDS.DataSource = listDSDivision.Where(u => u.ParentId.ToString() == ddlDistrict.SelectedValue);
+                ddlDS.DataTextField = "Name";
+                ddlDS.DataValueField = "DepartmentUnitId";
+                ddlDS.DataBind();
+                
+            }
+            else
+            {
+                ddlDS.Items.Clear();
+            }
+
+        }
+
+        protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindDSDivision();
         }
 
         protected void addDependant(object sender, EventArgs e)
@@ -408,6 +453,8 @@ namespace ManPowerWeb
             emp.MaritalStatus = ddlMaritalStatus.SelectedValue;
             emp.SupervisorId = 0;
             emp.ManagerId = 0;
+            emp.DSDivisionId = int.Parse(ddlDS.SelectedValue);
+            emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
 
             emp._Dependant = (List<Dependant>)ViewState["dependant"];
             emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"]; ;

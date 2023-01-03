@@ -129,6 +129,11 @@
                     </div>
 
 
+                    <div class="col-sm-2">
+                        <asp:Button runat="server" ID="btnViewLeave" Text="View Leave Balance" CssClass="btn btn-success btn-user btn-block" OnClick="btnViewLeave_Click" />
+                    </div>
+
+
 
                 </div>
 
@@ -140,9 +145,7 @@
                         <div class="col-sm-4">
                             <asp:Button runat="server" ID="btnReject" Text="Reject" CssClass="btn btn-danger btn-user btn-block" OnClick="btnReject_Click" />
                         </div>
-                        <div class="col-sm-6">
-                            <asp:Button runat="server" ID="btnViewLeave" Text="View Leave Balance" CssClass="btn btn-success btn-user btn-block" OnClick="btnViewLeave_Click" />
-                        </div>
+
                     </div>
                 </div>
             </div>

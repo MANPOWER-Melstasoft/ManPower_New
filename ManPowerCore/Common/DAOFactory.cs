@@ -402,5 +402,11 @@ namespace ManPowerCore.Common
 
         }
 
+        public static DistricDsParentDAO CreateDistricDsParentDAO()
+        {
+            DistricDsParentDAO districDsParentDAO = new DistricDsParentDAOSqlImpl();
+            return (DistricDsParentDAO)districDsParentDAO;
+        }
+
     }
 }

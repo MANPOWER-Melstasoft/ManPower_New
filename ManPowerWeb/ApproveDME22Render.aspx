@@ -1,15 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveDME22Render.aspx.cs" Inherits="ManPowerWeb.ApproveDME22Render" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div>
+        <h2 style="margin-bottom: 20px; margin-top: 20px;">Approve DME22</h2>
+    </div>
     <div cssclass="table-responsive">
         <asp:GridView ID="gvDME22Approve" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
-            CellPadding="4" ForeColor="#333333" GridLines="None">
+            CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gvDME22Approve_RowDataBound">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="StartTime.Date" HeaderText="Date" />
                 <asp:BoundField DataField="_TaskType.TaskTypeName" HeaderText="Work Type" />
                 <asp:BoundField DataField="TaskDescription" HeaderText="Performed Duty" />
                 <asp:BoundField DataField="WorkLocation" HeaderText="Work Attended place" />
+                <asp:BoundField DataField="Isconmpleated" HeaderText="Status" />
+                <asp:BoundField DataField="NotCompleatedReason" HeaderText="Remark" />
             </Columns>
         </asp:GridView>
     </div>

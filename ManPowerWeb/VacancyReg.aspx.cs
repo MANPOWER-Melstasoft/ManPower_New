@@ -32,11 +32,11 @@ namespace ManPowerWeb
 
         private void BindDataSource()
         {
-            achivedPosition.DataSource = career;
-            achivedPosition.DataBind();
+            ddlPositions.DataSource = career;
+            ddlPositions.DataBind();
 
-            ddl2.DataSource = levelsDD;
-            ddl2.DataBind();
+            ddlLevel.DataSource = levelsDD;
+            ddlLevel.DataBind();
         }
 
         //protected void btnAdd_Click(object sender, EventArgs e)
@@ -84,14 +84,14 @@ namespace ManPowerWeb
             companyVecansyRegistationDetails.WebSiteLink = link.Text;
             companyVecansyRegistationDetails.BusinessRegistationNumber = regNo.Text;
             companyVecansyRegistationDetails.JobPosition = position.Text;
-            companyVecansyRegistationDetails.CareerPath = achivedPosition.SelectedValue;
+            companyVecansyRegistationDetails.CareerPath = ddlPositions.SelectedValue;
             companyVecansyRegistationDetails.SalaryLevel = salary.Text;
             companyVecansyRegistationDetails.NumberOfVacancy = int.Parse(NoOfVacancy.Text);
             companyVecansyRegistationDetails.ContactPersonName = name.Text;
             companyVecansyRegistationDetails.ContactPersonPosition = position.Text;
             companyVecansyRegistationDetails.ContactNumber = contact.Text;
             companyVecansyRegistationDetails.WhatsappNumber = whatsapp.Text;
-            companyVecansyRegistationDetails.VLevels = ddl2.SelectedValue;
+            companyVecansyRegistationDetails.VLevels = ddlLevel.SelectedValue;
             companyVecansyRegistationDetails.ContactPersonEmail = email.Text;
 
 

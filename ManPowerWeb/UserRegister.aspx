@@ -198,6 +198,9 @@
             <div class="col-sm-6 m-3">
                 <asp:Label ID="lblSuccessMsg" runat="server" Text="" ForeColor="#33cc33"></asp:Label>
             </div>
+            <div class="col-sm-6 m-3">
+                <asp:Label ID="lblManagerError" runat="server" Text="" ForeColor="Red"></asp:Label>
+            </div>
 
         </div>
     </div>

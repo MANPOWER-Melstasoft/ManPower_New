@@ -77,6 +77,8 @@ namespace ManPowerWeb
 
         protected void btnAction_Click1(object sender, EventArgs e)
         {
+            BindDataSource();
+
             GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;

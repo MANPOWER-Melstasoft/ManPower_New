@@ -44,6 +44,9 @@ namespace ManPowerWeb
             taskAllocation.StatusId = 2008;
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);
+
+            string url = "Recommend1dme21.aspx";
+            Response.Redirect(url);
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
@@ -58,6 +61,9 @@ namespace ManPowerWeb
             taskAllocation.StatusId = 7;
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);
+
+            string url = "Recommend1dme21.aspx";
+            Response.Redirect(url);
         }
     }
 }

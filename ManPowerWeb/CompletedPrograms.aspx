@@ -50,7 +50,7 @@
                     <asp:BoundField DataField="FemaleCount" HeaderText="Female Count" HeaderStyle-CssClass="table-dark" />
 					<asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
 						<ItemTemplate>
-							<asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-success"
+							<asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
 								a href ='<%#"CompletedProgramsView.aspx?id="+DataBinder.Eval(Container.DataItem,"ProgramPlanId") %>'/>
 						</ItemTemplate>
 					</asp:TemplateField>

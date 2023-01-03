@@ -48,6 +48,10 @@
 
 		<br /><br />
 
+		<asp:Button ID="Button3" runat="server" Text="Reset" CssClass="btn btn-primary" OnClick="reset" style="width:120px;"/>
+
+		<br /><br />
+
 		<a href="MaintenanceRequest.aspx">
 			<asp:Button ID="Button2" runat="server" Text="Request Maintenance" CssClass="btn btn-primary" OnClick="isClicked" style="width:200px;" />
 		</a>

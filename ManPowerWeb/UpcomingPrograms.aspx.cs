@@ -51,39 +51,18 @@ namespace ManPowerWeb
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             user = systemUserController.GetAllSystemUser(false, false, false);
 
-            //DepartmentUnitController unit = ControllerFactory.CreateDepartmentUnitController();
-            //listDistrict = unit.GetAllDepartmentUnit(false, false);
-
-            //DepartmentUnitTypeController aa = ControllerFactory.CreateDepartmentUnitTypeController();
-            //unitType = aa.GetAllDepartmentUnitType(false);
-
-            //ProgramTypeController programTypeController = ControllerFactory.CreateProgramTypeController();
-            //listProgramType = programTypeController.GetAllProgramType(false);
-
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
 
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
             asignee = programAssigneeController.GetAllProgramAssignee(false, false, false);
 
-            //ProgramController programController = ControllerFactory.CreateProgramController();
-            //program = programController.GetAllProgram(false);
-
-            //List<ProgramTarget> TargetsList = programTargetController.GetAllProgramTarget(false, false, true, false);
-
-            //foreach (var i in programTargetsList)
-            //{
-            //    if (i.TargetMonth == DateTime.Today.Month)
-            //    {
-            //    }
-            //}
-
 
             foreach (var i in unitPositions.Where(u => u.SystemUserId == Convert.ToInt32(Session["UserId"])))
             {
                 foreach (var j in asignee.Where(u => u.DepartmentUnitPossitionsId == i.DepartmetUnitPossitionsId))
                 {
-                    foreach (var k in programTargetsList.Where(u => u.ProgramTargetId == j.ProgramTargetId && u.StartDate >= DateTime.Today.Date))
+                    foreach (var k in programTargetsList.Where(u => u.ProgramTargetId == j.ProgramTargetId))
                     {
                         myList.Add(k);
                     }
@@ -94,79 +73,20 @@ namespace ManPowerWeb
             GridView1.DataSource = myList;
             GridView1.DataBind();
 
-            
-
-            //foreach (var k in MyAssigneelist)
-            //{
-            //    foreach (var i in unitPositions.Where(u => u.DepartmetUnitPossitionsId == k.DepartmentUnitPossitionsId))
-            //    {
-            //        foreach (var j in listDistrict.Where(u => u.DepartmentUnitId == i.ParentId))
-            //        {
-
-            //            district = j.Name;
-
-            //        }
-            //    }
-            //}
-
-            //foreach (var k in MyAssigneelist)
-            //{
-            //    foreach (var i in unitPositions.Where(u => u.DepartmetUnitPossitionsId == k.DepartmentUnitPossitionsId))
-            //    {
-            //        foreach (var j in listDistrict.Where(u => u.DepartmentUnitId == i.DepartmentUnitId))
-            //        {
-            //            if (j.DepartmentUnitTypeId == 2)
-            //            {
-            //                ds = "- District Level Target -";
-            //            }
-            //            else if (j.DepartmentUnitTypeId == 3)
-            //            {
-            //                ds = j.Name;
-            //            }
-            //        }
-            //    }
-            //}
-
-
-            //foreach (var k in MyAssigneelist)
-            //{
-            //    foreach (var i in programTargetsList.Where(u => u.ProgramTargetId == k.ProgramTargetId))
-            //    {
-            //        start = i.StartDate;
-            //    }
-            //}
-
-            //foreach (var k in MyAssigneelist)
-            //{
-            //    foreach(var i in programTargetsList.Where(u => u.ProgramTargetId == k.ProgramTargetId))
-            //                    {
-            //        des = i.Description;
-            //    }
-            //}
-
-            //foreach (var k in MyAssigneelist)
-            //{
-            //    foreach(var i in programTargetsList.Where(u => u.ProgramTargetId == k.ProgramTargetId))
-            //    {
-            //        foreach(var j in listProgramType.Where(u => u.ProgramTypeId == i.ProgramTypeId))
-            //        {
-            //            pTypeName = j.ProgramTypeName;
-            //        }
-            //    }
-
-            //}
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            //myList.CopyTo(myList2);
             DateTime date = Convert.ToDateTime(TextBox4.Text);
-            //ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
-            //searchList = programPlanController.getCompletedProgramsFilter(date);
 
             myList = (List<ProgramTarget>)ViewState["myList"];
             GridView1.DataSource = myList.Where(u => u.StartDate.Date == date.Date && u.ProgramTypeId == int.Parse( ddl1.SelectedValue));
             GridView1.DataBind();
+        }
+
+        protected void reset(object sender, EventArgs e)
+        {
+            Response.Redirect("UpcomingPrograms.aspx");
         }
     }
 }

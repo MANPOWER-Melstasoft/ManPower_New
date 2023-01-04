@@ -50,8 +50,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO TASK_ALLOCATION_DETAIL(TASK_TYPE_ID,TASK_ALLOCATION_ID" +
-                                            ",TASK_DESCRIPTION,WORK_LOCATION,IS_COMPLETED,NOT_COMPLETED_REASON,START_TIME,END_TIME,REMARKS,AMENDMENTS) " +
-                                            "VALUES(@TaskTypeId,@TaskAllocationId,@TaskDescription,@WorkLocation,@Isconmpleated,@NotCompleatedReason,@StartTime,@EndTime,@TaskRemarks,@TaskAmendments) ";
+                                            ",TASK_DESCRIPTION,WORK_LOCATION,IS_COMPLETED,NOT_COMPLETED_REASON,START_TIME,END_TIME,REMARKS,AMENDMENTS,Program_Plan_Id) " +
+                                            "VALUES(@TaskTypeId,@TaskAllocationId,@TaskDescription,@WorkLocation,@Isconmpleated,@NotCompleatedReason,@StartTime,@EndTime,@TaskRemarks,@TaskAmendments,@programplanId) SELECT SCOPE_IDENTITY()";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@TaskTypeId", taskAllocationDetail.TaskTypeId);
@@ -64,10 +64,11 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@EndTime", taskAllocationDetail.EndTime);
             dbConnection.cmd.Parameters.AddWithValue("@TaskRemarks", taskAllocationDetail.TaskRemarks);
             dbConnection.cmd.Parameters.AddWithValue("@TaskAmendments", taskAllocationDetail.TaskAmendments);
+            dbConnection.cmd.Parameters.AddWithValue("@programplanId", taskAllocationDetail.programPlanId);
 
 
-            dbConnection.cmd.ExecuteNonQuery();
-            return 1;
+            int result = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            return result;
         }
 
         public int UpdateTaskAllocationDetail(TaskAllocationDetail taskAllocationDetail, DBConnection dbConnection)
@@ -76,7 +77,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION_DETAIL SET TASK_TYPE_ID = @TaskTypeId, TASK_ALLOCATION_ID = @TaskAllocationId, " +
-                                           "TASK_DESCRIPTION = @TaskDescription, WORK_LOCATION = @WorkLocation, IS_COMPLETED = @Isconmpleated, NOT_COMPLETED_REASON=@NotCompleatedReason, START_TIME = @StartTime, END_TIME = @EndTime, REMARKS=@TaskRemarks, AMENDMENTS=@TaskAmendments WHERE ID = @TaskAllocationDetailId";
+                                           "TASK_DESCRIPTION = @TaskDescription, WORK_LOCATION = @WorkLocation, IS_COMPLETED = @Isconmpleated, NOT_COMPLETED_REASON=@NotCompleatedReason, START_TIME = @StartTime, END_TIME = @EndTime, REMARKS=@TaskRemarks, AMENDMENTS=@TaskAmendments, Program_Plan_Id = @programplanId WHERE ID = @TaskAllocationDetailId";
 
             dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationDetailId", taskAllocationDetail.TaskAllocationDetailId);
             dbConnection.cmd.Parameters.AddWithValue("@TaskTypeId", taskAllocationDetail.TaskTypeId);
@@ -89,6 +90,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@EndTime", taskAllocationDetail.EndTime);
             dbConnection.cmd.Parameters.AddWithValue("@TaskRemarks", taskAllocationDetail.TaskRemarks);
             dbConnection.cmd.Parameters.AddWithValue("@TaskAmendments", taskAllocationDetail.TaskAmendments);
+            dbConnection.cmd.Parameters.AddWithValue("@programplanId", taskAllocationDetail.programPlanId);
 
 
 

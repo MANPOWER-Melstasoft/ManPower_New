@@ -2,6 +2,7 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace ManPowerCore.Infrastructure
         List<ProgramPlan> GetAllProgramPlanByProjectStatusId(int projectStatusId, DBConnection dbConnection);
         List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, DBConnection dbConnection);
 
-
+        List<ProgramPlan> getddlProgramPlan(int depId, int year, DBConnection dBConnection);
     }
 
     public class ProgramPlanDAOImpl : ProgramPlanDAO
@@ -233,6 +234,21 @@ namespace ManPowerCore.Infrastructure
                                             "inner join Department_Unit_Possitions dup on dup.Id = pa.Department_Unit_Possitions_Id " +
                                             "inner join Department_Unit du on du.Id = dup.Department_Unit_Id " +
                                             "WHERE pp.PROJECT_STATUS_ID = 4" + dateSql + programTypeSql + districtIdSql;
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);
+        }
+
+        public List<ProgramPlan> getddlProgramPlan(int depId, int year, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "select * from Program_Plan inner join Program_Target on" +
+                                 " Program_Plan.Program_Target_Id = Program_Target.id inner join Program_Assignee on" +
+                                 " Program_Plan.Program_Target_Id = Program_Assignee.Program_Target_Id " +
+                                 "where Program_Assignee.Department_Unit_Possitions_Id =" + depId + "AND Program_Target.Target_Year =" + year;
+
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);

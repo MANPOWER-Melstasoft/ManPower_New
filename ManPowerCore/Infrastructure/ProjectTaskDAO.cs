@@ -10,6 +10,7 @@ namespace ManPowerCore.Infrastructure
 {
     public interface ProjectTaskDAO
     {
+        int saveProjectTask(ProjectTask projectTask, DBConnection dbConnection);
         List<ProjectTask> GetAllProjectTask(DBConnection dbConnection);
         ProjectTask GetProjectTask(int id, DBConnection dbConnection);
 
@@ -22,6 +23,20 @@ namespace ManPowerCore.Infrastructure
 
     public class ProjectTaskDAOImpl : ProjectTaskDAO
     {
+        public int saveProjectTask(ProjectTask projectTask, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "INSERT INTO Project_Task (PROGRAM_PLAN_ID, TASK_ALLOCATION_DETAIL_ID) VALUES (@programPlanId, @taskAllocationDetailId)";
+
+            dbConnection.cmd.Parameters.AddWithValue("@programPlanId", projectTask.ProgramPlanId);
+            dbConnection.cmd.Parameters.AddWithValue("@taskAllocationDetailId", projectTask.TaskAllocationDetailId);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
+        }
+
         public List<ProjectTask> GetAllProjectTask(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)

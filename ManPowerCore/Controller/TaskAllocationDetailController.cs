@@ -23,6 +23,7 @@ namespace ManPowerCore.Controller
         List<TaskAllocationDetail> GetTaskAllocationDetail(int depId, DateTime date);
 
         List<TaskAllocationDetail> GetAllTaskAllocationDetailByTaskAllocationId(int taskId);
+
     }
 
     public class TaskAllocationDetailControllerImpl : TaskAllocationDetailController
@@ -38,8 +39,8 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                taskAllocationDetailDAO.SaveTaskAllocationDetail(taskAllocationDetail, dBConnection);
-                return 1;
+                return taskAllocationDetailDAO.SaveTaskAllocationDetail(taskAllocationDetail, dBConnection);
+
             }
             catch (Exception)
             {
@@ -300,6 +301,8 @@ namespace ManPowerCore.Controller
             }
 
         }
+
+
     }
 }
 

@@ -20,7 +20,7 @@ namespace ManPowerWeb
         TaskAllocation taskAllocation = new TaskAllocation();
         TaskAllocationDetail taskAllocationDetail = new TaskAllocationDetail();
         List<TaskType> taskTypeList = new List<TaskType>();
-        List<Program> programList = new List<Program>();
+        List<ProgramPlan> programPlanList = new List<ProgramPlan>();
         List<TaskAllocation> taskAllocationList;
         public int depId;
         public int flag = 0;
@@ -34,12 +34,15 @@ namespace ManPowerWeb
 
         public DateTime date;
         public string name;
+        public int year;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             date1 = Request.QueryString["date"].ToString();
 
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);
+
+            year = DateTime.Now.Year;
 
             name = Session["Name"].ToString();
 
@@ -68,6 +71,7 @@ namespace ManPowerWeb
                 txtDuty.Text = taskAllocationDetail.TaskDescription;
                 txtPlace.Text = taskAllocationDetail.WorkLocation;
                 txtRemarks.Text = taskAllocationDetail.TaskRemarks;
+                ddlProgram.SelectedValue = taskAllocationDetail.programPlanId.ToString();
                 LinkButton1.Text = "Update";
             }
         }
@@ -82,9 +86,9 @@ namespace ManPowerWeb
 
         private void ProgramDataBind()
         {
-            ProgramController programController = ControllerFactory.CreateProgramController();
-            programList = programController.GetAllProgram(false, false);
-            ddlProgram.DataSource = programList;
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+            programPlanList = programPlanController.getddlProgramPlan(depId, year);
+            ddlProgram.DataSource = programPlanList;
             ddlProgram.DataBind();
         }
 
@@ -139,8 +143,20 @@ namespace ManPowerWeb
                     taskAllocationDetail.EndTime = DateTime.Today;
                     taskAllocationDetail.TaskRemarks = "";
                     taskAllocationDetail.TaskAmendments = "";
+                    taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
                     allocationDetail.UpdateTaskAllocationDetail(taskAllocationDetail);
+
+                    if (worktype == 1)
+                    {
+                        ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+                        ProjectTask projectTaskobj = new ProjectTask();
+
+                        projectTaskobj.TaskAllocationDetailId = taskAllocationDetail.TaskAllocationDetailId;
+                        projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+
+                        projectTaskController.saveProjectTask(projectTaskobj);
+                    }
                 }
                 else
                 {
@@ -155,8 +171,20 @@ namespace ManPowerWeb
                     taskAllocationDetail.EndTime = DateTime.Today;
                     taskAllocationDetail.TaskRemarks = txtRemarks.Text;
                     taskAllocationDetail.TaskAmendments = "";
+                    taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
                     allocationDetail.UpdateTaskAllocationDetail(taskAllocationDetail);
+
+                    if (worktype == 1)
+                    {
+                        ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+                        ProjectTask projectTaskobj = new ProjectTask();
+
+                        projectTaskobj.TaskAllocationDetailId = taskAllocationDetail.TaskAllocationDetailId;
+                        projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+
+                        projectTaskController.saveProjectTask(projectTaskobj);
+                    }
                 }
 
                 Response.Redirect("DME21.aspx");
@@ -210,8 +238,20 @@ namespace ManPowerWeb
                         taskAllocationDetail.EndTime = DateTime.Today;
                         taskAllocationDetail.TaskRemarks = "";
                         taskAllocationDetail.TaskAmendments = "";
+                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
-                        allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+
+                        if (worktype == 1)
+                        {
+                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+                            ProjectTask projectTaskobj = new ProjectTask();
+
+                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
+                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+
+                            projectTaskController.saveProjectTask(projectTaskobj);
+                        }
                     }
                     else
                     {
@@ -225,8 +265,20 @@ namespace ManPowerWeb
                         taskAllocationDetail.EndTime = DateTime.Today;
                         taskAllocationDetail.TaskRemarks = txtRemarks.Text;
                         taskAllocationDetail.TaskAmendments = "";
+                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
-                        allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+
+                        if (worktype == 1)
+                        {
+                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+                            ProjectTask projectTaskobj = new ProjectTask();
+
+                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
+                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+
+                            projectTaskController.saveProjectTask(projectTaskobj);
+                        }
                     }
                 }
                 else
@@ -243,8 +295,20 @@ namespace ManPowerWeb
                         taskAllocationDetail.EndTime = DateTime.Today;
                         taskAllocationDetail.TaskRemarks = "";
                         taskAllocationDetail.TaskAmendments = "";
+                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
-                        allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+
+                        if (worktype == 1)
+                        {
+                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+                            ProjectTask projectTaskobj = new ProjectTask();
+
+                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
+                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+
+                            projectTaskController.saveProjectTask(projectTaskobj);
+                        }
                     }
                     else
                     {
@@ -258,8 +322,20 @@ namespace ManPowerWeb
                         taskAllocationDetail.EndTime = DateTime.Today;
                         taskAllocationDetail.TaskRemarks = txtRemarks.Text;
                         taskAllocationDetail.TaskAmendments = "";
+                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
-                        allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
+
+                        if (worktype == 1)
+                        {
+                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+                            ProjectTask projectTaskobj = new ProjectTask();
+
+                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
+                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+
+                            projectTaskController.saveProjectTask(projectTaskobj);
+                        }
                     }
                 }
                 Response.Redirect("DME21.aspx");

@@ -22,6 +22,8 @@ namespace ManPowerCore.Controller
 
         ProgramPlan GetProgramPlan(int id, bool withProgramAttendence, bool withProgramBudget, bool withProgramTarget, bool withProgramCategory, bool withProjectStatus, bool withProjectTask);
         //List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, bool withProgramTarget);
+
+        List<ProgramPlan> getddlProgramPlan(int depId, int year);
     }
 
     public class ProgramPlanControllerImpl : ProgramPlanController
@@ -270,6 +272,28 @@ namespace ManPowerCore.Controller
             {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
+            }
+        }
+
+        public List<ProgramPlan> getddlProgramPlan(int depId, int year)
+        {
+            List<ProgramPlan> programPlanList = new List<ProgramPlan>();
+            try
+            {
+                dBConnection = new DBConnection();
+                programPlanList = programPlanDAO.getddlProgramPlan(depId, year, dBConnection);
+                return programPlanList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
             }
         }
     }

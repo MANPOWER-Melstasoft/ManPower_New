@@ -15,7 +15,7 @@ namespace ManPowerWeb
     {
         int currentYear = DateTime.Today.Year;
         string[] career = { "Management", "Skilled", "Non-Skilled", "Technical", "Non-Technical" };
-        int[] year = { DateTime.Today.Year, (DateTime.Today.Year + 1), (DateTime.Today.Year + 2 )};
+        int[] year = { (DateTime.Today.Year - 1),DateTime.Today.Year, (DateTime.Today.Year + 1), (DateTime.Today.Year + 2 )};
 
         List<CompanyVecansyRegistationDetails> cc = new List<CompanyVecansyRegistationDetails>();
         List<CompanyVecansyRegistationDetails> newList = new List<CompanyVecansyRegistationDetails>();
@@ -58,6 +58,11 @@ namespace ManPowerWeb
         protected void isClicked(object sender, EventArgs e)
         {
             Response.Redirect("VacancyReg.aspx");
+        }
+
+        protected void reset(object sender, EventArgs e)
+        {
+            Response.Redirect("VacancyRegSearch.aspx");
         }
 
         protected void viewDetails(object sender, EventArgs e)

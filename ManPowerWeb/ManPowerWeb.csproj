@@ -112,6 +112,7 @@
     <Content Include="AddDepartment.aspx" />
     <Content Include="AddDME21.aspx" />
     <Content Include="AddNewTarget.aspx" />
+    <Content Include="AddParent.aspx" />
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
     <Content Include="AddTrainingRequest.aspx" />
@@ -194,6 +195,7 @@
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="MaintenanceRequestView.aspx" />
     <Content Include="PersonalFiles.aspx" />
+    <Content Include="ProgramTargetView.aspx" />
     <Content Include="Recommend1DME21.aspx" />
     <Content Include="Recommend1DME21Render.aspx" />
     <Content Include="Recommend2DME21.aspx" />
@@ -239,6 +241,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SpecialAmendment.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
@@ -1967,6 +1970,13 @@
     <Compile Include="AddNewTarget.aspx.designer.cs">
       <DependentUpon>AddNewTarget.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddParent.aspx.cs">
+      <DependentUpon>AddParent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddParent.aspx.designer.cs">
+      <DependentUpon>AddParent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddPosition.aspx.cs">
       <DependentUpon>AddPosition.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2158,6 +2168,7 @@
     <Compile Include="DME24.aspx.designer.cs">
       <DependentUpon>DME24.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmailGenerator.cs" />
     <Compile Include="EntRegistration.aspx.cs">
       <DependentUpon>EntRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2302,6 +2313,13 @@
     <Compile Include="ProgramCalander.aspx.designer.cs">
       <DependentUpon>ProgramCalander.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProgramTargetView.aspx.cs">
+      <DependentUpon>ProgramTargetView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProgramTargetView.aspx.designer.cs">
+      <DependentUpon>ProgramTargetView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recommend1DME21.aspx.cs">
       <DependentUpon>Recommend1DME21.aspx</DependentUpon>
@@ -2379,6 +2397,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialAmendment.aspx.cs">
+      <DependentUpon>SpecialAmendment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpecialAmendment.aspx.designer.cs">
+      <DependentUpon>SpecialAmendment.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>

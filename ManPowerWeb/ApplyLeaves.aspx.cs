@@ -38,11 +38,25 @@ namespace ManPowerWeb
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
             StaffLeave staffLeave = new StaffLeave();
 
+            bool validation = false;
 
+            int response = 0;
 
             staffLeave.NoOfLeaves = int.Parse(txtNoOfDates.Text);
 
-            staffLeave.LeaveDate = DateTime.Parse(txtDateCommencing.Text);
+            if (DateTime.Parse(txtDateCommencing.Text) > DateTime.Now)
+            {
+                staffLeave.LeaveDate = DateTime.Parse(txtDateCommencing.Text);
+                validation = true;
+
+            }
+            else
+            {
+                lblDate.Text = "Invalid Date";
+            }
+
+
+
             staffLeave.CreatedDate = DateTime.Now;
             staffLeave.DayTypeId = int.Parse(ddlDayType.SelectedValue);
 
@@ -60,7 +74,7 @@ namespace ManPowerWeb
 
             staffLeave.NoOfLeaves = int.Parse(txtNoOfDates.Text);
             staffLeave.ReasonForLeave = txtLeaveReason.Text;
-            staffLeave.ResumingDate = DateTime.Now;
+            staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
             staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
             staffLeave.LeaveStatusId = 1;
 
@@ -76,13 +90,21 @@ namespace ManPowerWeb
                         uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
                         lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
 
-                        // staffLeave.(column database)  programPlan.FinancialSource = uploadFile.FileName;
+                        staffLeave.LeaveDocument = uploadFile.FileName;
 
                     }
                 }
             }
+            else
+            {
+                staffLeave.LeaveDocument = "";
+            }
 
-            int response = staffLeaveController.saveStaffLeave(staffLeave);
+            if (validation)
+            {
+                response = staffLeaveController.saveStaffLeave(staffLeave);
+
+            }
 
             if (response != 0)
             {
@@ -99,7 +121,16 @@ namespace ManPowerWeb
 
         protected void btnLeaveBalance_Click(object sender, EventArgs e)
         {
+
+
             Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpNumber"]));
+
+        }
+
+        protected void txtNoOfDates_TextChanged(object sender, EventArgs e)
+        {
+
+            txtDateResuming.Text = DateTime.Parse(txtDateCommencing.Text).AddDays(Convert.ToInt32(txtNoOfDates.Text)).ToString("yyyy-MM-dd");
 
         }
     }

@@ -18,6 +18,7 @@
                                 <asp:TextBox runat="server" ID="txtDateCommencing" CssClass="form-control form-control-user" TextMode="Date">
                                 </asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtDateCommencing" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:Label runat="server" ID="lblDate" ForeColor="Red"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -31,7 +32,7 @@
                             </div>
                             <div class="col-md-6">
 
-                                <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" min="0">
+                                <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtNoOfDates_TextChanged">
                                 </asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
                                 <asp:RangeValidator runat="server" ControlToValidate="txtNoOfDates" ErrorMessage="Invalid number"
@@ -55,7 +56,7 @@
                             </div>
                             <div class="col-md-6">
 
-                                <asp:TextBox runat="server" ID="txtDateResuming" TextMode="Date" CssClass="form-control form-control-user">
+                                <asp:TextBox runat="server" ID="txtDateResuming" TextMode="Date" CssClass="form-control form-control-user" Enabled="false">
                                 </asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtDateResuming" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
 

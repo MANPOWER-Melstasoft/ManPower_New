@@ -48,8 +48,10 @@
                                 <asp:Literal ID="Literal1" runat="server" Text="Leave Entitlement"></asp:Literal>
                             </div>
                             <div class="col-md-6">
-                                <asp:TextBox runat="server" ID="txtEntitlement" CssClass="form-control form-control-user">
+
+                                <asp:TextBox runat="server" ID="txtEntitlement" TextMode="Number" CssClass="form-control form-control-user">
                                 </asp:TextBox>
+                                <asp:RangeValidator ID="RangeValidator1" ControlToValidate="txtEntitlement" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="365" ForeColor="Red"></asp:RangeValidator>
 
                             </div>
 

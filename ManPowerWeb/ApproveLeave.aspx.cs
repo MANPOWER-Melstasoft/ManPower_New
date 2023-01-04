@@ -121,6 +121,13 @@ namespace ManPowerWeb
 
                 }
             }
+            else
+            {
+                staffLeaveSearchList = staffLeaveSearchList.Where(x => x._EMployeeDetails.UnitType == Convert.ToInt32(ddlHo.SelectedValue)).ToList();
+            }
+
+
+
 
             gvApproveLeave.DataSource = staffLeaveSearchList;
             gvApproveLeave.DataBind();

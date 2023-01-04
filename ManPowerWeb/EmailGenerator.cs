@@ -9,32 +9,49 @@ namespace ManPowerWeb
 {
     public class EmailGenerator
     {
-        public string Sendmail()
+        public void Sendmail()
         {
 
-            MailAddress to = new MailAddress("charithanjana01@gmail.com");
-            MailAddress from = new MailAddress("belltestsmtp@gmail.com");
+            MailMessage message = null;//new MailMessage();
+            MailAddress fromAddress = new MailAddress("noreply@cilanka.com");
+            string toEmailAddress = "charithanjana01@gmail.com";
 
-            MailMessage email = new MailMessage(from, to);
-            email.Subject = "Testing out email sending";
-            email.Body = "<p>Hello all the way from the land of C#</p>";
-            email.IsBodyHtml = true;
+            message = new MailMessage();
+            message.Subject = "Test";
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential("belltestsmtp@gmail.com", "Pass@123");
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.EnableSsl = true;
-
-            try
+            if (toEmailAddress.Length > 5)
             {
-                smtp.Send(email);
-                return "OK";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
+                message.From = fromAddress;
+                message.To.Add(toEmailAddress.Trim());
+
+                message.CC.Add("roshanu@bellvantage.com");
+
+                message.Body = "Test Email body";
+
+                message.IsBodyHtml = true;
+                message.Priority = MailPriority.High;
+                //System.Net.NetworkCredential mailAuthentication = new System.Net.NetworkCredential("finance.cill@gmail.com", "ContiFin");
+                //System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+
+                System.Net.NetworkCredential mailAuthentication = new System.Net.NetworkCredential("stassen.exporters@gmail.com", "uxdgpjvtrvhbsqdk");
+                System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+                //Google app password
+                //uxdgpjvtrvhbsqdk
+
+                mailClient.EnableSsl = true;
+                mailClient.UseDefaultCredentials = false;
+                mailClient.Credentials = mailAuthentication;
+
+                try
+                {
+                    mailClient.Send(message); // send Email
+
+                }
+
+                catch (Exception ex)
+                {
+                    throw;
+                }
             }
         }
     }

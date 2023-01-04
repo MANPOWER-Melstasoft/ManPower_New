@@ -55,7 +55,7 @@ namespace ManPowerWeb
             DME21GridView.DataBind();
 
             selectedYear = taskallocationDetailList1[0].StartTime.Year.ToString();
-            monthName = taskallocationDetailList1[0].StartTime.Month.ToString("MMMM");
+            monthName = taskallocationDetailList1[0].StartTime.Month.ToString("MMM");
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace ManPowerWeb
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            string url = "AddDME21.aspx?" + "date=" + taskallocationDetailList1[rowIndex].StartTime.ToString("yyyy-MM-dd") + "&taskAllocationDetailId=" + taskallocationDetailList1[rowIndex].TaskAllocationDetailId;
+            string url = "specialAmendmentRender.aspx?" + "date=" + taskallocationDetailList1[rowIndex].StartTime.ToString("yyyy-MM-dd") + "&taskAllocationDetailId=" + taskallocationDetailList1[rowIndex].TaskAllocationDetailId;
             Response.Redirect(url);
         }
 

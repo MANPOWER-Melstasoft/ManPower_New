@@ -69,7 +69,7 @@
                 <div class="row mb-5 ms-1 mt-4">
                     <div class="col-sm-2">
 
-                        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Search" />
+                        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Search" OnClick="btnSearch_Click" />
 
 
                     </div>
@@ -85,7 +85,8 @@
             <asp:GridView Style="margin-top: 30px;" ID="gvApproveLeave" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                 CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="gvApproveLeave_RowDataBound">
                 <Columns>
-                    <asp:BoundField HeaderText="DATE" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField HeaderText="CREATE DATE" DataField="CreatedDate" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField HeaderText="CONSUMING DATE" DataField="LeaveDate" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmployeeNIC" HeaderText="NIC" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmpInitials" HeaderText="INITIAL NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.LastName" HeaderText="LAST NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />

@@ -34,6 +34,7 @@ namespace ManPowerWeb
             ddlLeaveType.DataValueField = "LeaveTypeId";
             ddlLeaveType.DataTextField = "Name";
             ddlLeaveType.DataBind();
+            ddlLeaveType.Items.Insert(0, new ListItem("Select Leave Type", ""));
 
             txtDateCommencing.Text = staffLeave.LeaveDate.ToShortDateString();
             txtNoOfDates.Text = staffLeave.NoOfLeaves.ToString();
@@ -42,16 +43,16 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-            if (staffLeave.ApprovedBy >= 0)
+            if (staffLeave.ApprovedBy < 0)
             {
                 btnApprove.Visible = false;
-                btnReject.Visible = false;
+                btnModalReject.Visible = false;
 
             }
             else
             {
                 btnApprove.Visible = true;
-                btnReject.Visible = true;
+                btnModalReject.Visible = true;
             }
 
         }
@@ -63,30 +64,31 @@ namespace ManPowerWeb
 
         }
 
-        protected void btnReject_Click(object sender, EventArgs e)
-        {
-            StaffLeave staffLeave = new StaffLeave();
-            staffLeave.ApprovedBy = 0;
-            staffLeave.ApprovedDate = DateTime.Now;
-            staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+        //protected void btnReject_Click(object sender, EventArgs e)
+        //{
+        //    StaffLeave staffLeave = new StaffLeave();
+        //    staffLeave.ApprovedBy = -1;
+        //    staffLeave.ApprovedDate = DateTime.Now;
+        //    staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
 
-            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+        //    StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 
-            int response = staffLeaveController.updateStaffLeaves(staffLeave);
+        //    int response = staffLeaveController.updateStaffLeaves(staffLeave);
 
-            if (response != 0)
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success')", true);
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+        //    if (response != 0)
+        //    {
+        //        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
 
-            }
+        //    }
+        //    else
+        //    {
+        //        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
 
-            Response.Redirect("ApproveLeave.aspx");
+        //    }
 
-        }
+
+
+        //}
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
@@ -101,15 +103,39 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success')", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+
+
+            }
+
+
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
+            StaffLeave staffLeave = new StaffLeave();
+            staffLeave.ApprovedBy = -1;
+            staffLeave.ApprovedDate = DateTime.Now;
+            staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+
+            int response = staffLeaveController.updateStaffLeaves(staffLeave);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+
             }
             else
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
 
             }
-
-            Response.Redirect("ApproveLeave.aspx");
         }
     }
 }

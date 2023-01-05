@@ -156,7 +156,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <asp:Button runat="server" ID="btnLeaveBalance" Text="View My Leave Balance " CssClass="form-control form-control-user btn-primary" OnClick="btnLeaveBalance_Click"></asp:Button>
+                                <asp:Button runat="server" ID="btnLeaveBalance" Text="View My Leave Balance " CssClass="form-control form-control-user btn-success" OnClick="btnLeaveBalance_Click"></asp:Button>
 
                             </div>
 

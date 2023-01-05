@@ -67,7 +67,7 @@ namespace ManPowerWeb
             Label label1 = new Label();
             DateTime dates = e.Day.Date;
             string datesString = dates.ToShortDateString();
-            taskAllocationDetailFilter = taskAllocationDetail.Where(x => x.StartTime.ToShortDateString() == datesString && x._TaskAllocation._DepartmentUnitPositions.SystemUserId == 5).ToList();
+            taskAllocationDetailFilter = taskAllocationDetail.Where(x => x.StartTime.ToShortDateString() == datesString && x._TaskAllocation._DepartmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"])).ToList();
 
             if (taskAllocationDetailFilter.Count > 0)
             {

@@ -184,6 +184,32 @@
 
                 </div>
 
+                <div class="row mb-3 ms-1" runat="server" id="divMonth">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal19" runat="server" Text="Start Date"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtStratDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal20" runat="server" Text="End Date"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtEndDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 <%--//=================================--%>

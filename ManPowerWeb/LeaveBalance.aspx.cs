@@ -14,11 +14,11 @@ namespace ManPowerWeb
     public partial class LeaveBalance : System.Web.UI.Page
     {
         List<Report> leaveListFromTable = new List<Report>();
+        int employeId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ReportController reportController = ControllerFactory.CreateReportController();
-            int employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
-            leaveListFromTable = reportController.GetLeaveBalanceByEmployeeId(employeId);
+
+            employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
 
             if (!IsPostBack)
             {
@@ -30,6 +30,9 @@ namespace ManPowerWeb
 
         private void bindData()
         {
+            ReportController reportController = ControllerFactory.CreateReportController();
+            leaveListFromTable = reportController.GetLeaveBalanceByEmployeeId(employeId);
+
             gvLeaveBalance.DataSource = leaveListFromTable;
             int sumEntiletment = 0;
             int sumApprovedLeaves = 0;

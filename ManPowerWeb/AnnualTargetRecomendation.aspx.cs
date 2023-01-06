@@ -69,6 +69,7 @@ namespace ManPowerWeb
             int pageindex = GridView1.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
             Response.Redirect("AnnualTargetRecomendationView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
+
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)

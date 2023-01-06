@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class AnnualTargetRecomendationView
+    public partial class AnnualTargetView
     {
 
         /// <summary>
@@ -384,57 +384,48 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtRemarks;
 
         /// <summary>
-        /// btnCancel control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnBack;
 
         /// <summary>
-        /// btnAccept control.
+        /// btnSendToRecommendation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAccept;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSendToRecommendation;
 
         /// <summary>
-        /// btnModalReject control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnModalReject;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
-        /// txtrejectReason control.
+        /// ddlOficerRecomended control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtrejectReason;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOficerRecomended;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// btnSend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
-        /// btnReject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReject;
+        protected global::System.Web.UI.WebControls.Button btnSend;
     }
 }

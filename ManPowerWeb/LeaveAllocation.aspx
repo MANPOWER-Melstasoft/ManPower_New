@@ -51,7 +51,7 @@
 
                                 <asp:TextBox runat="server" ID="txtEntitlement" TextMode="Number" CssClass="form-control form-control-user">
                                 </asp:TextBox>
-                                <asp:RangeValidator ID="RangeValidator1" ControlToValidate="txtEntitlement" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="365" ForeColor="Red"></asp:RangeValidator>
+                                <asp:RangeValidator ID="RangeValidator1" ControlToValidate="txtEntitlement" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="365" Type="Integer" ForeColor="Red"></asp:RangeValidator>
 
                             </div>
 
@@ -71,6 +71,7 @@
                             <div class="col-md-6">
                                 <asp:TextBox runat="server" ID="txtPerMontLimit" CssClass="form-control form-control-user"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                <asp:RangeValidator ID="RangeValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="30" Type="Integer" ForeColor="Red"></asp:RangeValidator>
 
                             </div>
 

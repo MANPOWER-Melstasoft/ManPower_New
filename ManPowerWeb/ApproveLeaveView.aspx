@@ -143,10 +143,43 @@
                             <asp:Button runat="server" ID="btnApprove" Text="Approve" CssClass="btn btn-primary btn-user btn-block" OnClick="btnApprove_Click" />
                         </div>
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnReject" Text="Reject" CssClass="btn btn-danger btn-user btn-block" OnClick="btnReject_Click" />
+                            <button runat="server" id="btnModalReject" type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
+
                         </div>
 
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%------------------- model ----------------------%>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Reject Leave Appication</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-4">
+                                <label>Reason to reject </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <asp:TextBox ID="txtrejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Required" ControlToValidate="txtrejectReason" ValidationGroup="1" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button runat="server" ID="btnReject" Text="Reject" OnClick="btnReject_Click" CssClass="btn btn-danger" Width="100px" ValidationGroup="1" />
                 </div>
             </div>
         </div>

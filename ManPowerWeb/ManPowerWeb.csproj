@@ -120,6 +120,7 @@
     <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="AnnualTargetView.aspx" />
     <Content Include="ApprovedTraining.aspx" />
     <Content Include="ApproveTrainingRequest.aspx" />
     <Content Include="ApproveLeave.aspx" />
@@ -2032,6 +2033,13 @@
     </Compile>
     <Compile Include="AnnualTargetRecomendationView.aspx.designer.cs">
       <DependentUpon>AnnualTargetRecomendationView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AnnualTargetView.aspx.cs">
+      <DependentUpon>AnnualTargetView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnualTargetView.aspx.designer.cs">
+      <DependentUpon>AnnualTargetView.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApplyLeaves.aspx.cs">
       <DependentUpon>ApplyLeaves.aspx</DependentUpon>

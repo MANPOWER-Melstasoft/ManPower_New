@@ -3,7 +3,6 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,8 +10,9 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class AnnualTargetRecomendationView : System.Web.UI.Page
+    public partial class AnnualTargetView : System.Web.UI.Page
     {
+
         int ProgramTargetId;
 
         List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
@@ -24,9 +24,10 @@ namespace ManPowerWeb
         List<VoteAllocation> voteAllocationList = new List<VoteAllocation>();
         List<DepartmentUnit> listDistrict = new List<DepartmentUnit>();
         List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
-
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
 
             ProgramTypeController programTypeController = ControllerFactory.CreateProgramTypeController();
             listProgramType = programTypeController.GetAllProgramType(false);
@@ -58,20 +59,15 @@ namespace ManPowerWeb
             ddlPosition.DataBind();
 
             bindData();
-            int status = Convert.ToInt32(Request.QueryString["Status"]);
-            if (status == 1)
+            bindOficerRecomendation();
+
+            if (Convert.ToInt32(Request.QueryString["Status"]) == 0)
             {
-                btnAccept.Visible = true;
-                btnModalReject.Visible = true;
+                btnSendToRecommendation.Visible = true;
             }
-        }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-
-            Response.Redirect("AnnualTargetRecomendation.aspx");
 
         }
+
         private void bindData()
         {
             ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
@@ -109,6 +105,7 @@ namespace ManPowerWeb
             voteAllocationList = voteAllocationList.Where(x => x.Id == Convert.ToInt32(myList[0].VoteNumber)).ToList();
 
             lblofficer.Text = departmentUnitPositions._SystemUser.Name;
+            ViewState["SelectedOfficerId"] = departmentUnitPositions._SystemUser.SystemUserId;
             ddlYear.SelectedValue = Convert.ToString(myList[0].TargetYear);
             ddlMonth.Text = myList[0].TargetMonth.ToString();
             txtDescription.Text = myList[0].Description;
@@ -131,45 +128,34 @@ namespace ManPowerWeb
 
         }
 
-        protected void btnAccept_Click(object sender, EventArgs e)
+        private void bindOficerRecomendation()
         {
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 2, "");
+            List<SystemUser> listOficerRecomendation = new List<SystemUser>();
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            listOficerRecomendation = systemUserController.GetAllSystemUser(false, false, false);
 
-            if (TargetResponse != 0)
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='AnnualTargetRecomendation.aspx'},2500);", true);
-
-
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
-            }
-
+            int userId = Convert.ToInt32(Session["UserId"]);
+            int selectedOfficerid = Convert.ToInt32(ViewState["SelectedOfficerId"]);
+            ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.SystemUserId != userId && u.SystemUserId != selectedOfficerid);
+            ddlOficerRecomended.DataTextField = "Name";
+            ddlOficerRecomended.DataValueField = "SystemUserId";
+            ddlOficerRecomended.DataBind();
 
 
 
         }
 
-
-        protected void btnReject_Click1(object sender, EventArgs e)
+        protected void btnBack_Click(object sender, EventArgs e)
         {
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 3, txtrejectReason.Text);
-
-            if (TargetResponse != 0)
-            {
-
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected Succesfully!', 'success');window.setTimeout(function(){window.location='AnnualTargetRecomendation.aspx'},2500);", true);
-
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
-            }
-
-
+            Response.Redirect("AnnualTarget.aspx");
         }
+
+
+        private string DecryptQueryString(string strQueryString)
+        {
+            EncryptDecryptQueryString objEDQueryString = new EncryptDecryptQueryString();
+            return objEDQueryString.Decrypt(strQueryString, "r0b1nr0y");
+        }
+
     }
 }

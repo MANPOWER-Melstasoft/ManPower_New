@@ -183,21 +183,21 @@ namespace ManPowerCore.Controller
                 if (withSystemUser)
                 {
                     SystemUserDAO _SystemUserController = DAOFactory.CreateSystemUserDAO();
-                    _DepartmentUnitPositions._SystemUser = _SystemUserController.GetSystemUser(_DepartmentUnitPositions.DepartmetUnitPossitionsId, dbConnection);
+                    _DepartmentUnitPositions._SystemUser = _SystemUserController.GetSystemUser(_DepartmentUnitPositions.SystemUserId, dbConnection);
 
                 }
 
                 if (withPossitions)
                 {
                     PossitionsDAO _PossitionsController = DAOFactory.CreatePossitionsDAO();
-                    _DepartmentUnitPositions._Possitions = _PossitionsController.GetPossitions(_DepartmentUnitPositions.DepartmetUnitPossitionsId, dbConnection);
+                    _DepartmentUnitPositions._Possitions = _PossitionsController.GetPossitions(_DepartmentUnitPositions.PossitionsId, dbConnection);
 
                 }
 
                 if (withDepartmentUnit)
                 {
                     DepartmentUnitDAO _DepartmentUnitController = DAOFactory.CreateDepartmentUnitDAO();
-                    _DepartmentUnitPositions._DepartmentUnit = _DepartmentUnitController.GetDepartmentUnit(_DepartmentUnitPositions.DepartmetUnitPossitionsId, dbConnection);
+                    _DepartmentUnitPositions._DepartmentUnit = _DepartmentUnitController.GetDepartmentUnit(_DepartmentUnitPositions.DepartmentUnitId, dbConnection);
 
                 }
 

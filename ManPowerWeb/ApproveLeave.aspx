@@ -83,13 +83,21 @@
 
         <div class="table-responsive">
             <asp:GridView Style="margin-top: 30px;" ID="gvApproveLeave" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="gvApproveLeave_RowDataBound">
+                CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="gvApproveLeave_RowDataBound"
+                AllowPaging="true" OnPageIndexChanging="gvApproveLeave_PageIndexChanging" PageSize="5">
                 <Columns>
                     <asp:BoundField HeaderText="CREATE DATE" DataField="CreatedDate" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField HeaderText="CONSUMING DATE" DataField="LeaveDate" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmployeeNIC" HeaderText="NIC" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmpInitials" HeaderText="INITIAL NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.LastName" HeaderText="LAST NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="STATUS" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Visible='<%#Eval("ApprovedBy").ToString() == "-1" ?true:false %>' Text="Rejected" ForeColor="Red">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("ApprovedBy").ToString() == "0" ?true:false %>' Text="Pending" ForeColor="Green">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Convert.ToInt32( Eval("ApprovedBy")) > 0 ?true:false %>' Text="Approved" ForeColor="Blue"> </asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:LinkButton runat="server" Text="View" ID="btnView" CssClass="btn btn-success btn-user btn-block" Width="100px" Height="35px" OnClick="btnView_Click">
@@ -103,4 +111,6 @@
         </div>
 
     </div>
+
+
 </asp:Content>

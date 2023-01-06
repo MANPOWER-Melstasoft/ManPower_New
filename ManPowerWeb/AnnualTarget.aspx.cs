@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 
 namespace ManPowerWeb
@@ -18,11 +19,26 @@ namespace ManPowerWeb
         List<ProgramTarget> programTargetsListState = new List<ProgramTarget>();
         bool isCLicked = false;
 
-
+        int year = DateTime.Now.Year;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDataSource();
+            if (!IsPostBack)
+            {
+
+
+                for (int i = year - 10; i <= year + 10; i++)
+                {
+                    ListItem li = new ListItem(i.ToString());
+                    ddlYear.Items.Add(li);
+                }
+                //ddlYear.Items.FindByText(year.ToString()).Selected = true;
+                ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
+                BindDataSource();
+            }
+
+
+
 
         }
 
@@ -31,7 +47,12 @@ namespace ManPowerWeb
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
-            ViewState["programTargetsList"] = programTargetsList;
+            ViewState["programTargetsList"] = programTargetsList.ToList();
+            ViewState["programTargetsListRejected"] = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
+            ViewState["programTargetsListApproved"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
+            ViewState["programTargetsListPending"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
+            ViewState["programTargetsListNotRecommended"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
+
             GridView1.DataSource = programTargetsList;
             GridView1.DataBind();
 
@@ -95,6 +116,54 @@ namespace ManPowerWeb
             }
 
         }
+
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = GridView1.PageSize;
+            int pageindex = GridView1.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
+            Response.Redirect("AnnualTargetView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
+
+
+
+
+
+        }
+
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+            if (ddlStatus.SelectedIndex == 0)
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListNotRecommended"]; ;
+            }
+            else if (ddlStatus.SelectedIndex == 1)
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListPending"];
+            }
+            else if (ddlStatus.SelectedIndex == 2)
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListApproved"];
+            }
+            else if (ddlStatus.SelectedIndex == 3)
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListRejected"];
+            }
+            else
+            {
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsList"];
+            }
+
+            GridView1.DataBind();
+        }
+
+
+
+
     }
 
 

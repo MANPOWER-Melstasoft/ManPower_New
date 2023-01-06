@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnnualTargetRecomendationView.aspx.cs" Inherits="ManPowerWeb.AnnualTargetRecomendationView" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnnualTargetView.aspx.cs" Inherits="ManPowerWeb.AnnualTargetView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mb-3" id="mainContainer" runat="server">
 
 
         <div class="card ml-4 p-4">
-            <h2>View Recommendation</h2>
+            <h2>View Annual Targets</h2>
             <br />
             <div class="form-group">
 
@@ -227,7 +227,7 @@
                                 <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="btn btn-primary dropdown-toggle" Width="250px" Enabled="false">
+                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
                                     <asp:ListItem Value="1">January</asp:ListItem>
                                     <asp:ListItem Value="2">February</asp:ListItem>
                                     <asp:ListItem Value="3">March</asp:ListItem>
@@ -325,13 +325,12 @@
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6 d-flex">
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnCancel" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnCancel_Click" />
+                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
                         </div>
-                        <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnAccept" Text="Accept" CssClass="btn btn-success btn-user btn-block" OnClick="btnAccept_Click" Visible="false" />
-                        </div>
-                        <div class="col-sm-4">
-                            <button runat="server" id="btnModalReject" type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter" visible="false">Reject</button>
+
+                        <div class="col-sm-6">
+                            <button runat="server" type="button" id="btnSendToRecommendation" class="btn btn-primary btn-user btn-block" data-toggle="modal" data-target="#myModal" visible="false">Send to Recomendation</button>
+
                         </div>
 
                     </div>
@@ -341,36 +340,64 @@
         </div>
 
     </div>
-    <%------------------- model ----------------------%>
+
+
+    <%---------------------dialog box----------------------%>
+
+
+
+    <!-- Trigger the modal with a button -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade-out" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Reject Recommendation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">Recommondation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <center>
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-4">
-                                <label>Reason to reject </label>
-                            </div>
-                            <div class="col-sm-4">
-                                <asp:TextBox ID="txtrejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="txtrejectReason" ValidationGroup="1" ForeColor="Red"></asp:RequiredFieldValidator>
-                            </div>
-                        </div>
-                    </center>
+                    <div>
+                        <label><b>Recommondation Type</b></label>
+                        <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control form-control-user">
+                            <asp:ListItem Value="1">Send to recommondation</asp:ListItem>
+                            <%--<asp:ListItem Value="2">Send to approval</asp:ListItem>--%>
+                        </asp:DropDownList>
+
+
+                        <br />
+                        <br />
+
+                        <label><b>Officer Name</b></label>
+
+                        <asp:DropDownList ID="ddlOficerRecomended" runat="server" CssClass="form-control form-control-user"></asp:DropDownList>
+                    </div>
+
+
+
+
                 </div>
                 <div class="modal-footer">
-                    <asp:Button runat="server" ID="btnReject" Text="Reject" OnClick="btnReject_Click1" CssClass="btn btn-danger" Width="100px" ValidationGroup="1" />
+
+                    <div class="col-4">
+                        <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="btn btn-success btn-user btn-block" />
+                    </div>
+
+
                 </div>
             </div>
+
         </div>
     </div>
 
+    </div>
+
+
+
+
+
+        <%--------------end of dialog box--------------------%>
 </asp:Content>

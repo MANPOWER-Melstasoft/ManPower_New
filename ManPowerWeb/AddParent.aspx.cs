@@ -155,9 +155,10 @@ namespace ManPowerWeb
                 DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue),
             };
 
-            DistricDsParent districDsParentext = districDsParentController.GetDistricDsParent(districDsParent);
+            DistricDsParent districDsParentext1 = districDsParentController.GetDistricDsParent(districDsParent);
+            DistricDsParent districDsParentext2 = districDsParentController.GetDistricDsParentFromDep(districDsParent.DepartmentId);
 
-            if (districDsParentext.Id == 0)
+            if (districDsParentext1.Id == 0 && districDsParentext2.Id == 0)
             {
                 return true;
             }

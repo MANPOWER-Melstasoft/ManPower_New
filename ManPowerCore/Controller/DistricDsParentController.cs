@@ -16,6 +16,8 @@ namespace ManPowerCore.Controller
         int Delete(DistricDsParent districDsParent);
         List<DistricDsParent> GetAllDistricDsParent(bool withUser, bool withDepartment);
         DistricDsParent GetDistricDsParent(DistricDsParent districDsParent);
+        DistricDsParent GetDistricDsParentFromDep(int id);
+        DistricDsParent GetDistricDsParentFromId(int id);
     }
 
     public class DistricDsParentControllerImpl : DistricDsParentController
@@ -250,6 +252,48 @@ namespace ManPowerCore.Controller
             {
                 dbConnection = new DBConnection();
                 return districDsParentDAO.GetDistricDsParent(districDsParent, dbConnection);
+
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
+        public DistricDsParent GetDistricDsParentFromDep(int id)
+        {
+            DBConnection dbConnection = null;
+            try
+            {
+                dbConnection = new DBConnection();
+                return districDsParentDAO.GetDistricDsParentFromDep(id, dbConnection);
+
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
+        public DistricDsParent GetDistricDsParentFromId(int id)
+        {
+            DBConnection dbConnection = null;
+            try
+            {
+                dbConnection = new DBConnection();
+                return districDsParentDAO.GetDistricDsParentFromId(id, dbConnection);
 
             }
             catch (Exception ex)

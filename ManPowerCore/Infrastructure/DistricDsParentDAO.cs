@@ -15,6 +15,7 @@ namespace ManPowerCore.Infrastructure
         int Delete(DistricDsParent districDsParent, DBConnection dbConnection);
         List<DistricDsParent> GetAllDistricDsParent(DBConnection dbConnection);
         DistricDsParent GetDistricDsParent(DistricDsParent districDsParent, DBConnection dbConnection);
+        DistricDsParent GetDistricDsParentFromDep(int id, DBConnection dbConnection);
         DistricDsParent GetDistricDsParentFromId(int id, DBConnection dbConnection);
     }
 
@@ -86,6 +87,19 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.AddWithValue("@ParentUserId", districDsParent.ParentUserId);
             dbConnection.cmd.Parameters.AddWithValue("@DepartmentId", districDsParent.DepartmentId);
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<DistricDsParent>(dbConnection.dr);
+        }
+
+        public DistricDsParent GetDistricDsParentFromDep(int id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT * FROM Distric_Ds_Parent WHERE Department_Id =" + id;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

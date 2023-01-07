@@ -25,20 +25,59 @@ namespace ManPowerWeb
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            DistricDsParentController districDsParentController = ControllerFactory.CreateDistricDsParentController();
+            if (checkExsits())
+            {
+                DistricDsParentController districDsParentController = ControllerFactory.CreateDistricDsParentController();
 
-            DistricDsParent districDsParent = new DistricDsParent();
+                DistricDsParent districDsParent = new DistricDsParent();
 
-            districDsParent.ParentUserId = Convert.ToInt32(ddlUser.SelectedValue);
-            districDsParent.DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue);
+                if (btnSubmit.Text == "Update")
+                {
+                    int Id = (int)ViewState["updatedRowIndex"];
 
-            districDsParentController.Save(districDsParent);
+                    districDsParent.Id = Id;
+                    districDsParent.ParentUserId = Convert.ToInt32(ddlUser.SelectedValue);
+                    districDsParent.DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue);
 
-            Clear();
-            BindDataSource();
+                    districDsParentController.Update(districDsParent);
+                    btnSubmit.Text = "Create";
+                }
+                else
+                {
 
-            lblErrorMsg.Text = string.Empty;
-            lblSuccessMsg.Text = "Record Updated Successfully!";
+                    districDsParent.ParentUserId = Convert.ToInt32(ddlUser.SelectedValue);
+                    districDsParent.DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue);
+
+                    districDsParentController.Save(districDsParent);
+                }
+
+                Clear();
+                BindDataSource();
+
+                lblErrorMsg.Text = string.Empty;
+                lblSuccessMsg.Text = "Record Updated Successfully!";
+            }
+            else
+            {
+                lblErrorMsg.Text = "Already Exists!";
+            }
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pageSize = gvParent.PageSize;
+            int pageIndex = gvParent.PageIndex;
+
+            rowIndex = (pageSize * pageIndex) + rowIndex;
+            List<DistricDsParent> districDsParentList = (List<DistricDsParent>)ViewState["districDsParentList"];
+
+            ddlUser.SelectedValue = Convert.ToString(districDsParentList[rowIndex].ParentUserId);
+            ddlDepartment.SelectedValue = Convert.ToString(districDsParentList[rowIndex].DepartmentId);
+            btnSubmit.Text = "Update";
+            ViewState["updatedRowIndex"] = districDsParentList[rowIndex].Id;
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -52,12 +91,16 @@ namespace ManPowerWeb
             List<DistricDsParent> districDsParentList = districDsParentController.GetAllDistricDsParent(true, true);
             gvParent.DataSource = districDsParentList;
             gvParent.DataBind();
+
+            ViewState["districDsParentList"] = districDsParentList;
         }
 
         private void BindUserList()
         {
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            List<SystemUser> systemUsersList = systemUserController.GetAllSystemUser(false, false, false);
+            List<SystemUser> systemUsersList = systemUserController.GetAllSystemUser(true, true, false);
+
+            systemUsersList = systemUsersList.Where(x => x.UserTypeId == 3 && x._DepartmentUnitPositions.DepartmentUnitId == 1).ToList();
 
             ddlUser.DataSource = systemUsersList;
             ddlUser.DataValueField = "SystemUserId";
@@ -78,6 +121,28 @@ namespace ManPowerWeb
             ddlDepartment.DataBind();
             ddlDepartment.Items.Insert(0, new ListItem("-- select department --", ""));
         }
+
+        private bool checkExsits()
+        {
+            DistricDsParentController districDsParentController = ControllerFactory.CreateDistricDsParentController();
+            DistricDsParent districDsParent = new DistricDsParent
+            {
+                ParentUserId = Convert.ToInt32(ddlUser.SelectedValue),
+                DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue),
+            };
+
+            DistricDsParent districDsParentext = districDsParentController.GetDistricDsParent(districDsParent);
+
+            if (districDsParentext.Id == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {

@@ -47,8 +47,61 @@ namespace ManPowerCore.Controller
             DBConnection dbConnection = null;
             try
             {
+                int output = 0;
+
                 dbConnection = new DBConnection();
-                return districDsParentDAO.Update(districDsParent, dbConnection);
+                DistricDsParent districDsParentOld = districDsParentDAO.GetDistricDsParentFromId(districDsParent.Id, dbConnection);
+
+                if (districDsParentOld.ParentUserId == districDsParent.ParentUserId && districDsParentOld.DepartmentId != districDsParent.DepartmentId)
+                {
+                    DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                    DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+                    List<DepartmentUnitPositions> departmentUnitPositionList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, false);
+
+
+                    DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionList.Where(x => x.SystemUserId == districDsParent.ParentUserId).Single();
+                    List<DepartmentUnitPositions> departmentUnitPositionListNew = new List<DepartmentUnitPositions>();
+
+                    foreach (var item in departmentUnitPositionList)
+                    {
+                        if (item.DepartmentUnitId == districDsParent.DepartmentId && item._SystemUser.UserTypeId == 2)
+                        {
+                            item.ParentId = departmentUnitPositions.DepartmetUnitPossitionsId;
+                            departmentUnitPositionListNew.Add(item);
+                        }
+                    }
+
+                    foreach (var item in departmentUnitPositionListNew)
+                    {
+                        departmentUnitPositionsDAO.UpdateDepartmentUnitPositions(item, dbConnection);
+                    }
+
+                    if (districDsParentOld.Id != 0)
+                    {
+                        DepartmentUnitPositions departmentUnitPositions0 = departmentUnitPositionList.Where(x => x.SystemUserId == districDsParentOld.ParentUserId).Single();
+                        List<DepartmentUnitPositions> departmentUnitPositionListNew0 = new List<DepartmentUnitPositions>();
+
+                        foreach (var item in departmentUnitPositionList)
+                        {
+                            if (item.DepartmentUnitId == districDsParentOld.DepartmentId && item.ParentId == departmentUnitPositions0.DepartmetUnitPossitionsId)
+                            {
+                                item.ParentId = 0;
+                                departmentUnitPositionListNew0.Add(item);
+                            }
+                        }
+
+                        foreach (var item in departmentUnitPositionListNew0)
+                        {
+                            departmentUnitPositionsDAO.UpdateDepartmentUnitPositions(item, dbConnection);
+                        }
+                    }
+
+                }
+
+                output = districDsParentDAO.Update(districDsParent, dbConnection);
+
+                return output;
             }
             catch (Exception ex)
             {

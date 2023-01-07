@@ -15,6 +15,7 @@ namespace ManPowerCore.Infrastructure
         int Delete(DistricDsParent districDsParent, DBConnection dbConnection);
         List<DistricDsParent> GetAllDistricDsParent(DBConnection dbConnection);
         DistricDsParent GetDistricDsParent(DistricDsParent districDsParent, DBConnection dbConnection);
+        DistricDsParent GetDistricDsParentFromId(int id, DBConnection dbConnection);
     }
 
     public class DistricDsParentDAOSqlImpl : DistricDsParentDAO
@@ -81,10 +82,23 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT * FROM Distric_Ds_Parent WHERE aut_user_id = @AutUserId AND aut_function_id = @AutFunctionId";
+            dbConnection.cmd.CommandText = "SELECT * FROM Distric_Ds_Parent WHERE Parent_User_Id = @ParentUserId AND Department_Id = @DepartmentId";
 
-            dbConnection.cmd.Parameters.AddWithValue("@AutFunctionId", districDsParent.ParentUserId);
-            dbConnection.cmd.Parameters.AddWithValue("@AutUserId", districDsParent.DepartmentId);
+            dbConnection.cmd.Parameters.AddWithValue("@ParentUserId", districDsParent.ParentUserId);
+            dbConnection.cmd.Parameters.AddWithValue("@DepartmentId", districDsParent.DepartmentId);
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<DistricDsParent>(dbConnection.dr);
+        }
+
+        public DistricDsParent GetDistricDsParentFromId(int id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT * FROM Distric_Ds_Parent WHERE id =" + id;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

@@ -14,7 +14,7 @@ namespace ManPowerWeb
 
             MailMessage message = null;//new MailMessage();
             MailAddress fromAddress = new MailAddress("noreply@cilanka.com");
-            string toEmailAddress = "charithanjana01@gmail.com";
+            string toEmailAddress = "test@gmail.com";
 
             message = new MailMessage();
             message.Subject = "Test";
@@ -24,7 +24,7 @@ namespace ManPowerWeb
                 message.From = fromAddress;
                 message.To.Add(toEmailAddress.Trim());
 
-                message.CC.Add("roshanu@bellvantage.com");
+                //message.CC.Add("roshanu@bellvantage.com");
 
                 message.Body = "Test Email body";
 

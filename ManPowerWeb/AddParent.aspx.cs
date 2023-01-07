@@ -41,6 +41,7 @@ namespace ManPowerWeb
 
                     districDsParentController.Update(districDsParent);
                     btnSubmit.Text = "Create";
+                    ddlUser.Enabled = true;
                 }
                 else
                 {
@@ -75,9 +76,32 @@ namespace ManPowerWeb
             List<DistricDsParent> districDsParentList = (List<DistricDsParent>)ViewState["districDsParentList"];
 
             ddlUser.SelectedValue = Convert.ToString(districDsParentList[rowIndex].ParentUserId);
+            ddlUser.Enabled = false;
             ddlDepartment.SelectedValue = Convert.ToString(districDsParentList[rowIndex].DepartmentId);
             btnSubmit.Text = "Update";
             ViewState["updatedRowIndex"] = districDsParentList[rowIndex].Id;
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            DistricDsParentController districDsParentController = ControllerFactory.CreateDistricDsParentController();
+
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pageSize = gvParent.PageSize;
+            int pageIndex = gvParent.PageIndex;
+
+            rowIndex = (pageSize * pageIndex) + rowIndex;
+            List<DistricDsParent> districDsParentList = (List<DistricDsParent>)ViewState["districDsParentList"];
+            DistricDsParent districDsParent = new DistricDsParent
+            {
+                ParentUserId = districDsParentList[rowIndex].ParentUserId,
+                DepartmentId = districDsParentList[rowIndex].DepartmentId,
+                Id = districDsParentList[rowIndex].Id
+            };
+            districDsParentController.Delete(districDsParent);
+
+            BindDataSource();
         }
 
         protected void btnReset_Click(object sender, EventArgs e)

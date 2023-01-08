@@ -69,6 +69,7 @@ namespace ManPowerWeb
                         systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
 
                         Clear();
+                        BindEmpList();
 
                         lblErrorUser.Text = "";
                         lblSuccessMsg.Text = "Record Updated Successfully!";
@@ -249,9 +250,31 @@ namespace ManPowerWeb
         {
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
             List<Employee> employeeList = employeeController.GetAllEmployees(true);
-            ViewState["EmpList"] = employeeList;
 
-            ddlUserName.DataSource = employeeList;
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(false, false, false);
+
+            List<Employee> employeeListNew = new List<Employee>();
+
+            foreach (var item in employeeList)
+            {
+                int flag = 0;
+                for (int i = 0; i < systemUserList.Count; i++)
+                {
+                    if (item.EmployeeId == systemUserList[i].EmpNumber)
+                    {
+                        flag = 1;
+                    }
+                }
+                if (flag == 0)
+                {
+                    employeeListNew.Add(item);
+                }
+            }
+
+            ViewState["EmpList"] = employeeListNew;
+
+            ddlUserName.DataSource = employeeListNew;
             ddlUserName.DataValueField = "EmployeeId";
             ddlUserName.DataTextField = "fullName";
             ddlUserName.DataBind();

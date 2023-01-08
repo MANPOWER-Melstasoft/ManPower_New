@@ -26,8 +26,8 @@ namespace ManPowerWeb
                 {
                     BindDesignationList();
                     BindUserTypeList();
+                    BindEmpList();
                     BindPositionList();
-                    BindDepartmentList();
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace ManPowerWeb
                     if (CheckAvailableEmpNum(Convert.ToInt32(txtEmpNumber.Text)) && CheckExistsEmpNum(Convert.ToInt32(txtEmpNumber.Text), systemUserController))
                     {
                         SystemUser systemUser = new SystemUser();
-                        systemUser.Name = txtName.Text;
+                        systemUser.Name = ddlUserName.SelectedItem.Text;
                         systemUser.UserName = txtUserName.Text.ToLower();
                         systemUser.Email = txtEmail.Text;
                         systemUser.ContactNumber = txtContactNumber.Text;
@@ -245,6 +245,19 @@ namespace ManPowerWeb
 
         }
 
+        private void BindEmpList()
+        {
+            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+            List<Employee> employeeList = employeeController.GetAllEmployees(true);
+            ViewState["EmpList"] = employeeList;
+
+            ddlUserName.DataSource = employeeList;
+            ddlUserName.DataValueField = "EmployeeId";
+            ddlUserName.DataTextField = "fullName";
+            ddlUserName.DataBind();
+            ddlUserName.Items.Insert(0, new ListItem("-- select user --", ""));
+        }
+
         private void BindPositionList()
         {
             PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
@@ -259,21 +272,9 @@ namespace ManPowerWeb
 
         }
 
-        private void BindDepartmentList()
-        {
-            DepartmentUnitTypeController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
-            List<DepartmentUnitType> departmentUnitTypeList = departmentUnitTypeController.GetAllDepartmentUnitType(false);
 
 
-            ddlDepartmentType.DataSource = departmentUnitTypeList;
-            ddlDepartmentType.DataValueField = "DepartmentUnitTypeId";
-            ddlDepartmentType.DataTextField = "Name";
-            ddlDepartmentType.DataBind();
-            ddlDepartmentType.Items.Insert(0, new ListItem("-- select department --", ""));
-
-        }
-
-        protected void ddlDepartmentType_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlUserName_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindDepartmentUnitList();
         }
@@ -281,12 +282,34 @@ namespace ManPowerWeb
         private void BindDepartmentUnitList()
         {
 
-            if (ddlDepartmentType.SelectedValue != "")
+            if (ddlUserName.SelectedValue != "")
             {
-                DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
-                List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+                List<Employee> employeeList = (List<Employee>)ViewState["EmpList"];
+                Employee employee = employeeList.Where(x => x.EmployeeId == Convert.ToInt32(ddlUserName.SelectedValue)).Single();
 
-                departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitTypeId == Convert.ToInt32(ddlDepartmentType.SelectedValue)).ToList();
+                txtEmpNumber.Text = employee.EmployeeId.ToString();
+
+
+                DepartmentUnitTypeController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
+                DepartmentUnitType departmentUnitType = departmentUnitTypeController.GetDepartmentUnitType(employee.UnitType, false);
+                List<DepartmentUnitType> departmentUnitTypeList = new List<DepartmentUnitType> { departmentUnitType };
+
+                ddlDepartmentType.DataSource = departmentUnitTypeList;
+                ddlDepartmentType.DataValueField = "DepartmentUnitTypeId";
+                ddlDepartmentType.DataTextField = "Name";
+                ddlDepartmentType.DataBind();
+
+
+
+                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                DepartmentUnit departmentUnit = new DepartmentUnit();
+
+                if (employee.UnitType == 3)
+                    departmentUnit = departmentUnitController.GetDepartmentUnit(employee.DSDivisionId, false, false);
+                else
+                    departmentUnit = departmentUnitController.GetDepartmentUnit(employee.DistrictId, false, false);
+
+                List<DepartmentUnit> departmentUnitList = new List<DepartmentUnit> { departmentUnit };
 
                 ddlDepartmentUnit.DataSource = departmentUnitList;
                 ddlDepartmentUnit.DataValueField = "DepartmentUnitId";
@@ -295,6 +318,7 @@ namespace ManPowerWeb
             }
             else
             {
+                ddlDepartmentType.Items.Clear();
                 ddlDepartmentUnit.Items.Clear();
             }
 
@@ -303,7 +327,7 @@ namespace ManPowerWeb
 
         private void Clear()
         {
-            txtName.Text = string.Empty;
+            //txtName.Text = string.Empty;
             txtUserName.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtContactNumber.Text = string.Empty;

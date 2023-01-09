@@ -24,22 +24,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal lblDate;
 
         /// <summary>
-        /// lblEmployNo control.
+        /// txtDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblEmployNo;
-
-        /// <summary>
-        /// txtEmployNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployNo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtDate;
 
         /// <summary>
         /// lblProgram control.
@@ -51,31 +42,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal lblProgram;
 
         /// <summary>
-        /// ddlProgram control.
+        /// ddlEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProgram;
-
-        /// <summary>
-        /// lblEmployName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblEmployName;
-
-        /// <summary>
-        /// ddlEmployName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEmployName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmployee;
 
         /// <summary>
         /// btnRegister control.

@@ -11,17 +11,10 @@
                             <asp:Literal ID="lblDate" runat="server" Text="Date :"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-                            <input id="Text1" type="date" style="width: 100%; height: 40px; border-radius: 5px; padding-left: 10px;" />
+                            <input id="txtDate" runat="server" type="date" style="width: 100%; height: 40px; border-radius: 5px; padding-left: 10px;" />
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-6" style="padding-left: 60px;">
-                            <asp:Literal ID="lblEmployNo" runat="server" Text="Employee Number :"></asp:Literal>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:TextBox ID="txtEmployNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                        </div>
-                    </div>
+
                 </div>
 
                 <%-------------------------------------------------------------------------------------------------------------------------------------------------%>
@@ -29,26 +22,19 @@
                 <div class="col-sm-6">
                     <div class="row mb-3">
                         <div class="col-sm-6" style="padding-left: 60px;">
-                            <asp:Literal ID="lblProgram" runat="server" Text="Program :"></asp:Literal>
+                            <asp:Literal ID="lblProgram" runat="server" Text="Employee ID :"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlProgram" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-6" style="padding-left: 60px;">
-                            <asp:Literal ID="lblEmployName" runat="server" Text="Employee Name :"></asp:Literal>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:DropDownList ID="ddlEmployName" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
             <div class="row mb-3 ms-1" style="width: 40%">
                 <div class="col-sm-6" style="padding-left: 60px;">
-                    <asp:Button ID="btnRegister" runat="server" Text="Search" CssClass="btn btn-primary btn-user " ValidationGroup="1" Style="width: 200px;" />
+                    <asp:Button ID="btnRegister" runat="server" Text="Search" CssClass="btn btn-primary btn-user " ValidationGroup="1" Style="width: 200px;" OnClick="btnRegister_Click" />
                 </div>
                 <div class="col-sm-6" style="padding-left: 60px;">
                     <asp:Button ID="btnAdd" runat="server" Text="Request Training" CssClass="btn btn-secondary btn-user " BackColor="#565656" BorderColor="#565656" Style="width: 200px;" OnClick="btnAdd_Click" />

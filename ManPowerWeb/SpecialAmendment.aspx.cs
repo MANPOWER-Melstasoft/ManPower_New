@@ -15,7 +15,7 @@ namespace ManPowerWeb
         private string selectedYear;
 
         private string monthName;
-        //List<TaskAllocationDetail> taskallocationDetailList = new List<TaskAllocationDetail>();
+
         List<TaskAllocationDetail> taskallocationDetailList1 = new List<TaskAllocationDetail>();
 
         List<TaskAllocation> taskAllocationList;
@@ -55,7 +55,7 @@ namespace ManPowerWeb
             DME21GridView.DataBind();
 
             selectedYear = taskallocationDetailList1[0].StartTime.Year.ToString();
-            monthName = taskallocationDetailList1[0].StartTime.Month.ToString("MMMM");
+            monthName = taskallocationDetailList1[0].StartTime.Date.ToString("MMMM");
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace ManPowerWeb
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            string url = "AddDME21.aspx?" + "date=" + taskallocationDetailList1[rowIndex].StartTime.ToString("yyyy-MM-dd") + "&taskAllocationDetailId=" + taskallocationDetailList1[rowIndex].TaskAllocationDetailId;
+            string url = "specialAmendmentRender.aspx?" + "date=" + taskallocationDetailList1[rowIndex].StartTime.ToString("yyyy-MM-dd") + "&taskAllocationDetailId=" + taskallocationDetailList1[rowIndex].TaskAllocationDetailId;
             Response.Redirect(url);
         }
 
@@ -82,7 +82,7 @@ namespace ManPowerWeb
 
             foreach (var i in taskAllocationList)
             {
-                if (i.DepartmetUnitPossitionsId == positionId && i.StatusId == 2)
+                if (i.DepartmetUnitPossitionsId == positionId && i.StatusId == 2 && i.TaskYearMonth.Year == Convert.ToInt32(selectedYear))
                 {
                     taskAllocationId = i.TaskAllocationId;
                 }
@@ -96,7 +96,7 @@ namespace ManPowerWeb
 
             int value = allocation.UpdateTaskAllocation(taskAllocation);
 
-            string url = "specialamendment.aspx";
+            string url = "dme21.aspx";
             Response.Redirect(url);
         }
     }

@@ -35,16 +35,13 @@ namespace ManPowerWeb
             ddlHo.DataSource = departmentUnitsList.Where(x => x.DepartmentUnitTypeId == 1);
             ddlHo.DataValueField = "DepartmentUnitId";
             ddlHo.DataTextField = "Name";
-
+            ddlHo.DataBind();
 
             ddlDistrict.DataSource = departmentUnitsList.Where(x => x.DepartmentUnitTypeId == 2);
             ddlDistrict.DataValueField = "DepartmentUnitId";
             ddlDistrict.DataTextField = "Name";
-            ddlDistrict.Items.Insert(0, new ListItem("Select District", ""));
-
-
-            ddlHo.DataBind();
             ddlDistrict.DataBind();
+            ddlDistrict.Items.Insert(0, new ListItem("Select District", ""));
 
 
 
@@ -77,7 +74,7 @@ namespace ManPowerWeb
             ddlDS.DataValueField = "DepartmentUnitId";
             ddlDS.DataTextField = "Name";
             ddlDS.DataBind();
-            ddlDistrict.Items.Insert(0, new ListItem("Select DS Division", ""));
+            ddlDS.Items.Insert(0, new ListItem("Select DS Division", ""));
 
 
 
@@ -86,13 +83,21 @@ namespace ManPowerWeb
 
         protected void gvApproveLeave_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[0].Text = DateTime.Parse(e.Row.Cells[0].Text).ToShortDateString();
+                e.Row.Cells[1].Text = DateTime.Parse(e.Row.Cells[1].Text).ToShortDateString();
+            }
         }
 
 
         protected void btnView_Click(object sender, EventArgs e)
         {
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = gvApproveLeave.PageSize;
+            int pageindex = gvApproveLeave.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
+
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
             staffLeaveList = staffLeaveController.getStaffLeaves(true);
 
@@ -108,9 +113,9 @@ namespace ManPowerWeb
 
             staffLeaveSearchList = (List<StaffLeave>)ViewState["staffLeaveList"];
 
-            if (ddlDistrict.SelectedValue != "0")
+            if (ddlDistrict.SelectedValue != "")
             {
-                if (ddlDS.SelectedValue != "0")
+                if (ddlDS.SelectedValue != "")
                 {
                     staffLeaveSearchList = staffLeaveSearchList.Where(x => x._EMployeeDetails.DistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x._EMployeeDetails.DSDivisionId == Convert.ToInt32(ddlDS.SelectedValue)).ToList();
 
@@ -132,6 +137,12 @@ namespace ManPowerWeb
             gvApproveLeave.DataSource = staffLeaveSearchList;
             gvApproveLeave.DataBind();
 
+        }
+
+        protected void gvApproveLeave_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvApproveLeave.PageIndex = e.NewPageIndex;
+            this.bindDataSource();
         }
     }
 }

@@ -317,7 +317,7 @@ namespace ManPowerCore.Controller
                     report.Entitlement = row["Entitlement"].ToString();
                     report.LeaveType = row["Leave_Type_id"].ToString();
 
-                    report.NoOfDays = Convert.ToInt32(row["No_Of_Days"]);
+                    report.NoOfDays = Convert.ToInt32(row["No_Of_Leave"]);
                     report.EmployeeId = Convert.ToInt32(row["Employee_ID"]);
 
                     reportsAllType.Add(report);

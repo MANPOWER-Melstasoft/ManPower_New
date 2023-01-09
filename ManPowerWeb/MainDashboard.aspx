@@ -40,9 +40,11 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="card" style="height: 100%; text-align: center">
-                        <h2>Planning</h2>
-                    </div>
+                    <a href="Dashboard.aspx" style="text-decoration: none;">
+                        <div class="card" style="height: 100%; text-align: center">
+                            <h2>Planning</h2>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="row">

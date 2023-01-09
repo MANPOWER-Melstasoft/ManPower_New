@@ -42,6 +42,7 @@ namespace ManPowerWeb
             name = Session["Name"].ToString();
 
             rowIndex = Convert.ToInt32(Request.QueryString["taskAllocationDetailId"]);
+
             TaskAllocationDetailController allocationDetail = ControllerFactory.CreateTaskAllocationDetailController();
 
             taskAllocationDetail = allocationDetail.GetTaskAllocationDetail(rowIndex, false, false, false);
@@ -137,7 +138,7 @@ namespace ManPowerWeb
                     taskAllocationDetail.StartTime = date;
                     taskAllocationDetail.EndTime = DateTime.Today;
                     taskAllocationDetail.TaskRemarks = "";
-                    taskAllocationDetail.TaskAmendments = "";
+                    taskAllocationDetail.TaskAmendments = txtAmendment.Text;
                     taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
                     allocationDetail.UpdateTaskAllocationDetail(taskAllocationDetail);
@@ -165,7 +166,7 @@ namespace ManPowerWeb
                     taskAllocationDetail.StartTime = date;
                     taskAllocationDetail.EndTime = DateTime.Today;
                     taskAllocationDetail.TaskRemarks = txtRemarks.Text;
-                    taskAllocationDetail.TaskAmendments = "";
+                    taskAllocationDetail.TaskAmendments = txtAmendment.Text;
                     taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
                     allocationDetail.UpdateTaskAllocationDetail(taskAllocationDetail);
@@ -182,159 +183,9 @@ namespace ManPowerWeb
                     }
                 }
 
-                Response.Redirect("DME21.aspx");
+                Response.Redirect("specialAmendment.aspx");
             }
 
-            else
-            {
-                taskAllocationList = allocation.GetAllTaskAllocation(false, false, false, false);
-
-                worktype = Convert.ToInt32(ddlWorkType.SelectedValue);
-
-                date = DateTime.ParseExact(date1, "yyyy-MM-dd", null);
-
-                string remark = txtRemarks.Text;
-
-
-                foreach (var i in taskAllocationList)
-                {
-                    if (i.DepartmetUnitPossitionsId == depId && i.TaskYearMonth.Month == date.Month && i.TaskYearMonth.Year == date.Year)
-                    {
-                        flag = 1;
-                        taskAllocationId = i.TaskAllocationId;
-                    }
-                }
-
-                if (flag == 0)
-                {
-                    taskAllocation.DepartmetUnitPossitionsId = depId;
-                    taskAllocation.TaskYearMonth = date;
-                    taskAllocation.CreatedDate = DateTime.Today.Date;
-                    taskAllocation.CreatedUser = name;
-                    taskAllocation.StatusId = 0;
-                    taskAllocation.DME21RecommendedBy1 = 0;
-                    taskAllocation.RecommendedDate = DateTime.Today;
-                    taskAllocation.DME21ApprovedBy = 0;
-                    taskAllocation.ApprovedDate = DateTime.Today;
-                    taskAllocation.DME21RecommendedBy2 = 0;
-                    taskAllocation.DME22_ApprovedBy = 0;
-
-                    int taskAllocationId1 = allocation.saveTaskAllocation(taskAllocation);
-
-                    if (remark == null)
-                    {
-                        taskAllocationDetail.TaskTypeId = worktype;
-                        taskAllocationDetail.TaskAllocationId = taskAllocationId1;
-                        taskAllocationDetail.TaskDescription = txtDuty.Text;
-                        taskAllocationDetail.WorkLocation = txtPlace.Text;
-                        taskAllocationDetail.Isconmpleated = 0;
-                        taskAllocationDetail.NotCompleatedReason = "";
-                        taskAllocationDetail.StartTime = date;
-                        taskAllocationDetail.EndTime = DateTime.Today;
-                        taskAllocationDetail.TaskRemarks = "";
-                        taskAllocationDetail.TaskAmendments = "";
-                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
-
-                        if (worktype == 1)
-                        {
-                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
-                            ProjectTask projectTaskobj = new ProjectTask();
-
-                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
-                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                            projectTaskController.saveProjectTask(projectTaskobj);
-                        }
-                    }
-                    else
-                    {
-                        taskAllocationDetail.TaskTypeId = worktype;
-                        taskAllocationDetail.TaskAllocationId = taskAllocationId1;
-                        taskAllocationDetail.TaskDescription = txtDuty.Text;
-                        taskAllocationDetail.WorkLocation = txtPlace.Text;
-                        taskAllocationDetail.Isconmpleated = 0;
-                        taskAllocationDetail.NotCompleatedReason = "";
-                        taskAllocationDetail.StartTime = date;
-                        taskAllocationDetail.EndTime = DateTime.Today;
-                        taskAllocationDetail.TaskRemarks = txtRemarks.Text;
-                        taskAllocationDetail.TaskAmendments = "";
-                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
-
-                        if (worktype == 1)
-                        {
-                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
-                            ProjectTask projectTaskobj = new ProjectTask();
-
-                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
-                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                            projectTaskController.saveProjectTask(projectTaskobj);
-                        }
-                    }
-                }
-                else
-                {
-                    if (remark == null)
-                    {
-                        taskAllocationDetail.TaskTypeId = worktype;
-                        taskAllocationDetail.TaskAllocationId = taskAllocationId;
-                        taskAllocationDetail.TaskDescription = txtDuty.Text;
-                        taskAllocationDetail.WorkLocation = txtPlace.Text;
-                        taskAllocationDetail.Isconmpleated = 0;
-                        taskAllocationDetail.NotCompleatedReason = "";
-                        taskAllocationDetail.StartTime = date;
-                        taskAllocationDetail.EndTime = DateTime.Today;
-                        taskAllocationDetail.TaskRemarks = "";
-                        taskAllocationDetail.TaskAmendments = "";
-                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
-
-                        if (worktype == 1)
-                        {
-                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
-                            ProjectTask projectTaskobj = new ProjectTask();
-
-                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
-                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                            projectTaskController.saveProjectTask(projectTaskobj);
-                        }
-                    }
-                    else
-                    {
-                        taskAllocationDetail.TaskTypeId = worktype;
-                        taskAllocationDetail.TaskAllocationId = taskAllocationId;
-                        taskAllocationDetail.TaskDescription = txtDuty.Text;
-                        taskAllocationDetail.WorkLocation = txtPlace.Text;
-                        taskAllocationDetail.Isconmpleated = 0;
-                        taskAllocationDetail.NotCompleatedReason = "";
-                        taskAllocationDetail.StartTime = date;
-                        taskAllocationDetail.EndTime = DateTime.Today;
-                        taskAllocationDetail.TaskRemarks = txtRemarks.Text;
-                        taskAllocationDetail.TaskAmendments = "";
-                        taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                        int taskAlocationDetailId = allocationDetail.SaveTaskAllocationDetail(taskAllocationDetail);
-
-                        if (worktype == 1)
-                        {
-                            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
-                            ProjectTask projectTaskobj = new ProjectTask();
-
-                            projectTaskobj.TaskAllocationDetailId = taskAlocationDetailId;
-                            projectTaskobj.ProgramPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
-
-                            projectTaskController.saveProjectTask(projectTaskobj);
-                        }
-                    }
-                }
-                Response.Redirect("specialamendment.aspx");
-            }
         }
     }
 }

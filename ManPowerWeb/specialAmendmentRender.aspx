@@ -47,6 +47,14 @@
                         <asp:TextBox runat="server" Style="width: 80%;" ID="txtPlace" name="txtPlace" type="text" />
                     </div>
                 </div>
+                <div class="row mb-5" style="text-align: center; width: 70%;" runat="server" visible="true" id="divAmendment">
+                    <div class="col-sm-6 my-auto">
+                        <asp:Label CssClass="font-weight-bold" ID="label6" runat="server" Text="Amendmets :"></asp:Label>
+                    </div>
+                    <div class="col-sm-6" style="width: 90%;">
+                        <asp:TextBox runat="server" Style="width: 80%;" ID="txtAmendment" name="txtAmendment" type="text" />
+                    </div>
+                </div>
                 <div class="row mb-5" style="text-align: center; width: 70%;">
                     <div class="col-sm-6 my-auto">
                     </div>

@@ -56,6 +56,7 @@ namespace ManPowerWeb
         {
 
             int flag1 = 0;
+            int flag2 = 0;
 
             int depId = Convert.ToInt32(Session["DepUnitPositionId"]);
 
@@ -91,6 +92,25 @@ namespace ManPowerWeb
                 btnAddDME21.Enabled = true;
                 btnAddDME21.CssClass = "btn btn-outline-secondary";
             }
+
+            foreach (var i in taskAllocationList)
+            {
+                if (i.DepartmetUnitPossitionsId == depId && i.StatusId == 2)
+                {
+                    flag2 = 1;
+                }
+            }
+
+            if (flag2 == 0)
+            {
+                specialAmendment.Enabled = false;
+                specialAmendment.CssClass = "btn btn-outline-secondary disabled";
+            }
+            else
+            {
+                specialAmendment.Enabled = true;
+                specialAmendment.CssClass = "btn btn-outline-secondary";
+            }
         }
 
         protected void btnAddDME21_Click(object sender, EventArgs e)
@@ -123,6 +143,12 @@ namespace ManPowerWeb
             gvDME21Front.DataSource = TaskAllocationList1;
             gvDME21Front.DataBind();
 
+        }
+
+        protected void specialAmendment_Click(object sender, EventArgs e)
+        {
+            string url = "specialamendment.aspx";
+            Response.Redirect(url);
         }
     }
 

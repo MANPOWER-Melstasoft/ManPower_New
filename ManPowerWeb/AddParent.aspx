@@ -70,7 +70,17 @@
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
                 <asp:BoundField DataField="systemUser.UserName" HeaderText="USER" HeaderStyle-CssClass="table-dark" />
-                <asp:BoundField DataField="departmentUnit.Name" HeaderText="ASSIGN DEPARTMENT" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="departmentUnit.Name" HeaderText="ASSIGNED DEPARTMENT" HeaderStyle-CssClass="table-dark" />
+                <asp:TemplateField HeaderStyle-CssClass="table-dark">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click">Edit</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderStyle-CssClass="table-dark">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="btnDelete" runat="server" OnClick="btnDelete_Click">Delete</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>

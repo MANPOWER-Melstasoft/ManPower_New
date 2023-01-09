@@ -190,6 +190,7 @@
     <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="MainDashboard.aspx" />
     <Content Include="MaintenanceApproval.aspx" />
     <Content Include="MaintenanceApprovalView.aspx" />
     <Content Include="LeaveBalance.aspx" />
@@ -2244,6 +2245,13 @@
     </Compile>
     <Compile Include="IndividualBeneView.aspx.designer.cs">
       <DependentUpon>IndividualBeneView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MainDashboard.aspx.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainDashboard.aspx.designer.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="MaintenanceApproval.aspx.cs">
       <DependentUpon>MaintenanceApproval.aspx</DependentUpon>

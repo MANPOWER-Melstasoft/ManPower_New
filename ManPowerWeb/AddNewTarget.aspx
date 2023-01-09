@@ -234,7 +234,7 @@
                                 <asp:Literal ID="Literal19" runat="server" Text="Start Date"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="ddlStartDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                <asp:TextBox ID="ddlStartDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
 
                             </div>
@@ -247,7 +247,7 @@
                                 <asp:Literal ID="Literal20" runat="server" Text="End Date"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtEndDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                <asp:TextBox ID="txtEndDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ValidationGroup="1" ControlToValidate="ddlVote" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
 
                             </div>
@@ -336,8 +336,7 @@
                                 <asp:Literal ID="Literal12" runat="server" Text="Output"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtOutput" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtOutput" ValidationGroup="1" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtOutput" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
 
                             </div>
                         </div>
@@ -351,7 +350,7 @@
                                 <asp:Literal ID="Literal13" runat="server" Text="Outcome"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtOutcome" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:TextBox ID="txtOutcome" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
 
 
                             </div>

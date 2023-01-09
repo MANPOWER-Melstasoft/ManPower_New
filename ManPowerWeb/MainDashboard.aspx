@@ -32,16 +32,17 @@
             </div>
         </div>
 
+
         <div class="container">
             <div class="row mb-5">
                 <div class="col-6">
-                    <div class="card" style="height: 100%; text-align: center">
+                    <div class="card " style="text-align: center">
                         <h2>HR</h2>
                     </div>
                 </div>
                 <div class="col-6">
                     <a href="Dashboard.aspx" style="text-decoration: none;">
-                        <div class="card" style="height: 100%; text-align: center">
+                        <div class="card" style="text-align: center">
                             <h2>Planning</h2>
                         </div>
                     </a>
@@ -49,17 +50,19 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <div class="card" style="height: 100%; text-align: center">
+                    <div class="card" style="text-align: center">
                         <h2>Finance</h2>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="card" style="height: 100%; text-align: center">
+                    <div class="card" style="text-align: center">
                         <h2>Procument</h2>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </form>
 </body>
 </html>

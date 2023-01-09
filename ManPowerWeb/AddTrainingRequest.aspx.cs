@@ -45,7 +45,7 @@ namespace ManPowerWeb
 
             ddlEmployNo.DataSource = employeeDetailList;
             ddlEmployNo.DataValueField = "EmpID";
-            ddlEmployNo.DataTextField = "EmpNumber";
+            ddlEmployNo.DataTextField = "EmpID";
             ddlEmployNo.DataBind();
 
         }

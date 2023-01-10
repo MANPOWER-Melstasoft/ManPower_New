@@ -66,6 +66,8 @@ namespace ManPowerWeb
                 btnSendToRecommendation.Visible = true;
             }
 
+
+
         }
 
         private void bindData()
@@ -106,7 +108,7 @@ namespace ManPowerWeb
 
             lblofficer.Text = departmentUnitPositions._SystemUser.Name;
             ViewState["SelectedOfficerId"] = departmentUnitPositions._SystemUser.SystemUserId;
-            ddlYear.SelectedValue = Convert.ToString(myList[0].TargetYear);
+            txtlYear.Text = myList[0].TargetYear.ToString();
             ddlMonth.Text = myList[0].TargetMonth.ToString();
             txtDescription.Text = myList[0].Description;
             txtVote.Text = voteAllocationList[0].VoteNumber;
@@ -120,6 +122,15 @@ namespace ManPowerWeb
             ddlProgram.SelectedValue = myList[0].ProgramId.ToString();
             txtStratDate.Text = myList[0].StartDate.ToString("yyyy-MM-dd");
             txtEndDate.Text = myList[0].EndDate.ToString("yyyy-MM-dd");
+            txtRemarks.Text = myList[0].Remarks.ToString();
+
+
+
+            if (Convert.ToInt32(Request.QueryString["Status"]) == 0)
+            {
+                rowRejectRemarks.Visible = true;
+                txtRejectRemarks.Text = myList[0].RejectRemarks;
+            }
 
             ddlDistrict.SelectedValue = departmentUnitPositions._DepartmentUnit.ParentId.ToString();
             ddlDSDivision.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
@@ -151,11 +162,6 @@ namespace ManPowerWeb
         }
 
 
-        private string DecryptQueryString(string strQueryString)
-        {
-            EncryptDecryptQueryString objEDQueryString = new EncryptDecryptQueryString();
-            return objEDQueryString.Decrypt(strQueryString, "r0b1nr0y");
-        }
 
     }
 }

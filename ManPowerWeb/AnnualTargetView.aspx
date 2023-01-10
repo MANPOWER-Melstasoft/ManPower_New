@@ -16,12 +16,8 @@
                                 <asp:Literal ID="Literal1" runat="server" Text="Year"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlYear" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
-                                    <asp:ListItem Value="2020">2020</asp:ListItem>
-                                    <asp:ListItem Value="2021">2021</asp:ListItem>
-                                    <asp:ListItem Value="2022">2022</asp:ListItem>
-                                    <asp:ListItem Value="2023">2023</asp:ListItem>
-                                </asp:DropDownList>
+                                <asp:TextBox ID="txtlYear" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
+                                </asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -321,6 +317,21 @@
                     </div>
                 </div>
 
+                <div class="row mb-3 ms-1" runat="server" id="rowRejectRemarks" visible="false">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal18" runat="server" Text="Reject Remarks"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtRejectRemarks" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6 d-flex">
@@ -393,11 +404,6 @@
         </div>
     </div>
 
-    </div>
 
-
-
-
-
-        <%--------------end of dialog box--------------------%>
+    <%--------------end of dialog box--------------------%>
 </asp:Content>

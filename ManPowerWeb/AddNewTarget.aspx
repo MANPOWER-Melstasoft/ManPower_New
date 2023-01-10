@@ -273,7 +273,7 @@
                                 <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px">
+                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
                                     <asp:ListItem Value="1">January</asp:ListItem>
                                     <asp:ListItem Value="2">February</asp:ListItem>
                                     <asp:ListItem Value="3">March</asp:ListItem>
@@ -336,10 +336,23 @@
                                 <asp:Literal ID="Literal12" runat="server" Text="Output"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtOutput" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                <asp:TextBox ID="txtOutput" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
 
                             </div>
                         </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal22" runat="server" Text="Output Description"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtOutputDes" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -350,11 +363,26 @@
                                 <asp:Literal ID="Literal13" runat="server" Text="Outcome"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtOutcome" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                <asp:TextBox ID="txtOutcome" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
 
 
                             </div>
                         </div>
+
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal21" runat="server" Text="Outcome Description"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtOutcomeDes" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row mb-3 ms-1">

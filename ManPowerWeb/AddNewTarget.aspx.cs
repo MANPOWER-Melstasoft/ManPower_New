@@ -287,19 +287,30 @@ namespace ManPowerWeb
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
             programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
-            programTarget.Output = txtOutput.Text;
-            programTarget.Outcome = txtOutcome.Text;
+            programTarget.Output = Convert.ToInt32(txtOutput.Text);
 
-            //if (txtOutcome.Text != "")
-            //{
-            //    programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+            if (txtOutput.Text != "")
+            {
+                programTarget.Output = Convert.ToInt32(txtOutput.Text);
+            }
+            else
+            {
+                programTarget.Output = 0;
 
-            //}
-            //else
-            //{
-            //    programTarget.Outcome = 0;
+            }
 
-            //}
+            if (txtOutcome.Text != "")
+            {
+                programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+
+            }
+            else
+            {
+                programTarget.Outcome = 0;
+
+            }
+
+
             programTarget.CreatedBy = Convert.ToInt32(Session["UserId"]);
 
 
@@ -416,6 +427,7 @@ namespace ManPowerWeb
                 txtEndDate.ReadOnly = false;
                 ddlStartDate.Text = "";
                 txtEndDate.Text = "";
+                ddlMonth.Enabled = true;
 
             }
 

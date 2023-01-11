@@ -394,7 +394,7 @@
                 <div class="modal-footer">
 
                     <div class="col-4">
-                        <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="btn btn-success btn-user btn-block" />
+                        <asp:Button ID="btnSend" runat="server" Text="Send" CssClass="btn btn-success btn-user btn-block" OnClick="btnSend_Click" />
                     </div>
 
 

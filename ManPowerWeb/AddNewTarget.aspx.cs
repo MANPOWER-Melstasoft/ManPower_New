@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -58,8 +59,8 @@ namespace ManPowerWeb
 
 
                 bindDSDivision();
-                hideDSDivision();
                 bindProgram();
+                bindOfficerList();
 
 
 
@@ -72,6 +73,13 @@ namespace ManPowerWeb
                 }
                 //ddlYear.Items.FindByText(year.ToString()).Selected = true;
                 ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
+
+                var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+                for (int i = 0; i < months.Length - 1; i++)
+                {
+                    ddlMonth.Items.Add(new ListItem(months[i], (i + 1).ToString()));
+                }
+                ddlMonth.Items.Insert(0, new ListItem("Select Month", ""));
 
 
             }
@@ -134,26 +142,41 @@ namespace ManPowerWeb
 
             if (ddlPosition.SelectedValue != "")
             {
-                if (rbTarget.SelectedValue == "1")
+                if (rbTarget.SelectedValue == "1" && ddlDistrict.SelectedValue != "")
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == 1 && u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
                 }
-                else if (rbTarget.SelectedValue == "2")
+                else if (rbTarget.SelectedValue == "2" && ddlDSDivision.SelectedValue != "" && ddlDistrict.SelectedValue != "")
                 {
                     ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
-
                 }
                 else
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    ddlOfficer.Items.Clear();
 
                 }
+
             }
 
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Warning!', 'Pleace select a position 'warning')", true);
+                if (rbTarget.SelectedValue == "1" && ddlDistrict.SelectedValue != "")
+                {
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == 1 && u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                }
+                else if (rbTarget.SelectedValue == "2" && ddlDistrict.SelectedValue != "" && ddlDSDivision.SelectedValue != "")
+                {
+
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                }
+                else
+                {
+                    ddlOfficer.Items.Clear();
+                }
+
 
             }
 
@@ -165,9 +188,6 @@ namespace ManPowerWeb
             ddlOfficer.Items.Insert(0, new ListItem("Select Officer", ""));
 
         }
-
-
-
         private void bindProgram()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
@@ -199,16 +219,11 @@ namespace ManPowerWeb
             if (rbTarget.SelectedValue == "2")
             {
                 bindDSDivision();
-                bindOfficerList();
-
             }
             else
             {
                 bindOfficerList();
-
             }
-
-
         }
         private void bindDSDivision()
         {
@@ -240,6 +255,7 @@ namespace ManPowerWeb
             ddlVote.DataTextField = "VoteNumber";
             ddlVote.DataValueField = "Id";
             ddlVote.DataBind();
+            ddlVote.Items.Insert(0, new ListItem("Select Vote", ""));
         }
 
         private void bindOficerRecomendation()
@@ -286,20 +302,41 @@ namespace ManPowerWeb
             programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
-            programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
-            programTarget.Output = txtOutput.Text;
-            programTarget.Outcome = txtOutcome.Text;
 
-            //if (txtOutcome.Text != "")
-            //{
-            //    programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+            if (ddlMonth.SelectedValue == "")
+            {
+                programTarget.TargetMonth = 0;
 
-            //}
-            //else
-            //{
-            //    programTarget.Outcome = 0;
+            }
+            else
+            {
+                programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
 
-            //}
+            }
+
+
+            if (txtOutput.Text != "")
+            {
+                programTarget.Output = Convert.ToInt32(txtOutput.Text);
+            }
+            else
+            {
+                programTarget.Output = 0;
+
+            }
+
+            if (txtOutcome.Text != "")
+            {
+                programTarget.Outcome = Convert.ToInt32(txtOutcome.Text);
+
+            }
+            else
+            {
+                programTarget.Outcome = 0;
+
+            }
+
+
             programTarget.CreatedBy = Convert.ToInt32(Session["UserId"]);
 
 
@@ -330,6 +367,7 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 btnSendToRecommendation.Visible = true;
                 bindOficerRecomendation();
+                clear();
 
             }
             else
@@ -347,10 +385,12 @@ namespace ManPowerWeb
         {
             if (rbTarget.SelectedValue == "1")
             {
+                rowdistrict.Visible = true;
                 hideDiv.Visible = false;
             }
-            else
+            if (rbTarget.SelectedValue == "2")
             {
+                rowdistrict.Visible = true;
                 hideDiv.Visible = true;
             }
         }
@@ -389,26 +429,35 @@ namespace ManPowerWeb
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-01-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-12-31";
+                ddlMonth.Enabled = false;
             }
             else if (ddlType.SelectedValue == "2")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-01-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-03-30";
+                ddlMonth.Enabled = false;
+
             }
             else if (ddlType.SelectedValue == "3")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-04-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-06-30";
+                ddlMonth.Enabled = false;
+
             }
             else if (ddlType.SelectedValue == "4")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-07-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-09-30";
+                ddlMonth.Enabled = false;
+
             }
             else if (ddlType.SelectedValue == "5")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-10-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-12-31";
+                ddlMonth.Enabled = false;
+
             }
             else
             {
@@ -416,17 +465,13 @@ namespace ManPowerWeb
                 txtEndDate.ReadOnly = false;
                 ddlStartDate.Text = "";
                 txtEndDate.Text = "";
+                ddlMonth.Enabled = true;
 
             }
 
         }
 
         protected void ddlDSDivision_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bindOfficerList();
-        }
-
-        protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
             bindOfficerList();
         }
@@ -449,6 +494,38 @@ namespace ManPowerWeb
             Response.Redirect(Request.RawUrl);
         }
 
+        protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindOfficerList();
+        }
 
+        protected void clear()
+        {
+            ddlProgram.SelectedItem.Text = "";
+            txtDescription.Text = "";
+            txtInstructions.Text = "";
+            ddlVote.SelectedValue = "";
+            ddlDistrict.SelectedValue = "";
+            ddlDSDivision.SelectedValue = "";
+            txtFinancialCount.Text = null;
+            txtEndDate.Text = null;
+            ddlStartDate.Text = null;
+            txtOutcome.Text = null;
+            ddlPosition.SelectedValue = "";
+            ddlYear.SelectedValue = "";
+            ddlMonth.SelectedValue = "";
+            txtPhysicalCount.Text = null;
+            ddlProgramType.SelectedValue = "";
+            ddlOfficer.SelectedValue = "";
+            txtOutcome.Text = "";
+            txtOutcomeDes.Text = "";
+            txtOutput.Text = "";
+            txtOutputDes.Text = "";
+            txtRemarks.Text = "";
+            rbTarget.ClearSelection();
+
+
+
+        }
     }
 }

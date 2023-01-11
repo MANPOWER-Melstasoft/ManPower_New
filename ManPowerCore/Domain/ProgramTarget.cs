@@ -32,7 +32,7 @@ namespace ManPowerCore.Domain
         public DateTime EndDate { get; set; }
 
         [DBField("OUTCOME")]
-        public string Outcome { get; set; }
+        public int Outcome { get; set; }
 
         [DBField("VOTE_NUMBER")]
         public string VoteNumber { get; set; }
@@ -50,7 +50,7 @@ namespace ManPowerCore.Domain
         public int TargetMonth { get; set; }
 
         [DBField("OUTPUT")]
-        public string Output { get; set; }
+        public int Output { get; set; }
 
         [DBField("INSTRACTIONS")]
         public string Instractions { get; set; }
@@ -69,6 +69,8 @@ namespace ManPowerCore.Domain
         [DBField("Remarks")]
         public string Remarks { get; set; }
 
+        [DBField("Reject_Remarks")]
+        public string RejectRemarks { get; set; }
 
         public Program _Program { get; set; } = new Program();
         public ProgramType _ProgramType { get; set; } = new ProgramType();

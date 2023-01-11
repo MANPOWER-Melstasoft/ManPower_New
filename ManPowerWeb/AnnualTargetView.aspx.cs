@@ -28,43 +28,48 @@ namespace ManPowerWeb
         {
 
 
-
-            ProgramTypeController programTypeController = ControllerFactory.CreateProgramTypeController();
-            listProgramType = programTypeController.GetAllProgramType(false);
-            ddlProgramType.DataSource = listProgramType;
-            ddlProgramType.DataTextField = "ProgramTypeName";
-            ddlProgramType.DataValueField = "ProgramTypeId";
-            ddlProgramType.DataBind();
-
-            DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
-            listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
-            listDSDivision = _DepartmentUnitTypeController.GetDepartmentUnitType(3, true)._DepartmentUnit;
-
-            ddlDistrict.DataSource = listDistrict;
-            ddlDistrict.DataTextField = "Name";
-            ddlDistrict.DataValueField = "DepartmentUnitId";
-            ddlDistrict.DataBind();
-
-            ddlDSDivision.DataSource = listDSDivision;
-            ddlDSDivision.DataTextField = "Name";
-            ddlDSDivision.DataValueField = "DepartmentUnitId";
-            ddlDSDivision.DataBind();
-
-
-            PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
-            PositionList = possitionsController.GetAllPossitions(false, false);
-            ddlPosition.DataSource = PositionList;
-            ddlPosition.DataTextField = "PositionName";
-            ddlPosition.DataValueField = "PossitionId";
-            ddlPosition.DataBind();
-
-            bindData();
-            bindOficerRecomendation();
-
-            if (Convert.ToInt32(Request.QueryString["Status"]) == 0)
+            if (!IsPostBack)
             {
-                btnSendToRecommendation.Visible = true;
+
+                ProgramTypeController programTypeController = ControllerFactory.CreateProgramTypeController();
+                listProgramType = programTypeController.GetAllProgramType(false);
+                ddlProgramType.DataSource = listProgramType;
+                ddlProgramType.DataTextField = "ProgramTypeName";
+                ddlProgramType.DataValueField = "ProgramTypeId";
+                ddlProgramType.DataBind();
+
+                DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
+                listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
+                listDSDivision = _DepartmentUnitTypeController.GetDepartmentUnitType(3, true)._DepartmentUnit;
+
+                ddlDistrict.DataSource = listDistrict;
+                ddlDistrict.DataTextField = "Name";
+                ddlDistrict.DataValueField = "DepartmentUnitId";
+                ddlDistrict.DataBind();
+
+                ddlDSDivision.DataSource = listDSDivision;
+                ddlDSDivision.DataTextField = "Name";
+                ddlDSDivision.DataValueField = "DepartmentUnitId";
+                ddlDSDivision.DataBind();
+
+
+                PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
+                PositionList = possitionsController.GetAllPossitions(false, false);
+                ddlPosition.DataSource = PositionList;
+                ddlPosition.DataTextField = "PositionName";
+                ddlPosition.DataValueField = "PossitionId";
+                ddlPosition.DataBind();
+
+                bindData();
+                bindOficerRecomendation();
+
+                if (Convert.ToInt32(Request.QueryString["Status"]) == 0)
+                {
+                    btnSendToRecommendation.Visible = true;
+                }
             }
+
+
 
         }
 
@@ -106,7 +111,7 @@ namespace ManPowerWeb
 
             lblofficer.Text = departmentUnitPositions._SystemUser.Name;
             ViewState["SelectedOfficerId"] = departmentUnitPositions._SystemUser.SystemUserId;
-            ddlYear.SelectedValue = Convert.ToString(myList[0].TargetYear);
+            txtlYear.Text = myList[0].TargetYear.ToString();
             ddlMonth.Text = myList[0].TargetMonth.ToString();
             txtDescription.Text = myList[0].Description;
             txtVote.Text = voteAllocationList[0].VoteNumber;
@@ -120,9 +125,31 @@ namespace ManPowerWeb
             ddlProgram.SelectedValue = myList[0].ProgramId.ToString();
             txtStratDate.Text = myList[0].StartDate.ToString("yyyy-MM-dd");
             txtEndDate.Text = myList[0].EndDate.ToString("yyyy-MM-dd");
+            txtRemarks.Text = myList[0].Remarks.ToString();
 
-            ddlDistrict.SelectedValue = departmentUnitPositions._DepartmentUnit.ParentId.ToString();
-            ddlDSDivision.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+
+
+            if (Convert.ToInt32(Request.QueryString["Status"]) == 3)
+            {
+                rowRejectRemarks.Visible = true;
+                txtRejectRemarks.Text = myList[0].RejectRemarks;
+            }
+
+            if (departmentUnitPositions._DepartmentUnit.ParentId == 1)
+            {
+                ddlDistrict.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+                rowDsDivision.Visible = false;
+                // ddlDSDivision.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+                rbTarget.SelectedValue = "1";
+            }
+            else
+            {
+                ddlDistrict.SelectedValue = departmentUnitPositions._DepartmentUnit.ParentId.ToString();
+                rowDsDivision.Visible = true;
+                ddlDSDivision.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+                rbTarget.SelectedValue = "2";
+            }
+
             ddlPosition.SelectedValue = departmentUnitPositions.PossitionsId.ToString();
 
 
@@ -151,11 +178,29 @@ namespace ManPowerWeb
         }
 
 
-        private string DecryptQueryString(string strQueryString)
-        {
-            EncryptDecryptQueryString objEDQueryString = new EncryptDecryptQueryString();
-            return objEDQueryString.Decrypt(strQueryString, "r0b1nr0y");
-        }
 
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            int selectedOficerRecomendation = Convert.ToInt32(ddlOficerRecomended.SelectedValue);
+
+            int targetresponse = programTargetController.UpdateProgramTargetApprovalRecomended(ProgramTargetId, selectedOficerRecomendation, 1);
+
+
+            if (targetresponse != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send Recommendation Succesfully!', 'success');window.setTimeout(function(){window.location='AnnualTarget.aspx'},2500);", true);
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went wrong!', 'error')", true);
+
+            }
+
+        }
     }
 }

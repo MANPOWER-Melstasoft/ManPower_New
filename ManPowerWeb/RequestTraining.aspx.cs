@@ -16,10 +16,16 @@ namespace ManPowerWeb
         public int depId;
 
         public int trainingRequestId;
+        List<EmploymentDetails> employeeDetailList = new List<EmploymentDetails>();
         protected void Page_Load(object sender, EventArgs e)
         {
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);
-            BindDataSource();
+
+            if (!IsPostBack)
+            {
+                BindDataSource();
+                bindddlEmployee();
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -37,8 +43,22 @@ namespace ManPowerWeb
             gvRequestTraining.DataBind();
         }
 
+        public void bindddlEmployee()
+        {
+            EmploymentDetailsController employeeDetailController = ControllerFactory.CreateEmploymentDetailsController();
+
+            employeeDetailList = employeeDetailController.GetAllEmploymentDetails();
+
+
+            ddlEmployee.DataSource = employeeDetailList;
+            ddlEmployee.DataValueField = "EmpID";
+            ddlEmployee.DataTextField = "EmpID";
+            ddlEmployee.DataBind();
+        }
+
         protected void btnAction_Click(object sender, EventArgs e)
         {
+            BindDataSource();
 
             GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
 
@@ -48,6 +68,16 @@ namespace ManPowerWeb
 
             string url = "addtrainingrequest.aspx?" + "TrainingRequestId=" + trainingRequestId;
             Response.Redirect(url);
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
+
+            trainingRequestList = trainingRequestList.Where(x => x.ProgramDate == Convert.ToDateTime(txtDate.Value) && x.Employee_Id == Convert.ToInt32(ddlEmployee.SelectedValue)).ToList();
+
+            gvRequestTraining.DataSource = trainingRequestList;
+            gvRequestTraining.DataBind();
         }
     }
 }

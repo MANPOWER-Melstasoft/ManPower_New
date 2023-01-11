@@ -114,6 +114,8 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="StartDate" HeaderText="START DATE" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="EndDate" HeaderText="END DATE" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+
                     <asp:BoundField DataField="Description" HeaderText="DESCRIPTION" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Title" HeaderText="TITLE" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">

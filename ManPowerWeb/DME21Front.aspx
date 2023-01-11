@@ -20,6 +20,9 @@
             <div class="col-sm-4">
                 <asp:LinkButton ID="btnAddDME21" runat="server" Style="width: 200px;" OnClick="btnAddDME21_Click">Add New DME21</asp:LinkButton>
             </div>
+            <div class="col-sm-4">
+                <asp:LinkButton ID="specialAmendment" runat="server" Style="width: 200px;" OnClick="specialAmendment_Click">Special Amendments</asp:LinkButton>
+            </div>
         </div>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">
             <asp:GridView ID="gvDME21Front" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"

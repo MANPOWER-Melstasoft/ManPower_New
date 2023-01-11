@@ -190,6 +190,7 @@
     <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="MainDashboard.aspx" />
     <Content Include="MaintenanceApproval.aspx" />
     <Content Include="MaintenanceApprovalView.aspx" />
     <Content Include="LeaveBalance.aspx" />
@@ -243,6 +244,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="SpecialAmendment.aspx" />
+    <Content Include="specialAmendmentRender.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
@@ -2244,6 +2246,13 @@
     <Compile Include="IndividualBeneView.aspx.designer.cs">
       <DependentUpon>IndividualBeneView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MainDashboard.aspx.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainDashboard.aspx.designer.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MaintenanceApproval.aspx.cs">
       <DependentUpon>MaintenanceApproval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2412,6 +2421,13 @@
     </Compile>
     <Compile Include="SpecialAmendment.aspx.designer.cs">
       <DependentUpon>SpecialAmendment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="specialAmendmentRender.aspx.cs">
+      <DependentUpon>specialAmendmentRender.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="specialAmendmentRender.aspx.designer.cs">
+      <DependentUpon>specialAmendmentRender.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>

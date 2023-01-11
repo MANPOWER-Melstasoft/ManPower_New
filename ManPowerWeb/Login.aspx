@@ -24,7 +24,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 </head>
-<body>
+<body style="background-image: url(img/bgimg.jpeg); background-repeat: no-repeat; background-size: cover;">
     <form id="form1" runat="server">
         <div class="top-row mb-5">
             <div class="col-12">
@@ -40,7 +40,7 @@
                             <h3 class="text-light text-center text-uppercase font-weight-bold">Login</h3>
                         </div>
                         <div class="card-body p-4">
-                            <div class="form-outline" style="font-weight: 700">
+                            <div class="form-outline" style="font-weight: 700; color: black;">
                                 <span class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                 </span>
@@ -51,7 +51,7 @@
                                         ControlToValidate="txtUserName" ErrorMessage="Username is Required">*</asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                            <div class="form-outline mb-4" style="font-weight: 700">
+                            <div class="form-outline mb-4" style="font-weight: 700; color: black;">
                                 <span class="input-group-addon">
                                     <i class="fa fa-lock"></i>
                                 </span>

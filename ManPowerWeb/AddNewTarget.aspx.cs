@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -60,6 +61,7 @@ namespace ManPowerWeb
                 bindDSDivision();
                 hideDSDivision();
                 bindProgram();
+                bindOfficerList();
 
 
 
@@ -72,6 +74,13 @@ namespace ManPowerWeb
                 }
                 //ddlYear.Items.FindByText(year.ToString()).Selected = true;
                 ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
+
+                var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+                for (int i = 0; i < months.Length - 1; i++)
+                {
+                    ddlMonth.Items.Add(new ListItem(months[i], (i + 1).ToString()));
+                }
+                ddlMonth.Items.Insert(0, new ListItem("Select Month", ""));
 
 
             }
@@ -153,7 +162,21 @@ namespace ManPowerWeb
 
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Warning!', 'Pleace select a position 'warning')", true);
+                if (rbTarget.SelectedValue == "1")
+                {
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                }
+                else if (rbTarget.SelectedValue == "2")
+                {
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                }
+                else
+                {
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                }
 
             }
 
@@ -199,16 +222,11 @@ namespace ManPowerWeb
             if (rbTarget.SelectedValue == "2")
             {
                 bindDSDivision();
-                bindOfficerList();
-
             }
             else
             {
                 bindOfficerList();
-
             }
-
-
         }
         private void bindDSDivision()
         {
@@ -286,8 +304,18 @@ namespace ManPowerWeb
             programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
-            programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
-            programTarget.Output = Convert.ToInt32(txtOutput.Text);
+
+            if (ddlMonth.SelectedValue == "")
+            {
+                programTarget.TargetMonth = 0;
+
+            }
+            else
+            {
+                programTarget.TargetMonth = Convert.ToInt32(ddlMonth.SelectedValue);
+
+            }
+
 
             if (txtOutput.Text != "")
             {
@@ -400,26 +428,35 @@ namespace ManPowerWeb
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-01-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-12-31";
+                ddlMonth.Enabled = false;
             }
             else if (ddlType.SelectedValue == "2")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-01-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-03-30";
+                ddlMonth.Enabled = false;
+
             }
             else if (ddlType.SelectedValue == "3")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-04-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-06-30";
+                ddlMonth.Enabled = false;
+
             }
             else if (ddlType.SelectedValue == "4")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-07-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-09-30";
+                ddlMonth.Enabled = false;
+
             }
             else if (ddlType.SelectedValue == "5")
             {
                 ddlStartDate.Text = ddlYear.SelectedItem.Text + "-10-01";
                 txtEndDate.Text = ddlYear.SelectedItem.Text + "-12-31";
+                ddlMonth.Enabled = false;
+
             }
             else
             {

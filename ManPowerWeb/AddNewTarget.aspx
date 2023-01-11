@@ -274,19 +274,8 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
-                                    <asp:ListItem Value="1">January</asp:ListItem>
-                                    <asp:ListItem Value="2">February</asp:ListItem>
-                                    <asp:ListItem Value="3">March</asp:ListItem>
-                                    <asp:ListItem Value="4">April</asp:ListItem>
-                                    <asp:ListItem Value="5">May</asp:ListItem>
-                                    <asp:ListItem Value="6">June</asp:ListItem>
-                                    <asp:ListItem Value="7">July</asp:ListItem>
-                                    <asp:ListItem Value="8">August</asp:ListItem>
-                                    <asp:ListItem Value="9">September</asp:ListItem>
-                                    <asp:ListItem Value="10">October</asp:ListItem>
-                                    <asp:ListItem Value="11">November</asp:ListItem>
-                                    <asp:ListItem Value="12">December</asp:ListItem>
                                 </asp:DropDownList>
+
 
                             </div>
                         </div>

@@ -255,6 +255,7 @@ namespace ManPowerWeb
             ddlVote.DataTextField = "VoteNumber";
             ddlVote.DataValueField = "Id";
             ddlVote.DataBind();
+            ddlVote.Items.Insert(0, new ListItem("Select Vote", ""));
         }
 
         private void bindOficerRecomendation()
@@ -366,6 +367,7 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 btnSendToRecommendation.Visible = true;
                 bindOficerRecomendation();
+                clear();
 
             }
             else
@@ -495,6 +497,35 @@ namespace ManPowerWeb
         protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
             bindOfficerList();
+        }
+
+        protected void clear()
+        {
+            ddlProgram.SelectedItem.Text = "";
+            txtDescription.Text = "";
+            txtInstructions.Text = "";
+            ddlVote.SelectedValue = "";
+            ddlDistrict.SelectedValue = "";
+            ddlDSDivision.SelectedValue = "";
+            txtFinancialCount.Text = null;
+            txtEndDate.Text = null;
+            ddlStartDate.Text = null;
+            txtOutcome.Text = null;
+            ddlPosition.SelectedValue = "";
+            ddlYear.SelectedValue = "";
+            ddlMonth.SelectedValue = "";
+            txtPhysicalCount.Text = null;
+            ddlProgramType.SelectedValue = "";
+            ddlOfficer.SelectedValue = "";
+            txtOutcome.Text = "";
+            txtOutcomeDes.Text = "";
+            txtOutput.Text = "";
+            txtOutputDes.Text = "";
+            txtRemarks.Text = "";
+            rbTarget.ClearSelection();
+
+
+
         }
     }
 }

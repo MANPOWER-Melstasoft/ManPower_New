@@ -53,7 +53,7 @@
                 <%--     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>--%>
                 <div class="row mb-3 ms-1">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" runat="server" id="rowdistrict" visible="false">
                         <div class="row mb-3">
                             <div class="col-sm-4">
                                 <asp:Literal ID="Literal3" runat="server" Text="District"></asp:Literal>
@@ -70,7 +70,7 @@
                     <%--    <%if (rbTarget.SelectedValue == "2")
                                 { %>--%>
 
-                    <div class="col-sm-6" id="hideDiv" runat="server">
+                    <div class="col-sm-6" id="hideDiv" runat="server" visible="false">
                         <div class="row mb-3">
                             <div class="col-sm-4">
                                 <asp:Literal ID="Literal4" runat="server" Text="DS Division"></asp:Literal>

@@ -59,7 +59,6 @@ namespace ManPowerWeb
 
 
                 bindDSDivision();
-                hideDSDivision();
                 bindProgram();
                 bindOfficerList();
 
@@ -150,33 +149,50 @@ namespace ManPowerWeb
                 }
                 else if (rbTarget.SelectedValue == "2")
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    if (ddlDSDivision.SelectedValue != "")
+                    {
+                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
+                    }
+                    else
+                    {
+                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                    }
                 }
                 else
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    ddlOfficer.Items.Clear();
 
                 }
+
             }
 
             else
             {
-                if (rbTarget.SelectedValue == "1")
+                if (rbTarget.SelectedValue == "1" && ddlDistrict.SelectedValue != "")
                 {
                     ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
                 }
-                else if (rbTarget.SelectedValue == "2")
+                else if (rbTarget.SelectedValue == "2" && ddlDistrict.SelectedValue != "")
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    if (ddlDSDivision.SelectedValue != "")
+                    {
+                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
+                    }
+                    else
+                    {
+                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+
+                    }
                 }
                 else
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.SystemUserId != Convert.ToInt32(Session["UserId"]));
-
+                    ddlOfficer.Items.Clear();
                 }
+
 
             }
 
@@ -386,10 +402,12 @@ namespace ManPowerWeb
         {
             if (rbTarget.SelectedValue == "1")
             {
+                rowdistrict.Visible = true;
                 hideDiv.Visible = false;
             }
-            else
+            if (rbTarget.SelectedValue == "2")
             {
+                rowdistrict.Visible = true;
                 hideDiv.Visible = true;
             }
         }
@@ -475,11 +493,6 @@ namespace ManPowerWeb
             bindOfficerList();
         }
 
-        protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bindOfficerList();
-        }
-
         protected void btnSend_Click1(object sender, EventArgs e)
         {
 
@@ -498,6 +511,9 @@ namespace ManPowerWeb
             Response.Redirect(Request.RawUrl);
         }
 
-
+        protected void ddlPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindOfficerList();
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace ManPowerWeb
     {
         List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
         List<ProgramTarget> programTargetsListState = new List<ProgramTarget>();
+        List<ProgramTarget> programTargetsSearchList = new List<ProgramTarget>();
+
         bool isCLicked = false;
 
         int year = DateTime.Now.Year;
@@ -47,13 +49,31 @@ namespace ManPowerWeb
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
-            ViewState["programTargetsList"] = programTargetsList.ToList();
-            ViewState["programTargetsListRejected"] = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
-            ViewState["programTargetsListApproved"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
-            ViewState["programTargetsListPending"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
-            ViewState["programTargetsListNotRecommended"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
 
-            GridView1.DataSource = programTargetsList;
+
+
+            if (isCLicked)
+            {
+                programTargetsSearchList = (List<ProgramTarget>)ViewState["programTargetsSearchList"];
+                ViewState["programTargetsList"] = programTargetsSearchList.ToList();
+                ViewState["programTargetsListRejected"] = programTargetsSearchList.Where(x => x.IsRecommended == 3).ToList();
+                ViewState["programTargetsListApproved"] = programTargetsSearchList.Where(x => x.IsRecommended == 2).ToList();
+                ViewState["programTargetsListPending"] = programTargetsSearchList.Where(x => x.IsRecommended == 1).ToList();
+                ViewState["programTargetsListNotRecommended"] = programTargetsSearchList.Where(x => x.IsRecommended == 0).ToList();
+
+                GridView1.DataSource = programTargetsSearchList;
+            }
+            else
+            {
+                ViewState["programTargetsList"] = programTargetsList.ToList();
+                ViewState["programTargetsListRejected"] = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
+                ViewState["programTargetsListApproved"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
+                ViewState["programTargetsListPending"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
+                ViewState["programTargetsListNotRecommended"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
+                GridView1.DataSource = programTargetsList;
+            }
+
+
             GridView1.DataBind();
 
         }
@@ -86,6 +106,7 @@ namespace ManPowerWeb
         private void bindDataSearch()
         {
             programTargetsListState = (List<ProgramTarget>)ViewState["programTargetsList"];
+            ViewState["programTargetsSearchList"] = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue).ToList();
 
             GridView1.DataSource = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue).ToList();
 
@@ -127,10 +148,6 @@ namespace ManPowerWeb
             rowIndex = (pagesize * pageindex) + rowIndex;
             Response.Redirect("AnnualTargetView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
 
-
-
-
-
         }
 
         protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,7 +156,7 @@ namespace ManPowerWeb
 
             if (ddlStatus.SelectedIndex == 0)
             {
-                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListNotRecommended"]; ;
+                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListNotRecommended"];
             }
             else if (ddlStatus.SelectedIndex == 1)
             {

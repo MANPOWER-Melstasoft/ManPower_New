@@ -106,7 +106,7 @@ namespace ManPowerWeb
         private void bindDataSearch()
         {
             programTargetsListState = (List<ProgramTarget>)ViewState["programTargetsList"];
-            ViewState["programTargetsSearchList"] = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue).ToList();
+            ViewState["programTargetsSearchList"] = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue || x.StartDate.Month.ToString() == ddlMonth.SelectedValue).ToList();
 
             GridView1.DataSource = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue).ToList();
 

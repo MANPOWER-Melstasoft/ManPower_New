@@ -62,7 +62,7 @@
                                 { %>--%>
 
                     <div class="col-sm-6" id="hideDiv" runat="server">
-                        <div class="row mb-3">
+                        <div class="row mb-3" runat="server" id="rowDsDivision">
                             <div class="col-sm-4">
                                 <asp:Literal ID="Literal4" runat="server" Text="DS Division"></asp:Literal>
                             </div>
@@ -324,7 +324,7 @@
                                 <asp:Literal ID="Literal18" runat="server" Text="Reject Remarks"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtRejectRemarks" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                <asp:TextBox ID="txtRejectRemarks" runat="server" CssClass="form-control form-control-user" Width="250px" ReadOnly="true"></asp:TextBox>
 
                             </div>
                         </div>

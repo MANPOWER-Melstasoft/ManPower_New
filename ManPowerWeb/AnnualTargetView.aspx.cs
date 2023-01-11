@@ -129,14 +129,27 @@ namespace ManPowerWeb
 
 
 
-            if (Convert.ToInt32(Request.QueryString["Status"]) == 0)
+            if (Convert.ToInt32(Request.QueryString["Status"]) == 3)
             {
                 rowRejectRemarks.Visible = true;
                 txtRejectRemarks.Text = myList[0].RejectRemarks;
             }
 
-            ddlDistrict.SelectedValue = departmentUnitPositions._DepartmentUnit.ParentId.ToString();
-            ddlDSDivision.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+            if (departmentUnitPositions._DepartmentUnit.ParentId == 1)
+            {
+                ddlDistrict.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+                rowDsDivision.Visible = false;
+                // ddlDSDivision.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+                rbTarget.SelectedValue = "1";
+            }
+            else
+            {
+                ddlDistrict.SelectedValue = departmentUnitPositions._DepartmentUnit.ParentId.ToString();
+                rowDsDivision.Visible = true;
+                ddlDSDivision.SelectedValue = departmentUnitPositions._DepartmentUnit.DepartmentUnitId.ToString();
+                rbTarget.SelectedValue = "2";
+            }
+
             ddlPosition.SelectedValue = departmentUnitPositions.PossitionsId.ToString();
 
 

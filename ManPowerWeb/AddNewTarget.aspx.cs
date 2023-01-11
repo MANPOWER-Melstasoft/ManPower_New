@@ -142,23 +142,14 @@ namespace ManPowerWeb
 
             if (ddlPosition.SelectedValue != "")
             {
-                if (rbTarget.SelectedValue == "1")
+                if (rbTarget.SelectedValue == "1" && ddlDistrict.SelectedValue != "")
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == 1 && u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
                 }
-                else if (rbTarget.SelectedValue == "2")
+                else if (rbTarget.SelectedValue == "2" && ddlDSDivision.SelectedValue != "" && ddlDistrict.SelectedValue != "")
                 {
-                    if (ddlDSDivision.SelectedValue != "")
-                    {
-                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
-
-                    }
-                    else
-                    {
-                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
-
-                    }
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.PossitionId == int.Parse(ddlPosition.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
                 }
                 else
                 {
@@ -172,21 +163,14 @@ namespace ManPowerWeb
             {
                 if (rbTarget.SelectedValue == "1" && ddlDistrict.SelectedValue != "")
                 {
-                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == 1 && u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
                 }
-                else if (rbTarget.SelectedValue == "2" && ddlDistrict.SelectedValue != "")
+                else if (rbTarget.SelectedValue == "2" && ddlDistrict.SelectedValue != "" && ddlDSDivision.SelectedValue != "")
                 {
-                    if (ddlDSDivision.SelectedValue != "")
-                    {
-                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
-                    }
-                    else
-                    {
-                        ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
+                    ddlOfficer.DataSource = listSystemUseerOfficer.Where(u => u.ParentId == int.Parse(ddlDistrict.SelectedValue) && u.DepartmentUnitId == int.Parse(ddlDSDivision.SelectedValue) && u.SystemUserId != Convert.ToInt32(Session["UserId"]));
 
-                    }
                 }
                 else
                 {
@@ -204,9 +188,6 @@ namespace ManPowerWeb
             ddlOfficer.Items.Insert(0, new ListItem("Select Officer", ""));
 
         }
-
-
-
         private void bindProgram()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();

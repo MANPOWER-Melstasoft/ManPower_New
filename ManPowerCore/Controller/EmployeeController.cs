@@ -40,15 +40,6 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 id = employeeDAO.SaveEmployee(emp, dBConnection);
 
-                if (emp._EmployeeContact.Count > 0)
-                {
-                    foreach (var item in emp._EmployeeContact)
-                    {
-                        item.EmpID = id;
-                        employeeContactDAO.SaveEmployeeContact(item, dBConnection);
-                    }
-                }
-
                 if (emp._EmploymentDetails.Count > 0)
                 {
                     foreach (var item in emp._EmploymentDetails)
@@ -90,6 +81,9 @@ namespace ManPowerCore.Controller
                 {
                     emp._EmergencyContact.EmployeeId = id;
                     emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
+
+                    emp._EmployeeContact.EmpID = id;
+                    employeeContactDAO.SaveEmployeeContact(emp._EmployeeContact, dBConnection);
                 }
 
 

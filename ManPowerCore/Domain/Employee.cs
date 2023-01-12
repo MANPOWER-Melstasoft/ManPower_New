@@ -109,7 +109,7 @@ namespace ManPowerCore.Domain
 
 
         public EmergencyContact _EmergencyContact { get; set; } = new EmergencyContact();
-        public List<EmployeeContact> _EmployeeContact { get; set; } = new List<EmployeeContact>();
+        public EmployeeContact _EmployeeContact { get; set; } = new EmployeeContact();
         public List<Dependant> _Dependant { get; set; } = new List<Dependant>();
         public List<EmploymentDetails> _EmploymentDetails { get; set; } = new List<EmploymentDetails>();
 

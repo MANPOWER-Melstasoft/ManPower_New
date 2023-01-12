@@ -71,22 +71,11 @@ namespace ManPowerWeb
 
             if (result1 == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-                nature.Text = "";
-                sDate.Text = "";
-                income.Text = "";
-                workers.Text = "";
-                contact.Text = "";
-                email.Text = "";
-                regNo.Text = "";
-                district.Text = "";
-                ds.Text = "";
-                date.Text = "";
-                fType.Text = "";
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='EntRegistration.aspx'},2500);", true);
             }
         }
 

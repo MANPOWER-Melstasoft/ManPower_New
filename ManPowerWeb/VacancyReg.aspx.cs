@@ -39,40 +39,6 @@ namespace ManPowerWeb
             ddlLevel.DataBind();
         }
 
-        //protected void btnAdd_Click(object sender, EventArgs e)
-        //{
-
-        //    list.Add(new CompanyVecansyRegistationDetails()
-        //    {
-        //        VDate = Convert.ToDateTime(date.Text),
-        //        VAddress = address.Text,
-        //        WebSiteLink = link.Text,
-        //        BusinessRegistationNumber = regNo.Text,
-        //        JobPosition = position.Text,
-        //        CareerPath = "",
-        //        SalaryLevel = salary.Text,
-        //        NumberOfVacancy = int.Parse(NoOfVacancy.Text),
-        //        Name = name.Text,
-        //        Position = position.Text,
-        //        ContactNumber = contact.Text,
-        //        WhatsappNumber = whatsapp.Text,
-        //        VLevels = "",
-        //        Email = email.Text
-        //    });
-
-        //    date.Text = null;
-        //    address.Text = null;
-        //    link.Text = null;
-        //    regNo.Text = null;
-        //    position.Text = null;
-        //    salary.Text = null;
-        //    NoOfVacancy.Text = null;
-        //    name.Text = null;
-        //    position.Text = null;
-        //    contact.Text = null;
-        //    whatsapp.Text = null;
-        //    email.Text = null;
-        //}
 
     protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -99,25 +65,11 @@ namespace ManPowerWeb
 
             if (result1 == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-                date.Text = null;
-                address.Text = null;
-                link.Text = null;
-                regNo.Text = null;
-                position.Text = null;
-                salary.Text = null;
-                NoOfVacancy.Text = null;
-                name.Text = null;
-                position.Text = null;
-                contact.Text = null;
-                whatsapp.Text = null;
-                email.Text = null;
-                position.Text = null;
-
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='VacancyReg.aspx'},2500);", true);
             }
         }
 

@@ -5,6 +5,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace ManPowerWeb
         string[] gen = { "Male", "Female" };
         string[] mmStatus = { "Married", "Single" };
         int[] attempt = { 1, 2, 3 };
-        string[] conformation = { "Yes", "No" };
+        string[] eduStatus = { "Completed", "Not Completed" };
         string[] isResigned = { "Yes", "No" };
         int[] yearslist =
         {
@@ -134,10 +135,13 @@ namespace ManPowerWeb
             //DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
             listDistrict = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 2 || u.DepartmentUnitTypeId == 1).ToList();
-            
+
 
             ddlGender.DataSource = gen;
             ddlGender.DataBind();
+
+            ddlEducationStatus.DataSource = eduStatus;
+            ddlEducationStatus.DataBind();
 
             ddlEthnicity.DataSource = ethnicityList;
             ddlEthnicity.DataValueField = "EthnicityId";
@@ -176,7 +180,7 @@ namespace ManPowerWeb
             ddlDesignation.DataValueField = "DesignationId";
             ddlDesignation.DataTextField = "DesigntionName";
             ddlDesignation.DataBind();
-             
+
             ddlDistrict.DataSource = listDistrict;
             ddlDistrict.DataTextField = "Name";
             ddlDistrict.DataValueField = "DepartmentUnitId";
@@ -228,53 +232,69 @@ namespace ManPowerWeb
                 dependant = (List<Dependant>)ViewState["dependant"];
             }
 
+
             if (int.Parse(ddlDependant.SelectedValue) == 1)
             {
-                dependant.Add(new Dependant
+                if (Convert.ToDateTime(mDate.Text) >= DateTime.Today)
                 {
-                    DependantTypeId = int.Parse(ddlDependant.SelectedValue),
-                    FirstName = dependantFname.Text,
-                    LastName = dependantLname.Text,
-                    DependantNIC = depNic.Text,
-                    DependantPassportNo = ppNumber.Text,
-                    BirthCertificateNumber = int.Parse(bcNumber.Text),
-                    Dob = Convert.ToDateTime(depDob.Text),
-                    RelationshipToEmp = dependantRelationship.Text,
-                    Remarks = sickness.Text,
-                    MarriageDate = Convert.ToDateTime(mDate.Text),
-                    MarriageCertificateNo = int.Parse(mCertificateNo.Text),
-                    WorkingCompany = workingCompany.Text,
-                    City = city.Text
-                });
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Marriage Date is not a Valid Date!', 'error');", true);
+                }
+                else if (Convert.ToDateTime(depDob.Text) >= DateTime.Today)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth Can not be a Future Date!', 'error');", true);
+                }
+                else
+                {
+                    dependant.Add(new Dependant
+                    {
+                        DependantTypeId = int.Parse(ddlDependant.SelectedValue),
+                        FirstName = dependantFname.Text,
+                        LastName = dependantLname.Text,
+                        DependantNIC = depNic.Text,
+                        DependantPassportNo = ppNumber.Text,
+                        BirthCertificateNumber = bcNumber.Text,
+                        Dob = Convert.ToDateTime(depDob.Text),
+                        RelationshipToEmp = dependantRelationship.Text,
+                        Remarks = sickness.Text,
+                        MarriageDate = Convert.ToDateTime(mDate.Text),
+                        MarriageCertificateNo = mCertificateNo.Text,
+                        WorkingCompany = workingCompany.Text,
+                        City = city.Text
+                    });
+                }
             }
             else
             {
-                dependant.Add(new Dependant
+                if (Convert.ToDateTime(depDob.Text) <= DateTime.Today)
                 {
-                    DependantTypeId = int.Parse(ddlDependant.SelectedValue),
-                    FirstName = dependantFname.Text,
-                    LastName = dependantLname.Text,
-                    DependantNIC = depNic.Text,
-                    DependantPassportNo = ppNumber.Text,
-                    BirthCertificateNumber = int.Parse(bcNumber.Text),
-                    Dob = Convert.ToDateTime(depDob.Text),
-                    RelationshipToEmp = dependantRelationship.Text,
-                    Remarks = sickness.Text,
-                    MarriageDate = DateTime.Today,
-                    MarriageCertificateNo = 0,
-                    WorkingCompany = "",
-                    City = ""
-                });
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth Can not be a Future Date!', 'error');", true);
+                }
+                else
+                {
+                    dependant.Add(new Dependant
+                    {
+                        DependantTypeId = int.Parse(ddlDependant.SelectedValue),
+                        FirstName = dependantFname.Text,
+                        LastName = dependantLname.Text,
+                        DependantNIC = depNic.Text,
+                        DependantPassportNo = ppNumber.Text,
+                        BirthCertificateNumber = bcNumber.Text,
+                        Dob = Convert.ToDateTime(depDob.Text),
+                        RelationshipToEmp = dependantRelationship.Text,
+                        Remarks = sickness.Text,
+                        MarriageDate = DateTime.Today,
+                        MarriageCertificateNo = "",
+                        WorkingCompany = "",
+                        City = ""
+                    });
+                }
             }
 
-            ViewState["dependant"] = dependant;
 
-            //dependant = (List<Dependant>)ViewState["dependant"];
+
+            ViewState["dependant"] = dependant;
             dependantGV.DataSource = dependant;
             dependantGV.DataBind();
-
-            //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-
 
             dependantFname.Text = null;
             dependantLname.Text = null;
@@ -288,7 +308,19 @@ namespace ManPowerWeb
             mCertificateNo.Text = null;
             workingCompany.Text = null;
             city.Text = null;
+        }
 
+        protected void RemoveDependant(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            dependant = (List<Dependant>)ViewState["dependant"];
+            dependant.RemoveAt(rowIndex);
+
+            ViewState["dependant"] = dependant;
+            dependantGV.DataSource = dependant;
+            dependantGV.DataBind();
         }
 
         protected void addEmployment(object sender, EventArgs e)
@@ -298,38 +330,111 @@ namespace ManPowerWeb
                 employmentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"];
             }
 
-            if(reseg.SelectedValue == "1")
+            if (ddContract.SelectedValue == "1")
             {
-                employmentDetails.Add(new EmploymentDetails()
+                DateTime calcuatedDate = Convert.ToDateTime(sDate.Text).AddMonths(6);
+
+                if (reseg.SelectedValue == "1")
                 {
-                    ContractTypeId = int.Parse(ddContract.SelectedValue),
-                    DesignationId = int.Parse(ddlDesignation.SelectedValue),
-                    CompanyName = companyName.Text,
-                    //EmpNumber = 0,
-                    StartDate = Convert.ToDateTime(sDate.Text),
-                    EndDate = Convert.ToDateTime(eDate.Text),
-                    IsResigned = int.Parse(reseg.SelectedValue),
-                    RetirementDate = Convert.ToDateTime(retiredDate.Text),
-                    Epf = int.Parse(epf.Text)
-                });
+                    employmentDetails.Add(new EmploymentDetails()
+                    {
+                        ContractTypeId = int.Parse(ddContract.SelectedValue),
+                        DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                        CompanyName = companyName.Text,
+                        StartDate = Convert.ToDateTime(sDate.Text),
+                        EndDate = calcuatedDate,
+                        IsResigned = int.Parse(reseg.SelectedValue),
+                        RetirementDate = Convert.ToDateTime(retiredDate.Text),
+                        Epf = int.Parse(epf.Text)
+                    });
+                }
+                else
+                {
+                    employmentDetails.Add(new EmploymentDetails()
+                    {
+                        ContractTypeId = int.Parse(ddContract.SelectedValue),
+                        DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                        CompanyName = companyName.Text,
+                        StartDate = Convert.ToDateTime(sDate.Text),
+                        EndDate = calcuatedDate,
+                        IsResigned = int.Parse(reseg.SelectedValue),
+                        RetirementDate = DateTime.Today,
+                        Epf = int.Parse(epf.Text)
+                    });
+                }
+            }
+            else if (ddContract.SelectedValue == "2")
+            {
+                DateTime calcuatedDate = Convert.ToDateTime(sDate.Text).AddYears(1);
+
+                if (reseg.SelectedValue == "1")
+                {
+                    employmentDetails.Add(new EmploymentDetails()
+                    {
+                        ContractTypeId = int.Parse(ddContract.SelectedValue),
+                        DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                        CompanyName = companyName.Text,
+                        StartDate = Convert.ToDateTime(sDate.Text),
+                        EndDate = calcuatedDate,
+                        IsResigned = int.Parse(reseg.SelectedValue),
+                        RetirementDate = Convert.ToDateTime(retiredDate.Text),
+                        Epf = int.Parse(epf.Text)
+                    });
+                }
+                else
+                {
+                    employmentDetails.Add(new EmploymentDetails()
+                    {
+                        ContractTypeId = int.Parse(ddContract.SelectedValue),
+                        DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                        CompanyName = companyName.Text,
+                        StartDate = Convert.ToDateTime(sDate.Text),
+                        EndDate = calcuatedDate,
+                        IsResigned = int.Parse(reseg.SelectedValue),
+                        RetirementDate = DateTime.Today,
+                        Epf = int.Parse(epf.Text)
+                    });
+                }
             }
             else
             {
-                employmentDetails.Add(new EmploymentDetails()
+                if (Convert.ToDateTime(eDate.Text) <= Convert.ToDateTime(sDate.Text))
                 {
-                    ContractTypeId = int.Parse(ddContract.SelectedValue),
-                    DesignationId = int.Parse(ddlDesignation.SelectedValue),
-                    CompanyName = companyName.Text,
-                    //EmpNumber = 0,
-                    StartDate = Convert.ToDateTime(sDate.Text),
-                    EndDate = Convert.ToDateTime(eDate.Text),
-                    IsResigned = int.Parse(reseg.SelectedValue),
-                    RetirementDate = DateTime.Today,
-                    Epf = int.Parse(epf.Text)
-                }) ;
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'End Date is not a Valid Date!', 'error');", true);
+                }
+                else
+                {
+                    if (reseg.SelectedValue == "1")
+                    {
+                        employmentDetails.Add(new EmploymentDetails()
+                        {
+                            ContractTypeId = int.Parse(ddContract.SelectedValue),
+                            DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                            CompanyName = companyName.Text,
+                            StartDate = Convert.ToDateTime(sDate.Text),
+                            EndDate = Convert.ToDateTime(eDate.Text),
+                            IsResigned = int.Parse(reseg.SelectedValue),
+                            RetirementDate = Convert.ToDateTime(retiredDate.Text),
+                            Epf = int.Parse(epf.Text)
+                        });
+                    }
+                    else
+                    {
+                        employmentDetails.Add(new EmploymentDetails()
+                        {
+                            ContractTypeId = int.Parse(ddContract.SelectedValue),
+                            DesignationId = int.Parse(ddlDesignation.SelectedValue),
+                            CompanyName = companyName.Text,
+                            StartDate = Convert.ToDateTime(sDate.Text),
+                            EndDate = Convert.ToDateTime(eDate.Text),
+                            IsResigned = int.Parse(reseg.SelectedValue),
+                            RetirementDate = DateTime.Today,
+                            Epf = int.Parse(epf.Text)
+                        });
+                    }
+                }
             }
 
-            
 
             companyName.Text = null;
             //empNo.Text = null;
@@ -338,6 +443,18 @@ namespace ManPowerWeb
             retiredDate.Text = null;
             epf.Text = null;
 
+            ViewState["employmentDetails"] = employmentDetails;
+            emplDetailsGV.DataSource = employmentDetails;
+            emplDetailsGV.DataBind();
+        }
+
+        protected void RemoveEmployDetails(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            employmentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"];
+            employmentDetails.RemoveAt(rowIndex);
 
             ViewState["employmentDetails"] = employmentDetails;
             emplDetailsGV.DataSource = employmentDetails;
@@ -354,18 +471,36 @@ namespace ManPowerWeb
                 educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
             }
 
-            educationDetails.Add(new EducationDetails()
+            if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
             {
-                EducationTypeId = int.Parse(ddlEducation.SelectedValue),
-                StudiedInstitute = uni.Text,
-                NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
-                ExamYear = int.Parse(ddlYear.SelectedValue),
-                ExamIndex = index.Text,
-                ExamSubject = sub.Text,
-                ExamStream = stream.Text,
-                ExamGrade = grade.Text,
-                ExamStatus = status.Text
-            });
+                educationDetails.Add(new EducationDetails()
+                {
+                    EducationTypeId = int.Parse(ddlEducation.SelectedValue),
+                    StudiedInstitute = uni.Text,
+                    NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
+                    ExamYear = int.Parse(ddlYear.SelectedValue),
+                    ExamIndex = index.Text,
+                    ExamSubject = sub.Text,
+                    ExamStream = stream.Text,
+                    ExamGrade = grade.Text,
+                    ExamStatus = ddlEducationStatus.SelectedValue
+                });
+            }
+            else
+            {
+                educationDetails.Add(new EducationDetails()
+                {
+                    EducationTypeId = int.Parse(ddlEducation.SelectedValue),
+                    StudiedInstitute = uni.Text,
+                    NoOfAttempts = 1,
+                    ExamYear = int.Parse(ddlYear.SelectedValue),
+                    ExamIndex = index.Text,
+                    ExamSubject = "",
+                    ExamStream = "",
+                    ExamGrade = "",
+                    ExamStatus = ddlEducationStatus.SelectedValue
+                });
+            }
 
 
             uni.Text = null;
@@ -373,7 +508,19 @@ namespace ManPowerWeb
             sub.Text = null;
             stream.Text = null;
             grade.Text = null;
-            status.Text = null;
+
+            ViewState["educationDetails"] = educationDetails;
+            educationGV.DataSource = educationDetails;
+            educationGV.DataBind();
+        }
+
+        protected void RemoveEducation(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+            educationDetails.RemoveAt(rowIndex);
 
             ViewState["educationDetails"] = educationDetails;
             educationGV.DataSource = educationDetails;
@@ -407,37 +554,23 @@ namespace ManPowerWeb
             servicesGV.DataBind();
         }
 
-        //protected void addContact(object sender, EventArgs e)
-        //{
-        //    if (employeeContact.Count == 0 && ViewState["employeeContact"] != null)
-        //    {
-        //        employeeContact = (List<EmployeeContact>)ViewState["employeeContact"];
-        //    }
+        protected void RemoveServices(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-        //    employeeContact.Add(new EmployeeContact()
-        //    {
-        //        ServicesTypeId = int.Parse(ddlService.SelectedValue),
-        //        AppointmentDate = Convert.ToDateTime(appointmentDate.Text),
-        //        DateAssumedDuty = dateAssumedDuty.Text,
-        //        MethodOfRecruitment = method.Text,
-        //        MediumOfRecruitment = medium.Text,
-        //        ServiceConfirmed = int.Parse(confirmation.Text)
-        //    });
+            employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
+            employeeServices.RemoveAt(rowIndex);
 
-        //    appointmentDate.Text = null;
-        //    dateAssumedDuty.Text = null;
-        //    method.Text = null;
-        //    medium.Text = null;
-
-        //    ViewState["employeeContact"] = employeeContact;
-        //    servicesGV.DataSource = employeeContact;
-        //    servicesGV.DataBind();
-        //}
+            ViewState["employeeServices"] = employeeServices;
+            servicesGV.DataSource = employeeServices;
+            servicesGV.DataBind();
+        }
 
         protected void submit(object sender, EventArgs e)
         {
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
-            filter = departmentUnitController.GetAllDepartmentUnit(false,false);
+            filter = departmentUnitController.GetAllDepartmentUnit(false, false);
 
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
             Employee emp = new Employee();
@@ -457,7 +590,7 @@ namespace ManPowerWeb
             emp.ManagerId = 0;
             emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
 
-            if(ddlDS.SelectedValue != "")
+            if (ddlDS.SelectedValue != "")
             {
                 emp.DSDivisionId = int.Parse(ddlDS.SelectedValue);
                 foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDS.SelectedValue)))
@@ -465,7 +598,7 @@ namespace ManPowerWeb
                     emp.UnitType = i.DepartmentUnitTypeId;
                 }
             }
-            else 
+            else
             {
                 emp.DSDivisionId = 0;
                 foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue)))
@@ -473,8 +606,6 @@ namespace ManPowerWeb
                     emp.UnitType = i.DepartmentUnitTypeId;
                 }
             }
-
-            
 
             emp._Dependant = (List<Dependant>)ViewState["dependant"];
             emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"]; ;
@@ -488,16 +619,23 @@ namespace ManPowerWeb
             emp._EmergencyContact.EmgMobile = int.Parse(ecMobile.Text);
             emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
 
+            emp._EmployeeContact.EmpAddress = address.Text;
+            emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
+            emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
+            emp._EmployeeContact.EmpEmail = email.Text;
+            emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
+            emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
+
+
             int result1 = employeeController.SaveEmployee(emp);
 
-            if (result1 == 0)
+            if (result1 == 1)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-                Response.Redirect("PersonalFiles.aspx");
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
             }
         }
@@ -524,13 +662,24 @@ namespace ManPowerWeb
 
         protected void page1NextClick(object sender, EventArgs e)
         {
-            id1.Visible = false;
-            id2.Visible = true;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = false;
-            id7.Visible = false;
+            if (Convert.ToDateTime(nicIssuedDate.Text) >= DateTime.Today)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'NIC Issued Date can not be a Future Date!', 'error');", true);
+            }
+            else if (Convert.ToDateTime(dob.Text) >= DateTime.Today)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth is Invaid!', 'error');", true);
+            }
+            else
+            {
+                id1.Visible = false;
+                id2.Visible = true;
+                id3.Visible = false;
+                id4.Visible = false;
+                id5.Visible = false;
+                id6.Visible = false;
+                id7.Visible = false;
+            }
         }
 
         protected void page2PrevClick(object sender, EventArgs e)
@@ -660,6 +809,7 @@ namespace ManPowerWeb
             id6.Visible = true;
             id7.Visible = false;
         }
+
 
     }
 }

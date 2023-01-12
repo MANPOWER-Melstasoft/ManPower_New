@@ -148,13 +148,10 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="empPassport" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="empPassport" ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
-			</div><br />
 
-			<div class="row">
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
@@ -162,10 +159,13 @@
 						</div>
 						<div class="col-8">
 							<asp:DropDownList ID="ddlDistrict" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
+							<asp:RequiredFieldValidator ControlToValidate="ddlDistrict" ID="RequiredFieldValidator54" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
+			</div><br />
 
+			<div class="row">
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
@@ -254,6 +254,8 @@
 				</div>
 			</div><br />
 
+			
+
 			<div class="row">
 				<div class="col-6">
 					<div class="row">
@@ -267,18 +269,36 @@
 					</div>
 				</div>
 
+				<% if (ddContract.SelectedValue == "1" || ddContract.SelectedValue == "2")
+                    { %>
+
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
 							<label>End Date : </label>
 						</div>
 						<div class="col-8" >
-							<asp:TextBox ID="eDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="eDate" ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:TextBox ID="calcDate" runat="server" Width="230px" ReadOnly CssClass="form-control form-control-user"></asp:TextBox>
 						</div>
 					</div>
 				</div>
+				<%}
+                    else
+                    {  %>
+				<div class="col-6">
+					<div class="row">
+						<div class="col-4" >
+							<label>End Date : </label>
+						</div>
+						<div class="col-8" >
+							<asp:TextBox ID="eDate" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Date" ></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="eDate" ID="RequiredFieldValidator28" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
+						</div>
+					</div>
+				</div>
+				<%} %>
 			</div><br />
+
 
 			<div class="row">
 				<div class="col-6">
@@ -325,12 +345,16 @@
 				<asp:GridView Style="margin-top: 30px;" ID="emplDetailsGV" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
 					CellPadding="4" GridLines="None">
 					<Columns>
-						<asp:BoundField HeaderText="Employee Id" DataField="EmpID" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Company Name" DataField="CompanyName" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Start Date" DataField="StartDate" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="End Date" DataField="EndDate" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Retirement Date" DataField="RetirementDate" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Epf" DataField="epf" HeaderStyle-CssClass="table-dark" />
+						<asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
+							<ItemTemplate>
+								<asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveEmployDetails">Remove</asp:LinkButton>
+							</ItemTemplate>
+						</asp:TemplateField>
 					</Columns>
 				</asp:GridView>
 			</div>
@@ -364,8 +388,7 @@
 							<label>Dependant Type : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlDependant" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlDependant" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -425,7 +448,7 @@
 							<label>Birth Certificate Number : </label>
 						</div>
 						<div class="col-8" >
-							<asp:TextBox ID="bcNumber" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+							<asp:TextBox ID="bcNumber" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="bcNumber" ID="RequiredFieldValidator20" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						</div>
 					</div>
 				</div>
@@ -439,7 +462,6 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="ppNumber" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="ppNumber" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						
 						</div>
 					</div>
 				</div>
@@ -451,13 +473,12 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="sickness" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="sickness" ID="RequiredFieldValidator22" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>						
 						</div>
 					</div>
 				</div>
 			</div><br />
 
-			<%if (int.Parse(ddlDependant.SelectedValue) == 1)
+			<%if (ddlDependant.SelectedValue == "1")
               { %>
 
 					<div class="row">
@@ -479,7 +500,7 @@
 									<label>Marriage Certificate Number : </label>
 								</div>
 								<div class="col-8">
-									<asp:TextBox ID="mCertificateNo" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+									<asp:TextBox ID="mCertificateNo" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 									<asp:RequiredFieldValidator ControlToValidate="mCertificateNo" ID="RequiredFieldValidator24" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
 								</div>
 							</div>
@@ -511,6 +532,20 @@
 							</div>
 						</div>
 					</div><br />
+
+					<div class="row">
+						<div class="col-6">
+							<div class="row">
+								<div class="col-4" >
+									<label>City : </label>
+								</div>
+								<div class="col-8">
+									<asp:TextBox ID="city" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
+									<asp:RequiredFieldValidator ControlToValidate="city" ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
+								</div>
+							</div>
+						</div>
+					</div><br />
 			<%} %>
 
 		<br /><br />
@@ -525,12 +560,16 @@
                 <Columns>
                     <asp:BoundField HeaderText="First Name" DataField="FirstName" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Last Name" DataField="LastName" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField HeaderText="Dependant NIC" DataField="DependantNIC" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Dependant Passport No" DataField="DependantPassportNo" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Date of Birth" DataField="Dob" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Relationship to Employee" DataField="RelationshipToEmp" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="BirthCertificate Number" DataField="BirthCertificateNumber" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Special Sickness" DataField="Remarks" HeaderStyle-CssClass="table-dark" />
+					<asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
+							<ItemTemplate>
+								<asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveDependant">Remove</asp:LinkButton>
+							</ItemTemplate>
+					</asp:TemplateField>
                 </Columns>
             </asp:GridView>
 		</div>
@@ -569,37 +608,14 @@
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
-							<label>Divisional Secretary : </label>
+							<label>Mobile Phone : </label>
 						</div>
-						<div class="col-8">
-							<asp:TextBox ID="devsec" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="devsec" ID="RequiredFieldValidator28" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
-						</div>
-					</div>
-				</div>
-			</div><br />
-
-			<div class="row">
-				<div class="col-6">
-					<div class="row">
-						<div class="col-4" >
-							<label>City / Town : </label>
-						</div>
-						<div class="col-8">
-							<asp:TextBox ID="city" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="city" ID="RequiredFieldValidator29" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-6">
-					<div class="row">
-						<div class="col-4" >
-							<label>District : </label>
-						</div>
-						<div class="col-8">
-							<asp:TextBox ID="district" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="district" ID="RequiredFieldValidator30" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
+						<div class="col-8" >
+							<asp:TextBox ID="EmpMobilePhone" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="EmpMobilePhone" ID="RequiredFieldValidator52" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="EmpMobilePhone" ValidationGroup="4"
+                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -609,12 +625,12 @@
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
-							<label>Telephone : </label>
+							<label>Telephone (Landline): </label>
 						</div>
 						<div class="col-8" >
 							<asp:TextBox ID="telephone" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="telephone" ID="RequiredFieldValidator31" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
-							<asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Invalid Mobile Number."
+							<asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Invalid Mobile Number."
                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="telephone" ValidationGroup="4"
                                 ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
 						</div>
@@ -635,6 +651,21 @@
 			</div><br />
 
 			<div class="row">
+				<div class="col-6">
+					<div class="row">
+						<div class="col-4" >
+							<label>Office Phone : </label>
+						</div>
+						<div class="col-8" >
+							<asp:TextBox ID="EmpOfficePhone" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="EmpOfficePhone" ID="RequiredFieldValidator51" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="EmpOfficePhone" ValidationGroup="4"
+                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
+						</div>
+					</div>
+				</div>
+
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
@@ -823,11 +854,12 @@
 							<label>Education Type : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlEducation" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlEducation" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
+
+				
 
 				<div class="col-6">
 					<div class="row">
@@ -846,14 +878,15 @@
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
-							<label>Attempt : </label>
+							<label>Index Number: </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlAttempt" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:TextBox ID="index" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RequiredFieldValidator ControlToValidate="index" ID="RequiredFieldValidator42" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
 						</div>
 					</div>
 				</div>
+				
 
 				<div class="col-6">
 					<div class="row">
@@ -861,22 +894,23 @@
 							<label>Year : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlYear" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlYear" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
 			</div><br /><br />
 
+			<%if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
+                {  %>
+
 			<div class="row">
 				<div class="col-6">
 					<div class="row">
 						<div class="col-4" >
-							<label>Index Number: </label>
+							<label>Attempt : </label>
 						</div>
 						<div class="col-8">
-							<asp:TextBox ID="index" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="index" ID="RequiredFieldValidator42" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:DropDownList ID="ddlAttempt" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -920,6 +954,8 @@
 				</div>
 			</div><br />
 
+			<%} %>
+
 			<div class="row">
 				<div class="col-6">
 					<div class="row">
@@ -927,8 +963,7 @@
 							<label>Status : </label>
 						</div>
 						<div class="col-8">
-							<asp:TextBox ID="status" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
-							<asp:RequiredFieldValidator ControlToValidate="status" ID="RequiredFieldValidator46" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="6"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:DropDownList ID="ddlEducationStatus" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -950,6 +985,11 @@
 						<asp:BoundField HeaderText="Index" DataField="ExamIndex" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Subject" DataField="ExamSubject" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Grade" DataField="ExamGrade" HeaderStyle-CssClass="table-dark" />
+						<asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
+							<ItemTemplate>
+								<asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveEducation">Remove</asp:LinkButton>
+							</ItemTemplate>
+					</asp:TemplateField>
 					</Columns>
 				</asp:GridView>
 			</div>
@@ -980,8 +1020,7 @@
 							<label>Service Type : </label>
 						</div>
 						<div class="col-8">
-							<asp:DropDownList ID="ddlService" Width="230px" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"></asp:DropDownList>
+							<asp:DropDownList ID="ddlService" Width="230px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
 						</div>
 					</div>
 				</div>
@@ -1074,7 +1113,11 @@
 						<asp:BoundField HeaderText="Date Assumed Duty" DataField="DateAssumedDuty" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Method Of Recruitment" DataField="MethodOfRecruitment" HeaderStyle-CssClass="table-dark" />
 						<asp:BoundField HeaderText="Medium Of Recruitment" DataField="MediumOfRecruitment" HeaderStyle-CssClass="table-dark" />
-<%--				    <asp:BoundField HeaderText="Service Confirmed" DataField="ServiceConfirmed" HeaderStyle-CssClass="table-dark" />--%>
+						<asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" >
+							<ItemTemplate>
+								<asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveServices">Remove</asp:LinkButton>
+							</ItemTemplate>
+					</asp:TemplateField>
 					</Columns>
 				</asp:GridView>
 			</div>

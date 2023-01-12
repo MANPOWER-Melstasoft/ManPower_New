@@ -42,7 +42,7 @@ namespace ManPowerWeb
                     Session["UserId"] = systeUserList[0].SystemUserId;
                     Session["UserTypeId"] = systeUserList[0].UserTypeId;
                     Session["DesignationId"] = systeUserList[0].DesignationId;
-                    Session["Name"] = systeUserList[0].Name;
+                    Session["Name"] = systeUserList[0].UserName;
                     Session["EmpNumber"] = systeUserList[0].EmpNumber;
 
                     EmploymentDetailsController employmentDetailsController = ControllerFactory.CreateEmploymentDetailsController();

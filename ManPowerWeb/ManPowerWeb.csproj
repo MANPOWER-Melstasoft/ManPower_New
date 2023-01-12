@@ -169,10 +169,15 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="css\mdb.min.css.map" />
     <Content Include="css\mdb.rtl.min.css.map" />
+    <Content Include="img\bgimg.jpeg" />
     <Content Include="img\favicon.png" />
+    <Content Include="img\Finance.jpg" />
     <Content Include="img\header2.png" />
+    <Content Include="img\HR.jpg" />
     <Content Include="img\minus.png" />
+    <Content Include="img\planning.jpg" />
     <Content Include="img\plus.png" />
+    <Content Include="img\Procu.jpg" />
     <Content Include="IndividualBeneSearch.aspx" />
     <Content Include="IndividualBeneView.aspx" />
     <Content Include="js\mdb.min.js.map" />
@@ -242,6 +247,8 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SessionManager.aspx" />
+    <Content Include="Sessiontransfer.aspx" />
     <Content Include="Site.Master" />
     <Content Include="SpecialAmendment.aspx" />
     <Content Include="specialAmendmentRender.aspx" />
@@ -2400,6 +2407,20 @@
     </Compile>
     <Compile Include="IndividualBene.aspx.designer.cs">
       <DependentUpon>IndividualBene.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionManager.aspx.cs">
+      <DependentUpon>SessionManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionManager.aspx.designer.cs">
+      <DependentUpon>SessionManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sessiontransfer.aspx.cs">
+      <DependentUpon>Sessiontransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sessiontransfer.aspx.designer.cs">
+      <DependentUpon>Sessiontransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

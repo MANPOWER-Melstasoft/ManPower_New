@@ -65,7 +65,7 @@
 
 		<div class="row">
 			<div class="col-3">
-				<label>Persnal Address :</label>
+				<label>Personal Address :</label>
 			</div>
 			<div class="col-9">
 				<asp:TextBox ID="address" runat="server"  Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>

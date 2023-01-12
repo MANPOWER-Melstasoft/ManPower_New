@@ -45,20 +45,11 @@ namespace ManPowerWeb
 
             if (result1 == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-                desig.Text = null;
-                nic.Text = null;
-                workPlace.Text = null;
-                qalifications.Text = null;
-                address.Text = null;
-                contact.Text = null;
-                whatsapp.Text = null;
-                email.Text = null;
-                name.Text = null;
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='ResourcePersonReg.aspx'},2500);", true);
             }
         }
 

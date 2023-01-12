@@ -61,23 +61,11 @@ namespace ManPowerWeb
 
             if (result1 == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-                nic.Text = "";
-                name.Text = "";
-                dob.Text = "";
-                address.Text = "";
-                sclName.Text = "";
-                sclAddress.Text = "";
-                grade.Text = "";
-                parentNic.Text = "";
-                email.Text = "";
-                jobType.Text = "";
-                contact.Text = "";
-                whatsapp.Text = "";
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='IndividualBene.aspx'},2500);", true);
             }
         }
 

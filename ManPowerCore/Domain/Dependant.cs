@@ -32,7 +32,7 @@ namespace ManPowerCore.Domain
         public string DependantPassportNo { get; set; }
 
         [DBField("BIRTH_CERTIFICATE_NUMBER")]
-        public int BirthCertificateNumber { get; set; }
+        public string BirthCertificateNumber { get; set; }
 
         [DBField("DATE_OF_BIRTH")]
         public DateTime Dob { get; set; }
@@ -47,7 +47,7 @@ namespace ManPowerCore.Domain
         public DateTime MarriageDate { get; set; }
 
         [DBField("MARRIAGE_CERTIFICATE_NUMBER")]
-        public int MarriageCertificateNo { get; set; }
+        public string MarriageCertificateNo { get; set; }
 
         [DBField("WORKING_COMPANY")]
         public string WorkingCompany { get; set; }

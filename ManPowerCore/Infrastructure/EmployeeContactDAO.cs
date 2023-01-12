@@ -28,14 +28,18 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_CONTACT(CONTACT_MODE_ID,EMPLOYEE_ID,CONTACT_DETAIL) VALUES(@ContactModeId,@EmpID,@ContactDetials)";
+            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_CONTACT(EMPLOYEE_ID,ADDRESS,MOBILE_NUMBER,TELEPHONE,OFFICE_PHONE,POSTAL_CODE,EMAIL) " +
+                "VALUES(@EmpID,@EmpAddress,@MobileNumber,@EmpTelephone,@OfficePhone,@PostalCode,@EmpEmail)";
 
 
 
-            dbConnection.cmd.Parameters.AddWithValue("@ContactModeId", empContact.ContactModeId);
             dbConnection.cmd.Parameters.AddWithValue("@EmpID", empContact.EmpID);
-            dbConnection.cmd.Parameters.AddWithValue("@ContactDetials", empContact.ContactDetials);
-
+            dbConnection.cmd.Parameters.AddWithValue("@EmpAddress", empContact.EmpAddress);
+            dbConnection.cmd.Parameters.AddWithValue("@MobileNumber", empContact.MobileNumber);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpTelephone", empContact.EmpTelephone);
+            dbConnection.cmd.Parameters.AddWithValue("@OfficePhone", empContact.OfficePhone);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpEmail", empContact.EmpEmail);
+            dbConnection.cmd.Parameters.AddWithValue("@PostalCode", empContact.PostalCode);
             dbConnection.cmd.ExecuteNonQuery();
             return 1;
         }
@@ -46,12 +50,16 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE_CONTACT SET CONTACT_MODE+ID = @ContactModeID, EMPLOYEE_ID = @EmpID CONTACT_DETAIL = @ContactDetials, WHERE ID = @EmployeeContactId ";
+            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE_CONTACT SET ADDRESS = @EmpAddress, MOBILE_NUMBER = @MobileNumber, TELEPHONE = @EmpTelephone, OFFICE_PHONE = @OfficePhone," +
+                " EMAIL = @EmpEmail, POSTAL_CODE = @PostalCode WHERE ID = @EmployeeContactId ";
 
-            dbConnection.cmd.Parameters.AddWithValue("@EmployeeContactId", empContact.EmployeeContactId);
-            dbConnection.cmd.Parameters.AddWithValue("@ContactModeId", empContact.ContactModeId);
             dbConnection.cmd.Parameters.AddWithValue("@EmpID", empContact.EmpID);
-            dbConnection.cmd.Parameters.AddWithValue("@ContactDetials", empContact.ContactDetials);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpAddress", empContact.EmpAddress);
+            dbConnection.cmd.Parameters.AddWithValue("@MobileNumber", empContact.MobileNumber);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpTelephone", empContact.EmpTelephone);
+            dbConnection.cmd.Parameters.AddWithValue("@OfficePhone", empContact.OfficePhone);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpEmail", empContact.EmpEmail);
+            dbConnection.cmd.Parameters.AddWithValue("@PostalCode", empContact.PostalCode);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

@@ -98,16 +98,11 @@ namespace ManPowerWeb
 
             if (result1 == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something went wrong');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Added Succesfully');", true);
-                fielNo.Text = null;
-                date.Text = null;
-                requestedBy.Text = null;
-                vNo.Text = null;
-                description.Text = null;
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='MaintenanceRequest.aspx'},2500);", true);
             }
 
         }

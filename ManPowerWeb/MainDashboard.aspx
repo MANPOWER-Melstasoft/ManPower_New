@@ -23,8 +23,23 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+
+    <style type="text/css">
+        .card:hover {
+            box-shadow: 5px 6px 6px 2px #e9ecef;
+            transform: scale(1.1);
+        }
+
+        .card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+    </style>
+
+
 </head>
-<body>
+<body style="background-image: url(img/bgimg.jpeg); background-repeat: no-repeat; background-size: cover;">
     <form id="form1" runat="server">
         <div class="top-row mb-5">
             <div class="col-12">
@@ -32,39 +47,69 @@
             </div>
         </div>
 
+        <div class="container" style="height: 500px;">
+            <div class="row row-cols-1 row-cols-md-4 ">
+                <div class="col" style="height: 500px">
+                    <div class="card border-left-primary" style="margin-top: 200px;">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                            alt="Skyscrapers" />
+                        <div class="card-body">
+                            <h5 class="card-title text-center">HUMAN RESOURCE</h5>
 
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-6">
-                    <div class="card border-left-primary shadow h-100 py-2" style="text-align: center">
-                        <h2>HR</h2>
+                        </div>
+                        <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <a href="Dashboard.aspx" style="text-decoration: none;">
-                        <div class="card border-left-primary shadow h-100 py-2" style="text-align: center">
-                            <h2>Planning</h2>
+                <div class="col">
+                    <div class="card border-left-primary">
+                        <div class=" bg-image hover-zoom">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                                alt="Skyscrapers" />
                         </div>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="card border-left-primary shadow h-100 py-2" style="text-align: center">
-                        <h2>Finance</h2>
+
+                        <div class="card-body">
+                            <h5 class="card-title text-center">PROCUREMENT</h5>
+
+                        </div>
+                        <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <a href="SessionManager.aspx?id=1" style="text-decoration: none;">
-                        <div class="card border-left-primary shadow h-100 py-2" style="text-align: center">
-                            <h2>Procument</h2>
+                <div class="col">
+                    <div class="card border-left-primary" style="margin-top: 200px">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                            alt="Skyscrapers" />
+                        <div class="card-body">
+                            <h5 class="card-title text-center">FINANCE</h5>
+
                         </div>
-                    </a>
+                        <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-left-primary">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                            alt="Skyscrapers" />
+                        <div class="card-body">
+                            <a href="Dashboard.aspx" style="text-decoration: none;">
+
+                                <h5 class="card-title text-center">PLANNING</h5>
+                            </a>
+
+                        </div>
+                        <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-
     </form>
 </body>
+
+
 </html>
+
+

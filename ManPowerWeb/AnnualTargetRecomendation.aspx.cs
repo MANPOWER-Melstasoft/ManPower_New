@@ -19,6 +19,7 @@ namespace ManPowerWeb
         List<ProgramTarget> programTargetsListPending = new List<ProgramTarget>();
         List<ProgramTarget> programTargetsListApproved = new List<ProgramTarget>();
         List<ProgramTarget> programTargetsListReject = new List<ProgramTarget>();
+        SystemUser systemUser = new SystemUser();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -68,6 +69,7 @@ namespace ManPowerWeb
             int pageindex = GridView1.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
             Response.Redirect("AnnualTargetRecomendationView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
+
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -98,6 +100,17 @@ namespace ManPowerWeb
             }
             GridView1.DataBind();
 
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                systemUser = systemUserController.GetSystemUser(Convert.ToInt32(e.Row.Cells[1].Text), false, false, false);
+                e.Row.Cells[1].Text = systemUser.Name;
+            }
         }
     }
 }

@@ -69,6 +69,8 @@ namespace ManPowerCore.Domain
         [DBField("Remarks")]
         public string Remarks { get; set; }
 
+        [DBField("Reject_Remarks")]
+        public string RejectRemarks { get; set; }
 
         public Program _Program { get; set; } = new Program();
         public ProgramType _ProgramType { get; set; } = new ProgramType();

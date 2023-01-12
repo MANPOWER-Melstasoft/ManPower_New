@@ -28,12 +28,13 @@
 
             <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
                 <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                    CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
+                    CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="GridView1_RowDataBound">
                     <Columns>
-                        <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" HeaderStyle-CssClass="table-dark"></asp:BoundField>
-                        <asp:BoundField DataField="TargetYear" HeaderText="YEAR" HeaderStyle-CssClass="table-dark"></asp:BoundField>
+                        <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center"></asp:BoundField>
+                        <asp:BoundField DataField="CreatedBy" HeaderText="CREATED MANGAER" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center"></asp:BoundField>
+                        <asp:BoundField DataField="TargetYear" HeaderText="YEAR" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center"></asp:BoundField>
 
-                        <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="TargetMonth">
+                        <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="TargetMonth" ItemStyle-HorizontalAlign="center">
                             <ItemTemplate>
                                 <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "1" ?true:false %>' Text="January">  </asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "2" ?true:false %>' Text="February">  </asp:Label>
@@ -50,7 +51,7 @@
 
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Title" HeaderText="Project" HeaderStyle-CssClass="table-dark"></asp:BoundField>
+                        <asp:BoundField DataField="Title" HeaderText="Project" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center"></asp:BoundField>
 
 
                         <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="Status">

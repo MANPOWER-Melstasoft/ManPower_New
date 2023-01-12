@@ -16,10 +16,12 @@
                             <asp:Literal ID="lblName" runat="server" Text="Name"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-                            <asp:TextBox ID="txtName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:DropDownList ID="ddlUserName" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control"
+                                AutoPostBack="true" OnSelectedIndexChanged="ddlUserName_SelectedIndexChanged">
+                            </asp:DropDownList>
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="1"
-                                    ControlToValidate="txtName" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                    ControlToValidate="ddlUserName" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
                     </div>
@@ -142,8 +144,7 @@
                             <asp:Literal ID="lblDepartmentType" runat="server" Text="Department Type"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlDepartmentType" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control"
-                                AutoPostBack="true" OnSelectedIndexChanged="ddlDepartmentType_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlDepartmentType" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control" Enabled="false">
                             </asp:DropDownList>
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="1"
@@ -156,7 +157,7 @@
                             <asp:Literal ID="lblDepartmentUnit" runat="server" Text="Department Unit"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlDepartmentUnit" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDepartmentUnit" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control" Enabled="false"></asp:DropDownList>
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ValidationGroup="1"
                                     ControlToValidate="ddlDepartmentUnit" ErrorMessage="Required">*</asp:RequiredFieldValidator>
@@ -170,7 +171,7 @@
                             <asp:Literal ID="lblEmpNumber" runat="server" Text="Emp Number"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-                            <asp:TextBox ID="txtEmpNumber" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtEmpNumber" runat="server" CssClass="form-control form-control-user" TextMode="Number" Enabled="false"></asp:TextBox>
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="1"
                                     ControlToValidate="txtEmpNumber" ErrorMessage="Required">*</asp:RequiredFieldValidator>

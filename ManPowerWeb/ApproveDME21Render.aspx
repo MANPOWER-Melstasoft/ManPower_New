@@ -10,6 +10,7 @@
                 <asp:BoundField DataField="_TaskType.TaskTypeName" HeaderText="Work Type" />
                 <asp:BoundField DataField="TaskDescription" HeaderText="Performed Duty" />
                 <asp:BoundField DataField="WorkLocation" HeaderText="Work Attended place" />
+                <asp:BoundField DataField="TaskAmendments" HeaderText="Remark" />
             </Columns>
         </asp:GridView>
     </div>

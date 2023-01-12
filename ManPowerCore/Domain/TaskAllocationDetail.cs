@@ -48,6 +48,9 @@ namespace ManPowerCore.Domain
         [DBField("AMENDMENTS")]
         public string TaskAmendments { get; set; }
 
+        [DBField("Program_Plan_Id")]
+        public int programPlanId { get; set; }
+
 
 
 

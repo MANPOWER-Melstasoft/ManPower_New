@@ -110,7 +110,7 @@ namespace ManPowerCore.Controller
 
                 foreach (var item in employeesList)
                 {
-                    item.fullName = item.EmpInitials + item.LastName;
+                    item.fullName = item.EmpInitials + " " + item.LastName;
                 }
 
                 return employeesList;
@@ -143,7 +143,7 @@ namespace ManPowerCore.Controller
 
                     foreach (var item in employeesList)
                     {
-
+                        item.fullName = item.EmpInitials + " " + item.LastName;
                         item._EmploymentDetailsSingle = employeeDetailList.Where(x => x.EmpID == item.EmployeeId).Single();
                     }
 
@@ -170,6 +170,8 @@ namespace ManPowerCore.Controller
             try
             {
                 Employee employee = employeeDAO.GetEmployeeById(id, dBConnection);
+                employee.fullName = employee.EmpInitials + " " + employee.LastName;
+
                 return employee;
             }
             catch (Exception)

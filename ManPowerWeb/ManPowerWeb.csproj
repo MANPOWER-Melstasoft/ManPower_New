@@ -120,6 +120,7 @@
     <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
     <Content Include="AnnualTargetRecomendation.aspx" />
+    <Content Include="AnnualTargetView.aspx" />
     <Content Include="ApprovedTraining.aspx" />
     <Content Include="ApproveTrainingRequest.aspx" />
     <Content Include="ApproveLeave.aspx" />
@@ -189,6 +190,7 @@
     <Content Include="js\mdb.min.js" />
     <Content Include="js\sb-admin-2.js" />
     <Content Include="js\sb-admin-2.min.js" />
+    <Content Include="MainDashboard.aspx" />
     <Content Include="MaintenanceApproval.aspx" />
     <Content Include="MaintenanceApprovalView.aspx" />
     <Content Include="LeaveBalance.aspx" />
@@ -241,6 +243,8 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SpecialAmendment.aspx" />
+    <Content Include="specialAmendmentRender.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
@@ -2032,6 +2036,13 @@
     <Compile Include="AnnualTargetRecomendationView.aspx.designer.cs">
       <DependentUpon>AnnualTargetRecomendationView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AnnualTargetView.aspx.cs">
+      <DependentUpon>AnnualTargetView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnualTargetView.aspx.designer.cs">
+      <DependentUpon>AnnualTargetView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApplyLeaves.aspx.cs">
       <DependentUpon>ApplyLeaves.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2167,6 +2178,7 @@
     <Compile Include="DME24.aspx.designer.cs">
       <DependentUpon>DME24.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmailGenerator.cs" />
     <Compile Include="EntRegistration.aspx.cs">
       <DependentUpon>EntRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2233,6 +2245,13 @@
     </Compile>
     <Compile Include="IndividualBeneView.aspx.designer.cs">
       <DependentUpon>IndividualBeneView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MainDashboard.aspx.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainDashboard.aspx.designer.cs">
+      <DependentUpon>MainDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="MaintenanceApproval.aspx.cs">
       <DependentUpon>MaintenanceApproval.aspx</DependentUpon>
@@ -2395,6 +2414,20 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialAmendment.aspx.cs">
+      <DependentUpon>SpecialAmendment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpecialAmendment.aspx.designer.cs">
+      <DependentUpon>SpecialAmendment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="specialAmendmentRender.aspx.cs">
+      <DependentUpon>specialAmendmentRender.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="specialAmendmentRender.aspx.designer.cs">
+      <DependentUpon>specialAmendmentRender.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>

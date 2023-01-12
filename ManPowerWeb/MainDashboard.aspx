@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card border-left-primary">
+                    <div class="card border-left-warning">
                         <div class=" bg-image hover-zoom">
                             <img src="img/Procu.jpg" class="card-img-top"
                                 alt="Skyscrapers" />
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card border-left-primary" style="margin-top: 200px">
+                    <div class="card border-left-success" style="margin-top: 200px">
                         <img src="img/Finance.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card border-left-primary">
+                    <div class="card border-left-dark">
                         <img src="img/planning.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">

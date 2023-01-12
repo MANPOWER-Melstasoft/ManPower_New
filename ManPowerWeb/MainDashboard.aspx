@@ -51,7 +51,7 @@
             <div class="row row-cols-1 row-cols-md-4 ">
                 <div class="col" style="height: 500px">
                     <div class="card border-left-primary" style="margin-top: 200px;">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                        <img src="img/HR.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
                             <h5 class="card-title text-center">HUMAN RESOURCE</h5>
@@ -62,14 +62,17 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card border-left-primary">
+                    <div class="card border-left-warning">
                         <div class=" bg-image hover-zoom">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                            <img src="img/Procu.jpg" class="card-img-top"
                                 alt="Skyscrapers" />
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title text-center">PROCUREMENT</h5>
+                            <a href="SessionManager.aspx?id=1" style="text-decoration: none;">
+
+                                <h5 class="card-title text-center">PROCUREMENT</h5>
+                            </a>
 
                         </div>
                         <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
@@ -77,8 +80,8 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card border-left-primary" style="margin-top: 200px">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                    <div class="card border-left-success" style="margin-top: 200px">
+                        <img src="img/Finance.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
                             <h5 class="card-title text-center">FINANCE</h5>
@@ -89,8 +92,8 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card border-left-primary">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                    <div class="card border-left-dark">
+                        <img src="img/planning.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
                             <a href="Dashboard.aspx" style="text-decoration: none;">

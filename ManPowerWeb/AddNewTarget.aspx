@@ -204,6 +204,25 @@
                         </div>
                     </div>
 
+
+
+                </div>
+
+
+
+
+
+                <%--//=================================--%>
+
+
+
+                <h5>Target: physical / financial :</h5>
+                <br />
+
+
+
+                <div class="row mb-3 ms-1">
+
                     <div class="col-sm-6">
                         <div class="row mb-3">
                             <div class="col-sm-4">
@@ -223,7 +242,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged">
+                                </asp:DropDownList>
 
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row mb-3 ms-1" runat="server" id="divMonth">
@@ -254,34 +285,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-                <%--//=================================--%>
-
-
-
-                <h5>Target: physical / financial :</h5>
-                <br />
-
-
-
-                <div class="row mb-3 ms-1">
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
-                                </asp:DropDownList>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">

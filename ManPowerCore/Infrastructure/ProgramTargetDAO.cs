@@ -69,9 +69,9 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_TARGET(PROGRAM_TYPE_ID,PROGRAM_ID,TITLE,DESCRIPTION," +
                                             "START_DATE,END_DATE,OUTCOME,VOTE_NUMBER,NO_OF_PROJECTS,ESTIMATED_AMOUNT,TARGET_YEAR," +
-                                            "TARGET_MONTH,OUTPUT,INSTRACTIONS,IS_RECOMMENDED,RECOMMENDED_BY,RECOMMENDED_DATE,Remarks,Created_By) " +
+                                            "TARGET_MONTH,OUTPUT,INSTRACTIONS,IS_RECOMMENDED,RECOMMENDED_BY,RECOMMENDED_DATE,Remarks,Created_By,Output_Description,Outcome_Description,Period_Type) " +
 
-                                 "VALUES(@ProgramTypeId,@ProgramId,@Title,@Description,@StartDate,@EndDate,@Outcome,@VoteNumber,@NoOfProjects,@EstimatedAmount,@TargetYear,@TargetMonth,@Output,@Instractions,@IsRecommended,@RecommendedBy,@RecommendedDate,@Remarks,@CreatedBy) SELECT SCOPE_IDENTITY() ";
+                                 "VALUES(@ProgramTypeId,@ProgramId,@Title,@Description,@StartDate,@EndDate,@Outcome,@VoteNumber,@NoOfProjects,@EstimatedAmount,@TargetYear,@TargetMonth,@Output,@Instractions,@IsRecommended,@RecommendedBy,@RecommendedDate,@Remarks,@CreatedBy,@Output_Description,@Outcome_Description,@Period_Type) SELECT SCOPE_IDENTITY() ";
 
 
             //dbConnection.cmd.Parameters.AddWithValue("@id", id);
@@ -95,6 +95,9 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@Remarks", programTarget.Remarks);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedBy", programTarget.CreatedBy);
 
+            dbConnection.cmd.Parameters.AddWithValue("@Outcome_Description", programTarget.Outcome_Description);
+            dbConnection.cmd.Parameters.AddWithValue("@Output_Description", programTarget.Output_Description);
+            dbConnection.cmd.Parameters.AddWithValue("@Period_Type", programTarget.Period_Type);
             return Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
         }
 

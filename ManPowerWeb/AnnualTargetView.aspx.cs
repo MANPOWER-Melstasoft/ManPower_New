@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ManPowerWeb
 {
@@ -126,6 +127,40 @@ namespace ManPowerWeb
             txtStratDate.Text = myList[0].StartDate.ToString("yyyy-MM-dd");
             txtEndDate.Text = myList[0].EndDate.ToString("yyyy-MM-dd");
             txtRemarks.Text = myList[0].Remarks.ToString();
+
+            txtOutputDes.Text = myList[0].Output_Description;
+            txtOutcomeDes.Text = myList[0].Outcome_Description;
+
+
+
+            switch (Convert.ToInt32(myList[0].Period_Type))
+            {
+                case 1:
+                    lblType.Text = "Annualy";
+                    rowMonth.Visible = false;
+                    break;
+                case 2:
+                    lblType.Text = "First Quarterly";
+                    rowMonth.Visible = false;
+                    break;
+                case 3:
+                    lblType.Text = "Second Quarterly";
+                    rowMonth.Visible = false;
+                    break;
+                case 4:
+                    lblType.Text = "Third Quarterly";
+                    rowMonth.Visible = false;
+                    break;
+                case 5:
+                    lblType.Text = "Fourth Quarterly";
+                    rowMonth.Visible = false;
+                    break;
+                case 6:
+                    lblType.Text = "Monthly";
+                    rowMonth.Visible = true;
+                    break;
+
+            }
 
 
 

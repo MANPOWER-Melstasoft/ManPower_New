@@ -180,8 +180,8 @@ namespace ManPowerWeb
                 int response = programPlanController.UpdateProgramPlan(programPlan);
                 if (response != 0)
                 {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                    Response.Redirect("planning.aspx");
+
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
 
                 }
                 else
@@ -203,9 +203,8 @@ namespace ManPowerWeb
             int response = programPlanController.UpdateProgramPlanComplete(4, programPlanId);
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Completed!', 'Program plan Completed !', 'success')", true);
 
-                Response.Redirect("planning.aspx");
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Program plan Completed!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
 
             }
         }

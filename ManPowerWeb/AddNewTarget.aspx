@@ -204,6 +204,25 @@
                         </div>
                     </div>
 
+
+
+                </div>
+
+
+
+
+
+                <%--//=================================--%>
+
+
+
+                <h5>Target: physical / financial :</h5>
+                <br />
+
+
+
+                <div class="row mb-3 ms-1">
+
                     <div class="col-sm-6">
                         <div class="row mb-3">
                             <div class="col-sm-4">
@@ -212,7 +231,7 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control form-control-user" Width="250px" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" AutoPostBack="true">
                                     <asp:ListItem Value="1">Annualy</asp:ListItem>
-                                    <asp:ListItem Value="2">FIrst Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="2">First Quarterly</asp:ListItem>
                                     <asp:ListItem Value="3">Second Quarterly</asp:ListItem>
                                     <asp:ListItem Value="4">Third Quarterly</asp:ListItem>
                                     <asp:ListItem Value="5">Fourth Quarterly</asp:ListItem>
@@ -223,7 +242,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged">
+                                </asp:DropDownList>
 
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row mb-3 ms-1" runat="server" id="divMonth">
@@ -255,34 +286,6 @@
                     </div>
                 </div>
 
-
-
-                <%--//=================================--%>
-
-
-
-                <h5>Target: physical / financial :</h5>
-                <br />
-
-
-
-                <div class="row mb-3 ms-1">
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
-                                </asp:DropDownList>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">
                         <div class="row mb-3">
@@ -305,7 +308,7 @@
                                 <asp:Literal ID="Literal15" runat="server" Text="Financial Count"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:TextBox ID="txtFinancialCount" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:TextBox ID="txtFinancialCount" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="Number" step="any" min="0"></asp:TextBox>
 
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtFinancialCount" ValidationGroup="1" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 <br />
@@ -392,7 +395,7 @@
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6 d-flex">
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnCancel" Text="Cancel" CssClass="btn btn-primary btn-user btn-block" />
+                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
                         </div>
                         <div class="col-sm-4">
                             <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidateRequestMode="Enabled" ValidationGroup="1" />

@@ -287,6 +287,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal22" runat="server" Text="Output Description"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtOutputDes" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
+
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
                 <div class="row mb-3 ms-1">
@@ -301,6 +315,20 @@
 
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal21" runat="server" Text="Outcome Description"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtOutcomeDes" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine" ReadOnly="true"></asp:TextBox>
+
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row mb-3 ms-1">

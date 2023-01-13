@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="card-body">
-                            <a href="SessionManager.aspx?id=1" style="text-decoration: none;">
+                            <a href="SessionManager.aspx" style="text-decoration: none;">
 
                                 <h5 class="card-title text-center">PROCUREMENT</h5>
                             </a>

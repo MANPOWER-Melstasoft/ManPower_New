@@ -98,7 +98,7 @@
                                 <asp:Literal ID="Literal6" runat="server" Text="Officer Name"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:Label ID="lblofficer" runat="server" CssClass="form-control form-control-user" Width="250px" Enabled="false">
+                                <asp:Label ID="lblofficer" runat="server" CssClass="form-control form-control-user" Width="250px" ReadOnly="true">
                                 </asp:Label>
                             </div>
                         </div>
@@ -178,6 +178,18 @@
                         </div>
                     </div>
 
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal23" runat="server" Text="Type"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblType" runat="server" Width="250px" CssClass="form-control form-control-user" ReadOnly="true"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="row mb-3 ms-1" runat="server" id="divMonth">
@@ -218,7 +230,7 @@
 
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">
-                        <div class="row mb-3">
+                        <div class="row mb-3" runat="server" id="rowMonth" visible="false">
                             <div class="col-sm-4">
                                 <asp:Literal ID="Literal11" runat="server" Text="Month"></asp:Literal>
                             </div>

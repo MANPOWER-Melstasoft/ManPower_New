@@ -212,7 +212,7 @@
                             <div class="col-md-4">
                                 <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control form-control-user" Width="250px" OnSelectedIndexChanged="ddlType_SelectedIndexChanged" AutoPostBack="true">
                                     <asp:ListItem Value="1">Annualy</asp:ListItem>
-                                    <asp:ListItem Value="2">FIrst Quarterly</asp:ListItem>
+                                    <asp:ListItem Value="2">First Quarterly</asp:ListItem>
                                     <asp:ListItem Value="3">Second Quarterly</asp:ListItem>
                                     <asp:ListItem Value="4">Third Quarterly</asp:ListItem>
                                     <asp:ListItem Value="5">Fourth Quarterly</asp:ListItem>

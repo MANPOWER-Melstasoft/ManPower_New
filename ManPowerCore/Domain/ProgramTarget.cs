@@ -72,6 +72,15 @@ namespace ManPowerCore.Domain
         [DBField("Reject_Remarks")]
         public string RejectRemarks { get; set; }
 
+        [DBField("Output_Description")]
+        public string Output_Description { get; set; }
+
+        [DBField("Outcome_Description")]
+        public string Outcome_Description { get; set; }
+
+        [DBField("Period_Type")]
+        public string Period_Type { get; set; }
+
         public Program _Program { get; set; } = new Program();
         public ProgramType _ProgramType { get; set; } = new ProgramType();
         public List<ProgramAssignee> _ProgramAssignee { get; set; } = new List<ProgramAssignee>();

@@ -302,6 +302,9 @@ namespace ManPowerWeb
             programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
+            programTarget.Period_Type = ddlType.SelectedValue;
+            programTarget.Outcome_Description = txtOutcomeDes.Text;
+            programTarget.Output_Description = txtOutputDes.Text;
 
             if (ddlMonth.SelectedValue == "")
             {

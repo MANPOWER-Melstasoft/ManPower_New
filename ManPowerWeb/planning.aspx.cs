@@ -65,7 +65,7 @@ namespace ManPowerWeb
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlansList = programPlanController.GetAllProgramPlan();
-            filterWithMonthYear = programAssigneesFilter.Where(u => u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue && u._ProgramTarget.TargetYear.ToString() == ddlYear.SelectedValue).ToList();
+            filterWithMonthYear = programAssigneesFilter.Where(u => (u._ProgramTarget.TargetMonth.ToString() == ddlMonth.SelectedValue || u._ProgramTarget.StartDate.Month.ToString() == ddlMonth.SelectedValue) && u._ProgramTarget.TargetYear.ToString() == ddlYear.SelectedValue).ToList();
 
 
 

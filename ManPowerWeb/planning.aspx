@@ -86,7 +86,7 @@
 
 
         <div class="table-responsive">
-            <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-responsive table-bordered mt-4 ParentGrid"
+            <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
                 DataKeyNames="ProgramTargetId" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
                 <Columns>
                     <asp:TemplateField HeaderStyle-CssClass="table-dark">
@@ -119,9 +119,9 @@
                     <asp:TemplateField>
                         <ItemTemplate>
                             <tr>
-                                <td colspan="10">
-                                    <div id="ProgramTargetId-<%# Eval("ProgramTargetId") %>" style="display: none; position: relative">
-                                        <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table table-responsive ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId">
+                                <td colspan="999">
+                                    <div id="ProgramTargetId-<%# Eval("ProgramTargetId") %>" style="display: none; position: relative;">
+                                        <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId">
                                             <Columns>
                                                 <asp:BoundField DataField="ProgramPlanId" HeaderStyle-CssClass="table-dark" HeaderText="Program Plan Id" />
                                                 <asp:BoundField DataField="ProgramName" HeaderStyle-CssClass="table-dark" HeaderText="Program Name" />

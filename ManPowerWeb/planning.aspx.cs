@@ -98,6 +98,9 @@ namespace ManPowerWeb
             ProgramPlan programPlan = new ProgramPlan();
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = gvAnnaualPlan.PageSize;
+            int pageindex = gvAnnaualPlan.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
 
             programPlan.Date = DateTime.Now;
             programPlan.ProjectStatusId = 1;
@@ -139,6 +142,7 @@ namespace ManPowerWeb
             GridViewRow Gv1Row = (GridViewRow)(Childgrid.NamingContainer);
             rowIndex = Gv1Row.RowIndex;
 
+
             int rowindexChild = Gv2Row.RowIndex;
 
             int pagesize = gvAnnaualPlan.PageSize;
@@ -148,11 +152,6 @@ namespace ManPowerWeb
 
             var PrTargetId = int.Parse(gvAnnaualPlan.Rows[rowIndex].Cells[1].Text);
             var prName = gvAnnaualPlan.Rows[rowIndex].Cells[2].Text;
-            var EstimateAmount = gvAnnaualPlan.Rows[rowIndex].Cells[5].Text;
-            var recommendedBy = gvAnnaualPlan.Rows[rowIndex].Cells[7].Text;
-
-
-
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlansList = programPlanController.GetAllProgramPlan();
@@ -160,11 +159,9 @@ namespace ManPowerWeb
             programPlansList = programPlansList.Where(x => x.ProgramTargetId == PrTargetId).ToList();
 
 
-            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId + "&EstimateAmount=" + EstimateAmount + "&RBy=" + recommendedBy);
+            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
 
         }
-
-
 
 
         protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -176,6 +173,8 @@ namespace ManPowerWeb
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+
+
                 string programTargetID = gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString();
                 GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
 
@@ -193,13 +192,10 @@ namespace ManPowerWeb
                 gvPlanDetails.DataBind();
 
 
-
-
-
                 if (lbl.Text != "" && e.Row.Cells[8].Text != "")
                 {
 
-                    if (Convert.ToInt32(lbl.Text) < Convert.ToInt32(e.Row.Cells[8].Text))
+                    if (Convert.ToInt32(lbl.Text) < Convert.ToInt32(e.Row.Cells[9].Text))
                     {
                         button.Enabled = true;
                     }
@@ -224,6 +220,9 @@ namespace ManPowerWeb
         {
             bindGrid(false);
         }
+
+
+
 
         //protected void gvPlanDetails_RowCommand(object sender, GridViewCommandEventArgs e)
         //{

@@ -15,6 +15,8 @@
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox runat="server" ID="txtProgramName" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtProgramName" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
 
                         </div>
                     </div>
@@ -28,6 +30,7 @@
                         </div>
                         <div class="col-md-4">
                             <asp:TextBox runat="server" ID="txtManger" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+
 
                         </div>
                         <div class="col-md-2">

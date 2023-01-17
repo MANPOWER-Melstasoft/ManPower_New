@@ -143,6 +143,8 @@
     <Compile Include="Domain\Entrepreneur.cs" />
     <Compile Include="Domain\Ethnicity.cs" />
     <Compile Include="Domain\InduvidualBeneficiary.cs" />
+    <Compile Include="Domain\JobPlacementFeedback.cs" />
+    <Compile Include="Domain\JobRefferals.cs" />
     <Compile Include="Domain\MaintenanceCategory.cs" />
     <Compile Include="Domain\LeaveType.cs" />
     <Compile Include="Domain\MarketType.cs" />
@@ -174,6 +176,7 @@
     <Compile Include="Domain\TaskAllocationDetail.cs" />
     <Compile Include="Domain\TaskType.cs" />
     <Compile Include="Domain\Test.cs" />
+    <Compile Include="Domain\JobCategory.cs" />
     <Compile Include="Domain\Training_Request.cs" />
     <Compile Include="Domain\UserRegistation.cs" />
     <Compile Include="Domain\UserType.cs" />
@@ -209,6 +212,8 @@
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
+    <Compile Include="Infrastructure\JobCategoryDAO.cs" />
+    <Compile Include="Infrastructure\JobRefferalsDAO.cs" />
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />

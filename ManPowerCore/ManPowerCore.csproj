@@ -108,6 +108,7 @@
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
     <Compile Include="Controller\TaskTypeController.cs" />
     <Compile Include="Controller\Test.cs" />
+    <Compile Include="Controller\TrainingRefferalFeedbackController.cs" />
     <Compile Include="Controller\TrainingRefferalsController.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Domain\TaskAllocationDetail.cs" />
     <Compile Include="Domain\TaskType.cs" />
     <Compile Include="Domain\Test.cs" />
+    <Compile Include="Domain\TrainingRefferalFeedback.cs" />
     <Compile Include="Domain\TrainingRefferals.cs" />
     <Compile Include="Domain\Training_Request.cs" />
     <Compile Include="Domain\UserRegistation.cs" />
@@ -247,6 +249,7 @@
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
     <Compile Include="Infrastructure\TaskTypeDAO.cs" />
     <Compile Include="Infrastructure\Test.cs" />
+    <Compile Include="Infrastructure\TrainingRefferalFeedbackDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalsDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
     <Compile Include="Infrastructure\UserRegistrationDAO.cs" />

@@ -74,12 +74,7 @@ namespace ManPowerWeb
                 //ddlYear.Items.FindByText(year.ToString()).Selected = true;
                 ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
 
-                var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
-                for (int i = 0; i < months.Length - 1; i++)
-                {
-                    ddlMonth.Items.Add(new ListItem(months[i], (i + 1).ToString()));
-                }
-                ddlMonth.Items.Insert(0, new ListItem("Select Month", ""));
+
 
 
             }
@@ -258,6 +253,17 @@ namespace ManPowerWeb
             ddlVote.Items.Insert(0, new ListItem("Select Vote", ""));
         }
 
+        private void bindMonth()
+        {
+            ddlMonth.Enabled = true;
+            var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+            for (int i = 0; i < months.Length - 1; i++)
+            {
+                ddlMonth.Items.Add(new ListItem(months[i], (i + 1).ToString()));
+            }
+            ddlMonth.Items.Insert(0, new ListItem("Select Month", ""));
+        }
+
         private void bindOficerRecomendation()
         {
             List<SystemUser> listOficerRecomendation = new List<SystemUser>();
@@ -302,6 +308,9 @@ namespace ManPowerWeb
             programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
+            programTarget.Period_Type = ddlType.SelectedValue;
+            programTarget.Outcome_Description = txtOutcomeDes.Text;
+            programTarget.Output_Description = txtOutputDes.Text;
 
             if (ddlMonth.SelectedValue == "")
             {
@@ -354,11 +363,12 @@ namespace ManPowerWeb
             programAssignee.DepartmentUnitPossitionsId = getdepartmentUnitPositionsIdList[0].DepartmetUnitPossitionsId;
 
 
-
-
-
             int TargetResponse = programTargetController.SaveProgramTarget(programTarget, programAssignee);
+
+
+
             ViewState["TargetResponseState"] = TargetResponse.ToString();
+
             //
 
 
@@ -373,6 +383,7 @@ namespace ManPowerWeb
             else
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+
             }
         }
 
@@ -419,7 +430,30 @@ namespace ManPowerWeb
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            bindStartDateEndDate();
+            if (ddlYear.SelectedValue != "")
+            {
+                if (ddlType.SelectedValue == "6")
+                {
+                    ddlStartDate.Text = "";
+                    txtEndDate.Text = "";
+                    bindMonth();
+                }
+                else
+                {
+
+                    bindStartDateEndDate();
+                    ddlMonth.Items.Clear();
+                    ddlMonth.Enabled = false;
+
+                }
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Warning!', 'Select a target year first!', 'warning')", true);
+
+                ddlMonth.Items.Clear();
+            }
 
         }
 
@@ -461,8 +495,6 @@ namespace ManPowerWeb
             }
             else
             {
-                ddlStartDate.ReadOnly = false;
-                txtEndDate.ReadOnly = false;
                 ddlStartDate.Text = "";
                 txtEndDate.Text = "";
                 ddlMonth.Enabled = true;
@@ -526,6 +558,27 @@ namespace ManPowerWeb
 
 
 
+        }
+
+
+
+        protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlMonth.SelectedValue != "")
+            {
+                DateTime startOfMonth = new DateTime(Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(ddlMonth.SelectedValue), 1);
+                DateTime endOfMonth = new DateTime(Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(ddlMonth.SelectedValue), DateTime.DaysInMonth(Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(ddlMonth.SelectedValue)));
+
+                ddlStartDate.Text = startOfMonth.ToShortDateString();
+                txtEndDate.Text = endOfMonth.ToShortDateString();
+            }
+
+
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AnnualTarget.aspx");
         }
     }
 }

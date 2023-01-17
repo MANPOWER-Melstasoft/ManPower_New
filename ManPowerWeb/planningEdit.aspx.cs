@@ -16,6 +16,7 @@ namespace ManPowerWeb
     {
         List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
         List<ProgramTarget> programTargets = new List<ProgramTarget>();
+        ProgramTarget programTarget = new ProgramTarget();
         List<ProgramPlan> programPlansList = new List<ProgramPlan>();
         List<ProgramPlan> programPlansListBind = new List<ProgramPlan>();
         SystemUser systemUser = new SystemUser();
@@ -41,17 +42,9 @@ namespace ManPowerWeb
 
                 }
 
-                if (Request.QueryString["RBy"] != null)
-                {
-                    RecommendedBy = Convert.ToInt32(Request.QueryString["RBy"]);
-                    SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-                    systemUser = systemUserController.GetSystemUser(RecommendedBy, false, false, false);
-
-                }
 
 
                 dataSource();
-
             }
 
         }
@@ -61,7 +54,15 @@ namespace ManPowerWeb
             ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
             resourcePeopleList = resourcePersonController.GetAllResourcePerson();
 
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
 
+            programTarget = programTargetController.GetProgramTarget(Convert.ToInt32(Request.QueryString["ProgramTargetId"]));
+            ViewState["programTarget"] = programTarget;
+
+
+            RecommendedBy = programTarget.RecommendedBy;
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            systemUser = systemUserController.GetSystemUser(RecommendedBy, false, false, false);
 
             ViewState["programTargetId"] = programTargetId;
 
@@ -90,14 +91,12 @@ namespace ManPowerWeb
                 ddlResourcePerson.Text = programPlansListBind[0].Coordinater.ToString();
 
             }
-            txtEstimateAmount.Text = Request.QueryString["EstimateAmount"];
+            txtEstimateAmount.Text = programTarget.EstimatedAmount.ToString();
 
 
 
 
         }
-
-
 
         protected void btnSave_Click1(object sender, EventArgs e)
         {
@@ -106,8 +105,8 @@ namespace ManPowerWeb
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
 
 
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            programTargets = programTargetController.GetAllProgramTargetWithPlan();
+            //   ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            //  programTargets = programTargetController.GetAllProgramTargetWithPlan();
 
             programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
             programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
@@ -165,7 +164,8 @@ namespace ManPowerWeb
                 }
             }
 
-            if (DateTime.Parse(txtDate.Text) <= DateTime.Now)
+            ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
+            if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
             {
                 lblDate.Text = "Invalid Date";
                 validationflag = false;
@@ -180,8 +180,8 @@ namespace ManPowerWeb
                 int response = programPlanController.UpdateProgramPlan(programPlan);
                 if (response != 0)
                 {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                    Response.Redirect("planning.aspx");
+
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
 
                 }
                 else
@@ -203,9 +203,8 @@ namespace ManPowerWeb
             int response = programPlanController.UpdateProgramPlanComplete(4, programPlanId);
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Completed!', 'Program plan Completed !', 'success')", true);
 
-                Response.Redirect("planning.aspx");
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Program plan Completed!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
 
             }
         }

@@ -7,13 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class MainDashboard : System.Web.UI.Page
+    public partial class AddHoliday : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] == null)
+            if(!IsPostBack)
             {
-                Response.Redirect("Login.aspx");
+
             }
         }
     }

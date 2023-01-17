@@ -7,14 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class MainDashboard : System.Web.UI.Page
+    public partial class Sessiontransfer : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] == null)
-            {
-                Response.Redirect("Login.aspx");
-            }
+
+            string UserId = Request.QueryString["UserId"].ToString();
         }
     }
 }

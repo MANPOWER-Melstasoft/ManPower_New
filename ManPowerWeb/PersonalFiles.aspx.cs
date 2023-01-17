@@ -135,7 +135,7 @@ namespace ManPowerWeb
             //DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
             listDistrict = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 2 || u.DepartmentUnitTypeId == 1).ToList();
-            
+
 
             ddlGender.DataSource = gen;
             ddlGender.DataBind();
@@ -180,7 +180,7 @@ namespace ManPowerWeb
             ddlDesignation.DataValueField = "DesignationId";
             ddlDesignation.DataTextField = "DesigntionName";
             ddlDesignation.DataBind();
-             
+
             ddlDistrict.DataSource = listDistrict;
             ddlDistrict.DataTextField = "Name";
             ddlDistrict.DataValueField = "DepartmentUnitId";
@@ -290,7 +290,7 @@ namespace ManPowerWeb
                 }
             }
 
-            
+
 
             ViewState["dependant"] = dependant;
             dependantGV.DataSource = dependant;
@@ -434,7 +434,7 @@ namespace ManPowerWeb
                     }
                 }
             }
-            
+
 
             companyName.Text = null;
             //empNo.Text = null;
@@ -471,7 +471,7 @@ namespace ManPowerWeb
                 educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
             }
 
-            if(ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
+            if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
             {
                 educationDetails.Add(new EducationDetails()
                 {
@@ -570,7 +570,7 @@ namespace ManPowerWeb
         protected void submit(object sender, EventArgs e)
         {
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
-            filter = departmentUnitController.GetAllDepartmentUnit(false,false);
+            filter = departmentUnitController.GetAllDepartmentUnit(false, false);
 
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
             Employee emp = new Employee();
@@ -590,7 +590,7 @@ namespace ManPowerWeb
             emp.ManagerId = 0;
             emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
 
-            if(ddlDS.SelectedValue != "")
+            if (ddlDS.SelectedValue != "")
             {
                 emp.DSDivisionId = int.Parse(ddlDS.SelectedValue);
                 foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDS.SelectedValue)))
@@ -598,7 +598,7 @@ namespace ManPowerWeb
                     emp.UnitType = i.DepartmentUnitTypeId;
                 }
             }
-            else 
+            else
             {
                 emp.DSDivisionId = 0;
                 foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue)))
@@ -810,6 +810,6 @@ namespace ManPowerWeb
             id7.Visible = false;
         }
 
-        
+
     }
 }

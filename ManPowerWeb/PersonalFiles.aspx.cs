@@ -235,11 +235,11 @@ namespace ManPowerWeb
 
             if (int.Parse(ddlDependant.SelectedValue) == 1)
             {
-                if (Convert.ToDateTime(mDate.Text) <= DateTime.Today)
+                if (Convert.ToDateTime(mDate.Text) >= DateTime.Today)
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Marriage Date is not a Valid Date!', 'error');", true);
                 }
-                else if (Convert.ToDateTime(depDob.Text) <= DateTime.Today)
+                else if (Convert.ToDateTime(depDob.Text) >= DateTime.Today)
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth Can not be a Future Date!', 'error');", true);
                 }
@@ -265,7 +265,7 @@ namespace ManPowerWeb
             }
             else
             {
-                if (Convert.ToDateTime(depDob.Text) <= DateTime.Today)
+                if (Convert.ToDateTime(depDob.Text) >= DateTime.Today)
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth Can not be a Future Date!', 'error');", true);
                 }
@@ -631,7 +631,7 @@ namespace ManPowerWeb
 
             if (result1 == 1)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send Recommendation Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
             }
             else
             {

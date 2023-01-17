@@ -425,5 +425,11 @@ namespace ManPowerCore.Common
             CareerKeyTestResultsController careerKeyTestResultsController = new CareerKeyTestResultsControllerSqlImpl();
             return (CareerKeyTestResultsController)careerKeyTestResultsController;
         }
+
+        public static CareerGuidanceFeedbackController CreateCareerGuidanceFeedbackController()
+        {
+            CareerGuidanceFeedbackController careerGuidanceFeedbackController = new CareerGuidanceFeedbackControllerSqlImpl();
+            return (CareerGuidanceFeedbackController)careerGuidanceFeedbackController;
+        }
     }
 }

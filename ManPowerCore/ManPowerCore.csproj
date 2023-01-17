@@ -122,6 +122,7 @@
     <Compile Include="Domain\Beneficiary.cs" />
     <Compile Include="Domain\BeneficiaryType.cs" />
     <Compile Include="Domain\BusinessType.cs" />
+    <Compile Include="Domain\CareerGuidanceFeedback.cs" />
     <Compile Include="Domain\CareerKeyTestResults.cs" />
     <Compile Include="Domain\CompanyVecansyRegistationDetails.cs" />
     <Compile Include="Domain\ContactMode.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Infrastructure\BeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\BeneficiaryTypeDAO.cs" />
     <Compile Include="Infrastructure\BusinessTypeDAO.cs" />
+    <Compile Include="Infrastructure\CareerGuidanceFeedbackDAO.cs" />
     <Compile Include="Infrastructure\CareerKeyTestResultsDAO.cs" />
     <Compile Include="Infrastructure\CompanyVecansyRegistationDetailsDAO.cs" />
     <Compile Include="Infrastructure\ContactModeDAO.cs" />

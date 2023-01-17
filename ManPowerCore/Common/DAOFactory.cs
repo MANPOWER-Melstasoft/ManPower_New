@@ -414,5 +414,11 @@ namespace ManPowerCore.Common
             return (CareerKeyTestResultsDAO)careerKeyTestResultsDAO;
         }
 
+        public static CareerGuidanceFeedbackDAO CreateCareerGuidanceFeedbackDAO()
+        {
+            CareerGuidanceFeedbackDAO careerGuidanceFeedbackDAO = new CareerGuidanceFeedbackDAOSqlImpl();
+            return (CareerGuidanceFeedbackDAO)careerGuidanceFeedbackDAO;
+        }
+
     }
 }

@@ -420,5 +420,11 @@ namespace ManPowerCore.Common
             return (CareerGuidanceFeedbackDAO)careerGuidanceFeedbackDAO;
         }
 
+        public static TrainingRefferalsDAO CreateTrainingRefferalsDAO()
+        {
+            TrainingRefferalsDAO trainingRefferalsDAO = new TrainingRefferalsDAOSqlImmpl();
+            return (TrainingRefferalsDAO)trainingRefferalsDAO;
+        }
+
     }
 }

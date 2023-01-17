@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Controller
 {
-    public interface CareerGuidanceFeedbackController
+    public interface TrainingRefferalsController
     {
-        int Save(CareerGuidanceFeedback careerGuidanceFeedback);
-        int Update(CareerGuidanceFeedback careerGuidanceFeedback);
+        int Save(TrainingRefferals trainingRefferals);
+        int Update(TrainingRefferals trainingRefferals);
         int Delete(int id);
-        List<CareerGuidanceFeedback> GetAllCareerKeyTestResults(bool with0);
-        CareerGuidanceFeedback GetCareerKeyTestResults(int id);
+        List<TrainingRefferals> GetAllTrainingRefferals(bool with0);
+        TrainingRefferals GetTrainingRefferals(int id);
     }
 
-    public class CareerGuidanceFeedbackControllerSqlImpl : CareerGuidanceFeedbackController
+    public class TrainingRefferalsControllerSqlImpl : TrainingRefferalsController
     {
-        CareerGuidanceFeedbackDAO careerGuidanceFeedbackDAO = DAOFactory.CreateCareerGuidanceFeedbackDAO();
+        TrainingRefferalsDAO trainingRefferalsDAO = DAOFactory.CreateTrainingRefferalsDAO();
 
-        public int Save(CareerGuidanceFeedback careerGuidanceFeedback)
+        public int Save(TrainingRefferals trainingRefferals)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
                 int output = 0;
-                output = careerGuidanceFeedbackDAO.Save(careerGuidanceFeedback, dbConnection);
+                output = trainingRefferalsDAO.Save(trainingRefferals, dbConnection);
                 return output;
             }
             catch (Exception ex)
@@ -43,13 +43,13 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int Update(CareerGuidanceFeedback careerGuidanceFeedback)
+        public int Update(TrainingRefferals trainingRefferals)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
                 int output = 0;
-                output = careerGuidanceFeedbackDAO.Update(careerGuidanceFeedback, dbConnection);
+                output = trainingRefferalsDAO.Update(trainingRefferals, dbConnection);
                 return output;
             }
             catch (Exception ex)
@@ -69,7 +69,7 @@ namespace ManPowerCore.Controller
             try
             {
                 int output = 0;
-                output = careerGuidanceFeedbackDAO.Delete(id, dbConnection);
+                output = trainingRefferalsDAO.Delete(id, dbConnection);
                 return output;
             }
             catch (Exception ex)
@@ -84,14 +84,14 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<CareerGuidanceFeedback> GetAllCareerKeyTestResults(bool with0)
+        public List<TrainingRefferals> GetAllTrainingRefferals(bool with0)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
-                List<CareerGuidanceFeedback> careerGuidanceFeedbacks = new List<CareerGuidanceFeedback>();
-                careerGuidanceFeedbacks = careerGuidanceFeedbackDAO.GetAllCareerGuidanceFeedback(with0, dbConnection);
-                return careerGuidanceFeedbacks;
+                List<TrainingRefferals> trainingRefferalsList = new List<TrainingRefferals>();
+                trainingRefferalsList = trainingRefferalsDAO.GetAllTrainingRefferals(with0, dbConnection);
+                return trainingRefferalsList;
             }
             catch (Exception ex)
             {
@@ -105,14 +105,14 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public CareerGuidanceFeedback GetCareerKeyTestResults(int id)
+        public TrainingRefferals GetTrainingRefferals(int id)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
-                CareerGuidanceFeedback careerGuidanceFeedback = new CareerGuidanceFeedback();
-                careerGuidanceFeedback = careerGuidanceFeedbackDAO.GetCareerGuidanceFeedback(id, dbConnection);
-                return careerGuidanceFeedback;
+                TrainingRefferals trainingRefferals = new TrainingRefferals();
+                trainingRefferals = trainingRefferalsDAO.GetTrainingRefferals(id, dbConnection);
+                return trainingRefferals;
             }
             catch (Exception ex)
             {
@@ -126,5 +126,6 @@ namespace ManPowerCore.Controller
             }
 
         }
+
     }
 }

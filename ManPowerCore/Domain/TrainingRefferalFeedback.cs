@@ -30,6 +30,9 @@ namespace ManPowerCore.Domain
         [DBField("Remarks")]
         public string Remarks { get; set; }
 
+        [DBField("Is_Active")]
+        public string IsActive { get; set; }
+
         public TrainingRefferals trainingRefferals { get; set; }
     }
 }

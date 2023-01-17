@@ -26,9 +26,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO TrainingRefferals (Vote_Type_ID, Year_Allocation, Vote_Number, Amount, Reamin_Amount, Created_By, Created_Date) " +
-                "VALUES (@Id, @BeneficiaryId, @Date, @InstituteName, @TrainingCourse, @ContactPerson, @ContactNo) ";
+                "VALUES (@BeneficiaryId, @Date, @InstituteName, @TrainingCourse, @ContactPerson, @ContactNo) ";
 
-            dbConnection.cmd.Parameters.AddWithValue("@Id", trainingRefferals.Id);
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryId", trainingRefferals.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", trainingRefferals.Date);
             dbConnection.cmd.Parameters.AddWithValue("@InstituteName", trainingRefferals.InstituteName);

@@ -13,10 +13,10 @@ namespace ManPowerCore.Domain
         [DBField("Id")]
         public int Id { get; set; }
 
-        [DBField("BeneficiaryId")]
+        [DBField("Beneficiary_Id")]
         public int BeneficiaryId { get; set; }
 
-        [DBField("Date")]
+        [DBField("Created_Date")]
         public DateTime Date { get; set; }
 
         [DBField("R")]
@@ -37,8 +37,11 @@ namespace ManPowerCore.Domain
         [DBField("C")]
         public int C { get; set; }
 
-        [DBField("ProvidedGuidence")]
+        [DBField("Provided_Guidance")]
         public string Guidence { get; set; }
+
+        [DBField("Is_Active")]
+        public string IsActive { get; set; }
 
         public Beneficiary beneficiary { get; set; }
     }

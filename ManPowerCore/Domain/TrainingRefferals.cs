@@ -31,6 +31,9 @@ namespace ManPowerCore.Domain
         [DBField("ContactNo")]
         public string ContactNo { get; set; }
 
+        [DBField("Is_Active")]
+        public string IsActive { get; set; }
+
         public Beneficiary beneficiary { get; set; }
     }
 

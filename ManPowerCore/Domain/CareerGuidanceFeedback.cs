@@ -13,20 +13,23 @@ namespace ManPowerCore.Domain
         [DBField("Id")]
         public int Id { get; set; }
 
-        [DBField("CareerKeyTestResultsId")]
+        [DBField("Career_Key_Test_Results_Id")]
         public int CareerKeyTestResultsId { get; set; }
 
-        [DBField("Date")]
+        [DBField("Created_Date")]
         public DateTime Date { get; set; }
 
-        [DBField("InJob")]
+        [DBField("In_Job")]
         public string InJob { get; set; }
 
-        [DBField("InTraining")]
+        [DBField("In_Training")]
         public string InTraining { get; set; }
 
-        [DBField("Remarks")]
+        [DBField("Other_Remarks")]
         public string Remarks { get; set; }
+
+        [DBField("Is_Active")]
+        public string IsActive { get; set; }
 
         public CareerKeyTestResults careerKeyTestResults { get; set; }
     }

@@ -21,7 +21,7 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateProgramAttendence(ProgramAttendence programAttendence, DBConnection dbConnection);
 
-        
+
     }
 
     public class ProgramAttendenceDAOImpl : ProgramAttendenceDAO
@@ -54,18 +54,19 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxProgramAttendenceId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_ATTENDENCE(ID,PROGRAM_PLAN_ID,NAME,ADDRESS,NIC,DOB,SEX) " +
                                             "VALUES(@id,@ProgramPlanId,@ProgramAttendenceName,@Address,@NIC,@DOB,@Sex) ";
 
 
 
-                                
-                                dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programAttendence.ProgramPlanId);
-                                dbConnection.cmd.Parameters.AddWithValue("@ProgramAttendenceName", programAttendence.ProgramAttendenceName);
-                                dbConnection.cmd.Parameters.AddWithValue("@Address", programAttendence.Address);
-                                dbConnection.cmd.Parameters.AddWithValue("@NIC", programAttendence.NIC);
-                                dbConnection.cmd.Parameters.AddWithValue("@DOB", programAttendence.DOB);
-                                dbConnection.cmd.Parameters.AddWithValue("@Sex", programAttendence.Sex);
+
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programAttendence.ProgramPlanId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramAttendenceName", programAttendence.ProgramAttendenceName);
+            dbConnection.cmd.Parameters.AddWithValue("@Address", programAttendence.Address);
+            dbConnection.cmd.Parameters.AddWithValue("@NIC", programAttendence.NIC);
+            dbConnection.cmd.Parameters.AddWithValue("@DOB", programAttendence.DOB);
+            dbConnection.cmd.Parameters.AddWithValue("@Sex", programAttendence.Sex);
 
             dbConnection.cmd.ExecuteNonQuery();
 
@@ -78,19 +79,20 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "UPDATE PROGRAM_ATTENDENCE SET PROGRAM_PLAN_ID = @ProgramPlanId, NAME = ProgramAttendenceName "+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE PROGRAM_ATTENDENCE SET PROGRAM_PLAN_ID = @ProgramPlanId, NAME = ProgramAttendenceName " +
                                            ", ADDRESS = @Address, NIC = @NIC, DOB = @DOB " +
                                            "', SEX = @Sex WHERE ID = @ProgramAttendenceId ";
 
 
 
-                                            dbConnection.cmd.Parameters.AddWithValue("@ProgramAttendenceId", programAttendence.ProgramAttendenceId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programAttendence.ProgramPlanId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@ProgramAttendenceName", programAttendence.ProgramAttendenceName);
-                                            dbConnection.cmd.Parameters.AddWithValue("@Address", programAttendence.Address);
-                                            dbConnection.cmd.Parameters.AddWithValue("@NIC", programAttendence.NIC);
-                                            dbConnection.cmd.Parameters.AddWithValue("@DOB", programAttendence.DOB);
-                                            dbConnection.cmd.Parameters.AddWithValue("@Sex", programAttendence.Sex);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramAttendenceId", programAttendence.ProgramAttendenceId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programAttendence.ProgramPlanId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramAttendenceName", programAttendence.ProgramAttendenceName);
+            dbConnection.cmd.Parameters.AddWithValue("@Address", programAttendence.Address);
+            dbConnection.cmd.Parameters.AddWithValue("@NIC", programAttendence.NIC);
+            dbConnection.cmd.Parameters.AddWithValue("@DOB", programAttendence.DOB);
+            dbConnection.cmd.Parameters.AddWithValue("@Sex", programAttendence.Sex);
 
 
 

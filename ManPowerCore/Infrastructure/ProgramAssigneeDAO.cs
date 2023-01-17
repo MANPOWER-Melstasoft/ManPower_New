@@ -53,6 +53,7 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxProgramAssigneeId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_ASSIGNEE(DESIGNATION_ID,DEPARTMENT_UNIT_POSSITIONS_ID,PROGRAM_TARGET_ID) " +
                                            "VALUES(@DesignationId,@DepartmentUnitPossitionsId,@ProgramTargetId) ";
 
@@ -71,6 +72,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_ASSIGNEE SET DESIGNATION_ID = @DesignationId," +
                                             " DEPARTMENT_UNIT_POSSITIONS_ID = @DepartmentUnitPossitionsId," +
                                             " PROGRAM_TARGET_ID = ProgramTargetId WHERE ID = @ProgramAssigneeId ";

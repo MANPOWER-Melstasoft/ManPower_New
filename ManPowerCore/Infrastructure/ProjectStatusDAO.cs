@@ -20,7 +20,7 @@ namespace ManPowerCore.Infrastructure
 
     }
 
-    public class ProjectStatusDAOImpl : ProjectStatusDAO 
+    public class ProjectStatusDAOImpl : ProjectStatusDAO
     {
 
         public int getMaxProjectStatusId(DBConnection dbConnection)
@@ -50,13 +50,14 @@ namespace ManPowerCore.Infrastructure
 
             int id = getMaxProjectStatusId(dbConnection);
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROJECT_STATUS(ID,NAME,IS_ACTIVE) VALUES(@id,@ProjectStatusName,@IsActive)";
 
 
-                               
-                                dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusName", projectStatus.ProjectStatusName);
-                                dbConnection.cmd.Parameters.AddWithValue("@IsActive", projectStatus.IsActive);
+
+            dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusName", projectStatus.ProjectStatusName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", projectStatus.IsActive);
 
 
             dbConnection.cmd.ExecuteNonQuery();
@@ -70,12 +71,13 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROJECT_STATUS SET NAME = @ProjectStatusName, IS_ACTIVE = @IsActive WHERE ID = @ProjectStatusId ";
 
 
-                                dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusId", projectStatus.ProjectStatusId);
-                                dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusName", projectStatus.ProjectStatusName);
-                                dbConnection.cmd.Parameters.AddWithValue("@IsActive", projectStatus.IsActive);
+            dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusId", projectStatus.ProjectStatusId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusName", projectStatus.ProjectStatusName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", projectStatus.IsActive);
 
 
             return dbConnection.cmd.ExecuteNonQuery();

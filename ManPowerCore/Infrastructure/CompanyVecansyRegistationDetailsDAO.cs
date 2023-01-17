@@ -49,6 +49,7 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxCompanyVecansyRegistationDetailsId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO COMPANY_VACANCY_REGISTATION_DETAILS(DATE,ADDRESS,WEBSITE_LINK,BR_NUMBER,JOB_POSITION," +
                                             "CAREER_PATH,SALARY_LEVEL,NUMBER_OF_VACANCY,NAME,POSITION,CONTACT_NUMBER,WHATSAPP_NUMBER," +
                                             "LEVELS,EMAIL) " +
@@ -83,6 +84,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE COMPANY_VACANCY_REGISTATION_DETAILS SET PROGRAM_TYPE_ID =@Date, ADDRESS=@Address, WEBSITE_LINK = @WebSiteLink," +
                 " BR_NUMBER = @BusinessRegistationNumber, JOB_POSITION = @JobPosition , CAREER_PATH = @CareerPath,SALARY_LEVEL = @SalaryLevel, NUMBER_OF_VACANCY = @NumberOfVacancy," +
                 " NAME = @Name, POSITION = @Position, CONTACT_NUMBER = @ContactNumber," +

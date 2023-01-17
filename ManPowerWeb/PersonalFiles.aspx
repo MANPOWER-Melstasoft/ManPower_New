@@ -23,6 +23,8 @@
 						<div class="col-8" >
 							<asp:TextBox ID="lname" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="lname" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator12" ControlToValidate="lname" runat="server" ForeColor="Red" ValidationExpression="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+									Invalid Name</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -49,6 +51,8 @@
 						<div class="col-8">
 							<asp:TextBox ID="nameOfInitials" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="nameOfInitials" ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator13" ControlToValidate="nameOfInitials" runat="server" ForeColor="Red" ValidationExpression="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+									Invalid Name</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -123,6 +127,8 @@
 						<div class="col-8">
 							<asp:TextBox ID="nic" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="nic" ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator8" ControlToValidate="nic" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
+							Invalid NIC</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -148,6 +154,8 @@
 						</div>
 						<div class="col-8">
 							<asp:TextBox ID="empPassport" runat="server" Width="230px" CssClass="form-control form-control-user"></asp:TextBox>
+							<asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator9" ControlToValidate="empPassport" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^(?!^0+$)[a-zA-Z0-9]{3,20}$">
+							Invalid Passport</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -249,6 +257,8 @@
 						<div class="col-8">
 							<asp:TextBox ID="epf" runat="server" Width="230px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
 							<asp:RequiredFieldValidator ControlToValidate="epf" ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2"  ForeColor="Red">*</asp:RequiredFieldValidator>
+							<asp:RegularExpressionValidator ValidationGroup="3" ID="RegularExpressionValidator11" ControlToValidate="epf" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\d+$">
+							Invalid EPF</asp:RegularExpressionValidator>
 						</div>
 					</div>
 				</div>
@@ -515,7 +525,9 @@
 								</div>
 								<div class="col-8">
 									<asp:TextBox ID="depNic" runat="server" Width="230px" CssClass="form-control form-control-user" ></asp:TextBox>
-									<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator25" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>								
+									<asp:RequiredFieldValidator ControlToValidate="depNic" ID="RequiredFieldValidator25" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3"  ForeColor="Red">*</asp:RequiredFieldValidator>	
+									<asp:RegularExpressionValidator ValidationGroup="3" ID="RegularExpressionValidator10" ControlToValidate="depNic" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
+									Invalid NIC</asp:RegularExpressionValidator>
 								</div>
 							</div>
 						</div>

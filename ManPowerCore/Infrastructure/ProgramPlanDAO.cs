@@ -57,6 +57,7 @@ namespace ManPowerCore.Infrastructure
 
             //int id = getMaxProgramPlanId(dbConnection);
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_PLAN(PROJECT_STATUS_ID,PROGRAM_CATEGORY_ID,PROGRAM_TARGET_ID,DATE," +
                                             "LOCATION,OUTCOME,OUTPUT,ACTUAL_OUTPUT,IS_APPROVED,APPROVED_BY,APPROVED_DATE," +
@@ -99,6 +100,8 @@ namespace ManPowerCore.Infrastructure
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_PLAN SET PROJECT_STATUS_ID = @ProjectStatusId ," +
             " PROGRAM_CATEGORY_ID = @ProgramCategoryId," +

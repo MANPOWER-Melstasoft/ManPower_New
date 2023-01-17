@@ -12,7 +12,7 @@ namespace ManPowerCore.Infrastructure
     public interface VehicleMaintenanceDAO
     {
         int SaveVehicleMeintenance(VehicleMeintenance vehicleMeintenance, DBConnection dbConnection);
-        
+
         int UpdateApprovals(int id, int approval, int officer, string reason, DBConnection dbConnection);
 
         List<VehicleMeintenance> GetAllVehicleMeintenance(DBConnection dbConnection);
@@ -26,6 +26,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO VEHICLE_MAINTANCE(Employee_ID,Date,Vehicle_Number,Description," +
                 "Is_Approved,Approved_By,Approved_date,Estimated_Cost,Attachment,Maintenance_Category_Id,Requested_By,File_No,Rejected_Reason) " +
 
@@ -63,11 +64,12 @@ namespace ManPowerCore.Infrastructure
 
         }
 
-        public int UpdateApprovals(int id, int approvalStatus, int officer, string reason,DBConnection dbConnection)
+        public int UpdateApprovals(int id, int approvalStatus, int officer, string reason, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, APPROVED_BY = @officer, REJECTED_REASON = @reason WHERE ID = " + id + " ";
 
             dbConnection.cmd.Parameters.AddWithValue("@approvalStatus", approvalStatus);

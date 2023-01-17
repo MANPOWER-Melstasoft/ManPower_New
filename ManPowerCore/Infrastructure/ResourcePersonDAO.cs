@@ -44,6 +44,7 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxResourcePersonId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO RESOURCE_PERSON(RESOURCE_PERSON_TYPE,NIC,NAME,DESIGNATION,WORK_PLACE,QUALIFICATIONS,ADDRESS,CONTACT_NUMBER,WHATSAPP_NUMBER,EMAIL) " +
             "VALUES(@ResourcePersonType,@NIC,@Name,@Designation,@WorkPlace,@Qualifications,@Address,@ContactNumber,@WhatsappNumber,@Email) ";
 

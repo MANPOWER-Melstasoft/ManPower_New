@@ -419,5 +419,17 @@ namespace ManPowerCore.Common
             DistricDsParentController districDsParentController = new DistricDsParentControllerImpl();
             return (DistricDsParentController)districDsParentController;
         }
+
+        public static CareerKeyTestResultsController CreateCareerKeyTestResultsController()
+        {
+            CareerKeyTestResultsController careerKeyTestResultsController = new CareerKeyTestResultsControllerSqlImpl();
+            return (CareerKeyTestResultsController)careerKeyTestResultsController;
+        }
+
+        public static CareerGuidanceFeedbackController CreateCareerGuidanceFeedbackController()
+        {
+            CareerGuidanceFeedbackController careerGuidanceFeedbackController = new CareerGuidanceFeedbackControllerSqlImpl();
+            return (CareerGuidanceFeedbackController)careerGuidanceFeedbackController;
+        }
     }
 }

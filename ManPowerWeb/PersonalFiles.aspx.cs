@@ -265,7 +265,7 @@ namespace ManPowerWeb
             }
             else
             {
-                if (Convert.ToDateTime(depDob.Text) <= DateTime.Today)
+                if (Convert.ToDateTime(depDob.Text) >= DateTime.Today)
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth Can not be a Future Date!', 'error');", true);
                 }

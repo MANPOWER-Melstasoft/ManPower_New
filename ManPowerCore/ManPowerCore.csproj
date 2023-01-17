@@ -55,6 +55,7 @@
     <Compile Include="Controller\BeneficiaryController.cs" />
     <Compile Include="Controller\BeneficiaryTypeController.cs" />
     <Compile Include="Controller\BusinessTypeController.cs" />
+    <Compile Include="Controller\CareerKeyTestResultsController.cs" />
     <Compile Include="Controller\CompanyVecansyRegistationDetailsController.cs" />
     <Compile Include="Controller\ContactModeController.cs" />
     <Compile Include="Controller\ContactTypeController.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Domain\Beneficiary.cs" />
     <Compile Include="Domain\BeneficiaryType.cs" />
     <Compile Include="Domain\BusinessType.cs" />
+    <Compile Include="Domain\CareerKeyTestResults.cs" />
     <Compile Include="Domain\CompanyVecansyRegistationDetails.cs" />
     <Compile Include="Domain\ContactMode.cs" />
     <Compile Include="Domain\ContactType.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Infrastructure\BeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\BeneficiaryTypeDAO.cs" />
     <Compile Include="Infrastructure\BusinessTypeDAO.cs" />
+    <Compile Include="Infrastructure\CareerKeyTestResultsDAO.cs" />
     <Compile Include="Infrastructure\CompanyVecansyRegistationDetailsDAO.cs" />
     <Compile Include="Infrastructure\ContactModeDAO.cs" />
     <Compile Include="Infrastructure\ContactTypeDAO.cs" />

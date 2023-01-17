@@ -408,5 +408,11 @@ namespace ManPowerCore.Common
             return (DistricDsParentDAO)districDsParentDAO;
         }
 
+        public static CareerKeyTestResultsDAO CreateCareerKeyTestResultsDAO()
+        {
+            CareerKeyTestResultsDAO careerKeyTestResultsDAO = new CareerKeyTestResultsDAOSqlImpl();
+            return (CareerKeyTestResultsDAO)careerKeyTestResultsDAO;
+        }
+
     }
 }

@@ -28,6 +28,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_CONTACT(EMPLOYEE_ID,ADDRESS,MOBILE_NUMBER,TELEPHONE,OFFICE_PHONE,POSTAL_CODE,EMAIL) " +
                 "VALUES(@EmpID,@EmpAddress,@MobileNumber,@EmpTelephone,@OfficePhone,@PostalCode,@EmpEmail)";
 
@@ -49,6 +50,8 @@ namespace ManPowerCore.Infrastructure
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "UPDATE EMPLOYEE_CONTACT SET ADDRESS = @EmpAddress, MOBILE_NUMBER = @MobileNumber, TELEPHONE = @EmpTelephone, OFFICE_PHONE = @OfficePhone," +
                 " EMAIL = @EmpEmail, POSTAL_CODE = @PostalCode WHERE ID = @EmployeeContactId ";

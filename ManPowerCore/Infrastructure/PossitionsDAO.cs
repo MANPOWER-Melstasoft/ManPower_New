@@ -49,7 +49,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             int id = getMaxPositionId(dbConnection);
-
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO POSSITIONS(NAME) values (@PositionName) ";
 

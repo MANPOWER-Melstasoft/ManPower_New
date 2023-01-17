@@ -24,6 +24,7 @@ namespace ManPowerCore.Infrastructure
         public int SaveEmployee(Employee emp, DBConnection dbConnection)
         {
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,NIC_Issue_Date,Passport_Number" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
                                             ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type) " +

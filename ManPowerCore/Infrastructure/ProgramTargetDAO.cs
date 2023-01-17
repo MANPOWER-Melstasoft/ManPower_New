@@ -66,6 +66,7 @@ namespace ManPowerCore.Infrastructure
 
             int id = getMaxProgramTargetId(dbConnection);
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_TARGET(PROGRAM_TYPE_ID,PROGRAM_ID,TITLE,DESCRIPTION," +
                                             "START_DATE,END_DATE,OUTCOME,VOTE_NUMBER,NO_OF_PROJECTS,ESTIMATED_AMOUNT,TARGET_YEAR," +
@@ -106,6 +107,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_TARGET SET PROGRAM_TYPE_ID =@ProgramTypeId , PROGRAM_ID = @ProgramId," +
                 " TITLE = @Title, DESCRIPTION = @Description , START_DATE = @StartDate,END_DATE = @EndDate , OUTCOME = @Outcome , VOTE_NUMBER = @VoteNumber," +
                 " NO_OF_PROJECTS = @NoOfProjects, ESTIMATED_AMOUNT = @EstimatedAmount, TARGET_YEAR = @TargetYear," +
@@ -147,6 +149,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_TARGET SET IS_RECOMMENDED = @Status,Reject_Remarks= @RejectReason WHERE ID=@Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", id);
@@ -161,6 +164,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_TARGET SET IS_RECOMMENDED = @IsRecomended," +
                 "RECOMMENDED_BY=@RecomendedBy WHERE ID=@programTargetId";
 

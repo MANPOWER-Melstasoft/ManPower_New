@@ -19,12 +19,12 @@ namespace ManPowerCore.Infrastructure
 
     }
 
-    public class DepartmentUnitDAOImpl : DepartmentUnitDAO 
+    public class DepartmentUnitDAOImpl : DepartmentUnitDAO
     {
         public int getMaxDepartmentUnitId(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
-                dbConnection.dr.Close(); 
+                dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT ISNULL(MAX(ID),0) FROM DEPARTMENT_UNIT";
             int DepartmentUnitId = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
@@ -49,11 +49,12 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxDepartmentUnitId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO DEPARTMENT_UNIT(DEPARTMENT_UNIT_TYPE_ID, NAME, EMAIL, FAX, ADDRESS_LINE1, " +
                                             "ADDRESS_LINE2, ADDRESS_LINE3, PARENT_ID) values " +
                                             "(@DepartmentUnitTypeId,@Name,@Email,@FAX,@AddressLine1,@AddressLine2,@AddressLine3,@ParentId) ";
 
-           
+
             dbConnection.cmd.Parameters.AddWithValue("@DepartmentUnitTypeId", departmentunit.DepartmentUnitTypeId);
             dbConnection.cmd.Parameters.AddWithValue("@Name", departmentunit.Name);
             dbConnection.cmd.Parameters.AddWithValue("@Email", departmentunit.Email);
@@ -92,7 +93,7 @@ namespace ManPowerCore.Infrastructure
         }
 
         public DepartmentUnit GetDepartmentUnit(int id, DBConnection dbConnection)
-        { 
+        {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
@@ -104,12 +105,12 @@ namespace ManPowerCore.Infrastructure
 
         }
 
-        public List<DepartmentUnit> CheckDepartmentUnit(string runName,int runDepartmentUnitId,int ParentId, DBConnection dbConnection)
+        public List<DepartmentUnit> CheckDepartmentUnit(string runName, int runDepartmentUnitId, int ParentId, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT WHERE NAME = '"+ runName + "' AND DEPARTMENT_UNIT_TYPE_ID = "+ runDepartmentUnitId + " AND PARENT_ID = "+ ParentId + "  ";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT WHERE NAME = '" + runName + "' AND DEPARTMENT_UNIT_TYPE_ID = " + runDepartmentUnitId + " AND PARENT_ID = " + ParentId + "  ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

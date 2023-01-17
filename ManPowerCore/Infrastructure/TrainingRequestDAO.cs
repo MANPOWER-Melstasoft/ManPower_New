@@ -49,6 +49,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE TRAINING_REQUEST SET EMPLOYEE_ID = @empId, PROGRAM_DATE = @programDate, PROGRAM_ID = @programId, " +
                 "REQUESTED_DATE=@requestedDate, Requested_user_id=@requestedUserId, APPROVED_BY = @approvedBy, APPROVED_DATE=@approvedDate,Status_ID=@statusID," +
                 "Training_Category=@trainingCategory, Institute=@institute,Content_type = @content, Doc_Upload=@doc  WHERE ID = @id ";

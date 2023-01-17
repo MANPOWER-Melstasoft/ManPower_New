@@ -45,6 +45,7 @@ namespace ManPowerCore.Infrastructure
             int beneficiaryId = getMaxBeneficiaryId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO BENEFICIARY(BENEFICIARY_TYPE_ID,DISTRICT,DIVISIONAL_SECRETERY) " +
 
                                            "VALUES(@BeneficiaryTypeId,@District,@DivisionalSecretery) ";

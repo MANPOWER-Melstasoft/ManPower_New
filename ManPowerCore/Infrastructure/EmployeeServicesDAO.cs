@@ -21,6 +21,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_SERVICES(SERVICE_TYPE_ID,EMPLOYEE_ID,APPOINTMENT_DATE,DATE_ASSUMED_DUTY, " +
                 "METHOD_OF_RECRUITMENT,MEDIUM_OF_RECRUITMENT,CONFIRMED)" +
                 "VALUES(@ServicesTypeId,@EId,@AppointmentDate,@DateAssumedDuty,@MethodOfRecruitment,@MediumOfRecruitment,@ServiceConfirmed)";

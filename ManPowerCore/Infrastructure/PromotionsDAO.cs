@@ -27,7 +27,8 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO PROMOTIONS(EMPLOYMENT_DETAIL_ID,PREVIOUS_DESIGNATION_ID,NEW_DESIGNATION_ID,"+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "INSERT INTO PROMOTIONS(EMPLOYMENT_DETAIL_ID,PREVIOUS_DESIGNATION_ID,NEW_DESIGNATION_ID," +
                 "PROMOTED_DATE,PROBATION_END_DATE,CONFIRM_DATE,CONFIRM_BY)" +
                 " VALUES(@EmploymentDetailId,@PreDesignationId,@NewDesignationId,@PromotedDate,@ProbationEndDate,@ConfirmDate,@ConfirmBy)";
 
@@ -52,6 +53,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROMOTIONS SET EMPLOYMENT_DETAIL_ID = @EmploymentDetailId, PREVIOUS_DESIGNATION_ID = @PreDesignationId " +
                 "NEW_DESIGNATION_ID = @NewDesignationId, PROMOTED_DATE = @PromotedDate, PROBATION_END_DATE = @ProbationEndDate,CONFIRM_DATE = @ConfirmDate" +
                 "CONFIRM_BY = @ConfirmBy WHERE ID = @PromotionId ";

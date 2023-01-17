@@ -22,7 +22,7 @@ namespace ManPowerCore.Infrastructure
         int UpdateProgramBudget(ProgramBudget programBudget, DBConnection dbConnection);
     }
 
-    public class ProgramBudgetDAOImpl : ProgramBudgetDAO 
+    public class ProgramBudgetDAOImpl : ProgramBudgetDAO
     {
 
         public int getMaxProgramBudgetId(DBConnection dbConnection)
@@ -53,19 +53,20 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxProgramBudgetId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_BUDGET(ID,PROGRAM_PLAN_ID,DESCRIPTION,ESTIMATED_AMOUNT,APPROVED_AMOUNT,ACTUAL_AMOUNT" +
 
                                             "VALUES(@id,@ProgramPlanId,@Description,@EstimatedAmount,@ApprovedAmoun,@ActualAmount) ";
 
 
 
-                               
-                                dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programBudget.ProgramPlanId);
-                                dbConnection.cmd.Parameters.AddWithValue("@Description", programBudget.Description);
-                                dbConnection.cmd.Parameters.AddWithValue("@EstimatedAmount", programBudget.EstimatedAmount);
-                                dbConnection.cmd.Parameters.AddWithValue("@ApprovedAmount", programBudget.ApprovedAmount);
-                                dbConnection.cmd.Parameters.AddWithValue("@ActualAmount", programBudget.ActualAmount);
-                               
+
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programBudget.ProgramPlanId);
+            dbConnection.cmd.Parameters.AddWithValue("@Description", programBudget.Description);
+            dbConnection.cmd.Parameters.AddWithValue("@EstimatedAmount", programBudget.EstimatedAmount);
+            dbConnection.cmd.Parameters.AddWithValue("@ApprovedAmount", programBudget.ApprovedAmount);
+            dbConnection.cmd.Parameters.AddWithValue("@ActualAmount", programBudget.ActualAmount);
+
 
             dbConnection.cmd.ExecuteNonQuery();
 
@@ -78,18 +79,19 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_BUDGET SET PROGRAM_PLAN_ID = @ProgramPlanId," +
                 " DESCRIPTION = @Description, ESTIMATED_AMOUNT = @EstimatedAmount," +
                 " APPROVED_AMOUNT = @ApprovedAmount, ACTUAL_AMOUNT = @ActualAmount' WHERE ID = @ProgramBudgetId ";
 
 
 
-                                            dbConnection.cmd.Parameters.AddWithValue("@ProgramBudgetId", programBudget.ProgramBudgetId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programBudget.ProgramPlanId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@Description", programBudget.Description);
-                                            dbConnection.cmd.Parameters.AddWithValue("@EstimatedAmount", programBudget.EstimatedAmount);
-                                            dbConnection.cmd.Parameters.AddWithValue("@ApprovedAmount", programBudget.ApprovedAmount);
-                                            dbConnection.cmd.Parameters.AddWithValue("@ActualAmount", programBudget.ActualAmount);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramBudgetId", programBudget.ProgramBudgetId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programBudget.ProgramPlanId);
+            dbConnection.cmd.Parameters.AddWithValue("@Description", programBudget.Description);
+            dbConnection.cmd.Parameters.AddWithValue("@EstimatedAmount", programBudget.EstimatedAmount);
+            dbConnection.cmd.Parameters.AddWithValue("@ApprovedAmount", programBudget.ApprovedAmount);
+            dbConnection.cmd.Parameters.AddWithValue("@ActualAmount", programBudget.ActualAmount);
 
 
             return dbConnection.cmd.ExecuteNonQuery();
@@ -133,5 +135,5 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<ProgramBudget>(dbConnection.dr);
 
         }
-    }  
+    }
 }

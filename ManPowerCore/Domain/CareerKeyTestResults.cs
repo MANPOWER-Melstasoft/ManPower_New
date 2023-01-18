@@ -43,6 +43,13 @@ namespace ManPowerCore.Domain
         [DBField("Is_Active")]
         public string IsActive { get; set; }
 
+
+        [DBField("Held_Date")]
+        public DateTime HeldDate { get; set; }
+
+        [DBField("Created_User")]
+        public string CreatedUser { get; set; }
+
         public Beneficiary beneficiary { get; set; }
     }
 }

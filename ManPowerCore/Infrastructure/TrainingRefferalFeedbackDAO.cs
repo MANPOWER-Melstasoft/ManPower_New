@@ -25,8 +25,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO TrainingRefferalFeedback (Vote_Type_ID, Year_Allocation, Vote_Number, Amount, Reamin_Amount, Created_By, Created_Date) " +
-                "VALUES (@TrainingRefferalId, @Date, @TrainingInstitute, @InTraining, @TrainingCompleted, @Remarks) ";
+            dbConnection.cmd.CommandText = "INSERT INTO Training_Refferal_Feedback (Training_Refferals_Id, Created_Date, Training_Institute, In_Training, Training_Completed, Other_Remarks, Created_User) " +
+                "VALUES (@TrainingRefferalId, @Date, @TrainingInstitute, @InTraining, @TrainingCompleted, @Remarks, @Created_User) SELECT SCOPE_IDENTITY()";
 
             dbConnection.cmd.Parameters.AddWithValue("@TrainingRefferalId", trainingRefferals.TrainingRefferalId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", trainingRefferals.Date);
@@ -34,6 +34,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@InTraining", trainingRefferals.InTraining);
             dbConnection.cmd.Parameters.AddWithValue("@TrainingCompleted", trainingRefferals.TrainingCompleted);
             dbConnection.cmd.Parameters.AddWithValue("@Remarks", trainingRefferals.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@Created_User", trainingRefferals.CreatedUser);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
@@ -46,8 +47,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE TrainingRefferalFeedback SET Date = @Date, TrainingRefferalId = @TrainingRefferalId, TrainingInstitute = @TrainingInstitute, " +
-                "InTraining = @InTraining, TrainingCompleted = @TrainingCompleted, Remarks = @Remarks WHERE ID = @Id";
+            dbConnection.cmd.CommandText = "UPDATE Training_Refferal_Feedback SET Created_Date = @Date, Training_Refferals_Id = @TrainingRefferalId, Training_Institute = @TrainingInstitute, " +
+                "In_Training = @InTraining, Training_Completed = @TrainingCompleted, Other_Remarks = @Remarks, Created_User = @Created_User WHERE Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", trainingRefferals.Id);
             dbConnection.cmd.Parameters.AddWithValue("@TrainingRefferalId", trainingRefferals.TrainingRefferalId);
@@ -56,6 +57,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@InTraining", trainingRefferals.InTraining);
             dbConnection.cmd.Parameters.AddWithValue("@TrainingCompleted", trainingRefferals.TrainingCompleted);
             dbConnection.cmd.Parameters.AddWithValue("@Remarks", trainingRefferals.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@Created_User", trainingRefferals.CreatedUser);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
@@ -67,7 +69,7 @@ namespace ManPowerCore.Infrastructure
             int output = 0;
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "UPDATE TrainingRefferalFeedback SET Is_Active = 0 WHERE ID = " + id;
+            dbConnection.cmd.CommandText = "UPDATE Training_Refferal_Feedback SET Is_Active = 0 WHERE Id = " + id;
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
@@ -80,9 +82,9 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             if (with0)
-                dbConnection.cmd.CommandText = "SELECT * FROM TrainingRefferals";
+                dbConnection.cmd.CommandText = "SELECT * FROM Training_Refferal_Feedback";
             else
-                dbConnection.cmd.CommandText = "SELECT * FROM TrainingRefferalFeedback WHERE Is_Active = 1";
+                dbConnection.cmd.CommandText = "SELECT * FROM Training_Refferal_Feedback WHERE Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -94,7 +96,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM TrainingRefferalFeedback WHERE ID = " + id;
+            dbConnection.cmd.CommandText = "SELECT * FROM Training_Refferal_Feedback WHERE Id = " + id;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

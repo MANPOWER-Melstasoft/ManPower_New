@@ -25,8 +25,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO Career_Key_Test_Results (Beneficiary_Id, Created_Date, R, I, A, S, E, C, Provided_Guidance) " +
-                "VALUES (@BeneficiaryId, @Date, @R, @I, @A, @S, @E, @C, @Guidence) ";
+            dbConnection.cmd.CommandText = "INSERT INTO Career_Key_Test_Results (Beneficiary_Id, Created_Date, R, I, A, S, E, C, Provided_Guidance, Held_Date, Created_User) " +
+                "VALUES (@BeneficiaryId, @Date, @R, @I, @A, @S, @E, @C, @Guidence, @Held_Date, @Created_User) ";
 
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryId", careerKeyTestResults.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", careerKeyTestResults.Date);
@@ -37,6 +37,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@E", careerKeyTestResults.E);
             dbConnection.cmd.Parameters.AddWithValue("@C", careerKeyTestResults.C);
             dbConnection.cmd.Parameters.AddWithValue("@Guidence", careerKeyTestResults.Guidence);
+            dbConnection.cmd.Parameters.AddWithValue("@Held_Date", careerKeyTestResults.HeldDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Created_User", careerKeyTestResults.CreatedUser);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
@@ -50,7 +52,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE Career_Key_Test_Results SET Created_Date = @Date, Beneficiary_Id = @BeneficiaryId, R = @R, I = @I, A = @A, S = @S, E = @E, C = @C, " +
-                "Provided_Guidance = @Guidence WHERE ID = @Id";
+                "Provided_Guidance = @Guidence, Held_Date = @Held_Date, Created_User = @Created_User WHERE ID = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", careerKeyTestResults.Id);
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryId", careerKeyTestResults.BeneficiaryId);
@@ -62,6 +64,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@E", careerKeyTestResults.E);
             dbConnection.cmd.Parameters.AddWithValue("@C", careerKeyTestResults.C);
             dbConnection.cmd.Parameters.AddWithValue("@Guidence", careerKeyTestResults.Guidence);
+            dbConnection.cmd.Parameters.AddWithValue("@Held_Date", careerKeyTestResults.HeldDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Created_User", careerKeyTestResults.CreatedUser);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 

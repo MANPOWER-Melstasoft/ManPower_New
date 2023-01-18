@@ -31,6 +31,9 @@ namespace ManPowerCore.Domain
         [DBField("Is_Active")]
         public string IsActive { get; set; }
 
+        [DBField("Created_User")]
+        public string CreatedUser { get; set; }
+
         public CareerKeyTestResults careerKeyTestResults { get; set; }
     }
 }

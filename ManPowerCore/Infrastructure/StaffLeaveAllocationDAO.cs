@@ -22,6 +22,7 @@ namespace ManPowerCore.Infrastructure
                 dBConnection.dr.Close();
 
             dBConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dBConnection.cmd.Parameters.Clear();
             dBConnection.cmd.CommandText = "INSERT INTO Staff_Leave_Allocation (Employee_ID,Leave_Type_id,Leave_Year,No_Of_Days,Entitlement,Month_Limit,Month_Limit_Applied_To)" +
                 " VALUES(@EMPID,@LeaveTypeId,@LYear,@NoOfDays,@Entitlement,@MonthLimit,@AppliedTo);";
 

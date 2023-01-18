@@ -49,6 +49,7 @@ namespace ManPowerCore.Infrastructure
 
             int id = getMaxResourceProvisionProgressId(dbConnection);
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO RESOURCE_PROVISION_PROGRESS(DATE,NAME_OF_THE_PROGRAM,INSTITUTE,ADDRESS,SUBJECT_AREA_OR_TOPIC," +
                                             "NAME_OF_THE_ORGANIZATION,ORGANIZATION_TYPE,DS,ORGANIZATION_ADDRESS,NAME,POSITION,CONTACT_NUMBER," +
@@ -84,6 +85,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE RESOURCE_PROVISION_PROGRESS SET DATE =@Date, NAME_OF_THE_PROGRAM=@NameOfTheProgram, INSTITUTE = @Institute," +
                 " ADDRESS = @Address, SUBJECT_AREA_OR_TOPIC = @SubjectAreaOrTopic , NAME_OF_THE_ORGANIZATION = @NameOfTheOrganization,ORGANIZATION_TYPE = @OrganizationType, DS = @Ds," +
                 " ORGANIZATION_ADDRESS = @OrganizationAddress, NAME = @Name, POSITION = @Position," +

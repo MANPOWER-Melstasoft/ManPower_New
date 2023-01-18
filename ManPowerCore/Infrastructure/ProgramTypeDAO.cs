@@ -19,7 +19,7 @@ namespace ManPowerCore.Infrastructure
         int UpdateProgramType(ProgramType programType, DBConnection dbConnection);
     }
 
-    public class ProgramTypeDAOImpl : ProgramTypeDAO 
+    public class ProgramTypeDAOImpl : ProgramTypeDAO
     {
 
         public int getMaxProgramTypeId(DBConnection dbConnection)
@@ -49,13 +49,14 @@ namespace ManPowerCore.Infrastructure
 
             int id = getMaxProgramTypeId(dbConnection);
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_TYPE(ID,NAME,IS_ACTIVE) VALUES(@id,@ProgramTypeName,@IsActive)";
 
 
-                                
-                                dbConnection.cmd.Parameters.AddWithValue("@ProgramTypeName", programType.ProgramTypeName);
-                                dbConnection.cmd.Parameters.AddWithValue("@IsActive", programType.IsActive);
+
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramTypeName", programType.ProgramTypeName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", programType.IsActive);
 
 
             dbConnection.cmd.ExecuteNonQuery();
@@ -69,12 +70,13 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_TYPE SET NAME = @ProgramTypeName, IS_ACTIVE = @IsActive WHERE ID = @ProgramTypeId ";
 
 
-                                            dbConnection.cmd.Parameters.AddWithValue("@ProgramTypeId", programType.ProgramTypeId);
-                                            dbConnection.cmd.Parameters.AddWithValue("@ProgramTypeName", programType.ProgramTypeName);
-                                            dbConnection.cmd.Parameters.AddWithValue("@IsActive", programType.IsActive);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramTypeId", programType.ProgramTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramTypeName", programType.ProgramTypeName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", programType.IsActive);
 
 
             return dbConnection.cmd.ExecuteNonQuery();

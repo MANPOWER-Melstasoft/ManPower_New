@@ -357,13 +357,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.DropDownList ddlCompanyVacancies;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// RequiredFieldValidatorJob2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorJob2;
 
         /// <summary>
         /// ddlJobCategory control.
@@ -375,13 +375,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.DropDownList ddlJobCategory;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// RequiredFieldValidatorJob1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorJob1;
 
         /// <summary>
         /// jobRefferalsDate control.
@@ -393,13 +393,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox jobRefferalsDate;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// RequiredFieldValidatorJob3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorJob3;
 
         /// <summary>
         /// jobPlacememntDate control.
@@ -411,13 +411,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox jobPlacememntDate;
 
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// RequiredFieldValidatorJob4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorJob4;
 
         /// <summary>
         /// careerGuidance control.
@@ -429,13 +429,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox careerGuidance;
 
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// RequiredFieldValidatorJob5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorJob5;
 
         /// <summary>
         /// jobRefferalRemark control.

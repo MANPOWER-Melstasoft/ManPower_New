@@ -324,7 +324,7 @@
                         <div class="col-3">
                             <asp:DropDownList ID="ddlCompanyVacancies" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                             <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Job"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob2" runat="server" ValidationGroup="Job"
                                     ControlToValidate="ddlCompanyVacancies" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -335,7 +335,7 @@
                         <div class="col-3">
                             <asp:DropDownList ID="ddlJobCategory" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                             <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Job"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob1" runat="server" ValidationGroup="Job"
                                     ControlToValidate="ddlJobCategory" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -350,7 +350,7 @@
                         <div class="col-3">
                             <asp:TextBox ID="jobRefferalsDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
                             <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="Job"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob3" runat="server" ValidationGroup="Job"
                                     ControlToValidate="jobRefferalsDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -361,7 +361,7 @@
                         <div class="col-3">
                             <asp:TextBox ID="jobPlacememntDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
                             <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="Job"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob4" runat="server" ValidationGroup="Job"
                                     ControlToValidate="jobPlacememntDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
@@ -377,7 +377,7 @@
                         <div class="col-3">
                             <asp:TextBox ID="careerGuidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
                             <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="Job"
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob5" runat="server" ValidationGroup="Job"
                                     ControlToValidate="careerGuidance" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>

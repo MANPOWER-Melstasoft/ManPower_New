@@ -16,7 +16,7 @@ namespace ManPowerWeb
     {
         List<InduvidualBeneficiary> beneficiaries = new List<InduvidualBeneficiary>();
         public static string BenficiaryId;
-        CareerKeyTestResults careerKeyTestResults=new CareerKeyTestResults();
+        CareerKeyTestResults careerKeyTestResults = new CareerKeyTestResults();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,7 +31,7 @@ namespace ManPowerWeb
 
                 BenficiaryId = Request.QueryString["id"];
 
-                foreach (var i in beneficiaries.Where(u => u.BeneficiaryId == int.Parse(id)))
+                foreach (var i in beneficiaries.Where(u => u.BeneficiaryId == int.Parse(BenficiaryId)))
                 {
                     nic.Text = i.BeneficiaryNic;
                     name.Text = i.InduvidualBeneficiaryName;
@@ -77,7 +77,7 @@ namespace ManPowerWeb
 
 
 
-        //----------------------------------------------------- Job Refferal ---------------------------------------------------------------------------------------
+        //-----------------------------------------------------Start Job Refferal ---------------------------------------------------------------------------------------
 
         protected void submitJobRefferal(object sender, EventArgs e)
         {
@@ -142,6 +142,9 @@ namespace ManPowerWeb
 
         //----------------------------------------------------- End Job Refferal ---------------------------------------------------------------------------------------
 
+
+
+        //----------------------------------------------------- Start Carrer Refferal ---------------------------------------------------------------------------------------
         protected void btnSubmit1_Click(object sender, EventArgs e)
         {
             CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
@@ -157,5 +160,8 @@ namespace ManPowerWeb
 
 
         }
+
+        //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
+
     }
 }

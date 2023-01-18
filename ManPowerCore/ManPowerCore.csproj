@@ -213,6 +213,7 @@
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\JobCategoryDAO.cs" />
+    <Compile Include="Infrastructure\JobPlacementFeedbackDAO.cs" />
     <Compile Include="Infrastructure\JobRefferalsDAO.cs" />
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />

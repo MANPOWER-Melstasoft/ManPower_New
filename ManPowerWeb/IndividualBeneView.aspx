@@ -288,7 +288,7 @@
 
                     <div class="row mt-5 mb-4">
                         <div class="col-2">
-                            <asp:Button runat="server" ID="Button2" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="isClicked" ValidationGroup="1" />
+                            <asp:Button runat="server" ID="btn2Submit" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="isClicked" ValidationGroup="1" />
                         </div>
                     </div>
 

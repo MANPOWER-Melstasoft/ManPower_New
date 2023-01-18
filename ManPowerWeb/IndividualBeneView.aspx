@@ -155,13 +155,17 @@
                             <label>R :</label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="r" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtR" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtR" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
                         <div class="col-2">
                             <label>I : </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="i" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtI" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtI" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
                     </div>
 
@@ -172,14 +176,18 @@
                             <label>A : </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="a" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtA" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtA" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
 
                         <div class="col-2">
                             <label>S: </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="s" runat="server" name="date" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtS" runat="server" name="date" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtS" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
 
                     </div>
@@ -192,14 +200,18 @@
                             <label>E : </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="e" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtE" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtE" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
 
                         <div class="col-2">
                             <label>C : </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtC" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtC" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
 
                     </div>
@@ -212,14 +224,18 @@
                             <label>Provided Guidance : </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="guidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txtGuidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtGuidance" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
 
                         <div class="col-2">
                             <label>Held Date : </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="date" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="TxtHeldDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="TxtHeldDate" ValidationGroup="1"></asp:RequiredFieldValidator>
+
                         </div>
 
                     </div>
@@ -228,7 +244,7 @@
 
                     <div class="row mt-5 mb-4">
                         <div class="col-2">
-                            <asp:Button runat="server" ID="Button1" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="isClicked" ValidationGroup="1" />
+                            <asp:Button runat="server" ID="btnSubmit1" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmit1_Click" ValidationGroup="1" />
                         </div>
                     </div>
 
@@ -373,7 +389,7 @@
         .nav-tabs .nav-link {
             color: gray;
             border: 0;
-            border-bottom: 1px solid red;
+            border-bottom: 1px solid grey;
         }
 
             .nav-tabs .nav-link:hover {

@@ -15,6 +15,7 @@ namespace ManPowerWeb
     public partial class IndividualBeneView : System.Web.UI.Page
     {
         List<InduvidualBeneficiary> beneficiaries = new List<InduvidualBeneficiary>();
+        CareerKeyTestResults careerKeyTestResults=new CareerKeyTestResults();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,6 +58,22 @@ namespace ManPowerWeb
         protected void isClicked(object sender, EventArgs e)
         {
             Response.Redirect("IndividualBeneSearch.aspx");
+        }
+
+        protected void btnSubmit1_Click(object sender, EventArgs e)
+        {
+            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
+            //careerKeyTestResults.R =;
+            //careerKeyTestResults.A =;
+            //careerKeyTestResults.E =;
+            //careerKeyTestResults.R =;
+            //careerKeyTestResults.R =;
+            //careerKeyTestResults.R =;
+            //careerKeyTestResults.R =;
+            //careerKeyTestResults.R =;
+
+
+
         }
     }
 }

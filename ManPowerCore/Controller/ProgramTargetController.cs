@@ -25,6 +25,7 @@ namespace ManPowerCore.Controller
 
         ProgramTarget GetProgramTarget(int id, bool withProgram, bool withProgramType, bool withProgramAssignee, bool withProgramPlan);
 
+        ProgramTarget GetProgramTarget(int id);
         List<ProgramTarget> GetAllProgramTarget(int runType);
         List<ProgramTarget> GetAllProgramTargetWithPlan();
 
@@ -334,6 +335,27 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
 
+        }
+
+        public ProgramTarget GetProgramTarget(int id)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return programTargetDAO.GetProgramTarget(id, dBConnection);
+
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
         }
 
         public List<ProgramTarget> GetAllProgramTargetWithPlan()

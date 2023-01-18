@@ -28,6 +28,7 @@ namespace ManPowerCore.Infrastructure
 
             dBConnection.cmd.CommandType = System.Data.CommandType.Text;
 
+            dBConnection.cmd.Parameters.Clear();
             dBConnection.cmd.CommandText = "INSERT INTO Staff_Leave (Day_Type_id,Leave_Type_id,Employee_ID,Leave_Date,Created_Date,Is_Half_Day,Leave_Status_Id,Reason_For_Leave,Resuming_Date,No_Of_Leave,Leave_Document)" +
                " VALUES(@DayType,@LeaveTypeId,@EmpId,@LeaveDate,@CreatedDate,@IsHalfDay,@LeaveStatusId,@Reason,@ResumingDate,@NoLeaves,@LeaveDocument);";
 
@@ -78,6 +79,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE Staff_Leave SET Approved_By=@ApprovedBy, Approved_Date=@ApproveDate WHERE Id=@StaffLeaveId ";
 
             dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeave.StaffLeaveId);

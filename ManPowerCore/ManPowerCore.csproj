@@ -55,6 +55,8 @@
     <Compile Include="Controller\BeneficiaryController.cs" />
     <Compile Include="Controller\BeneficiaryTypeController.cs" />
     <Compile Include="Controller\BusinessTypeController.cs" />
+    <Compile Include="Controller\CareerGuidanceFeedbackController.cs" />
+    <Compile Include="Controller\CareerKeyTestResultsController.cs" />
     <Compile Include="Controller\CompanyVecansyRegistationDetailsController.cs" />
     <Compile Include="Controller\ContactModeController.cs" />
     <Compile Include="Controller\ContactTypeController.cs" />
@@ -76,6 +78,9 @@
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
+    <Compile Include="Controller\JobCategoryController.cs" />
+    <Compile Include="Controller\JobPlacementFeedbackController.cs" />
+    <Compile Include="Controller\JobRefferalsController.cs" />
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
@@ -106,6 +111,8 @@
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
     <Compile Include="Controller\TaskTypeController.cs" />
     <Compile Include="Controller\Test.cs" />
+    <Compile Include="Controller\TrainingRefferalFeedbackController.cs" />
+    <Compile Include="Controller\TrainingRefferalsController.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />
@@ -121,6 +128,8 @@
     <Compile Include="Domain\Beneficiary.cs" />
     <Compile Include="Domain\BeneficiaryType.cs" />
     <Compile Include="Domain\BusinessType.cs" />
+    <Compile Include="Domain\CareerGuidanceFeedback.cs" />
+    <Compile Include="Domain\CareerKeyTestResults.cs" />
     <Compile Include="Domain\CompanyVecansyRegistationDetails.cs" />
     <Compile Include="Domain\ContactMode.cs" />
     <Compile Include="Domain\ContactType.cs" />
@@ -143,6 +152,8 @@
     <Compile Include="Domain\Entrepreneur.cs" />
     <Compile Include="Domain\Ethnicity.cs" />
     <Compile Include="Domain\InduvidualBeneficiary.cs" />
+    <Compile Include="Domain\JobPlacementFeedback.cs" />
+    <Compile Include="Domain\JobRefferals.cs" />
     <Compile Include="Domain\MaintenanceCategory.cs" />
     <Compile Include="Domain\LeaveType.cs" />
     <Compile Include="Domain\MarketType.cs" />
@@ -174,6 +185,9 @@
     <Compile Include="Domain\TaskAllocationDetail.cs" />
     <Compile Include="Domain\TaskType.cs" />
     <Compile Include="Domain\Test.cs" />
+    <Compile Include="Domain\TrainingRefferalFeedback.cs" />
+    <Compile Include="Domain\TrainingRefferals.cs" />
+    <Compile Include="Domain\JobCategory.cs" />
     <Compile Include="Domain\Training_Request.cs" />
     <Compile Include="Domain\UserRegistation.cs" />
     <Compile Include="Domain\UserType.cs" />
@@ -188,6 +202,8 @@
     <Compile Include="Infrastructure\BeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\BeneficiaryTypeDAO.cs" />
     <Compile Include="Infrastructure\BusinessTypeDAO.cs" />
+    <Compile Include="Infrastructure\CareerGuidanceFeedbackDAO.cs" />
+    <Compile Include="Infrastructure\CareerKeyTestResultsDAO.cs" />
     <Compile Include="Infrastructure\CompanyVecansyRegistationDetailsDAO.cs" />
     <Compile Include="Infrastructure\ContactModeDAO.cs" />
     <Compile Include="Infrastructure\ContactTypeDAO.cs" />
@@ -209,6 +225,9 @@
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
+    <Compile Include="Infrastructure\JobCategoryDAO.cs" />
+    <Compile Include="Infrastructure\JobPlacementFeedbackDAO.cs" />
+    <Compile Include="Infrastructure\JobRefferalsDAO.cs" />
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />
@@ -239,6 +258,8 @@
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
     <Compile Include="Infrastructure\TaskTypeDAO.cs" />
     <Compile Include="Infrastructure\Test.cs" />
+    <Compile Include="Infrastructure\TrainingRefferalFeedbackDAO.cs" />
+    <Compile Include="Infrastructure\TrainingRefferalsDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
     <Compile Include="Infrastructure\UserRegistrationDAO.cs" />
     <Compile Include="Infrastructure\UserTypeDAO.cs" />

@@ -54,8 +54,9 @@
                         <img src="img/HR.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
-                            <h5 class="card-title text-center">HUMAN RESOURCE</h5>
-
+                            <a href="Dashboard.aspx" style="text-decoration: none;">
+                                <h5 class="card-title text-center">HUMAN RESOURCE</h5>
+                            </a>
                         </div>
                         <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
                         </div>
@@ -69,7 +70,7 @@
                         </div>
 
                         <div class="card-body">
-                            <a href="SessionManager.aspx?id=1" style="text-decoration: none;">
+                            <a href="SessionManager.aspx" style="text-decoration: none;">
 
                                 <h5 class="card-title text-center">PROCUREMENT</h5>
                             </a>
@@ -84,8 +85,9 @@
                         <img src="img/Finance.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
-                            <h5 class="card-title text-center">FINANCE</h5>
-
+                            <a href="Dashboard.aspx" style="text-decoration: none;">
+                                <h5 class="card-title text-center">FINANCE</h5>
+                            </a>
                         </div>
                         <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
                         </div>

@@ -27,6 +27,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYMENT_DETAIL(DESIGNATION_ID,CONTRACT_TYPE_ID,EMPLOYEE_ID,COMPANY_NAME,START_DATE, " +
                 "END_DATE,IS_RESIGNED,RETIREMENT_DATE,EPF_NUMBER)" +
                 " VALUES(@DesignationId,@ContractTypeId,@EmpID,@CompanyName,@StartDate,@EndDate,@IsResigned,@RetirementDate,@Epf)";
@@ -52,6 +53,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE Employment_Detail SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID " +
                 "COMPANY_NAME = @CompanyName, START_DATE = @StartDate,END_DATE = @EndDate,IS_RESIGNED = @IsResigned" +
                 "RETIREMENT_DATE = @RetirementDate, EPF_NUMBER = @Epf, EMPNO = @EmpNumber WHERE ID = @EmploymentDetailId ";

@@ -23,6 +23,7 @@ namespace ManPowerCore.Infrastructure
         {
             int output = 0;
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Vote_Ledger (From_Vote, To_Vote, Amount, Created_By, Created_Date) " +
                 "VALUES (@FromVote, @ToVote, @Amount, @CreatedBy, @CreatedDate) ";
@@ -55,6 +56,7 @@ namespace ManPowerCore.Infrastructure
         {
             int output = 0;
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "UPDATE Vote_Ledger SET Approved_By = @ApprovedBy, Approved_Date = @ApprovedDate WHERE ID = @Id";
 

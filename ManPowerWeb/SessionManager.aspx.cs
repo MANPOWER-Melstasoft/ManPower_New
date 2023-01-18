@@ -15,7 +15,14 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             //id = Request.QueryString["id"].ToString();
-            SessionManager();
+            if (Session["UserId"] != null)
+            {
+                SessionManager();
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
 

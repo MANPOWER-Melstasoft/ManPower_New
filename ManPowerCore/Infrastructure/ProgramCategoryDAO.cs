@@ -51,6 +51,7 @@ namespace ManPowerCore.Infrastructure
 
             int id = getMaxProgramCategoryId(dbConnection);
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM_CATEGORY(ID,NAME,IS_ACTIVE) " +
 
@@ -58,10 +59,10 @@ namespace ManPowerCore.Infrastructure
 
 
 
-                                
-                                dbConnection.cmd.Parameters.AddWithValue("@ProgramCategoryName", programCategory.ProgramCategoryName);
-                                dbConnection.cmd.Parameters.AddWithValue("@IsActive", programCategory.IsActive);
-                               
+
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramCategoryName", programCategory.ProgramCategoryName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", programCategory.IsActive);
+
 
             dbConnection.cmd.ExecuteNonQuery();
 
@@ -74,13 +75,14 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM_CATEGORY SET NAME = @ProgramCategoryName, IS_ACTIVE = @IsActive  WHERE ID = @ProgramCategoryId ";
 
 
 
-                                    dbConnection.cmd.Parameters.AddWithValue("@ProgramCategoryId", programCategory.ProgramCategoryId);
-                                    dbConnection.cmd.Parameters.AddWithValue("@ProgramCategoryName", programCategory.ProgramCategoryName);
-                                    dbConnection.cmd.Parameters.AddWithValue("@IsActive", programCategory.IsActive);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramCategoryId", programCategory.ProgramCategoryId);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramCategoryName", programCategory.ProgramCategoryName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", programCategory.IsActive);
 
 
 

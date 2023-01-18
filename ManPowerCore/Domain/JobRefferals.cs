@@ -36,5 +36,15 @@ namespace ManPowerCore.Domain
 
         [DBField("IS_ACTIVE")]
         public int IsActive { get; set; }
+
+        [DBField("Job_Refferals_Date")]
+        public DateTime RefferalsDate { get; set; }
+
+        [DBField("Created_User")]
+        public string CreatedUser { get; set; }
+
+        public CompanyVecansyRegistationDetails companyVecansyRegistationDetails { get; set; }
+
+        public Beneficiary beneficiary { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROJECT_PLAN_RESOURCE(RESOURCE_PERSON_ID,PROGRAM_PLAN_ID, WORK_PLACE, SUBJECT) values " +
                 $"(?,?,?,?,?) ";

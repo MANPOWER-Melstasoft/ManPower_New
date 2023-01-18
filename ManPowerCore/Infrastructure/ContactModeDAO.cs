@@ -26,6 +26,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO CONTACT_MODE(NAME,IS_ACTIVE,AIIAS) VALUES(@ContactModeName,@IsActive,@ContactAlias)";
 
 
@@ -40,10 +41,11 @@ namespace ManPowerCore.Infrastructure
 
 
         public int UpdateContactMode(ContactMode contactMode, DBConnection dbConnection)
-        { 
+        {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE CONTACT_MODE SET NAME = @ContactModeName, IS_ACTIVE = @IsActive AIIAS = @ContactAlias, WHERE ID = @ContactModeId ";
 
             dbConnection.cmd.Parameters.AddWithValue("@ContactModeId", contactMode.ContactModeId);

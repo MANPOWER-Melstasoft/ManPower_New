@@ -408,5 +408,28 @@ namespace ManPowerCore.Common
             return (DistricDsParentDAO)districDsParentDAO;
         }
 
+        public static CareerKeyTestResultsDAO CreateCareerKeyTestResultsDAO()
+        {
+            CareerKeyTestResultsDAO careerKeyTestResultsDAO = new CareerKeyTestResultsDAOSqlImpl();
+            return (CareerKeyTestResultsDAO)careerKeyTestResultsDAO;
+        }
+
+        public static CareerGuidanceFeedbackDAO CreateCareerGuidanceFeedbackDAO()
+        {
+            CareerGuidanceFeedbackDAO careerGuidanceFeedbackDAO = new CareerGuidanceFeedbackDAOSqlImpl();
+            return (CareerGuidanceFeedbackDAO)careerGuidanceFeedbackDAO;
+        }
+
+        public static TrainingRefferalsDAO CreateTrainingRefferalsDAO()
+        {
+            TrainingRefferalsDAO trainingRefferalsDAO = new TrainingRefferalsDAOSqlImmpl();
+            return (TrainingRefferalsDAO)trainingRefferalsDAO;
+        }
+
+        public static TrainingRefferalFeedbackDAO CreateTrainingRefferalFeedbackDAO()
+        {
+            TrainingRefferalFeedbackDAO trainingRefferalFeedbackDAO = new TrainingRefferalFeedbackDAOSqlImpl();
+            return (TrainingRefferalFeedbackDAO)trainingRefferalFeedbackDAO;
+        }
     }
 }

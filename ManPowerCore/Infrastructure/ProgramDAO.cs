@@ -49,6 +49,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO PROGRAM(NAME, Program_Type_Id) " +
                                            "VALUES(@ProgramName, @ProgramType)";
@@ -64,6 +65,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE PROGRAM SET NAME = @ProgramName, IS_ACTIVE = @IsActive  WHERE ID = @ProgramId ";
 
 

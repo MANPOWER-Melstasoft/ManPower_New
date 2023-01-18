@@ -28,6 +28,7 @@ namespace ManPowerCore.Infrastructure
         {
             int output = 0;
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Vote_Allocation (Vote_Type_ID, Year_Allocation, Vote_Number, Amount, Reamin_Amount, Created_By, Created_Date) " +
                 "VALUES (@VoteTypeId, @Year, @VoteNumber, @Amount, @RemainAmount, @CreatedBy, @CreatedDate) ";
@@ -62,6 +63,7 @@ namespace ManPowerCore.Infrastructure
         {
             int output = 0;
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "UPDATE Vote_Allocation SET Reamin_Amount = @RemainAmount WHERE ID = @Id";
 
@@ -79,7 +81,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             if (with0)
-            dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation";
+                dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation";
             else
                 dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation WHERE Is_Active = 1";
 
@@ -105,6 +107,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation WHERE Vote_Type_ID = @typeId AND YEAR(Year_Allocation) = @year";
 
             dbConnection.cmd.Parameters.AddWithValue("@typeId", typeId);
@@ -120,6 +123,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM Vote_Allocation WHERE Vote_Number = @Number";
 
             dbConnection.cmd.Parameters.AddWithValue("@Number", Number);

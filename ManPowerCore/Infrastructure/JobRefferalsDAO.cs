@@ -32,7 +32,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@VacancyRegistrationId", jobRefferals.VacancyRegistrationId);
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryId", jobRefferals.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@JobCategoryId", jobRefferals.JobCategoryId);
-            dbConnection.cmd.Parameters.AddWithValue("@AssignedDate", jobRefferals.AssignedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@AssignedDate", jobRefferals.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@RefferalRemarks", jobRefferals.RefferalRemarks);
             dbConnection.cmd.Parameters.AddWithValue("@JobPlacementDate", jobRefferals.JobPlacementDate);
             dbConnection.cmd.Parameters.AddWithValue("@CareerGuidance", jobRefferals.CareerGuidance);

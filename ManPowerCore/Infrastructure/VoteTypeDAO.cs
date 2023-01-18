@@ -22,6 +22,7 @@ namespace ManPowerCore.Infrastructure
         {
             int output = 0;
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Vote_Type (Details) values (@Deatils) ";
 

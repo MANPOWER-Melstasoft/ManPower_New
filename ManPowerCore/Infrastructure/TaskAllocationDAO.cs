@@ -81,6 +81,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO TASK_ALLOCATION(DEPARTMENT_UNIT_POSSITIONS_ID,TASK_YEAR_MONTH" +
                                             ",CREATED_DATE,CREATED_USER,STATUS_ID,DME21_Recommended_by1,RECOMMENDED_DATE,DME22_Approved_by,APPROVED_DATE,DME21_Recommended_by2,DME21_Approved_by) " +
                                             "VALUES(@DepartmetUnitPossitionsId,@TaskYearMonth,@CreatedDate,@CreatedUser,@StatusId," +
@@ -109,6 +110,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION SET DEPARTMENT_UNIT_POSSITIONS_ID = @DepartmetUnitPossitionsId, TASK_YEAR_MONTH = @TaskYearMonth " +
                                            ", CREATED_DATE = @CreatedDate, CREATED_USER = @CreatedUser, STATUS_ID = @StatusId, DME21_Recommended_by1 = @RecommendedBy1, " +
                                            "RECOMMENDED_DATE = @RecommendedDate, DME22_Approved_by = @ApprovedBy, APPROVED_DATE = @ApprovedDate,DME21_Recommended_by2 = @dme21Rec2,DME21_Approved_by = @dme21ApprovedBy WHERE ID = @TaskAllocationId ";
@@ -135,6 +137,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION SET STATUS_ID = @StatusId, APPROVED_BY = @ApprovedBy, COMMENTS = @ApprovalComments  WHERE ID = @id ";
 
 

@@ -419,5 +419,35 @@ namespace ManPowerCore.Common
             DistricDsParentController districDsParentController = new DistricDsParentControllerImpl();
             return (DistricDsParentController)districDsParentController;
         }
+
+        public static CareerKeyTestResultsController CreateCareerKeyTestResultsController()
+        {
+            CareerKeyTestResultsController careerKeyTestResultsController = new CareerKeyTestResultsControllerSqlImpl();
+            return (CareerKeyTestResultsController)careerKeyTestResultsController;
+        }
+
+        public static CareerGuidanceFeedbackController CreateCareerGuidanceFeedbackController()
+        {
+            CareerGuidanceFeedbackController careerGuidanceFeedbackController = new CareerGuidanceFeedbackControllerSqlImpl();
+            return (CareerGuidanceFeedbackController)careerGuidanceFeedbackController;
+        }
+
+        public static JobCategoryController CreateJobCategoryController()
+        {
+            JobCategoryController jobCategoryController = new JobCategoryControllerImpl();
+            return (JobCategoryController)jobCategoryController;
+        }
+
+        public static JobRefferalsController CreateJobRefferalsController()
+        {
+            JobRefferalsController jobRefferalsController = new JobRefferalsControllerImpl();
+            return (JobRefferalsController)jobRefferalsController;
+        }
+
+        public static JobPlacementFeedbackController CreateJobPlacementFeedbackController()
+        {
+            JobPlacementFeedbackController jobPlacementFeedbackController = new JobPlacementFeedbackControllerImpl();
+            return (JobPlacementFeedbackController)jobPlacementFeedbackController;
+        }
     }
 }

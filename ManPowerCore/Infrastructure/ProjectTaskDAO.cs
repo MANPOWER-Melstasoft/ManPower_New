@@ -28,6 +28,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO Project_Task (PROGRAM_PLAN_ID, TASK_ALLOCATION_DETAIL_ID) VALUES (@programPlanId, @taskAllocationDetailId)";
 
             dbConnection.cmd.Parameters.AddWithValue("@programPlanId", projectTask.ProgramPlanId);

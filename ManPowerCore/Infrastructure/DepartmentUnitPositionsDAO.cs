@@ -56,6 +56,7 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxDepartmentUnitPositionsId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO DEPARTMENT_UNIT_POSSITIONS(SYSTEM_USER_ID, POSSITIONS_ID, DEPARTMENT_UNIT_ID, PARENT_ID) values " +
                 "(@SystemUserId,@PossitionsId,@DepartmentUnitId,@ParentId) ";
 

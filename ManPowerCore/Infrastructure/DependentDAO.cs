@@ -27,6 +27,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO DEPENDANT(DEPENDENT_TYPE_ID,EMPLOYEE_ID,FIRST_NAME,LAST_NAME, " +
                 "NIC,PASSPORT_NO,BIRTH_CERTIFICATE_NUMBER,DATE_OF_BIRTH,RELATIONSHIP,SPECIAL_REMARKS,MARRIAGE_DATE,MARRIAGE_CERTIFICATE_NUMBER,WORKING_COMPANY,CITY)" +
                 " VALUES(@DependantTypeId,@EmployeeID,@FirstName,@LName,@DependantNIC,@DependantPassportNo, " +

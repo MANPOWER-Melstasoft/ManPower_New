@@ -57,6 +57,7 @@ namespace ManPowerCore.Infrastructure
             int id = getMaxSystemUserId(dbConnection);
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO COMPANY_USER( DESIGNATION_ID, USER_TYPE_ID, EMP_NUMBER, NAME, EMAIL," +
                 " CONTACT_NUMBER, USER_NAME, USER_PASSWORD, CREATED_DATE, CREATED_USER) values (@DesignationId,@UserTypeId,@EmpNumber,@Name,@Email,@ContactNumber," +
                 "@UserName,@UserPwd,@CreatedDate, @CREATED_USER) SELECT SCOPE_IDENTITY() ";

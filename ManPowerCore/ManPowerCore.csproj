@@ -78,6 +78,9 @@
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
+    <Compile Include="Controller\JobCategoryController.cs" />
+    <Compile Include="Controller\JobPlacementFeedbackController.cs" />
+    <Compile Include="Controller\JobRefferalsController.cs" />
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
@@ -223,6 +226,7 @@
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\JobCategoryDAO.cs" />
+    <Compile Include="Infrastructure\JobPlacementFeedbackDAO.cs" />
     <Compile Include="Infrastructure\JobRefferalsDAO.cs" />
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />

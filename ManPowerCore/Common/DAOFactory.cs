@@ -431,5 +431,23 @@ namespace ManPowerCore.Common
             TrainingRefferalFeedbackDAO trainingRefferalFeedbackDAO = new TrainingRefferalFeedbackDAOSqlImpl();
             return (TrainingRefferalFeedbackDAO)trainingRefferalFeedbackDAO;
         }
+
+        public static JobCategoryDAO CreateJobCategoryDAO()
+        {
+            JobCategoryDAO jobCategoryDAO = new JobCategoryDAOImpl();
+            return (JobCategoryDAO) jobCategoryDAO;
+        }
+
+        public static JobRefferalsDAO CreateJobRefferalsDAO()
+        {
+            JobRefferalsDAO jobRefferalsDAO = new JobRefferalsDAOImpl();
+            return (JobRefferalsDAO)jobRefferalsDAO;
+        }
+
+        public static JobPlacementFeedbackDAO CreateJobPlacementFeedbackDAO()
+        {
+            JobPlacementFeedbackDAO jobPlacementFeedbackDAO = new JobPlacementFeedbackDAOImpl();
+            return (JobPlacementFeedbackDAO)jobPlacementFeedbackDAO;
+        }
     }
 }

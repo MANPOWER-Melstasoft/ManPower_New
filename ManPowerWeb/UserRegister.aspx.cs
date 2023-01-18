@@ -225,7 +225,7 @@ namespace ManPowerWeb
 
 
             ddlDesignation.DataSource = designationList;
-            ddlDesignation.DataValueField = "DesignationId";
+            ddlDesignation.DataValueField = "CompanyVacansyRegistationDetailsId";
             ddlDesignation.DataTextField = "DesigntionName";
             ddlDesignation.DataBind();
             ddlDesignation.Items.Insert(0, new ListItem("-- select designation --", ""));

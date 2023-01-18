@@ -24,5 +24,10 @@ namespace ManPowerCore.Domain
 
         [DBField("REMARKS")]
         public string Remarks { get; set; }
+
+        [DBField("Created_User")]
+        public string CreatedUser { get; set; }
+
+        public JobRefferals jobRefferals { get; set; }
     }
 }

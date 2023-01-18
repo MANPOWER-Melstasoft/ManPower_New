@@ -26,14 +26,15 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO Career_Guidance_Feedback (Career_Key_Test_Results_Id, Created_Date, In_Job, In_Training, Other_Remarks) " +
-                "VALUES (@CareerKeyTestResultsId, @Date, @InJob, @InTraining, @Remarks) ";
+            dbConnection.cmd.CommandText = "INSERT INTO Career_Guidance_Feedback (Career_Key_Test_Results_Id, Created_Date, In_Job, In_Training, Other_Remarks, Created_User) " +
+                "VALUES (@CareerKeyTestResultsId, @Date, @InJob, @InTraining, @Remarks, @Created_User) SELECT SCOPE_IDENTITY()";
 
             dbConnection.cmd.Parameters.AddWithValue("@CareerKeyTestResultsId", careerGuidanceFeedback.CareerKeyTestResultsId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", careerGuidanceFeedback.Date);
             dbConnection.cmd.Parameters.AddWithValue("@InJob", careerGuidanceFeedback.InJob);
             dbConnection.cmd.Parameters.AddWithValue("@InTraining", careerGuidanceFeedback.InTraining);
             dbConnection.cmd.Parameters.AddWithValue("@Remarks", careerGuidanceFeedback.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@Created_User", careerGuidanceFeedback.Remarks);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
@@ -47,7 +48,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE Career_Guidance_Feedback SET Created_Date = @Date, Career_Key_Test_Results_Id = @CareerKeyTestResultsId, In_Job = @InJob, " +
-                "In_Training = @InTraining, Other_Remarks = @Remarks WHERE Id = @Id";
+                "In_Training = @InTraining, Other_Remarks = @Remarks, Created_User = @Created_User WHERE Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", careerGuidanceFeedback.Id);
             dbConnection.cmd.Parameters.AddWithValue("@CareerKeyTestResultsId", careerGuidanceFeedback.CareerKeyTestResultsId);
@@ -55,6 +56,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@InJob", careerGuidanceFeedback.InJob);
             dbConnection.cmd.Parameters.AddWithValue("@InTraining", careerGuidanceFeedback.InTraining);
             dbConnection.cmd.Parameters.AddWithValue("@Remarks", careerGuidanceFeedback.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@Created_User", careerGuidanceFeedback.Remarks);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 

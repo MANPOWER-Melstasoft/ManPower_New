@@ -151,6 +151,7 @@
     <Compile Include="Domain\EmploymentDetails.cs" />
     <Compile Include="Domain\Entrepreneur.cs" />
     <Compile Include="Domain\Ethnicity.cs" />
+    <Compile Include="Domain\HolidaySheet.cs" />
     <Compile Include="Domain\InduvidualBeneficiary.cs" />
     <Compile Include="Domain\JobPlacementFeedback.cs" />
     <Compile Include="Domain\JobRefferals.cs" />

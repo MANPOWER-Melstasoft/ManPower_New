@@ -78,6 +78,9 @@
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
+    <Compile Include="Controller\JobCategoryController.cs" />
+    <Compile Include="Controller\JobPlacementFeedbackController.cs" />
+    <Compile Include="Controller\JobRefferalsController.cs" />
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />

@@ -23,13 +23,19 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO BENEFICIARY(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
-                                            "Remarks,Job_Placement_Date,Career_Guidance,Is_Active) " +
-                                           "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@AssignedDate,@RefferalRemarks,@JobPlacementDate, " +
-                                           "@CareerGuidance,@IsActive) ";
+            dbConnection.cmd.CommandText = "INSERT INTO BENEFICIARY(Job_Refferals_Id,Created_Date,Created_User,Still_Working, " +
+                                            "Resigned_Date,Remarks,Is_Active) " +
+                                           "VALUES(@JobRefferalsId,@CreatedDate,@CreatedUser,@StillWorking,@ResignedDate,@Remarks, " +
+                                           "@IsActive) ";
 
 
-            dbConnection.cmd.Parameters.AddWithValue("@VacancyRegistrationId", jobRefferals.VacancyRegistrationId);
+            dbConnection.cmd.Parameters.AddWithValue("@JobRefferalsId", jobPlacementFeedback.JobRefferalsId);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", jobPlacementFeedback.CreatedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", jobPlacementFeedback.CreatedUser);
+            dbConnection.cmd.Parameters.AddWithValue("@StillWorking", jobPlacementFeedback.StillWorking);
+            dbConnection.cmd.Parameters.AddWithValue("@ResignedDate", jobPlacementFeedback.ResignedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Remarks", jobPlacementFeedback.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", jobPlacementFeedback.IsActive);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

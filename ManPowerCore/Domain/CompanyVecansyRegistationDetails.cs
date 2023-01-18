@@ -57,6 +57,8 @@ namespace ManPowerCore.Domain
         [DBField("Email")]
         public string ContactPersonEmail { get; set; }
 
+        public string JobDispalyName { get; set; }
+
 
 
     }

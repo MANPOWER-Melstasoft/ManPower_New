@@ -322,25 +322,37 @@
                             <label>Company Vacancies :</label>
                         </div>
                         <div class="col-3">
-                            <asp:DropDownList ID="ddl" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlCompanyVacancies" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <div class="d-flex text-danger">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="Job"
+                                    ControlToValidate="ddlCompanyVacancies" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            </div>
                         </div>
 
                         <div class="col-2">
                             <label>Job Category : </label>
                         </div>
                         <div class="col-3">
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlJobCategory" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <div class="d-flex text-danger">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="Job"
+                                    ControlToValidate="ddlJobCategory" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            </div>
                         </div>
                     </div>
 
-                    <%----------------------------------------------------------------------------%>
+
                     <div class="row mt-4">
 
                         <div class="col-2">
-                            <label>Remarks : </label>
+                            <label>Job Refferals Date: </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="jobRefferalRemark" runat="server" name="place" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="jobRefferalsDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <div class="d-flex text-danger">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="Job"
+                                    ControlToValidate="jobRefferalsDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            </div>
                         </div>
 
                         <div class="col-2">
@@ -348,10 +360,14 @@
                         </div>
                         <div class="col-3">
                             <asp:TextBox ID="jobPlacememntDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <div class="d-flex text-danger">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="Job"
+                                    ControlToValidate="jobPlacememntDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            </div>
                         </div>
 
                     </div>
-                    <%---------------------------------------------------------------------------------------------%>
+
 
                     <div class="row mt-4">
 
@@ -360,24 +376,39 @@
                         </div>
                         <div class="col-3">
                             <asp:TextBox ID="careerGuidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                            <div class="d-flex text-danger">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="Job"
+                                    ControlToValidate="careerGuidance" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            </div>
                         </div>
 
                         <div class="col-2">
-                            <label>Job Refferals Date: </label>
+                            <label>Remarks : </label>
                         </div>
                         <div class="col-3">
-                            <asp:TextBox ID="jobRefferalsDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="jobRefferalRemark" runat="server" name="place" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
                         </div>
 
                     </div>
-                    <%---------------------------------------------------------------------------------------------%>
 
                     <div class="row mt-5 mb-4">
                         <div class="col-2">
-                            <asp:Button runat="server" ID="Button3" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="isClicked" ValidationGroup="1" />
+                            <asp:Button runat="server" ID="btnSubmitJobRefferal" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="submitJobRefferal" ValidationGroup="Job" />
                         </div>
                     </div>
 
+
+                    <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+                        <asp:GridView Style="margin-top: 30px;" ID="gvJob" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
+                            <Columns>
+                                <asp:BoundField DataField="SystemUserId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Name" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="EmpNumber" HeaderText="EMPLOYEE NUMBER" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Email" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
 
                     <%----------------------------------------------------------------------------------------------%>
                 </div>

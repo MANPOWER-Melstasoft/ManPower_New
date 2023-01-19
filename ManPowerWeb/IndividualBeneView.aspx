@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IndividualBeneView.aspx.cs" Inherits="ManPowerWeb.IndividualBeneView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
     <div class="container" style="padding-left: 30px;">
         <h2>Individual Beneficiary </h2>
 
@@ -148,187 +151,244 @@
 
             <div class="tab-content mt-5">
                 <div id="results" class="tab-pane fade in active mr-4">
-                    <h3>Career Key Test Results </h3>
-
-                    <div class="row mt-5">
-                        <div class="col-2">
-                            <label>R :</label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="txtR" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtR" ValidationGroup="1"></asp:RequiredFieldValidator>
-
-                        </div>
-                        <div class="col-2">
-                            <label>I : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="txtI" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtI" ValidationGroup="1"></asp:RequiredFieldValidator>
-
-                        </div>
-                    </div>
-
-                    <%----------------------------------------------------------------------------%>
-                    <div class="row mt-4">
-
-                        <div class="col-2">
-                            <label>A : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="txtA" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtA" ValidationGroup="1"></asp:RequiredFieldValidator>
-
-                        </div>
-
-                        <div class="col-2">
-                            <label>S: </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="txtS" runat="server" name="date" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtS" ValidationGroup="1"></asp:RequiredFieldValidator>
-
-                        </div>
-
-                    </div>
-                    <%---------------------------------------------------------------------------------------------%>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <div id="careerkey" runat="server">
 
 
-                    <div class="row mt-4">
+                                <h3>Career Key Test Results </h3>
 
-                        <div class="col-2">
-                            <label>E : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="txtE" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtE" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <label>R :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtR" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtR" ValidationGroup="1"></asp:RequiredFieldValidator>
 
-                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <label>I : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtI" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtI" ValidationGroup="1"></asp:RequiredFieldValidator>
 
-                        <div class="col-2">
-                            <label>C : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="txtC" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtC" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
 
-                        </div>
+                                <%----------------------------------------------------------------------------%>
+                                <div class="row mt-4">
 
-                    </div>
+                                    <div class="col-2">
+                                        <label>A : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtA" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtA" ValidationGroup="1"></asp:RequiredFieldValidator>
 
-                    <%-----------------------------------------------------------------------------------%>
+                                    </div>
 
-                    <div class="row mt-4">
+                                    <div class="col-2">
+                                        <label>S: </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtS" runat="server" name="date" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtS" ValidationGroup="1"></asp:RequiredFieldValidator>
 
-                        <div class="col-2">
-                            <label>Provided Guidance : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="txtGuidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtGuidance" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                    </div>
 
-                        </div>
-
-                        <div class="col-2">
-                            <label>Held Date : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="TxtHeldDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="TxtHeldDate" ValidationGroup="1"></asp:RequiredFieldValidator>
-
-                        </div>
-
-                    </div>
-
-                    <%--------------------------------------------------------------------------------------%>
-
-                    <div class="row mt-5 mb-4">
-                        <div class="col-2">
-                            <asp:Button runat="server" ID="btnSubmit1" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmit1_Click" ValidationGroup="1" />
-                        </div>
-                    </div>
-
-                    <%----------------------------------------------------------------------------------------------%>
-                    <div class="table-responsive">
-                        <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
-                            DataKeyNames="Id" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
-                            <Columns>
-                                <asp:TemplateField HeaderStyle-CssClass="table-dark">
-                                    <ItemTemplate>
-                                        <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
-                                            <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
-                                        </a>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="Id" HeaderText="ID" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
-                                <asp:BoundField DataField="R" HeaderText="R-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
-                                <asp:BoundField DataField="I" HeaderText="I-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
-                                <asp:BoundField DataField="A" HeaderText="A-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
-                                <asp:BoundField DataField="S" HeaderText="S-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
-                                <asp:BoundField DataField="C" HeaderText="C-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
-                                <asp:BoundField DataField="E" HeaderText="E-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
-                                <asp:BoundField DataField="HeldDate" HeaderText="Held Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="20%" />
+                                </div>
+                                <%---------------------------------------------------------------------------------------------%>
 
 
-                                <asp:TemplateField HeaderText="ACTION" ItemStyle-Width="20%" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
-                                    <ItemTemplate>
+                                <div class="row mt-4">
 
-                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" CommandArgument='<%#Eval("Id") %>' OnClick="btnAddPlan_Click"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td colspan="999">
-                                                <div id="ProgramTargetId-<%# Eval("Id") %>" style="display: none; position: relative;">
-                                                    <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
-                                                        OnRowEditing="gvPlanDetails_RowEditing" OnRowCancelingEdit="gvPlanDetails_RowCancelingEdit">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="ID">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("R") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Name">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lbl_Name" runat="server" Text='<%#Eval("I") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <EditItemTemplate>
-                                                                    <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("S") %>'></asp:TextBox>
-                                                                </EditItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="City">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lbl_City" runat="server" Text='<%#Eval("C") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <EditItemTemplate>
-                                                                    <asp:TextBox ID="txt_City" runat="server" Text='<%#Eval("E") %>'></asp:TextBox>
-                                                                </EditItemTemplate>
-                                                            </asp:TemplateField>
+                                    <div class="col-2">
+                                        <label>E : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtE" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtE" ValidationGroup="1"></asp:RequiredFieldValidator>
 
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="btn_Edit" runat="server" CommandName="Edit" CssClass="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                                <EditItemTemplate>
-                                                                    <asp:LinkButton ID="btn_Update" runat="server" CssClass="btn btn-warning" CommandName="Update" ToolTip="Update"> <i class="fa fa-check-square" aria-hidden="true"></i></asp:LinkButton>
+                                    </div>
 
-                                                                    <asp:LinkButton ID="btn_Cancel" runat="server" CssClass="btn btn-danger" CommandName="Cancel" ToolTip="Cancel"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
-                                                                </EditItemTemplate>
-                                                            </asp:TemplateField>
+                                    <div class="col-2">
+                                        <label>C : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtC" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtC" ValidationGroup="1"></asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+
+                                <%-----------------------------------------------------------------------------------%>
+
+                                <div class="row mt-4">
+
+                                    <div class="col-2">
+                                        <label>Provided Guidance : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtGuidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtGuidance" ValidationGroup="1"></asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <div class="col-2">
+                                        <label>Held Date : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="TxtHeldDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="TxtHeldDate" ValidationGroup="1"></asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row mt-5 mb-4">
+                                    <div class="col-2">
+                                        <asp:Button runat="server" ID="btnSubmit1" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmit1_Click" ValidationGroup="1" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <%--------------------------------------------------------------------------------------%>
+
+                            <div id="careerkeyfeddback" runat="server" visible="false">
+                                <h3>Career Key Test Results Feedback </h3>
+
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <label>In Job (Specify) :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtInJob" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtInJob" ValidationGroup="1feed"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="col-2">
+                                        <label>In Training (Specify) : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtTraining" runat="server" name="place" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtTraining" ValidationGroup="1feed"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <label>Remarks :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtRemarksFeedCareer" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtParentId" runat="server" CssClass="form-control form-control-user" Visible="false"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5 mb-4">
+                                    <div class="col-2">
+                                        <asp:Button runat="server" ID="Button1Feed" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="Button1Feed_Click" ValidationGroup="1feed" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <%----------------------------------------------------------------------------------------------%>
+                            <div class="table-responsive">
+                                <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
+                                    DataKeyNames="Id" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
+                                    <Columns>
+                                        <asp:TemplateField HeaderStyle-CssClass="table-dark">
+                                            <ItemTemplate>
+                                                <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
+                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                </a>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Id" HeaderText="ID" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="R" HeaderText="R-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="I" HeaderText="I-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="A" HeaderText="A-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="S" HeaderText="S-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="C" HeaderText="C-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="E" HeaderText="E-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="HeldDate" HeaderText="Held Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="20%" />
+
+
+                                        <asp:TemplateField HeaderText="ACTION" ItemStyle-Width="20%" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+
+                                                <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" CommandArgument='<%#Eval("Id") %>' OnClick="btnAddPlan_Click"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td colspan="999">
+                                                        <div id="ProgramTargetId-<%# Eval("Id") %>" style="display: none; position: relative;">
+                                                            <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
+                                                                OnRowEditing="gvPlanDetails_RowEditing" OnRowCancelingEdit="gvPlanDetails_RowCancelingEdit">
+                                                                <Columns>
+                                                                    <asp:TemplateField HeaderText="Id">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("Id") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Date">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_Name" runat="server" Text='<%#Eval("Date") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Date") %>'></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="InJob">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_City" runat="server" Text='<%#Eval("InJob") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txt_City" runat="server" Text='<%#Eval("InJob") %>'></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:TemplateField>
+                                                                        <ItemTemplate>
+                                                                            <asp:LinkButton ID="btn_Edit" runat="server" CommandName="Edit" CssClass="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i></asp:LinkButton>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:LinkButton ID="btn_Update" runat="server" CssClass="btn btn-warning" CommandName="Update" ToolTip="Update"> <i class="fa fa-check-square" aria-hidden="true"></i></asp:LinkButton>
+
+                                                                            <asp:LinkButton ID="btn_Cancel" runat="server" CssClass="btn btn-danger" CommandName="Cancel" ToolTip="Cancel"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
 
 
 
-                                                        </Columns>
-                                                    </asp:GridView>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </ContentTemplate>
+
+                        <Triggers>
+                            <asp:PostBackTrigger ControlID="btnSubmit1" />
+                            <asp:PostBackTrigger ControlID="Button1Feed" />
+                        </Triggers>
+
+                    </asp:UpdatePanel>
+
 
                 </div>
 

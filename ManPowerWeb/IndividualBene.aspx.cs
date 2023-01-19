@@ -57,6 +57,15 @@ namespace ManPowerWeb
             induvidualBeneficiary.ContactNumber = contact.Text;
             induvidualBeneficiary.WhatsappNumber = whatsapp.Text;
 
+            if (ddl2.SelectedValue.ToLower() == "school")
+            {
+                induvidualBeneficiary.IsSchoolStudent = 1;
+            }
+            else
+            {
+                induvidualBeneficiary.IsSchoolStudent = 0;
+            }
+
             int result1 = induvidualBeneficiaryController.SaveInduvidualBeneficiary(induvidualBeneficiary);
 
             if (result1 == 0)

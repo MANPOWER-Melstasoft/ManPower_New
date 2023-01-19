@@ -261,8 +261,6 @@ namespace ManPowerWeb
             trainingRefferals.RefferalsDate = DateTime.Parse(trainingRefferalDate.Text);
             trainingRefferals.CreatedUser = Session["Name"].ToString();
 
-
-
             int output = trainingRefferalsController.Save(trainingRefferals);
 
             if (output != 0)
@@ -302,7 +300,7 @@ namespace ManPowerWeb
         }
 
             };
-            trainingRefferalsController.Save(trainingRefferals);
+            
         protected void btnAddCarrier_Click1(object sender, EventArgs e)
         {
 

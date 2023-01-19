@@ -23,7 +23,7 @@ namespace ManPowerCore.Domain
         public int JobCategoryId { get; set; }
 
         [DBField("CREATED_DATE")]
-        public DateTime AssignedDate { get; set; }
+        public DateTime CereatedDate { get; set; }
 
         [DBField("REMARKS")]
         public string RefferalRemarks { get; set; }

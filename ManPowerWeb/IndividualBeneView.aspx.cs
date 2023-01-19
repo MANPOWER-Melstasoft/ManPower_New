@@ -25,6 +25,7 @@ namespace ManPowerWeb
                 BindVacancies();
                 BindJobcategory();
                 BindJobGridView();
+                bindCarrierGrid();
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary();
@@ -155,7 +156,13 @@ namespace ManPowerWeb
             careerKeyTestResults.C = Convert.ToInt32(txtC.Text);
             careerKeyTestResults.I = Convert.ToInt32(txtI.Text);
             careerKeyTestResults.Guidence = txtGuidance.Text;
+            careerKeyTestResults.Date = DateTime.Today;
             careerKeyTestResults.HeldDate = DateTime.Parse(TxtHeldDate.Text).Date;
+            careerKeyTestResults.CreatedUser = Session["Name"].ToString();
+            careerKeyTestResults.BeneficiaryId = Convert.ToInt32(BenficiaryId);
+
+
+
 
             int response = careerKeyTestResultsController.Save(careerKeyTestResults);
 
@@ -204,8 +211,35 @@ namespace ManPowerWeb
         }
 
 
+        private void bindCarrierGrid()
+        {
+            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
+            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
+
+            gvAnnaualPlan.DataSource = careerKeyTestResultsList;
+            gvAnnaualPlan.DataBind();
+
+        }
+
+        protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int minID = int.Parse(gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString());
+                GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
+
+                //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
+                gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+                gvPlanDetails.DataBind();
+            }
+        }
+
 
         //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------
+
+
+
 
     }
 }

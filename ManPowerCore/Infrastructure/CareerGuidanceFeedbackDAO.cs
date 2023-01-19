@@ -47,20 +47,21 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE Career_Guidance_Feedback SET Created_Date = @Date, Career_Key_Test_Results_Id = @CareerKeyTestResultsId, In_Job = @InJob, " +
-                "In_Training = @InTraining, Other_Remarks = @Remarks, Created_User = @Created_User WHERE Id = @Id";
+            //dbConnection.cmd.CommandText = "UPDATE Career_Guidance_Feedback SET Created_Date = @Date, Career_Key_Test_Results_Id = @CareerKeyTestResultsId, In_Job = @InJob, " +
+            //    "In_Training = @InTraining, Other_Remarks = @Remarks, Created_User = @Created_User WHERE Id = @Id";
+
+            dbConnection.cmd.CommandText = "UPDATE Career_Guidance_Feedback SET Created_Date = @Date, In_Job = @InJob WHERE Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", careerGuidanceFeedback.Id);
-            dbConnection.cmd.Parameters.AddWithValue("@CareerKeyTestResultsId", careerGuidanceFeedback.CareerKeyTestResultsId);
+            //   dbConnection.cmd.Parameters.AddWithValue("@CareerKeyTestResultsId", careerGuidanceFeedback.CareerKeyTestResultsId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", careerGuidanceFeedback.Date);
             dbConnection.cmd.Parameters.AddWithValue("@InJob", careerGuidanceFeedback.InJob);
-            dbConnection.cmd.Parameters.AddWithValue("@InTraining", careerGuidanceFeedback.InTraining);
-            dbConnection.cmd.Parameters.AddWithValue("@Remarks", careerGuidanceFeedback.Remarks);
-            dbConnection.cmd.Parameters.AddWithValue("@Created_User", careerGuidanceFeedback.Remarks);
+            //   dbConnection.cmd.Parameters.AddWithValue("@InTraining", careerGuidanceFeedback.InTraining);
+            //  dbConnection.cmd.Parameters.AddWithValue("@Remarks", careerGuidanceFeedback.Remarks);
+            //  dbConnection.cmd.Parameters.AddWithValue("@Created_User", careerGuidanceFeedback.Remarks);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
-            return output;
+            return dbConnection.cmd.ExecuteNonQuery();
         }
 
         public int Delete(int id, DBConnection dbConnection)

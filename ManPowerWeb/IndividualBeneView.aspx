@@ -273,7 +273,7 @@
                                 <asp:TemplateField HeaderText="ACTION" ItemStyle-Width="20%" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
 
-                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" CommandArgument='<%#Eval("Id") %>' OnClick="btnAddPlan_Click"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
@@ -519,13 +519,13 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <asp:TextBox ID="txtFeedbackCarrier" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Required" ControlToValidate="txtFeedbackCarrier" ValidationGroup="1" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Required" ControlToValidate="txtFeedbackCarrier" ValidationGroup="22" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </center>
                             </div>
                             <div class="modal-footer">
-                                <asp:Button runat="server" ID="btnAddCarrier" Text="Add" CssClass="btn btn-success" Width="100px" ValidationGroup="1" OnClick="btnAddCarrier_Click1" />
+                                <asp:Button runat="server" ID="btnAddCarrier" Text="Add" CssClass="btn btn-success" Width="100px" ValidationGroup="22" OnClick="btnAddCarrier_Click" />
                             </div>
                         </div>
                     </div>
@@ -618,6 +618,19 @@
 
             }
 
+
+
+        }
+
+        var navItems = document.querySelectorAll(".nav-item");
+        for (var i = 0; i < navItems.length; i++) {
+            navItems[i].addEventListener("click", function () {
+                this.classList.add("active");
+            });
+        }
+
+        function openModal() {
+            $('#exampleModalCenter').modal('show');
         }
 
     </script>

@@ -182,7 +182,6 @@ namespace ManPowerWeb
                 RefferalsDate = Convert.ToDateTime(trainingRefferalDate),
 
             };
-
             trainingRefferalsController.Save(trainingRefferals);
         }
 

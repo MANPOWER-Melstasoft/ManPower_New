@@ -182,6 +182,7 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 carrerTestClear();
+                bindCarrierGrid();
             }
         }
 
@@ -207,7 +208,7 @@ namespace ManPowerWeb
                 GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
-                gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+                gvPlanDetails.DataSource = ControllerFactory.CreateCareerGuidanceFeedbackController().GetAllCareerKeyTestResults(false);
                 gvPlanDetails.DataBind();
             }
         }
@@ -300,15 +301,49 @@ namespace ManPowerWeb
 
         protected void btnAddPlan_Click(object sender, EventArgs e)
         {
+
+            careerkey.Visible = false;
+            careerkeyfeddback.Visible = true;
+
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
+            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
+            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
 
-            //    int id = int.Parse((sender as Button).CommandArgument);
-            // ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#exampleModalCenter').modal('show'); });   </script>", false);
+            int parentid = careerKeyTestResultsList[rowIndex].Id;
+            txtParentId.Text = parentid.ToString();
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalView", "<script>$('#exampleModalCenter').modal('show');</script>", false);
+        }
 
+        protected void Button1Feed_Click(object sender, EventArgs e)
+        {
+
+            CareerGuidanceFeedbackController careerGuidanceFeedbackController = ControllerFactory.CreateCareerGuidanceFeedbackController();
+            CareerGuidanceFeedback careerGuidanceFeedback = new CareerGuidanceFeedback();
+
+            careerGuidanceFeedback.CareerKeyTestResultsId = Convert.ToInt32(txtParentId.Text);
+            careerGuidanceFeedback.InJob = txtInJob.Text;
+            careerGuidanceFeedback.InTraining = txtTraining.Text;
+            careerGuidanceFeedback.Remarks = txtRemarksFeedCareer.Text;
+            careerGuidanceFeedback.CreatedUser = Session["Name"].ToString();
+            careerGuidanceFeedback.Date = DateTime.Today;
+            int output = careerGuidanceFeedbackController.Save(careerGuidanceFeedback);
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                CareerRefferalFeedbackClear();
+                careerkey.Visible = true;
+                careerkeyfeddback.Visible = false;
+            }
+
+        }
+
+        private void CareerRefferalFeedbackClear()
+        {
+            txtInJob.Text = null;
+            txtRemarksFeedCareer.Text = null;
+            txtParentId.Text = null;
+            txtTraining.Text = null;
         }
 
         //protected void btnAddPlan_Click(object sender, EventArgs e)

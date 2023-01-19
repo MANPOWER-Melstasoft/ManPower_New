@@ -31,7 +31,7 @@ namespace ManPowerCore.Domain
         public string Remarks { get; set; }
 
         [DBField("Is_Active")]
-        public string IsActive { get; set; }
+        public int IsActive { get; set; }
 
         [DBField("Created_User")]
         public string CreatedUser { get; set; }

@@ -220,7 +220,7 @@ namespace ManPowerWeb
             GridView gvPlanDetails = gvRow.FindControl("gvPlanDetails") as GridView;
 
             gvPlanDetails.EditIndex = e.NewEditIndex;
-            gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+            gvPlanDetails.DataSource = ControllerFactory.CreateCareerGuidanceFeedbackController().GetAllCareerKeyTestResults(false);
             gvPlanDetails.DataBind();
 
 
@@ -233,8 +233,39 @@ namespace ManPowerWeb
 
             gvPlanDetails.EditIndex = -1;
 
-            gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+            gvPlanDetails.DataSource = ControllerFactory.CreateCareerGuidanceFeedbackController().GetAllCareerKeyTestResults(false);
             gvPlanDetails.DataBind();
+        }
+
+        protected void gvPlanDetails_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView gvPlanDetails = gvRow.FindControl("gvPlanDetails") as GridView;
+
+            Label id = gvPlanDetails.Rows[e.RowIndex].FindControl("lblID") as Label;
+            TextBox txtInJob = gvPlanDetails.Rows[e.RowIndex].FindControl("txtInJob") as TextBox;
+            //TextBox city = GridView1.Rows[e.RowIndex].FindControl("txt_City") as TextBox;
+
+            CareerGuidanceFeedbackController careerGuidanceFeedbackController = ControllerFactory.CreateCareerGuidanceFeedbackController();
+            CareerGuidanceFeedback careerGuidanceFeedback = new CareerGuidanceFeedback();
+            careerGuidanceFeedback.InJob = txtInJob.Text;
+            careerGuidanceFeedback.Date = DateTime.Now;
+            careerGuidanceFeedback.Id = Convert.ToInt32(id.Text);
+
+            int response = careerGuidanceFeedbackController.Update(careerGuidanceFeedback);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
+
+
+
+
         }
 
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
@@ -300,6 +331,8 @@ namespace ManPowerWeb
         protected void btnAddPlan_Click(object sender, EventArgs e)
         {
 
+            //  ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalView", "<script>$('#exampleModalCenter').modal('show');</script>", false);
+
             careerkey.Visible = false;
             careerkeyfeddback.Visible = true;
 
@@ -343,6 +376,8 @@ namespace ManPowerWeb
             txtParentId.Text = null;
             txtTraining.Text = null;
         }
+
+
 
         //protected void btnAddPlan_Click(object sender, EventArgs e)
         //{

@@ -26,6 +26,7 @@ namespace ManPowerWeb
                 BindJobcategory();
                 BindJobGridView();
                 bindCarrierGrid();
+                GridView2DataBind();
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary();
@@ -293,8 +294,6 @@ namespace ManPowerWeb
             trainingRefferals.RefferalsDate = DateTime.Parse(trainingRefferalDate.Text);
             trainingRefferals.CreatedUser = Session["Name"].ToString();
 
-
-
             int output = trainingRefferalsController.Save(trainingRefferals);
 
             if (output != 0)
@@ -377,6 +376,66 @@ namespace ManPowerWeb
             txtRemarksFeedCareer.Text = null;
             txtParentId.Text = null;
             txtTraining.Text = null;
+        }
+
+        protected void btnTrainingFeed_Click(object sender, EventArgs e)
+        {
+            TrainingRefferalFeedbackController trainingRefferalFeedbackController = ControllerFactory.CreateTrainingRefferalFeedbackController();
+            TrainingRefferalFeedback trainingRefferalFeedback = new TrainingRefferalFeedback();
+
+            trainingRefferalFeedback.TrainingRefferalId = Convert.ToInt32(txtTrainingId.Text);
+            trainingRefferalFeedback.Date = DateTime.Today;
+            trainingRefferalFeedback.TrainingInstitute = txtTrainingInstitute.Text;
+            trainingRefferalFeedback.InTraining = txtInTraining.Text;
+            trainingRefferalFeedback.TrainingCompleted = txtTrainingcompleted.Text;
+            trainingRefferalFeedback.CreatedUser = Session["Name"].ToString();
+            trainingRefferalFeedback.Remarks = txtTrainingRemark.Text;
+            trainingRefferalFeedback.IsActive = 1;
+            int output = trainingRefferalFeedbackController.Save(trainingRefferalFeedback);
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                TrainingRefferalFeedbackClear();
+                GridView2DataBind();
+                trainingDiv.Visible = true;
+                trainingDivFeedback.Visible = false;
+            }
+        }
+
+        private void TrainingRefferalFeedbackClear()
+        {
+            txtTrainingInstitute.Text = null;
+            txtInTraining.Text = null;
+            txtTrainingcompleted.Text = null;
+            txtTrainingRemark.Text = null;
+        }
+
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        public void GridView2DataBind()
+        {
+            TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
+            List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
+
+            GridView2.DataSource = trainingRefferalsList;
+            GridView2.DataBind();
+        }
+
+        protected void btnAddTrainingFeedback_Click(object sender, EventArgs e)
+        {
+            trainingDiv.Visible = false;
+            trainingDivFeedback.Visible = true;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
+            List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
+
+            int parentid = trainingRefferalsList[rowIndex].Id;
+            txtTrainingId.Text = parentid.ToString();
         }
 
 

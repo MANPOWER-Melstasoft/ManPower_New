@@ -289,22 +289,30 @@ namespace ManPowerWeb
 
         }
 
+
         protected void btnAddCarrier_Click(object sender, EventArgs e)
+        {
+            string feedbackCarrier = txtFeedbackCarrier.Text;
+            //  int id = int.Parse((sender as Button).CommandArgument);
+        }
+
+        protected void btnAddPlan_Click(object sender, EventArgs e)
         {
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            int id = Convert.ToInt32(gvAnnaualPlan.Rows[rowIndex].Cells[1].Text);
 
-            string feedbackCarrier = txtFeedbackCarrier.Text;
-
+            //    int id = int.Parse((sender as Button).CommandArgument);
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "openModal();", true);
         }
 
-            };
-            
-        protected void btnAddCarrier_Click1(object sender, EventArgs e)
-        {
+        //protected void btnAddPlan_Click(object sender, EventArgs e)
+        //{
+        //    int id = int.Parse((sender as Button).CommandArgument);
 
-        }
+        //    ClientScript.RegisterStartupScript(this.GetType(), "Pop", "openModal();", true);
+
+        //    int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+        //}
 
 
 

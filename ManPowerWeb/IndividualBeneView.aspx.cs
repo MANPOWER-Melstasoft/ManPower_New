@@ -72,12 +72,6 @@ namespace ManPowerWeb
 
 
 
-
-
-
-
-
-
         //-----------------------------------------------------Start Job Refferal ---------------------------------------------------------------------------------------
 
         protected void submitJobRefferal(object sender, EventArgs e)
@@ -98,9 +92,23 @@ namespace ManPowerWeb
 
             };
 
-            jobRefferalsController.SaveJobRefferals(jobRefferals);
+            int output = jobRefferalsController.SaveJobRefferals(jobRefferals);
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                JobRefferal();
+            }
         }
 
+        private void JobRefferal()
+        {
+            ddlCompanyVacancies.SelectedIndex = 0;
+            ddlJobCategory.SelectedIndex = 0;
+            jobPlacememntDate.Text = null;
+            jobRefferalsDate.Text = null;
+            jobRefferalRemark.Text = null;
+            careerGuidance.Text = null;
+        }
 
         protected void BindVacancies()
         {
@@ -144,6 +152,8 @@ namespace ManPowerWeb
 
 
         //----------------------------------------------------- End Job Refferal ---------------------------------------------------------------------------------------
+
+
 
 
 
@@ -191,27 +201,48 @@ namespace ManPowerWeb
 
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
 
+
+
+
+
+
+
         //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------
 
         protected void btn2Submit_Click(object sender, EventArgs e)
         {
             TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
 
-            TrainingRefferals trainingRefferals = new TrainingRefferals
+            TrainingRefferals trainingRefferals = new TrainingRefferals();
+
+            trainingRefferals.BeneficiaryId = Convert.ToInt32(BenficiaryId);
+            trainingRefferals.Date = DateTime.Now;
+            trainingRefferals.InstituteName = institute.Text;
+            trainingRefferals.TrainingCourse = course.Text;
+            trainingRefferals.ContactPerson = contactPersonName.Text;
+            trainingRefferals.ContactNo = contactNo.Text;
+            trainingRefferals.RefferalsDate = DateTime.Parse(trainingRefferalDate.Text);
+            trainingRefferals.CreatedUser = Session["Name"].ToString();
+
+
+
+            int output = trainingRefferalsController.Save(trainingRefferals);
+
+            if (output != 0)
             {
-                BeneficiaryId = Convert.ToInt32(BenficiaryId),
-                Date = DateTime.Now,
-                InstituteName = institute.Text,
-                TrainingCourse = course.Text,
-                ContactPerson = contactPersonName.Text,
-                ContactNo = contactNo.Text,
-                RefferalsDate = Convert.ToDateTime(trainingRefferalDate),
-
-            };
-
-            trainingRefferalsController.Save(trainingRefferals);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                TrainingRefferalClear();
+            }
         }
 
+        private void TrainingRefferalClear()
+        {
+            institute.Text = null;
+            course.Text = null;
+            contactPersonName.Text = null;
+            contactNo.Text = null;
+            trainingRefferalDate.Text = null;
+        }
 
         private void bindCarrierGrid()
         {
@@ -238,7 +269,7 @@ namespace ManPowerWeb
         }
 
 
-        //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------
+        //----------------------------------------------------- End training Refferal ---------------------------------------------------------------------------------------
 
 
 

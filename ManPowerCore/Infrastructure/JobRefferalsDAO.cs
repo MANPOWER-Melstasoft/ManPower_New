@@ -24,9 +24,9 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
-                                            "Remarks,Job_Placement_Date,Career_Guidance,Created_User) " +
+                                            "Remarks,Job_Placement_Date,Career_Guidance,Created_User,Job_Refferals_Date) " +
                                            "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
-                                           "@CareerGuidance,@CreatedUser) ";
+                                           "@CareerGuidance,@CreatedUser,@RefferalsDate) ";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@VacancyRegistrationId", jobRefferals.VacancyRegistrationId);
@@ -35,6 +35,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", jobRefferals.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@CereatedDate", jobRefferals.CereatedDate);
             dbConnection.cmd.Parameters.AddWithValue("@RefferalRemarks", jobRefferals.RefferalRemarks);
+            dbConnection.cmd.Parameters.AddWithValue("@RefferalsDate", jobRefferals.RefferalsDate);
             dbConnection.cmd.Parameters.AddWithValue("@JobPlacementDate", jobRefferals.JobPlacementDate);
             dbConnection.cmd.Parameters.AddWithValue("@CareerGuidance", jobRefferals.CareerGuidance);
 

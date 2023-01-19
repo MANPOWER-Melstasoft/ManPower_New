@@ -333,27 +333,27 @@
                                                     <td colspan="999">
                                                         <div id="ProgramTargetId-<%# Eval("Id") %>" style="display: none; position: relative;">
                                                             <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
-                                                                OnRowEditing="gvPlanDetails_RowEditing" OnRowCancelingEdit="gvPlanDetails_RowCancelingEdit">
+                                                                OnRowEditing="gvPlanDetails_RowEditing" OnRowCancelingEdit="gvPlanDetails_RowCancelingEdit" OnRowUpdating="gvPlanDetails_RowUpdating">
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Id">
                                                                         <ItemTemplate>
-                                                                            <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("Id") %>'></asp:Label>
+                                                                            <asp:Label ID="lblID" runat="server" Text='<%#Eval("Id") %>'></asp:Label>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Date">
                                                                         <ItemTemplate>
-                                                                            <asp:Label ID="lbl_Name" runat="server" Text='<%#Eval("Date") %>'></asp:Label>
+                                                                            <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("Date") %>'></asp:Label>
                                                                         </ItemTemplate>
                                                                         <EditItemTemplate>
-                                                                            <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("Date") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtDates" runat="server" Text='<%#Eval("Date") %>'></asp:TextBox>
                                                                         </EditItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="InJob">
                                                                         <ItemTemplate>
-                                                                            <asp:Label ID="lbl_City" runat="server" Text='<%#Eval("InJob") %>'></asp:Label>
+                                                                            <asp:Label ID="lblInJob" runat="server" Text='<%#Eval("InJob") %>'></asp:Label>
                                                                         </ItemTemplate>
                                                                         <EditItemTemplate>
-                                                                            <asp:TextBox ID="txt_City" runat="server" Text='<%#Eval("InJob") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtInJob" runat="server" Text='<%#Eval("InJob") %>'></asp:TextBox>
                                                                         </EditItemTemplate>
                                                                     </asp:TemplateField>
 
@@ -367,9 +367,6 @@
                                                                             <asp:LinkButton ID="btn_Cancel" runat="server" CssClass="btn btn-danger" CommandName="Cancel" ToolTip="Cancel"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
                                                                         </EditItemTemplate>
                                                                     </asp:TemplateField>
-
-
-
                                                                 </Columns>
                                                             </asp:GridView>
                                                         </div>
@@ -590,6 +587,26 @@
                         </div>
                     </div>
                 </div>
+
+                <%--  <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    &times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <iframe id="Iframe1" runat="server"></iframe>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>--%>
             </div>
         </div>
     </div>
@@ -690,7 +707,7 @@
         }
 
         function openModal() {
-            $('#exampleModalCenter').modal('show');
+            $('[id*=myModal]').modal('show');
         }
 
     </script>

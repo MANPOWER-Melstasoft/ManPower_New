@@ -291,6 +291,21 @@ namespace ManPowerWeb
 
         }
 
+        protected void btnAddCarrier_Click(object sender, EventArgs e)
+        {
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            int id = Convert.ToInt32(gvAnnaualPlan.Rows[rowIndex].Cells[1].Text);
+
+            string feedbackCarrier = txtFeedbackCarrier.Text;
+
+        }
+
+        protected void btnAddCarrier_Click1(object sender, EventArgs e)
+        {
+
+        }
+
 
 
         //----------------------------------------------------- End training Refferal ---------------------------------------------------------------------------------------

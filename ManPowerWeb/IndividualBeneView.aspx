@@ -256,24 +256,24 @@
                                 <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                     <ItemTemplate>
                                         <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
-                                            <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/plus.png" border="0" />
+                                            <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
                                         </a>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="R" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="I" HeaderText="Description" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="A" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="S" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="C" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="E" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="CreatedUser" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="Id" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                <asp:BoundField DataField="Date" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="Id" HeaderText="ID" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="R" HeaderText="R-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="I" HeaderText="I-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="A" HeaderText="A-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="S" HeaderText="S-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="C" HeaderText="C-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="E" HeaderText="E-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="HeldDate" HeaderText="Held Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="20%" />
 
 
-                                <asp:TemplateField HeaderText="ACTION" HeaderStyle-Width="300px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
+                                <asp:TemplateField HeaderText="ACTION" ItemStyle-Width="20%" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Add Program Plan</asp:LinkButton>
+
+                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
@@ -308,11 +308,12 @@
 
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
-                                                                    <asp:Button ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />
+                                                                    <asp:LinkButton ID="btn_Edit" runat="server" CommandName="Edit" CssClass="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i></asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <EditItemTemplate>
-                                                                    <asp:Button ID="btn_Update" runat="server" Text="Update" CommandName="Update" />
-                                                                    <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel" />
+                                                                    <asp:LinkButton ID="btn_Update" runat="server" CssClass="btn btn-warning" CommandName="Update" ToolTip="Update"> <i class="fa fa-check-square" aria-hidden="true"></i></asp:LinkButton>
+
+                                                                    <asp:LinkButton ID="btn_Cancel" runat="server" CssClass="btn btn-danger" CommandName="Cancel" ToolTip="Cancel"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
                                                                 </EditItemTemplate>
                                                             </asp:TemplateField>
 
@@ -505,7 +506,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Add Career_Guidance_Feedback</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add Career Guidance Feedback</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -517,14 +518,14 @@
                                             <label>Add Feedback </label>
                                         </div>
                                         <div class="col-sm-4">
-                                            <asp:TextBox ID="txtrejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Required" ControlToValidate="txtrejectReason" ValidationGroup="1" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:TextBox ID="txtFeedbackCarrier" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Required" ControlToValidate="txtFeedbackCarrier" ValidationGroup="1" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </center>
                             </div>
                             <div class="modal-footer">
-                                <asp:Button runat="server" ID="btnReject" Text="Reject" CssClass="btn btn-danger" Width="100px" ValidationGroup="1" />
+                                <asp:Button runat="server" ID="btnAddCarrier" Text="Add" CssClass="btn btn-success" Width="100px" ValidationGroup="1" OnClick="btnAddCarrier_Click1" />
                             </div>
                         </div>
                     </div>
@@ -569,6 +570,25 @@
             text-align: center;
             background-color: #67778e !important;
             color: white;
+        }
+
+
+
+        .ParentGrid td {
+            background-color: white;
+            color: black;
+            font-size: 10pt;
+            line-height: 200%;
+            text-align: center;
+        }
+
+        .ParentGrid th {
+            color: White;
+            font-size: 10pt;
+            line-height: 200%;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
         }
     </style>
 

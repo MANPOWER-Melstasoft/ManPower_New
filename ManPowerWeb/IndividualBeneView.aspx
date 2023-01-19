@@ -141,7 +141,7 @@
 
         <div class="card p-5">
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#results">Career Key Test Results</a></li>
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#results">Career Key Test Results</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#training">Training Refferals</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#job">Job Refferals</a></li>
             </ul>
@@ -249,6 +249,61 @@
                     </div>
 
                     <%----------------------------------------------------------------------------------------------%>
+                    <div class="table-responsive">
+                        <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
+                            DataKeyNames="Id" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
+                            <Columns>
+                                <asp:TemplateField HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
+                                            <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/plus.png" border="0" />
+                                        </a>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="R" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="I" HeaderText="Description" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="A" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="S" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="C" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="E" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="CreatedUser" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="Id" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                <asp:BoundField DataField="Date" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+
+
+                                <asp:TemplateField HeaderText="ACTION" HeaderStyle-Width="300px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success">Add Program Plan</asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td colspan="999">
+                                                <div id="ProgramTargetId-<%# Eval("Id") %>" style="display: none; position: relative;">
+                                                    <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found">
+                                                        <Columns>
+                                                            <asp:BoundField DataField="R" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="I" HeaderText="Description" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="A" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="S" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="C" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="E" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="CreatedUser" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="Id" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:BoundField DataField="Date" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+
                 </div>
 
                 <%---------tab 2---------%>
@@ -434,7 +489,57 @@
                 border-radius: 0;
                 border-bottom: 2px solid blue;
             }
+
+        .ChildGrid td {
+            background-color: #eee !important;
+            color: black;
+            font-size: 10pt;
+            line-height: 200%;
+            text-align: center;
+        }
+
+        .ChildGrid th {
+            color: White;
+            font-size: 10pt;
+            line-height: 200%;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #67778e !important;
+            color: white;
+        }
     </style>
+
+    <script type="text/javascript">
+
+        function collapseExpand(obj) {
+
+            var gvObject = document.getElementById(obj);
+
+            var imageID = document.getElementById('image' + obj);
+
+
+
+            if (gvObject.style.display == "none") {
+
+                gvObject.style.display = "inline";
+
+                imageID.src = "img/minus.png";
+
+            }
+
+            else {
+
+                gvObject.style.display = "none";
+
+                imageID.src = "img/minus.png";
+
+            }
+
+        }
+
+    </script>
+
 </asp:Content>
 
 

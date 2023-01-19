@@ -148,17 +148,34 @@ namespace ManPowerWeb
         protected void btnSubmit1_Click(object sender, EventArgs e)
         {
             CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.A =;
-            //careerKeyTestResults.E =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
+            careerKeyTestResults.R = Convert.ToInt32(txtR.Text);
+            careerKeyTestResults.A = Convert.ToInt32(txtA.Text);
+            careerKeyTestResults.E = Convert.ToInt32(txtE.Text);
+            careerKeyTestResults.S = Convert.ToInt32(txtS.Text);
+            careerKeyTestResults.C = Convert.ToInt32(txtC.Text);
+            careerKeyTestResults.I = Convert.ToInt32(txtI.Text);
+            careerKeyTestResults.Guidence = txtGuidance.Text;
+            careerKeyTestResults.HeldDate = DateTime.Parse(TxtHeldDate.Text).Date;
 
+            int response = careerKeyTestResultsController.Save(careerKeyTestResults);
 
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                carrerTestClear();
+            }
+        }
 
+        private void carrerTestClear()
+        {
+            txtR.Text = null;
+            txtA.Text = null;
+            txtE.Text = null;
+            txtS.Text = null;
+            txtC.Text = null;
+            txtI.Text = null;
+            txtGuidance.Text = null;
+            TxtHeldDate.Text = null;
         }
 
 

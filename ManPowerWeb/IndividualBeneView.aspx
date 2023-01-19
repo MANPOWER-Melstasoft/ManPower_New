@@ -141,7 +141,7 @@
 
         <div class="card p-5">
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#results">Career Key Test Results</a></li>
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#results">Career Key Test Results</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#training">Training Refferals</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#job">Job Refferals</a></li>
             </ul>
@@ -249,6 +249,87 @@
                     </div>
 
                     <%----------------------------------------------------------------------------------------------%>
+                    <div class="table-responsive">
+                        <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
+                            DataKeyNames="Id" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
+                            <Columns>
+                                <asp:TemplateField HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
+                                            <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                        </a>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Id" HeaderText="ID" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="R" HeaderText="R-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="I" HeaderText="I-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="A" HeaderText="A-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="S" HeaderText="S-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="C" HeaderText="C-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="E" HeaderText="E-Marks" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" ItemStyle-Width="10%" />
+                                <asp:BoundField DataField="HeldDate" HeaderText="Held Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="20%" />
+
+
+                                <asp:TemplateField HeaderText="ACTION" ItemStyle-Width="20%" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+
+                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td colspan="999">
+                                                <div id="ProgramTargetId-<%# Eval("Id") %>" style="display: none; position: relative;">
+                                                    <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
+                                                        OnRowEditing="gvPlanDetails_RowEditing" OnRowCancelingEdit="gvPlanDetails_RowCancelingEdit">
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="ID">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("R") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl_Name" runat="server" Text='<%#Eval("I") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("S") %>'></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="City">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl_City" runat="server" Text='<%#Eval("C") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txt_City" runat="server" Text='<%#Eval("E") %>'></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="btn_Edit" runat="server" CommandName="Edit" CssClass="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <EditItemTemplate>
+                                                                    <asp:LinkButton ID="btn_Update" runat="server" CssClass="btn btn-warning" CommandName="Update" ToolTip="Update"> <i class="fa fa-check-square" aria-hidden="true"></i></asp:LinkButton>
+
+                                                                    <asp:LinkButton ID="btn_Cancel" runat="server" CssClass="btn btn-danger" CommandName="Cancel" ToolTip="Cancel"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
+                                                                </EditItemTemplate>
+                                                            </asp:TemplateField>
+
+
+
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+
                 </div>
 
                 <%---------tab 2---------%>
@@ -257,13 +338,13 @@
                     <h3>Training Refferals </h3>
 
                     <div class="row mt-5">
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Institute Name :</label>
                         </div>
                         <div class="col-3">
                             <asp:TextBox ID="institute" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Training Course : </label>
                         </div>
                         <div class="col-3">
@@ -274,14 +355,14 @@
                     <%----------------------------------------------------------------------------%>
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Contact Person Name : </label>
                         </div>
                         <div class="col-3">
                             <asp:TextBox ID="contactPersonName" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Contact Number: </label>
                         </div>
                         <div class="col-3">
@@ -294,7 +375,7 @@
 
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Refferals Date : </label>
                         </div>
                         <div class="col-3">
@@ -303,7 +384,7 @@
                     </div>
 
                     <div class="row mt-5 mb-4">
-                        <div class="col-2">
+                        <div class="col-3">
                             <asp:Button runat="server" ID="btn2Submit" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btn2Submit_Click" ValidationGroup="2" />
                         </div>
                     </div>
@@ -318,7 +399,7 @@
                     <h3>Job Refferals</h3>
 
                     <div class="row mt-5">
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Company Vacancies :</label>
                         </div>
                         <div class="col-3">
@@ -329,7 +410,7 @@
                             </div>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Job Category : </label>
                         </div>
                         <div class="col-3">
@@ -344,7 +425,7 @@
 
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Job Refferals Date: </label>
                         </div>
                         <div class="col-3">
@@ -355,7 +436,7 @@
                             </div>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Job Placement Date: </label>
                         </div>
                         <div class="col-3">
@@ -371,7 +452,7 @@
 
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Career Guidance : </label>
                         </div>
                         <div class="col-3">
@@ -382,7 +463,7 @@
                             </div>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Remarks : </label>
                         </div>
                         <div class="col-3">
@@ -392,7 +473,7 @@
                     </div>
 
                     <div class="row mt-5 mb-4">
-                        <div class="col-2">
+                        <div class="col-3">
                             <asp:Button runat="server" ID="btnSubmitJobRefferal" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="submitJobRefferal" ValidationGroup="Job" />
                         </div>
                     </div>
@@ -402,15 +483,52 @@
                         <asp:GridView Style="margin-top: 30px;" ID="gvJob" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                             CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
                             <Columns>
-                                <asp:BoundField DataField="SystemUserId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Name" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="EmpNumber" HeaderText="EMPLOYEE NUMBER" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Email" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="JobRefferalsId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="VacancyRegistrationId" HeaderText="VacancyRegistrationId" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="JobCategoryId" HeaderText="JobCategoryId" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="JobPlacementDate" HeaderText="JobPlacementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                                <asp:BoundField DataField="RefferalsDate" HeaderText="RefferalsDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                                <asp:BoundField DataField="CareerGuidance" HeaderText="CareerGuidance" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="RefferalRemarks" HeaderText="RefferalRemarks" HeaderStyle-CssClass="table-dark" />
+
                             </Columns>
                         </asp:GridView>
                     </div>
 
                     <%----------------------------------------------------------------------------------------------%>
+                </div>
+
+
+                <%------------------- model ----------------------%>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add Career Guidance Feedback</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <center>
+                                    <div class="row mb-3 ms-1">
+                                        <div class="col-sm-4">
+                                            <label>Add Feedback </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <asp:TextBox ID="txtFeedbackCarrier" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Required" ControlToValidate="txtFeedbackCarrier" ValidationGroup="1" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="modal-footer">
+                                <asp:Button runat="server" ID="btnAddCarrier" Text="Add" CssClass="btn btn-success" Width="100px" ValidationGroup="1" OnClick="btnAddCarrier_Click1" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -434,7 +552,76 @@
                 border-radius: 0;
                 border-bottom: 2px solid blue;
             }
+
+        .ChildGrid td {
+            background-color: #eee !important;
+            color: black;
+            font-size: 10pt;
+            line-height: 200%;
+            text-align: center;
+        }
+
+        .ChildGrid th {
+            color: White;
+            font-size: 10pt;
+            line-height: 200%;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #67778e !important;
+            color: white;
+        }
+
+
+
+        .ParentGrid td {
+            background-color: white;
+            color: black;
+            font-size: 10pt;
+            line-height: 200%;
+            text-align: center;
+        }
+
+        .ParentGrid th {
+            color: White;
+            font-size: 10pt;
+            line-height: 200%;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+        }
     </style>
+
+    <script type="text/javascript">
+
+        function collapseExpand(obj) {
+
+            var gvObject = document.getElementById(obj);
+
+            var imageID = document.getElementById('image' + obj);
+
+
+
+            if (gvObject.style.display == "none") {
+
+                gvObject.style.display = "inline";
+
+                imageID.src = "img/minus.png";
+
+            }
+
+            else {
+
+                gvObject.style.display = "none";
+
+                imageID.src = "img/minus.png";
+
+            }
+
+        }
+
+    </script>
+
 </asp:Content>
 
 

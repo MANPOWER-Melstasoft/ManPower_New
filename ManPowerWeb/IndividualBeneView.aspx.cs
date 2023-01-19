@@ -25,6 +25,7 @@ namespace ManPowerWeb
                 BindVacancies();
                 BindJobcategory();
                 BindJobGridView();
+                bindCarrierGrid();
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary();
@@ -71,12 +72,6 @@ namespace ManPowerWeb
 
 
 
-
-
-
-
-
-
         //-----------------------------------------------------Start Job Refferal ---------------------------------------------------------------------------------------
 
         protected void submitJobRefferal(object sender, EventArgs e)
@@ -88,16 +83,32 @@ namespace ManPowerWeb
                 BeneficiaryId = Convert.ToInt32(BenficiaryId),
                 VacancyRegistrationId = Convert.ToInt32(ddlCompanyVacancies.SelectedValue.ToString()),
                 JobCategoryId = Convert.ToInt32(ddlJobCategory.SelectedValue.ToString()),
-                CereatedDate = DateTime.Now,
-                //JobPlacementDate = jobPlacememntDate.ToString(),
-                //RefferalsDate = jobRefferalsDate.ToString(),
+                CereatedDate = DateTime.Today,
+                JobPlacementDate = DateTime.Parse(jobPlacememntDate.Text).Date,
+                RefferalsDate = DateTime.Parse(jobRefferalsDate.Text).Date,
                 RefferalRemarks = jobRefferalRemark.Text,
                 CareerGuidance = careerGuidance.Text,
+                CreatedUser = Session["Name"].ToString(),
+
             };
 
-            jobRefferalsController.SaveJobRefferals(jobRefferals);
+            int output = jobRefferalsController.SaveJobRefferals(jobRefferals);
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                JobRefferal();
+            }
         }
 
+        private void JobRefferal()
+        {
+            ddlCompanyVacancies.SelectedIndex = 0;
+            ddlJobCategory.SelectedIndex = 0;
+            jobPlacememntDate.Text = null;
+            jobRefferalsDate.Text = null;
+            jobRefferalRemark.Text = null;
+            careerGuidance.Text = null;
+        }
 
         protected void BindVacancies()
         {
@@ -144,26 +155,94 @@ namespace ManPowerWeb
 
 
 
+
+
         //----------------------------------------------------- Start Carrer Refferal ---------------------------------------------------------------------------------------
         protected void btnSubmit1_Click(object sender, EventArgs e)
         {
             CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.A =;
-            //careerKeyTestResults.E =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
-            //careerKeyTestResults.R =;
+            careerKeyTestResults.R = Convert.ToInt32(txtR.Text);
+            careerKeyTestResults.A = Convert.ToInt32(txtA.Text);
+            careerKeyTestResults.E = Convert.ToInt32(txtE.Text);
+            careerKeyTestResults.S = Convert.ToInt32(txtS.Text);
+            careerKeyTestResults.C = Convert.ToInt32(txtC.Text);
+            careerKeyTestResults.I = Convert.ToInt32(txtI.Text);
+            careerKeyTestResults.Guidence = txtGuidance.Text;
+            careerKeyTestResults.Date = DateTime.Today;
+            careerKeyTestResults.HeldDate = DateTime.Parse(TxtHeldDate.Text).Date;
+            careerKeyTestResults.CreatedUser = Session["Name"].ToString();
+            careerKeyTestResults.BeneficiaryId = Convert.ToInt32(BenficiaryId);
 
+
+
+
+            int response = careerKeyTestResultsController.Save(careerKeyTestResults);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                carrerTestClear();
+            }
+        }
+
+        private void carrerTestClear()
+        {
+            txtR.Text = null;
+            txtA.Text = null;
+            txtE.Text = null;
+            txtS.Text = null;
+            txtC.Text = null;
+            txtI.Text = null;
+            txtGuidance.Text = null;
+            TxtHeldDate.Text = null;
+        }
+
+
+        protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int minID = int.Parse(gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString());
+                GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
+
+                //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
+                gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+                gvPlanDetails.DataBind();
+            }
+        }
+
+        protected void gvPlanDetails_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView gvPlanDetails = gvRow.FindControl("gvPlanDetails") as GridView;
+
+            gvPlanDetails.EditIndex = e.NewEditIndex;
+            gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+            gvPlanDetails.DataBind();
 
 
         }
 
+        protected void gvPlanDetails_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView gvPlanDetails = gvRow.FindControl("gvPlanDetails") as GridView;
 
+            gvPlanDetails.EditIndex = -1;
+
+            gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+            gvPlanDetails.DataBind();
+        }
 
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
+
+
+
+
+
+
 
         //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------
 
@@ -171,23 +250,70 @@ namespace ManPowerWeb
         {
             TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
 
-            TrainingRefferals trainingRefferals = new TrainingRefferals
+            TrainingRefferals trainingRefferals = new TrainingRefferals();
+
+            trainingRefferals.BeneficiaryId = Convert.ToInt32(BenficiaryId);
+            trainingRefferals.Date = DateTime.Now;
+            trainingRefferals.InstituteName = institute.Text;
+            trainingRefferals.TrainingCourse = course.Text;
+            trainingRefferals.ContactPerson = contactPersonName.Text;
+            trainingRefferals.ContactNo = contactNo.Text;
+            trainingRefferals.RefferalsDate = DateTime.Parse(trainingRefferalDate.Text);
+            trainingRefferals.CreatedUser = Session["Name"].ToString();
+
+
+
+            int output = trainingRefferalsController.Save(trainingRefferals);
+
+            if (output != 0)
             {
-                BeneficiaryId = Convert.ToInt32(BenficiaryId),
-                Date = DateTime.Now,
-                InstituteName = institute.Text,
-                TrainingCourse = course.Text,
-                ContactPerson = contactPersonName.Text,
-                ContactNo = contactNo.Text,
-                RefferalsDate = Convert.ToDateTime(trainingRefferalDate),
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                TrainingRefferalClear();
+            }
+        }
+
+        private void TrainingRefferalClear()
+        {
+            institute.Text = null;
+            course.Text = null;
+            contactPersonName.Text = null;
+            contactNo.Text = null;
+            trainingRefferalDate.Text = null;
+        }
+
+        private void bindCarrierGrid()
+        {
+            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
+            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
+
+            gvAnnaualPlan.DataSource = careerKeyTestResultsList;
+            gvAnnaualPlan.DataBind();
+
+        }
+
+        protected void btnAddCarrier_Click(object sender, EventArgs e)
+        {
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            int id = Convert.ToInt32(gvAnnaualPlan.Rows[rowIndex].Cells[1].Text);
+
+            string feedbackCarrier = txtFeedbackCarrier.Text;
+
+        }
 
             };
             trainingRefferalsController.Save(trainingRefferals);
+        protected void btnAddCarrier_Click1(object sender, EventArgs e)
+        {
+
         }
 
 
 
-        //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------
+        //----------------------------------------------------- End training Refferal ---------------------------------------------------------------------------------------
+
+
+
 
     }
 }

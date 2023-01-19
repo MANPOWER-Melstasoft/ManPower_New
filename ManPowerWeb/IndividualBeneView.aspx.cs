@@ -89,11 +89,13 @@ namespace ManPowerWeb
                 BeneficiaryId = Convert.ToInt32(BenficiaryId),
                 VacancyRegistrationId = Convert.ToInt32(ddlCompanyVacancies.SelectedValue.ToString()),
                 JobCategoryId = Convert.ToInt32(ddlJobCategory.SelectedValue.ToString()),
-                CereatedDate = DateTime.Now,
-                //JobPlacementDate = jobPlacememntDate.ToString(),
-                //RefferalsDate = jobRefferalsDate.ToString(),
+                CereatedDate = DateTime.Today,
+                JobPlacementDate = DateTime.Parse(jobPlacememntDate.Text).Date,
+                RefferalsDate = DateTime.Parse(jobRefferalsDate.Text).Date,
                 RefferalRemarks = jobRefferalRemark.Text,
                 CareerGuidance = careerGuidance.Text,
+                CreatedUser = Session["Name"].ToString(),
+
             };
 
             jobRefferalsController.SaveJobRefferals(jobRefferals);

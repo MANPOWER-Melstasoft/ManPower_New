@@ -23,21 +23,20 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO BENEFICIARY(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
-                                            "Remarks,Job_Placement_Date,Career_Guidance,Is_Active) " +
-                                           "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@AssignedDate,@RefferalRemarks,@JobPlacementDate, " +
-                                           "@CareerGuidance,@IsActive) ";
+            dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
+                                            "Remarks,Job_Placement_Date,Career_Guidance,Created_User) " +
+                                           "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
+                                           "@CareerGuidance,@CreatedUser) ";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@VacancyRegistrationId", jobRefferals.VacancyRegistrationId);
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryId", jobRefferals.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@JobCategoryId", jobRefferals.JobCategoryId);
-            dbConnection.cmd.Parameters.AddWithValue("@AssignedDate", jobRefferals.CreatedUser);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", jobRefferals.CreatedUser);
+            dbConnection.cmd.Parameters.AddWithValue("@CereatedDate", jobRefferals.CereatedDate);
             dbConnection.cmd.Parameters.AddWithValue("@RefferalRemarks", jobRefferals.RefferalRemarks);
             dbConnection.cmd.Parameters.AddWithValue("@JobPlacementDate", jobRefferals.JobPlacementDate);
             dbConnection.cmd.Parameters.AddWithValue("@CareerGuidance", jobRefferals.CareerGuidance);
-            dbConnection.cmd.Parameters.AddWithValue("@IsActive", jobRefferals.IsActive);
-
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;
@@ -48,7 +47,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM JOB_REFFERALS";
+            dbConnection.cmd.CommandText = "SELECT * FROM Job_Refferals";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

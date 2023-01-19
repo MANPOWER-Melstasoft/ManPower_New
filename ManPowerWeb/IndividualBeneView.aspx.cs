@@ -178,7 +178,34 @@ namespace ManPowerWeb
             TxtHeldDate.Text = null;
         }
 
+
+
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
+
+        //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------
+
+        protected void btn2Submit_Click(object sender, EventArgs e)
+        {
+            TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
+
+            TrainingRefferals trainingRefferals = new TrainingRefferals
+            {
+                BeneficiaryId = Convert.ToInt32(BenficiaryId),
+                Date = DateTime.Now,
+                InstituteName = institute.Text,
+                TrainingCourse = course.Text,
+                ContactPerson = contactPersonName.Text,
+                ContactNo = contactNo.Text,
+                RefferalsDate = Convert.ToDateTime(trainingRefferalDate),
+
+            };
+
+            trainingRefferalsController.Save(trainingRefferals);
+        }
+
+
+
+        //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------
 
     }
 }

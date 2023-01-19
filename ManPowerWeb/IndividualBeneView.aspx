@@ -337,13 +337,13 @@
                     <h3>Training Refferals </h3>
 
                     <div class="row mt-5">
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Institute Name :</label>
                         </div>
                         <div class="col-3">
                             <asp:TextBox ID="institute" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Training Course : </label>
                         </div>
                         <div class="col-3">
@@ -354,14 +354,14 @@
                     <%----------------------------------------------------------------------------%>
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Contact Person Name : </label>
                         </div>
                         <div class="col-3">
                             <asp:TextBox ID="contactPersonName" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Contact Number: </label>
                         </div>
                         <div class="col-3">
@@ -374,7 +374,7 @@
 
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Refferals Date : </label>
                         </div>
                         <div class="col-3">
@@ -383,7 +383,7 @@
                     </div>
 
                     <div class="row mt-5 mb-4">
-                        <div class="col-2">
+                        <div class="col-3">
                             <asp:Button runat="server" ID="btn2Submit" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btn2Submit_Click" ValidationGroup="2" />
                         </div>
                     </div>
@@ -398,7 +398,7 @@
                     <h3>Job Refferals</h3>
 
                     <div class="row mt-5">
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Company Vacancies :</label>
                         </div>
                         <div class="col-3">
@@ -409,7 +409,7 @@
                             </div>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Job Category : </label>
                         </div>
                         <div class="col-3">
@@ -424,7 +424,7 @@
 
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Job Refferals Date: </label>
                         </div>
                         <div class="col-3">
@@ -435,7 +435,7 @@
                             </div>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Job Placement Date: </label>
                         </div>
                         <div class="col-3">
@@ -451,7 +451,7 @@
 
                     <div class="row mt-4">
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Career Guidance : </label>
                         </div>
                         <div class="col-3">
@@ -462,7 +462,7 @@
                             </div>
                         </div>
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <label>Remarks : </label>
                         </div>
                         <div class="col-3">
@@ -472,7 +472,7 @@
                     </div>
 
                     <div class="row mt-5 mb-4">
-                        <div class="col-2">
+                        <div class="col-3">
                             <asp:Button runat="server" ID="btnSubmitJobRefferal" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="submitJobRefferal" ValidationGroup="Job" />
                         </div>
                     </div>
@@ -482,10 +482,14 @@
                         <asp:GridView Style="margin-top: 30px;" ID="gvJob" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                             CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
                             <Columns>
-                                <asp:BoundField DataField="SystemUserId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Name" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="EmpNumber" HeaderText="EMPLOYEE NUMBER" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Email" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="JobRefferalsId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="VacancyRegistrationId" HeaderText="VacancyRegistrationId" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="JobCategoryId" HeaderText="JobCategoryId" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="JobPlacementDate" HeaderText="JobPlacementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                                <asp:BoundField DataField="RefferalsDate" HeaderText="RefferalsDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                                <asp:BoundField DataField="CareerGuidance" HeaderText="CareerGuidance" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="RefferalRemarks" HeaderText="RefferalRemarks" HeaderStyle-CssClass="table-dark" />
+
                             </Columns>
                         </asp:GridView>
                     </div>

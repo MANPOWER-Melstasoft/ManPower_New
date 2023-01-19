@@ -186,6 +186,43 @@ namespace ManPowerWeb
         }
 
 
+        protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int minID = int.Parse(gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString());
+                GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
+
+                //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
+                gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+                gvPlanDetails.DataBind();
+            }
+        }
+
+        protected void gvPlanDetails_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView gvPlanDetails = gvRow.FindControl("gvPlanDetails") as GridView;
+
+            gvPlanDetails.EditIndex = e.NewEditIndex;
+            gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+            gvPlanDetails.DataBind();
+
+
+        }
+
+        protected void gvPlanDetails_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView gvPlanDetails = gvRow.FindControl("gvPlanDetails") as GridView;
+
+            gvPlanDetails.EditIndex = -1;
+
+            gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
+            gvPlanDetails.DataBind();
+        }
 
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
 
@@ -221,19 +258,6 @@ namespace ManPowerWeb
 
         }
 
-        protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                int minID = int.Parse(gvAnnaualPlan.DataKeys[e.Row.RowIndex].Value.ToString());
-                GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
-
-                //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
-                gvPlanDetails.DataSource = ControllerFactory.CreateCareerKeyTestResultsController().GetAllCareerKeyTestResults(false);
-                gvPlanDetails.DataBind();
-            }
-        }
 
 
         //----------------------------------------------------- start training Refferal ---------------------------------------------------------------------------------------

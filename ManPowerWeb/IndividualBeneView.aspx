@@ -273,7 +273,7 @@
 
                                 <asp:TemplateField HeaderText="ACTION" HeaderStyle-Width="300px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success">Add Program Plan</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Add Program Plan</asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
@@ -281,17 +281,42 @@
                                         <tr>
                                             <td colspan="999">
                                                 <div id="ProgramTargetId-<%# Eval("Id") %>" style="display: none; position: relative;">
-                                                    <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found">
+                                                    <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
+                                                        OnRowEditing="gvPlanDetails_RowEditing" OnRowCancelingEdit="gvPlanDetails_RowCancelingEdit">
                                                         <Columns>
-                                                            <asp:BoundField DataField="R" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="I" HeaderText="Description" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="A" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="S" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="C" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="E" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="CreatedUser" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="Id" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                                                            <asp:BoundField DataField="Date" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                                                            <asp:TemplateField HeaderText="ID">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl_ID" runat="server" Text='<%#Eval("R") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl_Name" runat="server" Text='<%#Eval("I") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txt_Name" runat="server" Text='<%#Eval("S") %>'></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="City">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbl_City" runat="server" Text='<%#Eval("C") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="txt_City" runat="server" Text='<%#Eval("E") %>'></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />
+                                                                </ItemTemplate>
+                                                                <EditItemTemplate>
+                                                                    <asp:Button ID="btn_Update" runat="server" Text="Update" CommandName="Update" />
+                                                                    <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel" />
+                                                                </EditItemTemplate>
+                                                            </asp:TemplateField>
+
+
 
                                                         </Columns>
                                                     </asp:GridView>
@@ -466,6 +491,39 @@
                     </div>
 
                     <%----------------------------------------------------------------------------------------------%>
+                </div>
+
+
+                <%------------------- model ----------------------%>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add Career_Guidance_Feedback</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <center>
+                                    <div class="row mb-3 ms-1">
+                                        <div class="col-sm-4">
+                                            <label>Add Feedback </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <asp:TextBox ID="txtrejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="Required" ControlToValidate="txtrejectReason" ValidationGroup="1" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="modal-footer">
+                                <asp:Button runat="server" ID="btnReject" Text="Reject" CssClass="btn btn-danger" Width="100px" ValidationGroup="1" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

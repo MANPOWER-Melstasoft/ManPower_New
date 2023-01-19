@@ -304,7 +304,11 @@ namespace ManPowerWeb
 
 
             //    int id = int.Parse((sender as Button).CommandArgument);
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "openModal();", true);
+            // ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#exampleModalCenter').modal('show'); });   </script>", false);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalView", "<script>$('#exampleModalCenter').modal('show');</script>", false);
+
         }
 
         //protected void btnAddPlan_Click(object sender, EventArgs e)

@@ -273,7 +273,7 @@
                                 <asp:TemplateField HeaderText="ACTION" ItemStyle-Width="20%" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
 
-                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" CommandArgument='<%#Eval("Id") %>' OnClick="btnAddPlan_Click"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" OnClick="btnAddPlan_Click"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField>
@@ -530,6 +530,26 @@
                         </div>
                     </div>
                 </div>
+
+                <%--  <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    &times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <iframe id="Iframe1" runat="server"></iframe>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>--%>
             </div>
         </div>
     </div>
@@ -630,7 +650,7 @@
         }
 
         function openModal() {
-            $('#exampleModalCenter').modal('show');
+            $('[id*=myModal]').modal('show');
         }
 
     </script>

@@ -449,5 +449,17 @@ namespace ManPowerCore.Common
             JobPlacementFeedbackController jobPlacementFeedbackController = new JobPlacementFeedbackControllerImpl();
             return (JobPlacementFeedbackController)jobPlacementFeedbackController;
         }
+
+        public static TrainingRefferalsController CreateTrainingRefferalController()
+        {
+            TrainingRefferalsController jobPlacementFeedbackController = new TrainingRefferalsControllerSqlImpl();
+            return (TrainingRefferalsController)jobPlacementFeedbackController;
+        }
+
+        public static TrainingRefferalFeedbackController CreateTrainingRefferalFeedbackController()
+        {
+            TrainingRefferalFeedbackController trainingRefferalFeedbackController = new TrainingRefferalFeedbackControllerSqlImpl();
+            return (TrainingRefferalFeedbackController)trainingRefferalFeedbackController;
+        }
     }
 }

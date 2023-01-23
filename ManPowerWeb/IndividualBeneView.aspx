@@ -598,6 +598,25 @@
 
                                 <div class="row mt-5">
                                     <div class="col-3">
+                                        <label>District :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label>DS Division  : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlDsDivision" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDsDivision_SelectedIndexChanged" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row mt-5">
+                                    <div class="col-3">
                                         <label>Company Vacancies :</label>
                                     </div>
                                     <div class="col-3">

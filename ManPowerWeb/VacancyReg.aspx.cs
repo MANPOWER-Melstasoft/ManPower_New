@@ -130,6 +130,18 @@ namespace ManPowerWeb
             companyVecansyRegistationDetails.VLevels = ddlLevel.SelectedValue;
             companyVecansyRegistationDetails.ContactPersonEmail = email.Text;
 
+            if (ddlDsDivision.SelectedValue != "")
+            {
+                companyVecansyRegistationDetails.VDsId = Convert.ToInt32(ddlDsDivision.SelectedValue);
+
+            }
+            else
+            {
+                companyVecansyRegistationDetails.VDistrictId = 0;
+            }
+            companyVecansyRegistationDetails.VDistrictId = Convert.ToInt32(ddlDistrict.SelectedValue);
+            companyVecansyRegistationDetails.CompanyName = txtName.Text;
+
 
             int result1 = companyVecansyRegistationDetailsController.SaveCompanyVecansyRegistationDetails(companyVecansyRegistationDetails);
 

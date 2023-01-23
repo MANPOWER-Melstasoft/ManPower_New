@@ -214,7 +214,8 @@ namespace ManPowerWeb
                 GridView gvPlanDetails = e.Row.FindControl("childgridView3") as GridView;
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
-                gvPlanDetails.DataSource = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
+                List<JobPlacementFeedback> jobPlacementFeedbacksList = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
+                gvPlanDetails.DataSource = jobPlacementFeedbacksList.Where(x => x.CreatedUser == Session["Name"].ToString() && x.JobRefferalsId == minID);
                 gvPlanDetails.DataBind();
             }
         }
@@ -264,10 +265,11 @@ namespace ManPowerWeb
 
             jobPlacementFeedback.Remarks = txtRemarksJob.Text;
             jobPlacementFeedback.JobRefferalsId = Convert.ToInt32(ViewState["jobparentid"]);
-            jobPlacementFeedback.CreatedDate = DateTime.Now;
-            jobPlacementFeedback.ResignedDate = DateTime.Now;
+            jobPlacementFeedback.CreatedDate = DateTime.Now.Date;
+            jobPlacementFeedback.ResignedDate = DateTime.Now.Date;
             jobPlacementFeedback.CreatedUser = Session["Name"].ToString();
             jobPlacementFeedback.StillWorking = 1;
+            jobPlacementFeedback.IsActive = 1;
 
             int output = jobPlacementFeedbackController.SaveJobPlacementFeedback(jobPlacementFeedback);
             if (output != 0)
@@ -276,6 +278,12 @@ namespace ManPowerWeb
                 JobRefferalClear();
                 jobRefferals.Visible = true;
                 jobFeedback.Visible = false;
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error')", true);
+
+
             }
         }
         //----------------------------------------------------- End Job Refferal ---------------------------------------------------------------------------------------

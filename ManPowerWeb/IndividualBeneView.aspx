@@ -697,7 +697,7 @@
                             </div>
 
                             <div id="jobFeedback" runat="server" visible="false">
-                                <h3>Career Key Test Results Feedback </h3>
+                                <h3>Job Refferals Feedback </h3>
 
                                 <div class="row mt-5">
                                     <div class="col-2">
@@ -706,7 +706,7 @@
                                     <div class="col-3">
                                         <asp:TextBox ID="txtRemarksJob" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine" CausesValidation="true"></asp:TextBox>
                                     </div>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtInJob" ValidationGroup="1job"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtRemarksJob" ValidationGroup="jobFeedback" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="row mt-5">
                                     <div class="col-2">
@@ -714,13 +714,13 @@
                                     </div>
                                     <div class="col-3">
                                         <asp:TextBox ID="TextBox2" runat="server" name="place" CssClass="form-control form-control-user" TextMode="MultiLine" CausesValidation="true"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtTraining" ValidationGroup="1job"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="TextBox2" ValidationGroup="jobFeedback" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
                                 <div class="row mt-5 mb-4">
                                     <div class="col-2">
-                                        <asp:Button runat="server" ID="btnSubmitJobFeedback" Text="Submit" CssClass="btn btn-primary btn-user btn-block" ValidationGroup="1job" />
+                                        <asp:Button runat="server" ID="btnSubmitJobFeedback" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmitJobFeedback_Click" ValidationGroup="jobFeedback" />
                                     </div>
                                 </div>
                             </div>
@@ -755,7 +755,7 @@
                                                 <tr>
                                                     <td colspan="999">
 
-                                                        <div id="JobRefferalsId-<%# Eval("JobRefferalsId") %>" style="display: block; position: relative;">
+                                                        <div id="JobRefferalsId-<%# Eval("JobRefferalsId") %>" style="display: none; position: relative;">
                                                             <asp:GridView ID="childgridView3" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
                                                                 OnRowEditing="childgridView3_RowEditing" OnRowCancelingEdit="childgridView3_RowCancelingEdit" OnRowUpdating="childgridView3_RowUpdating">
                                                                 <Columns>

@@ -13,9 +13,15 @@ namespace ManPowerCore.Controller
     {
         int SaveInduvidualBeneficiary(InduvidualBeneficiary induvidualBeneficiary);
 
+        int UpdateInduvidualBeneficiary(InduvidualBeneficiary induvidualBeneficiary);
+
+        int DeleteInduvidualBeneficiary(int id);
+
         List<InduvidualBeneficiary> GetAllInduvidualBeneficiary();
 
         List<InduvidualBeneficiary> GetAllInduvidualBeneficiary(string runName);
+
+
     }
 
     public class InduvidualBeneficiaryControllerImpl : InduvidualBeneficiaryController
@@ -30,8 +36,52 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                int id = induvidualBeneficiaryDAO.SaveInduvidualBeneficiary(induvidualBeneficiary, dBConnection);
-                return id;
+                int results = induvidualBeneficiaryDAO.SaveInduvidualBeneficiary(induvidualBeneficiary, dBConnection);
+                return results;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateInduvidualBeneficiary(InduvidualBeneficiary induvidualBeneficiary)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+                int results = induvidualBeneficiaryDAO.UpdateInduvidualBeneficiary(induvidualBeneficiary, dBConnection);
+                return results;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int DeleteInduvidualBeneficiary(int id)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+                int results = induvidualBeneficiaryDAO.DeleteInduvidualBeneficiary(id, dBConnection);
+                return results;
             }
             catch (Exception)
             {

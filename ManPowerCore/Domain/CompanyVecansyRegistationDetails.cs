@@ -59,6 +59,15 @@ namespace ManPowerCore.Domain
 
         public string JobDispalyName { get; set; }
 
+        [DBField("Vacancy_District_Id")]
+        public int VDistrictId { get; set; }
+
+        [DBField("Vacancy_DS_Division_Id")]
+        public int VDsId { get; set; }
+
+        [DBField("Company_Name")]
+        public string CompanyName { get; set; }
+
 
 
     }

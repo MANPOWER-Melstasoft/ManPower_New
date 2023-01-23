@@ -677,7 +677,6 @@
                                 </div>
                             </div>
 
-
                             <div id="jobFeedback" runat="server" visible="false">
                                 <h3>Career Key Test Results Feedback </h3>
 
@@ -713,8 +712,8 @@
                                     <Columns>
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
-                                                <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("JobRefferalsId") %>');">
-                                                    <img alt="Details" id="image3ProgramTargetId-<%# Eval("JobRefferalsId") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                <a href="javascript:collapseExpand('JobRefferalsId-<%# Eval("JobRefferalsId") %>');">
+                                                    <img alt="Details" id="image3JobRefferalsId-<%# Eval("JobRefferalsId") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
                                                 </a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -737,7 +736,7 @@
                                                 <tr>
                                                     <td colspan="999">
 
-                                                        <div id="ProgramTargetId-<%# Eval("JobRefferalsId") %>" style="display: block; position: relative;">
+                                                        <div id="JobRefferalsId-<%# Eval("JobRefferalsId") %>" style="display: block; position: relative;">
                                                             <asp:GridView ID="childgridView3" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
                                                                 OnRowEditing="childgridView3_RowEditing" OnRowCancelingEdit="childgridView3_RowCancelingEdit" OnRowUpdating="childgridView3_RowUpdating">
                                                                 <Columns>

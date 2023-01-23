@@ -98,6 +98,7 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 JobRefferalClear();
+                BindJobGridView();
             }
         }
 

@@ -54,9 +54,9 @@
                         <img src="img/HR.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
-                            <a href="Dashboard.aspx" style="text-decoration: none;">
-                                <h5 class="card-title text-center">HUMAN RESOURCE</h5>
-                            </a>
+                            <h5 class="card-title text-center">
+                                <asp:Button ID="btnHR" runat="server" Text="HUMAN RESOURCE" OnClick="btnHR_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
+                            </h5>
                         </div>
                         <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
                         </div>
@@ -70,11 +70,9 @@
                         </div>
 
                         <div class="card-body">
-                            <a href="SessionManager.aspx" style="text-decoration: none;">
-
-                                <h5 class="card-title text-center">PROCUREMENT</h5>
-                            </a>
-
+                            <h5 class="card-title text-center">
+                                <asp:Button ID="btnPROCRU" runat="server" Text="PROCUREMENT" OnClick="btnPROCRU_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
+                            </h5>
                         </div>
                         <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
                         </div>
@@ -85,9 +83,9 @@
                         <img src="img/Finance.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
-                            <a href="Dashboard.aspx" style="text-decoration: none;">
-                                <h5 class="card-title text-center">FINANCE</h5>
-                            </a>
+                            <h5 class="card-title text-center">
+                                <asp:Button ID="btnFINAN" runat="server" Text="FINANCE" OnClick="btnFINAN_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
+                            </h5>
                         </div>
                         <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
                         </div>
@@ -98,11 +96,9 @@
                         <img src="img/planning.jpg" class="card-img-top"
                             alt="Skyscrapers" />
                         <div class="card-body">
-                            <a href="Dashboard.aspx" style="text-decoration: none;">
-
-                                <h5 class="card-title text-center">PLANNING</h5>
-                            </a>
-
+                            <h5 class="card-title text-center">
+                                <asp:Button ID="btnPLAN" runat="server" Text="PLANNING" OnClick="btnPLAN_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
+                            </h5>
                         </div>
                         <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp)">
                         </div>

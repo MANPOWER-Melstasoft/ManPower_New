@@ -117,6 +117,7 @@
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
     <Content Include="AddTrainingRequest.aspx" />
+    <Content Include="AddVacancyPosition.aspx" />
     <Content Include="AddVoteAllocation.aspx" />
     <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
@@ -2017,6 +2018,13 @@
     </Compile>
     <Compile Include="AddTrainingRequest.aspx.designer.cs">
       <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVacancyPosition.aspx.cs">
+      <DependentUpon>AddVacancyPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVacancyPosition.aspx.designer.cs">
+      <DependentUpon>AddVacancyPosition.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddVoteAllocation.aspx.cs">
       <DependentUpon>AddVoteAllocation.aspx</DependentUpon>

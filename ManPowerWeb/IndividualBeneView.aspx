@@ -307,7 +307,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
                                                 <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
-                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 20px; height: 20px" border="0" />
                                                 </a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -508,7 +508,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
                                                 <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
-                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 20px; height: 20px" border="0" />
                                                 </a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -614,6 +614,15 @@
                                     </div>
                                 </div>
 
+                                <div class="row mt-5">
+                                    <div class="col-3">
+                                        <label>Job Position :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlPositionType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPositionType_SelectedIndexChanged" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+
+                                    </div>
+                                </div>
 
                                 <div class="row mt-5">
                                     <div class="col-3">
@@ -732,7 +741,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
                                                 <a href="javascript:collapseExpand('JobRefferalsId-<%# Eval("JobRefferalsId") %>');">
-                                                    <img alt="Details" id="image3JobRefferalsId-<%# Eval("JobRefferalsId") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                    <img alt="Details" id="image3JobRefferalsId-<%# Eval("JobRefferalsId") %> " src="img/Down.png" style="width: 20px; height: 20px" border="0" />
                                                 </a>
                                             </ItemTemplate>
                                         </asp:TemplateField>

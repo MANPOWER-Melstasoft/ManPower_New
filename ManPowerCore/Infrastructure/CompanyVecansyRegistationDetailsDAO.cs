@@ -52,9 +52,9 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO COMPANY_VACANCY_REGISTATION_DETAILS(DATE,ADDRESS,WEBSITE_LINK,BR_NUMBER,JOB_POSITION," +
                                             "CAREER_PATH,SALARY_LEVEL,NUMBER_OF_VACANCY,NAME,POSITION,CONTACT_NUMBER,WHATSAPP_NUMBER," +
-                                            "LEVELS,EMAIL) " +
+                                            "LEVELS,EMAIL,Vacancy_District_Id,Vacancy_DS_Division_Id,Company_Name) " +
 
-                                 "VALUES(@VDate,@VAddress,@WebSiteLink,@BusinessRegistationNumber,@JobPosition,@CareerPath,@SalaryLevel,@NumberOfVacancy,@ContactPersonEmail,@ContactPersonPosition,@ContactNumber,@WhatsappNumber,@VLevels,@ContactPersonName) ";
+                                 "VALUES(@VDate,@VAddress,@WebSiteLink,@BusinessRegistationNumber,@JobPosition,@CareerPath,@SalaryLevel,@NumberOfVacancy,@ContactPersonEmail,@ContactPersonPosition,@ContactNumber,@WhatsappNumber,@VLevels,@ContactPersonName,@DistrictId,@DSDivisionId,@CompanyName) ";
 
 
             //dbConnection.cmd.Parameters.AddWithValue("@id", id);
@@ -72,6 +72,11 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@WhatsappNumber", companyVecansyRegistationDetails.WhatsappNumber);
             dbConnection.cmd.Parameters.AddWithValue("@VLevels", companyVecansyRegistationDetails.VLevels);
             dbConnection.cmd.Parameters.AddWithValue("@ContactPersonName", companyVecansyRegistationDetails.ContactPersonName);
+            dbConnection.cmd.Parameters.AddWithValue("@CompanyName", companyVecansyRegistationDetails.CompanyName);
+            dbConnection.cmd.Parameters.AddWithValue("@DistrictId", companyVecansyRegistationDetails.VDistrictId);
+            dbConnection.cmd.Parameters.AddWithValue("@DSDivisionId", companyVecansyRegistationDetails.VDsId);
+
+
 
 
             dbConnection.cmd.ExecuteNonQuery();

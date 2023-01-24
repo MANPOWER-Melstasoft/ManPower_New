@@ -591,104 +591,218 @@
                 <%--------tab 3 --------%>
 
                 <div id="job" class="tab-pane fade">
-                    <h3>Job Refferals</h3>
+                    <asp:UpdatePanel ID="UpdatePanelJob" runat="server">
+                        <ContentTemplate>
+                            <div id="jobRefferals" runat="server">
+                                <h3>Job Refferals</h3>
 
-                    <div class="row mt-5">
-                        <div class="col-3">
-                            <label>Company Vacancies :</label>
-                        </div>
-                        <div class="col-3">
-                            <asp:DropDownList ID="ddlCompanyVacancies" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                            <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob2" runat="server" ValidationGroup="Job"
-                                    ControlToValidate="ddlCompanyVacancies" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                <div class="row mt-5">
+                                    <div class="col-3">
+                                        <label>District :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label>DS Division  : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlDsDivision" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDsDivision_SelectedIndexChanged" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row mt-5">
+                                    <div class="col-3">
+                                        <label>Company Vacancies :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlCompanyVacancies" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                        <div class="d-flex text-danger">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob2" runat="server" ValidationGroup="Job"
+                                                ControlToValidate="ddlCompanyVacancies" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label>Job Category : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlJobCategory" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                        <div class="d-flex text-danger">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob1" runat="server" ValidationGroup="Job"
+                                                ControlToValidate="ddlJobCategory" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mt-4">
+
+                                    <div class="col-3">
+                                        <label>Job Refferals Date: </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="jobRefferalsDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob3" runat="server" ValidationGroup="Job"
+                                                ControlToValidate="jobRefferalsDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label>Job Placement Date: </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="jobPlacememntDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob4" runat="server" ValidationGroup="Job"
+                                                ControlToValidate="jobPlacememntDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row mt-4">
+
+                                    <div class="col-3">
+                                        <label>Career Guidance : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="careerGuidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob5" runat="server" ValidationGroup="Job"
+                                                ControlToValidate="careerGuidance" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label>Remarks : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="jobRefferalRemark" runat="server" name="place" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mt-5 mb-4">
+                                    <div class="col-3">
+                                        <asp:Button runat="server" ID="btnSubmitJobRefferal" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="submitJobRefferal" ValidationGroup="Job" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-3">
-                            <label>Job Category : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:DropDownList ID="ddlJobCategory" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                            <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob1" runat="server" ValidationGroup="Job"
-                                    ControlToValidate="ddlJobCategory" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            <div id="jobFeedback" runat="server" visible="false">
+                                <h3>Job Refferals Feedback </h3>
+
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <label>Remarks :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtRemarksJob" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine" CausesValidation="true"></asp:TextBox>
+                                    </div>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtRemarksJob" ValidationGroup="jobFeedback" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </div>
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <label>In Training (Specify) : </label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="TextBox2" runat="server" name="place" CssClass="form-control form-control-user" TextMode="MultiLine" CausesValidation="true"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="TextBox2" ValidationGroup="jobFeedback" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5 mb-4">
+                                    <div class="col-2">
+                                        <asp:Button runat="server" ID="btnSubmitJobFeedback" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmitJobFeedback_Click" ValidationGroup="jobFeedback" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
+                            <div class="table-responsive">
+                                <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
+                                    DataKeyNames="JobRefferalsId" OnRowDataBound="GridView3_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
+                                    <Columns>
+                                        <asp:TemplateField HeaderStyle-CssClass="table-dark">
+                                            <ItemTemplate>
+                                                <a href="javascript:collapseExpand('JobRefferalsId-<%# Eval("JobRefferalsId") %>');">
+                                                    <img alt="Details" id="image3JobRefferalsId-<%# Eval("JobRefferalsId") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                </a>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="JobRefferalsId" HeaderText="ID" HeaderStyle-CssClass="table-dark" ItemStyle-Width="5%" />
+                                        <asp:BoundField DataField="VacancyRegistrationId" HeaderText="VacancyRegistrationId" HeaderStyle-CssClass="table-dark" ItemStyle-Width="15%" />
+                                        <asp:BoundField DataField="JobCategoryId" HeaderText="JobCategoryId" HeaderStyle-CssClass="table-dark" ItemStyle-Width="10%" />
+                                        <asp:BoundField DataField="JobPlacementDate" HeaderText="JobPlacementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="15%" />
+                                        <asp:BoundField DataField="RefferalsDate" HeaderText="RefferalsDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="15%" />
+                                        <asp:BoundField DataField="CareerGuidance" HeaderText="CareerGuidance" HeaderStyle-CssClass="table-dark" ItemStyle-Width="15%" />
+                                        <asp:BoundField DataField="RefferalRemarks" HeaderText="RefferalRemarks" HeaderStyle-CssClass="table-dark" ItemStyle-Width="15%" />
 
-                    <div class="row mt-4">
+                                        <asp:TemplateField HeaderText="Feedback" ItemStyle-Width="25%" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
 
-                        <div class="col-3">
-                            <label>Job Refferals Date: </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="jobRefferalsDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                            <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob3" runat="server" ValidationGroup="Job"
-                                    ControlToValidate="jobRefferalsDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                                <asp:LinkButton runat="server" ID="btnAddFeedBackJob" CssClass="btn btn-success" CommandArgument='<%#Eval("JobRefferalsId") %>' OnClick="btnAddFeedBackJob_Click"><i class="fa fa-plus" aria-hidden="true" ></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td colspan="999">
+
+                                                        <div id="JobRefferalsId-<%# Eval("JobRefferalsId") %>" style="display: none; position: relative;">
+                                                            <asp:GridView ID="childgridView3" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
+                                                                OnRowEditing="childgridView3_RowEditing" OnRowCancelingEdit="childgridView3_RowCancelingEdit" OnRowUpdating="childgridView3_RowUpdating">
+                                                                <Columns>
+                                                                    <asp:TemplateField HeaderText="Id">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblID" runat="server" Text='<%#Eval("JobPlacementFeedbackId") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Date">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("JobRefferalsId") %>'></asp:Label>
+                                                                        </ItemTemplate>
+
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="InJob">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblInJob" runat="server" Text='<%#Eval("StillWorking") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtInJob" runat="server" Text='<%#Eval("StillWorking") %>'></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:TemplateField>
+                                                                        <ItemTemplate>
+                                                                            <asp:LinkButton ID="btnEditJob" runat="server" CommandName="Edit" CssClass="btn btn-primary"><i class="fa fa-pen" aria-hidden="true"></i></asp:LinkButton>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:LinkButton ID="btnUpdateJob" runat="server" CssClass="btn btn-warning" CommandName="Update" ToolTip="Update"> <i class="fa fa-check-square" aria-hidden="true"></i></asp:LinkButton>
+
+                                                                            <asp:LinkButton ID="btnCancelJob" runat="server" CssClass="btn btn-danger" CommandName="Cancel" ToolTip="Cancel"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
                             </div>
-                        </div>
 
-                        <div class="col-3">
-                            <label>Job Placement Date: </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="jobPlacememntDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                            <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob4" runat="server" ValidationGroup="Job"
-                                    ControlToValidate="jobPlacememntDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row mt-4">
-
-                        <div class="col-3">
-                            <label>Career Guidance : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="careerGuidance" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                            <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob5" runat="server" ValidationGroup="Job"
-                                    ControlToValidate="careerGuidance" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                            </div>
-                        </div>
-
-                        <div class="col-3">
-                            <label>Remarks : </label>
-                        </div>
-                        <div class="col-3">
-                            <asp:TextBox ID="jobRefferalRemark" runat="server" name="place" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                        </div>
-
-                    </div>
-
-                    <div class="row mt-5 mb-4">
-                        <div class="col-3">
-                            <asp:Button runat="server" ID="btnSubmitJobRefferal" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="submitJobRefferal" ValidationGroup="Job" />
-                        </div>
-                    </div>
-
-
-                    <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
-                        <asp:GridView Style="margin-top: 30px;" ID="gvJob" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                            CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
-                            <Columns>
-                                <asp:BoundField DataField="JobRefferalsId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="VacancyRegistrationId" HeaderText="VacancyRegistrationId" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="JobCategoryId" HeaderText="JobCategoryId" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="JobPlacementDate" HeaderText="JobPlacementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
-                                <asp:BoundField DataField="RefferalsDate" HeaderText="RefferalsDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
-                                <asp:BoundField DataField="CareerGuidance" HeaderText="CareerGuidance" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="RefferalRemarks" HeaderText="RefferalRemarks" HeaderStyle-CssClass="table-dark" />
-
-                            </Columns>
-                        </asp:GridView>
-                    </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
 
                     <%----------------------------------------------------------------------------------------------%>
                 </div>

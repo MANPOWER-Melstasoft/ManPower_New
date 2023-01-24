@@ -52,5 +52,11 @@ namespace ManPowerCore.Domain
 
         [DBField("PARENT_NIC")]
         public string ParentNic { get; set; }
+
+        [DBField("IS_IN_SCHOOL")]
+        public int IsSchoolStudent { get; set; }
+
+        [DBField("IS_ACTIVE")]
+        public int IsActive { get; set; }
     }
 }

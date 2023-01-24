@@ -15,7 +15,7 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             //id = Request.QueryString["id"].ToString();
-            if (Session["UserId"] != null)
+            if (Session["UserId"] != null && Session["Division"].ToString() == "2")
             {
                 SessionManager();
             }

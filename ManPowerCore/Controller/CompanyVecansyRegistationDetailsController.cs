@@ -72,7 +72,10 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 List<CompanyVecansyRegistationDetails> list = companyVecansyRegistationDetailsDAO.GetAllCompanyVecansyRegistationDetails(dBConnection);
-
+                foreach (var item in list)
+                {
+                    item.JobDispalyName = item.BusinessRegistationNumber + " - " + item.JobPosition;
+                }
 
                 return list;
 

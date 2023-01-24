@@ -23,7 +23,7 @@ namespace ManPowerCore.Domain
         public int JobCategoryId { get; set; }
 
         [DBField("CREATED_DATE")]
-        public DateTime AssignedDate { get; set; }
+        public DateTime CereatedDate { get; set; }
 
         [DBField("REMARKS")]
         public string RefferalRemarks { get; set; }
@@ -36,5 +36,15 @@ namespace ManPowerCore.Domain
 
         [DBField("IS_ACTIVE")]
         public int IsActive { get; set; }
+
+        [DBField("Job_Refferals_Date")]
+        public DateTime RefferalsDate { get; set; }
+
+        [DBField("Created_User")]
+        public string CreatedUser { get; set; }
+
+        public CompanyVecansyRegistationDetails companyVecansyRegistationDetails { get; set; }
+
+        public Beneficiary beneficiary { get; set; }
     }
 }

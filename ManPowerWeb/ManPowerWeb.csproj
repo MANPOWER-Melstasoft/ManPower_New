@@ -171,6 +171,7 @@
     <Content Include="css\mdb.min.css.map" />
     <Content Include="css\mdb.rtl.min.css.map" />
     <Content Include="img\bgimg.jpeg" />
+    <Content Include="img\Down.png" />
     <Content Include="img\favicon.png" />
     <Content Include="img\Finance.jpg" />
     <Content Include="img\header2.png" />
@@ -253,7 +254,9 @@
     <Content Include="Site.Master" />
     <Content Include="SpecialAmendment.aspx" />
     <Content Include="specialAmendmentRender.aspx" />
+    <Content Include="SpecialProgram.aspx" />
     <Content Include="Styles\sweetalert.css" />
+    <Content Include="testing.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
     <Content Include="UserList.aspx" />
@@ -2457,6 +2460,20 @@
     </Compile>
     <Compile Include="specialAmendmentRender.aspx.designer.cs">
       <DependentUpon>specialAmendmentRender.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialProgram.aspx.cs">
+      <DependentUpon>SpecialProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpecialProgram.aspx.designer.cs">
+      <DependentUpon>SpecialProgram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testing.aspx.cs">
+      <DependentUpon>testing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testing.aspx.designer.cs">
+      <DependentUpon>testing.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>

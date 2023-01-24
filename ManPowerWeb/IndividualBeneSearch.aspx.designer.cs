@@ -24,6 +24,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox dob;
 
         /// <summary>
+        /// ddlScl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlScl;
+
+        /// <summary>
+        /// ddlGen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGen;
+
+        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

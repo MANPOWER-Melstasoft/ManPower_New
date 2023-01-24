@@ -59,7 +59,6 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.ExecuteNonQuery();
 
-
             return 1;
         }
 

@@ -12,26 +12,29 @@ namespace ManPowerCore.Domain
         [DBField("Id")]
         public int Id { get; set; }
 
-        [DBField("TrainingRefferalId")]
+        [DBField("Training_Refferals_Id")]
         public int TrainingRefferalId { get; set; }
 
-        [DBField("Date")]
+        [DBField("Created_Date")]
         public DateTime Date { get; set; }
 
-        [DBField("TrainingInstitute")]
+        [DBField("Training_Institute")]
         public string TrainingInstitute { get; set; }
 
-        [DBField("InTraining")]
+        [DBField("In_Training")]
         public string InTraining { get; set; }
 
-        [DBField("TrainingCompleted")]
+        [DBField("Training_Completed")]
         public string TrainingCompleted { get; set; }
 
-        [DBField("Remarks")]
+        [DBField("Other_Remarks")]
         public string Remarks { get; set; }
 
         [DBField("Is_Active")]
-        public string IsActive { get; set; }
+        public int IsActive { get; set; }
+
+        [DBField("Created_User")]
+        public string CreatedUser { get; set; }
 
         public TrainingRefferals trainingRefferals { get; set; }
     }

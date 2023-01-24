@@ -105,11 +105,15 @@ namespace ManPowerWeb
             {
                 specialAmendment.Enabled = false;
                 specialAmendment.CssClass = "btn btn-outline-secondary disabled";
+                btnSpecialProgram.Enabled = false;
+                btnSpecialProgram.CssClass = "btn btn-outline-secondary disabled";
             }
             else
             {
                 specialAmendment.Enabled = true;
                 specialAmendment.CssClass = "btn btn-outline-secondary";
+                btnSpecialProgram.Enabled = true;
+                btnSpecialProgram.CssClass = "btn btn-outline-secondary";
             }
         }
 
@@ -148,6 +152,12 @@ namespace ManPowerWeb
         protected void specialAmendment_Click(object sender, EventArgs e)
         {
             string url = "specialamendment.aspx";
+            Response.Redirect(url);
+        }
+
+        protected void btnSpecialProgram_Click(object sender, EventArgs e)
+        {
+            string url = "SpecialProgram.aspx";
             Response.Redirect(url);
         }
     }

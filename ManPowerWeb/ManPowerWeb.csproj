@@ -254,6 +254,7 @@
     <Content Include="Site.Master" />
     <Content Include="SpecialAmendment.aspx" />
     <Content Include="specialAmendmentRender.aspx" />
+    <Content Include="SpecialProgram.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="testing.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
@@ -2459,6 +2460,13 @@
     </Compile>
     <Compile Include="specialAmendmentRender.aspx.designer.cs">
       <DependentUpon>specialAmendmentRender.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialProgram.aspx.cs">
+      <DependentUpon>SpecialProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpecialProgram.aspx.designer.cs">
+      <DependentUpon>SpecialProgram.aspx</DependentUpon>
     </Compile>
     <Compile Include="testing.aspx.cs">
       <DependentUpon>testing.aspx</DependentUpon>

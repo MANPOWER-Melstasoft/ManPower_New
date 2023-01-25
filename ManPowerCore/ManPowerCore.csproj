@@ -115,6 +115,7 @@
     <Compile Include="Controller\TrainingRefferalFeedbackController.cs" />
     <Compile Include="Controller\TrainingRefferalsController.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
+    <Compile Include="Controller\TransfersRetirementResignationStatusController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />
     <Compile Include="Controller\VehicleMaintenaceQuatationController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Domain\TrainingRefferals.cs" />
     <Compile Include="Domain\JobCategory.cs" />
     <Compile Include="Domain\Training_Request.cs" />
+    <Compile Include="Domain\TransfersRetirementResignationStatus.cs" />
     <Compile Include="Domain\UserRegistation.cs" />
     <Compile Include="Domain\UserType.cs" />
     <Compile Include="Domain\VehicleMaintenanceQuatation.cs" />
@@ -265,6 +267,7 @@
     <Compile Include="Infrastructure\TrainingRefferalFeedbackDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalsDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
+    <Compile Include="Infrastructure\TransfersRetirementResignationStatusDAO.cs" />
     <Compile Include="Infrastructure\UserRegistrationDAO.cs" />
     <Compile Include="Infrastructure\UserTypeDAO.cs" />
     <Compile Include="Infrastructure\VehicleMaintenaceQuatationDAO.cs" />

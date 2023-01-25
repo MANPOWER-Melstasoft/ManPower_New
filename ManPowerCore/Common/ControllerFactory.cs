@@ -467,5 +467,11 @@ namespace ManPowerCore.Common
             RequestTypeController requestTypeController = new RequestTypeControllerSqlImpl();
             return (RequestTypeController)requestTypeController;
         }
+
+        public static TransfersRetirementResignationStatusController CreateTransfersRetirementResignationStatusController()
+        {
+            TransfersRetirementResignationStatusController transfersRetirementResignationStatusController = new TransfersRetirementResignationStatusControllerSqlImpl();
+            return (TransfersRetirementResignationStatusController)transfersRetirementResignationStatusController;
+        }
     }
 }

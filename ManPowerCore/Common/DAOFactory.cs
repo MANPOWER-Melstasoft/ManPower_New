@@ -455,5 +455,11 @@ namespace ManPowerCore.Common
             RequestTypeDAO requestTypeDAO = new RequestTypeDAOSqlImpl();
             return (RequestTypeDAO)requestTypeDAO;
         }
+
+        public static TransfersRetirementResignationStatusDAO CreateTransfersRetirementResignationStatusDAO()
+        {
+            TransfersRetirementResignationStatusDAO transfersRetirementResignationStatus = new TransfersRetirementResignationStatusDAOSqlImpl();
+            return (TransfersRetirementResignationStatusDAO)transfersRetirementResignationStatus;
+        }
     }
 }

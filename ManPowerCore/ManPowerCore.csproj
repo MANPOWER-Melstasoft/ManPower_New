@@ -118,6 +118,7 @@
     <Compile Include="Controller\TrainingRefferalsController.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationStatusController.cs" />
+    <Compile Include="Controller\TransferTypeController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />
     <Compile Include="Controller\VehicleMaintenaceQuatationController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Domain\RequestType.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
+    <Compile Include="Domain\RetirementType.cs" />
     <Compile Include="Domain\ReverseReason.cs" />
     <Compile Include="Domain\ServiceType.cs" />
     <Compile Include="Domain\StaffLeave.cs" />
@@ -262,6 +264,7 @@
     <Compile Include="Infrastructure\RequestTypeDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
+    <Compile Include="Infrastructure\RetirementTypeDAO.cs" />
     <Compile Include="Infrastructure\ReverseReasonDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />

@@ -105,6 +105,7 @@
     <Compile Include="Controller\RequestTypeController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
+    <Compile Include="Controller\ReverseReasonController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\StaffLeaveAllocationController.cs" />
     <Compile Include="Controller\StaffLeaveController.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Domain\RequestType.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
+    <Compile Include="Domain\ReverseReason.cs" />
     <Compile Include="Domain\ServiceType.cs" />
     <Compile Include="Domain\StaffLeave.cs" />
     <Compile Include="Domain\StaffLeaveAllocation.cs" />
@@ -259,6 +261,7 @@
     <Compile Include="Infrastructure\RequestTypeDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
+    <Compile Include="Infrastructure\ReverseReasonDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveDAO.cs" />

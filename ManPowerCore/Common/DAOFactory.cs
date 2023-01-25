@@ -467,5 +467,11 @@ namespace ManPowerCore.Common
             ApproveActionDAO approveActionDAO = new ApproveActionDAOSqlImpl();
             return (ApproveActionDAO)approveActionDAO;
         }
+
+        public static ReverseReasonDAO CreateReverseReasonDAO()
+        {
+            ReverseReasonDAO reverseReasonDAO = new ReverseReasonDAOSqlImpl();
+            return (ReverseReasonDAO)reverseReasonDAO;
+        }
     }
 }

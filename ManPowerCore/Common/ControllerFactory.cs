@@ -479,5 +479,11 @@ namespace ManPowerCore.Common
             ApproveActionController approveActionController = new ApproveActionControllerSqlImpl();
             return (ApproveActionController)approveActionController;
         }
+
+        public static ReverseReasonController CreateReverseReasonController()
+        {
+            ReverseReasonController reverseReasonController = new ReverseReasonControllerSqlImpl();
+            return (ReverseReasonController)reverseReasonController;
+        }
     }
 }

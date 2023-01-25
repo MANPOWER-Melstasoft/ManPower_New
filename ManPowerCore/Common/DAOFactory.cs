@@ -473,5 +473,11 @@ namespace ManPowerCore.Common
             ReverseReasonDAO reverseReasonDAO = new ReverseReasonDAOSqlImpl();
             return (ReverseReasonDAO)reverseReasonDAO;
         }
+
+        public static TransferTypeDAO CreateTransferTypeDAO()
+        {
+            TransferTypeDAO transferTypeDAO = new TransferTypeDAOSqlImpl();
+            return (TransferTypeDAO)transferTypeDAO;
+        }
     }
 }

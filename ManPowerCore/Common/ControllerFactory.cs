@@ -485,5 +485,11 @@ namespace ManPowerCore.Common
             ReverseReasonController reverseReasonController = new ReverseReasonControllerSqlImpl();
             return (ReverseReasonController)reverseReasonController;
         }
+
+        public static TransferTypeController CreateTransferTypeController()
+        {
+            TransferTypeController transferTypeController = new TransferTypeControllerSqlImpl();
+            return (TransferTypeController)transferTypeController;
+        }
     }
 }

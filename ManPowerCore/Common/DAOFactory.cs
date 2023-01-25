@@ -435,7 +435,7 @@ namespace ManPowerCore.Common
         public static JobCategoryDAO CreateJobCategoryDAO()
         {
             JobCategoryDAO jobCategoryDAO = new JobCategoryDAOImpl();
-            return (JobCategoryDAO) jobCategoryDAO;
+            return (JobCategoryDAO)jobCategoryDAO;
         }
 
         public static JobRefferalsDAO CreateJobRefferalsDAO()
@@ -448,6 +448,12 @@ namespace ManPowerCore.Common
         {
             JobPlacementFeedbackDAO jobPlacementFeedbackDAO = new JobPlacementFeedbackDAOImpl();
             return (JobPlacementFeedbackDAO)jobPlacementFeedbackDAO;
+        }
+
+        public static RequestTypeDAO CreateRequestTypeDAO()
+        {
+            RequestTypeDAO requestTypeDAO = new RequestTypeDAOSqlImpl();
+            return (RequestTypeDAO)requestTypeDAO;
         }
     }
 }

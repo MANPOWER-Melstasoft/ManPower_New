@@ -101,6 +101,7 @@
     <Compile Include="Controller\QuatationController.cs" />
     <Compile Include="Controller\ReligionController.cs" />
     <Compile Include="Controller\ReportController.cs" />
+    <Compile Include="Controller\RequestTypeController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Domain\Quatation.cs" />
     <Compile Include="Domain\Religion.cs" />
     <Compile Include="Domain\Report.cs" />
+    <Compile Include="Domain\RequestType.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
     <Compile Include="Domain\ServiceType.cs" />
@@ -249,6 +251,7 @@
     <Compile Include="Infrastructure\QuatationDAO.cs" />
     <Compile Include="Infrastructure\ReligionDAO.cs" />
     <Compile Include="Infrastructure\ReportDAO.cs" />
+    <Compile Include="Infrastructure\RequestTypeDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />

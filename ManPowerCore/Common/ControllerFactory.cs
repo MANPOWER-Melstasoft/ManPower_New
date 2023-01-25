@@ -461,5 +461,11 @@ namespace ManPowerCore.Common
             TrainingRefferalFeedbackController trainingRefferalFeedbackController = new TrainingRefferalFeedbackControllerSqlImpl();
             return (TrainingRefferalFeedbackController)trainingRefferalFeedbackController;
         }
+
+        public static RequestTypeController CreateRequestTypeController()
+        {
+            RequestTypeController requestTypeController = new RequestTypeControllerSqlImpl();
+            return (RequestTypeController)requestTypeController;
+        }
     }
 }

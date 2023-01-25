@@ -31,6 +31,7 @@ namespace ManPowerWeb
                 GridView2DataBind();
                 bindDistrictDivision();
                 BindVacanciePosition();
+                bindProgramPlan();
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary();
@@ -76,6 +77,49 @@ namespace ManPowerWeb
         }
 
 
+        private void bindProgramPlan()
+        {
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+            List<ProgramPlan> programPlansList = new List<ProgramPlan>();
+
+            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+            List<ProgramAssignee> programAssigneesList = programAssigneeController.GetAllProgramAssignee(true, true, false);
+
+            foreach (var items in programAssigneesList)
+            {
+                if (items._DepartmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
+                {
+                    List<ProgramPlan> programPlan = programPlanController.GetProgramPlanByProgramTargetId(items.ProgramTargetId);
+                    programPlansList.AddRange(programPlan);
+                }
+            }
+
+            //-----------------bind tab 1 program plan dropdown-----------------------
+
+            ddlProgramPlanCarrerKey.DataSource = programPlansList;
+            ddlProgramPlanCarrerKey.DataValueField = "ProgramPlanId";
+            ddlProgramPlanCarrerKey.DataTextField = "ProgramName";
+            ddlProgramPlanCarrerKey.DataBind();
+            ddlProgramPlanCarrerKey.Items.Insert(0, new ListItem("-- select Program Plan --", ""));
+
+            //-------------bind tab 3 program plan dropdown-----------------------
+
+            ddlJobProgramPlan.DataSource = programPlansList;
+            ddlJobProgramPlan.DataValueField = "ProgramPlanId";
+            ddlJobProgramPlan.DataTextField = "ProgramName";
+            ddlJobProgramPlan.DataBind();
+            ddlJobProgramPlan.Items.Insert(0, new ListItem("-- select Program Plan --", ""));
+
+            //---------bind tab 2 program plan dropdown-----------------
+
+            ddlTrainningProgramplan.DataSource = programPlansList;
+            ddlTrainningProgramplan.DataValueField = "ProgramPlanId";
+            ddlTrainningProgramplan.DataTextField = "ProgramName";
+            ddlTrainningProgramplan.DataBind();
+            ddlTrainningProgramplan.Items.Insert(0, new ListItem("-- select Program Plan --", ""));
+
+
+        }
 
         //-----------------------------------------------------Start Job Refferal ---------------------------------------------------------------------------------------
 
@@ -262,7 +306,7 @@ namespace ManPowerWeb
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
                 List<JobPlacementFeedback> jobPlacementFeedbacksList = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
-                gvPlanDetails.DataSource = jobPlacementFeedbacksList.Where(x => x.CreatedUser == Session["Name"].ToString() && x.JobRefferalsId == minID);
+                gvPlanDetails.DataSource = jobPlacementFeedbacksList;
                 gvPlanDetails.DataBind();
             }
         }
@@ -331,6 +375,23 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error')", true);
 
+
+            }
+        }
+
+        protected void ddlJobProgramPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlJobProgramPlan.SelectedValue != "")
+            {
+                lblJobProgramPlanDetails.Visible = true;
+
+                ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+                ProgramPlan programPlanDetails = programPlanController.GetProgramPlanById(Convert.ToInt32(ddlJobProgramPlan.SelectedValue));
+                lblJobProgramPlanDetails.Text = "Date :" + programPlanDetails.Date.ToShortDateString() + " Location : " + programPlanDetails.Location;
+            }
+            else
+            {
+                lblJobProgramPlanDetails.Visible = false;
 
             }
         }
@@ -465,6 +526,25 @@ namespace ManPowerWeb
             txtRemarksFeedCareer.Text = null;
             txtParentId.Text = null;
             txtTraining.Text = null;
+        }
+
+
+        protected void ddlProgramPlanCarrerKey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlProgramPlanCarrerKey.SelectedValue != "")
+            {
+                lblProgramPlanDetails.Visible = true;
+
+                ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+                ProgramPlan programPlanDetails = programPlanController.GetProgramPlanById(Convert.ToInt32(ddlProgramPlanCarrerKey.SelectedValue));
+                lblProgramPlanDetails.Text = "Date :" + programPlanDetails.Date.ToShortDateString() + " Location : " + programPlanDetails.Location;
+            }
+            else
+            {
+                lblProgramPlanDetails.Visible = false;
+
+            }
+
         }
 
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
@@ -624,6 +704,22 @@ namespace ManPowerWeb
 
 
 
+        protected void ddlTrainningProgramplan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlTrainningProgramplan.SelectedValue != "")
+            {
+                lblTrainningProgramDetails.Visible = true;
+
+                ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+                ProgramPlan programPlanDetails = programPlanController.GetProgramPlanById(Convert.ToInt32(ddlTrainningProgramplan.SelectedValue));
+                lblTrainningProgramDetails.Text = "Date :" + programPlanDetails.Date.ToShortDateString() + " Location : " + programPlanDetails.Location;
+            }
+            else
+            {
+                lblTrainningProgramDetails.Visible = false;
+
+            }
+        }
 
 
 

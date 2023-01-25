@@ -491,5 +491,11 @@ namespace ManPowerCore.Common
             TransferTypeController transferTypeController = new TransferTypeControllerSqlImpl();
             return (TransferTypeController)transferTypeController;
         }
+
+        public static RetirementTypeController CreateRetirementTypeController()
+        {
+            RetirementTypeController retirementTypeController = new RetirementTypeControllerSqlImpl();
+            return (RetirementTypeController)retirementTypeController;
+        }
     }
 }

@@ -479,5 +479,11 @@ namespace ManPowerCore.Common
             TransferTypeDAO transferTypeDAO = new TransferTypeDAOSqlImpl();
             return (TransferTypeDAO)transferTypeDAO;
         }
+
+        public static RetirementTypeDAO CreateRetirementTypeDAO()
+        {
+            RetirementTypeDAO retirementTypeDAO = new RetirementTypeDAOSqlImpl();
+            return (RetirementTypeDAO)retirementTypeDAO;
+        }
     }
 }

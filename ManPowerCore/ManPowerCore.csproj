@@ -49,6 +49,7 @@
     <Compile Include="Common\DBConnection.cs" />
     <Compile Include="Common\DBFieldAttribute.cs" />
     <Compile Include="Common\Utility.cs" />
+    <Compile Include="Controller\ApproveActionController.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
     <Compile Include="Controller\AutSystemRoleFunctionController.cs" />
     <Compile Include="Controller\AutUserFunctionController.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Controller\VoteAllocationController.cs" />
     <Compile Include="Controller\VoteLedgerController.cs" />
     <Compile Include="Controller\VoteTypeController.cs" />
+    <Compile Include="Domain\ApproveAction.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
     <Compile Include="Domain\AutSystemRoleFunction.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="Domain\VoteAllocation.cs" />
     <Compile Include="Domain\VoteLedger.cs" />
     <Compile Include="Domain\VoteType.cs" />
+    <Compile Include="Infrastructure\ApproveActionDAO.cs" />
     <Compile Include="Infrastructure\AutFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutSystemRoleFunctionDAO.cs" />
     <Compile Include="Infrastructure\AutUserFunctionDAO.cs" />

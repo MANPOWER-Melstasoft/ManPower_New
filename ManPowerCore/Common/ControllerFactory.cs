@@ -473,5 +473,11 @@ namespace ManPowerCore.Common
             TransfersRetirementResignationStatusController transfersRetirementResignationStatusController = new TransfersRetirementResignationStatusControllerSqlImpl();
             return (TransfersRetirementResignationStatusController)transfersRetirementResignationStatusController;
         }
+
+        public static ApproveActionController CreateApproveActionController()
+        {
+            ApproveActionController approveActionController = new ApproveActionControllerSqlImpl();
+            return (ApproveActionController)approveActionController;
+        }
     }
 }

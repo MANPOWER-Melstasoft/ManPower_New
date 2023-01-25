@@ -435,7 +435,7 @@ namespace ManPowerCore.Common
         public static JobCategoryDAO CreateJobCategoryDAO()
         {
             JobCategoryDAO jobCategoryDAO = new JobCategoryDAOImpl();
-            return (JobCategoryDAO) jobCategoryDAO;
+            return (JobCategoryDAO)jobCategoryDAO;
         }
 
         public static JobRefferalsDAO CreateJobRefferalsDAO()
@@ -448,6 +448,36 @@ namespace ManPowerCore.Common
         {
             JobPlacementFeedbackDAO jobPlacementFeedbackDAO = new JobPlacementFeedbackDAOImpl();
             return (JobPlacementFeedbackDAO)jobPlacementFeedbackDAO;
+        }
+
+        public static RequestTypeDAO CreateRequestTypeDAO()
+        {
+            RequestTypeDAO requestTypeDAO = new RequestTypeDAOSqlImpl();
+            return (RequestTypeDAO)requestTypeDAO;
+        }
+
+        public static TransfersRetirementResignationStatusDAO CreateTransfersRetirementResignationStatusDAO()
+        {
+            TransfersRetirementResignationStatusDAO transfersRetirementResignationStatus = new TransfersRetirementResignationStatusDAOSqlImpl();
+            return (TransfersRetirementResignationStatusDAO)transfersRetirementResignationStatus;
+        }
+
+        public static ApproveActionDAO CreateApproveActionDAO()
+        {
+            ApproveActionDAO approveActionDAO = new ApproveActionDAOSqlImpl();
+            return (ApproveActionDAO)approveActionDAO;
+        }
+
+        public static ReverseReasonDAO CreateReverseReasonDAO()
+        {
+            ReverseReasonDAO reverseReasonDAO = new ReverseReasonDAOSqlImpl();
+            return (ReverseReasonDAO)reverseReasonDAO;
+        }
+
+        public static TransferTypeDAO CreateTransferTypeDAO()
+        {
+            TransferTypeDAO transferTypeDAO = new TransferTypeDAOSqlImpl();
+            return (TransferTypeDAO)transferTypeDAO;
         }
     }
 }

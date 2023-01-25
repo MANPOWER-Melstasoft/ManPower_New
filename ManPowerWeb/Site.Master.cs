@@ -18,11 +18,18 @@ namespace ManPowerWeb
         {
             if (Session["UserId"] != null)
             {
-                if (!IsPostBack)
+                if (Session["Division"] != null)
                 {
-                    lblName.Text = Session["Name"].ToString();
-                    divisionId = Convert.ToInt32(Session["Division"].ToString());
-                    BindSideBar();
+                    if (!IsPostBack)
+                    {
+                        lblName.Text = Session["Name"].ToString();
+                        divisionId = Convert.ToInt32(Session["Division"].ToString());
+                        BindSideBar();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("MainDashboard.aspx");
                 }
             }
             else

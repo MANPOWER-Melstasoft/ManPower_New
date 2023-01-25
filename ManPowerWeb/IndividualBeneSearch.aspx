@@ -23,7 +23,7 @@
                             <label>School / Non-School : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlScl" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlScl" runat="server" AutoPostBack="true" CssClass="form-control form-control-user"></asp:DropDownList>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                             <label>Gender : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlGen" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlGen" runat="server" AutoPostBack="true" CssClass="form-control form-control-user"></asp:DropDownList>
                         </div>
                     </div>
                 </div>

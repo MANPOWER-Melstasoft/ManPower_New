@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="true" CodeBehind="PersonalFiles.aspx.cs" Inherits="ManPowerWeb.PersonalFiles" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PersonalFilesView.aspx.cs" Inherits="ManPowerWeb.PersonalFilesView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="container">
-        <h2>Personal Files Management</h2>
+        <h2>Personal Files Management -
+            <asp:Label ID="idNo" runat="server"></asp:Label>
+        </h2>
 
 
         <div id="id1" runat="server">
@@ -19,9 +20,6 @@
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="lname" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="lname" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator12" ControlToValidate="lname" runat="server" ForeColor="Red" ValidationExpression="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
-									Invalid Name</asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -33,7 +31,6 @@
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="initial" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="initial" ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
@@ -48,9 +45,6 @@
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="nameOfInitials" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="nameOfInitials" ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator13" ControlToValidate="nameOfInitials" runat="server" ForeColor="Red" ValidationExpression="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
-									Invalid Name</asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -61,21 +55,21 @@
                             <label>Gender : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlGender" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:TextBox ID="gen" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <%--<div class="row">
+            <div class="row mt-4">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
                             <label>Ethnicity : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlEthnicity" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:TextBox ID="ethnicity" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -86,11 +80,11 @@
                             <label>Religion : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlReligion" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:TextBox ID="religion" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
-            </div>--%>
+            </div>
 
 
             <div class="row mt-4">
@@ -100,8 +94,7 @@
                             <label>Date of Birth : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="dob" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="dob" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="dob" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -112,7 +105,7 @@
                             <label>Marital Status : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:TextBox ID="maritalStatus" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -127,9 +120,6 @@
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="nic" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="nic" ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator8" ControlToValidate="nic" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
-							Invalid NIC</asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -140,8 +130,7 @@
                             <label>NIC Issued Date : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="nicIssuedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="nicIssuedDate" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="nicIssuedDate" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -155,9 +144,7 @@
                             <label>Passport Number : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="empPassport" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator9" ControlToValidate="empPassport" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^(?!^0+$)[a-zA-Z0-9]{3,20}$">
-							Invalid Passport</asp:RegularExpressionValidator>
+                            <asp:TextBox ID="empPassport" runat="server" CssClass="form-control form-control-user" />
                         </div>
                     </div>
                 </div>
@@ -168,8 +155,7 @@
                             <label>District : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
-                            <asp:RequiredFieldValidator ControlToValidate="ddlDistrict" ID="RequiredFieldValidator54" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="district" runat="server" CssClass="form-control form-control-user" />
                         </div>
                     </div>
                 </div>
@@ -183,8 +169,7 @@
                             <label>DS Division : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlDS" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                            <asp:RequiredFieldValidator ControlToValidate="ddlDS" ID="RequiredFieldValidator27" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="dsDivision" runat="server" CssClass="form-control form-control-user" />
                         </div>
                     </div>
                 </div>
@@ -195,75 +180,16 @@
                             <label>Absorb : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlAbsorb" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                            <asp:RequiredFieldValidator ControlToValidate="ddlAbsorb" ID="RequiredFieldValidator29" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="absorb" runat="server" CssClass="form-control form-control-user" />
                         </div>
                     </div>
                 </div>
             </div>
 
-
-            <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>VNOP Number : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="vnop" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="vnop" ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Appointment letter Number : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="appointmenLetterNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="appointmenLetterNo" ID="RequiredFieldValidator13" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>File Number : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-
-                <%if (dob.Text != "")
-                    {
-                        DateTime calcPensionDate = Convert.ToDateTime(dob.Text).AddYears(60);
-                        pensionDate.Text = calcPensionDate.ToString(); %>
-
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Pension Date : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="pensionDate" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                        </div>
-                    </div>
-                </div>
-
-                <%} %>
-            </div>
 
             <div class="row justify-content-end mt-5">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="page1" Text="Next >>" CssClass="btn btn-success btn-user btn-block" OnClick="page1NextClick" ValidationGroup="1" />
+                <div class="col-3">
+                    <asp:Button runat="server" ID="page1" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page1NextClick" ValidationGroup="1" />
                 </div>
             </div>
 
@@ -271,10 +197,6 @@
 
         <%---------------------------------------------------------------------%>
 
-        <%--<% } %>
-
-
-		<%else if (Count == 1) { %>--%>
 
         <div id="id2" runat="server">
 
@@ -283,15 +205,16 @@
                 <h4><b>Employement History Details</b></h4>
             </div>
 
-
-            <div class="row mt-5">
+            <%-- <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
                             <label>Contract Type : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddContract" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddContract" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </asp:DropDownList>
                         </div>
                     </div>
                 </div>
@@ -302,14 +225,17 @@
                             <label>Designation : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlDesignation" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDesignation" runat="server" AutoPostBack="true" Class="btn  btn-primary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </asp:DropDownList>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="row mt-5">
+
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -326,6 +252,25 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
+                            <label>Epf : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="epf" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="epf" ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ValidationGroup="3" ID="RegularExpressionValidator11" ControlToValidate="epf" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\d+$">
+							Invalid EPF</asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
                             <label>Start Date : </label>
                         </div>
                         <div class="col-6">
@@ -334,10 +279,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="row mt-4">
 
                 <% if (ddContract.SelectedValue == "1" || ddContract.SelectedValue == "2")
                     { %>
@@ -348,7 +289,7 @@
                             <label>End Date : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="calcDate" runat="server" ReadOnly="true" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="calcDate" runat="server" ReadOnly CssClass="form-control form-control-user"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -367,7 +308,11 @@
                     </div>
                 </div>
                 <%} %>
+            </div>
 
+
+
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -382,11 +327,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-
-
-            <div class="row mt-4">
                 <%if (reseg.SelectedValue == "1")
                     {  %>
                 <div class="col-6">
@@ -404,11 +345,13 @@
             </div>
 
 
-            <div class="row mt-4">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="Button3" Text="Add" CssClass="btn btn-primary btn-user btn-block" OnClick="addEmployment" ValidationGroup="2" />
-                </div>
+            <div class="row">
             </div>
+
+
+            <asp:Button runat="server" ID="Button3" Text="Add" CssClass="btn btn-primary btn-user btn-block" Width="130px" OnClick="addEmployment" ValidationGroup="2" />
+
+
 
 
             <div cssclass="table-responsive" style="width: 100%;">
@@ -419,6 +362,7 @@
                         <asp:BoundField HeaderText="Start Date" DataField="StartDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
                         <asp:BoundField HeaderText="End Date" DataField="EndDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
                         <asp:BoundField HeaderText="Retirement Date" DataField="RetirementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                        <asp:BoundField HeaderText="Epf" DataField="epf" HeaderStyle-CssClass="table-dark" />
                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
                             <ItemTemplate>
                                 <asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveEmployDetails">Remove</asp:LinkButton>
@@ -426,25 +370,22 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-            </div>
+            </div>--%>
 
 
 
 
-            <div class="row justify-content-between mt-5">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="page21" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page2PrevClick" />
+            <div class="row justify-content-around">
+                <div class="col-9">
+                    <asp:Button runat="server" ID="page21" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page2PrevClick" />
                 </div>
-                <div class="col-2" style="text-align: end">
-                    <asp:Button runat="server" ID="page22" Text="Next >>" CssClass="btn btn-success btn-user btn-block" OnClick="page2NextClick" />
+                <div class="col-3" style="text-align: end">
+                    <asp:Button runat="server" ID="page22" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page2NextClick" />
                 </div>
             </div>
 
 
         </div>
-        <%--<% } %>
-
-		<%else if (Count == 2) { %>--%>
 
         <%-----------------------------------------------------------%>
 
@@ -455,7 +396,8 @@
             </div>
 
 
-            <div class="row mt-5">
+
+            <%-- <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -481,7 +423,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -508,7 +450,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -535,7 +477,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -560,11 +502,10 @@
             </div>
 
 
-
             <%if (ddlDependant.SelectedValue == "1")
                 { %>
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -591,7 +532,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -620,7 +561,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -636,34 +577,15 @@
 
             <%} %>
 
-            <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Upload Birth Certificate / NIC / Photograph / Marriage Certificate : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="true" />
-                            <asp:Label ID="lblListOfUploadedFiles" runat="server" />
-                            <asp:RequiredFieldValidator ControlToValidate="Uploader" ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="3" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mt-4 pl-2">
-                <div class="alert alert-danger" role="alert">
-                    Please add all of above documants (Marriage Certificate - optional) and upload in a Zip file. Rename it with Empoyee's NIC number. Ex: xxxxxxxxv.rar
-                </div>
-            </div>
 
-            <div class="row mt-5">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="add" Text="Add" CssClass="btn btn-primary btn-user btn-block" OnClick="addDependant" ValidationGroup="3" />
-                </div>
-            </div>
 
-            <div cssclass="table-responsive " style="width: 100%;">
+            <asp:Button runat="server" ID="add" Text="Add" CssClass="btn btn-primary btn-user btn-block" Width="130px" OnClick="addDependant" ValidationGroup="3" />
+
+
+
+
+            <div cssclass="table-responsive" style="width: 100%;">
                 <asp:GridView Style="margin-top: 30px;" ID="dependantGV" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                     CellPadding="4" GridLines="None">
                     <Columns>
@@ -681,16 +603,14 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-            </div>
+            </div>--%>
 
-            <%--<% } %>--%>
-
-            <div class="row justify-content-between mt-5">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="page31" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page3PrevClick" />
+            <div class="row justify-content-around">
+                <div class="col-9">
+                    <asp:Button runat="server" ID="page31" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page3PrevClick" />
                 </div>
-                <div class="col-2" style="text-align: end">
-                    <asp:Button runat="server" ID="page32" Text="Next >>" CssClass="btn btn-success btn-user btn-block" OnClick="page3NextClick" />
+                <div class="col-3" style="text-align: end">
+                    <asp:Button runat="server" ID="page32" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page3NextClick" />
                 </div>
             </div>
 
@@ -704,7 +624,7 @@
                 <h4><b>Employee Contact Details</b></h4>
             </div>
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -734,7 +654,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -764,7 +684,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -795,12 +715,12 @@
                 </div>
             </div>
 
-            <div class="row justify-content-between">
+            <div class="row justify-content-around">
                 <div class="col-9">
-                    <asp:Button runat="server" ID="Button1" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  OnClick="page4PrevClick" />
+                    <asp:Button runat="server" ID="Button1" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page4PrevClick" />
                 </div>
                 <div class="col-3" style="text-align: end">
-                    <asp:Button runat="server" ID="Button6" Text="Next >>" CssClass="btn btn-success btn-user btn-block"  OnClick="page4NextClick" ValidationGroup="4" />
+                    <asp:Button runat="server" ID="Button6" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page4NextClick" ValidationGroup="4" />
                 </div>
             </div>
 
@@ -815,7 +735,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -845,7 +765,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -875,7 +795,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -905,7 +825,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -921,12 +841,12 @@
                 </div>
             </div>
 
-            <div class="row justify-content-between">
+            <div class="row justify-content-around">
                 <div class="col-9">
-                    <asp:Button runat="server" ID="page41" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  OnClick="page5PrevClick" />
+                    <asp:Button runat="server" ID="page41" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page5PrevClick" />
                 </div>
                 <div class="col-3" style="text-align: end">
-                    <asp:Button runat="server" ID="page42" Text="Next >>" CssClass="btn btn-success btn-user btn-block"  OnClick="page5NextClick" ValidationGroup="5" />
+                    <asp:Button runat="server" ID="page42" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page5NextClick" ValidationGroup="5" />
                 </div>
             </div>
 
@@ -941,7 +861,7 @@
                 <h4><b>Education Details</b></h4>
             </div>
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -969,7 +889,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1000,7 +920,7 @@
             <%if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
                 {  %>
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1026,7 +946,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1055,7 +975,7 @@
 
             <%} %>
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1070,7 +990,7 @@
             </div>
 
 
-            <asp:Button runat="server" ID="Button4" Text="Add" CssClass="btn btn-primary btn-user btn-block"  OnClick="addEducation" ValidationGroup="6" />
+            <asp:Button runat="server" ID="Button4" Text="Add" CssClass="btn btn-primary btn-user btn-block" Width="130px" OnClick="addEducation" ValidationGroup="6" />
 
 
 
@@ -1096,12 +1016,12 @@
             </div>
 
 
-            <div class="row justify-content-between">
+            <div class="row justify-content-around">
                 <div class="col-9">
-                    <asp:Button runat="server" ID="aa" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  OnClick="page6PrevClick" />
+                    <asp:Button runat="server" ID="aa" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page6PrevClick" />
                 </div>
                 <div class="col-3" style="text-align: end">
-                    <asp:Button runat="server" ID="Button2" Text="Next >>" CssClass="btn btn-success btn-user btn-block"  OnClick="page6NextClick" />
+                    <asp:Button runat="server" ID="Button2" Text="Next >>" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page6NextClick" />
                 </div>
             </div>
 
@@ -1116,7 +1036,7 @@
                 <h4><b>Employee Services Details</b></h4>
             </div>
 
-            <div class="row mt-4">
+            <%--<div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1142,7 +1062,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1160,7 +1080,7 @@
             <%if (int.Parse(ddlService.SelectedValue) == 2)
                 { %>
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1189,7 +1109,7 @@
 
             <%} %>
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -1207,11 +1127,7 @@
             </div>
 
 
-            <div class="row mt-4">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="Button5" Text="Add" CssClass="btn btn-primary btn-user btn-block" OnClick="addServices" ValidationGroup="7" />
-                </div>
-            </div>
+            <asp:Button runat="server" ID="Button5" Text="Add" CssClass="btn btn-primary btn-user btn-block" Width="130px" OnClick="addServices" ValidationGroup="7" />
 
 
             <div cssclass="table-responsive" style="width: 100%;">
@@ -1230,24 +1146,19 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-            </div>
+            </div>--%>
 
 
-            <%--<% } %>--%>
-
-            <div class="row justify-content-between mt-5">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="nn" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page4PrevClick" />
+            <div class="row justify-content-around">
+                <div class="col-9">
+                    <asp:Button runat="server" ID="nn" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" Width="130px" OnClick="page4PrevClick" />
                 </div>
-                <div class="col-2" style="text-align: end">
-                    <asp:Button runat="server" ID="mm" Text="Submit" CssClass="btn btn-danger btn-user btn-block" OnClick="submit" />
+                <div class="col-3" style="text-align: end">
+                    <asp:Button runat="server" ID="mm" Text="Submit" CssClass="btn btn-danger btn-user btn-block" Width="130px" />
                 </div>
             </div>
 
         </div>
 
     </div>
-    <%--</ContentTemplate>
-		</asp:UpdatePanel>--%>
 </asp:Content>
-

@@ -21,7 +21,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM CONTRACT_TYPE ";
+            dbConnection.cmd.CommandText = "SELECT * FROM CONTRACT_TYPE WHERE IS_ACTIVE = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

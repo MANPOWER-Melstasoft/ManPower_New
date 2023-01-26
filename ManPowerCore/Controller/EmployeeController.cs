@@ -17,6 +17,8 @@ namespace ManPowerCore.Controller
         List<Employee> GetAllEmployees(bool withEmployeeDetails);
 
         Employee GetEmployeeById(int id);
+
+        int UpdateEmployee(Employee emp);
     }
 
     public class EmployeeControllerImpl : EmployeeController
@@ -186,8 +188,28 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public int UpdateEmployee(Employee emp)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                int results = employeeDAO.UpdateEmployee(emp, dBConnection);
+
+                return results;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                return 0;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+
+        }
 
     }
-
 }
 

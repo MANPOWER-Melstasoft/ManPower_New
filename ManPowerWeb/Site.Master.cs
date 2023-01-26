@@ -13,14 +13,23 @@ namespace ManPowerWeb
 {
     public partial class SiteMaster : MasterPage
     {
+        public static int divisionId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserId"] != null)
             {
-                if (!IsPostBack)
+                if (Session["Division"] != null)
                 {
-                    lblName.Text = Session["Name"].ToString();
-                    BindSideBar();
+                    if (!IsPostBack)
+                    {
+                        lblName.Text = Session["Name"].ToString();
+                        divisionId = Convert.ToInt32(Session["Division"].ToString());
+                        BindSideBar();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("MainDashboard.aspx");
                 }
             }
             else
@@ -41,6 +50,7 @@ namespace ManPowerWeb
             AutUserFunctionController autUserFunctionController = ControllerFactory.CreateAutUserFunctionController();
 
             List<AutUserFunction> autUserFunctionList = autUserFunctionController.GetAllAutUserFunctionByUserId(true, userId);
+            autUserFunctionList = autUserFunctionList.Where(x => x.autFunction.division == divisionId || x.autFunction.division == -1).ToList();
 
             StringBuilder cstextCard = new StringBuilder();
 

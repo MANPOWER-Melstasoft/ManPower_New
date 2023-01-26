@@ -17,6 +17,8 @@ namespace ManPowerWeb
         List<InduvidualBeneficiary> beneficiaries = new List<InduvidualBeneficiary>();
         public static string BenficiaryId;
         CareerKeyTestResults careerKeyTestResults = new CareerKeyTestResults();
+        List<DepartmentUnit> listDistrict = new List<DepartmentUnit>();
+        List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +28,8 @@ namespace ManPowerWeb
                 BindJobcategory();
                 BindJobGridView();
                 bindCarrierGrid();
+                GridView2DataBind();
+                bindDistrictDivision();
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary();
@@ -74,6 +78,48 @@ namespace ManPowerWeb
 
         //-----------------------------------------------------Start Job Refferal ---------------------------------------------------------------------------------------
 
+
+        private void bindDistrictDivision()
+        {
+            DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
+            listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
+
+
+            listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
+            ddlDistrict.DataSource = listDistrict;
+            ddlDistrict.DataTextField = "Name";
+            ddlDistrict.DataValueField = "DepartmentUnitId";
+
+            ddlDistrict.DataBind();
+            ddlDistrict.Items.Insert(0, new ListItem("Select District", ""));
+        }
+
+        protected void ddlDsDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            BindVacancies();
+        }
+
+        protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDistrict.SelectedValue != "")
+            {
+                DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
+                listDSDivision = _DepartmentUnitTypeController.GetDepartmentUnitType(3, true)._DepartmentUnit;
+                ddlDsDivision.DataSource = listDSDivision.Where(u => u.ParentId.ToString() == ddlDistrict.SelectedValue);
+                ddlDsDivision.DataTextField = "Name";
+                ddlDsDivision.DataValueField = "DepartmentUnitId";
+                ddlDsDivision.DataBind();
+                ddlDsDivision.Items.Insert(0, new ListItem("Select Division", ""));
+            }
+            else
+            {
+                ddlDsDivision.Items.Clear();
+            }
+
+
+            BindVacancies();
+        }
         protected void submitJobRefferal(object sender, EventArgs e)
         {
             JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
@@ -96,11 +142,12 @@ namespace ManPowerWeb
             if (output != 0)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                JobRefferal();
+                JobRefferalClear();
+                BindJobGridView();
             }
         }
 
-        private void JobRefferal()
+        private void JobRefferalClear()
         {
             ddlCompanyVacancies.SelectedIndex = 0;
             ddlJobCategory.SelectedIndex = 0;
@@ -115,9 +162,23 @@ namespace ManPowerWeb
             CompanyVecansyRegistationDetailsController companyVecansyRegistationDetailsController = ControllerFactory.CreateCompanyVecansyRegistationDetailsController();
             List<CompanyVecansyRegistationDetails> companyVecansyRegistationDetailsList = companyVecansyRegistationDetailsController.GetAllCompanyVecansyRegistationDetails();
 
-            ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList;
+            if (ddlDsDivision.SelectedValue != "")
+            {
+                ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue)).ToList();
+            }
+            else if (ddlDistrict.SelectedValue != "")
+            {
+                ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue)).ToList();
+
+            }
+            else
+            {
+                ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList;
+            }
+
+
             ddlCompanyVacancies.DataValueField = "CompanyVacansyRegistationDetailsId";
-            ddlCompanyVacancies.DataTextField = "JobDispalyName";
+            ddlCompanyVacancies.DataTextField = "CompanyName";
             ddlCompanyVacancies.DataBind();
             ddlCompanyVacancies.Items.Insert(0, new ListItem("-- select vacancy --", ""));
         }
@@ -134,23 +195,97 @@ namespace ManPowerWeb
             ddlJobCategory.Items.Insert(0, new ListItem("-- select job category --", ""));
         }
 
-        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvJob.PageIndex = e.NewPageIndex;
-            BindJobGridView();
 
-        }
 
         protected void BindJobGridView()
         {
             JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
             List<JobRefferals> jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
 
-            gvJob.DataSource = jobRefferalsList;
-            gvJob.DataBind();
+            GridView3.DataSource = jobRefferalsList;
+            GridView3.DataBind();
         }
 
+        protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int minID = int.Parse(GridView3.DataKeys[e.Row.RowIndex].Value.ToString());
+                GridView gvPlanDetails = e.Row.FindControl("childgridView3") as GridView;
 
+                //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
+                List<JobPlacementFeedback> jobPlacementFeedbacksList = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
+                gvPlanDetails.DataSource = jobPlacementFeedbacksList.Where(x => x.CreatedUser == Session["Name"].ToString() && x.JobRefferalsId == minID);
+                gvPlanDetails.DataBind();
+            }
+        }
+
+        protected void childgridView3_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void childgridView3_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void childgridView3_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+        }
+
+        protected void btnAddFeedBackJob_Click(object sender, EventArgs e)
+        {
+
+
+            jobRefferals.Visible = false;
+            jobFeedback.Visible = true;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
+            List<JobRefferals> jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
+
+            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
+            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
+
+            ViewState["jobparentid"] = jobRefferalsList[rowIndex].JobRefferalsId;
+
+        }
+
+        protected void btnSubmitJobFeedback_Click(object sender, EventArgs e)
+        {
+            CareerGuidanceFeedbackController careerGuidanceFeedbackController = ControllerFactory.CreateCareerGuidanceFeedbackController();
+            CareerGuidanceFeedback careerGuidanceFeedback = new CareerGuidanceFeedback();
+
+            JobPlacementFeedbackController jobPlacementFeedbackController = ControllerFactory.CreateJobPlacementFeedbackController();
+
+            JobPlacementFeedback jobPlacementFeedback = new JobPlacementFeedback();
+
+            jobPlacementFeedback.Remarks = txtRemarksJob.Text;
+            jobPlacementFeedback.JobRefferalsId = Convert.ToInt32(ViewState["jobparentid"]);
+            jobPlacementFeedback.CreatedDate = DateTime.Now.Date;
+            jobPlacementFeedback.ResignedDate = DateTime.Now.Date;
+            jobPlacementFeedback.CreatedUser = Session["Name"].ToString();
+            jobPlacementFeedback.StillWorking = 1;
+            jobPlacementFeedback.IsActive = 1;
+
+            int output = jobPlacementFeedbackController.SaveJobPlacementFeedback(jobPlacementFeedback);
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                JobRefferalClear();
+                jobRefferals.Visible = true;
+                jobFeedback.Visible = false;
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error')", true);
+
+
+            }
+        }
         //----------------------------------------------------- End Job Refferal ---------------------------------------------------------------------------------------
 
 
@@ -198,7 +333,15 @@ namespace ManPowerWeb
             TxtHeldDate.Text = null;
         }
 
+        private void bindCarrierGrid()
+        {
+            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
+            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
 
+            gvAnnaualPlan.DataSource = careerKeyTestResultsList;
+            gvAnnaualPlan.DataBind();
+
+        }
         protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -268,6 +411,14 @@ namespace ManPowerWeb
 
         }
 
+        private void CareerRefferalFeedbackClear()
+        {
+            txtInJob.Text = null;
+            txtRemarksFeedCareer.Text = null;
+            txtParentId.Text = null;
+            txtTraining.Text = null;
+        }
+
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
 
 
@@ -293,8 +444,6 @@ namespace ManPowerWeb
             trainingRefferals.RefferalsDate = DateTime.Parse(trainingRefferalDate.Text);
             trainingRefferals.CreatedUser = Session["Name"].ToString();
 
-
-
             int output = trainingRefferalsController.Save(trainingRefferals);
 
             if (output != 0)
@@ -313,15 +462,7 @@ namespace ManPowerWeb
             trainingRefferalDate.Text = null;
         }
 
-        private void bindCarrierGrid()
-        {
-            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
-            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
 
-            gvAnnaualPlan.DataSource = careerKeyTestResultsList;
-            gvAnnaualPlan.DataBind();
-
-        }
 
 
         protected void btnAddCarrier_Click(object sender, EventArgs e)
@@ -371,13 +512,69 @@ namespace ManPowerWeb
 
         }
 
-        private void CareerRefferalFeedbackClear()
+
+
+        protected void btnTrainingFeed_Click(object sender, EventArgs e)
         {
-            txtInJob.Text = null;
-            txtRemarksFeedCareer.Text = null;
-            txtParentId.Text = null;
-            txtTraining.Text = null;
+            TrainingRefferalFeedbackController trainingRefferalFeedbackController = ControllerFactory.CreateTrainingRefferalFeedbackController();
+            TrainingRefferalFeedback trainingRefferalFeedback = new TrainingRefferalFeedback();
+
+            trainingRefferalFeedback.TrainingRefferalId = Convert.ToInt32(txtTrainingId.Text);
+            trainingRefferalFeedback.Date = DateTime.Today;
+            trainingRefferalFeedback.TrainingInstitute = txtTrainingInstitute.Text;
+            trainingRefferalFeedback.InTraining = txtInTraining.Text;
+            trainingRefferalFeedback.TrainingCompleted = txtTrainingcompleted.Text;
+            trainingRefferalFeedback.CreatedUser = Session["Name"].ToString();
+            trainingRefferalFeedback.Remarks = txtTrainingRemark.Text;
+            trainingRefferalFeedback.IsActive = 1;
+            int output = trainingRefferalFeedbackController.Save(trainingRefferalFeedback);
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                TrainingRefferalFeedbackClear();
+                GridView2DataBind();
+                trainingDiv.Visible = true;
+                trainingDivFeedback.Visible = false;
+            }
         }
+
+        private void TrainingRefferalFeedbackClear()
+        {
+            txtTrainingInstitute.Text = null;
+            txtInTraining.Text = null;
+            txtTrainingcompleted.Text = null;
+            txtTrainingRemark.Text = null;
+        }
+
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        public void GridView2DataBind()
+        {
+            TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
+            List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
+
+            GridView2.DataSource = trainingRefferalsList;
+            GridView2.DataBind();
+        }
+
+        protected void btnAddTrainingFeedback_Click(object sender, EventArgs e)
+        {
+            trainingDiv.Visible = false;
+            trainingDivFeedback.Visible = true;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
+            List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
+
+            int parentid = trainingRefferalsList[rowIndex].Id;
+            txtTrainingId.Text = parentid.ToString();
+        }
+
+
 
 
 

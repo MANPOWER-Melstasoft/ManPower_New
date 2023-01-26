@@ -32,7 +32,7 @@ namespace ManPowerCore.Domain
         public string ContactNo { get; set; }
 
         [DBField("Is_Active")]
-        public string IsActive { get; set; }
+        public int IsActive { get; set; }
 
         [DBField("Refferals_Date")]
         public DateTime RefferalsDate { get; set; }

@@ -154,7 +154,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-6">
-                            <asp:Literal ID="lblDepartmentUnit" runat="server" Text="Department Unit"></asp:Literal>
+                            <asp:Literal ID="lblDepartmentUnit" runat="server" Text="District / DS Division"></asp:Literal>
                         </div>
                         <div class="col-md-6">
                             <asp:DropDownList ID="ddlDepartmentUnit" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control" Enabled="false"></asp:DropDownList>

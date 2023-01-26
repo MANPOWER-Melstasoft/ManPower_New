@@ -23,7 +23,7 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO BENEFICIARY(Job_Refferals_Id,Created_Date,Created_User,Still_Working, " +
+            dbConnection.cmd.CommandText = "INSERT INTO Job_Placement_Feedback(Job_Refferals_Id,Created_Date,Created_User,Still_Working, " +
                                             "Resigned_Date,Remarks,Is_Active) " +
                                            "VALUES(@JobRefferalsId,@CreatedDate,@CreatedUser,@StillWorking,@ResignedDate,@Remarks, " +
                                            "@IsActive) ";

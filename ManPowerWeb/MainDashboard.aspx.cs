@@ -16,5 +16,29 @@ namespace ManPowerWeb
                 Response.Redirect("Login.aspx");
             }
         }
+
+        protected void btnHR_Click(object sender, EventArgs e)
+        {
+            Session["Division"] = 1;
+            Response.Redirect("Dashboard.aspx");
+        }
+
+        protected void btnPROCRU_Click(object sender, EventArgs e)
+        {
+            Session["Division"] = 2;
+            Response.Redirect("SessionManager.aspx");
+        }
+
+        protected void btnFINAN_Click(object sender, EventArgs e)
+        {
+            Session["Division"] = 3;
+            Response.Redirect("Dashboard.aspx");
+        }
+
+        protected void btnPLAN_Click(object sender, EventArgs e)
+        {
+            Session["Division"] = 4;
+            Response.Redirect("Dashboard.aspx");
+        }
     }
 }

@@ -21,12 +21,21 @@ namespace ManPowerWeb
         string[] career = { "Management", "Skilled", "Non-Skilled", "Technical", "Non-Technical" };
         string[] levelsDD = { "Top Level", "Middle Level", "Lower Level" };
         List<CompanyVecansyRegistationDetails> list = new List<CompanyVecansyRegistationDetails>();
+        List<DepartmentUnit> listDistrict = new List<DepartmentUnit>();
+        List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 BindDataSource();
+                ddlDsDivision.Enabled = false;
+                ddlDistrict.Enabled = false;
+
             }
         }
 
@@ -39,12 +48,73 @@ namespace ManPowerWeb
             ddlLevel.DataBind();
         }
 
+        protected void rbDepartmentLocationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rbDepartmentLocationType.SelectedValue == "1")
+            {
+                BindDistrict();
+                ddlDistrict.Enabled = true;
+                ddlDsDivision.Enabled = false;
+            }
+            if (rbDepartmentLocationType.SelectedValue == "2")
+            {
+                BindDistrict();
+                ddlDsDivision.Enabled = true;
+                ddlDistrict.Enabled = true;
 
-    protected void btnSave_Click(object sender, EventArgs e)
+            }
+
+        }
+        protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rbDepartmentLocationType.SelectedValue == "2")
+            {
+                BindDSDivision();
+            }
+            else
+            {
+                ddlDsDivision.Items.Clear();
+
+            }
+
+
+        }
+        private void BindDistrict()
+        {
+            DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
+            listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
+            ddlDistrict.DataSource = listDistrict;
+            ddlDistrict.DataTextField = "Name";
+            ddlDistrict.DataValueField = "DepartmentUnitId";
+
+            ddlDistrict.DataBind();
+            ddlDistrict.Items.Insert(0, new ListItem("Select District", ""));
+        }
+
+        private void BindDSDivision()
+        {
+            DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
+            listDSDivision = _DepartmentUnitTypeController.GetDepartmentUnitType(3, true)._DepartmentUnit;
+
+            if (ddlDistrict.SelectedValue != "")
+            {
+                ddlDsDivision.DataSource = listDSDivision.Where(u => u.ParentId.ToString() == ddlDistrict.SelectedValue);
+                ddlDsDivision.DataTextField = "Name";
+                ddlDsDivision.DataValueField = "DepartmentUnitId";
+                ddlDsDivision.DataBind();
+                ddlDsDivision.Items.Insert(0, new ListItem("Select Division", ""));
+
+            }
+            else
+            {
+                ddlDsDivision.Items.Clear();
+            }
+        }
+        protected void btnSave_Click(object sender, EventArgs e)
         {
             CompanyVecansyRegistationDetails companyVecansyRegistationDetails = new CompanyVecansyRegistationDetails();
             CompanyVecansyRegistationDetailsController companyVecansyRegistationDetailsController = ControllerFactory.CreateCompanyVecansyRegistationDetailsController();
-     
+
             companyVecansyRegistationDetails.VDate = Convert.ToDateTime(date.Text);
             companyVecansyRegistationDetails.VAddress = address.Text;
             companyVecansyRegistationDetails.WebSiteLink = link.Text;
@@ -59,6 +129,18 @@ namespace ManPowerWeb
             companyVecansyRegistationDetails.WhatsappNumber = whatsapp.Text;
             companyVecansyRegistationDetails.VLevels = ddlLevel.SelectedValue;
             companyVecansyRegistationDetails.ContactPersonEmail = email.Text;
+
+            if (ddlDsDivision.SelectedValue != "")
+            {
+                companyVecansyRegistationDetails.VDsId = Convert.ToInt32(ddlDsDivision.SelectedValue);
+
+            }
+            else
+            {
+                companyVecansyRegistationDetails.VDistrictId = 0;
+            }
+            companyVecansyRegistationDetails.VDistrictId = Convert.ToInt32(ddlDistrict.SelectedValue);
+            companyVecansyRegistationDetails.CompanyName = txtName.Text;
 
 
             int result1 = companyVecansyRegistationDetailsController.SaveCompanyVecansyRegistationDetails(companyVecansyRegistationDetails);
@@ -94,5 +176,7 @@ namespace ManPowerWeb
         {
             Response.Redirect("VacancyRegSearch.aspx");
         }
+
+
     }
 }

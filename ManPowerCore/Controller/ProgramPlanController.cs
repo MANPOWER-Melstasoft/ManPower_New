@@ -14,7 +14,7 @@ namespace ManPowerCore.Controller
 
         int SaveProgramPlan(ProgramPlan programPlan);
 
-        int UpdateProgramPlan(ProgramPlan programPlan);
+        int UpdateProgramPlan(ProgramPlan programPlan, List<string> projectPlanResourceStringList);
         int UpdateProgramPlanComplete(int statusId, int id);
         List<ProgramPlan> GetAllProgramPlan();
 
@@ -78,14 +78,24 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int UpdateProgramPlan(ProgramPlan programPlan)
+        public int UpdateProgramPlan(ProgramPlan programPlan, List<string> projectPlanResourceStringList)
         {
 
-
+            ProjectPlanResourceDAO projectPlanResourceDAO = DAOFactory.CreateProjectPlanResourceDAO();
             try
             {
                 dBConnection = new DBConnection();
                 var programPlans = programPlanDAO.UpdateProgramPlan(programPlan, dBConnection);
+
+                foreach (var item in projectPlanResourceStringList)
+                {
+                    ProjectPlanResource projectPlanResource = new ProjectPlanResource();
+                    projectPlanResource.ProgramPlanId = programPlan.ProgramPlanId;
+                    projectPlanResource.ResourcePersonId = Convert.ToInt32(item);
+
+                    projectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
+                }
+
                 return 1;
             }
             catch (Exception)

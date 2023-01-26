@@ -12,6 +12,7 @@ namespace ManPowerCore.Controller
     public interface ProjectPlanResourceController
     {
         int SaveProjectPlanResource(ProjectPlanResource projectPlanResource);
+        int SaveProjectPlanResourceByList(int programPlanId, List<string> projectPlanResourceStringList);
     }
 
     public class ProjectPlanResourceControllerImpl : ProjectPlanResourceController
@@ -26,6 +27,35 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return ProjectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int SaveProjectPlanResourceByList(int programPlanId, List<string> projectPlanResourceStringList)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                foreach (var item in projectPlanResourceStringList)
+                {
+                    ProjectPlanResource projectPlanResource = new ProjectPlanResource();
+                    projectPlanResource.ProgramPlanId = programPlanId;
+                    projectPlanResource.ResourcePersonPlanId = Convert.ToInt32(item);
+
+                    ProjectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
+                }
+                return 1;
             }
             catch (Exception)
             {

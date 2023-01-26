@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="planningEdit.aspx.cs" Inherits="ManPowerWeb.planningEdit" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
     <div class="container"></div>
     <div class="card ml-4 p-4">
         <h2><b>Edit Program Plan</b></h2>
@@ -159,10 +160,40 @@
                             <asp:Literal ID="Literal8" runat="server" Text="Resource Person"></asp:Literal>
                         </div>
                         <div class="col-md-4">
-                            <asp:DropDownList runat="server" ID="ddlResourcePerson" CssClass="form-control form-control-user"></asp:DropDownList>
+                            <asp:DropDownList runat="server" ID="ddlResourcePerson" CssClass="form-control form-control-user" SelectionMode="Multiple"></asp:DropDownList>
+
                         </div>
                     </div>
                 </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <asp:Literal ID="Literal11" runat="server" Text="Resource Person"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:UpdatePanel runat="server" ID="updatePanel1">
+                                <ContentTemplate>
+                                    <div class="form-control form-control-user scroll_checkboxes">
+                                        <asp:CheckBoxList ID="chkList"
+                                            runat="server" CssClass="form-control form-control-user"
+                                            RepeatDirection="Vertical" RepeatColumns="1"
+                                            BorderWidth="0" Datafield="description"
+                                            DataValueField="value" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="chkList_SelectedIndexChanged">
+                                        </asp:CheckBoxList>
+
+                                    </div>
+                                    <asp:Label ID="lblmsg" class="textcls" runat="server"></asp:Label>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="row mb-3 ms-1">
@@ -174,7 +205,7 @@
                             <asp:Literal ID="Literal9" runat="server" Text="Upload Documnents"></asp:Literal>
                         </div>
                         <div class="col-md-4">
-                            <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="true" />
+                            <asp:FileUpload ID="Uploader" CssClass="form-control form-control-user" runat="server" AllowMultiple="true" />
                             <asp:Label ID="lblListOfUploadedFiles" runat="server" />
                         </div>
                     </div>
@@ -198,4 +229,87 @@
 
         </div>
     </div>
+    <style type="text/css">
+        .scroll_checkboxes {
+            height: 180px;
+            width: fit-content;
+            padding: 5px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .FormText {
+            FONT-SIZE: 11px;
+            FONT-FAMILY: tahoma,sans-serif
+        }
+    </style>
+    <script language="javascript">
+
+        var color = 'White';
+
+        function changeColor(obj) {
+            var rowObject = getParentRow(obj);
+            var parentTable =
+                document.getElementById("<%=chkList.ClientID%>");
+
+            if (color == '') {
+                color = getRowColor();
+            }
+
+            if (obj.checked) {
+                rowObject.style.backgroundColor = '#A3B1D8';
+            }
+            else {
+                rowObject.style.backgroundColor = color;
+                color = 'White';
+            }
+
+            // private method
+            function getRowColor() {
+                if (rowObject.style.backgroundColor == 'White')
+                    return parentTable.style.backgroundColor;
+                else return rowObject.style.backgroundColor;
+            }
+        }
+
+        // This method returns the parent row of the object
+        function getParentRow(obj) {
+            do {
+                obj = obj.parentElement;
+            }
+            while (obj.tagName != "TR")
+            return obj;
+        }
+
+        function TurnCheckBoixGridView(id) {
+            var frm = document.forms[0];
+
+            for (i = 0; i < frm.elements.length; i++) {
+                if (frm.elements[i].type == "checkbox" &&
+                    frm.elements[i].id.indexOf("<%= chkList.ClientID %>") == 0) {
+                    frm.elements[i].checked =
+                        document.getElementById(id).checked;
+                }
+            }
+        }
+
+        function SelectAll(id) {
+            var parentTable = document.getElementById("<%=chkList.ClientID%>");
+            var color
+
+            if (document.getElementById(id).checked) {
+                color = '#A3B1D8'
+            }
+            else {
+                color = 'White'
+            }
+
+            for (i = 0; i < parentTable.rows.length; i++) {
+                parentTable.rows[i].style.backgroundColor = color;
+            }
+            TurnCheckBoixGridView(id);
+        }
+
+    </script>
 </asp:Content>

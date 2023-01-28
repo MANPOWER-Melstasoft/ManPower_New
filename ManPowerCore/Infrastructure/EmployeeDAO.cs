@@ -16,7 +16,7 @@ namespace ManPowerCore.Infrastructure
 
         int SaveEmployee(Employee emp, DBConnection dbConnection);
 
-        //int UpdateEmployee(Employee emp, DBConnection dbConnection);
+        int UpdateEmployee(Employee emp, DBConnection dbConnection);
     }
 
     public class EmployeeDAOImpl : EmployeeDAO
@@ -27,11 +27,13 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,NIC_Issue_Date,Passport_Number" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
-                                            ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type) " +
+                                            ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type, " +
+                                            " Pention_Date,VNOP_No,Appointment_No,File_No,Absorb,Emp_No) " +
 
                                             "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber " +
                                             ", @EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
-                                            ", @MaritalStatus,@SupervisorId,@ManagerId,@DSDivisionId,@DistrictId,@UnitType) SELECT SCOPE_IDENTITY() ";
+                                            ", @MaritalStatus,@SupervisorId,@ManagerId,@DSDivisionId,@DistrictId,@UnitType, " +
+                                            ", @PensionDate,@VNOPNo,@AppointmentNo,@FileNo,@EpmAbsorb,@EmpNo) SELECT SCOPE_IDENTITY() ";
 
 
 
@@ -51,36 +53,42 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@DSDivisionId", emp.DSDivisionId);
             dbConnection.cmd.Parameters.AddWithValue("@DistrictId", emp.DistrictId);
             dbConnection.cmd.Parameters.AddWithValue("@UnitType", emp.UnitType);
-
-            //dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(REIGION_ID,ETHNICITY_ID,NIC,NIC_ISSUE_DATE,PASSPORT_NUMBER" +
-            //                                ",LEAVE_NUMBER,PERMANENT_ADDRESS,TELEPHONE,FAX,MOBILE,PERSONA_EMAIL,PERSONA_FILE_NUMBER,APPOINTMENT_LETTER_NUMBER" +
-            //                                ",SERVICE_TYPE,EMPLOYEE_NUMBER,INITIAL,LAST_NAME,NAME_DENOTE_BY_INITIAL,GENDER,DATE_OF_BIRTH,RETIREMENT_DATE" +
-            //                                ",PLACE_OF_BIRTH,MARITAL_STATUS,SUPERVISOR_ID,MANAGER_ID) " +
-
-            //                                "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber,@leaveNumber " +
-            //                                ", @Adress,@TelephoneNumber,@EmpFax,@empMobile,@Email,@FileNumber,@AppointmentLetterNumber " +
-            //                                ", @ServiceType,@EmpNumber,@EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
-            //                                ", @RetirementDate,@PlaceOfBirth,@MaritalStatus,@SupervisorId,@ManagerId) SELECT SCOPE_IDENTITY() ";
-
-
-            //dbConnection.cmd.Parameters.AddWithValue("@leaveNumber", emp.leaveNumber);
-            //dbConnection.cmd.Parameters.AddWithValue("@Adress", emp.Adress);
-            //dbConnection.cmd.Parameters.AddWithValue("@TelephoneNumber", emp.TelephoneNumber);
-            //dbConnection.cmd.Parameters.AddWithValue("@EmpFax", emp.EmpFax);
-            //dbConnection.cmd.Parameters.AddWithValue("@empMobile", emp.empMobile);
-            //dbConnection.cmd.Parameters.AddWithValue("@Email", emp.Email);
-            //dbConnection.cmd.Parameters.AddWithValue("@FileNumber", emp.FileNumber);
-            //dbConnection.cmd.Parameters.AddWithValue("@AppointmentLetterNumber", emp.AppointmentLetterNumber);
-            //dbConnection.cmd.Parameters.AddWithValue("@ServiceType", emp.ServiceType);
-            //dbConnection.cmd.Parameters.AddWithValue("@EmpNumber", emp.EmpNumber);
-            //dbConnection.cmd.Parameters.AddWithValue("@RetirementDate", emp.RetirementDate);
-            //dbConnection.cmd.Parameters.AddWithValue("@PlaceOfBirth", emp.PlaceOfBirth);
-            //dbConnection.cmd.Parameters.AddWithValue("@MaritalStatus", emp.MaritalStatus);
-            //dbConnection.cmd.Parameters.AddWithValue("@SupervisorId", emp.SupervisorId);
-            //dbConnection.cmd.Parameters.AddWithValue("@ManagerId", emp.ManagerId);
+            dbConnection.cmd.Parameters.AddWithValue("@PensionDate", emp.PensionDate);
+            dbConnection.cmd.Parameters.AddWithValue("@VNOPNo", emp.VNOPNo);
+            dbConnection.cmd.Parameters.AddWithValue("@AppointmentNo", emp.AppointmentNo);
+            dbConnection.cmd.Parameters.AddWithValue("@FileNo", emp.FileNo);
+            dbConnection.cmd.Parameters.AddWithValue("@EpmAbsorb", emp.EpmAbsorb);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpNo", emp.EmpNo);
 
             int result = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
             return result;
+        }
+
+        public int UpdateEmployee(Employee emp, DBConnection dbConnection)
+        {
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Religion_Id = @ReligionId, Ethnicity_Id = @EthnicityId," +
+                "NIC = @EmployeeNIC , NIC_Issue_Date = @NicIssueDate, Passport_Number = @EmployeePassportNumber, Initial = @EmpInitials," +
+                "Last_Name = @LastName, Name_Denote_By_Initial = @NameWithInitials, Marital_Status = @MaritalStatus," +
+                "Supervisor_Id = @SupervisorId, Manager_Id = @ManagerId WHERE ID = @EmployeeId";
+
+
+            dbConnection.cmd.Parameters.AddWithValue("@ReligionId", emp.ReligionId);
+            dbConnection.cmd.Parameters.AddWithValue("@EthnicityId", emp.EthnicityId);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeNIC", emp.EmployeeNIC);
+            dbConnection.cmd.Parameters.AddWithValue("@NicIssueDate", emp.NicIssueDate);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeePassportNumber", emp.EmployeePassportNumber);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpInitials", emp.EmpInitials);
+            dbConnection.cmd.Parameters.AddWithValue("@LastName", emp.LastName);
+            dbConnection.cmd.Parameters.AddWithValue("@NameWithInitials", emp.NameWithInitials);
+            dbConnection.cmd.Parameters.AddWithValue("@MaritalStatus", emp.MaritalStatus);
+            dbConnection.cmd.Parameters.AddWithValue("@SupervisorId", emp.SupervisorId);
+            dbConnection.cmd.Parameters.AddWithValue("@ManagerId", emp.ManagerId);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", emp.EmployeeId);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
         }
 
         //public int UpdateProgramType(ProgramType programType, DBConnection dbConnection)

@@ -54,7 +54,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "UPDATE EMPLOYEE_CONTACT SET ADDRESS = @EmpAddress, MOBILE_NUMBER = @MobileNumber, TELEPHONE = @EmpTelephone, OFFICE_PHONE = @OfficePhone," +
-                " EMAIL = @EmpEmail, POSTAL_CODE = @PostalCode WHERE ID = @EmployeeContactId ";
+                " EMAIL = @EmpEmail, POSTAL_CODE = @PostalCode WHERE EMPLOYEE_ID  = @EmpID ";
 
             dbConnection.cmd.Parameters.AddWithValue("@EmpID", empContact.EmpID);
             dbConnection.cmd.Parameters.AddWithValue("@EmpAddress", empContact.EmpAddress);
@@ -87,7 +87,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM EMPLOYEE_CONTACT WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM EMPLOYEE_CONTACT WHERE EMPLOYEE_ID = " + id + " ";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

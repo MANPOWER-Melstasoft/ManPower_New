@@ -46,6 +46,23 @@ namespace ManPowerCore.Domain
         [DBField("MARITAL_STATUS")]
         public string MaritalStatus { get; set; }
 
+        [DBField("PENSION_DATE")]
+        public DateTime PensionDate { get; set; }
+
+        [DBField("VNOP_NO")]
+        public int VNOPNo { get; set; }
+
+        [DBField("APPOINTMENT_NO")]
+        public int AppointmentNo { get; set; }
+
+        [DBField("FILE_NO")]
+        public int FileNo { get; set; }
+
+        [DBField("EMP_NO")]
+        public int EmpNo { get; set; }
+
+        [DBField("ABSORB")]
+        public string EpmAbsorb { get; set; }
 
         [DBField("SUPERVISOR_ID")]
         public int SupervisorId { get; set; }

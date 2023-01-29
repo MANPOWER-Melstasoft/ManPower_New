@@ -504,5 +504,11 @@ namespace ManPowerCore.Common
             return (RetirementDAO)retirementDAO;
         }
 
+        public static TransferDAO CreateTransferDAO()
+        {
+            TransferDAO transferDAO = new TransferDAOSqlImpl();
+            return (TransferDAO)transferDAO;
+        }
+
     }
 }

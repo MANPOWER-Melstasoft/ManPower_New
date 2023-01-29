@@ -516,5 +516,11 @@ namespace ManPowerCore.Common
             return (RetirementController)retirementController;
         }
 
+        public static TransferController CreateTransferController()
+        {
+            TransferController transferController = new TransferControllerSqlImpl();
+            return (TransferController)transferController;
+        }
+
     }
 }

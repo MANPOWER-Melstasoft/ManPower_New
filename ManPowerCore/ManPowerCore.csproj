@@ -185,6 +185,7 @@
     <Compile Include="Domain\Religion.cs" />
     <Compile Include="Domain\Report.cs" />
     <Compile Include="Domain\RequestType.cs" />
+    <Compile Include="Domain\Resignation.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
     <Compile Include="Domain\RetirementType.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Infrastructure\ReligionDAO.cs" />
     <Compile Include="Infrastructure\ReportDAO.cs" />
     <Compile Include="Infrastructure\RequestTypeDAO.cs" />
+    <Compile Include="Infrastructure\ResignationDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
     <Compile Include="Infrastructure\RetirementTypeDAO.cs" />

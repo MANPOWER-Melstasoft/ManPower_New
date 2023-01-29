@@ -503,5 +503,11 @@ namespace ManPowerCore.Common
             TransfersRetirementResignationMainController transfersRetirementResignationMainController = new TransfersRetirementResignationMainControllerSqlImpl();
             return (TransfersRetirementResignationMainController)transfersRetirementResignationMainController;
         }
+
+        public static ResignationController CreateResignationController()
+        {
+            ResignationController resignationController = new ResignationControllerSqlImpl();
+            return (ResignationController)resignationController;
+        }
     }
 }

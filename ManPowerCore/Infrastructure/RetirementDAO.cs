@@ -8,19 +8,18 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Infrastructure
 {
-    public interface ResignationDAO
+    public interface RetirementDAO
     {
-        int Save(Resignation resignation, DBConnection dbConnection);
+        int Save(Retirement resignation, DBConnection dbConnection);
         int Delete(int id, DBConnection dbConnection);
-        int Update(Resignation resignation, DBConnection dbConnection);
-        List<Resignation> GetAllResignation(bool with0, DBConnection dbConnection);
-        Resignation GetResignation(int Id, DBConnection dbConnection);
+        int Update(Retirement resignation, DBConnection dbConnection);
+        List<Retirement> GetAllRetirement(bool with0, DBConnection dbConnection);
+        Retirement GetRetirement(int Id, DBConnection dbConnection);
     }
 
-    public class ResignationDAOSqlImpl : ResignationDAO
+    public class RetirementDAOSqlImpl : RetirementDAO
     {
-
-        public int Save(Resignation resignation, DBConnection dbConnection)
+        public int Save(Retirement resignation, DBConnection dbConnection)
         {
             int output = 0;
             if (dbConnection.dr != null)
@@ -28,30 +27,34 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO Resignation (Transfers_Retirement_Resignation_Main_Id, Resignation_Date, Reason)" +
-                "VALUES (@MainId, @ResignationDate, @Reason) ";
+            dbConnection.cmd.CommandText = "INSERT INTO Retirement (Transfers_Retirement_Resignation_Main_Id, Joined_Date, Reason, Retirement_Type, Remark)" +
+                "VALUES (@MainId, @JoinedDate, @Reason, @RetirementType, @Remark)";
 
             dbConnection.cmd.Parameters.AddWithValue("@MainId", resignation.MainId);
-            dbConnection.cmd.Parameters.AddWithValue("@ResignationDate", resignation.ResignationDate);
+            dbConnection.cmd.Parameters.AddWithValue("@JoinedDate", resignation.JoinedDate);
             dbConnection.cmd.Parameters.AddWithValue("@Reason", resignation.Reason);
+            dbConnection.cmd.Parameters.AddWithValue("@RetirementType", resignation.RetirementType);
+            dbConnection.cmd.Parameters.AddWithValue("@Remark", resignation.Remark);
 
             output = dbConnection.cmd.ExecuteNonQuery();
             return output;
         }
 
-        public int Update(Resignation resignation, DBConnection dbConnection)
+        public int Update(Retirement resignation, DBConnection dbConnection)
         {
             int output = 0;
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "UPDATE Resignation SET Transfers_Retirement_Resignation_Main_Id = @MainId, " +
-                "Resignation_Date = @ResignationDate, Reason = @Reason WHERE ID = @Id ";
+            dbConnection.cmd.CommandText = "UPDATE Retirement SET Transfers_Retirement_Resignation_Main_Id = @MainId, Retirement_Type = @RetirementType," +
+                "Joined_Date = @JoinedDate, Reason = @Reason, Remark = @Remark WHERE ID = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", resignation.Id);
             dbConnection.cmd.Parameters.AddWithValue("@MainId", resignation.MainId);
-            dbConnection.cmd.Parameters.AddWithValue("@ResignationDate", resignation.ResignationDate);
+            dbConnection.cmd.Parameters.AddWithValue("@JoinedDate", resignation.JoinedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@RetirementType", resignation.RetirementType);
             dbConnection.cmd.Parameters.AddWithValue("@Reason", resignation.Reason);
+            dbConnection.cmd.Parameters.AddWithValue("@Remark", resignation.Remark);
 
             output = dbConnection.cmd.ExecuteNonQuery();
 
@@ -64,7 +67,7 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "UPDATE Resignation SET Is_Active = 0 WHERE ID = @Id ";
+            dbConnection.cmd.CommandText = "UPDATE Retirement SET Is_Active = 0 WHERE ID = @Id ";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", id);
 
@@ -74,35 +77,35 @@ namespace ManPowerCore.Infrastructure
             return output;
         }
 
-        public List<Resignation> GetAllResignation(bool with0, DBConnection dbConnection)
+        public List<Retirement> GetAllRetirement(bool with0, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
             if (with0)
-                dbConnection.cmd.CommandText = "SELECT * FROM Resignation";
+                dbConnection.cmd.CommandText = "SELECT * FROM Retirement";
             else
-                dbConnection.cmd.CommandText = "SELECT * FROM Resignation WHERE Is_Active = 1";
+                dbConnection.cmd.CommandText = "SELECT * FROM Retirement WHERE Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
-            return dataAccessObject.ReadCollection<Resignation>(dbConnection.dr);
+            return dataAccessObject.ReadCollection<Retirement>(dbConnection.dr);
         }
 
-        public Resignation GetResignation(int Id, DBConnection dbConnection)
+        public Retirement GetRetirement(int Id, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT * FROM Resignation WHERE Id = @Id";
+            dbConnection.cmd.CommandText = "SELECT * FROM Retirement WHERE Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", Id);
 
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
-            return dataAccessObject.GetSingleOject<Resignation>(dbConnection.dr);
+            return dataAccessObject.GetSingleOject<Retirement>(dbConnection.dr);
         }
 
     }

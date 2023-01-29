@@ -103,8 +103,10 @@
     <Compile Include="Controller\ReligionController.cs" />
     <Compile Include="Controller\ReportController.cs" />
     <Compile Include="Controller\RequestTypeController.cs" />
+    <Compile Include="Controller\ResignationController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
+    <Compile Include="Controller\RetirementController.cs" />
     <Compile Include="Controller\RetirementTypeController.cs" />
     <Compile Include="Controller\ReverseReasonController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Domain\Resignation.cs" />
     <Compile Include="Domain\ResourcePerson.cs" />
     <Compile Include="Domain\ResourceProvisionProgress.cs" />
+    <Compile Include="Domain\Retirement.cs" />
     <Compile Include="Domain\RetirementType.cs" />
     <Compile Include="Domain\ReverseReason.cs" />
     <Compile Include="Domain\ServiceType.cs" />
@@ -269,6 +272,7 @@
     <Compile Include="Infrastructure\ResignationDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />
     <Compile Include="Infrastructure\ResourceProvisionProgressDAO.cs" />
+    <Compile Include="Infrastructure\RetirementDAO.cs" />
     <Compile Include="Infrastructure\RetirementTypeDAO.cs" />
     <Compile Include="Infrastructure\ReverseReasonDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />

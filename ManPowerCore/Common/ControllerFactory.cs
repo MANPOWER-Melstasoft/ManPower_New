@@ -509,5 +509,12 @@ namespace ManPowerCore.Common
             ResignationController resignationController = new ResignationControllerSqlImpl();
             return (ResignationController)resignationController;
         }
+
+        public static RetirementController CreateRetirementController()
+        {
+            RetirementController retirementController = new RetirementControllerSqlImpl();
+            return (RetirementController)retirementController;
+        }
+
     }
 }

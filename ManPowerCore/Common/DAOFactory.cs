@@ -497,5 +497,12 @@ namespace ManPowerCore.Common
             ResignationDAO resignationDAO = new ResignationDAOSqlImpl();
             return (ResignationDAO)resignationDAO;
         }
+
+        public static RetirementDAO CreateRetirementDAO()
+        {
+            RetirementDAO retirementDAO = new RetirementDAOSqlImpl();
+            return (RetirementDAO)retirementDAO;
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="ManPowerWeb.UserProfile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     <div class="row pl-5 mt-5">
         <h2><b>My Profile - Employee ID : 
@@ -257,7 +258,7 @@
 
                 <div class="row mt-5 mb-4">
                     <div class="col-2">
-                        <asp:Button runat="server" ID="btnSubmit1" Text="Submit" CssClass="btn btn-primary btn-user btn-block" />
+                        <asp:Button runat="server" ID="btnSubmit1" Text="Update" CssClass="btn btn-primary btn-user btn-block" />
                     </div>
                 </div>
             </div>
@@ -365,7 +366,7 @@
 
                 <div class="row mt-5 mb-4">
                     <div class="col-2">
-                        <asp:Button runat="server" ID="Button1" Text="Submit" ValidationGroup="4" OnClick="submitContact" CssClass="btn btn-primary btn-user btn-block" />
+                        <asp:Button runat="server" ID="Button1" Text="Update" ValidationGroup="4" OnClick="submitContact" CssClass="btn btn-primary btn-user btn-block" />
                     </div>
                 </div>
             </div>
@@ -466,11 +467,10 @@
 
                 <div class="row mt-5 mb-4">
                     <div class="col-2">
-                        <asp:Button runat="server" ID="Button2" Text="Submit" ValidationGroup="5" OnClick="submitEmergencyContact" CssClass="btn btn-primary btn-user btn-block" />
+                        <asp:Button runat="server" ID="Button2" Text="Update" ValidationGroup="5" OnClick="submitEmergencyContact" CssClass="btn btn-primary btn-user btn-block" />
                     </div>
                 </div>
             </div>
-
 
 
             <%-------- tab 4 --------%>
@@ -582,7 +582,267 @@
 
                 <div class="row mt-5 mb-4">
                     <div class="col-2">
-                        <asp:Button runat="server" ID="Button4" Text="Submit" ValidationGroup="5" OnClick="submitEmergencyContact" CssClass="btn btn-primary btn-user btn-block" />
+                        <asp:Button runat="server" ID="Button4" Text="Update" ValidationGroup="5" OnClick="submitEmergencyContact" CssClass="btn btn-primary btn-user btn-block" />
+                    </div>
+                </div>
+            </div>
+
+            <%-------- tab 5 --------%>
+
+            <div id="dependantDetails" class="tab-pane fade in active mr-4">
+
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+
+                        <h3>Dependant Details</h3>
+
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Last Name : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Initials : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Select Dependant : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:DropDownList ID="ddlDependantList" runat="server" OnSelectedIndexChanged="ddlDependantList_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%if (ddlDependantList.SelectedValue != "")
+                            {  %>
+
+
+                        <div class="row mt-5">
+                            <div class="col-3">
+                                <h5><b>
+                                    <asp:Label ID="dep" runat="server"></asp:Label>
+                                </b></h5>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Dependant Type : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:DropDownList ID="ddlDependant" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Relationship : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="dependantRelationship" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>First Name : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="dependantFname" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Last Name : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="dependantLname" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Date of Birth: </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="depDob" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Birth Certificate Number : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="bcNumber" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Passport Number : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="ppNumber" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Any Kind of Special Sickness : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="sickness" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <%if (ddlDependant.SelectedValue == "1")
+                            { %>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Marriage Date : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="mDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Marriage Certificate Number : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="mCertificateNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Nic Number : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="depNic" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ValidationGroup="3" ID="RegularExpressionValidator10" ControlToValidate="depNic" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
+									Invalid NIC</asp:RegularExpressionValidator>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Working Company : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="workingCompany" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>City : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="city" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%} %>
+
+                        <div id="depRowId" runat="server">
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>ID : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="depId" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%} %>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+
+                <%----------------------------------------------------------------------------%>
+
+
+                <div class="row mt-5 mb-4">
+                    <div class="col-2">
+                        <asp:Button runat="server" ID="Button3" Text="Update" ValidationGroup="5" OnClick="submitDependant" CssClass="btn btn-primary btn-user btn-block" />
                     </div>
                 </div>
             </div>

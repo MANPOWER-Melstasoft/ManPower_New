@@ -85,26 +85,26 @@ namespace ManPowerWeb
         {
 
 
-            if (ddlStatus.SelectedIndex == 0)
-            {
-                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListNotRecommended"];
-            }
-            else if (ddlStatus.SelectedIndex == 1)
-            {
-                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListPending"];
-            }
-            else if (ddlStatus.SelectedIndex == 2)
-            {
-                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListApproved"];
-            }
-            else if (ddlStatus.SelectedIndex == 3)
-            {
-                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListRejected"];
-            }
-            else
-            {
-                GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsList"];
-            }
+            //if (ddlStatus.SelectedIndex == 0)
+            //{
+            //    GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListNotRecommended"];
+            //}
+            //else if (ddlStatus.SelectedIndex == 1)
+            //{
+            //    GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListPending"];
+            //}
+            //else if (ddlStatus.SelectedIndex == 2)
+            //{
+            //    GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListApproved"];
+            //}
+            //else if (ddlStatus.SelectedIndex == 3)
+            //{
+            //    GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListRejected"];
+            //}
+            //else
+            //{
+            //    GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsList"];
+            //}
 
             GridView1.DataBind();
         }

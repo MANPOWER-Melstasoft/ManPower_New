@@ -22,6 +22,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 BindVacancies();
@@ -30,6 +32,8 @@ namespace ManPowerWeb
                 bindCarrierGrid();
                 GridView2DataBind();
                 bindDistrictDivision();
+                BindVacanciePosition();
+                bindProgramPlan();
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary();
@@ -75,6 +79,49 @@ namespace ManPowerWeb
         }
 
 
+        private void bindProgramPlan()
+        {
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+            List<ProgramPlan> programPlansList = new List<ProgramPlan>();
+
+            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+            List<ProgramAssignee> programAssigneesList = programAssigneeController.GetAllProgramAssignee(true, true, false);
+
+            foreach (var items in programAssigneesList)
+            {
+                if (items._DepartmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
+                {
+                    List<ProgramPlan> programPlan = programPlanController.GetProgramPlanByProgramTargetId(items.ProgramTargetId);
+                    programPlansList.AddRange(programPlan);
+                }
+            }
+
+            //-----------------bind tab 1 program plan dropdown-----------------------
+
+            ddlProgramPlanCarrerKey.DataSource = programPlansList;
+            ddlProgramPlanCarrerKey.DataValueField = "ProgramPlanId";
+            ddlProgramPlanCarrerKey.DataTextField = "ProgramName";
+            ddlProgramPlanCarrerKey.DataBind();
+            ddlProgramPlanCarrerKey.Items.Insert(0, new ListItem("-- select Program Plan --", ""));
+
+            //-------------bind tab 3 program plan dropdown-----------------------
+
+            ddlJobProgramPlan.DataSource = programPlansList;
+            ddlJobProgramPlan.DataValueField = "ProgramPlanId";
+            ddlJobProgramPlan.DataTextField = "ProgramName";
+            ddlJobProgramPlan.DataBind();
+            ddlJobProgramPlan.Items.Insert(0, new ListItem("-- select Program Plan --", ""));
+
+            //---------bind tab 2 program plan dropdown-----------------
+
+            ddlTrainningProgramplan.DataSource = programPlansList;
+            ddlTrainningProgramplan.DataValueField = "ProgramPlanId";
+            ddlTrainningProgramplan.DataTextField = "ProgramName";
+            ddlTrainningProgramplan.DataBind();
+            ddlTrainningProgramplan.Items.Insert(0, new ListItem("-- select Program Plan --", ""));
+
+
+        }
 
         //-----------------------------------------------------Start Job Refferal ---------------------------------------------------------------------------------------
 
@@ -91,12 +138,11 @@ namespace ManPowerWeb
             ddlDistrict.DataValueField = "DepartmentUnitId";
 
             ddlDistrict.DataBind();
-            ddlDistrict.Items.Insert(0, new ListItem("Select District", ""));
+            ddlDistrict.Items.Insert(0, new ListItem("-- select District --", ""));
         }
 
         protected void ddlDsDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             BindVacancies();
         }
 
@@ -110,7 +156,7 @@ namespace ManPowerWeb
                 ddlDsDivision.DataTextField = "Name";
                 ddlDsDivision.DataValueField = "DepartmentUnitId";
                 ddlDsDivision.DataBind();
-                ddlDsDivision.Items.Insert(0, new ListItem("Select Division", ""));
+                ddlDsDivision.Items.Insert(0, new ListItem("-- select Division --", ""));
             }
             else
             {
@@ -134,6 +180,7 @@ namespace ManPowerWeb
                 RefferalsDate = DateTime.Parse(jobRefferalsDate.Text).Date,
                 RefferalRemarks = jobRefferalRemark.Text,
                 CareerGuidance = careerGuidance.Text,
+                ProgramPlanId = Convert.ToInt32(ddlJobProgramPlan.SelectedValue),
                 CreatedUser = Session["Name"].ToString(),
 
             };
@@ -160,20 +207,48 @@ namespace ManPowerWeb
         protected void BindVacancies()
         {
             CompanyVecansyRegistationDetailsController companyVecansyRegistationDetailsController = ControllerFactory.CreateCompanyVecansyRegistationDetailsController();
+
             List<CompanyVecansyRegistationDetails> companyVecansyRegistationDetailsList = companyVecansyRegistationDetailsController.GetAllCompanyVecansyRegistationDetails();
 
             if (ddlDsDivision.SelectedValue != "")
             {
-                ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue)).ToList();
+                if (ddlPositionType.SelectedValue != "")
+                {
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue) && x.JobPosition == ddlPositionType.SelectedItem.Text).ToList();
+
+                }
+                else
+                {
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue)).ToList();
+
+                }
             }
             else if (ddlDistrict.SelectedValue != "")
             {
-                ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue)).ToList();
+                if (ddlPositionType.SelectedValue != "")
+                {
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.JobPosition == ddlPositionType.SelectedItem.Text).ToList();
+
+                }
+                else
+                {
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue)).ToList();
+
+                }
 
             }
             else
             {
-                ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList;
+                if (ddlPositionType.SelectedValue != "")
+                {
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.JobPosition == ddlPositionType.SelectedItem.Text);
+
+                }
+                else
+                {
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList;
+
+                }
             }
 
 
@@ -181,6 +256,25 @@ namespace ManPowerWeb
             ddlCompanyVacancies.DataTextField = "CompanyName";
             ddlCompanyVacancies.DataBind();
             ddlCompanyVacancies.Items.Insert(0, new ListItem("-- select vacancy --", ""));
+        }
+
+        private void BindVacanciePosition()
+        {
+            VacancyPositionController vacancyPositionController = ControllerFactory.CreateVacancyPositionController();
+            List<VacancyPosition> listVacancy = new List<VacancyPosition>();
+
+            listVacancy = vacancyPositionController.getVacancyPositionList();
+            ddlPositionType.DataSource = listVacancy.Where(x => x.IsActive == 1);
+            ddlPositionType.DataValueField = "Id";
+            ddlPositionType.DataTextField = "VacancyPositionName";
+            ddlPositionType.DataBind();
+            ddlPositionType.Items.Insert(0, new ListItem("-- select Job Position --", ""));
+
+        }
+
+        protected void ddlPositionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindVacancies();
         }
 
         protected void BindJobcategory()
@@ -215,7 +309,7 @@ namespace ManPowerWeb
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
                 List<JobPlacementFeedback> jobPlacementFeedbacksList = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
-                gvPlanDetails.DataSource = jobPlacementFeedbacksList.Where(x => x.CreatedUser == Session["Name"].ToString() && x.JobRefferalsId == minID);
+                gvPlanDetails.DataSource = jobPlacementFeedbacksList;
                 gvPlanDetails.DataBind();
             }
         }
@@ -252,6 +346,7 @@ namespace ManPowerWeb
 
             ViewState["jobparentid"] = jobRefferalsList[rowIndex].JobRefferalsId;
 
+
         }
 
         protected void btnSubmitJobFeedback_Click(object sender, EventArgs e)
@@ -283,6 +378,23 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error')", true);
 
+
+            }
+        }
+
+        protected void ddlJobProgramPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlJobProgramPlan.SelectedValue != "")
+            {
+                lblJobProgramPlanDetails.Visible = true;
+
+                ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+                ProgramPlan programPlanDetails = programPlanController.GetProgramPlanById(Convert.ToInt32(ddlJobProgramPlan.SelectedValue));
+                lblJobProgramPlanDetails.Text = "Date :" + programPlanDetails.Date.ToShortDateString() + " Location : " + programPlanDetails.Location;
+            }
+            else
+            {
+                lblJobProgramPlanDetails.Visible = false;
 
             }
         }
@@ -417,6 +529,25 @@ namespace ManPowerWeb
             txtRemarksFeedCareer.Text = null;
             txtParentId.Text = null;
             txtTraining.Text = null;
+        }
+
+
+        protected void ddlProgramPlanCarrerKey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlProgramPlanCarrerKey.SelectedValue != "")
+            {
+                lblProgramPlanDetails.Visible = true;
+
+                ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+                ProgramPlan programPlanDetails = programPlanController.GetProgramPlanById(Convert.ToInt32(ddlProgramPlanCarrerKey.SelectedValue));
+                lblProgramPlanDetails.Text = "Date :" + programPlanDetails.Date.ToShortDateString() + " Location : " + programPlanDetails.Location;
+            }
+            else
+            {
+                lblProgramPlanDetails.Visible = false;
+
+            }
+
         }
 
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
@@ -574,6 +705,24 @@ namespace ManPowerWeb
             txtTrainingId.Text = parentid.ToString();
         }
 
+
+
+        protected void ddlTrainningProgramplan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlTrainningProgramplan.SelectedValue != "")
+            {
+                lblTrainningProgramDetails.Visible = true;
+
+                ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+                ProgramPlan programPlanDetails = programPlanController.GetProgramPlanById(Convert.ToInt32(ddlTrainningProgramplan.SelectedValue));
+                lblTrainningProgramDetails.Text = "Date :" + programPlanDetails.Date.ToShortDateString() + " Location : " + programPlanDetails.Location;
+            }
+            else
+            {
+                lblTrainningProgramDetails.Visible = false;
+
+            }
+        }
 
 
 

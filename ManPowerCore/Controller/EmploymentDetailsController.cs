@@ -15,6 +15,8 @@ namespace ManPowerCore.Controller
         List<EmploymentDetails> GetAllEmploymentDetails();
 
         EmploymentDetails GetEmploymentDetails(int id);
+
+        List<EmploymentDetails> GetEmploymentDetailsByEmpId(int empId);
     }
 
     public class EmploymentDetailsControllerImpl : EmploymentDetailsController
@@ -75,6 +77,31 @@ namespace ManPowerCore.Controller
             {
                 EmploymentDetailsDAO DAO = DAOFactory.CreateEmploymentDetailsDAO();
                 List<EmploymentDetails> list = DAO.GetAllEmploymentDetails(dBConnection);
+                return list;
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                return null;
+            }
+
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+
+        }
+
+        public List<EmploymentDetails> GetEmploymentDetailsByEmpId(int empId)
+        {
+            DBConnection dBConnection = new DBConnection();
+
+            try
+            {
+                EmploymentDetailsDAO DAO = DAOFactory.CreateEmploymentDetailsDAO();
+                List<EmploymentDetails> list = DAO.GetEmploymentDetailsByEmpId(empId, dBConnection);
                 return list;
             }
 

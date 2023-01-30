@@ -19,7 +19,7 @@ namespace ManPowerCore.Domain
 
         [DBField("APPOINTMENT_DATE")]
         public DateTime AppointmentDate { get; set; }
-        
+
         [DBField("DATE_ASSUMED_DUTY")]
         public string DateAssumedDuty { get; set; }
 
@@ -31,6 +31,9 @@ namespace ManPowerCore.Domain
 
         [DBField("CONFIRMED")]
         public int ServiceConfirmed { get; set; }
+
+        [DBField("GRADE")]
+        public string empGrade { get; set; }
 
     }
 }

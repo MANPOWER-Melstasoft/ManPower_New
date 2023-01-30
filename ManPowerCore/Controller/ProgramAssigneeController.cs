@@ -88,7 +88,7 @@ namespace ManPowerCore.Controller
                     ProgramTargetDAO _ProgramTargetDAO = DAOFactory.CreateProgramTargetDAO();
                     foreach (var item in list)
                     {
-                        item._ProgramTarget = _ProgramTargetDAO.GetProgramTarget(item.ProgramAssigneeId, dBConnection);
+                        item._ProgramTarget = _ProgramTargetDAO.GetProgramTarget(item.ProgramTargetId, dBConnection);
                     }
                 }
 
@@ -98,7 +98,7 @@ namespace ManPowerCore.Controller
                     DepartmentUnitPositionsDAO _DepartmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
                     foreach (var item in list)
                     {
-                        item._DepartmentUnitPositions = _DepartmentUnitPositionsDAO.GetDepartmentUnitPositions(item.ProgramAssigneeId, dBConnection);
+                        item._DepartmentUnitPositions = _DepartmentUnitPositionsDAO.GetDepartmentUnitPositions(item.DepartmentUnitPossitionsId, dBConnection);
                     }
 
                 }

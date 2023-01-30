@@ -522,5 +522,11 @@ namespace ManPowerCore.Common
             return (TransferController)transferController;
         }
 
+
+        public static VacancyPositionController CreateVacancyPositionController()
+        {
+            VacancyPositionController vacancyPositionController = new VacancyPositionControllerImpl();
+            return (VacancyPositionController)vacancyPositionController;
+        }
     }
 }

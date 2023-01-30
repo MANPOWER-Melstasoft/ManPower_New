@@ -17,7 +17,6 @@ namespace ManPowerWeb
         private int month = DateTime.Now.AddMonths(1).Month;
         public DateTime monthYear = DateTime.Now.AddMonths(1);
         private string monthName = DateTime.Now.AddMonths(1).ToString("MMMM");
-        //List<TaskAllocationDetail> taskallocationDetailList = new List<TaskAllocationDetail>();
         List<TaskAllocationDetail> taskallocationDetailList1 = new List<TaskAllocationDetail>();
 
         List<TaskAllocation> taskAllocationList;

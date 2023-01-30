@@ -2,6 +2,7 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,11 @@ namespace ManPowerCore.Infrastructure
     public interface ProjectPlanResourceDAO
     {
         int SaveProjectPlanResource(ProjectPlanResource projectPlanResource, DBConnection dbConnection);
+
+        List<ProjectPlanResource> GetAllProjectPlanResources(DBConnection dbConnection);
+
+        List<ProjectPlanResource> GetAllProjectPlanResourcesByProjectPlanId(int programTarget, DBConnection dbConnection);
+
         //int SaveProjectPlanResourceByList(List<ProjectPlanResource> projectPlanResource, DBConnection dbConnection);
     }
 
@@ -35,6 +41,29 @@ namespace ManPowerCore.Infrastructure
             return result;
         }
 
+        public List<ProjectPlanResource> GetAllProjectPlanResources(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Resource_Person_Program_Plan ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<ProjectPlanResource>(dbConnection.dr);
+        }
+
+        public List<ProjectPlanResource> GetAllProjectPlanResourcesByProjectPlanId(int planId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Resource_Person_Program_Plan Where Program_Plan_Id=" + planId + " ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<ProjectPlanResource>(dbConnection.dr);
+        }
         //public int SaveProjectPlanResourceByList(List<ProjectPlanResource> projectPlanResource, DBConnection dbConnection)
         //{
         //    if (dbConnection.dr != null)

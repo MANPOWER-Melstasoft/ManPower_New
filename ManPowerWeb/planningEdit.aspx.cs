@@ -21,6 +21,7 @@ namespace ManPowerWeb
         List<ProgramPlan> programPlansListBind = new List<ProgramPlan>();
         SystemUser systemUser = new SystemUser();
         List<string> projectPlanResourceStringList = new List<string>();
+        List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
 
 
         int programTargetId;
@@ -60,6 +61,7 @@ namespace ManPowerWeb
 
             programTarget = programTargetController.GetProgramTarget(Convert.ToInt32(Request.QueryString["ProgramTargetId"]));
             ViewState["programTarget"] = programTarget;
+            programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
 
 
             RecommendedBy = programTarget.RecommendedBy;
@@ -79,6 +81,27 @@ namespace ManPowerWeb
             chkList.DataValueField = "ResoursePersonId";
             chkList.DataTextField = "Name";
             chkList.DataBind();
+
+            ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
+            projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlanId);
+
+
+
+            foreach (var item in projectPlanResourcesList)
+            {
+
+
+                for (int i = 0; i < chkList.Items.Count; i++)
+                {
+                    if (chkList.Items[i].Value == item.ResourcePersonId.ToString())
+                    {
+                        chkList.Items[i].Selected = true;
+                    }
+                }
+            }
+
+      
+
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
 

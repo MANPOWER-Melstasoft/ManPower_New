@@ -462,6 +462,42 @@ namespace ManPowerCore.Common
             return (TrainingRefferalFeedbackController)trainingRefferalFeedbackController;
         }
 
+        public static RequestTypeController CreateRequestTypeController()
+        {
+            RequestTypeController requestTypeController = new RequestTypeControllerSqlImpl();
+            return (RequestTypeController)requestTypeController;
+        }
+
+        public static TransfersRetirementResignationStatusController CreateTransfersRetirementResignationStatusController()
+        {
+            TransfersRetirementResignationStatusController transfersRetirementResignationStatusController = new TransfersRetirementResignationStatusControllerSqlImpl();
+            return (TransfersRetirementResignationStatusController)transfersRetirementResignationStatusController;
+        }
+
+        public static ApproveActionController CreateApproveActionController()
+        {
+            ApproveActionController approveActionController = new ApproveActionControllerSqlImpl();
+            return (ApproveActionController)approveActionController;
+        }
+
+        public static ReverseReasonController CreateReverseReasonController()
+        {
+            ReverseReasonController reverseReasonController = new ReverseReasonControllerSqlImpl();
+            return (ReverseReasonController)reverseReasonController;
+        }
+
+        public static TransferTypeController CreateTransferTypeController()
+        {
+            TransferTypeController transferTypeController = new TransferTypeControllerSqlImpl();
+            return (TransferTypeController)transferTypeController;
+        }
+
+        public static RetirementTypeController CreateRetirementTypeController()
+        {
+            RetirementTypeController retirementTypeController = new RetirementTypeControllerSqlImpl();
+            return (RetirementTypeController)retirementTypeController;
+        }
+
         public static VacancyPositionController CreateVacancyPositionController()
         {
             VacancyPositionController vacancyPositionController = new VacancyPositionControllerImpl();

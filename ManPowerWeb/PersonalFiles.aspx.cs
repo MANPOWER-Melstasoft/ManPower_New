@@ -29,6 +29,7 @@ namespace ManPowerWeb
         int[] attempt = { 1, 2, 3 };
         string[] eduStatus = { "Completed", "Not Completed" };
         string[] isResigned = { "Yes", "No" };
+        string[] absorbStatus = { "Yes", "Not Relevent" };
         int[] yearslist =
         {
             (DateTime.Today.Year),
@@ -99,9 +100,9 @@ namespace ManPowerWeb
                 id1.Visible = true;
                 id2.Visible = false;
                 id3.Visible = false;
-                id4.Visible = false;
-                id5.Visible = false;
-                id6.Visible = false;
+                //id4.Visible = false;
+                //id5.Visible = false;
+                //id6.Visible = false;
                 id7.Visible = false;
             }
         }
@@ -136,22 +137,32 @@ namespace ManPowerWeb
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
             listDistrict = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 2 || u.DepartmentUnitTypeId == 1).ToList();
 
-
             ddlGender.DataSource = gen;
             ddlGender.DataBind();
 
-            ddlEducationStatus.DataSource = eduStatus;
-            ddlEducationStatus.DataBind();
+            //ddlEducationStatus.DataSource = eduStatus;
+            //ddlEducationStatus.DataBind();
 
-            ddlEthnicity.DataSource = ethnicityList;
-            ddlEthnicity.DataValueField = "EthnicityId";
-            ddlEthnicity.DataTextField = "EthnicityName";
-            ddlEthnicity.DataBind();
+            //ddlEthnicity.DataSource = ethnicityList;
+            //ddlEthnicity.DataValueField = "EthnicityId";
+            //ddlEthnicity.DataTextField = "EthnicityName";
+            //ddlEthnicity.DataBind();
 
-            ddlReligion.DataSource = religionList;
-            ddlReligion.DataValueField = "ReligionId";
-            ddlReligion.DataTextField = "ReligionName";
-            ddlReligion.DataBind();
+            //ddlReligion.DataSource = religionList;
+            //ddlReligion.DataValueField = "ReligionId";
+            //ddlReligion.DataTextField = "ReligionName";
+            //ddlReligion.DataBind();
+
+            //ddlEducation.DataSource = educationTypes;
+            //ddlEducation.DataValueField = "EducationTypeId";
+            //ddlEducation.DataTextField = "EducationTypeName";
+            //ddlEducation.DataBind();
+
+            //ddlAttempt.DataSource = attempt;
+            //ddlAttempt.DataBind();
+
+            //ddlYear.DataSource = yearslist;
+            //ddlYear.DataBind();
 
             ddlDependant.DataSource = dependantTypes;
             ddlDependant.DataValueField = "DependantTypeId";
@@ -161,10 +172,8 @@ namespace ManPowerWeb
             ddlMaritalStatus.DataSource = mmStatus;
             ddlMaritalStatus.DataBind();
 
-            ddlEducation.DataSource = educationTypes;
-            ddlEducation.DataValueField = "EducationTypeId";
-            ddlEducation.DataTextField = "EducationTypeName";
-            ddlEducation.DataBind();
+            ddlAbsorb.DataSource = absorbStatus;
+            ddlAbsorb.DataBind();
 
             ddlService.DataSource = serviceTypeList;
             ddlService.DataValueField = "ServiceTypeId";
@@ -187,17 +196,10 @@ namespace ManPowerWeb
             ddlDistrict.DataBind();
             ddlDistrict.Items.Insert(0, new ListItem("- Select -", ""));
 
-
             ddlDS.DataSource = listDSDivision;
             ddlDS.DataTextField = "Name";
             ddlDS.DataValueField = "DepartmentUnitId";
             ddlDS.DataBind();
-
-            ddlAttempt.DataSource = attempt;
-            ddlAttempt.DataBind();
-
-            ddlYear.DataSource = yearslist;
-            ddlYear.DataBind();
 
         }
 
@@ -290,6 +292,19 @@ namespace ManPowerWeb
                 }
             }
 
+            if (Uploader.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/DependantDocuments/") + uploadFile.FileName);
+                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+                    }
+                }
+            }
 
 
             ViewState["dependant"] = dependant;
@@ -308,6 +323,7 @@ namespace ManPowerWeb
             mCertificateNo.Text = null;
             workingCompany.Text = null;
             city.Text = null;
+            lblListOfUploadedFiles.Text = null;
         }
 
         protected void RemoveDependant(object sender, EventArgs e)
@@ -345,7 +361,7 @@ namespace ManPowerWeb
                         EndDate = calcuatedDate,
                         IsResigned = int.Parse(reseg.SelectedValue),
                         RetirementDate = Convert.ToDateTime(retiredDate.Text),
-                        Epf = int.Parse(epf.Text)
+
                     });
                 }
                 else
@@ -359,7 +375,7 @@ namespace ManPowerWeb
                         EndDate = calcuatedDate,
                         IsResigned = int.Parse(reseg.SelectedValue),
                         RetirementDate = DateTime.Today,
-                        Epf = int.Parse(epf.Text)
+
                     });
                 }
             }
@@ -378,7 +394,7 @@ namespace ManPowerWeb
                         EndDate = calcuatedDate,
                         IsResigned = int.Parse(reseg.SelectedValue),
                         RetirementDate = Convert.ToDateTime(retiredDate.Text),
-                        Epf = int.Parse(epf.Text)
+
                     });
                 }
                 else
@@ -392,7 +408,7 @@ namespace ManPowerWeb
                         EndDate = calcuatedDate,
                         IsResigned = int.Parse(reseg.SelectedValue),
                         RetirementDate = DateTime.Today,
-                        Epf = int.Parse(epf.Text)
+
                     });
                 }
             }
@@ -415,7 +431,7 @@ namespace ManPowerWeb
                             EndDate = Convert.ToDateTime(eDate.Text),
                             IsResigned = int.Parse(reseg.SelectedValue),
                             RetirementDate = Convert.ToDateTime(retiredDate.Text),
-                            Epf = int.Parse(epf.Text)
+
                         });
                     }
                     else
@@ -429,7 +445,7 @@ namespace ManPowerWeb
                             EndDate = Convert.ToDateTime(eDate.Text),
                             IsResigned = int.Parse(reseg.SelectedValue),
                             RetirementDate = DateTime.Today,
-                            Epf = int.Parse(epf.Text)
+
                         });
                     }
                 }
@@ -437,11 +453,10 @@ namespace ManPowerWeb
 
 
             companyName.Text = null;
-            //empNo.Text = null;
             sDate.Text = null;
             eDate.Text = null;
             retiredDate.Text = null;
-            epf.Text = null;
+
 
             ViewState["employmentDetails"] = employmentDetails;
             emplDetailsGV.DataSource = employmentDetails;
@@ -462,70 +477,70 @@ namespace ManPowerWeb
         }
 
 
-        protected void addEducation(object sender, EventArgs e)
-        {
+        //protected void addEducation(object sender, EventArgs e)
+        //{
 
-            retiredDate.Text = DateTime.Today.ToString();
-            if (educationDetails.Count == 0 && ViewState["educationDetails"] != null)
-            {
-                educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
-            }
+        //    retiredDate.Text = DateTime.Today.ToString();
+        //    if (educationDetails.Count == 0 && ViewState["educationDetails"] != null)
+        //    {
+        //        educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+        //    }
 
-            if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
-            {
-                educationDetails.Add(new EducationDetails()
-                {
-                    EducationTypeId = int.Parse(ddlEducation.SelectedValue),
-                    StudiedInstitute = uni.Text,
-                    NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
-                    ExamYear = int.Parse(ddlYear.SelectedValue),
-                    ExamIndex = index.Text,
-                    ExamSubject = sub.Text,
-                    ExamStream = stream.Text,
-                    ExamGrade = grade.Text,
-                    ExamStatus = ddlEducationStatus.SelectedValue
-                });
-            }
-            else
-            {
-                educationDetails.Add(new EducationDetails()
-                {
-                    EducationTypeId = int.Parse(ddlEducation.SelectedValue),
-                    StudiedInstitute = uni.Text,
-                    NoOfAttempts = 1,
-                    ExamYear = int.Parse(ddlYear.SelectedValue),
-                    ExamIndex = index.Text,
-                    ExamSubject = "",
-                    ExamStream = "",
-                    ExamGrade = "",
-                    ExamStatus = ddlEducationStatus.SelectedValue
-                });
-            }
+        //    if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
+        //    {
+        //        educationDetails.Add(new EducationDetails()
+        //        {
+        //            EducationTypeId = int.Parse(ddlEducation.SelectedValue),
+        //            StudiedInstitute = uni.Text,
+        //            NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
+        //            ExamYear = int.Parse(ddlYear.SelectedValue),
+        //            ExamIndex = index.Text,
+        //            ExamSubject = sub.Text,
+        //            ExamStream = stream.Text,
+        //            ExamGrade = grade.Text,
+        //            ExamStatus = ddlEducationStatus.SelectedValue
+        //        });
+        //    }
+        //    else
+        //    {
+        //        educationDetails.Add(new EducationDetails()
+        //        {
+        //            EducationTypeId = int.Parse(ddlEducation.SelectedValue),
+        //            StudiedInstitute = uni.Text,
+        //            NoOfAttempts = 1,
+        //            ExamYear = int.Parse(ddlYear.SelectedValue),
+        //            ExamIndex = index.Text,
+        //            ExamSubject = "",
+        //            ExamStream = "",
+        //            ExamGrade = "",
+        //            ExamStatus = ddlEducationStatus.SelectedValue
+        //        });
+        //    }
 
 
-            uni.Text = null;
-            index.Text = null;
-            sub.Text = null;
-            stream.Text = null;
-            grade.Text = null;
+        //    uni.Text = null;
+        //    index.Text = null;
+        //    sub.Text = null;
+        //    stream.Text = null;
+        //    grade.Text = null;
 
-            ViewState["educationDetails"] = educationDetails;
-            educationGV.DataSource = educationDetails;
-            educationGV.DataBind();
-        }
+        //    ViewState["educationDetails"] = educationDetails;
+        //    educationGV.DataSource = educationDetails;
+        //    educationGV.DataBind();
+        //}
 
-        protected void RemoveEducation(object sender, EventArgs e)
-        {
-            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+        //protected void RemoveEducation(object sender, EventArgs e)
+        //{
+        //    GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //    int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
-            educationDetails.RemoveAt(rowIndex);
+        //    educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+        //    educationDetails.RemoveAt(rowIndex);
 
-            ViewState["educationDetails"] = educationDetails;
-            educationGV.DataSource = educationDetails;
-            educationGV.DataBind();
-        }
+        //    ViewState["educationDetails"] = educationDetails;
+        //    educationGV.DataSource = educationDetails;
+        //    educationGV.DataBind();
+        //}
 
         protected void addServices(object sender, EventArgs e)
         {
@@ -575,8 +590,8 @@ namespace ManPowerWeb
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
             Employee emp = new Employee();
 
-            emp.ReligionId = int.Parse(ddlReligion.SelectedValue);
-            emp.EthnicityId = int.Parse(ddlEthnicity.SelectedValue);
+            emp.ReligionId = 0;
+            emp.EthnicityId = 0;
             emp.EmployeeNIC = nic.Text;
             emp.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
             emp.EmployeePassportNumber = empPassport.Text;
@@ -589,6 +604,11 @@ namespace ManPowerWeb
             emp.SupervisorId = 0;
             emp.ManagerId = 0;
             emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
+            emp.EpmAbsorb = ddlAbsorb.SelectedValue;
+            emp.PensionDate = Convert.ToDateTime(pensionDate.Text);
+            emp.VNOPNo = int.Parse(vnop.Text);
+            emp.FileNo = int.Parse(fileNo.Text);
+            emp.AppointmentNo = int.Parse(appointmenLetterNo.Text);
 
             if (ddlDS.SelectedValue != "")
             {
@@ -607,24 +627,26 @@ namespace ManPowerWeb
                 }
             }
 
+
+
             emp._Dependant = (List<Dependant>)ViewState["dependant"];
             emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"]; ;
             emp._EducationDetails = (List<EducationDetails>)ViewState["educationDetails"];
             emp._EmployeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
 
-            emp._EmergencyContact.Name = ecName.Text;
-            emp._EmergencyContact.DependentToEmployee = ecRelationship.Text;
-            emp._EmergencyContact.EmgAddress = ecAddress.Text;
-            emp._EmergencyContact.EmgTelephone = int.Parse(landLine.Text);
-            emp._EmergencyContact.EmgMobile = int.Parse(ecMobile.Text);
-            emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
+            //emp._EmergencyContact.Name = ecName.Text;
+            //emp._EmergencyContact.DependentToEmployee = ecRelationship.Text;
+            //emp._EmergencyContact.EmgAddress = ecAddress.Text;
+            //emp._EmergencyContact.EmgTelephone = int.Parse(landLine.Text);
+            //emp._EmergencyContact.EmgMobile = int.Parse(ecMobile.Text);
+            //emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
 
-            emp._EmployeeContact.EmpAddress = address.Text;
-            emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
-            emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
-            emp._EmployeeContact.EmpEmail = email.Text;
-            emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
-            emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
+            //emp._EmployeeContact.EmpAddress = address.Text;
+            //emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
+            //emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
+            //emp._EmployeeContact.EmpEmail = email.Text;
+            //emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
+            //emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
 
 
             int result1 = employeeController.SaveEmployee(emp);
@@ -675,9 +697,9 @@ namespace ManPowerWeb
                 id1.Visible = false;
                 id2.Visible = true;
                 id3.Visible = false;
-                id4.Visible = false;
-                id5.Visible = false;
-                id6.Visible = false;
+                //id4.Visible = false;
+                //id5.Visible = false;
+                //id6.Visible = false;
                 id7.Visible = false;
             }
         }
@@ -687,9 +709,9 @@ namespace ManPowerWeb
             id1.Visible = true;
             id2.Visible = false;
             id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = false;
+            //id4.Visible = false;
+            //id5.Visible = false;
+            //id6.Visible = false;
             id7.Visible = false;
         }
 
@@ -698,9 +720,9 @@ namespace ManPowerWeb
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = true;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = false;
+            //id4.Visible = false;
+            //id5.Visible = false;
+            //id6.Visible = false;
             id7.Visible = false;
         }
 
@@ -709,9 +731,9 @@ namespace ManPowerWeb
             id1.Visible = false;
             id2.Visible = true;
             id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = false;
+            //id4.Visible = false;
+            //id5.Visible = false;
+            //id6.Visible = false;
             id7.Visible = false;
         }
 
@@ -720,10 +742,10 @@ namespace ManPowerWeb
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = false;
-            id4.Visible = true;
-            id5.Visible = false;
-            id6.Visible = false;
-            id7.Visible = false;
+            //id4.Visible = true;
+            //id5.Visible = false;
+            //id6.Visible = false;
+            id7.Visible = true;
         }
 
         protected void page4PrevClick(object sender, EventArgs e)
@@ -732,83 +754,83 @@ namespace ManPowerWeb
             id1.Visible = false;
             id2.Visible = false;
             id3.Visible = true;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = false;
+            //id4.Visible = false;
+            //id5.Visible = false;
+            //id6.Visible = false;
             id7.Visible = false;
         }
 
-        protected void page4NextClick(object sender, EventArgs e)
-        {
+        //protected void page4NextClick(object sender, EventArgs e)
+        //{
 
-            id1.Visible = false;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = true;
-            id6.Visible = false;
-            id7.Visible = false;
-        }
+        //    id1.Visible = false;
+        //    id2.Visible = false;
+        //    id3.Visible = false;
+        //    id4.Visible = false;
+        //    id5.Visible = true;
+        //    id6.Visible = false;
+        //    id7.Visible = false;
+        //}
 
-        protected void page5PrevClick(object sender, EventArgs e)
-        {
+        //protected void page5PrevClick(object sender, EventArgs e)
+        //{
 
-            id1.Visible = false;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = true;
-            id5.Visible = false;
-            id6.Visible = false;
-            id7.Visible = false;
-        }
+        //    id1.Visible = false;
+        //    id2.Visible = false;
+        //    id3.Visible = false;
+        //    id4.Visible = true;
+        //    id5.Visible = false;
+        //    id6.Visible = false;
+        //    id7.Visible = false;
+        //}
 
-        protected void page5NextClick(object sender, EventArgs e)
-        {
+        //protected void page5NextClick(object sender, EventArgs e)
+        //{
 
-            id1.Visible = false;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = true;
-            id7.Visible = false;
-        }
+        //    id1.Visible = false;
+        //    id2.Visible = false;
+        //    id3.Visible = false;
+        //    id4.Visible = false;
+        //    id5.Visible = false;
+        //    id6.Visible = true;
+        //    id7.Visible = false;
+        //}
 
-        protected void page6PrevClick(object sender, EventArgs e)
-        {
+        //protected void page6PrevClick(object sender, EventArgs e)
+        //{
 
-            id1.Visible = false;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = true;
-            id6.Visible = false;
-            id7.Visible = false;
-        }
+        //    id1.Visible = false;
+        //    id2.Visible = false;
+        //    id3.Visible = false;
+        //    id4.Visible = false;
+        //    id5.Visible = true;
+        //    id6.Visible = false;
+        //    id7.Visible = false;
+        //}
 
-        protected void page6NextClick(object sender, EventArgs e)
-        {
+        //protected void page6NextClick(object sender, EventArgs e)
+        //{
 
-            id1.Visible = false;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = false;
-            id7.Visible = true;
-        }
+        //    id1.Visible = false;
+        //    id2.Visible = false;
+        //    id3.Visible = false;
+        //    id4.Visible = false;
+        //    id5.Visible = false;
+        //    id6.Visible = false;
+        //    id7.Visible = true;
+        //}
 
-        protected void page7PrevClick(object sender, EventArgs e)
-        {
+        //protected void page7PrevClick(object sender, EventArgs e)
+        //{
 
-            id1.Visible = false;
-            id2.Visible = false;
-            id3.Visible = false;
-            id4.Visible = false;
-            id5.Visible = false;
-            id6.Visible = true;
-            id7.Visible = false;
-        }
+        //    id1.Visible = false;
+        //    id2.Visible = false;
+        //    id3.Visible = false;
+        //    id4.Visible = false;
+        //    id5.Visible = false;
+        //    id6.Visible = true;
+        //    id7.Visible = false;
+        //}
 
 
     }

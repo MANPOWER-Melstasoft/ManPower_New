@@ -205,6 +205,8 @@
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="MaintenanceRequestView.aspx" />
     <Content Include="PersonalFiles.aspx" />
+    <Content Include="PersonalFilesSearch.aspx" />
+    <Content Include="PersonalFilesView.aspx" />
     <Content Include="ProgramTargetView.aspx" />
     <Content Include="Recommend1DME21.aspx" />
     <Content Include="Recommend1DME21Render.aspx" />
@@ -255,11 +257,13 @@
     <Content Include="Site.Master" />
     <Content Include="SpecialAmendment.aspx" />
     <Content Include="specialAmendmentRender.aspx" />
+    <Content Include="SpecialProgram.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="testing.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
     <Content Include="UserList.aspx" />
+    <Content Include="UserProfile.aspx" />
     <Content Include="VacancyReg.aspx" />
     <Content Include="VacancyRegSearch.aspx" />
     <Content Include="VacancyRegView.aspx" />
@@ -2334,6 +2338,20 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PersonalFilesSearch.aspx.cs">
+      <DependentUpon>PersonalFilesSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFilesSearch.aspx.designer.cs">
+      <DependentUpon>PersonalFilesSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalFilesView.aspx.cs">
+      <DependentUpon>PersonalFilesView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFilesView.aspx.designer.cs">
+      <DependentUpon>PersonalFilesView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="planning.aspx.cs">
       <DependentUpon>planning.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2468,6 +2486,13 @@
     <Compile Include="specialAmendmentRender.aspx.designer.cs">
       <DependentUpon>specialAmendmentRender.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SpecialProgram.aspx.cs">
+      <DependentUpon>SpecialProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpecialProgram.aspx.designer.cs">
+      <DependentUpon>SpecialProgram.aspx</DependentUpon>
+    </Compile>
     <Compile Include="testing.aspx.cs">
       <DependentUpon>testing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2497,6 +2522,13 @@
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPrevilage.cs" />
+    <Compile Include="UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VacancyReg.aspx.cs">
       <DependentUpon>VacancyReg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2556,6 +2588,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SystemDocuments\DependantDocuments\" />
     <Folder Include="SystemDocuments\ProgramPlanResources\" />
     <Folder Include="SystemDocuments\Quatations\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />

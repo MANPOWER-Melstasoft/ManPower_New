@@ -157,19 +157,6 @@
                     <div class="row">
                         <div class="col-sm-4">
 
-                            <asp:Literal ID="Literal8" runat="server" Text="Resource Person"></asp:Literal>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:DropDownList runat="server" ID="ddlResourcePerson" CssClass="form-control form-control-user" SelectionMode="Multiple"></asp:DropDownList>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-
                             <asp:Literal ID="Literal11" runat="server" Text="Resource Person"></asp:Literal>
                         </div>
                         <div class="col-md-4">
@@ -192,8 +179,18 @@
                         </div>
                     </div>
                 </div>
+                <%--  <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
 
+                            <asp:Literal ID="Literal8" runat="server" Text="Resource Person"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:DropDownList runat="server" ID="ddlResourcePerson" CssClass="form-control form-control-user" SelectionMode="Multiple"></asp:DropDownList>
 
+                        </div>
+                    </div>
+                </div>--%>
             </div>
 
             <div class="row mb-3 ms-1">

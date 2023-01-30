@@ -14,7 +14,7 @@ namespace ManPowerCore.Domain
         [DBField("Id")]
         public int Id { get; set; }
 
-        [DBField("Name")]
+        [DBField("Reverse_Reason_Name")]
         public string ReverseReasonName { get; set; }
 
         [DBField("Is_Active")]

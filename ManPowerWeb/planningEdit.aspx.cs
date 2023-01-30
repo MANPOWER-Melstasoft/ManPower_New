@@ -20,6 +20,9 @@ namespace ManPowerWeb
         List<ProgramPlan> programPlansList = new List<ProgramPlan>();
         List<ProgramPlan> programPlansListBind = new List<ProgramPlan>();
         SystemUser systemUser = new SystemUser();
+        List<string> projectPlanResourceStringList = new List<string>();
+        List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
+
 
         int programTargetId;
         int programPlanId;
@@ -58,6 +61,7 @@ namespace ManPowerWeb
 
             programTarget = programTargetController.GetProgramTarget(Convert.ToInt32(Request.QueryString["ProgramTargetId"]));
             ViewState["programTarget"] = programTarget;
+            programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
 
 
             RecommendedBy = programTarget.RecommendedBy;
@@ -68,14 +72,38 @@ namespace ManPowerWeb
 
 
             txtManger.Text = systemUser.Name;
-            ddlResourcePerson.DataSource = resourcePeopleList;
-            ddlResourcePerson.DataValueField = "ResoursePersonId";
-            ddlResourcePerson.DataTextField = "Name";
-            ddlResourcePerson.DataBind();
+            //ddlResourcePerson.DataSource = resourcePeopleList;
+            //ddlResourcePerson.DataValueField = "ResoursePersonId";
+            //ddlResourcePerson.DataTextField = "Name";
+            //ddlResourcePerson.DataBind();
+
+            chkList.DataSource = resourcePeopleList;
+            chkList.DataValueField = "ResoursePersonId";
+            chkList.DataTextField = "Name";
+            chkList.DataBind();
+
+            ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
+            projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlanId);
+
+
+
+            foreach (var item in projectPlanResourcesList)
+            {
+
+
+                for (int i = 0; i < chkList.Items.Count; i++)
+                {
+                    if (chkList.Items[i].Value == item.ResourcePersonId.ToString())
+                    {
+                        chkList.Items[i].Selected = true;
+                    }
+                }
+            }
+
+
+
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
-
-
             programPlansList = programPlanController.GetAllProgramPlan();
 
             programPlansListBind = programPlansList.Where(x => x.ProgramPlanId == programPlanId).ToList();
@@ -86,11 +114,7 @@ namespace ManPowerWeb
             txtFemaleCount.Text = programPlansListBind[0].FemaleCount.ToString();
             txtMaleCount.Text = programPlansListBind[0].MaleCount.ToString();
             txtLocation.Text = programPlansListBind[0].Location.ToString();
-            if (programPlansListBind[0].Coordinater != null)
-            {
-                ddlResourcePerson.Text = programPlansListBind[0].Coordinater.ToString();
 
-            }
             txtEstimateAmount.Text = programTarget.EstimatedAmount.ToString();
 
 
@@ -144,7 +168,7 @@ namespace ManPowerWeb
             programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
             programPlan.Remark = "";
             programPlan.ProgramTargetId = programTargetId;
-            programPlan.Coordinater = ddlResourcePerson.SelectedItem.Text;
+            programPlan.Coordinater = "";
             programPlan.ProgramPlanId = programPlanId;
 
 
@@ -177,7 +201,7 @@ namespace ManPowerWeb
                 programPlan.Date = DateTime.Parse(txtDate.Text);
 
 
-                int response = programPlanController.UpdateProgramPlan(programPlan);
+                int response = programPlanController.UpdateProgramPlan(programPlan, (List<string>)ViewState["projectPlanResourceStringList"]);
                 if (response != 0)
                 {
 
@@ -209,6 +233,39 @@ namespace ManPowerWeb
             }
         }
 
+        protected void chkList_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+            for (int i = 0; i < chkList.Items.Count; i++)
+            {
+                if (chkList.Items[i].Selected == true)// getting selected value from CheckBox List  
+                {
+                    projectPlanResourceStringList.Add(chkList.Items[i].Value); // add selected Item text to the String .  
+                }
+
+            }
+
+            ViewState["projectPlanResourceStringList"] = projectPlanResourceStringList.ToList();
+        }
+
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    string str = "";
+
+        //    for (int i = 0; i < chkList.Items.Count; i++)
+        //    {
+        //        if (chkList.Items[i].Selected == true)// getting selected value from CheckBox List  
+        //        {
+        //            str += chkList.Items[i].Text + " ," + "<br/>"; // add selected Item text to the String .  
+        //        }
+
+
+        //    }
+        //    if (str != "")
+        //    {
+        //        str = str.Substring(0, str.Length - 7); // Remove Last "," from the string .  
+        //        lblmsg.Text = "Selected Cities are <br/><br/>" + str; // Show selected Item List by Label.  
+        //    }
+        //}
     }
 }

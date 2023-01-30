@@ -2,8 +2,11 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +28,8 @@ namespace ManPowerCore.Infrastructure
         List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, DBConnection dbConnection);
 
         List<ProgramPlan> getddlProgramPlan(int depId, int year, DBConnection dBConnection);
+
+        DataTable getProgramPlan(int DepID, DBConnection dbConnection);
     }
 
     public class ProgramPlanDAOImpl : ProgramPlanDAO
@@ -255,6 +260,33 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<ProgramPlan>(dbConnection.dr);
+        }
+
+        public DataTable getProgramPlan(int DepId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            DataTable programPlanList = new DataTable();
+
+            dbConnection.cmd.CommandText = "SELECT  e.Name AS Program_Name ,a.Id, a.Location,a.Date,a.Approved_Amount," +
+                " a.Male_Count, a.Female_Count , a.Male_Count + a.Female_Count as total_count," +
+                " b.Vote_Number,a.Financial_Source, g.Name, g.Work_Place, b.Period_Type" +
+                " FROM Program_Plan a INNER JOIN Program_Target b ON a.Program_Target_Id = b.Id " +
+                " INNER JOIN Program_Assignee c ON c.Program_Target_Id = b.Id " +
+                "INNER JOIN Program e ON e.id = b.program_id " +
+                "LEFT JOIN Resource_Person_Program_Plan f ON f.Program_Plan_Id = a.Id " +
+                "INNER JOIN Resource_Person g ON f.Resourse_Person_Id = g.id " +
+                "LEFT JOIN Job_Refferals h ON h.Program_Plan_Id = a.Id " +
+                "LEFT JOIN Training_Refferals i ON i.Program_Plan_Id = a.Id " +
+                "LEFT JOIN Career_Key_Test_Results k ON k.Program_Plan_Id = a.Id " +
+                "WHERE c.Department_Unit_Possitions_Id = " + DepId;
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(dbConnection.cmd);
+            dataAdapter.Fill(programPlanList);
+
+
+            return programPlanList;
         }
     }
 }

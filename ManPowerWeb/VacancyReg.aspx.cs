@@ -35,6 +35,7 @@ namespace ManPowerWeb
                 BindDataSource();
                 ddlDsDivision.Enabled = false;
                 ddlDistrict.Enabled = false;
+                bindVacancyType();
 
             }
         }
@@ -46,6 +47,20 @@ namespace ManPowerWeb
 
             ddlLevel.DataSource = levelsDD;
             ddlLevel.DataBind();
+        }
+
+        private void bindVacancyType()
+        {
+            VacancyPositionController vacancyPositionController = ControllerFactory.CreateVacancyPositionController();
+            List<VacancyPosition> listVacancy = new List<VacancyPosition>();
+
+            listVacancy = vacancyPositionController.getVacancyPositionList();
+            ddlvanacnyType.DataSource = listVacancy.Where(x => x.IsActive == 1);
+            ddlvanacnyType.DataValueField = "Id";
+            ddlvanacnyType.DataTextField = "VacancyPositionName";
+            ddlvanacnyType.DataBind();
+            ddlvanacnyType.Items.Insert(0, new ListItem("Select Job Position", ""));
+
         }
 
         protected void rbDepartmentLocationType_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,7 +134,7 @@ namespace ManPowerWeb
             companyVecansyRegistationDetails.VAddress = address.Text;
             companyVecansyRegistationDetails.WebSiteLink = link.Text;
             companyVecansyRegistationDetails.BusinessRegistationNumber = regNo.Text;
-            companyVecansyRegistationDetails.JobPosition = position.Text;
+            companyVecansyRegistationDetails.JobPosition = ddlvanacnyType.SelectedItem.Text;
             companyVecansyRegistationDetails.CareerPath = ddlPositions.SelectedValue;
             companyVecansyRegistationDetails.SalaryLevel = salary.Text;
             companyVecansyRegistationDetails.NumberOfVacancy = int.Parse(NoOfVacancy.Text);

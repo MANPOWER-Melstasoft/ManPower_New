@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace ManPowerCore.Controller
         //List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, bool withProgramTarget);
 
         List<ProgramPlan> getddlProgramPlan(int depId, int year);
+
+        DataTable getProgramPlan(int DepID);
     }
 
     public class ProgramPlanControllerImpl : ProgramPlanController
@@ -283,6 +286,29 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 programPlanList = programPlanDAO.getddlProgramPlan(depId, year, dBConnection);
                 return programPlanList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public DataTable getProgramPlan(int DepID)
+        {
+            DataTable programPlanTable = new DataTable();
+
+            try
+            {
+                dBConnection = new DBConnection();
+                programPlanTable = programPlanDAO.getProgramPlan(DepID, dBConnection);
+                return programPlanTable;
             }
             catch (Exception)
             {

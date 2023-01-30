@@ -11,7 +11,7 @@ namespace ManPowerCore.Controller
 {
     public interface TransferController
     {
-        int Save(Transfer transfer);
+        int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Transfer transfer);
         int Delete(int id);
         int Update(Transfer transfer);
         List<Transfer> GetAllTransfer(bool with0);
@@ -23,12 +23,18 @@ namespace ManPowerCore.Controller
         TransferDAO transferDAO = DAOFactory.CreateTransferDAO();
         DBConnection dBConnection;
 
-        public int Save(Transfer transfer)
+        public int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Transfer transfer)
         {
             try
             {
+                int output = 0;
                 dBConnection = new DBConnection();
-                return transferDAO.Save(transfer, dBConnection);
+
+                TransfersRetirementResignationMainDAO transfersRetirementResignationMainDAO = DAOFactory.CreateTransfersRetirementResignationMainDAO();
+                transfer.MainId = transfersRetirementResignationMainDAO.Save(transfersRetirementResignationMain, dBConnection);
+                output = transferDAO.Save(transfer, dBConnection);
+
+                return output;
             }
             catch (Exception)
             {

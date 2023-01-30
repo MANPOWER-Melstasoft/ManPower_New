@@ -117,6 +117,7 @@
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
     <Content Include="AddTrainingRequest.aspx" />
+    <Content Include="AddTransfersRetirementResignation.aspx" />
     <Content Include="AddVoteAllocation.aspx" />
     <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
@@ -259,6 +260,7 @@
     <Content Include="SpecialProgram.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="testing.aspx" />
+    <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
     <Content Include="UserList.aspx" />
@@ -2022,6 +2024,13 @@
     <Compile Include="AddTrainingRequest.aspx.designer.cs">
       <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddTransfersRetirementResignation.aspx.cs">
+      <DependentUpon>AddTransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddTransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>AddTransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddVoteAllocation.aspx.cs">
       <DependentUpon>AddVoteAllocation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2492,6 +2501,13 @@
     <Compile Include="testing.aspx.designer.cs">
       <DependentUpon>testing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TransfersRetirementResignation.aspx.cs">
+      <DependentUpon>TransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>TransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2583,7 +2599,10 @@
     <Folder Include="SystemDocuments\DependantDocuments\" />
     <Folder Include="SystemDocuments\ProgramPlanResources\" />
     <Folder Include="SystemDocuments\Quatations\" />
+    <Folder Include="SystemDocuments\Resignation\" />
+    <Folder Include="SystemDocuments\Retirement\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
+    <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

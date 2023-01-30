@@ -29,9 +29,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO Transfers_Retirement_Resignation_Main (Request_Type_Id, Status_Id, Employee_ID, Created_Date," +
-                "Created_User, Documents, Parent_Id, Parent_Action, Action_Taken_User_Id, Action_Taken_Date, Reason, Remarks)" +
-                "VALUES (@RequestTypeId, @StatusId, @EmployeeId, @CreatedDate, @CreatedUser, @Documents, @ParentId, @ParentAction," +
-                "@ActionTakenUserId, @ActionTakenDate, @Reason, @Remarks) ";
+                "Created_User, Documents, Parent_Id)" +
+                "VALUES (@RequestTypeId, @StatusId, @EmployeeId, @CreatedDate, @CreatedUser, @Documents, @ParentId) SELECT SCOPE_IDENTITY()";
 
             dbConnection.cmd.Parameters.AddWithValue("@RequestTypeId", obj.RequestTypeId);
             dbConnection.cmd.Parameters.AddWithValue("@StatusId", obj.StatusId);
@@ -40,13 +39,9 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", obj.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@Documents", obj.Documents);
             dbConnection.cmd.Parameters.AddWithValue("@ParentId", obj.ParentId);
-            dbConnection.cmd.Parameters.AddWithValue("@ParentAction", obj.ParentAction);
-            dbConnection.cmd.Parameters.AddWithValue("@ActionTakenUserId", obj.ActionTakenUserId);
-            dbConnection.cmd.Parameters.AddWithValue("@ActionTakenDate", obj.ActionTakenDate);
-            dbConnection.cmd.Parameters.AddWithValue("@Reason", obj.Reason);
-            dbConnection.cmd.Parameters.AddWithValue("@Remarks", obj.Remarks);
 
-            output = dbConnection.cmd.ExecuteNonQuery();
+
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
             return output;
         }
 

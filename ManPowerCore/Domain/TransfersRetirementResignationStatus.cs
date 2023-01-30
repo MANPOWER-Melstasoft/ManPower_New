@@ -14,7 +14,7 @@ namespace ManPowerCore.Domain
         [DBField("Id")]
         public int Id { get; set; }
 
-        [DBField("Name")]
+        [DBField("Status_Name")]
         public string StatusName { get; set; }
 
         [DBField("Is_Active")]

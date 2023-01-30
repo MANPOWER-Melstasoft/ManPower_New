@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,22 @@ namespace ManPowerCore.Controller
 
         int SaveProgramPlan(ProgramPlan programPlan);
 
-        int UpdateProgramPlan(ProgramPlan programPlan);
+        int UpdateProgramPlan(ProgramPlan programPlan, List<string> projectPlanResourceStringList);
         int UpdateProgramPlanComplete(int statusId, int id);
         List<ProgramPlan> GetAllProgramPlan();
+
+        ProgramPlan GetProgramPlanById(int id);
 
         List<ProgramPlan> GetAllProgramPlan(bool withProgramAttendence, bool withProgramBudget, bool withProgramTarget, bool withProgramCategory, bool withProjectStatus, bool withProjectTask);
 
         ProgramPlan GetProgramPlan(int id, bool withProgramAttendence, bool withProgramBudget, bool withProgramTarget, bool withProgramCategory, bool withProjectStatus, bool withProjectTask);
         //List<ProgramPlan> GetAllProgramPlanByDateTypeDistrict(string date, int programType, int districtId, bool withProgramTarget);
 
+        List<ProgramPlan> GetProgramPlanByProgramTargetId(int ProgramTargetid);
+
         List<ProgramPlan> getddlProgramPlan(int depId, int year);
+
+        DataTable getProgramPlan(int DepID);
     }
 
     public class ProgramPlanControllerImpl : ProgramPlanController
@@ -74,14 +81,28 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int UpdateProgramPlan(ProgramPlan programPlan)
+        public int UpdateProgramPlan(ProgramPlan programPlan, List<string> projectPlanResourceStringList)
         {
 
-
+            ProjectPlanResourceDAO projectPlanResourceDAO = DAOFactory.CreateProjectPlanResourceDAO();
             try
             {
                 dBConnection = new DBConnection();
                 var programPlans = programPlanDAO.UpdateProgramPlan(programPlan, dBConnection);
+
+                if (projectPlanResourceStringList != null)
+                {
+                    foreach (var item in projectPlanResourceStringList)
+                    {
+                        ProjectPlanResource projectPlanResource = new ProjectPlanResource();
+                        projectPlanResource.ProgramPlanId = programPlan.ProgramPlanId;
+                        projectPlanResource.ResourcePersonId = Convert.ToInt32(item);
+
+                        projectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
+                    }
+                }
+
+
                 return 1;
             }
             catch (Exception)
@@ -283,6 +304,73 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 programPlanList = programPlanDAO.getddlProgramPlan(depId, year, dBConnection);
                 return programPlanList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<ProgramPlan> GetProgramPlanByProgramTargetId(int ProgramTargetid)
+        {
+            List<ProgramPlan> programPlanList = new List<ProgramPlan>();
+            try
+            {
+                dBConnection = new DBConnection();
+                programPlanList = programPlanDAO.GetAllProgramPlanByProgramTargetId(ProgramTargetid, dBConnection);
+                return programPlanList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public DataTable getProgramPlan(int DepID)
+        {
+            DataTable programPlanTable = new DataTable();
+
+            try
+            {
+                dBConnection = new DBConnection();
+                programPlanTable = programPlanDAO.getProgramPlan(DepID, dBConnection);
+                return programPlanTable;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public ProgramPlan GetProgramPlanById(int id)
+        {
+            ProgramPlan programPlan = new ProgramPlan();
+            try
+            {
+                dBConnection = new DBConnection();
+                programPlan = programPlanDAO.GetProgramPlan(id, dBConnection);
+                return programPlan;
             }
             catch (Exception)
             {

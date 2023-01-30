@@ -75,8 +75,8 @@
                             <label>Vacancy Type / Job Position</label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="vanacnyType" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="vanacnyType" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:DropDownList ID="ddlvanacnyType" runat="server" name="place" CssClass="form-control form-control-user"></asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="ddlvanacnyType" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </div>
                     </div>

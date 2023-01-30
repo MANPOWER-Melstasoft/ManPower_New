@@ -11,16 +11,14 @@ namespace ManPowerCore.Domain
 
     public class ProjectPlanResource
     {
-        [DBField("RESOURCE_PERSON_ID")]
+        [DBField("Id")]
+        public int ResourcePersonPlanId { get; set; }
+
+        [DBField("Resourse_Person_Id")]
         public int ResourcePersonId { get; set; }
 
-        [DBField("PROGRAM_PLAN_ID")]
+        [DBField("Program_Plan_Id")]
         public int ProgramPlanId { get; set; }
 
-        [DBField("WORK_PLACE")]
-        public string ProgramName { get; set; }
-
-        [DBField("SUBJECT")]
-        public int Subject { get; set; }
     }
 }

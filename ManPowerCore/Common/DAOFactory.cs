@@ -479,5 +479,42 @@ namespace ManPowerCore.Common
             TransferTypeDAO transferTypeDAO = new TransferTypeDAOSqlImpl();
             return (TransferTypeDAO)transferTypeDAO;
         }
+
+        public static RetirementTypeDAO CreateRetirementTypeDAO()
+        {
+            RetirementTypeDAO retirementTypeDAO = new RetirementTypeDAOSqlImpl();
+            return (RetirementTypeDAO)retirementTypeDAO;
+        }
+
+        public static VacancyPositionDAO CreateVacancyPositionDAO()
+        {
+            VacancyPositionDAO vacancyPositionDAO = new VacancyPositionDAOImpl();
+            return (VacancyPositionDAO)vacancyPositionDAO;
+        }
+
+        public static TransfersRetirementResignationMainDAO CreateTransfersRetirementResignationMainDAO()
+        {
+            TransfersRetirementResignationMainDAO transfersRetirementResignationMainDAO = new TransfersRetirementResignationMainDAOSqlImpl();
+            return (TransfersRetirementResignationMainDAO)transfersRetirementResignationMainDAO;
+        }
+
+        public static ResignationDAO CreateResignationDAO()
+        {
+            ResignationDAO resignationDAO = new ResignationDAOSqlImpl();
+            return (ResignationDAO)resignationDAO;
+        }
+
+        public static RetirementDAO CreateRetirementDAO()
+        {
+            RetirementDAO retirementDAO = new RetirementDAOSqlImpl();
+            return (RetirementDAO)retirementDAO;
+        }
+
+        public static TransferDAO CreateTransferDAO()
+        {
+            TransferDAO transferDAO = new TransferDAOSqlImpl();
+            return (TransferDAO)transferDAO;
+        }
+
     }
 }

@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -100,11 +103,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="401.aspx" />
     <Content Include="404.aspx" />
     <Content Include="500.aspx" />
@@ -117,6 +115,8 @@
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
     <Content Include="AddTrainingRequest.aspx" />
+    <Content Include="AddTransfersRetirementResignation.aspx" />
+    <Content Include="AddVacancyPosition.aspx" />
     <Content Include="AddVoteAllocation.aspx" />
     <Content Include="AddVoteType.aspx" />
     <Content Include="AnnualTarget.aspx" />
@@ -149,6 +149,7 @@
     <Content Include="DME21.aspx" />
     <Content Include="DME21Front.aspx" />
     <Content Include="DMe21FrontRender.aspx" />
+    <Content Include="DME23.aspx" />
     <Content Include="DME24.aspx" />
     <Content Include="EntRegistration.aspx" />
     <Content Include="DME22.aspx" />
@@ -204,6 +205,8 @@
     <Content Include="MaintenanceRequest.aspx" />
     <Content Include="MaintenanceRequestView.aspx" />
     <Content Include="PersonalFiles.aspx" />
+    <Content Include="PersonalFilesSearch.aspx" />
+    <Content Include="PersonalFilesView.aspx" />
     <Content Include="ProgramTargetView.aspx" />
     <Content Include="Recommend1DME21.aspx" />
     <Content Include="Recommend1DME21Render.aspx" />
@@ -257,9 +260,11 @@
     <Content Include="SpecialProgram.aspx" />
     <Content Include="Styles\sweetalert.css" />
     <Content Include="testing.aspx" />
+    <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
     <Content Include="UserList.aspx" />
+    <Content Include="UserProfile.aspx" />
     <Content Include="VacancyReg.aspx" />
     <Content Include="VacancyRegSearch.aspx" />
     <Content Include="VacancyRegView.aspx" />
@@ -2019,6 +2024,20 @@
     <Compile Include="AddTrainingRequest.aspx.designer.cs">
       <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddTransfersRetirementResignation.aspx.cs">
+      <DependentUpon>AddTransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddTransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>AddTransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddVacancyPosition.aspx.cs">
+      <DependentUpon>AddVacancyPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddVacancyPosition.aspx.designer.cs">
+      <DependentUpon>AddVacancyPosition.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddVoteAllocation.aspx.cs">
       <DependentUpon>AddVoteAllocation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2189,6 +2208,13 @@
     <Compile Include="DMe21FrontRender.aspx.designer.cs">
       <DependentUpon>DMe21FrontRender.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DME23.aspx.cs">
+      <DependentUpon>DME23.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME23.aspx.designer.cs">
+      <DependentUpon>DME23.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DME24.aspx.cs">
       <DependentUpon>DME24.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2326,6 +2352,20 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalFilesSearch.aspx.cs">
+      <DependentUpon>PersonalFilesSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFilesSearch.aspx.designer.cs">
+      <DependentUpon>PersonalFilesSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalFilesView.aspx.cs">
+      <DependentUpon>PersonalFilesView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFilesView.aspx.designer.cs">
+      <DependentUpon>PersonalFilesView.aspx</DependentUpon>
     </Compile>
     <Compile Include="planning.aspx.cs">
       <DependentUpon>planning.aspx</DependentUpon>
@@ -2475,6 +2515,13 @@
     <Compile Include="testing.aspx.designer.cs">
       <DependentUpon>testing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TransfersRetirementResignation.aspx.cs">
+      <DependentUpon>TransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>TransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2497,6 +2544,13 @@
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserPrevilage.cs" />
+    <Compile Include="UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VacancyReg.aspx.cs">
       <DependentUpon>VacancyReg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2556,9 +2610,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="SystemDocuments\DependantDocuments\" />
     <Folder Include="SystemDocuments\ProgramPlanResources\" />
     <Folder Include="SystemDocuments\Quatations\" />
+    <Folder Include="SystemDocuments\Resignation\" />
+    <Folder Include="SystemDocuments\Retirement\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
+    <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2744,13 +2802,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ManPowerCore\ManPowerCore.csproj">
       <Project>{9a09f12c-06c3-44f9-9a54-79b79ed0a6ad}</Project>
       <Name>ManPowerCore</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

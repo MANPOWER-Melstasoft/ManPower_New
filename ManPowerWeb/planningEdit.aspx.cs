@@ -72,10 +72,10 @@ namespace ManPowerWeb
 
 
             txtManger.Text = systemUser.Name;
-            ddlResourcePerson.DataSource = resourcePeopleList;
-            ddlResourcePerson.DataValueField = "ResoursePersonId";
-            ddlResourcePerson.DataTextField = "Name";
-            ddlResourcePerson.DataBind();
+            //ddlResourcePerson.DataSource = resourcePeopleList;
+            //ddlResourcePerson.DataValueField = "ResoursePersonId";
+            //ddlResourcePerson.DataTextField = "Name";
+            //ddlResourcePerson.DataBind();
 
             chkList.DataSource = resourcePeopleList;
             chkList.DataValueField = "ResoursePersonId";
@@ -100,12 +100,10 @@ namespace ManPowerWeb
                 }
             }
 
-      
+
 
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
-
-
             programPlansList = programPlanController.GetAllProgramPlan();
 
             programPlansListBind = programPlansList.Where(x => x.ProgramPlanId == programPlanId).ToList();
@@ -116,11 +114,7 @@ namespace ManPowerWeb
             txtFemaleCount.Text = programPlansListBind[0].FemaleCount.ToString();
             txtMaleCount.Text = programPlansListBind[0].MaleCount.ToString();
             txtLocation.Text = programPlansListBind[0].Location.ToString();
-            if (programPlansListBind[0].Coordinater != null)
-            {
-                ddlResourcePerson.Text = programPlansListBind[0].Coordinater.ToString();
 
-            }
             txtEstimateAmount.Text = programTarget.EstimatedAmount.ToString();
 
 
@@ -174,7 +168,7 @@ namespace ManPowerWeb
             programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
             programPlan.Remark = "";
             programPlan.ProgramTargetId = programTargetId;
-            programPlan.Coordinater = ddlResourcePerson.SelectedItem.Text;
+            programPlan.Coordinater = "";
             programPlan.ProgramPlanId = programPlanId;
 
 

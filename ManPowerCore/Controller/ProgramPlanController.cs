@@ -87,14 +87,18 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 var programPlans = programPlanDAO.UpdateProgramPlan(programPlan, dBConnection);
 
-                foreach (var item in projectPlanResourceStringList)
+                if (projectPlanResourceStringList != null)
                 {
-                    ProjectPlanResource projectPlanResource = new ProjectPlanResource();
-                    projectPlanResource.ProgramPlanId = programPlan.ProgramPlanId;
-                    projectPlanResource.ResourcePersonId = Convert.ToInt32(item);
+                    foreach (var item in projectPlanResourceStringList)
+                    {
+                        ProjectPlanResource projectPlanResource = new ProjectPlanResource();
+                        projectPlanResource.ProgramPlanId = programPlan.ProgramPlanId;
+                        projectPlanResource.ResourcePersonId = Convert.ToInt32(item);
 
-                    projectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
+                        projectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
+                    }
                 }
+
 
                 return 1;
             }

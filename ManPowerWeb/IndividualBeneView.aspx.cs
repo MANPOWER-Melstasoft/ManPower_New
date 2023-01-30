@@ -22,6 +22,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 BindVacancies();
@@ -178,6 +180,7 @@ namespace ManPowerWeb
                 RefferalsDate = DateTime.Parse(jobRefferalsDate.Text).Date,
                 RefferalRemarks = jobRefferalRemark.Text,
                 CareerGuidance = careerGuidance.Text,
+                ProgramPlanId = Convert.ToInt32(ddlJobProgramPlan.SelectedValue),
                 CreatedUser = Session["Name"].ToString(),
 
             };

@@ -85,8 +85,19 @@ namespace ManPowerCore.Controller
         {
             try
             {
+                dBConnection = new DBConnection();
                 RetirementTypeDAO DAO = DAOFactory.CreateRetirementTypeDAO();
-                return transfersRetirementResignationMainDAO.GetAllTransfersRetirementResignation(with0, dBConnection);
+                List<TransfersRetirementResignationMain> list = transfersRetirementResignationMainDAO.GetAllTransfersRetirementResignation(with0, dBConnection);
+
+                RequestTypeDAO requestTypeDAO = DAOFactory.CreateRequestTypeDAO();
+                TransfersRetirementResignationStatusDAO transfersRetirementResignationStatusDAO = DAOFactory.CreateTransfersRetirementResignationStatusDAO();
+
+                //foreach(var item in list)
+                //{
+                //    item.requestType = requestTypeDAO.get
+                //}
+
+                return list;
             }
             catch (Exception ex)
             {

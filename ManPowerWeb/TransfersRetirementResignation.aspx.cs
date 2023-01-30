@@ -17,7 +17,6 @@ namespace ManPowerWeb
         List<ProgramTarget> programTargetsListState = new List<ProgramTarget>();
         List<ProgramTarget> programTargetsSearchList = new List<ProgramTarget>();
 
-        bool isCLicked = false;
 
         int year = DateTime.Now.Year;
 
@@ -33,31 +32,18 @@ namespace ManPowerWeb
         private void BindDataSource()
         {
 
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
+            TransfersRetirementResignationMainController main = ControllerFactory.CreateTransfersRetirementResignationMainController();
+            List<TransfersRetirementResignationMain> mainList = main.GetAllTransfersRetirementResignation(false);
 
+            //programTargetsSearchList = (List<ProgramTarget>)ViewState["programTargetsSearchList"];
+            //ViewState["programTargetsList"] = programTargetsSearchList.ToList();
+            //ViewState["programTargetsListRejected"] = programTargetsSearchList.Where(x => x.IsRecommended == 3).ToList();
+            //ViewState["programTargetsListApproved"] = programTargetsSearchList.Where(x => x.IsRecommended == 2).ToList();
+            //ViewState["programTargetsListPending"] = programTargetsSearchList.Where(x => x.IsRecommended == 1).ToList();
+            //ViewState["programTargetsListNotRecommended"] = programTargetsSearchList.Where(x => x.IsRecommended == 0).ToList();
 
+            GridView1.DataSource = mainList;
 
-            if (isCLicked)
-            {
-                programTargetsSearchList = (List<ProgramTarget>)ViewState["programTargetsSearchList"];
-                ViewState["programTargetsList"] = programTargetsSearchList.ToList();
-                ViewState["programTargetsListRejected"] = programTargetsSearchList.Where(x => x.IsRecommended == 3).ToList();
-                ViewState["programTargetsListApproved"] = programTargetsSearchList.Where(x => x.IsRecommended == 2).ToList();
-                ViewState["programTargetsListPending"] = programTargetsSearchList.Where(x => x.IsRecommended == 1).ToList();
-                ViewState["programTargetsListNotRecommended"] = programTargetsSearchList.Where(x => x.IsRecommended == 0).ToList();
-
-                GridView1.DataSource = programTargetsSearchList;
-            }
-            else
-            {
-                ViewState["programTargetsList"] = programTargetsList.ToList();
-                ViewState["programTargetsListRejected"] = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
-                ViewState["programTargetsListApproved"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
-                ViewState["programTargetsListPending"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
-                ViewState["programTargetsListNotRecommended"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
-                GridView1.DataSource = programTargetsList;
-            }
 
 
             GridView1.DataBind();
@@ -77,15 +63,9 @@ namespace ManPowerWeb
         {
             GridView1.PageIndex = e.NewPageIndex;
 
-            if (isCLicked == true)
-            {
-                isCLicked = false;
 
-            }
-            else
-            {
-                BindDataSource();
-            }
+            BindDataSource();
+
 
         }
 

@@ -12,14 +12,13 @@
 
                     <div class="col-sm-2">
 
-                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" AutoPostBack="true">
+                        <%--  <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" AutoPostBack="true">
                             <asp:ListItem Value="4">All</asp:ListItem>
                             <asp:ListItem Value="1">Pending</asp:ListItem>
                             <asp:ListItem Value="2">Approved</asp:ListItem>
                             <asp:ListItem Value="3">Reject</asp:ListItem>
                             <asp:ListItem Value="0">Send to Recommendation</asp:ListItem>
-                        </asp:DropDownList>
-
+                        </asp:DropDownList>--%>
                     </div>
                     <div class="col-sm-6"></div>
 
@@ -37,16 +36,16 @@
             <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                 CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="5" HeaderStyle-HorizontalAlign="Center">
                 <Columns>
-                    <asp:BoundField DataField="ProgramTargetId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="TargetYear" HeaderText="Request Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="StartDate" HeaderText="Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                    <asp:BoundField DataField="MainId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="RequestTypeId" HeaderText="Request Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="CreatedDate" HeaderText="Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
 
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
-                            <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "0" ?true:false %>' Text="Not Send to Recommendation" ForeColor="Blue"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "2" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "3" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "0" ?true:false %>' Text="Not Send to Recommendation" ForeColor="Blue"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "2" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "3" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
 
                         </ItemTemplate>
                     </asp:TemplateField>

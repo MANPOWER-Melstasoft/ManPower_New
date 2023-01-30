@@ -498,6 +498,31 @@ namespace ManPowerCore.Common
             return (RetirementTypeController)retirementTypeController;
         }
 
+        public static TransfersRetirementResignationMainController CreateTransfersRetirementResignationMainController()
+        {
+            TransfersRetirementResignationMainController transfersRetirementResignationMainController = new TransfersRetirementResignationMainControllerSqlImpl();
+            return (TransfersRetirementResignationMainController)transfersRetirementResignationMainController;
+        }
+
+        public static ResignationController CreateResignationController()
+        {
+            ResignationController resignationController = new ResignationControllerSqlImpl();
+            return (ResignationController)resignationController;
+        }
+
+        public static RetirementController CreateRetirementController()
+        {
+            RetirementController retirementController = new RetirementControllerSqlImpl();
+            return (RetirementController)retirementController;
+        }
+
+        public static TransferController CreateTransferController()
+        {
+            TransferController transferController = new TransferControllerSqlImpl();
+            return (TransferController)transferController;
+        }
+
+
         public static VacancyPositionController CreateVacancyPositionController()
         {
             VacancyPositionController vacancyPositionController = new VacancyPositionControllerImpl();

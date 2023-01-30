@@ -13,7 +13,7 @@ namespace ManPowerCore.Domain
         [DBField("Id")]
         public int Id { get; set; }
 
-        [DBField("Name")]
+        [DBField("Retirement_Type_Name")]
         public string RetirementTypeName { get; set; }
 
         [DBField("Is_Active")]

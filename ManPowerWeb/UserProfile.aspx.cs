@@ -4,6 +4,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
@@ -14,7 +15,7 @@ namespace ManPowerWeb
         string[] eduStatus = { "Completed", "Not Completed" };
         string[] isResigned = { "Yes", "No" };
         string[] absorbStatus = { "Yes", "Not Relevent" };
-        int count = 0;
+
 
         List<Ethnicity> ethnicityList = new List<Ethnicity>();
         List<Religion> religionList = new List<Religion>();
@@ -43,6 +44,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 BindDataSource();
+                depRowId.Visible = false;
             }
         }
 
@@ -85,6 +87,7 @@ namespace ManPowerWeb
             empDetails = employmentDetailsController.GetEmploymentDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
 
             DependantController dependantController = ControllerFactory.CreateDependantController();
+            dependant = dependantController.GetDependantByEmpId(Convert.ToInt32(Session["EmpNumber"]));
 
             EthnicityController ethnicityController = ControllerFactory.CreateEthnicityController();
             ethnicities = ethnicityController.GetAllEthnicity();
@@ -119,10 +122,17 @@ namespace ManPowerWeb
             //ddlYear.DataSource = yearslist;
             //ddlYear.DataBind();
 
-            //ddlDependant.DataSource = dependantTypes;
-            //ddlDependant.DataValueField = "DependantTypeId";
-            //ddlDependant.DataTextField = "DependantTypeName";
-            //ddlDependant.DataBind();
+            ddlDependant.DataSource = dependantTypes;
+            ddlDependant.DataValueField = "DependantTypeId";
+            ddlDependant.DataTextField = "DependantTypeName";
+            ddlDependant.DataBind();
+
+
+            ddlDependantList.DataSource = dependant;
+            ddlDependantList.DataValueField = "DependantId";
+            ddlDependantList.DataTextField = "FirstName";
+            ddlDependantList.DataBind();
+            ddlDependantList.Items.Insert(0, new ListItem("- Select -", ""));
 
             ddlMaritalStatus.DataSource = mmStatus;
             ddlMaritalStatus.DataBind();
@@ -135,15 +145,15 @@ namespace ManPowerWeb
             //ddlService.DataTextField = "ServiceTypeName";
             //ddlService.DataBind();
 
-            //ddContract.DataSource = contractTypes;
-            //ddContract.DataValueField = "ContractTypeId";
-            //ddContract.DataTextField = "ContractTypeName";
-            //ddContract.DataBind();
+            ddContract.DataSource = contractTypes;
+            ddContract.DataValueField = "ContractTypeId";
+            ddContract.DataTextField = "ContractTypeName";
+            ddContract.DataBind();
 
-            //ddlDesignation.DataSource = designation;
-            //ddlDesignation.DataValueField = "DesignationId";
-            //ddlDesignation.DataTextField = "DesigntionName";
-            //ddlDesignation.DataBind();
+            ddlDesignation.DataSource = designation;
+            ddlDesignation.DataValueField = "DesignationId";
+            ddlDesignation.DataTextField = "DesigntionName";
+            ddlDesignation.DataBind();
 
             //ddlDistrict.DataSource = listDistrict;
             //ddlDistrict.DataTextField = "Name";
@@ -181,8 +191,8 @@ namespace ManPowerWeb
             nicIssuedDate.Text = emp.NicIssueDate.ToString("yyyy-MM-dd");
             empPassport.Text = emp.EmployeePassportNumber;
             absorb.Text = emp.EpmAbsorb;
-            ddlEthnicity.SelectedIndex = emp.EthnicityId;
-            ddlReligion.SelectedIndex = emp.ReligionId;
+            ddlEthnicity.SelectedIndex = emp.EthnicityId - 1;
+            ddlReligion.SelectedIndex = emp.ReligionId - 1;
             vnop.Text = emp.VNOPNo.ToString();
             appointmenLetterNo.Text = emp.AppointmentNo.ToString();
             fileNo.Text = emp.FileNo.ToString();
@@ -220,8 +230,8 @@ namespace ManPowerWeb
 
             foreach (var i in empDetails)
             {
-                ddContract.SelectedIndex = i.ContractTypeId;
-                ddlDesignation.SelectedIndex = i.DesignationId;
+                ddContract.SelectedIndex = i.ContractTypeId - 1;
+                ddlDesignation.SelectedIndex = i.DesignationId - 1;
                 companyName.Text = i.CompanyName;
                 sDate.Text = i.StartDate.ToString("yyyy-MM-dd");
                 eDate.Text = i.EndDate.ToString("yyyy-MM-dd");
@@ -232,6 +242,55 @@ namespace ManPowerWeb
                     retiredDate.Text = i.RetirementDate.ToString("yyyy-MM-dd");
                 }
 
+            }
+
+
+
+        }
+
+        //protected void ddlDependant_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    bindDependant();
+        //}
+
+        protected void ddlDependantList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindDependant();
+        }
+
+        private void bindDependant()
+        {
+
+            DependantController dependantController = ControllerFactory.CreateDependantController();
+            dependant = dependantController.GetDependantByEmpId(Convert.ToInt32(Session["EmpNumber"]));
+
+            //-------------- dependant details ----------------------
+
+            if (ddlDependantList.SelectedValue != "")
+            {
+                foreach (var i in dependant.Where(u => u.DependantId == int.Parse(ddlDependantList.SelectedValue)))
+                {
+                    int count = 1;
+                    dep.Text = "Dependant " + count;
+                    ddlDependant.SelectedIndex = i.DependantTypeId - 1;
+                    dependantRelationship.Text = i.RelationshipToEmp;
+                    dependantFname.Text = i.FirstName;
+                    dependantLname.Text = i.LastName;
+                    depDob.Text = i.Dob.ToString("yyyy-MM-dd");
+                    bcNumber.Text = i.BirthCertificateNumber;
+                    ppNumber.Text = i.DependantPassportNo;
+                    sickness.Text = i.Remarks;
+                    mDate.Text = i.MarriageDate.ToString("yyyy-MM-dd");
+                    mCertificateNo.Text = i.MarriageCertificateNo;
+                    depNic.Text = i.DependantNIC;
+                    workingCompany.Text = i.WorkingCompany;
+                    city.Text = i.City;
+
+
+                    depId.Text = i.DependantId.ToString();
+
+                    count++;
+                }
             }
 
 
@@ -408,5 +467,44 @@ namespace ManPowerWeb
 
 
         }
+
+        protected void submitDependant(object sender, EventArgs e)
+        {
+
+            DependantController dc = ControllerFactory.CreateDependantController();
+            Dependant dependant = new Dependant();
+            List<Dependant> dependantList = new List<Dependant>();
+            dependant = dc.GetDependantById(int.Parse(depId.Text));
+
+            dependant.DependantTypeId = int.Parse(ddlDependant.SelectedValue);
+            dependant.RelationshipToEmp = dependantRelationship.Text;
+            dependant.FirstName = dependantFname.Text;
+            dependant.LastName = dependantLname.Text;
+            dependant.Dob = Convert.ToDateTime(depDob.Text);
+            dependant.BirthCertificateNumber = bcNumber.Text;
+            dependant.DependantPassportNo = ppNumber.Text;
+            dependant.Remarks = sickness.Text;
+            dependant.MarriageCertificateNo = mDate.Text;
+            dependant.MarriageDate = Convert.ToDateTime(mDate.Text);
+            dependant.DependantNIC = depNic.Text;
+            dependant.WorkingCompany = workingCompany.Text;
+            dependant.City = city.Text;
+            dependant.DependantId = int.Parse(depId.Text);
+
+            int result1 = dc.UpdateDependant(dependant);
+
+            if (result1 == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+            }
+
+        }
+
+
     }
 }

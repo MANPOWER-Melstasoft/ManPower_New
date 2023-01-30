@@ -131,13 +131,13 @@ namespace ManPowerWeb
 
                 BindDepList();
             }
-            if (ddlRequestType.SelectedValue == "2")
+            if (ddlRequestType.SelectedValue == "3")
             {
                 transferDiv.Visible = false;
                 retirementDiv.Visible = true;
                 resignationDiv.Visible = false;
             }
-            if (ddlRequestType.SelectedValue == "3")
+            if (ddlRequestType.SelectedValue == "2")
             {
                 transferDiv.Visible = false;
                 retirementDiv.Visible = false;

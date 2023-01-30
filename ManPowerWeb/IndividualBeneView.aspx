@@ -160,6 +160,23 @@
 
                                 <div class="row mt-5">
                                     <div class="col-2">
+                                        <label>Program Plan</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlProgramPlanCarrerKey" runat="server" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlProgramPlanCarrerKey_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlProgramPlanCarrerKey" ValidationGroup="1"></asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <asp:Label runat="server" ID="lblProgramPlanDetails" CssClass="alert-success mt-3" Visible="false"></asp:Label>
+
+                                </div>
+
+
+                                <div class="row mt-5">
+                                    <div class="col-2">
                                         <label>R :</label>
                                     </div>
                                     <div class="col-3">
@@ -307,7 +324,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
                                                 <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
-                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 20px; height: 20px" border="0" />
                                                 </a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -396,7 +413,21 @@
                         <ContentTemplate>
                             <div id="trainingDiv" runat="server">
                                 <h3>Training Refferals </h3>
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <label>Program Plan</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlTrainningProgramplan" runat="server" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlTrainningProgramplan_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlTrainningProgramplan" ValidationGroup="1"></asp:RequiredFieldValidator>
 
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <asp:Label runat="server" ID="lblTrainningProgramDetails" CssClass="alert-success mt-3" Visible="false"></asp:Label>
+
+                                </div>
                                 <div class="row mt-5">
                                     <div class="col-3">
                                         <label>Institute Name :</label>
@@ -508,7 +539,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
                                                 <a href="javascript:collapseExpand('ProgramTargetId-<%# Eval("Id") %>');">
-                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                    <img alt="Details" id="imageProgramTargetId-<%# Eval("Id") %> " src="img/Down.png" style="width: 20px; height: 20px" border="0" />
                                                 </a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -595,7 +626,21 @@
                         <ContentTemplate>
                             <div id="jobRefferals" runat="server">
                                 <h3>Job Refferals</h3>
+                                <div class="row mt-5">
+                                    <div class="col-2">
+                                        <label>Program Plan</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlJobProgramPlan" runat="server" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlJobProgramPlan_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlJobProgramPlan" ValidationGroup="1"></asp:RequiredFieldValidator>
 
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <asp:Label runat="server" ID="lblJobProgramPlanDetails" CssClass="alert-success mt-3" Visible="false"></asp:Label>
+
+                                </div>
                                 <div class="row mt-5">
                                     <div class="col-3">
                                         <label>District :</label>
@@ -614,6 +659,15 @@
                                     </div>
                                 </div>
 
+                                <div class="row mt-5">
+                                    <div class="col-3">
+                                        <label>Job Position :</label>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:DropDownList ID="ddlPositionType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPositionType_SelectedIndexChanged" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+
+                                    </div>
+                                </div>
 
                                 <div class="row mt-5">
                                     <div class="col-3">
@@ -732,7 +786,7 @@
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
                                                 <a href="javascript:collapseExpand('JobRefferalsId-<%# Eval("JobRefferalsId") %>');">
-                                                    <img alt="Details" id="image3JobRefferalsId-<%# Eval("JobRefferalsId") %> " src="img/Down.png" style="width: 25px; height: 25px" border="0" />
+                                                    <img alt="Details" id="image3JobRefferalsId-<%# Eval("JobRefferalsId") %> " src="img/Down.png" style="width: 20px; height: 20px" border="0" />
                                                 </a>
                                             </ItemTemplate>
                                         </asp:TemplateField>

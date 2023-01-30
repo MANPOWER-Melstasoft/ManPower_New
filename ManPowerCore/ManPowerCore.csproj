@@ -121,6 +121,7 @@
     <Compile Include="Controller\TransferTypeController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />
+    <Compile Include="Controller\VacancyPositionController.cs" />
     <Compile Include="Controller\VehicleMaintenaceQuatationController.cs" />
     <Compile Include="Controller\VehicleMaintenanceController.cs" />
     <Compile Include="Controller\VoteAllocationController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Domain\TransferType.cs" />
     <Compile Include="Domain\UserRegistation.cs" />
     <Compile Include="Domain\UserType.cs" />
+    <Compile Include="Domain\VacancyPosition.cs" />
     <Compile Include="Domain\VehicleMaintenanceQuatation.cs" />
     <Compile Include="Domain\VehicleMeintenance.cs" />
     <Compile Include="Domain\VoteAllocation.cs" />
@@ -281,6 +283,7 @@
     <Compile Include="Infrastructure\TransferTypeDAO.cs" />
     <Compile Include="Infrastructure\UserRegistrationDAO.cs" />
     <Compile Include="Infrastructure\UserTypeDAO.cs" />
+    <Compile Include="Infrastructure\VacancyPositionDAO.cs" />
     <Compile Include="Infrastructure\VehicleMaintenaceQuatationDAO.cs" />
     <Compile Include="Infrastructure\VehicleMaintenanceDAO.cs" />
     <Compile Include="Infrastructure\VoteAllocationDAO.cs" />

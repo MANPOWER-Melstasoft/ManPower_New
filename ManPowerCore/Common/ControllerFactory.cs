@@ -497,5 +497,11 @@ namespace ManPowerCore.Common
             RetirementTypeController retirementTypeController = new RetirementTypeControllerSqlImpl();
             return (RetirementTypeController)retirementTypeController;
         }
+
+        public static VacancyPositionController CreateVacancyPositionController()
+        {
+            VacancyPositionController vacancyPositionController = new VacancyPositionControllerImpl();
+            return (VacancyPositionController)vacancyPositionController;
+        }
     }
 }

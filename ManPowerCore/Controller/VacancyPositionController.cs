@@ -9,28 +9,24 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Controller
 {
-    public interface ProjectPlanResourceController
+    public interface VacancyPositionController
     {
-        int SaveProjectPlanResource(ProjectPlanResource projectPlanResource);
-        int SaveProjectPlanResourceByList(int programPlanId, List<string> projectPlanResourceStringList);
+        int saveVacancyPosition(VacancyPosition vacancyPosition);
+        int updateVacancyPosition(int id, VacancyPosition vacancyPosition);
+        List<VacancyPosition> getVacancyPositionList();
+        int deletePosition(int id);
 
-        List<ProjectPlanResource> GetAllProjectPlanResources();
-
-        List<ProjectPlanResource> GetAllProjectPlanResourcesByProgramPlanId(int programPlanId);
     }
-
-    public class ProjectPlanResourceControllerImpl : ProjectPlanResourceController
+    public class VacancyPositionControllerImpl : VacancyPositionController
     {
         DBConnection dBConnection;
-        ProjectPlanResourceDAO ProjectPlanResourceDAO = DAOFactory.CreateProjectPlanResourceDAO();
-
-        public int SaveProjectPlanResource(ProjectPlanResource projectPlanResource)
+        VacancyPositionDAO vacancyPositionDAO = DAOFactory.CreateVacancyPositionDAO();
+        public int saveVacancyPosition(VacancyPosition vacancyPosition)
         {
-
             try
             {
                 dBConnection = new DBConnection();
-                return ProjectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
+                return vacancyPositionDAO.saveVacancyPosition(vacancyPosition, dBConnection);
             }
             catch (Exception)
             {
@@ -45,21 +41,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int SaveProjectPlanResourceByList(int programPlanId, List<string> projectPlanResourceStringList)
+        public List<VacancyPosition> getVacancyPositionList()
         {
             try
             {
                 dBConnection = new DBConnection();
-
-                foreach (var item in projectPlanResourceStringList)
-                {
-                    ProjectPlanResource projectPlanResource = new ProjectPlanResource();
-                    projectPlanResource.ProgramPlanId = programPlanId;
-                    projectPlanResource.ResourcePersonPlanId = Convert.ToInt32(item);
-
-                    ProjectPlanResourceDAO.SaveProjectPlanResource(projectPlanResource, dBConnection);
-                }
-                return 1;
+                return vacancyPositionDAO.getAllVacancyPosition(dBConnection);
             }
             catch (Exception)
             {
@@ -74,14 +61,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<ProjectPlanResource> GetAllProjectPlanResources()
+        public int updateVacancyPosition(int id, VacancyPosition vacancyPosition)
         {
             try
             {
                 dBConnection = new DBConnection();
-
-
-                return ProjectPlanResourceDAO.GetAllProjectPlanResources(dBConnection);
+                return vacancyPositionDAO.updateVacancyPosition(id, vacancyPosition, dBConnection);
             }
             catch (Exception)
             {
@@ -96,14 +81,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<ProjectPlanResource> GetAllProjectPlanResourcesByProgramPlanId(int programPlanId)
+        public int deletePosition(int id)
         {
             try
             {
                 dBConnection = new DBConnection();
-
-
-                return ProjectPlanResourceDAO.GetAllProjectPlanResourcesByProjectPlanId(programPlanId, dBConnection);
+                return vacancyPositionDAO.deletePosition(id, dBConnection);
             }
             catch (Exception)
             {
@@ -117,5 +100,6 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
         }
+
     }
 }

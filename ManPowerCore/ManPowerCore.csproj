@@ -105,6 +105,7 @@
     <Compile Include="Controller\RequestTypeController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
     <Compile Include="Controller\ResourceProvisionProgressController.cs" />
+    <Compile Include="Controller\RetirementTypeController.cs" />
     <Compile Include="Controller\ReverseReasonController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\StaffLeaveAllocationController.cs" />

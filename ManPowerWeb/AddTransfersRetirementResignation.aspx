@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container mb-3" id="mainContainer" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
 
         <div class="card ml-4 p-4">
@@ -56,174 +57,189 @@
                     </div>
                 </div>
 
-                <div class="row mb-3 ms-1">
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
 
-                                <asp:Literal ID="Literal17" runat="server" Text="Request Type : "></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:DropDownList ID="ddlRequestType" runat="server" Width="250px" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlRequestType_SelectedIndexChanged"></asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="ddlRequestType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4">
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                        <asp:Literal ID="Literal17" runat="server" Text="Request Type : "></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:DropDownList ID="ddlRequestType" runat="server" Width="250px" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlRequestType_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="ddlRequestType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
 
-
-
-                <div runat="server" id="transferDiv">
-                    <div class="row mb-3 ms-1">
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="Literal5" runat="server" Text="Transfer Type : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:DropDownList ID="ddlTransferType" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="1" ControlToValidate="ddlTransferType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="lblDepartmentType" runat="server" Text="New Department : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:DropDownList ID="ddlDepartment" Width="250px" runat="server" CssClass="form-control form-control-user">
-                                    </asp:DropDownList>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="1"
-                                            ControlToValidate="ddlDepartment" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-3 ms-1">
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="Literal6" runat="server" Text="Reason : "></asp:Literal>
+
+                        <%----------------------------------transferDiv------------------------------------------%>
+
+                        <div runat="server" id="transferDiv">
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal5" runat="server" Text="Transfer Type : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlTransferType" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="1" ControlToValidate="ddlTransferType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <asp:TextBox ID="txtReason" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="New Department : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlDepartment" Width="250px" runat="server" CssClass="form-control form-control-user">
+                                            </asp:DropDownList>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="1"
+                                                    ControlToValidate="ddlDepartment" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal6" runat="server" Text="Reason : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtReason" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
+                        <%----------------------------------retirementDiv------------------------------------------%>
 
-                <div runat="server" id="retirementDiv" visible="false">
-                    <div class="row mb-3">
-                        <div class="col-sm-6">
+                        <div runat="server" id="retirementDiv" visible="true">
                             <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="Literal19" runat="server" Text="Joined Date : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:TextBox ID="ddlStartDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="1" ControlToValidate="ddlStartDate" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal19" runat="server" Text="Joined Date : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtJoinedDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="1" ControlToValidate="txtJoinedDate" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+
+                                            <asp:Literal ID="Literal20" runat="server" Text="DOB : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtDob" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal7" runat="server" Text="Retirement Type : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlRetirementType" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true">
+                                            </asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlRetirementType" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%if (ddlRetirementType.SelectedItem.Text == "Other")
+                                    { %>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal9" runat="server" Text="Other : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtRetirementOther" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%} %>
+                            </div>
+
+
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal12" runat="server" Text="Reason : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtRetirementReason" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal13" runat="server" Text="Remark : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtRetirementRemark" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
 
-                                    <asp:Literal ID="Literal20" runat="server" Text="DOB : "></asp:Literal>
+                        <%----------------------------------resignationDiv------------------------------------------%>
+
+                        <div runat="server" id="resignationDiv" visible="false">
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+
+                                            <asp:Literal ID="Literal8" runat="server" Text="Date : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtResignationDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtResignationDate" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <asp:TextBox ID="txtEndDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ValidationGroup="1" ControlToValidate="ddlStartDate" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
 
+                                            <asp:Literal ID="Literal10" runat="server" Text="Reason : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtResignationReason" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="1" ControlToValidate="txtResignationReason" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-3 ms-1">
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="Literal7" runat="server" Text="Retirement Type : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:DropDownList ID="ddlRetirementType" runat="server" CssClass="form-control form-control-user" Width="250px" AutoPostBack="true">
-                                    </asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlRetirementType" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="Literal9" runat="server" Text="Other : "></asp:Literal>
-                                </div>
-                                <div class="col-md-6">
-                                    <asp:TextBox ID="txtRetirementOther" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 ms-1">
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="Literal12" runat="server" Text="Reason : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:TextBox ID="txtRetirementReason" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-                                    <asp:Literal ID="Literal13" runat="server" Text="Remark : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:TextBox ID="txtRetirementRemark" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div runat="server" id="resignationDiv" visible="false">
-                    <div class="row mb-3 ms-1">
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
-                                    <asp:Literal ID="Literal8" runat="server" Text="Date : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:TextBox ID="txtDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtDate" ForeColor="Red">*</asp:RequiredFieldValidator>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row mb-3">
-                                <div class="col-sm-4">
-
-                                    <asp:Literal ID="Literal10" runat="server" Text="Reason : "></asp:Literal>
-                                </div>
-                                <div class="col-md-4">
-                                    <asp:TextBox ID="txtResignationReason" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="1" ControlToValidate="txtResignationReason" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*</asp:RequiredFieldValidator>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row mb-5">
                     <div class="col-sm-6">
                         <div class="row">
@@ -238,6 +254,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6 d-flex">
                         <div class="col-sm-4">

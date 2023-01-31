@@ -90,12 +90,13 @@ namespace ManPowerCore.Controller
                 List<TransfersRetirementResignationMain> list = transfersRetirementResignationMainDAO.GetAllTransfersRetirementResignation(with0, dBConnection);
 
                 RequestTypeDAO requestTypeDAO = DAOFactory.CreateRequestTypeDAO();
-                TransfersRetirementResignationStatusDAO transfersRetirementResignationStatusDAO = DAOFactory.CreateTransfersRetirementResignationStatusDAO();
+                TransfersRetirementResignationStatusDAO statusDAO = DAOFactory.CreateTransfersRetirementResignationStatusDAO();
 
-                //foreach(var item in list)
-                //{
-                //    item.requestType = requestTypeDAO.get
-                //}
+                foreach (var item in list)
+                {
+                    item.requestType = requestTypeDAO.GetRequestType(item.RequestTypeId, dBConnection);
+                    item.status = statusDAO.GetStatus(item.StatusId, dBConnection);
+                }
 
                 return list;
             }

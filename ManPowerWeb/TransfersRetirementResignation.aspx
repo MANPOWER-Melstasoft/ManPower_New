@@ -43,10 +43,10 @@
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Pending" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Approved" ?true:false %>' Text="Approved" ForeColor="Blue"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Reverse" ?true:false %>' Text="Reverse" ForeColor="Green"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Approved" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Reverse" ?true:false %>' Text="Reverse" ForeColor="Orange"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Rejected" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Send to Approval" ?true:false %>' Text="Send to Approval" ForeColor="red"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Send to Approval" ?true:false %>' Text="Send to Approval" ForeColor="Black"> </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 

@@ -43,9 +43,6 @@ namespace ManPowerWeb
             //ViewState["programTargetsListNotRecommended"] = programTargetsSearchList.Where(x => x.IsRecommended == 0).ToList();
 
             GridView1.DataSource = mainList;
-
-
-
             GridView1.DataBind();
 
         }

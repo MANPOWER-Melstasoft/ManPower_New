@@ -126,6 +126,8 @@
     <Content Include="ApproveTrainingRequest.aspx" />
     <Content Include="ApproveLeave.aspx" />
     <Content Include="ApproveLeaveView.aspx" />
+    <Content Include="ApproveTransfersRetirementResignation.aspx" />
+    <Content Include="ApproveTransfersRetirementResignationView.aspx" />
     <Content Include="CompletedPrograms.aspx" />
     <Content Include="CompletedProgramsView.aspx" />
     <Content Include="AnnualTargetRecomendationView.aspx" />
@@ -2144,6 +2146,20 @@
     </Compile>
     <Compile Include="ApproveLeaveView.aspx.designer.cs">
       <DependentUpon>ApproveLeaveView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveTransfersRetirementResignation.aspx.cs">
+      <DependentUpon>ApproveTransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveTransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>ApproveTransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveTransfersRetirementResignationView.aspx.cs">
+      <DependentUpon>ApproveTransfersRetirementResignationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveTransfersRetirementResignationView.aspx.designer.cs">
+      <DependentUpon>ApproveTransfersRetirementResignationView.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

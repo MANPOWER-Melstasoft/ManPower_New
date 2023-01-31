@@ -24,6 +24,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl mainContainer;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// Literal1 control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDesignation;
+
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
         /// Literal17 control.
@@ -222,13 +240,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal19;
 
         /// <summary>
-        /// ddlStartDate control.
+        /// txtJoinedDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ddlStartDate;
+        protected global::System.Web.UI.WebControls.TextBox txtJoinedDate;
 
         /// <summary>
         /// RequiredFieldValidator7 control.
@@ -249,22 +267,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal20;
 
         /// <summary>
-        /// txtEndDate control.
+        /// txtDob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndDate;
-
-        /// <summary>
-        /// RequiredFieldValidator9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
+        protected global::System.Web.UI.WebControls.TextBox txtDob;
 
         /// <summary>
         /// Literal7 control.
@@ -366,13 +375,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal8;
 
         /// <summary>
-        /// txtDate control.
+        /// txtResignationDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate;
+        protected global::System.Web.UI.WebControls.TextBox txtResignationDate;
 
         /// <summary>
         /// RequiredFieldValidator1 control.

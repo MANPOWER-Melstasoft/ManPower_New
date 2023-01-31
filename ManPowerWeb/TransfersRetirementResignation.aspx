@@ -34,19 +34,19 @@
         <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
 
             <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="5" HeaderStyle-HorizontalAlign="Center">
+                CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="10" HeaderStyle-HorizontalAlign="Center">
                 <Columns>
                     <asp:BoundField DataField="MainId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="RequestTypeId" HeaderText="Request Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="RequestType.RequestTypeName" HeaderText="Request Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="CreatedDate" HeaderText="Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
 
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
-                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "0" ?true:false %>' Text="Not Send to Recommendation" ForeColor="Blue"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "2" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("StatusId").ToString() == "3" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
-
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Pending" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Approved" ?true:false %>' Text="Approved" ForeColor="Blue"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Reverse" ?true:false %>' Text="Reverse" ForeColor="Green"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Rejected" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Send to Approval" ?true:false %>' Text="Send to Approval" ForeColor="red"> </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 

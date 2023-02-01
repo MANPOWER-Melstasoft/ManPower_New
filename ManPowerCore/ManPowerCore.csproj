@@ -78,6 +78,7 @@
     <Compile Include="Controller\EmploymentDetailsController.cs" />
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
+    <Compile Include="Controller\HolidaySheetController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
     <Compile Include="Controller\JobCategoryController.cs" />
     <Compile Include="Controller\JobPlacementFeedbackController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Domain\Entrepreneur.cs" />
     <Compile Include="Domain\Ethnicity.cs" />
     <Compile Include="Domain\HolidaySheet.cs" />
+    <Compile Include="Domain\HolidaySheetDAO.cs" />
     <Compile Include="Domain\InduvidualBeneficiary.cs" />
     <Compile Include="Domain\JobPlacementFeedback.cs" />
     <Compile Include="Domain\JobRefferals.cs" />

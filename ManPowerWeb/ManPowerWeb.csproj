@@ -148,6 +148,7 @@
     <Content Include="css\sb-admin-2.min.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="DistrictTASummary.aspx" />
     <Content Include="DME21.aspx" />
     <Content Include="DME21Front.aspx" />
     <Content Include="DMe21FrontRender.aspx" />
@@ -2205,6 +2206,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DistrictTASummary.aspx.cs">
+      <DependentUpon>DistrictTASummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DistrictTASummary.aspx.designer.cs">
+      <DependentUpon>DistrictTASummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="DME21.aspx.cs">
       <DependentUpon>DME21.aspx</DependentUpon>

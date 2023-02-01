@@ -101,10 +101,11 @@ namespace ManPowerCore.Controller
             DBConnection dbConnection = new DBConnection();
             try
             {
+                EmployeeContact empContact = new EmployeeContact();
                 EmployeeContactDAO DAO = DAOFactory.CreateEmployeeContactDAO();
-                EmployeeContact emp = DAO.GetEmployeeContactById(id, dbConnection);
+                empContact = DAO.GetEmployeeContactById(id, dbConnection);
 
-                return emp;
+                return empContact;
             }
             catch (Exception ex)
             {

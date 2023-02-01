@@ -24,7 +24,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 </head>
-<body style="background-image: url(img/bgimg.jpeg); background-repeat: no-repeat; background-size: cover;">
+<body style="background-image: url(img/bgimg2.jpg); background-repeat: no-repeat; background-size: cover; opacity: 0.9">
     <form id="form1" runat="server">
         <div class="top-row mb-5">
             <div class="col-12">
@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
-                    <div class="card shadow-lg border-0 rounded-lg mt-6 bg-transparent">
+                    <div class="card shadow-lg border-5 rounded-lg mt-6 bg-transparent border-dark border-top-0'border-bottom-0">
                         <div class="card-header" style="background-color: #122A8D">
                             <h3 class="text-light text-center text-uppercase font-weight-bold">Login</h3>
                         </div>

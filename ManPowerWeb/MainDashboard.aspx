@@ -34,6 +34,7 @@
         .card {
             transition: all 0.2s ease;
             cursor: pointer;
+            backdrop-filter: blur(14px);
         }
     </style>
 
@@ -48,7 +49,7 @@
         </div>
 
         <%--         <div class="container" style="height: 500px; width: 2000px">--%>
-        <div class="row p-4 m-4">
+        <div class="row p-4 m-4 mt-4">
             <div class="col mr-2">
                 <div class="card border-left-primary" style="margin-top: 200px;">
                     <img src="img/HR.jpg" class="card-img-top"

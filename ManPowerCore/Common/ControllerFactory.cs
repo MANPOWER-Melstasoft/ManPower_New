@@ -319,6 +319,12 @@ namespace ManPowerCore.Common
 
         }
 
+        public static HolidaySheetController CreateHolidaySheetController()
+        {
+            HolidaySheetController holidaySheetController = new HolidaySheetControllerImpl();
+            return (HolidaySheetController)holidaySheetController;
+        }
+
 
         public static ServiceTypeController CreateServiceTypeController()
         {

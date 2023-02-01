@@ -28,11 +28,11 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,NIC_Issue_Date,Passport_Number" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
                                             ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type, " +
-                                            " Pention_Date,VNOP_No,Appointment_No,File_No,Absorb,Emp_No) " +
+                                            " Pension_Date,VNOP_No,Appointment_No,File_No,Absorb,Emp_No) " +
 
                                             "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber " +
                                             ", @EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
-                                            ", @MaritalStatus,@SupervisorId,@ManagerId,@DSDivisionId,@DistrictId,@UnitType, " +
+                                            ", @MaritalStatus,@SupervisorId,@ManagerId,@DSDivisionId,@DistrictId,@UnitType " +
                                             ", @PensionDate,@VNOPNo,@AppointmentNo,@FileNo,@EpmAbsorb,@EmpNo) SELECT SCOPE_IDENTITY() ";
 
 

@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TransfersRetirementResignation.aspx.cs" Inherits="ManPowerWeb.TransfersRetirementResignation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveTransfersRetirementResignation.aspx.cs" Inherits="ManPowerWeb.ApproveTransfersRetirementResignation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">
         <div class="card p-4">
-            <h2>Transfers / Retirement / Resignation</h2>
+            <h2>Approve Transfers / Retirement / Resignation</h2>
 
             <div class="mt-3">
 
@@ -22,9 +22,6 @@
                     </div>
                     <div class="col-sm-6"></div>
 
-                    <div class="col-sm-4 align-content-end">
-                        <asp:Button ID="btnAddNewTarget" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Add Transfers / Retirement / Resignation" OnClick="btnAddNewTarget_Click" />
-                    </div>
                 </div>
 
 
@@ -37,6 +34,8 @@
                 CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="10" HeaderStyle-HorizontalAlign="Center">
                 <Columns>
                     <asp:BoundField DataField="MainId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="employee.LastName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="employee.EmpInitials" HeaderText="Initials" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="RequestType.RequestTypeName" HeaderText="Request Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="CreatedDate" HeaderText="Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
 

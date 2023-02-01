@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 namespace ManPowerCore.Infrastructure
 {
@@ -269,18 +270,33 @@ namespace ManPowerCore.Infrastructure
 
             DataTable programPlanList = new DataTable();
 
-            dbConnection.cmd.CommandText = "SELECT  e.Name AS Program_Name ,a.Id, a.Location,a.Date,a.Approved_Amount," +
-                " a.Male_Count, a.Female_Count , a.Male_Count + a.Female_Count as total_count," +
-                " b.Vote_Number,a.Financial_Source, g.Name, g.Work_Place, b.Period_Type" +
-                " FROM Program_Plan a INNER JOIN Program_Target b ON a.Program_Target_Id = b.Id " +
-                " INNER JOIN Program_Assignee c ON c.Program_Target_Id = b.Id " +
-                "INNER JOIN Program e ON e.id = b.program_id " +
+            dbConnection.cmd.CommandText = "select e.Name AS Program_Name, x.Id, a.Location,a.Date,a.Approved_Amount, x.Program_Id ," +
+                "sum(x.an) as annual_Count, sum(x.qt) as quartly_Count,sum(x.ml) as monthly_Count," +
+                "a.Male_Count, a.Female_Count , a.Male_Count + a.Female_Count as total_count, " +
+                "x.Vote_Number,a.Financial_Source, g.Person, g.Work_Places " +
+                "from(" +
+                "select b.Id, b.Program_Id, b.No_Of_Projects, b.Vote_Number, b.Period_Type as an, 0 as qt, 0 as ml from Program_Target b " +
+                "INNER JOIN Program_Assignee c ON c.Program_Target_Id = b.Id " +
+                "WHERE c.Department_Unit_Possitions_Id = " + DepId + " and b.Period_Type = 1 " +
+                "union all " +
+                "select b.Id, b.Program_Id, 0 as an, b.No_Of_Projects, b.Vote_Number, b.Period_Type as qt, 0 as ml from Program_Target b " +
+                "INNER JOIN Program_Assignee c ON c.Program_Target_Id = b.Id " +
+                "WHERE c.Department_Unit_Possitions_Id = 2027 and b.Period_Type = 2 " +
+                "union all " +
+                "select b.Id, b.Program_Id, 0 as an, 0 as qt, b.No_Of_Projects, b.Vote_Number, b.Period_Type as ml from Program_Target b " +
+                "INNER JOIN Program_Assignee c ON c.Program_Target_Id = b.Id " +
+                "WHERE c.Department_Unit_Possitions_Id = " + DepId + " and b.Period_Type = 3) x " +
+                "inner join Program_Plan a on  a.Program_Target_Id = x.Id " +
+                "INNER JOIN Program e ON e.id = x.program_id " +
                 "LEFT JOIN Resource_Person_Program_Plan f ON f.Program_Plan_Id = a.Id " +
-                "INNER JOIN Resource_Person g ON f.Resourse_Person_Id = g.id " +
+                "LEFT JOIN (select Program_plan_id, string_agg(Name, ',') as Person,string_agg(Work_Place, ',') as Work_Places " +
+                "from resource_person_program_plan LEFT JOIN Resource_Person g ON " +
+                "Resource_Person_Program_Plan.Resourse_Person_Id = g.id group by Program_plan_id) g ON f.Program_Plan_Id = g.Program_Plan_Id " +
                 "LEFT JOIN Job_Refferals h ON h.Program_Plan_Id = a.Id " +
                 "LEFT JOIN Training_Refferals i ON i.Program_Plan_Id = a.Id " +
                 "LEFT JOIN Career_Key_Test_Results k ON k.Program_Plan_Id = a.Id " +
-                "WHERE c.Department_Unit_Possitions_Id = " + DepId;
+                "group by x.Program_Id,x.Id ,e.Name,a.Location,a.Date,a.Approved_Amount,a.Male_Count,a.Female_Count," +
+                "x.Vote_Number,a.Financial_Source, g.Person, g.Work_Places;";
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(dbConnection.cmd);
             dataAdapter.Fill(programPlanList);

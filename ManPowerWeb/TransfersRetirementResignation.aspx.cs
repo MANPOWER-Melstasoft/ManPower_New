@@ -34,7 +34,7 @@ namespace ManPowerWeb
 
             TransfersRetirementResignationMainController main = ControllerFactory.CreateTransfersRetirementResignationMainController();
             List<TransfersRetirementResignationMain> mainList = main.GetAllTransfersRetirementResignation(false);
-
+            mainList = mainList.Where(x => x.EmployeeId == Convert.ToInt32(Session["EmpNumber"])).ToList();
             //programTargetsSearchList = (List<ProgramTarget>)ViewState["programTargetsSearchList"];
             //ViewState["programTargetsList"] = programTargetsSearchList.ToList();
             //ViewState["programTargetsListRejected"] = programTargetsSearchList.Where(x => x.IsRecommended == 3).ToList();
@@ -43,9 +43,6 @@ namespace ManPowerWeb
             //ViewState["programTargetsListNotRecommended"] = programTargetsSearchList.Where(x => x.IsRecommended == 0).ToList();
 
             GridView1.DataSource = mainList;
-
-
-
             GridView1.DataBind();
 
         }

@@ -23,6 +23,23 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <style>
+        .btn:hover {
+            transform: translateY(4px);
+        }
+
+        .card:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            transition: all 0.3s ease-out;
+        }
+
+        .card {
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 <body style="background-image: url(img/bgimg2.jpg); background-repeat: no-repeat; background-size: cover; opacity: 0.9">
     <form id="form1" runat="server">

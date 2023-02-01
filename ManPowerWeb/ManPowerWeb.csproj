@@ -126,6 +126,8 @@
     <Content Include="ApproveTrainingRequest.aspx" />
     <Content Include="ApproveLeave.aspx" />
     <Content Include="ApproveLeaveView.aspx" />
+    <Content Include="ApproveTransfersRetirementResignation.aspx" />
+    <Content Include="ApproveTransfersRetirementResignationView.aspx" />
     <Content Include="CompletedPrograms.aspx" />
     <Content Include="CompletedProgramsView.aspx" />
     <Content Include="AnnualTargetRecomendationView.aspx" />
@@ -261,10 +263,12 @@
     <Content Include="Styles\sweetalert.css" />
     <Content Include="testing.aspx" />
     <Content Include="TransfersRetirementResignation.aspx" />
+    <Content Include="TransfersRetirementResignationView.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
     <Content Include="UpcomingprogramsView.aspx" />
     <Content Include="UserList.aspx" />
     <Content Include="UserProfile.aspx" />
+    <Content Include="UserRolePrivileges.aspx" />
     <Content Include="VacancyReg.aspx" />
     <Content Include="VacancyRegSearch.aspx" />
     <Content Include="VacancyRegView.aspx" />
@@ -2143,6 +2147,20 @@
     <Compile Include="ApproveLeaveView.aspx.designer.cs">
       <DependentUpon>ApproveLeaveView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveTransfersRetirementResignation.aspx.cs">
+      <DependentUpon>ApproveTransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveTransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>ApproveTransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveTransfersRetirementResignationView.aspx.cs">
+      <DependentUpon>ApproveTransfersRetirementResignationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveTransfersRetirementResignationView.aspx.designer.cs">
+      <DependentUpon>ApproveTransfersRetirementResignationView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -2522,6 +2540,13 @@
     <Compile Include="TransfersRetirementResignation.aspx.designer.cs">
       <DependentUpon>TransfersRetirementResignation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TransfersRetirementResignationView.aspx.cs">
+      <DependentUpon>TransfersRetirementResignationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransfersRetirementResignationView.aspx.designer.cs">
+      <DependentUpon>TransfersRetirementResignationView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UpcomingPrograms.aspx.cs">
       <DependentUpon>UpcomingPrograms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2550,6 +2575,13 @@
     </Compile>
     <Compile Include="UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserRolePrivileges.aspx.cs">
+      <DependentUpon>UserRolePrivileges.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserRolePrivileges.aspx.designer.cs">
+      <DependentUpon>UserRolePrivileges.aspx</DependentUpon>
     </Compile>
     <Compile Include="VacancyReg.aspx.cs">
       <DependentUpon>VacancyReg.aspx</DependentUpon>

@@ -11,7 +11,7 @@ namespace ManPowerCore.Controller
 {
     public interface RetirementController
     {
-        int Save(Retirement retirement);
+        int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Retirement retirement);
         int Delete(int id);
         int Update(Retirement retirement);
         List<Retirement> GetAllRetirement(bool with0);
@@ -23,12 +23,17 @@ namespace ManPowerCore.Controller
         RetirementDAO retirementDAO = DAOFactory.CreateRetirementDAO();
         DBConnection dBConnection;
 
-        public int Save(Retirement retirement)
+        public int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Retirement retirement)
         {
             try
             {
+                int output = 0;
                 dBConnection = new DBConnection();
-                return retirementDAO.Save(retirement, dBConnection);
+                TransfersRetirementResignationMainDAO transfersRetirementResignationMainDAO = DAOFactory.CreateTransfersRetirementResignationMainDAO();
+                retirement.MainId = transfersRetirementResignationMainDAO.Save(transfersRetirementResignationMain, dBConnection);
+
+                output = retirementDAO.Save(retirement, dBConnection);
+                return output;
             }
             catch (Exception)
             {

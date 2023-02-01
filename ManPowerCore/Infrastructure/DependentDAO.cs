@@ -10,13 +10,15 @@ namespace ManPowerCore.Infrastructure
 {
     public interface DependentDAO
     {
-        //List<Dependant> GetAllDependant(DBConnection dbConnection);
+        List<Dependant> GetAllDependant(DBConnection dbConnection);
 
-        //Dependant GetDependantById(int id, DBConnection dbConnection);
+        Dependant GetDependantById(int id, DBConnection dbConnection);
 
         int SaveDependant(Dependant dependant, DBConnection dbConnection);
 
-        //int UpdateDependant(Dependant dependant, DBConnection dbConnection);
+        int UpdateDependant(Dependant dependant, DBConnection dbConnection);
+
+        List<Dependant> GetDependantByEmpId(int empId, DBConnection dbConnection);
     }
 
     public class DependentDAOImpl : DependentDAO
@@ -53,6 +55,79 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.ExecuteNonQuery();
             dbConnection.cmd.Parameters.Clear();
             return 1;
+        }
+
+        public int UpdateDependant(Dependant dependant, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE DEPENDANT SET DEPENDENT_TYPE_ID = @DependantTypeId ,EMPLOYEE_ID = @EmployeeID," +
+                "FIRST_NAME = @FirstName,LAST_NAME = @LName, " +
+                "NIC = @DependantNIC,PASSPORT_NO = @DependantPassportNo ,BIRTH_CERTIFICATE_NUMBER = @BirthCertificateNumber ," +
+                "DATE_OF_BIRTH = @DateOfBirth ,RELATIONSHIP = @RelationshipToEmp ,SPECIAL_REMARKS = @SpecialRemarks ,MARRIAGE_DATE = @MDate," +
+                "MARRIAGE_CERTIFICATE_NUMBER = @MCertificateNo ,WORKING_COMPANY = @WorkingCompany ,CITY = @DependantCity WHERE ID = @DependantId";
+
+
+
+            dbConnection.cmd.Parameters.AddWithValue("@DependantTypeId", dependant.DependantTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeID", dependant.EmpId);
+            dbConnection.cmd.Parameters.AddWithValue("@FirstName", dependant.FirstName);
+            dbConnection.cmd.Parameters.AddWithValue("@LName", dependant.LastName);
+            dbConnection.cmd.Parameters.AddWithValue("@DependantNIC", dependant.DependantNIC);
+            dbConnection.cmd.Parameters.AddWithValue("@DependantPassportNo", dependant.DependantPassportNo);
+            dbConnection.cmd.Parameters.AddWithValue("@BirthCertificateNumber", dependant.BirthCertificateNumber);
+            dbConnection.cmd.Parameters.AddWithValue("@DateOfBirth", dependant.Dob);
+            dbConnection.cmd.Parameters.AddWithValue("@RelationshipToEmp", dependant.RelationshipToEmp);
+            dbConnection.cmd.Parameters.AddWithValue("@SpecialRemarks", dependant.Remarks);
+            dbConnection.cmd.Parameters.AddWithValue("@MDate", dependant.MarriageDate);
+            dbConnection.cmd.Parameters.AddWithValue("@MCertificateNo", dependant.MarriageCertificateNo);
+            dbConnection.cmd.Parameters.AddWithValue("@WorkingCompany", dependant.WorkingCompany);
+            dbConnection.cmd.Parameters.AddWithValue("@DependantCity", dependant.City);
+            dbConnection.cmd.Parameters.AddWithValue("@DependantId", dependant.DependantId);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            dbConnection.cmd.Parameters.Clear();
+            return 1;
+        }
+
+        public List<Dependant> GetAllDependant(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPENDANT ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<Dependant>(dbConnection.dr);
+
+        }
+
+        public Dependant GetDependantById(int id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPENDANT WHERE ID=" + id + " ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<Dependant>(dbConnection.dr);
+        }
+
+        public List<Dependant> GetDependantByEmpId(int empId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPENDANT WHERE EMPLOYEE_ID=" + empId + " ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<Dependant>(dbConnection.dr);
         }
     }
 }

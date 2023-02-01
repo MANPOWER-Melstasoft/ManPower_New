@@ -1070,7 +1070,7 @@
             </div>
 
 
-            <asp:Button runat="server" ID="Button4" Text="Add" CssClass="btn btn-primary btn-user btn-block"  OnClick="addEducation" ValidationGroup="6" />
+            <asp:Button runat="server" ID="Button4" Text="Add" CssClass="btn btn-primary btn-user btn-block" OnClick="addEducation" ValidationGroup="6" />
 
 
 
@@ -1098,13 +1098,12 @@
 
             <div class="row justify-content-between">
                 <div class="col-9">
-                    <asp:Button runat="server" ID="aa" Text="<< Previous" CssClass="btn btn-success btn-user btn-block"  OnClick="page6PrevClick" />
+                    <asp:Button runat="server" ID="aa" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page6PrevClick" />
                 </div>
                 <div class="col-3" style="text-align: end">
-                    <asp:Button runat="server" ID="Button2" Text="Next >>" CssClass="btn btn-success btn-user btn-block"  OnClick="page6NextClick" />
+                    <asp:Button runat="server" ID="Button2" Text="Next >>" CssClass="btn btn-success btn-user btn-block" OnClick="page6NextClick" />
                 </div>
             </div>
-
         </div>--%>
 
 
@@ -1151,6 +1150,18 @@
                         <div class="col-6">
                             <asp:TextBox ID="dateAssumedDuty" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="dateAssumedDuty" ID="RequiredFieldValidator48" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Grade : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="empServicesGrade" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="empServicesGrade" ID="RequiredFieldValidator22" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>

@@ -234,6 +234,20 @@ namespace ManPowerWeb
                 dependant = (List<Dependant>)ViewState["dependant"];
             }
 
+            if (Uploader.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/DependantDocuments/") + uploadFile.FileName);
+                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+
+                    }
+                }
+            }
 
             if (int.Parse(ddlDependant.SelectedValue) == 1)
             {
@@ -261,7 +275,8 @@ namespace ManPowerWeb
                         MarriageDate = Convert.ToDateTime(mDate.Text),
                         MarriageCertificateNo = mCertificateNo.Text,
                         WorkingCompany = workingCompany.Text,
-                        City = city.Text
+                        City = city.Text,
+                        DocumentUploads = Uploader.FileName
                     });
                 }
             }
@@ -287,24 +302,13 @@ namespace ManPowerWeb
                         MarriageDate = DateTime.Today,
                         MarriageCertificateNo = "",
                         WorkingCompany = "",
-                        City = ""
+                        City = "",
+                        DocumentUploads = Uploader.FileName
                     });
                 }
             }
 
-            if (Uploader.HasFile)
-            {
-                HttpFileCollection uploadFiles = Request.Files;
-                for (int i = 0; i < uploadFiles.Count; i++)
-                {
-                    HttpPostedFile uploadFile = uploadFiles[i];
-                    if (uploadFile.ContentLength > 0)
-                    {
-                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/DependantDocuments/") + uploadFile.FileName);
-                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
-                    }
-                }
-            }
+
 
 
             ViewState["dependant"] = dependant;
@@ -556,7 +560,8 @@ namespace ManPowerWeb
                 DateAssumedDuty = dateAssumedDuty.Text,
                 MethodOfRecruitment = method.Text,
                 MediumOfRecruitment = medium.Text,
-                ServiceConfirmed = int.Parse(confirmation.Text)
+                ServiceConfirmed = int.Parse(confirmation.Text),
+                empGrade = empServicesGrade.Text
             });
 
             appointmentDate.Text = null;
@@ -605,7 +610,7 @@ namespace ManPowerWeb
             emp.ManagerId = 0;
             emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
             emp.EpmAbsorb = ddlAbsorb.SelectedValue;
-            emp.PensionDate = Convert.ToDateTime(pensionDate.Text);
+            emp.PensionDate = Convert.ToDateTime(dob.Text).AddYears(60);
             emp.VNOPNo = int.Parse(vnop.Text);
             emp.FileNo = int.Parse(fileNo.Text);
             emp.AppointmentNo = int.Parse(appointmenLetterNo.Text);
@@ -630,8 +635,8 @@ namespace ManPowerWeb
 
 
             emp._Dependant = (List<Dependant>)ViewState["dependant"];
-            emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"]; ;
-            emp._EducationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+            emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"];
+            //emp._EducationDetails = (List<EducationDetails>)ViewState["educationDetails"];
             emp._EmployeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
 
             //emp._EmergencyContact.Name = ecName.Text;

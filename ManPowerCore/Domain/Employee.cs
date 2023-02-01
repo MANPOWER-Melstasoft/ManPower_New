@@ -79,50 +79,9 @@ namespace ManPowerCore.Domain
         [DBField("UNIT_TYPE")]
         public int UnitType { get; set; }
 
+
+
         public string fullName { get; set; }
-
-
-
-        //[DBField("LEAVE_NUMBER")]
-        //public int leaveNumber { get; set; }
-
-        //[DBField("PERMANENT_ADDRESS")]
-        //public string Adress { get; set; }
-
-        //[DBField("TELEPHONE")]
-        //public int TelephoneNumber { get; set; }
-
-        //[DBField("FAX")]
-        //public int EmpFax { get; set; }
-
-        //[DBField("MOBILE")]
-        //public int empMobile { get; set; }
-
-        //[DBField("PERSONAL_EMAIL")]
-        //public string Email { get; set; }
-
-        //[DBField("PERSONAL_FILE_NUMBER")]
-        //public int FileNumber { get; set; }
-
-        //[DBField("APPOINTMENT_LETTER_NUMBER")]
-        //public int AppointmentLetterNumber { get; set; }
-
-        //[DBField("SERVICE_TYPE")]
-        //public int ServiceType { get; set; }
-
-        //[DBField("EMPLOYEE_NUMBER")]
-        //public int EmpNumber { get; set; }
-
-
-
-        //[DBField("RETAIREMENT_DATE")]
-        //public DateTime RetirementDate { get; set; }
-
-        //[DBField("PLACE_OF_BIRTH")]
-        //public string PlaceOfBirth { get; set; }
-
-
-
 
 
         public EmergencyContact _EmergencyContact { get; set; } = new EmergencyContact();

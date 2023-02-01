@@ -318,6 +318,12 @@ namespace ManPowerCore.Common
 
         }
 
+        public static HolidaySheetDAO CreateHolidaySheetDAO()
+        {
+            HolidaySheetDAO holidaySheetDAO = new HolidaySheetDAOImpl();
+            return (HolidaySheetDAO)holidaySheetDAO;
+        }
+
         public static ServiceTypeDAO CreateServiceTypeDAO()
         {
             ServiceTypeDAO serviceTypeDAO = new ServiceTypeDAOImpl();

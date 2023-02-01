@@ -58,7 +58,7 @@ namespace ManPowerWeb
                         }
                     }
 
-                    DepartmentUnitPosition = DepUnitPositionController.departmentUnitPositionWithPID(systeUserList[0].SystemUserId);
+                    DepartmentUnitPosition = DepUnitPositionController.departmentUnitPositionWithPID(systeUserList[0].SystemUserId, false);
 
                     Session["DepUnitPositionId"] = DepartmentUnitPosition.DepartmetUnitPossitionsId;
                     Session["DepUnitParentId"] = DepartmentUnitPosition.ParentId;

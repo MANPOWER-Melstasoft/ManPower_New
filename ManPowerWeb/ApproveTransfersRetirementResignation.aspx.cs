@@ -24,6 +24,8 @@ namespace ManPowerWeb
         {
             DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
             DepartmentUnitPositions departmentUnitPositions = new DepartmentUnitPositions();
+            DepartmentUnitPositions departmentUnitPositionsCheckAdmint = new DepartmentUnitPositions();
+            departmentUnitPositionsCheckAdmint = departmentUnitPositionsController.departmentUnitPositionWithPID(Convert.ToInt32(Session["UserId"]), true);
 
             TransfersRetirementResignationMainController main = ControllerFactory.CreateTransfersRetirementResignationMainController();
             List<TransfersRetirementResignationMain> mainList = main.GetAllTransfersRetirementResignation(false);
@@ -41,14 +43,14 @@ namespace ManPowerWeb
                 }
                 else
                 {
-                    if (item.EmployeeId == Convert.ToInt32(Session["EmpNumber"]))
+                    //--------------------- get all requests with no parent id to admin------------------------
+                    if (departmentUnitPositionsCheckAdmint._DepartmentUnit.DepartmentUnitTypeId == 1 && Convert.ToInt32(Session["UserTypeId"]) == 1)
                     {
                         filterList.Add(item);
                     }
                 }
 
             }
-
 
             GridView1.DataSource = filterList;
             GridView1.DataBind();
@@ -69,11 +71,7 @@ namespace ManPowerWeb
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
-
-
             BindDataSource();
-
-
         }
     }
 }

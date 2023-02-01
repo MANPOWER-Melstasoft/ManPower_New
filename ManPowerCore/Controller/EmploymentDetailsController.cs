@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace ManPowerCore.Controller
 {
@@ -48,8 +49,6 @@ namespace ManPowerCore.Controller
 
         public int UpdateEmploymentDetails(EmploymentDetails empDetails)
         {
-
-
             try
             {
                 dBConnection = new DBConnection();
@@ -71,10 +70,9 @@ namespace ManPowerCore.Controller
 
         public List<EmploymentDetails> GetAllEmploymentDetails()
         {
-            DBConnection dBConnection = new DBConnection();
-
             try
             {
+                dBConnection = new DBConnection();
                 EmploymentDetailsDAO DAO = DAOFactory.CreateEmploymentDetailsDAO();
                 List<EmploymentDetails> list = DAO.GetAllEmploymentDetails(dBConnection);
                 return list;
@@ -96,10 +94,9 @@ namespace ManPowerCore.Controller
 
         public List<EmploymentDetails> GetEmploymentDetailsByEmpId(int empId)
         {
-            DBConnection dBConnection = new DBConnection();
-
             try
             {
+                dBConnection = new DBConnection();
                 EmploymentDetailsDAO DAO = DAOFactory.CreateEmploymentDetailsDAO();
                 List<EmploymentDetails> list = DAO.GetEmploymentDetailsByEmpId(empId, dBConnection);
                 return list;
@@ -121,22 +118,22 @@ namespace ManPowerCore.Controller
 
         public EmploymentDetails GetEmploymentDetails(int id)
         {
-            DBConnection dbConnection = new DBConnection();
             try
             {
+                dBConnection = new DBConnection();
                 EmploymentDetailsDAO DAO = DAOFactory.CreateEmploymentDetailsDAO();
                 EmploymentDetails list = DAO.GetEmploymentDetailsById(id, dBConnection);
                 return list;
             }
             catch (Exception ex)
             {
-                dbConnection.RollBack();
+                dBConnection.RollBack();
                 return null;
             }
             finally
             {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open)
-                    dbConnection.Commit();
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
             }
         }
     }

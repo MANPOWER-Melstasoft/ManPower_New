@@ -40,7 +40,7 @@
 
 
 </head>
-<body style="background-image: url(img/bgimg2.jpg); background-repeat: no-repeat; background-size: cover;">
+<body style="background-image: url(img/bgimg2.jpg); background-repeat: no-repeat; background-size: cover;" class="bg-opacity-10">
     <form id="form1" runat="server">
         <div class="top-row mb-5">
             <div class="col-12">
@@ -51,7 +51,7 @@
         <%--         <div class="container" style="height: 500px; width: 2000px">--%>
         <div class="row p-4 m-4 mt-4">
             <div class="col mr-2">
-                <div class="card border-left-primary" style="margin-top: 200px;">
+                <div class="card border-left-secondary" style="margin-top: 200px;">
                     <img src="img/HR.jpg" class="card-img-top"
                         alt="Skyscrapers" />
                     <div class="card-body">
@@ -66,7 +66,7 @@
             <div class="col mr-2">
                 <div class="card border-left-warning">
                     <div class=" bg-image hover-zoom">
-                        <img src="img/Procu.jpg" class="card-img-top"
+                        <img src="img/Procu.jpg" class="card-img-top" style="height: 150px"
                             alt="Skyscrapers" />
                     </div>
 
@@ -81,7 +81,7 @@
             </div>
             <div class="col mr-2">
                 <div class="card border-left-success" style="margin-top: 200px">
-                    <img src="img/Finance.jpg" class="card-img-top"
+                    <img src="img/Finance.jpg" class="card-img-top" style="height: 170px"
                         alt="Skyscrapers" />
                     <div class="card-body">
                         <h5 class="card-title text-center">
@@ -92,13 +92,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col mr-2">
-                <div class="card border-left-dark">
-                    <img src="img/planning.jpg" class="card-img-top"
-                        alt="Skyscrapers" />
+                <div class="card border-left-primary">
+                    <img src="img/ITDep.jpg" class="card-img-top"
+                        alt="Skyscrapers" style="height: 150px" />
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <asp:Button ID="btnPLAN" runat="server" Text="PLANNING" OnClick="btnPLAN_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
+                            <asp:Button ID="btnICT" runat="server" Text="IT" BorderStyle="None" BackColor="White" ForeColor="Blue" OnClick="btnICT_Click" />
                         </h5>
                     </div>
                     <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/fluid/nature/018.webp); height: 50px">
@@ -107,18 +108,20 @@
             </div>
 
             <div class="col mr-2">
-                <div class="card border-left-danger" style="margin-top: 200px">
-                    <img src="img/IT.jpg" class="card-img-top"
-                        alt="Skyscrapers" style="height: 150px" />
+                <div class="card border-left-dark" style="margin-top: 200px">
+                    <img src="img/planning.jpg" class="card-img-top" style="height: 165px"
+                        alt="Skyscrapers" />
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <asp:Button ID="Button1" runat="server" Text="IT" BorderStyle="None" BackColor="White" ForeColor="Blue" />
+                            <asp:Button ID="btnPLAN" runat="server" Text="PLANNING" OnClick="btnPLAN_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
                         </h5>
                     </div>
                     <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp); height: 50px">
                     </div>
                 </div>
             </div>
+
+
         </div>
         <%--</div>--%>
     </form>

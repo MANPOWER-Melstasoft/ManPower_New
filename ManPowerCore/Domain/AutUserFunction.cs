@@ -18,5 +18,7 @@ namespace ManPowerCore.Domain
         public int AutUserId { get; set; }
 
         public AutFunction autFunction { get; set; }
+
+        public SystemUser systemUser { get; set; }
     }
 }

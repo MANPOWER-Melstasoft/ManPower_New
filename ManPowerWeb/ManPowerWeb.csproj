@@ -175,6 +175,7 @@
     <Content Include="css\mdb.min.css.map" />
     <Content Include="css\mdb.rtl.min.css.map" />
     <Content Include="img\bgimg.jpeg" />
+    <Content Include="img\ITDep.jpg" />
     <Content Include="img\Down.png" />
     <Content Include="img\favicon.png" />
     <Content Include="img\Finance.jpg" />

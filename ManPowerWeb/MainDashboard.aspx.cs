@@ -40,5 +40,11 @@ namespace ManPowerWeb
             Session["Division"] = 4;
             Response.Redirect("Dashboard.aspx");
         }
+
+        protected void btnICT_Click(object sender, EventArgs e)
+        {
+            Session["Division"] = 5;
+            Response.Redirect("Dashboard.aspx");
+        }
     }
 }

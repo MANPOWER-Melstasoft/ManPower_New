@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ManPowerCore.Infrastructure
@@ -15,6 +16,10 @@ namespace ManPowerCore.Infrastructure
         List<AutUserFunction> GetAllAutUserFunctionByUserId(int AutUserId, DBConnection dbConnection);
         List<AutUserFunction> GetAllAutUserFunction(DBConnection dbConnection);
         AutUserFunction GetAutUserFunction(AutUserFunction autUserFunction, DBConnection dbConnection);
+
+        List<AutUserFunction> GetAutUserFunctionCheckByAll(int function, int userType, DBConnection dbConnection);
+        List<AutUserFunction> GetAutUserFunctionAllUserGroupBy(int userType, DBConnection dbConnection);
+
 
     }
 
@@ -89,5 +94,39 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.GetSingleOject<AutUserFunction>(dbConnection.dr);
         }
 
+        public List<AutUserFunction> GetAutUserFunctionCheckByAll(int function, int userType, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT uf.aut_user_id, uf.aut_function_id FROM aut_user_function uf " +
+                "LEFT JOIN Company_User cu ON cu.Id = uf.aut_user_id WHERE uf.aut_function_id = @FunctionId AND cu.User_Type_Id = @UserTypeId " +
+                "GROUP BY uf.aut_user_id, cu.User_Type_Id, uf.aut_function_id;";
+
+            dbConnection.cmd.Parameters.AddWithValue("@FunctionId", function);
+            //dbConnection.cmd.Parameters.AddWithValue("@AutUserId", autUserFunction.AutUserId);
+            dbConnection.cmd.Parameters.AddWithValue("@UserTypeId", userType);
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<AutUserFunction>(dbConnection.dr);
+        }
+
+        public List<AutUserFunction> GetAutUserFunctionAllUserGroupBy(int userType, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+
+            dbConnection.cmd.CommandText = "SELECT uf.aut_user_id FROM aut_user_function uf LEFT JOIN Company_User cu ON cu.Id = uf.aut_user_id " +
+                "WHERE cu.User_Type_Id = @userType GROUP BY uf.aut_user_id;; ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@userType", userType);
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<AutUserFunction>(dbConnection.dr);
+        }
     }
 }

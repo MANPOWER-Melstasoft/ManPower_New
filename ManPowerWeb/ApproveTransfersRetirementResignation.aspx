@@ -11,16 +11,15 @@
                 <div class="row mb-3 ms-1 mt-3">
 
                     <div class="col-sm-2">
-
-                        <%--  <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" AutoPostBack="true">
-                            <asp:ListItem Value="4">All</asp:ListItem>
-                            <asp:ListItem Value="1">Pending</asp:ListItem>
-                            <asp:ListItem Value="2">Approved</asp:ListItem>
-                            <asp:ListItem Value="3">Reject</asp:ListItem>
-                            <asp:ListItem Value="0">Send to Recommendation</asp:ListItem>
-                        </asp:DropDownList>--%>
+                        <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddltype_SelectedIndexChanged" AutoPostBack="true">
+                        </asp:DropDownList>
                     </div>
-                    <div class="col-sm-6"></div>
+                    <div class="col-sm-2">
+                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" AutoPostBack="true">
+                        </asp:DropDownList>
+                    </div>
+
+                    <div class="col-sm-2"></div>
 
                 </div>
 

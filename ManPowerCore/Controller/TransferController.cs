@@ -15,7 +15,7 @@ namespace ManPowerCore.Controller
         int Delete(int id);
         int Update(Transfer transfer);
         List<Transfer> GetAllTransfer(bool with0);
-        Transfer GetTransfer(int Id);
+        Transfer GetTransferByMainId(int Id);
     }
 
     public class TransferControllerSqlImpl : TransferController
@@ -105,12 +105,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public Transfer GetTransfer(int Id)
+        public Transfer GetTransferByMainId(int Id)
         {
             try
             {
                 dBConnection = new DBConnection();
-                return transferDAO.GetTransfer(Id, dBConnection);
+                return transferDAO.GetTransferByMainId(Id, dBConnection);
             }
             catch (Exception)
             {

@@ -14,7 +14,7 @@ namespace ManPowerCore.Infrastructure
         int Delete(int id, DBConnection dbConnection);
         int Update(Retirement resignation, DBConnection dbConnection);
         List<Retirement> GetAllRetirement(bool with0, DBConnection dbConnection);
-        Retirement GetRetirement(int Id, DBConnection dbConnection);
+        Retirement GetRetirementByMainId(int Id, DBConnection dbConnection);
     }
 
     public class RetirementDAOSqlImpl : RetirementDAO
@@ -92,13 +92,13 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<Retirement>(dbConnection.dr);
         }
 
-        public Retirement GetRetirement(int Id, DBConnection dbConnection)
+        public Retirement GetRetirementByMainId(int Id, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT * FROM Retirement WHERE Id = @Id";
+            dbConnection.cmd.CommandText = "SELECT * FROM Retirement WHERE Transfers_Retirement_Resignation_Main_Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", Id);
 

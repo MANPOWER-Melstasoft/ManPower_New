@@ -6,16 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ManPowerCore.Common;
+using ManPowerCore.Domain;
 
-namespace ManPowerCore.Domain
+namespace ManPowerCore.Infrastructure
 {
     public interface DistrictTASummaryDAO
     {
-        List<DistrictTASummary> GetDistrictTASummaryReport(DBConnection dbConnection);
+        List<DistrictTASummaryReport> GetDistrictTASummaryReport(DBConnection dbConnection);
     }
     public class DistrictTASummaryDAOImpl : DistrictTASummaryDAO
     {
-        public List<DistrictTASummary> GetDistrictTASummaryReport(DBConnection dbConnection)
+        public List<DistrictTASummaryReport> GetDistrictTASummaryReport(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
@@ -40,7 +41,7 @@ namespace ManPowerCore.Domain
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
-            return dataAccessObject.ReadCollection<DistrictTASummary>(dbConnection.dr);
+            return dataAccessObject.ReadCollection<DistrictTASummaryReport>(dbConnection.dr);
         }
     }
 }

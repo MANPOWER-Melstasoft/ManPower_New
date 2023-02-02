@@ -12,13 +12,13 @@ namespace ManPowerCore.Controller
 {
     public interface DistrictTASummaryController
     {
-        List<DistrictTASummary> getProgramTragetReport();
+        List<DistrictTASummaryReport> GetDistrictTASummaryReport();
     }
     public class DistrictTASummaryControllerImpl : DistrictTASummaryController
     {
         DBConnection dBConnection;
         DistrictTASummaryDAO districtTASummaryDAO = DAOFactory.CreateDistrictTASummaryDAO();
-        public List<DistrictTASummary> getProgramTragetReport()
+        public List<DistrictTASummaryReport> GetDistrictTASummaryReport()
         {
             try
             {

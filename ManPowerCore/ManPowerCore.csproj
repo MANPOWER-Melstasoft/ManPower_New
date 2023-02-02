@@ -156,8 +156,8 @@
     <Compile Include="Domain\DependantType.cs" />
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
-    <Compile Include="Domain\DistrictTASummary.cs" />
-    <Compile Include="Domain\DistrictTASummaryDAO.cs" />
+    <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
+    <Compile Include="Domain\DistrictTASummaryReport.cs" />
     <Compile Include="Domain\DME21Model.cs" />
     <Compile Include="Domain\EducationDetails.cs" />
     <Compile Include="Domain\EducationType.cs" />

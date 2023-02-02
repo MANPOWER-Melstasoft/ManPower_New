@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
-    public class DistrictTASummary
+    [Serializable]
+    public class DistrictTASummaryReport
     {
+
         [DBField("Target_ID")]
         public int ProgramTargetId { get; set; }
         [DBField("Plan_ID")]
@@ -27,6 +29,5 @@ namespace ManPowerCore.Domain
         public string Location { get; set; }
 
         //public string OfficerName { get; set; }
-
     }
 }

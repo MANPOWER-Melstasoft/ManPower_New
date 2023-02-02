@@ -118,8 +118,14 @@ namespace ManPowerCore.Controller
         {
             try
             {
-                RetirementTypeDAO DAO = DAOFactory.CreateRetirementTypeDAO();
-                return transfersRetirementResignationMainDAO.GetTransfersRetirementResignation(Id, dBConnection);
+                dBConnection = new DBConnection();
+                EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+
+                TransfersRetirementResignationMain transfersRetirementResignationMain = new TransfersRetirementResignationMain();
+                transfersRetirementResignationMain = transfersRetirementResignationMainDAO.GetTransfersRetirementResignation(Id, dBConnection);
+                transfersRetirementResignationMain.employee = employeeDAO.GetEmployeeById(transfersRetirementResignationMain.EmployeeId, dBConnection);
+
+                return transfersRetirementResignationMain;
             }
             catch (Exception ex)
             {

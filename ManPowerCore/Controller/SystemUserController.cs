@@ -21,6 +21,7 @@ namespace ManPowerCore.Controller
         List<SystemUser> GetAllSystemUser(string runUserName, string runEmail, int runContactNumber, int runEmpNumber);
         int UpdateLastLoginDate(SystemUser systemUser);
         SystemUser CheckEmpNumberExists(int Number);
+        SystemUser GetSystemUserByEmpNumber(int Number);
     }
 
     public class SystemUserControllerImpl : SystemUserController
@@ -434,6 +435,32 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return systemUserDAO.CheckEmpNumberExists(Number, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public SystemUser GetSystemUserByEmpNumber(int Number)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                DesignationDAO designationDAO = DAOFactory.CreateDesignationDAO();
+                DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+
+                SystemUser systemUser = systemUserDAO.CheckEmpNumberExists(Number, dBConnection);
+                systemUser._Designation = designationDAO.GetDesignation(systemUser.DesignationId, dBConnection);
+                systemUser._DepartmentUnitPositions = departmentUnitPositionsDAO.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, dBConnection);
+
+                return systemUser;
             }
             catch (Exception)
             {

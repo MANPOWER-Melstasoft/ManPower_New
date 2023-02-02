@@ -15,7 +15,7 @@ namespace ManPowerCore.Controller
         int Delete(int id);
         int Update(Retirement retirement);
         List<Retirement> GetAllRetirement(bool with0);
-        Retirement GetRetirement(int Id);
+        Retirement GetRetirementByMainId(int Id);
     }
 
     public class RetirementControllerSqlImpl : RetirementController
@@ -104,12 +104,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public Retirement GetRetirement(int Id)
+        public Retirement GetRetirementByMainId(int Id)
         {
             try
             {
                 dBConnection = new DBConnection();
-                return retirementDAO.GetRetirement(Id, dBConnection);
+                return retirementDAO.GetRetirementByMainId(Id, dBConnection);
             }
             catch (Exception)
             {

@@ -521,6 +521,10 @@ namespace ManPowerCore.Common
             TransferDAO transferDAO = new TransferDAOSqlImpl();
             return (TransferDAO)transferDAO;
         }
-
+        public static DistrictTASummaryDAO CreateDistrictTASummaryDAO()
+        {
+            DistrictTASummaryDAO districtTASummaryDAO = new DistrictTASummaryDAOImpl();
+            return (DistrictTASummaryDAO)districtTASummaryDAO;
+        }
     }
 }

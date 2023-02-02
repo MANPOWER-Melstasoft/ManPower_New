@@ -28,6 +28,10 @@ namespace ManPowerCore.Domain
         [DBField("Locations")]
         public string Location { get; set; }
 
+        public int PhysicalCount { get; set; }
+
+        public int OnlineCount { get; set; }
+
         //public string OfficerName { get; set; }
     }
 }

@@ -534,5 +534,11 @@ namespace ManPowerCore.Common
             VacancyPositionController vacancyPositionController = new VacancyPositionControllerImpl();
             return (VacancyPositionController)vacancyPositionController;
         }
+
+        public static DistrictTASummaryController CreateDistrictTASummaryController()
+        {
+            DistrictTASummaryController districtTASummaryController = new DistrictTASummaryControllerImpl();
+            return (DistrictTASummaryController)districtTASummaryController;
+        }
     }
 }

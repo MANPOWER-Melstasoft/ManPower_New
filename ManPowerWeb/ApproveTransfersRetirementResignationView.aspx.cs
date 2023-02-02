@@ -24,6 +24,7 @@ namespace ManPowerWeb
                 {
                     Id = Convert.ToInt32(Request.QueryString["Id"]);
                     BindData();
+                    BindStatus();
                 }
                 else
                 {
@@ -154,7 +155,46 @@ namespace ManPowerWeb
             }
         }
 
+        private void BindStatus()
+        {
+            List<string> list = new List<string>();
 
+            if (Convert.ToInt32(Session["UserTypeId"]) == 1)
+            {
+                list.Add("Approve");
+            }
+            else
+            {
+                list.Add("Send to Approval");
+            }
+            list.Add("Reverse");
+            list.Add("Reject");
 
+            ddlUpdateStatus.DataSource = list;
+            ddlUpdateStatus.DataBind();
+            ddlUpdateStatus.Items.Insert(0, new ListItem("-- select status --", ""));
+        }
+
+        protected void ddlUpdateStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlUpdateStatus.SelectedValue == "Send to Approval")
+            {
+                sendtoapp.Visible = true;
+                reverse.Visible = false;
+                reject.Visible = false;
+            }
+            if (ddlUpdateStatus.SelectedValue == "Reverse")
+            {
+                sendtoapp.Visible = false;
+                reverse.Visible = true;
+                reject.Visible = false;
+            }
+            if (ddlUpdateStatus.SelectedValue == "Reject")
+            {
+                sendtoapp.Visible = false;
+                reverse.Visible = false;
+                reject.Visible = true;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace ManPowerWeb
 {
     public partial class DistrictTASummary : System.Web.UI.Page
     {
-        //List<DistrictTASummary> districtTASummaries = new List<DistrictTASummary>();
+        List<DistrictTASummaryReport> districtTASummariesList = new List<DistrictTASummaryReport>();
         protected void Page_Load(object sender, EventArgs e)
         {
             BindDataSource();
@@ -23,16 +23,9 @@ namespace ManPowerWeb
         {
             DistrictTASummaryController districtTASummaryController = ControllerFactory.CreateDistrictTASummaryController();
 
-            List<DistrictTASummaryReport> districtTASummaries = districtTASummaryController.GetDistrictTASummaryReport();
+            districtTASummariesList = districtTASummaryController.GetDistrictTASummaryReport();
 
-
-
-
-            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-
-            DataTable programTargetReport = programTargetController.getProgramTragetReport();
-
-            gvTASummary.DataSource = programTargetReport;
+            gvTASummary.DataSource = districtTASummariesList;
             gvTASummary.DataBind();
         }
     }

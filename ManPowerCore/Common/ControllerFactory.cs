@@ -319,6 +319,12 @@ namespace ManPowerCore.Common
 
         }
 
+        public static HolidaySheetController CreateHolidaySheetController()
+        {
+            HolidaySheetController holidaySheetController = new HolidaySheetControllerImpl();
+            return (HolidaySheetController)holidaySheetController;
+        }
+
 
         public static ServiceTypeController CreateServiceTypeController()
         {
@@ -527,6 +533,12 @@ namespace ManPowerCore.Common
         {
             VacancyPositionController vacancyPositionController = new VacancyPositionControllerImpl();
             return (VacancyPositionController)vacancyPositionController;
+        }
+
+        public static DistrictTASummaryController CreateDistrictTASummaryController()
+        {
+            DistrictTASummaryController districtTASummaryController = new DistrictTASummaryControllerImpl();
+            return (DistrictTASummaryController)districtTASummaryController;
         }
     }
 }

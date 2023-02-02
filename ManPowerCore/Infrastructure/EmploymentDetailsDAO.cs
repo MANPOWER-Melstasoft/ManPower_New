@@ -54,9 +54,9 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE Employment_Detail SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID " +
-                "COMPANY_NAME = @CompanyName, START_DATE = @StartDate,END_DATE = @EndDate,IS_RESIGNED = @IsResigned" +
-                "RETIREMENT_DATE = @RetirementDate, WHERE ID = @EmploymentDetailId ";
+            dbConnection.cmd.CommandText = "UPDATE Employment_Detail SET DESIGNATION_ID = @DesignationId, EMPLOYEE_ID = @EmpID, " +
+                "COMPANY_NAME = @CompanyName, START_DATE = @StartDate,END_DATE = @EndDate,IS_RESIGNED = @IsResigned," +
+                "RETIREMENT_DATE = @RetirementDate WHERE ID = @EmploymentDetailId ";
 
             dbConnection.cmd.Parameters.AddWithValue("@EmploymentDetailId", empDetails.EmploymentDetailId);
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", empDetails.DesignationId);

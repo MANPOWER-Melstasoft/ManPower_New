@@ -15,7 +15,7 @@ namespace ManPowerCore.Controller
         int Delete(int id);
         int Update(Resignation resignation);
         List<Resignation> GetAllResignation(bool with0);
-        Resignation GetResignation(int Id);
+        Resignation GetResignationByMainId(int Id);
     }
 
     public class ResignationControllerSqlImpl : ResignationController
@@ -104,12 +104,12 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public Resignation GetResignation(int Id)
+        public Resignation GetResignationByMainId(int Id)
         {
             try
             {
                 dBConnection = new DBConnection();
-                return resignationDAO.GetResignation(Id, dBConnection);
+                return resignationDAO.GetResignationByMainId(Id, dBConnection);
             }
             catch (Exception)
             {

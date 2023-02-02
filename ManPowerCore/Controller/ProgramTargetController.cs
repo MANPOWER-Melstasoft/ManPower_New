@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace ManPowerCore.Controller
         ProgramTarget GetProgramTarget(int id);
         List<ProgramTarget> GetAllProgramTarget(int runType);
         List<ProgramTarget> GetAllProgramTargetWithPlan();
+
+        DataTable getProgramTragetReport();
 
     }
 
@@ -392,6 +395,27 @@ namespace ManPowerCore.Controller
 
 
             }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public DataTable getProgramTragetReport()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return programTargetDAO.GetPRogramTargetReport(dBConnection);
+
+            }
+
             catch (Exception)
             {
                 dBConnection.RollBack();

@@ -69,6 +69,7 @@
     <Compile Include="Controller\DependantTypeController.cs" />
     <Compile Include="Controller\DesignationController.cs" />
     <Compile Include="Controller\DistricDsParentController.cs" />
+    <Compile Include="Controller\DistrictTASummaryController.cs" />
     <Compile Include="Controller\EducationDetailsController.cs" />
     <Compile Include="Controller\EducationTypeController.cs" />
     <Compile Include="Controller\EmergencyContactController.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Controller\EmploymentDetailsController.cs" />
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
+    <Compile Include="Controller\HolidaySheetController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
     <Compile Include="Controller\JobCategoryController.cs" />
     <Compile Include="Controller\JobPlacementFeedbackController.cs" />
@@ -154,6 +156,8 @@
     <Compile Include="Domain\DependantType.cs" />
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
+    <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
+    <Compile Include="Domain\DistrictTASummaryReport.cs" />
     <Compile Include="Domain\DME21Model.cs" />
     <Compile Include="Domain\EducationDetails.cs" />
     <Compile Include="Domain\EducationType.cs" />
@@ -165,6 +169,7 @@
     <Compile Include="Domain\Entrepreneur.cs" />
     <Compile Include="Domain\Ethnicity.cs" />
     <Compile Include="Domain\HolidaySheet.cs" />
+    <Compile Include="Domain\HolidaySheetDAO.cs" />
     <Compile Include="Domain\InduvidualBeneficiary.cs" />
     <Compile Include="Domain\JobPlacementFeedback.cs" />
     <Compile Include="Domain\JobRefferals.cs" />

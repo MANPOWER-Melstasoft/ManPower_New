@@ -21,7 +21,7 @@ namespace ManPowerCore.Controller
         DepartmentUnitPositions GetDepartmentUnitPositions(int id, bool withTaskAllocation, bool withProgramAssignee, bool withSystemUser, bool withPossitions, bool withDepartmentUnit);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(int runSystemUserId);
 
-        DepartmentUnitPositions departmentUnitPositionWithPID(int userID);
+        DepartmentUnitPositions departmentUnitPositionWithPID(int userID, bool withDepartmentUnit);
 
     }
 
@@ -238,7 +238,7 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public DepartmentUnitPositions departmentUnitPositionWithPID(int userID)
+        public DepartmentUnitPositions departmentUnitPositionWithPID(int userID, bool withDepartmentUnit)
         {
             try
             {
@@ -252,6 +252,13 @@ namespace ManPowerCore.Controller
                     if (item.SystemUserId == userID)
                     {
                         DepUnitPosition = item;
+
+                        if (withDepartmentUnit)
+                        {
+                            DepartmentUnitDAO _DepartmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
+                            item._DepartmentUnit = _DepartmentUnitDAO.GetDepartmentUnit(item.DepartmentUnitId, dBConnection);
+                        }
+                        break;
                     }
                 }
 

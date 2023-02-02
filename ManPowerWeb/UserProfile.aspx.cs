@@ -1,9 +1,11 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
@@ -11,11 +13,13 @@ namespace ManPowerWeb
     public partial class UserProfile : System.Web.UI.Page
     {
         string[] mmStatus = { "Married", "Single" };
-        int[] attempt = { 1, 2, 3 };
+
         string[] eduStatus = { "Completed", "Not Completed" };
         string[] isResigned = { "Yes", "No" };
         string[] absorbStatus = { "Yes", "Not Relevent" };
+        int[] yearslist = { };
 
+        int id = 0;
 
         List<Ethnicity> ethnicityList = new List<Ethnicity>();
         List<Religion> religionList = new List<Religion>();
@@ -45,7 +49,11 @@ namespace ManPowerWeb
             {
                 BindDataSource();
                 depRowId.Visible = false;
+                eduRowId.Visible = false;
+                empRowId.Visible = false;
             }
+
+            id = (Convert.ToInt32(Session["EmpNumber"]));
         }
 
         private void BindDataSource()
@@ -89,6 +97,9 @@ namespace ManPowerWeb
             DependantController dependantController = ControllerFactory.CreateDependantController();
             dependant = dependantController.GetDependantByEmpId(Convert.ToInt32(Session["EmpNumber"]));
 
+            EducationDetailsController educationDetailsController = ControllerFactory.CreateEducationDetailsController();
+            educationDetails = educationDetailsController.GetEducationDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
+
             EthnicityController ethnicityController = ControllerFactory.CreateEthnicityController();
             ethnicities = ethnicityController.GetAllEthnicity();
 
@@ -98,35 +109,21 @@ namespace ManPowerWeb
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
             departmentUnits = departmentUnitController.GetAllDepartmentUnit(false, false);
 
-            //ddlEducationStatus.DataSource = eduStatus;
-            //ddlEducationStatus.DataBind();
+            ddlEducation.DataSource = educationTypes;
+            ddlEducation.DataValueField = "EducationTypeId";
+            ddlEducation.DataTextField = "EducationTypeName";
+            ddlEducation.DataBind();
 
-            //ddlEthnicity.DataSource = ethnicityList;
-            //ddlEthnicity.DataValueField = "EthnicityId";
-            //ddlEthnicity.DataTextField = "EthnicityName";
-            //ddlEthnicity.DataBind();
-
-            //ddlReligion.DataSource = religionList;
-            //ddlReligion.DataValueField = "ReligionId";
-            //ddlReligion.DataTextField = "ReligionName";
-            //ddlReligion.DataBind();
-
-            //ddlEducation.DataSource = educationTypes;
-            //ddlEducation.DataValueField = "EducationTypeId";
-            //ddlEducation.DataTextField = "EducationTypeName";
-            //ddlEducation.DataBind();
-
-            //ddlAttempt.DataSource = attempt;
-            //ddlAttempt.DataBind();
-
-            //ddlYear.DataSource = yearslist;
-            //ddlYear.DataBind();
+            ddlEducationDetailsList.DataSource = educationDetails;
+            ddlEducationDetailsList.DataValueField = "EducationDetailsId";
+            ddlEducationDetailsList.DataTextField = "ExamIndex";
+            ddlEducationDetailsList.DataBind();
+            ddlEducationDetailsList.Items.Insert(0, new ListItem("- Select -", ""));
 
             ddlDependant.DataSource = dependantTypes;
             ddlDependant.DataValueField = "DependantTypeId";
             ddlDependant.DataTextField = "DependantTypeName";
             ddlDependant.DataBind();
-
 
             ddlDependantList.DataSource = dependant;
             ddlDependantList.DataValueField = "DependantId";
@@ -137,34 +134,21 @@ namespace ManPowerWeb
             ddlMaritalStatus.DataSource = mmStatus;
             ddlMaritalStatus.DataBind();
 
-            //ddlAbsorb.DataSource = absorbStatus;
-            //ddlAbsorb.DataBind();
-
-            //ddlService.DataSource = serviceTypeList;
-            //ddlService.DataValueField = "ServiceTypeId";
-            //ddlService.DataTextField = "ServiceTypeName";
-            //ddlService.DataBind();
-
             ddContract.DataSource = contractTypes;
             ddContract.DataValueField = "ContractTypeId";
             ddContract.DataTextField = "ContractTypeName";
             ddContract.DataBind();
 
+            ddlEmpDetails.DataSource = empDetails;
+            ddlEmpDetails.DataValueField = "EmploymentDetailId";
+            ddlEmpDetails.DataTextField = "CompanyName";
+            ddlEmpDetails.DataBind();
+            ddlEmpDetails.Items.Insert(0, new ListItem("- Select -", ""));
+
             ddlDesignation.DataSource = designation;
             ddlDesignation.DataValueField = "DesignationId";
             ddlDesignation.DataTextField = "DesigntionName";
             ddlDesignation.DataBind();
-
-            //ddlDistrict.DataSource = listDistrict;
-            //ddlDistrict.DataTextField = "Name";
-            //ddlDistrict.DataValueField = "DepartmentUnitId";
-            //ddlDistrict.DataBind();
-            //ddlDistrict.Items.Insert(0, new ListItem("- Select -", ""));
-
-            //ddlDS.DataSource = listDSDivision;
-            //ddlDS.DataTextField = "Name";
-            //ddlDS.DataValueField = "DepartmentUnitId";
-            //ddlDS.DataBind();
 
             ddlEthnicity.DataSource = ethnicityList;
             ddlEthnicity.DataValueField = "EthnicityId";
@@ -226,32 +210,9 @@ namespace ManPowerWeb
             EmpOfficePhone.Text = employeeContact.OfficePhone.ToString();
             EmpMobilePhone.Text = employeeContact.MobileNumber.ToString();
 
-            //-------------- employment details ----------------------
-
-            foreach (var i in empDetails)
-            {
-                ddContract.SelectedIndex = i.ContractTypeId - 1;
-                ddlDesignation.SelectedIndex = i.DesignationId - 1;
-                companyName.Text = i.CompanyName;
-                sDate.Text = i.StartDate.ToString("yyyy-MM-dd");
-                eDate.Text = i.EndDate.ToString("yyyy-MM-dd");
-                reseg.SelectedIndex = i.IsResigned;
-
-                if (i.IsResigned == 1)
-                {
-                    retiredDate.Text = i.RetirementDate.ToString("yyyy-MM-dd");
-                }
-
-            }
-
-
-
         }
 
-        //protected void ddlDependant_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    bindDependant();
-        //}
+        //-------------- dependant details ----------------------
 
         protected void ddlDependantList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -264,14 +225,12 @@ namespace ManPowerWeb
             DependantController dependantController = ControllerFactory.CreateDependantController();
             dependant = dependantController.GetDependantByEmpId(Convert.ToInt32(Session["EmpNumber"]));
 
-            //-------------- dependant details ----------------------
+
 
             if (ddlDependantList.SelectedValue != "")
             {
                 foreach (var i in dependant.Where(u => u.DependantId == int.Parse(ddlDependantList.SelectedValue)))
                 {
-                    int count = 1;
-                    dep.Text = "Dependant " + count;
                     ddlDependant.SelectedIndex = i.DependantTypeId - 1;
                     dependantRelationship.Text = i.RelationshipToEmp;
                     dependantFname.Text = i.FirstName;
@@ -289,11 +248,84 @@ namespace ManPowerWeb
 
                     depId.Text = i.DependantId.ToString();
 
-                    count++;
                 }
             }
+        }
 
 
+
+        //-------------- Education details ----------------------
+
+        protected void ddlEducation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindEducation();
+        }
+
+        private void bindEducation()
+        {
+
+            EducationDetailsController educationDetailsController = ControllerFactory.CreateEducationDetailsController();
+            List<EducationDetails> edu = new List<EducationDetails>();
+            edu = educationDetailsController.GetEducationDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
+
+            if (ddlEducationDetailsList.SelectedValue != "")
+            {
+                foreach (var i in edu.Where(u => u.EducationDetailsId == int.Parse(ddlEducationDetailsList.SelectedValue)))
+                {
+                    ddlEducation.SelectedValue = i.EducationTypeId.ToString();
+                    uni.Text = i.StudiedInstitute;
+                    index.Text = i.ExamIndex;
+                    year.Text = i.ExamYear.ToString();
+                    attempt.Text = i.NoOfAttempts.ToString();
+                    sub.Text = i.ExamSubject;
+                    stream.Text = i.ExamStream;
+                    grade.Text = i.ExamGrade;
+                    status.Text = i.ExamStatus;
+
+
+                    eduId.Text = i.EducationDetailsId.ToString();
+
+                }
+            }
+        }
+
+
+        //-------------- employment details ----------------------
+
+        protected void ddlEmpDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindEmploymentDetails();
+        }
+
+        private void bindEmploymentDetails()
+        {
+
+            EmploymentDetailsController employmentDetailsController = ControllerFactory.CreateEmploymentDetailsController();
+            List<EmploymentDetails> emp = new List<EmploymentDetails>();
+            emp = employmentDetailsController.GetEmploymentDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
+
+
+
+            if (ddlEmpDetails.SelectedValue != "")
+            {
+                foreach (var i in emp.Where(u => u.EmploymentDetailId == int.Parse(ddlEmpDetails.SelectedValue)))
+                {
+                    ddContract.SelectedIndex = i.ContractTypeId - 1;
+                    ddlDesignation.SelectedIndex = i.DesignationId - 1;
+                    companyName.Text = i.CompanyName;
+                    sDate.Text = i.StartDate.ToString("yyyy-MM-dd");
+                    eDate.Text = i.EndDate.ToString("yyyy-MM-dd");
+                    reseg.SelectedIndex = i.IsResigned;
+
+                    if (i.IsResigned == 1)
+                    {
+                        retiredDate.Text = i.RetirementDate.ToString("yyyy-MM-dd");
+                    }
+
+                    empDetailId.Text = i.EmploymentDetailId.ToString();
+
+                }
+            }
         }
 
         protected void submitEmployee(object sender, EventArgs e)
@@ -505,6 +537,77 @@ namespace ManPowerWeb
 
         }
 
+        protected void submitEducation(object sender, EventArgs e)
+        {
 
+            EducationDetailsController ed = ControllerFactory.CreateEducationDetailsController();
+            EducationDetails educationDetails = new EducationDetails();
+            string id = eduId.Text;
+            educationDetails = ed.GetEducationDetailsById(int.Parse(eduId.Text));
+
+            educationDetails.EducationTypeId = int.Parse(ddlEducation.SelectedValue);
+            educationDetails.StudiedInstitute = uni.Text;
+
+            if (attempt.Text == "")
+            {
+                educationDetails.NoOfAttempts = 1;
+            }
+            else
+            {
+                educationDetails.NoOfAttempts = int.Parse(attempt.Text);
+            }
+            educationDetails.ExamYear = int.Parse(year.Text);
+            educationDetails.ExamSubject = sub.Text;
+            educationDetails.ExamStream = stream.Text;
+            educationDetails.ExamGrade = grade.Text;
+            educationDetails.ExamStatus = status.Text;
+
+            int result1 = ed.UpdateEducationDetails(educationDetails);
+
+            if (result1 == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+            }
+
+        }
+
+        protected void submitEmploymentDetails(object sender, EventArgs e)
+        {
+
+            EmploymentDetailsController ed = ControllerFactory.CreateEmploymentDetailsController();
+            EmploymentDetails employmentDetails = new EmploymentDetails();
+            employmentDetails = ed.GetEmploymentDetails(int.Parse(empDetailId.Text));
+
+            employmentDetails.ContractTypeId = int.Parse(ddContract.SelectedValue);
+            employmentDetails.DesignationId = int.Parse(ddlDesignation.SelectedValue);
+            employmentDetails.CompanyName = companyName.Text;
+            employmentDetails.StartDate = Convert.ToDateTime(sDate.Text);
+            employmentDetails.EndDate = Convert.ToDateTime(eDate.Text);
+            employmentDetails.IsResigned = int.Parse(reseg.SelectedValue);
+
+            if (retiredDate.Text != "")
+            {
+                employmentDetails.RetirementDate = Convert.ToDateTime(retiredDate.Text);
+            }
+            employmentDetails.EmploymentDetailId = int.Parse(empDetailId.Text);
+
+            int result1 = ed.UpdateEmploymentDetails(employmentDetails);
+
+            if (result1 == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+            }
+
+        }
     }
 }

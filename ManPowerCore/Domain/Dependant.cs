@@ -55,6 +55,9 @@ namespace ManPowerCore.Domain
         [DBField("CITY")]
         public string City { get; set; }
 
+        [DBField("ATTACHMENTS")]
+        public string DocumentUploads { get; set; }
+
 
         //public Employee _Employee { get; set; } = new Employee();
     }

@@ -42,7 +42,7 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 id = employeeDAO.SaveEmployee(emp, dBConnection);
 
-                if (emp._EmploymentDetails.Count > 0)
+                if (emp._EmploymentDetails != null)
                 {
                     foreach (var item in emp._EmploymentDetails)
                     {
@@ -51,7 +51,7 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                if (emp._Dependant.Count > 0)
+                if (emp._Dependant != null)
                 {
                     foreach (var item in emp._Dependant)
                     {
@@ -60,7 +60,7 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                if (emp._EducationDetails.Count > 0)
+                if (emp._EducationDetails != null)
                 {
                     foreach (var item in emp._EducationDetails)
                     {
@@ -69,7 +69,7 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                if (emp._EmployeeServices.Count > 0)
+                if (emp._EmployeeServices != null)
                 {
 
                     foreach (var item in emp._EmployeeServices)
@@ -79,14 +79,14 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                if (id != 0)
-                {
-                    emp._EmergencyContact.EmployeeId = id;
-                    emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
+                //if (id != 0)
+                //{
+                //    emp._EmergencyContact.EmployeeId = id;
+                //    emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
 
-                    emp._EmployeeContact.EmpID = id;
-                    employeeContactDAO.SaveEmployeeContact(emp._EmployeeContact, dBConnection);
-                }
+                //    emp._EmployeeContact.EmpID = id;
+                //    employeeContactDAO.SaveEmployeeContact(emp._EmployeeContact, dBConnection);
+                //}
 
 
                 return 1;
@@ -146,9 +146,16 @@ namespace ManPowerCore.Controller
                     foreach (var item in employeesList)
                     {
                         item.fullName = item.EmpInitials + " " + item.LastName;
-                        item._EmploymentDetailsSingle = employeeDetailList.Where(x => x.EmpID == item.EmployeeId).Single();
-                    }
 
+                        foreach (var itemIn in employeeDetailList)
+                        {
+                            if (itemIn.EmpID == item.EmployeeId)
+                            {
+                                item._EmploymentDetailsSingle = itemIn;
+                                break;
+                            }
+                        }
+                    }
 
                 }
                 return employeesList;

@@ -13,54 +13,54 @@
             <br />
             <div class="form-group">
 
-                <div class="row mb-3 ms-1 mt-4">
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <asp:Literal ID="Literal1" runat="server" Text="Emp Number : "></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblEmpNumber" runat="server" Text="N/A" Width="250px"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <asp:Literal ID="Literal2" runat="server" Text="Emp Name : "></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblEmpName" runat="server" Text="N/A" Width="250px"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3 ms-1 mt-4">
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <asp:Literal ID="Literal3" runat="server" Text="Department : "></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblDepartment" runat="server" Text="N/A" Width="250px"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <asp:Literal ID="Literal4" runat="server" Text="Designation : "></asp:Literal>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblDesignation" runat="server" Text="N/A" Width="250px"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
+
+                        <div class="row mb-3 ms-1 mt-4">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal1" runat="server" Text="Emp Number : "></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblEmpNumber" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal2" runat="server" Text="Emp Name : "></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblEmpName" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 ms-1 mt-4">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal3" runat="server" Text="Department : "></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblDepartment" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal4" runat="server" Text="Designation : "></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblDesignation" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
@@ -245,24 +245,97 @@
                         </div>
 
 
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal14" runat="server" Text="Update Status : "></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:DropDownList ID="ddlUpdateStatus" runat="server" Width="250px" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlUpdateStatus_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="1" ControlToValidate="ddlUpdateStatus" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="sendtoapp" runat="server" visible="false">
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal18" runat="server" Text="Action : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlAction" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="1" ControlToValidate="ddlAction" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal21" runat="server" Text="Assign User : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlAssignUser" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="1" ControlToValidate="ddlAssignUser" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="reverse" runat="server" visible="false">
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal15" runat="server" Text="Reverse Reason : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlReverseReason" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="1" ControlToValidate="ddlReverseReason" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="reject" runat="server" visible="false">
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal16" runat="server" Text="Reject Remark : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtRejectRemark" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6 d-flex">
+                                <div class="col-sm-4">
+                                    <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:Button runat="server" ID="btnSubmit" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmit_Click" ValidateRequestMode="Enabled" ValidationGroup="1" />
+                                </div>
+                            </div>
+                        </div>
+
+
                     </ContentTemplate>
                     <Triggers>
                         <asp:PostBackTrigger ControlID="btnView" />
                     </Triggers>
                 </asp:UpdatePanel>
-
-
-                <div class="row mb-3 ms-1">
-                    <div class="col-sm-6 d-flex">
-                        <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
-                        </div>
-                        <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnSubmit" Text="Submit" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmit_Click" ValidateRequestMode="Enabled" ValidationGroup="1" />
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 

@@ -12,7 +12,12 @@
                         <asp:BoundField DataField="Target_Id" HeaderText="Program Target Id" />
                         <asp:BoundField DataField="Plan_Id" HeaderText="Program Plan Id" />
                         <asp:BoundField DataField="Name" HeaderText="Program Name" />
-                        <asp:BoundField DataField="program_type_id" HeaderText="Project Type" />
+                        <asp:TemplateField HeaderText="Project Type">
+                            <ItemTemplate>
+                                <asp:Label runat="server" Visible='<%#Eval("program_type_id").ToString()=="2"?true:false%>' Text="Physical"></asp:Label>
+                                <asp:Label runat="server" Visible='<%#Eval("program_type_id").ToString()=="1"?true:false%>' Text="Online"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="Projects" HeaderText="Target" />
                         <asp:BoundField DataField="Count" HeaderText="Achievment" />
                         <asp:BoundField DataField="No_of_Beneficiaries" HeaderText="No. of beneficiaries" />

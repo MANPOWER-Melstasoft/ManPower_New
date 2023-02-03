@@ -32,6 +32,7 @@ namespace ManPowerCore.Controller
 
         DataTable getProgramTragetReport();
 
+        DataTable getProgramTragetIndividualReport();
     }
 
     public class ProgramTargetControllerImpl : ProgramTargetController
@@ -413,6 +414,27 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return programTargetDAO.GetPRogramTargetReport(dBConnection);
+
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public DataTable getProgramTragetIndividualReport()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return programTargetDAO.GetPRogramTargetIndividualReport(dBConnection);
 
             }
 

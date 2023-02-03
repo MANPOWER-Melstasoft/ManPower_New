@@ -32,6 +32,8 @@ namespace ManPowerCore.Domain
 
         public int OnlineCount { get; set; }
 
-        //public string OfficerName { get; set; }
+        [DBField("Last_Name")]
+        public string OfficerName { get; set; }
+
     }
 }

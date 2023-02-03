@@ -90,7 +90,7 @@ namespace ManPowerWeb
 
         protected void gvTASummary_DataBound(object sender, EventArgs e)
         {
-            int cellCount = 0;
+            int cellCount = 7;
             for (int rowIndex = gvTASummary.Rows.Count - 2; rowIndex >= 0; rowIndex--)
             {
                 if ((gvTASummary.Rows[rowIndex]).Cells[cellCount].Text == (gvTASummary.Rows[rowIndex + 1]).Cells[cellCount].Text)

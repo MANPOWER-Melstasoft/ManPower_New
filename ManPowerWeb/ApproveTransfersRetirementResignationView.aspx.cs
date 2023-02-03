@@ -15,6 +15,7 @@ namespace ManPowerWeb
         static int Id;
         static int typeId;
         static string document;
+        static TransfersRetirementResignationMain trrmainObj = new TransfersRetirementResignationMain();
         static List<SystemUser> AssignUserList = new List<SystemUser>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -39,7 +40,7 @@ namespace ManPowerWeb
         private void BindData()
         {
             TransfersRetirementResignationMainController trrController = ControllerFactory.CreateTransfersRetirementResignationMainController();
-            TransfersRetirementResignationMain trrmainObj = trrController.GetTransfersRetirementResignation(Id);
+            trrmainObj = trrController.GetTransfersRetirementResignation(Id);
 
             lblEmpNumber.Text = trrmainObj.EmployeeId.ToString();
             lblEmpName.Text = trrmainObj.employee.EmpInitials + trrmainObj.employee.LastName;
@@ -112,7 +113,49 @@ namespace ManPowerWeb
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            int output = 0;
+            TransfersRetirementResignationMainController transfersRetirementResignationMainController = ControllerFactory.CreateTransfersRetirementResignationMainController();
 
+            trrmainObj.ActionTakenUserId = Convert.ToInt32(Session["UserId"]);
+            trrmainObj.ActionTakenDate = DateTime.Today;
+            trrmainObj.RecomendParentId = 0;
+            trrmainObj.Remarks = "";
+            trrmainObj.Reason = "";
+
+            if (ddlUpdateStatus.SelectedValue == "Approve")
+            {
+                trrmainObj.StatusId = 2;
+                trrmainObj.ParentAction = "Approve";
+            }
+            if (ddlUpdateStatus.SelectedValue == "Send to Approval")
+            {
+                trrmainObj.StatusId = 5;
+                SystemUser systemUser = AssignUserList.Where(x => x.SystemUserId == Convert.ToInt32(ddlAssignUser.SelectedValue)).Single();
+                trrmainObj.RecomendParentId = systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId;
+                trrmainObj.ParentAction = ddlAction.SelectedItem.Text;
+            }
+            if (ddlUpdateStatus.SelectedValue == "Reverse")
+            {
+                trrmainObj.StatusId = 4;
+                trrmainObj.ParentAction = ddlReverseReason.SelectedItem.Text;
+            }
+            if (ddlUpdateStatus.SelectedValue == "Reject")
+            {
+                trrmainObj.StatusId = 3;
+                trrmainObj.ParentAction = "Reject";
+                trrmainObj.Remarks = txtRejectRemark.Text;
+            }
+
+            output = transfersRetirementResignationMainController.Update(trrmainObj);
+
+            if (output == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Record Updated Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveTransfersRetirementResignation.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Record Added Fail!', 'error');", true);
+            }
         }
 
         protected void btnView_Click(object sender, EventArgs e)

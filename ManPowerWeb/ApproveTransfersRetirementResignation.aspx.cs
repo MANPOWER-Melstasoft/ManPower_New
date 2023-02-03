@@ -55,6 +55,15 @@ namespace ManPowerWeb
                     }
                 }
 
+                if (item.RecomendParentId != 0 && item.RecomendParentId != 1)
+                {
+                    departmentUnitPositions = departmentUnitPositionsController.GetDepartmentUnitPositions(item.RecomendParentId, false, false, false, false, false);
+                    if (departmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
+                    {
+                        mainList.Add(item);
+                    }
+                }
+
             }
 
             filterList = mainList;
@@ -90,7 +99,6 @@ namespace ManPowerWeb
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            BindDataSource();
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int pagesize = GridView1.PageSize;
             int pageindex = GridView1.PageIndex;

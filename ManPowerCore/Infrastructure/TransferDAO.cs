@@ -14,7 +14,7 @@ namespace ManPowerCore.Infrastructure
         int Delete(int id, DBConnection dbConnection);
         int Update(Transfer transfer, DBConnection dbConnection);
         List<Transfer> GetAllTransfer(bool with0, DBConnection dbConnection);
-        Transfer GetTransfer(int Id, DBConnection dbConnection);
+        Transfer GetTransferByMainId(int Id, DBConnection dbConnection);
     }
 
     public class TransferDAOSqlImpl : TransferDAO
@@ -92,13 +92,13 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<Transfer>(dbConnection.dr);
         }
 
-        public Transfer GetTransfer(int Id, DBConnection dbConnection)
+        public Transfer GetTransferByMainId(int Id, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT * FROM Transfer WHERE Id = @Id";
+            dbConnection.cmd.CommandText = "SELECT * FROM Transfer WHERE Transfers_Retirement_Resignation_Main_Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", Id);
 

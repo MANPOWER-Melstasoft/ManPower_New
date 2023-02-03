@@ -146,9 +146,16 @@ namespace ManPowerCore.Controller
                     foreach (var item in employeesList)
                     {
                         item.fullName = item.EmpInitials + " " + item.LastName;
-                        item._EmploymentDetailsSingle = employeeDetailList.Where(x => x.EmpID == item.EmployeeId).Single();
-                    }
 
+                        foreach (var itemIn in employeeDetailList)
+                        {
+                            if (itemIn.EmpID == item.EmployeeId)
+                            {
+                                item._EmploymentDetailsSingle = itemIn;
+                                break;
+                            }
+                        }
+                    }
 
                 }
                 return employeesList;

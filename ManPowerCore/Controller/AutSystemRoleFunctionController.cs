@@ -24,18 +24,39 @@ namespace ManPowerCore.Controller
             {
                 int output = 0;
                 dbConnection = new DBConnection();
-                AutSystemRoleFunctionDAO DAO = DAOFactory.CreateAutSystemRoleFunctionDAO();
+                AutSystemRoleFunctionDAO AutSystemRoleFunctionDAO = DAOFactory.CreateAutSystemRoleFunctionDAO();
+                AutUserFunctionDAO autUserFunctionDAO = DAOFactory.CreateAutUserFunctionDAO();
 
-                AutSystemRoleFunction autUserFunctionTest = DAO.GetAutSystemRoleFunction(autSystemRoleFunction, dbConnection);
+
+                //--get all autUserFuntion with user type---
+                List<AutUserFunction> autUserFunctionListGetAll = autUserFunctionDAO.GetAutUserFunctionAllUserGroupBy(autSystemRoleFunction.UserTypeId, dbConnection);
+
+                List<AutUserFunction> autUserFunctionListCheck = autUserFunctionDAO.GetAutUserFunctionCheckByAll(autSystemRoleFunction.AutFunctionId, autSystemRoleFunction.UserTypeId, dbConnection);
+                //-----------------------------------------
+
+
+                AutSystemRoleFunction autUserFunctionTest = AutSystemRoleFunctionDAO.GetAutSystemRoleFunction(autSystemRoleFunction, dbConnection);
 
                 if (autUserFunctionTest.AutFunctionId == 0 && autUserFunctionTest.UserTypeId == 0)
                 {
-                    output = DAO.Save(autSystemRoleFunction, dbConnection);
+                    foreach (var item in autUserFunctionListCheck)
+                    {
+                        autUserFunctionDAO.Delete(item, dbConnection);
+                    }
+                    foreach (var item in autUserFunctionListGetAll)
+                    {
+                        item.AutFunctionId = autSystemRoleFunction.AutFunctionId;
+                        autUserFunctionDAO.Save(item, dbConnection);
+                    }
+                    output = AutSystemRoleFunctionDAO.Save(autSystemRoleFunction, dbConnection);
                 }
                 else
                 {
-                    output = DAO.Delete(autSystemRoleFunction, dbConnection);
-
+                    foreach (var item in autUserFunctionListCheck)
+                    {
+                        autUserFunctionDAO.Delete(item, dbConnection);
+                    }
+                    output = AutSystemRoleFunctionDAO.Delete(autSystemRoleFunction, dbConnection);
                 }
 
                 return output;

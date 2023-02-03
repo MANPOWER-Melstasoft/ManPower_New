@@ -15,7 +15,7 @@ namespace ManPowerWeb
         static int Id;
         static int typeId;
         static string document;
-
+        static List<SystemUser> AssignUserList = new List<SystemUser>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,6 +25,9 @@ namespace ManPowerWeb
                     Id = Convert.ToInt32(Request.QueryString["Id"]);
                     BindData();
                     BindStatus();
+                    BindAction();
+                    BindAssignUser();
+                    BindReverseReason();
                 }
                 else
                 {
@@ -173,6 +176,43 @@ namespace ManPowerWeb
             ddlUpdateStatus.DataSource = list;
             ddlUpdateStatus.DataBind();
             ddlUpdateStatus.Items.Insert(0, new ListItem("-- select status --", ""));
+        }
+
+        private void BindAction()
+        {
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            List<SystemUser> systemUsers = systemUserController.GetAllSystemUser(true, false, false);
+            AssignUserList = systemUsers.Where(x => x.UserTypeId == 1 && x._DepartmentUnitPositions.DepartmentUnitId == 1).ToList();
+
+            ddlAssignUser.DataSource = AssignUserList;
+            ddlAssignUser.DataValueField = "SystemUserId";
+            ddlAssignUser.DataTextField = "Name";
+            ddlAssignUser.DataBind();
+            ddlAssignUser.Items.Insert(0, new ListItem("-- select user --", ""));
+        }
+
+        private void BindAssignUser()
+        {
+            ApproveActionController approveActionController = ControllerFactory.CreateApproveActionController();
+            List<ApproveAction> approveActions = approveActionController.GetAllApproveAction(false);
+
+            ddlAction.DataSource = approveActions;
+            ddlAction.DataValueField = "Id";
+            ddlAction.DataTextField = "ApproveActionName";
+            ddlAction.DataBind();
+            ddlAction.Items.Insert(0, new ListItem("-- select action --", ""));
+        }
+
+        private void BindReverseReason()
+        {
+            ReverseReasonController reverseReasonController = ControllerFactory.CreateReverseReasonController();
+            List<ReverseReason> reverseReasons = reverseReasonController.GetAllReverseReason(false);
+
+            ddlReverseReason.DataSource = reverseReasons;
+            ddlReverseReason.DataValueField = "Id";
+            ddlReverseReason.DataTextField = "ReverseReasonName";
+            ddlReverseReason.DataBind();
+            ddlReverseReason.Items.Insert(0, new ListItem("-- select reverse reason --", ""));
         }
 
         protected void ddlUpdateStatus_SelectedIndexChanged(object sender, EventArgs e)

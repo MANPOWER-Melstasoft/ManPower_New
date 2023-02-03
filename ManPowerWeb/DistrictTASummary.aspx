@@ -32,7 +32,11 @@
             </div>
 
             <div>
-                <asp:Button runat="server" ID="btnExportExcel" Text="Export To Excel" CssClass="btn btn-success" OnClick="btnExportExcel_Click" />
+
+                <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success" title="Export To Excel">
+                    <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                </button>
+
             </div>
         </div>
     </div>

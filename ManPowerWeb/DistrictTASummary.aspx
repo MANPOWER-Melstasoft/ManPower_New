@@ -6,7 +6,7 @@
 
         <div class="card p-4 mb-4 mt-5">
             <h2>Target Achievement District Vise Summary</h2>
-            <div class="table-responsive mt-4">
+            <div class="table-responsive mt-4 mb-4">
                 <asp:GridView ID="gvTASummary" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
                     CellPadding="4" ForeColor="#333333" GridLines="None" OnDataBound="gvTASummary_DataBound" OnRowCreated="gvTASummary_RowCreated" OnRowDataBound="gvTASummary_RowDataBound">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -24,11 +24,15 @@
                         <asp:BoundField DataField="OnlineCount" HeaderText="Online" />
                         <asp:BoundField DataField="PhysicalCount" HeaderText="Physical" />
                         <asp:BoundField HeaderText="Total" />
-                        <asp:BoundField DataField="Achievement" HeaderText="Achievment" />
+                        <%--<asp:BoundField DataField="Achievement" HeaderText="Achievment" />--%>
                         <asp:BoundField DataField="NoOfBeneficiary" HeaderText="No. of beneficiaries" />
-                        <asp:BoundField DataField="Location" HeaderText="Location" />
+                        <asp:BoundField DataField="Location" HeaderText="Location" ItemStyle-VerticalAlign="Middle" />
                     </Columns>
                 </asp:GridView>
+            </div>
+
+            <div>
+                <asp:Button runat="server" ID="btnExportExcel" Text="Export To Excel" CssClass="btn btn-success" OnClick="btnExportExcel_Click" />
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -90,7 +91,8 @@ namespace ManPowerWeb
 
         protected void gvTASummary_DataBound(object sender, EventArgs e)
         {
-            int cellCount = 7;
+            int cellCount = 6;
+
             for (int rowIndex = gvTASummary.Rows.Count - 2; rowIndex >= 0; rowIndex--)
             {
                 if ((gvTASummary.Rows[rowIndex]).Cells[cellCount].Text == (gvTASummary.Rows[rowIndex + 1]).Cells[cellCount].Text)
@@ -158,6 +160,31 @@ namespace ManPowerWeb
                 }
 
             }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
+        protected void btnExportExcel_Click(object sender, EventArgs e)
+        {
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Target Achievement District Vise Summary" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvTASummary.GridLines = GridLines.Both;
+            gvTASummary.HeaderStyle.Font.Bold = true;
+            gvTASummary.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
         }
     }
 }

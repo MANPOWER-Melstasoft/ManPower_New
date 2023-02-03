@@ -263,6 +263,7 @@
     <Content Include="specialAmendmentRender.aspx" />
     <Content Include="SpecialProgram.aspx" />
     <Content Include="Styles\sweetalert.css" />
+    <Content Include="TASummary.aspx" />
     <Content Include="testing.aspx" />
     <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="TransfersRetirementResignationView.aspx" />
@@ -2534,6 +2535,13 @@
     </Compile>
     <Compile Include="SpecialProgram.aspx.designer.cs">
       <DependentUpon>SpecialProgram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TASummary.aspx.cs">
+      <DependentUpon>TASummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TASummary.aspx.designer.cs">
+      <DependentUpon>TASummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="testing.aspx.cs">
       <DependentUpon>testing.aspx</DependentUpon>

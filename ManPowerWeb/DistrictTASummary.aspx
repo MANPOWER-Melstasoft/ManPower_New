@@ -26,7 +26,7 @@
                         <asp:BoundField HeaderText="Total" />
                         <asp:BoundField DataField="Achievement" HeaderText="Achievment" />
                         <asp:BoundField DataField="NoOfBeneficiary" HeaderText="No. of beneficiaries" />
-                        <asp:BoundField DataField="Location" HeaderText="Location" />
+                        <asp:BoundField DataField="Location" HeaderText="Location" ItemStyle-VerticalAlign="Middle" />
                     </Columns>
                 </asp:GridView>
             </div>

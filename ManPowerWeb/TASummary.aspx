@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card p-4 mb-4 mt-5">
             <h2>Target Achievement Individual Summary</h2>
-            <div class="table-responsive mt-4">
+            <div class="table-responsive mt-4 mb-4">
                 <asp:GridView ID="gvIndividualTASummary" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
                     CellPadding="4" ForeColor="#333333" GridLines="None" OnDataBound="gvIndividualTASummary_DataBound" OnRowCreated="gvIndividualTASummary_RowCreated" OnRowDataBound="gvIndividualTASummary_RowDataBound">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -28,6 +28,14 @@
                         <asp:BoundField DataField="Location" HeaderText="Location" />
                     </Columns>
                 </asp:GridView>
+            </div>
+
+            <div>
+
+                <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success" title="Export To Excel">
+                    <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                </button>
+
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -108,20 +109,20 @@ namespace ManPowerWeb
                 }
             }
 
-            cellCount = 8;
+            int cellCount2 = 6;
             for (int rowIndex = gvIndividualTASummary.Rows.Count - 2; rowIndex >= 0; rowIndex--)
             {
-                if ((gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount].Text == (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].Text)
+                if ((gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount2].Text == (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].Text)
                 {
-                    if ((gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].RowSpan < 2)
+                    if ((gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].RowSpan < 2)
                     {
-                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount].RowSpan = 2;
+                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount2].RowSpan = 2;
                     }
                     else
                     {
-                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount].RowSpan = (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].RowSpan + 1;
+                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount2].RowSpan = (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].RowSpan + 1;
                     }
-                    (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].Visible = false;
+                    (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].Visible = false;
                 }
             }
         }
@@ -176,6 +177,31 @@ namespace ManPowerWeb
                 }
 
             }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
+        protected void btnExportExcel_Click(object sender, EventArgs e)
+        {
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Target Achievement Individual Summary" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvIndividualTASummary.GridLines = GridLines.Both;
+            gvIndividualTASummary.HeaderStyle.Font.Bold = true;
+            gvIndividualTASummary.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
         }
     }
 }

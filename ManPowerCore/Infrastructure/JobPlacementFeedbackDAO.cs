@@ -13,6 +13,8 @@ namespace ManPowerCore.Infrastructure
         int SaveJobPlacementFeedback(JobPlacementFeedback jobPlacementFeedback, DBConnection dbConnection);
 
         List<JobPlacementFeedback> GetAllJobPlacementFeedback(DBConnection dbConnection);
+
+        int Update(JobPlacementFeedback jobPlacementFeedback, DBConnection dbConnection);
     }
 
     public class JobPlacementFeedbackDAOImpl : JobPlacementFeedbackDAO
@@ -52,6 +54,26 @@ namespace ManPowerCore.Infrastructure
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<JobPlacementFeedback>(dbConnection.dr);
 
+        }
+
+        public int Update(JobPlacementFeedback jobPlacementFeedback, DBConnection dbConnection)
+        {
+            int output = 0;
+
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE Job_Placement_Feedback SET Created_Date = @Date, Still_Working = @Stillworking, " +
+                "Remarks = @Remarks WHERE Id = @Id";
+
+            dbConnection.cmd.Parameters.AddWithValue("@Id", jobPlacementFeedback.JobPlacementFeedbackId);
+            dbConnection.cmd.Parameters.AddWithValue("@Date", jobPlacementFeedback.CreatedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Stillworking", jobPlacementFeedback.StillWorking);
+
+            dbConnection.cmd.Parameters.AddWithValue("@Remarks", jobPlacementFeedback.Remarks);
+
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+
+            return output;
         }
     }
 }

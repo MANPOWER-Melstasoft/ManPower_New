@@ -14,6 +14,8 @@ namespace ManPowerCore.Controller
         int SaveJobPlacementFeedback(JobPlacementFeedback jobPlacementFeedback);
 
         List<JobPlacementFeedback> GetAllJobPlacementFeedback();
+
+        int Update(JobPlacementFeedback jobPlacementFeedback);
     }
 
     public class JobPlacementFeedbackControllerImpl : JobPlacementFeedbackController
@@ -48,6 +50,27 @@ namespace ManPowerCore.Controller
             try
             {
                 return aa.GetAllJobPlacementFeedback(dbConnection);
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
+        public int Update(JobPlacementFeedback jobPlacementFeedback)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                int output = 0;
+                output = aa.Update(jobPlacementFeedback, dbConnection);
+                return output;
             }
             catch (Exception ex)
             {

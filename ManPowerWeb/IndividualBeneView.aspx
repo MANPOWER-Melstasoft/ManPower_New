@@ -572,8 +572,8 @@
                                                 <tr>
                                                     <td colspan="999">
                                                         <div id="ProgramTargetId-<%# Eval("Id") %>" style="display: none; position: relative;">
-                                                            <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
-                                                                OnRowEditing="gvPlanDetails_RowEditing" OnRowCancelingEdit="gvPlanDetails_RowCancelingEdit" OnRowUpdating="gvPlanDetails_RowUpdating">
+                                                            <asp:GridView ID="ChildGridView2" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found"
+                                                                OnRowCancelingEdit="ChildGridView2_RowCancelingEdit" OnRowUpdating="ChildGridView2_RowUpdating" OnRowEditing="ChildGridView2_RowEditing">
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Id">
                                                                         <ItemTemplate>
@@ -584,16 +584,46 @@
                                                                         <ItemTemplate>
                                                                             <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("Date") %>'></asp:Label>
                                                                         </ItemTemplate>
+
+                                                                    </asp:TemplateField>
+                                                                    <%--  <asp:TemplateField HeaderText="Date">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("Date") %>'></asp:Label>
+                                                                        </ItemTemplate>
                                                                         <EditItemTemplate>
                                                                             <asp:TextBox ID="txtDates" runat="server" Text='<%#Eval("Date") %>'></asp:TextBox>
                                                                         </EditItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="InJob">
+                                                                    </asp:TemplateField>--%>
+                                                                    <asp:TemplateField HeaderText="Training Institute">
                                                                         <ItemTemplate>
-                                                                            <asp:Label ID="lblInJob" runat="server" Text='<%#Eval("InJob") %>'></asp:Label>
+                                                                            <asp:Label ID="lbl_TrainingInstitute" runat="server" Text='<%#Eval("TrainingInstitute") %>'></asp:Label>
                                                                         </ItemTemplate>
                                                                         <EditItemTemplate>
-                                                                            <asp:TextBox ID="txtInJob" runat="server" Text='<%#Eval("InJob") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtTrainingInstitute" runat="server" Text='<%#Eval("TrainingInstitute") %>'></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="In Training">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_InTraining" runat="server" Text='<%#Eval("InTraining") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtInTraining" runat="server" Text='<%#Eval("InTraining") %>'></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Training Completed">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_TrainingCompleted" runat="server" Text='<%#Eval("TrainingCompleted") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtTrainingCompleted" runat="server" Text='<%#Eval("TrainingCompleted") %>'></asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Remarks">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lbl_Remarks" runat="server" Text='<%#Eval("Remarks") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtRemarks" runat="server" Text='<%#Eval("Remarks") %>'></asp:TextBox>
                                                                         </EditItemTemplate>
                                                                     </asp:TemplateField>
 
@@ -827,16 +857,32 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Date">
                                                                         <ItemTemplate>
-                                                                            <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("JobRefferalsId") %>'></asp:Label>
+                                                                            <asp:Label ID="lbl_Date" runat="server" Text='<%#Eval("CreatedDate") %>'></asp:Label>
                                                                         </ItemTemplate>
 
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="InJob">
+
+
+                                                                    <asp:TemplateField HeaderText="Still Working">
                                                                         <ItemTemplate>
-                                                                            <asp:Label ID="lblInJob" runat="server" Text='<%#Eval("StillWorking") %>'></asp:Label>
+                                                                            <asp:Label ID="lblStillWorking" runat="server" Visible='<%#Eval("StillWorking").ToString()=="1" %>' Text="Yes"></asp:Label>
+                                                                            <asp:Label ID="Label1" runat="server" Visible='<%#Eval("StillWorking").ToString()=="2" %>' Text="No"></asp:Label>
                                                                         </ItemTemplate>
                                                                         <EditItemTemplate>
-                                                                            <asp:TextBox ID="txtInJob" runat="server" Text='<%#Eval("StillWorking") %>'></asp:TextBox>
+                                                                            <%--                                                                            <asp:TextBox ID="txtStillWorking" runat="server" Text='<%#Eval("StillWorking") %>'></asp:TextBox>--%>
+                                                                            <asp:RadioButtonList runat="server" ID="rbStillworking">
+                                                                                <asp:ListItem Text="Yes" Value="1"></asp:ListItem>
+                                                                                <asp:ListItem Text="No" Value="2"></asp:ListItem>
+                                                                            </asp:RadioButtonList>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:TemplateField HeaderText="Remarks">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblRemarks" runat="server" Text='<%#Eval("Remarks") %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtRemarks" runat="server" Text='<%#Eval("Remarks") %>'></asp:TextBox>
                                                                         </EditItemTemplate>
                                                                     </asp:TemplateField>
 

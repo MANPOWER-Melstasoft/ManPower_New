@@ -34,6 +34,9 @@ namespace ManPowerCore.Domain
         [DBField("Parent_Id")]
         public int ParentId { get; set; }
 
+        [DBField("Recomend_Parent_Id")]
+        public int RecomendParentId { get; set; }
+
         [DBField("Parent_Action")]
         public string ParentAction { get; set; }
 

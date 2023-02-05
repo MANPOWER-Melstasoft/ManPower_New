@@ -11,17 +11,17 @@ namespace ManPowerWeb
 {
 
 
-    public partial class DistrictTASummary
+    public partial class TASummary
     {
 
         /// <summary>
-        /// gvTASummary control.
+        /// gvIndividualTASummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvTASummary;
+        protected global::System.Web.UI.WebControls.GridView gvIndividualTASummary;
 
         /// <summary>
         /// btnRun control.

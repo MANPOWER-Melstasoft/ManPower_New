@@ -1,14 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DistrictTASummary.aspx.cs" Inherits="ManPowerWeb.DistrictTASummary" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TASummary.aspx.cs" Inherits="ManPowerWeb.TASummary" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-
-
         <div class="card p-4 mb-4 mt-5">
-            <h2>Target Achievement District Vise Summary</h2>
+            <h2>Target Achievement Individual Summary</h2>
             <div class="table-responsive mt-4 mb-4">
-                <asp:GridView ID="gvTASummary" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
-                    CellPadding="4" ForeColor="#333333" GridLines="None" OnDataBound="gvTASummary_DataBound" OnRowCreated="gvTASummary_RowCreated" OnRowDataBound="gvTASummary_RowDataBound">
+                <asp:GridView ID="gvIndividualTASummary" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
+                    CellPadding="4" ForeColor="#333333" GridLines="None" OnDataBound="gvIndividualTASummary_DataBound" OnRowCreated="gvIndividualTASummary_RowCreated" OnRowDataBound="gvIndividualTASummary_RowDataBound">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <%--<asp:BoundField DataField="ProgramTargetId" HeaderText="Program Target Id" />
@@ -26,7 +24,8 @@
                         <asp:BoundField HeaderText="Total" />
                         <%--<asp:BoundField DataField="Achievement" HeaderText="Achievment" />--%>
                         <asp:BoundField DataField="NoOfBeneficiary" HeaderText="No. of beneficiaries" />
-                        <asp:BoundField DataField="Location" HeaderText="Location" ItemStyle-VerticalAlign="Middle" />
+                        <asp:BoundField DataField="OfficerName" HeaderText="Name" />
+                        <asp:BoundField DataField="Location" HeaderText="Location" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -40,7 +39,4 @@
             </div>
         </div>
     </div>
-
-
-
 </asp:Content>

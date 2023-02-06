@@ -4,6 +4,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -85,9 +86,84 @@ namespace ManPowerWeb
                 }
             }
 
-
             gvIndividualTASummary.DataSource = districtTASummariesListFinal;
             gvIndividualTASummary.DataBind();
+
+            //foreach (string item in districtTASummariesListFinal.Select(x => x.ProgramTargetName).Distinct())
+            //{
+            //    TableRow tr = new TableRow();
+            //    TableCell tc1 = new TableCell();
+            //    tc1.Text = item;
+            //    tr.Cells.Add(tc1);
+
+            //    foreach (string officerName in districtTASummariesListFinal.Select(x => x.OfficerName).Distinct())
+            //    {
+            //        TableCell tc2 = new TableCell();
+            //        tc2.Text = officerName;
+            //        tr.Cells.Add(tc2);
+            //    }
+
+            //    tblTaSummary.Rows.Add(tr);
+            //}
+            List<string> headers = new List<string>() { "Target", "Online", "Physical", "Total", "No. of beneficiaries" };
+
+            TableHeaderRow thr2 = new TableHeaderRow();
+            TableHeaderCell thc2 = new TableHeaderCell();
+
+            TableHeaderRow thr1 = new TableHeaderRow();
+            TableHeaderCell thc1 = new TableHeaderCell();
+
+            TableHeaderRow thr3 = new TableHeaderRow();
+            TableHeaderCell thc3 = new TableHeaderCell();
+
+            thc1.Text = "";
+            thr1.Cells.Add(thc1);
+            thc2.Text = "";
+            thr2.Cells.Add(thc2);
+
+            thc3.Text = "ProgramTargetName";
+            thr3.Cells.Add(thc3);
+            thr3.Font.Size = 12;
+            thr3.Font.Bold = true;
+
+            foreach (string itemLocation in districtTASummariesListFinal.Select(x => x.Location).Distinct())
+            {
+                TableHeaderCell thc1i = new TableHeaderCell();
+                thc1i.Text = itemLocation;
+                thr1.Cells.Add(thc1i);
+
+                int count1 = 0;
+                int total = 0;
+                foreach (string officerName in districtTASummariesListFinal.Where(x => x.Location == itemLocation).Select(x => x.OfficerName).Distinct())
+                {
+                    count1++;
+                    TableHeaderCell thc2i = new TableHeaderCell();
+                    thc2i.Text = officerName;
+                    thr2.HorizontalAlign = HorizontalAlign.Center;
+                    thr2.Font.Size = 12;
+                    thr2.Font.Bold = true;
+                    thr2.Cells.Add(thc2i);
+
+                    int count2 = 0;
+                    foreach (var headerName in headers)
+                    {
+                        count2++;
+                        TableHeaderCell thc3i = new TableHeaderCell();
+                        thc3i.Text = headerName;
+                        thr3.Cells.Add(thc3i);
+                    }
+                    thc2i.ColumnSpan = count2;
+                    total += count1 * count2;
+                }
+                thr1.HorizontalAlign = HorizontalAlign.Center;
+                thr1.Font.Size = 12;
+                thr1.Font.Bold = true;
+                thc1i.ColumnSpan = total;
+            }
+            tblTaSummary.Rows.Add(thr1);
+            tblTaSummary.Rows.Add(thr2);
+            tblTaSummary.Rows.Add(thr3);
+
         }
 
         protected void gvIndividualTASummary_DataBound(object sender, EventArgs e)

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card p-4 mb-4 mt-5">
             <h2>Target Achievement Individual Summary</h2>
-            <div class="table-responsive mt-4 mb-4">
+            <div class="table-responsive mt-5 mb-4">
                 <asp:Table ID="tblTaSummary" runat="server" CssClass="table table-bordered"></asp:Table>
             </div>
 

@@ -86,25 +86,10 @@ namespace ManPowerWeb
                 }
             }
 
-            gvIndividualTASummary.DataSource = districtTASummariesListFinal;
-            gvIndividualTASummary.DataBind();
+            //gvIndividualTASummary.DataSource = districtTASummariesListFinal;
+            //gvIndividualTASummary.DataBind();
 
-            //foreach (string item in districtTASummariesListFinal.Select(x => x.ProgramTargetName).Distinct())
-            //{
-            //    TableRow tr = new TableRow();
-            //    TableCell tc1 = new TableCell();
-            //    tc1.Text = item;
-            //    tr.Cells.Add(tc1);
 
-            //    foreach (string officerName in districtTASummariesListFinal.Select(x => x.OfficerName).Distinct())
-            //    {
-            //        TableCell tc2 = new TableCell();
-            //        tc2.Text = officerName;
-            //        tr.Cells.Add(tc2);
-            //    }
-
-            //    tblTaSummary.Rows.Add(tr);
-            //}
             List<string> headers = new List<string>() { "Target", "Online", "Physical", "Total", "No. of beneficiaries" };
 
             TableHeaderRow thr2 = new TableHeaderRow();
@@ -153,7 +138,7 @@ namespace ManPowerWeb
                         thr3.Cells.Add(thc3i);
                     }
                     thc2i.ColumnSpan = count2;
-                    total += count1 * count2;
+                    total = count1 * count2;
                 }
                 thr1.HorizontalAlign = HorizontalAlign.Center;
                 thr1.Font.Size = 12;
@@ -163,6 +148,62 @@ namespace ManPowerWeb
             tblTaSummary.Rows.Add(thr1);
             tblTaSummary.Rows.Add(thr2);
             tblTaSummary.Rows.Add(thr3);
+
+            int flag2 = 0;
+            foreach (var itemProgramTargetName in ListProgramTargetName)
+            {
+                TableRow tr = new TableRow();
+                TableCell tc1 = new TableCell();
+                tc1.Text = itemProgramTargetName;
+                tr.Cells.Add(tc1);
+
+                foreach (var itemDistrict in ListDistrict)
+                {
+                    foreach (string officerName in districtTASummariesListFinal.Where(x => x.Location == itemDistrict).Select(x => x.OfficerName).Distinct())
+                    {
+                        TableCell tc21 = new TableCell();
+                        TableCell tc22 = new TableCell();
+                        TableCell tc23 = new TableCell();
+                        TableCell tc24 = new TableCell();
+                        TableCell tc25 = new TableCell();
+                        flag2 = 0;
+
+                        foreach (var item in districtTASummariesListFinal.Where(x => x.ProgramTargetName == itemProgramTargetName))
+                        {
+                            if (item.OfficerName == officerName && item.Location == itemDistrict)
+                            {
+                                flag2 = 1;
+                                tc21.Text = item.Target.ToString();
+                                tr.Cells.Add(tc21);
+                                tc22.Text = item.OnlineCount.ToString();
+                                tr.Cells.Add(tc22);
+                                tc23.Text = item.PhysicalCount.ToString();
+                                tr.Cells.Add(tc23);
+                                tc24.Text = (item.OnlineCount + item.PhysicalCount).ToString();
+                                tr.Cells.Add(tc24);
+                                tc25.Text = item.NoOfBeneficiary.ToString();
+                                tr.Cells.Add(tc25);
+                            }
+                        }
+                        if (flag2 == 0)
+                        {
+                            tc21.Text = "0";
+                            tr.Cells.Add(tc21);
+                            tc22.Text = "0";
+                            tr.Cells.Add(tc22);
+                            tc23.Text = "0";
+                            tr.Cells.Add(tc23);
+                            tc24.Text = "0";
+                            tr.Cells.Add(tc24);
+                            tc25.Text = "0";
+                            tr.Cells.Add(tc25);
+                        }
+
+                    }
+                }
+                tblTaSummary.Rows.Add(tr);
+            }
+
 
         }
 
@@ -273,9 +314,9 @@ namespace ManPowerWeb
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-            gvIndividualTASummary.GridLines = GridLines.Both;
-            gvIndividualTASummary.HeaderStyle.Font.Bold = true;
-            gvIndividualTASummary.RenderControl(htmltextwrtter);
+            tblTaSummary.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            tblTaSummary.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
             Response.End();
         }

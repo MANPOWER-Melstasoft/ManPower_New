@@ -3,9 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
 
-
         <div class="card p-4 mb-4 mt-5">
             <h2>Target Achievement District Vise Summary</h2>
+
+            <div class="table-responsive mt-5 mb-4">
+                <asp:Table ID="tblTaSummary" runat="server" CssClass="table table-bordered"></asp:Table>
+            </div>
+
             <div class="table-responsive mt-4 mb-4">
                 <asp:GridView ID="gvTASummary" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
                     CellPadding="4" ForeColor="#333333" GridLines="None" OnDataBound="gvTASummary_DataBound" OnRowCreated="gvTASummary_RowCreated" OnRowDataBound="gvTASummary_RowDataBound">

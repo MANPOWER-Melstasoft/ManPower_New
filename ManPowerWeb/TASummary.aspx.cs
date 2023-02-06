@@ -138,7 +138,7 @@ namespace ManPowerWeb
                         thr3.Cells.Add(thc3i);
                     }
                     thc2i.ColumnSpan = count2;
-                    total += count1 * count2;
+                    total = count1 * count2;
                 }
                 thr1.HorizontalAlign = HorizontalAlign.Center;
                 thr1.Font.Size = 12;
@@ -314,9 +314,9 @@ namespace ManPowerWeb
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-            gvIndividualTASummary.GridLines = GridLines.Both;
-            gvIndividualTASummary.HeaderStyle.Font.Bold = true;
-            gvIndividualTASummary.RenderControl(htmltextwrtter);
+            tblTaSummary.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            tblTaSummary.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
             Response.End();
         }

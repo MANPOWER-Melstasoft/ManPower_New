@@ -276,9 +276,9 @@ namespace ManPowerWeb
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-            gvTASummary.GridLines = GridLines.Both;
-            gvTASummary.HeaderStyle.Font.Bold = true;
-            gvTASummary.RenderControl(htmltextwrtter);
+            tblTaSummary.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            tblTaSummary.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
             Response.End();
         }

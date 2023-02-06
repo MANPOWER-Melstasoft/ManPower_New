@@ -316,17 +316,56 @@ namespace ManPowerWeb
 
         protected void childgridView3_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView childgridView3 = gvRow.FindControl("childgridView3") as GridView;
 
+            childgridView3.EditIndex = e.NewEditIndex;
+            childgridView3.DataSource = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
+            childgridView3.DataBind();
         }
 
         protected void childgridView3_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView childgridView3 = gvRow.FindControl("childgridView3") as GridView;
 
+            childgridView3.EditIndex = -1;
+
+            childgridView3.DataSource = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
+            childgridView3.DataBind();
         }
 
         protected void childgridView3_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView childgridView3 = gvRow.FindControl("childgridView3") as GridView;
 
+            Label id = childgridView3.Rows[e.RowIndex].FindControl("lblID") as Label;
+            TextBox txtRemarks = childgridView3.Rows[e.RowIndex].FindControl("txtRemarks") as TextBox;
+            RadioButtonList rbStillworking = childgridView3.Rows[e.RowIndex].FindControl("rbStillworking") as RadioButtonList;
+            //TextBox city = GridView1.Rows[e.RowIndex].FindControl("txt_City") as TextBox;
+
+            JobPlacementFeedbackController jobPlacementFeedbackController = ControllerFactory.CreateJobPlacementFeedbackController();
+            JobPlacementFeedback jobPlacementFeedback = new JobPlacementFeedback();
+            jobPlacementFeedback.StillWorking = Convert.ToInt32(rbStillworking.Text);
+            jobPlacementFeedback.CreatedDate = DateTime.Now;
+            jobPlacementFeedback.JobPlacementFeedbackId = Convert.ToInt32(id.Text);
+            jobPlacementFeedback.Remarks = txtRemarks.Text;
+
+            int response = jobPlacementFeedbackController.Update(jobPlacementFeedback);
+
+            if (response != 0)
+            {
+                childgridView3.EditIndex = -1;
+
+                childgridView3.DataSource = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
+                childgridView3.DataBind();
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
         }
 
         protected void btnAddFeedBackJob_Click(object sender, EventArgs e)
@@ -361,7 +400,7 @@ namespace ManPowerWeb
             jobPlacementFeedback.Remarks = txtRemarksJob.Text;
             jobPlacementFeedback.JobRefferalsId = Convert.ToInt32(ViewState["jobparentid"]);
             jobPlacementFeedback.CreatedDate = DateTime.Now.Date;
-            jobPlacementFeedback.ResignedDate = DateTime.Now.Date;
+            jobPlacementFeedback.ResignedDate = DateTime.Now.Date; // must changed here
             jobPlacementFeedback.CreatedUser = Session["Name"].ToString();
             jobPlacementFeedback.StillWorking = 1;
             jobPlacementFeedback.IsActive = 1;
@@ -511,6 +550,10 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
+                gvPlanDetails.EditIndex = -1;
+
+                gvPlanDetails.DataSource = ControllerFactory.CreateCareerGuidanceFeedbackController().GetAllCareerKeyTestResults(false);
+                gvPlanDetails.DataBind();
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
             }
             else
@@ -679,7 +722,16 @@ namespace ManPowerWeb
 
         protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int minID = int.Parse(GridView3.DataKeys[e.Row.RowIndex].Value.ToString());
+                GridView ChildGridView2 = e.Row.FindControl("ChildGridView2") as GridView;
 
+                //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
+                List<TrainingRefferalFeedback> trainingRefferalFeedbacks = ControllerFactory.CreateTrainingRefferalFeedbackController().GetAllTrainingRefferalFeedback(false);
+                ChildGridView2.DataSource = trainingRefferalFeedbacks;
+                ChildGridView2.DataBind();
+            }
         }
 
         public void GridView2DataBind()
@@ -722,6 +774,68 @@ namespace ManPowerWeb
                 lblTrainningProgramDetails.Visible = false;
 
             }
+        }
+
+        protected void ChildGridView2_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView ChildGridView2 = gvRow.FindControl("ChildGridView2") as GridView;
+
+            ChildGridView2.EditIndex = -1;
+
+            ChildGridView2.DataSource = ControllerFactory.CreateTrainingRefferalFeedbackController().GetAllTrainingRefferalFeedback(false);
+            ChildGridView2.DataBind();
+        }
+
+        protected void ChildGridView2_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView gvPlanDetails = gvRow.FindControl("ChildGridView2") as GridView;
+
+            Label id = gvPlanDetails.Rows[e.RowIndex].FindControl("lblID") as Label;
+            TextBox txtTrainingInstitute = gvPlanDetails.Rows[e.RowIndex].FindControl("txtTrainingInstitute") as TextBox;
+            TextBox InTraining = gvPlanDetails.Rows[e.RowIndex].FindControl("txtInTraining") as TextBox;
+            TextBox TrainingCompleted = gvPlanDetails.Rows[e.RowIndex].FindControl("txtTrainingCompleted") as TextBox;
+            TextBox Remarks = gvPlanDetails.Rows[e.RowIndex].FindControl("txtRemarks") as TextBox;
+            //TextBox city = GridView1.Rows[e.RowIndex].FindControl("txt_City") as TextBox;
+
+
+
+            TrainingRefferalFeedbackController trainingRefferalFeedbackController = ControllerFactory.CreateTrainingRefferalFeedbackController();
+            TrainingRefferalFeedback trainingRefferalFeedback = new TrainingRefferalFeedback();
+            trainingRefferalFeedback.Date = DateTime.Now;
+            trainingRefferalFeedback.Id = Convert.ToInt32(id.Text);
+            trainingRefferalFeedback.TrainingInstitute = txtTrainingInstitute.Text;
+            trainingRefferalFeedback.InTraining = InTraining.Text;
+            trainingRefferalFeedback.TrainingCompleted = TrainingCompleted.Text;
+            trainingRefferalFeedback.Remarks = Remarks.Text;
+            trainingRefferalFeedback.CreatedUser = Session["Name"].ToString();
+
+
+            int response = trainingRefferalFeedbackController.Update(trainingRefferalFeedback);
+
+            if (response != 0)
+            {
+                gvPlanDetails.EditIndex = -1;
+
+                gvPlanDetails.DataSource = ControllerFactory.CreateTrainingRefferalFeedbackController().GetAllTrainingRefferalFeedback(false);
+                gvPlanDetails.DataBind();
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
+        }
+
+        protected void ChildGridView2_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+            GridView ChildGridView2 = gvRow.FindControl("ChildGridView2") as GridView;
+
+            ChildGridView2.EditIndex = e.NewEditIndex;
+            ChildGridView2.DataSource = ControllerFactory.CreateTrainingRefferalFeedbackController().GetAllTrainingRefferalFeedback(false);
+            ChildGridView2.DataBind();
         }
 
 

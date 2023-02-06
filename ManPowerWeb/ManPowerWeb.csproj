@@ -153,6 +153,8 @@
     <Content Include="DME21Front.aspx" />
     <Content Include="DMe21FrontRender.aspx" />
     <Content Include="DME23.aspx" />
+    <Content Include="DME23Users.aspx" />
+    <Content Include="DME23UsersRender.aspx" />
     <Content Include="DME24.aspx" />
     <Content Include="EntRegistration.aspx" />
     <Content Include="DME22.aspx" />
@@ -263,6 +265,7 @@
     <Content Include="specialAmendmentRender.aspx" />
     <Content Include="SpecialProgram.aspx" />
     <Content Include="Styles\sweetalert.css" />
+    <Content Include="TASummary.aspx" />
     <Content Include="testing.aspx" />
     <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="TransfersRetirementResignationView.aspx" />
@@ -2242,6 +2245,20 @@
     <Compile Include="DME23.aspx.designer.cs">
       <DependentUpon>DME23.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DME23Users.aspx.cs">
+      <DependentUpon>DME23Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME23Users.aspx.designer.cs">
+      <DependentUpon>DME23Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME23UsersRender.aspx.cs">
+      <DependentUpon>DME23UsersRender.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME23UsersRender.aspx.designer.cs">
+      <DependentUpon>DME23UsersRender.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DME24.aspx.cs">
       <DependentUpon>DME24.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2534,6 +2551,13 @@
     </Compile>
     <Compile Include="SpecialProgram.aspx.designer.cs">
       <DependentUpon>SpecialProgram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TASummary.aspx.cs">
+      <DependentUpon>TASummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TASummary.aspx.designer.cs">
+      <DependentUpon>TASummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="testing.aspx.cs">
       <DependentUpon>testing.aspx</DependentUpon>

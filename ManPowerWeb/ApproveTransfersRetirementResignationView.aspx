@@ -334,6 +334,8 @@
                     </ContentTemplate>
                     <Triggers>
                         <asp:PostBackTrigger ControlID="btnView" />
+                        <asp:PostBackTrigger ControlID="btnSubmit" />
+                        <asp:PostBackTrigger ControlID="btnBack" />
                     </Triggers>
                 </asp:UpdatePanel>
             </div>

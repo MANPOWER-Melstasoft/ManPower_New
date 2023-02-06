@@ -11,25 +11,16 @@ namespace ManPowerWeb
 {
 
 
-    public partial class DistrictTASummary
+    public partial class DME23UsersRender
     {
 
         /// <summary>
-        /// gvTASummary control.
+        /// gvDme23 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvTASummary;
-
-        /// <summary>
-        /// btnRun control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
+        protected global::System.Web.UI.WebControls.GridView gvDme23;
     }
 }

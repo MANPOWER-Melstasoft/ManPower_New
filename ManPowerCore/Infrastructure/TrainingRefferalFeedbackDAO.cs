@@ -47,11 +47,10 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE Training_Refferal_Feedback SET Created_Date = @Date, Training_Refferals_Id = @TrainingRefferalId, Training_Institute = @TrainingInstitute, " +
+            dbConnection.cmd.CommandText = "UPDATE Training_Refferal_Feedback SET Created_Date = @Date, Training_Institute = @TrainingInstitute, " +
                 "In_Training = @InTraining, Training_Completed = @TrainingCompleted, Other_Remarks = @Remarks, Created_User = @Created_User WHERE Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", trainingRefferals.Id);
-            dbConnection.cmd.Parameters.AddWithValue("@TrainingRefferalId", trainingRefferals.TrainingRefferalId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", trainingRefferals.Date);
             dbConnection.cmd.Parameters.AddWithValue("@TrainingInstitute", trainingRefferals.TrainingInstitute);
             dbConnection.cmd.Parameters.AddWithValue("@InTraining", trainingRefferals.InTraining);
@@ -59,7 +58,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@Remarks", trainingRefferals.Remarks);
             dbConnection.cmd.Parameters.AddWithValue("@Created_User", trainingRefferals.CreatedUser);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
             return output;
         }

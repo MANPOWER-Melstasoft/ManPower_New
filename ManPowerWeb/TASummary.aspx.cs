@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class DistrictTASummary : System.Web.UI.Page
+    public partial class TASummary : System.Web.UI.Page
     {
         List<DistrictTASummaryReport> districtTASummariesList = new List<DistrictTASummaryReport>();
         List<DistrictTASummaryReport> districtTASummariesListFinal = new List<DistrictTASummaryReport>();
@@ -22,10 +22,11 @@ namespace ManPowerWeb
         }
 
         public void BindDataSource()
+
         {
             DistrictTASummaryController districtTASummaryController = ControllerFactory.CreateDistrictTASummaryController();
 
-            districtTASummariesList = districtTASummaryController.GetDistrictTASummaryReport();
+            districtTASummariesList = districtTASummaryController.GetIndividualTASummaryReport();
 
             var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
             var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();
@@ -85,32 +86,48 @@ namespace ManPowerWeb
             }
 
 
-            gvTASummary.DataSource = districtTASummariesListFinal;
-            gvTASummary.DataBind();
+            gvIndividualTASummary.DataSource = districtTASummariesListFinal;
+            gvIndividualTASummary.DataBind();
         }
 
-        protected void gvTASummary_DataBound(object sender, EventArgs e)
+        protected void gvIndividualTASummary_DataBound(object sender, EventArgs e)
         {
-            int cellCount = 6;
-
-            for (int rowIndex = gvTASummary.Rows.Count - 2; rowIndex >= 0; rowIndex--)
+            int cellCount = 7;
+            for (int rowIndex = gvIndividualTASummary.Rows.Count - 2; rowIndex >= 0; rowIndex--)
             {
-                if ((gvTASummary.Rows[rowIndex]).Cells[cellCount].Text == (gvTASummary.Rows[rowIndex + 1]).Cells[cellCount].Text)
+                if ((gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount].Text == (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].Text)
                 {
-                    if ((gvTASummary.Rows[rowIndex + 1]).Cells[cellCount].RowSpan < 2)
+                    if ((gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].RowSpan < 2)
                     {
-                        (gvTASummary.Rows[rowIndex]).Cells[cellCount].RowSpan = 2;
+                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount].RowSpan = 2;
                     }
                     else
                     {
-                        (gvTASummary.Rows[rowIndex]).Cells[cellCount].RowSpan = (gvTASummary.Rows[rowIndex + 1]).Cells[cellCount].RowSpan + 1;
+                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount].RowSpan = (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].RowSpan + 1;
                     }
-                    (gvTASummary.Rows[rowIndex + 1]).Cells[cellCount].Visible = false;
+                    (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount].Visible = false;
+                }
+            }
+
+            int cellCount2 = 6;
+            for (int rowIndex = gvIndividualTASummary.Rows.Count - 2; rowIndex >= 0; rowIndex--)
+            {
+                if ((gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount2].Text == (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].Text)
+                {
+                    if ((gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].RowSpan < 2)
+                    {
+                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount2].RowSpan = 2;
+                    }
+                    else
+                    {
+                        (gvIndividualTASummary.Rows[rowIndex]).Cells[cellCount2].RowSpan = (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].RowSpan + 1;
+                    }
+                    (gvIndividualTASummary.Rows[rowIndex + 1]).Cells[cellCount2].Visible = false;
                 }
             }
         }
 
-        protected void gvTASummary_RowCreated(object sender, GridViewRowEventArgs e)
+        protected void gvIndividualTASummary_RowCreated(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
@@ -140,7 +157,7 @@ namespace ManPowerWeb
             }
         }
 
-        protected void gvTASummary_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvIndividualTASummary_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -174,15 +191,15 @@ namespace ManPowerWeb
             Response.ClearContent();
             Response.ClearHeaders();
             Response.Charset = "";
-            string FileName = "Target Achievement District Vise Summary" + DateTime.Now + ".xls";
+            string FileName = "Target Achievement Individual Summary" + DateTime.Now + ".xls";
             StringWriter strwritter = new StringWriter();
             HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-            gvTASummary.GridLines = GridLines.Both;
-            gvTASummary.HeaderStyle.Font.Bold = true;
-            gvTASummary.RenderControl(htmltextwrtter);
+            gvIndividualTASummary.GridLines = GridLines.Both;
+            gvIndividualTASummary.HeaderStyle.Font.Bold = true;
+            gvIndividualTASummary.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
             Response.End();
         }

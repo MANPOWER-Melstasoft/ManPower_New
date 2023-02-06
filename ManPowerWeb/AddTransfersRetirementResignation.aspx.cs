@@ -116,7 +116,7 @@ namespace ManPowerWeb
                 }
                 else
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Record Added Succesfully!', 'error');", true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Record Added Fail!', 'error');", true);
                 }
             }
 

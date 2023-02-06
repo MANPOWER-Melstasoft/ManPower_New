@@ -153,6 +153,8 @@
     <Content Include="DME21Front.aspx" />
     <Content Include="DMe21FrontRender.aspx" />
     <Content Include="DME23.aspx" />
+    <Content Include="DME23Users.aspx" />
+    <Content Include="DME23UsersRender.aspx" />
     <Content Include="DME24.aspx" />
     <Content Include="EntRegistration.aspx" />
     <Content Include="DME22.aspx" />
@@ -2242,6 +2244,20 @@
     </Compile>
     <Compile Include="DME23.aspx.designer.cs">
       <DependentUpon>DME23.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME23Users.aspx.cs">
+      <DependentUpon>DME23Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME23Users.aspx.designer.cs">
+      <DependentUpon>DME23Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME23UsersRender.aspx.cs">
+      <DependentUpon>DME23UsersRender.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME23UsersRender.aspx.designer.cs">
+      <DependentUpon>DME23UsersRender.aspx</DependentUpon>
     </Compile>
     <Compile Include="DME24.aspx.cs">
       <DependentUpon>DME24.aspx</DependentUpon>

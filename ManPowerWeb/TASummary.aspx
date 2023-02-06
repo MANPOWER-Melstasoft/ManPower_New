@@ -4,6 +4,7 @@
     <div class="container">
         <div class="card p-4 mb-4 mt-5">
             <h2>Target Achievement Individual Summary</h2>
+
             <div class="table-responsive mt-4 mb-4">
                 <asp:GridView ID="gvIndividualTASummary" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
                     CellPadding="4" ForeColor="#333333" GridLines="None" OnDataBound="gvIndividualTASummary_DataBound" OnRowCreated="gvIndividualTASummary_RowCreated" OnRowDataBound="gvIndividualTASummary_RowDataBound">

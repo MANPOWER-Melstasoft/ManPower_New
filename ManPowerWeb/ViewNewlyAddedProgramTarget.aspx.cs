@@ -37,8 +37,30 @@ namespace ManPowerWeb
 
             programTargetsList = ControllerFactory.CreateProgramTargetController().GetAllProgramTarget(false, false, true, false);
 
-            gvProgramTargetNotification.DataSource = programTargetsList.Where(x => x.IsRecommended == 2 && x._ProgramAssignee[0].DepartmentUnitPossitionsId == departmentUnitPositionId && x._ProgramAssignee[0].Is_View == 0);
+            programTargetsList = programTargetsList.Where(x => x.IsRecommended == 2 && x._ProgramAssignee[0].DepartmentUnitPossitionsId == departmentUnitPositionId && x._ProgramAssignee[0].Is_View == 0).ToList();
+            programTargetsList = programTargetsList.OrderByDescending(x => x.RecommendedDate).ToList();
+            gvProgramTargetNotification.DataSource = programTargetsList;
             gvProgramTargetNotification.DataBind();
+
+        }
+
+        protected void btn_View_Click(object sender, EventArgs e)
+        {
+            bindDataSource();
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = gvProgramTargetNotification.PageSize;
+            int pageindex = gvProgramTargetNotification.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
+
+
+            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+
+            int id = programTargetsList[rowIndex]._ProgramAssignee[0].ProgramAssigneeId;
+
+            programAssigneeController.UpdateProgramAssigneeIsView(id);
+
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+
 
         }
     }

@@ -4,6 +4,9 @@
     <div class="container">
         <div class="card p-4 mb-4 mt-5">
             <h2>Target Achievement Individual Summary</h2>
+            <div class="table-responsive mt-5 mb-4">
+                <asp:Table ID="tblTaSummary" runat="server" CssClass="table table-bordered"></asp:Table>
+            </div>
 
             <div class="table-responsive mt-4 mb-4">
                 <asp:GridView ID="gvIndividualTASummary" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
@@ -12,18 +15,23 @@
                     <Columns>
                         <%--<asp:BoundField DataField="ProgramTargetId" HeaderText="Program Target Id" />
                         <asp:BoundField DataField="ProgramPlanId" HeaderText="Program Plan Id" />--%>
+
                         <asp:BoundField DataField="ProgramTargetName" HeaderText="Program Name" />
                         <asp:BoundField DataField="Target" HeaderText="Target" />
+
                         <%--  <asp:TemplateField HeaderText="Project Type">
                             <ItemTemplate>
                                 <asp:Label runat="server" Visible='<%#Eval("ProjectTypeId").ToString()=="2"?true:false%>' Text="Physical"></asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("ProjectTypeId").ToString()=="1"?true:false%>' Text="Online"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
+
                         <asp:BoundField DataField="OnlineCount" HeaderText="Online" />
                         <asp:BoundField DataField="PhysicalCount" HeaderText="Physical" />
                         <asp:BoundField HeaderText="Total" />
+
                         <%--<asp:BoundField DataField="Achievement" HeaderText="Achievment" />--%>
+
                         <asp:BoundField DataField="NoOfBeneficiary" HeaderText="No. of beneficiaries" />
                         <asp:BoundField DataField="OfficerName" HeaderText="Name" />
                         <asp:BoundField DataField="Location" HeaderText="Location" />

@@ -84,9 +84,105 @@ namespace ManPowerWeb
                 }
             }
 
+            //gvTASummary.DataSource = districtTASummariesListFinal;
+            //gvTASummary.DataBind();
 
-            gvTASummary.DataSource = districtTASummariesListFinal;
-            gvTASummary.DataBind();
+
+            List<string> headers = new List<string>() { "Target", "Online", "Physical", "Total", "No. of beneficiaries" };
+
+            TableHeaderRow thr2 = new TableHeaderRow();
+            TableHeaderCell thc2 = new TableHeaderCell();
+
+            TableHeaderRow thr1 = new TableHeaderRow();
+            TableHeaderCell thc1 = new TableHeaderCell();
+
+            thc1.Text = "";
+            thr1.Cells.Add(thc1);
+
+            thc2.Text = "ProgramTargetName";
+            thr2.Cells.Add(thc2);
+            thr2.Font.Size = 12;
+            thr2.Font.Bold = true;
+
+            foreach (string itemLocation in districtTASummariesListFinal.Select(x => x.Location).Distinct())
+            {
+                TableHeaderCell thc1i = new TableHeaderCell();
+                thc1i.Text = itemLocation;
+                thr1.Cells.Add(thc1i);
+
+                int count = 0;
+
+                foreach (var headerName in headers)
+                {
+                    count++;
+                    TableHeaderCell thc2i = new TableHeaderCell();
+                    thc2i.Text = headerName;
+                    thr2.Cells.Add(thc2i);
+                }
+
+                thr1.HorizontalAlign = HorizontalAlign.Center;
+                thr1.Font.Size = 12;
+                thr1.Font.Bold = true;
+                thc1i.ColumnSpan = count;
+            }
+            tblTaSummary.Rows.Add(thr1);
+            tblTaSummary.Rows.Add(thr2);
+
+
+            int flag2 = 0;
+            foreach (var itemProgramTargetName in ListProgramTargetName)
+            {
+                TableRow tr = new TableRow();
+                TableCell tc1 = new TableCell();
+                tc1.Text = itemProgramTargetName;
+                tr.Cells.Add(tc1);
+
+                foreach (var itemDistrict in ListDistrict)
+                {
+                    TableCell tc21 = new TableCell();
+                    TableCell tc22 = new TableCell();
+                    TableCell tc23 = new TableCell();
+                    TableCell tc24 = new TableCell();
+                    TableCell tc25 = new TableCell();
+                    flag2 = 0;
+
+                    foreach (var item in districtTASummariesListFinal.Where(x => x.ProgramTargetName == itemProgramTargetName))
+                    {
+                        if (item.Location == itemDistrict)
+                        {
+                            flag2 = 1;
+                            tc21.Text = item.Target.ToString();
+                            tr.Cells.Add(tc21);
+                            tc22.Text = item.OnlineCount.ToString();
+                            tr.Cells.Add(tc22);
+                            tc23.Text = item.PhysicalCount.ToString();
+                            tr.Cells.Add(tc23);
+                            tc24.Text = (item.OnlineCount + item.PhysicalCount).ToString();
+                            tr.Cells.Add(tc24);
+                            tc25.Text = item.NoOfBeneficiary.ToString();
+                            tr.Cells.Add(tc25);
+                        }
+                    }
+                    if (flag2 == 0)
+                    {
+                        tc21.Text = "0";
+                        tr.Cells.Add(tc21);
+                        tc22.Text = "0";
+                        tr.Cells.Add(tc22);
+                        tc23.Text = "0";
+                        tr.Cells.Add(tc23);
+                        tc24.Text = "0";
+                        tr.Cells.Add(tc24);
+                        tc25.Text = "0";
+                        tr.Cells.Add(tc25);
+                    }
+
+
+                }
+                tblTaSummary.Rows.Add(tr);
+            }
+
+
         }
 
         protected void gvTASummary_DataBound(object sender, EventArgs e)
@@ -180,9 +276,9 @@ namespace ManPowerWeb
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.ContentType = "application/vnd.ms-excel";
             Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-            gvTASummary.GridLines = GridLines.Both;
-            gvTASummary.HeaderStyle.Font.Bold = true;
-            gvTASummary.RenderControl(htmltextwrtter);
+            tblTaSummary.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            tblTaSummary.RenderControl(htmltextwrtter);
             Response.Write(strwritter.ToString());
             Response.End();
         }

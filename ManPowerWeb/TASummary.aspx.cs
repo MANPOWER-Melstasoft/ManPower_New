@@ -1,6 +1,7 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,11 +16,15 @@ namespace ManPowerWeb
 {
     public partial class TASummary : System.Web.UI.Page
     {
-        List<DistrictTASummaryReport> districtTASummariesList = new List<DistrictTASummaryReport>();
-        List<DistrictTASummaryReport> districtTASummariesListFinal = new List<DistrictTASummaryReport>();
+        static List<DistrictTASummaryReport> districtTASummariesList = new List<DistrictTASummaryReport>();
+        static List<DistrictTASummaryReport> districtTASummariesListFinal = new List<DistrictTASummaryReport>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDataSource();
+            if (!IsPostBack)
+            {
+                BindDataSource();
+            }
         }
 
         public void BindDataSource()
@@ -27,6 +32,7 @@ namespace ManPowerWeb
         {
             DistrictTASummaryController districtTASummaryController = ControllerFactory.CreateDistrictTASummaryController();
 
+            districtTASummariesListFinal.Clear();
             districtTASummariesList = districtTASummaryController.GetIndividualTASummaryReport();
 
             var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
@@ -72,7 +78,6 @@ namespace ManPowerWeb
                                     finalListItem.PhysicalCount += listItem.PhysicalCount;
                                     finalListItem.OnlineCount += listItem.OnlineCount;
 
-
                                 }
 
                             }
@@ -89,6 +94,17 @@ namespace ManPowerWeb
             //gvIndividualTASummary.DataSource = districtTASummariesListFinal;
             //gvIndividualTASummary.DataBind();
 
+
+            BindDataTable();
+
+
+        }
+
+        public void BindDataTable()
+        {
+
+            var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
+            var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();
 
             List<string> headers = new List<string>() { "Target", "Online", "Physical", "Total", "No. of beneficiaries" };
 
@@ -111,6 +127,7 @@ namespace ManPowerWeb
             thr3.Font.Size = 12;
             thr3.Font.Bold = true;
 
+            // -----------------------------Add Table Headers -------------------------------------------------
             foreach (string itemLocation in districtTASummariesListFinal.Select(x => x.Location).Distinct())
             {
                 TableHeaderCell thc1i = new TableHeaderCell();
@@ -148,7 +165,9 @@ namespace ManPowerWeb
             tblTaSummary.Rows.Add(thr1);
             tblTaSummary.Rows.Add(thr2);
             tblTaSummary.Rows.Add(thr3);
+            // -----------------------------------------------------------------------------------------------
 
+            // -----------------------------Add Table Data ---------------------------------------------------
             int flag2 = 0;
             foreach (var itemProgramTargetName in ListProgramTargetName)
             {
@@ -203,7 +222,7 @@ namespace ManPowerWeb
                 }
                 tblTaSummary.Rows.Add(tr);
             }
-
+            // -----------------------------------------------------------------------------------------------
 
         }
 
@@ -320,5 +339,77 @@ namespace ManPowerWeb
             Response.Write(strwritter.ToString());
             Response.End();
         }
+
+        protected void btnGetAll_Click(object sender, EventArgs e)
+        {
+            tblTaSummary.Rows.Clear();
+            txtName.Text = "";
+            txtLocation.Text = "";
+            BindDataSource();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
+            string searchName = txtName.Text;
+            string searchLocation = txtLocation.Text;
+
+            List<DistrictTASummaryReport> districtTASummariesListFinalTemp = new List<DistrictTASummaryReport>();
+
+            if (searchName != "" && searchName != null)
+            {
+                tblTaSummary.Rows.Clear();
+
+                if (searchLocation != "" && searchLocation != null)
+                {
+                    foreach (var item in districtTASummariesListFinal)
+                    {
+                        if (item.OfficerName.ToLower().Trim() == searchName.ToLower().Trim() && item.Location.ToLower().Trim() == searchLocation.ToLower().Trim())
+                        {
+                            districtTASummariesListFinalTemp.Add(item);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var item in districtTASummariesListFinal)
+                    {
+                        if (item.OfficerName.ToLower().Trim() == searchName.ToLower().Trim())
+                        {
+                            districtTASummariesListFinalTemp.Add(item);
+                        }
+                    }
+                }
+                districtTASummariesListFinal.Clear();
+                districtTASummariesListFinal = districtTASummariesListFinalTemp;
+
+                BindDataTable();
+            }
+            else
+            {
+                if (searchLocation != "" && searchLocation != null)
+                {
+                    tblTaSummary.Rows.Clear();
+
+                    foreach (var item in districtTASummariesListFinal)
+                    {
+                        if (item.Location.ToLower().Trim() == searchLocation.ToLower().Trim())
+                        {
+                            districtTASummariesListFinalTemp.Add(item);
+                        }
+                    }
+
+
+                    districtTASummariesListFinal.Clear();
+                    districtTASummariesListFinal = districtTASummariesListFinalTemp;
+
+                    BindDataTable();
+                }
+            }
+
+
+        }
+
+
     }
 }

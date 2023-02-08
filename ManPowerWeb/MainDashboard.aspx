@@ -56,7 +56,7 @@
                         alt="Skyscrapers" />
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <asp:Button ID="btnHR" runat="server" Text="HUMAN RESOURCE" OnClick="btnHR_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
+                            <asp:Button ID="btnHR" runat="server" Text="ADMINISTRATOR" OnClick="btnHR_Click" BorderStyle="None" BackColor="White" ForeColor="Blue" />
                         </h5>
                     </div>
                     <div class="card-footer" style="background-image: url(https://mdbcdn.b-cdn.net/img/new/slides/003.webp); height: 50px">

@@ -17,6 +17,8 @@ namespace ManPowerCore.Controller
 
         int UpdateProgramAssignee(ProgramAssignee programAssignee);
 
+        int UpdateProgramAssigneeIsView(int Id);
+
         List<ProgramAssignee> GetProgramAssignee();
 
         List<ProgramAssignee> GetAllProgramAssignee(bool withProgramTarget, bool withDepartmentUnitPositions, bool withDesignation);
@@ -60,6 +62,27 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 var programAssignees = programAssigneeDAO.UpdateProgramAssignee(programAssignee, dBConnection);
+                return programAssignees;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateProgramAssigneeIsView(int Id)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                var programAssignees = programAssigneeDAO.UpdateProgramAssigneeIsView(Id, dBConnection);
                 return programAssignees;
             }
             catch (Exception)

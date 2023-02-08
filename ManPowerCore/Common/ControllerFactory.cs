@@ -540,5 +540,17 @@ namespace ManPowerCore.Common
             DistrictTASummaryController districtTASummaryController = new DistrictTASummaryControllerImpl();
             return (DistrictTASummaryController)districtTASummaryController;
         }
+
+        public static TrainingMainController CreateTrainingMainController()
+        {
+            TrainingMainController trainingMainController = new TrainingMainControllerImpl();
+            return (TrainingMainController)trainingMainController;
+        }
+
+        public static TrainingRequestsController CreateTrainingRequestsController()
+        {
+            TrainingRequestsController trainingRequestsController = new TrainingRequestsControllerImpl();
+            return (TrainingRequestsController)trainingRequestsController;
+        }
     }
 }

@@ -15,11 +15,20 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
-
-            if (!IsPostBack)
+            if (Session["UserId"] != null)
             {
-                BindRequestType();
-                BindEmpData();
+                if (!IsPostBack)
+                {
+                    BindRequestType();
+                    BindEmpData();
+                }
+            }
+            else
+            {
+                HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
+                HttpContext.Current.Response.AddHeader("Expires", "0");
+                Response.Redirect("Login.aspx");
             }
         }
 

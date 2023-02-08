@@ -25,6 +25,7 @@ namespace ManPowerCore.Infrastructure
         int ResetInvaliedAttempts(SystemUser systemuser, DBConnection dbConnection);
         int UpdateLastLoginDate(SystemUser systemuser, DBConnection dbConnection);
         SystemUser CheckEmpNumberExists(int Number, DBConnection dbConnection);
+        int ChangePassword(SystemUser systemuser, DBConnection dbConnection);
     }
 
     public class SystemUserDAOImpl : SystemUserDAO
@@ -247,6 +248,16 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.GetSingleOject<SystemUser>(dbConnection.dr);
+        }
+
+        public int ChangePassword(SystemUser systemuser, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "UPDATE COMPANY_USER SET User_Password = '" + systemuser.UserPwd + "' WHERE ID = " + systemuser.SystemUserId;
+
+            return dbConnection.cmd.ExecuteNonQuery();
         }
     }
 }

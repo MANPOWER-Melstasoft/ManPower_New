@@ -15,6 +15,8 @@ namespace ManPowerCore.Infrastructure
         ProgramAssignee GetProgramAssignee(int id, DBConnection dbConnection);
         int SaveProgramAssignee(ProgramAssignee programAssignee, DBConnection dbConnection);
         int UpdateProgramAssignee(ProgramAssignee programAssignee, DBConnection dbConnection);
+
+        int UpdateProgramAssigneeIsView(int Id, DBConnection dbConnection);
         List<ProgramAssignee> GetAllProgramAssigneeByProgramTargetId(int programTargetId, DBConnection dbConnection);
         List<ProgramAssignee> GetAllProgramAssigneeByDepartmentPossitionId(int departmentPossitionId, DBConnection dbConnection);
         List<ProgramAssignee> GetAllProgramAssigneeByDepartmentUnitPositionId(int DepartmetUnitPossitionsId, DBConnection dBConnection);
@@ -87,6 +89,17 @@ namespace ManPowerCore.Infrastructure
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
+
+        public int UpdateProgramAssigneeIsView(int Id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE PROGRAM_ASSIGNEE SET Is_View = 1 WHERE ID= " + Id + " ";
+
+            return dbConnection.cmd.ExecuteNonQuery();
+        }
         public List<ProgramAssignee> GetAllProgramAssignee(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)

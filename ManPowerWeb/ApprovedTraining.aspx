@@ -8,12 +8,12 @@
                 CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="ProgramDate" HeaderText="Program Date" />
-                    <asp:BoundField DataField="Employee_Id" HeaderText="Employee Id" />
-                    <asp:BoundField DataField="Employee.fullName" HeaderText="Employee Name" />
-                    <asp:BoundField DataField="Program.ProgramName" HeaderText="Program" />
-                    <asp:BoundField DataField="Institute" HeaderText="Institute" />
-                    <asp:BoundField DataField="Status.ProjectStatusName" HeaderText="Status" />
+                    <asp:BoundField DataField="TrainingRequestsId" HeaderText="Training Request ID" />
+                    <asp:BoundField DataField="systemuser.Name" HeaderText="Employee Name" />
+                    <asp:BoundField DataField="Trainingmain.TrainingMainId" HeaderText="Training ID" />
+                    <asp:BoundField DataField="Trainingmain.Title" HeaderText="Title" />
+                    <asp:BoundField DataField="Trainingmain.Start_Date" HeaderText="Start Date" />
+                    <asp:BoundField DataField="Trainingmain.End_date" HeaderText="End Date" />
                 </Columns>
             </asp:GridView>
         </div>

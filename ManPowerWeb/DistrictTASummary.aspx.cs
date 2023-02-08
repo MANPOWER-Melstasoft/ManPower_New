@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace ManPowerWeb
 {
@@ -18,7 +19,10 @@ namespace ManPowerWeb
         List<DistrictTASummaryReport> districtTASummariesListFinal = new List<DistrictTASummaryReport>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDataSource();
+            if (!IsPostBack)
+            {
+                BindDataSource();
+            }
         }
 
         public void BindDataSource()
@@ -83,10 +87,15 @@ namespace ManPowerWeb
                     }
                 }
             }
-
+            BindDataTable();
             //gvTASummary.DataSource = districtTASummariesListFinal;
             //gvTASummary.DataBind();
+        }
 
+        public void BindDataTable()
+        {
+            var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
+            var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();
 
             List<string> headers = new List<string>() { "Target", "Online", "Physical", "Total", "No. of beneficiaries" };
 
@@ -282,5 +291,54 @@ namespace ManPowerWeb
             Response.Write(strwritter.ToString());
             Response.End();
         }
+
+
+        protected void btnGetAll_Click(object sender, EventArgs e)
+        {
+            tblTaSummary.Rows.Clear();
+            txtLocation.Text = "";
+            lblMSG.Text = string.Empty;
+            BindDataSource();
+        }
+
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
+
+            string searchLocation = txtLocation.Text;
+
+            List<DistrictTASummaryReport> districtTASummariesListFinalTemp = new List<DistrictTASummaryReport>();
+
+            if (searchLocation != "" && searchLocation != null)
+            {
+                foreach (var item in districtTASummariesListFinal)
+                {
+                    if (item.Location.ToLower().Trim() == searchLocation.ToLower().Trim())
+                    {
+                        districtTASummariesListFinalTemp.Add(item);
+                    }
+                }
+            }
+
+            tblTaSummary.Rows.Clear();
+            if (districtTASummariesListFinalTemp.Count > 0)
+            {
+                districtTASummariesListFinal.Clear();
+                districtTASummariesListFinal = districtTASummariesListFinalTemp;
+                lblMSG.Text = string.Empty;
+
+                BindDataTable();
+            }
+            else
+            {
+                lblMSG.Text = "No Data to Show";
+            }
+
+        }
+
+
+
     }
+
 }

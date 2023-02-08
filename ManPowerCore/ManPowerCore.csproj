@@ -120,9 +120,11 @@
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
     <Compile Include="Controller\TaskTypeController.cs" />
     <Compile Include="Controller\Test.cs" />
+    <Compile Include="Controller\TrainingMainController.cs" />
     <Compile Include="Controller\TrainingRefferalFeedbackController.cs" />
     <Compile Include="Controller\TrainingRefferalsController.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
+    <Compile Include="Controller\TrainingRequestsController.cs" />
     <Compile Include="Controller\TransferController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationMainController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationStatusController.cs" />
@@ -156,6 +158,8 @@
     <Compile Include="Domain\DependantType.cs" />
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
+    <Compile Include="Domain\TrainingMain.cs" />
+    <Compile Include="Domain\TrainingRequests.cs" />
     <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
     <Compile Include="Domain\DistrictTASummaryReport.cs" />
     <Compile Include="Domain\DME21Model.cs" />
@@ -293,9 +297,11 @@
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
     <Compile Include="Infrastructure\TaskTypeDAO.cs" />
     <Compile Include="Infrastructure\Test.cs" />
+    <Compile Include="Infrastructure\TrainingMainDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalFeedbackDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalsDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
+    <Compile Include="Infrastructure\TrainingRequestsDAO.cs" />
     <Compile Include="Infrastructure\TransferDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationMainDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationStatusDAO.cs" />

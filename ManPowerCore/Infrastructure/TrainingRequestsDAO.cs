@@ -48,7 +48,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "UPDATE Training_Requests SET Training_main_id = @TrainingMainId, Project_status_id = @ProjectStatusId, Created_date = @CreatedDate, Created_user = @CreatedUser, " +
-                                "Accepted_date = @AcceptedDate, Accepted_user = @AcceptedUser, Is_Active = @IsActive WHERE Id = @Id) ";
+                                "Accepted_date = @AcceptedDate, Accepted_user = @AcceptedUser, Is_Active = @IsActive WHERE Id = @Id";
 
             dbConnection.cmd.Parameters.AddWithValue("@TrainingMainId", trainingRequests.TrainingMainId);
             dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusId", trainingRequests.ProjectStatusId);

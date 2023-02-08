@@ -1949,6 +1949,7 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="ViewNewlyAddedProgramTarget.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="VMUploadDocuments.aspx" />
     <Content Include="Web.config" />
@@ -2657,6 +2658,13 @@
     </Compile>
     <Compile Include="VehicleMeintenanceSearch.aspx.designer.cs">
       <DependentUpon>VehicleMeintenanceSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewNewlyAddedProgramTarget.aspx.cs">
+      <DependentUpon>ViewNewlyAddedProgramTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewNewlyAddedProgramTarget.aspx.designer.cs">
+      <DependentUpon>ViewNewlyAddedProgramTarget.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

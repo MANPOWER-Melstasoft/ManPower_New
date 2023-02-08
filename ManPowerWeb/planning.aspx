@@ -101,7 +101,7 @@
                     <asp:BoundField DataField="_ProgramTarget.TargetYear" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetMonth" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.StartDate" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField DataField="_ProgramTarget.EndDate" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.EndDate" HeaderText="End Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.EstimatedAmount" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.Instractions" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.NoOfProjects" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />

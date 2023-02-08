@@ -22,6 +22,8 @@ namespace ManPowerCore.Domain
 
         [DBField("PROGRAM_TARGET_ID")]
         public int ProgramTargetId { get; set; }
+        [DBField("Is_View")]
+        public int Is_View { get; set; }
 
 
 

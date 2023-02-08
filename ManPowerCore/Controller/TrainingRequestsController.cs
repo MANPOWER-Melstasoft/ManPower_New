@@ -16,6 +16,8 @@ namespace ManPowerCore.Controller
         int Update(TrainingRequests trainingRequests);
 
         List<TrainingRequests> GetAllTrainingRequests();
+
+        List<TrainingRequests> GetAllTrainingRequestsWithDetail();
     }
 
     public class TrainingRequestsControllerImpl : TrainingRequestsController
@@ -66,6 +68,51 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return trainingRequestsDAO.GetAllTrainingRequests(dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<TrainingRequests> GetAllTrainingRequestsWithDetail()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                List<TrainingRequests> trainingRequestsList = trainingRequestsDAO.GetAllTrainingRequests(dBConnection);
+
+                ProjectStatusDAO projectstatusDAO = DAOFactory.CreateProjectStatusDAO();
+                List<ProjectStatus> projectStatusList = projectstatusDAO.GetAllProjectStatus(dBConnection);
+
+                TrainingMainController trainingMainController = ControllerFactory.CreateTrainingMainController();
+                List<TrainingMain> TrainingMainList = trainingMainController.GetAllTrainingMain();
+
+                SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+                List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
+
+                foreach (var item in trainingRequestsList)
+                {
+                    item.Trainingmain = TrainingMainList.Where(x => x.TrainingMainId == item.TrainingMainId).Single();
+                }
+
+                foreach (var item in trainingRequestsList)
+                {
+                    item.ProjectStatus = projectStatusList.Where(x => x.ProjectStatusId == item.ProjectStatusId).Single();
+                }
+
+                foreach (var item in trainingRequestsList)
+                {
+                    item.SystemUser = systemUserList.Where(x => x._DepartmentUnitPositions.DepartmetUnitPossitionsId == item.Created_User).Single();
+                }
+
+                return trainingRequestsList;
             }
             catch (Exception)
             {

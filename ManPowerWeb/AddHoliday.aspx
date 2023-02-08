@@ -45,11 +45,25 @@
             </div>
 
 
+            <div class="row mb-3 ms-1">
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <asp:Button runat="server" ID="btnAddToTable" Text="Add To Table" CssClass="btn btn-primary" />
+                            <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-success" ValidationGroup="1" OnClick="btnSave_Click" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <asp:GridView ID="gvHoliday" runat="server" CssClass="Grid" AutoGenerateColumns="false"
-        EmptyDataText="No records has been added.">
+        EmptyDataText="No records has been added">
         <Columns>
             <asp:BoundField DataField="Date" HeaderText="Name" ItemStyle-Width="120" HeaderStyle-CssClass="table-dark" />
             <asp:BoundField DataField="Description" HeaderText="Country" ItemStyle-Width="120" HeaderStyle-CssClass="table-dark" />

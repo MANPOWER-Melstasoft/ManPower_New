@@ -653,12 +653,16 @@ namespace ManPowerWeb
                 else
                 {
                     lblMisMatchPwd.Text = "Password MissMatch";
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Password MissMatch!', 'error');", true);
+
                 }
             }
             else
             {
                 lblCurPass.Text = "Incorrect Current Password";
                 lblMisMatchPwd.Text = string.Empty;
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Incorrect Current Password!', 'error');", true);
+
             }
         }
     }

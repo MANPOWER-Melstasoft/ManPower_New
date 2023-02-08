@@ -29,6 +29,7 @@
                     </div>
 
                     <div class="table-responsive mt-5 mb-4">
+                        <asp:Label ID="lblMSG" runat="server" Text="" CssClass="ml-2"></asp:Label>
                         <asp:Table ID="tblTaSummary" runat="server" CssClass="table table-bordered"></asp:Table>
                     </div>
 

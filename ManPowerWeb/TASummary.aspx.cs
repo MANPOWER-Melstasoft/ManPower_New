@@ -345,6 +345,7 @@ namespace ManPowerWeb
             tblTaSummary.Rows.Clear();
             txtName.Text = "";
             txtLocation.Text = "";
+            lblMSG.Text = string.Empty;
             BindDataSource();
         }
 
@@ -358,8 +359,6 @@ namespace ManPowerWeb
 
             if (searchName != "" && searchName != null)
             {
-                tblTaSummary.Rows.Clear();
-
                 if (searchLocation != "" && searchLocation != null)
                 {
                     foreach (var item in districtTASummariesListFinal)
@@ -380,17 +379,26 @@ namespace ManPowerWeb
                         }
                     }
                 }
-                districtTASummariesListFinal.Clear();
-                districtTASummariesListFinal = districtTASummariesListFinalTemp;
 
-                BindDataTable();
+                tblTaSummary.Rows.Clear();
+                if (districtTASummariesListFinalTemp.Count > 0)
+                {
+
+                    districtTASummariesListFinal.Clear();
+                    districtTASummariesListFinal = districtTASummariesListFinalTemp;
+                    lblMSG.Text = string.Empty;
+
+                    BindDataTable();
+                }
+                else
+                {
+                    lblMSG.Text = "No Data to Show";
+                }
             }
             else
             {
                 if (searchLocation != "" && searchLocation != null)
                 {
-                    tblTaSummary.Rows.Clear();
-
                     foreach (var item in districtTASummariesListFinal)
                     {
                         if (item.Location.ToLower().Trim() == searchLocation.ToLower().Trim())
@@ -399,11 +407,20 @@ namespace ManPowerWeb
                         }
                     }
 
+                    tblTaSummary.Rows.Clear();
+                    if (districtTASummariesListFinalTemp.Count > 0)
+                    {
 
-                    districtTASummariesListFinal.Clear();
-                    districtTASummariesListFinal = districtTASummariesListFinalTemp;
+                        districtTASummariesListFinal.Clear();
+                        districtTASummariesListFinal = districtTASummariesListFinalTemp;
+                        lblMSG.Text = string.Empty;
 
-                    BindDataTable();
+                        BindDataTable();
+                    }
+                    else
+                    {
+                        lblMSG.Text = "No Data to Show";
+                    }
                 }
             }
 

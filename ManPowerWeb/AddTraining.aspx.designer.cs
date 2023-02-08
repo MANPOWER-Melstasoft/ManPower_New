@@ -15,22 +15,22 @@ namespace ManPowerWeb
     {
 
         /// <summary>
-        /// lblDate control.
+        /// lblStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblDate;
+        protected global::System.Web.UI.WebControls.Literal lblStartDate;
 
         /// <summary>
-        /// txtDate control.
+        /// txtStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtDate;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtStartDate;
 
         /// <summary>
         /// RequiredFieldValidator5 control.
@@ -42,40 +42,31 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
 
         /// <summary>
-        /// lblEmployNo control.
+        /// lblTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblEmployNo;
+        protected global::System.Web.UI.WebControls.Literal lblTitle;
 
         /// <summary>
-        /// ddlEmployNo control.
+        /// txtTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEmployNo;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
 
         /// <summary>
-        /// Literal1 control.
+        /// RequiredFieldValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
-
-        /// <summary>
-        /// ddlTrainingCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTrainingCategory;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// Literal2 control.
@@ -114,22 +105,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Button btnBack;
 
         /// <summary>
-        /// lblProgram control.
+        /// Literal3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblProgram;
+        protected global::System.Web.UI.WebControls.Literal Literal3;
 
         /// <summary>
-        /// ddlProgram control.
+        /// txtEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProgram;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtEndDate;
 
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -141,22 +132,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
         /// <summary>
-        /// lblInstitute control.
+        /// lblDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblInstitute;
+        protected global::System.Web.UI.WebControls.Literal lblDescription;
 
         /// <summary>
-        /// txtInstitute control.
+        /// txtDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInstitute;
+        protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -168,22 +159,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// lblContent control.
+        /// lblCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblContent;
+        protected global::System.Web.UI.WebControls.Literal lblCount;
 
         /// <summary>
-        /// txtContent control.
+        /// txtCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContent;
+        protected global::System.Web.UI.WebControls.TextBox txtCount;
 
         /// <summary>
         /// RequiredFieldValidator11 control.

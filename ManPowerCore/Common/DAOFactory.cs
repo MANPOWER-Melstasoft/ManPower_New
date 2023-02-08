@@ -526,5 +526,17 @@ namespace ManPowerCore.Common
             DistrictTASummaryDAO districtTASummaryDAO = new DistrictTASummaryDAOImpl();
             return (DistrictTASummaryDAO)districtTASummaryDAO;
         }
+
+        public static TrainingMainDAO CreateTrainingMainDAO()
+        {
+            TrainingMainDAO trainingMainDAO = new TrainingMainDAOSqlImpl();
+            return (TrainingMainDAO)trainingMainDAO;
+        }
+
+        public static TrainingRequestsDAO createTrainingRequestsDAO()
+        {
+            TrainingRequestsDAO trainingRequestsDAO = new TrainingRequestsDAOSqlImpl();
+            return (TrainingRequestsDAO)trainingRequestsDAO;
+        }
     }
 }

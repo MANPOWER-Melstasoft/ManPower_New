@@ -33,5 +33,11 @@ namespace ManPowerCore.Domain
 
         [DBField("Is_Active")]
         public int Is_Active { get; set; }
+
+        public ProjectStatus ProjectStatus { get; set; }
+
+        public TrainingMain Trainingmain { get; set; }
+
+        public SystemUser SystemUser { get; set; }
     }
 }

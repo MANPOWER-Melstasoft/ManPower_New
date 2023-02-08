@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,7 @@ namespace ManPowerWeb
                 if (!IsPostBack)
                 {
                     BindCardData();
+                    bindDialogbox();
                 }
             }
             else
@@ -87,7 +89,11 @@ namespace ManPowerWeb
             }
             lblThisMonthTarget.Text = mCount.ToString();
 
+        }
 
+
+        private void bindDialogbox()
+        {
             int systemUserId = Convert.ToInt32(Session["UserId"]);
 
             DepartmentUnitPositionsList = ControllerFactory.CreateDepartmentUnitPositionsController().GetAllUsersBySystemUserId(systemUserId);
@@ -98,8 +104,34 @@ namespace ManPowerWeb
 
             programTargetsList = programTargetsList.Where(x => x.IsRecommended == 2 && x._ProgramAssignee[0].DepartmentUnitPossitionsId == departmentUnitPositionId && x._ProgramAssignee[0].Is_View == 0).ToList();
             lblNoOfNewPTarget.Text = programTargetsList.Count().ToString();
+            programTargetsList = programTargetsList.OrderByDescending(x => x.RecommendedDate).ToList();
+            gvProgramTargetNotification.DataSource = programTargetsList;
+            gvProgramTargetNotification.DataBind();
         }
 
+        protected void btn_View_Click(object sender, EventArgs e)
+        {
+            bindDialogbox();
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = gvProgramTargetNotification.PageSize;
+            int pageindex = gvProgramTargetNotification.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
 
+
+            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+
+            int id = programTargetsList[rowIndex]._ProgramAssignee[0].ProgramAssigneeId;
+
+            programAssigneeController.UpdateProgramAssigneeIsView(id);
+
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+
+
+        }
+
+        protected void timer1_Tick(object sender, EventArgs e)
+        {
+            bindDialogbox();
+        }
     }
 }

@@ -114,7 +114,9 @@
     <Content Include="AddParent.aspx" />
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
-    <Content Include="AddTrainingRequest.aspx" />
+    <Content Include="AddTraining.aspx" />
+    <Content Include="AddTrainingFront.aspx" />
+    <Content Include="TrainingFront.aspx" />
     <Content Include="AddTransfersRetirementResignation.aspx" />
     <Content Include="AddVacancyPosition.aspx" />
     <Content Include="AddVoteAllocation.aspx" />
@@ -267,6 +269,7 @@
     <Content Include="Styles\sweetalert.css" />
     <Content Include="TASummary.aspx" />
     <Content Include="testing.aspx" />
+    <Content Include="TrainingAd.aspx" />
     <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="TransfersRetirementResignationView.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
@@ -2027,12 +2030,26 @@
     <Compile Include="AddProgram.aspx.designer.cs">
       <DependentUpon>AddProgram.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddTrainingRequest.aspx.cs">
-      <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+    <Compile Include="AddTraining.aspx.cs">
+      <DependentUpon>AddTraining.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddTrainingRequest.aspx.designer.cs">
-      <DependentUpon>AddTrainingRequest.aspx</DependentUpon>
+    <Compile Include="AddTraining.aspx.designer.cs">
+      <DependentUpon>AddTraining.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddTrainingFront.aspx.cs">
+      <DependentUpon>AddTrainingFront.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddTrainingFront.aspx.designer.cs">
+      <DependentUpon>AddTrainingFront.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingFront.aspx.cs">
+      <DependentUpon>TrainingFront.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrainingFront.aspx.designer.cs">
+      <DependentUpon>TrainingFront.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddTransfersRetirementResignation.aspx.cs">
       <DependentUpon>AddTransfersRetirementResignation.aspx</DependentUpon>
@@ -2566,6 +2583,13 @@
     </Compile>
     <Compile Include="testing.aspx.designer.cs">
       <DependentUpon>testing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingAd.aspx.cs">
+      <DependentUpon>TrainingAd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrainingAd.aspx.designer.cs">
+      <DependentUpon>TrainingAd.aspx</DependentUpon>
     </Compile>
     <Compile Include="TransfersRetirementResignation.aspx.cs">
       <DependentUpon>TransfersRetirementResignation.aspx</DependentUpon>

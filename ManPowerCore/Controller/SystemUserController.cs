@@ -22,6 +22,8 @@ namespace ManPowerCore.Controller
         int UpdateLastLoginDate(SystemUser systemUser);
         SystemUser CheckEmpNumberExists(int Number);
         SystemUser GetSystemUserByEmpNumber(int Number);
+
+        int ChangePassword(SystemUser systemUser);
     }
 
     public class SystemUserControllerImpl : SystemUserController
@@ -465,6 +467,28 @@ namespace ManPowerCore.Controller
             catch (Exception)
             {
                 dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+
+        public int ChangePassword(SystemUser systemUser)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                int output = systemUserDAO.ChangePassword(systemUser, dBConnection);
+                return output;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                HttpContext.Current.Response.Redirect("500.aspx");
                 throw;
             }
             finally

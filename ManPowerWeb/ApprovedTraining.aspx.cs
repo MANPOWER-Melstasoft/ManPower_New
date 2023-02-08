@@ -12,7 +12,7 @@ namespace ManPowerWeb
 {
     public partial class ApprovedTraining : System.Web.UI.Page
     {
-        List<Training_Request> trainingRequestList = new List<Training_Request>();
+        List<TrainingRequests> trainingRequestsList = new List<TrainingRequests>();
         public int depId;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,10 +22,12 @@ namespace ManPowerWeb
 
         public void BindDataSource()
         {
-            TrainingRequestController trainingRequestController = ControllerFactory.CreateTrainingRequestController();
-            trainingRequestList = trainingRequestController.GetAllApprovedTrainingRequest(depId);
+            TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
+            trainingRequestsList = trainingRequestsController.GetAllTrainingRequestsWithDetail();
 
-            gvApproveTraining.DataSource = trainingRequestList;
+            trainingRequestsList = trainingRequestsList.Where(x => x.Created_User == depId && x.Is_Active == 1 && x.ProjectStatusId == 1008 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
+
+            gvApproveTraining.DataSource = trainingRequestsList;
             gvApproveTraining.DataBind();
         }
     }

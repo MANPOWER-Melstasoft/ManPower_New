@@ -12,9 +12,9 @@ namespace ManPowerWeb
 {
     public partial class ApproveTrainingRequest : System.Web.UI.Page
     {
-        List<Training_Request> trainingRequestList = new List<Training_Request>();
+        List<TrainingRequests> trainingRequestsList = new List<TrainingRequests>();
 
-        Training_Request trainingRequestObj = new Training_Request();
+        TrainingRequests trainingRequestObj = new TrainingRequests();
 
         public int depPositionID;
         protected void Page_Load(object sender, EventArgs e)
@@ -24,10 +24,12 @@ namespace ManPowerWeb
         }
         public void BindDataSource()
         {
-            TrainingRequestController trainingRequestController = ControllerFactory.CreateTrainingRequestController();
-            trainingRequestList = trainingRequestController.GetOnlyPendingTrainingRequest(depPositionID);
+            TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
+            trainingRequestsList = trainingRequestsController.GetAllTrainingRequestsWithDetail();
 
-            gvApproveTraining.DataSource = trainingRequestList;
+            trainingRequestsList = trainingRequestsList.Where(x => x.Accepted_User == depPositionID && x.Is_Active == 1 && x.ProjectStatusId == 1 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
+
+            gvApproveTraining.DataSource = trainingRequestsList;
             gvApproveTraining.DataBind();
         }
 
@@ -37,14 +39,14 @@ namespace ManPowerWeb
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            TrainingRequestController trainingRequestController = ControllerFactory.CreateTrainingRequestController();
+            TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
 
-            trainingRequestObj = trainingRequestList[rowIndex];
+            trainingRequestObj = trainingRequestsList[rowIndex];
 
-            trainingRequestObj.TrainingRequestId = trainingRequestList[rowIndex].TrainingRequestId;
-            trainingRequestObj.StatusID = 1008;
+            trainingRequestObj.Accepted_Date = DateTime.Now;
+            trainingRequestObj.ProjectStatusId = 1008;
 
-            trainingRequestController.UpdateTrainingRequest(trainingRequestObj);
+            trainingRequestsController.Update(trainingRequestObj);
 
             string url = "approvetrainingrequest.aspx";
             Response.Redirect(url);
@@ -56,14 +58,14 @@ namespace ManPowerWeb
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            TrainingRequestController trainingRequestController = ControllerFactory.CreateTrainingRequestController();
+            TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
 
-            trainingRequestObj = trainingRequestList[rowIndex];
+            trainingRequestObj = trainingRequestsList[rowIndex];
 
-            trainingRequestObj.TrainingRequestId = trainingRequestList[rowIndex].TrainingRequestId;
-            trainingRequestObj.StatusID = 7;
+            trainingRequestObj.Accepted_Date = DateTime.Now;
+            trainingRequestObj.ProjectStatusId = 7;
 
-            trainingRequestController.UpdateTrainingRequest(trainingRequestObj);
+            trainingRequestsController.Update(trainingRequestObj);
 
             string url = "approvetrainingrequest.aspx";
             Response.Redirect(url);

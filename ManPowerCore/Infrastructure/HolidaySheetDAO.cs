@@ -11,7 +11,9 @@ namespace ManPowerCore.Infrastructure
 {
     public interface HolidaySheetDAO
     {
-        int save(HolidaySheet holidaySheet, DBConnection dBConnection);
+        int save(HolidaySheet holidaySheet, DBConnection dbConnection);
+
+        List<HolidaySheet> getAllHolidays(DBConnection dbConnection);
     }
     public class HolidaySheetDAOImpl : HolidaySheetDAO
     {
@@ -36,6 +38,18 @@ namespace ManPowerCore.Infrastructure
 
 
             return dbConnection.cmd.ExecuteNonQuery();
+        }
+
+        public List<HolidaySheet> getAllHolidays(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Holiday_Sheet";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<HolidaySheet>(dbConnection.dr);
         }
     }
 }

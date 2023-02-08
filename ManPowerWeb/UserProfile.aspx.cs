@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
@@ -45,15 +47,28 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                BindDataSource();
-                depRowId.Visible = false;
-                eduRowId.Visible = false;
-                empRowId.Visible = false;
-            }
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
-            id = (Convert.ToInt32(Session["EmpNumber"]));
+            if (Session["UserId"] != null)
+            {
+
+                if (!IsPostBack)
+                {
+                    BindDataSource();
+                    depRowId.Visible = false;
+                    eduRowId.Visible = false;
+                    empRowId.Visible = false;
+                }
+
+                id = (Convert.ToInt32(Session["EmpNumber"]));
+            }
+            else
+            {
+                HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
+                HttpContext.Current.Response.AddHeader("Expires", "0");
+                Response.Redirect("Login.aspx");
+            }
         }
 
         private void BindDataSource()
@@ -608,6 +623,43 @@ namespace ManPowerWeb
 
             }
 
+        }
+
+        protected void btnResetPassword_Click(object sender, EventArgs e)
+        {
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), false, false, false);
+
+            if (systemUser.UserPwd == FormsAuthentication.HashPasswordForStoringInConfigFile(txtCurrentPassword.Text, "SHA1"))
+            {
+                lblCurPass.Text = string.Empty;
+
+                if (txtNewPasword.Text == txtReNewPasword.Text)
+                {
+                    int output = 0;
+                    lblMisMatchPwd.Text = string.Empty;
+                    systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtReNewPasword.Text, "SHA1");
+                    output = systemUserController.ChangePassword(systemUser);
+
+                    if (output == 1)
+                    {
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Password Changed Succesfully!', 'success');window.setTimeout(2500);", true);
+                    }
+                    else
+                    {
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Password Changed Fail!', 'error');", true);
+                    }
+                }
+                else
+                {
+                    lblMisMatchPwd.Text = "Password MissMatch";
+                }
+            }
+            else
+            {
+                lblCurPass.Text = "Incorrect Current Password";
+                lblMisMatchPwd.Text = string.Empty;
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace ManPowerWeb
     public partial class ApplyLeaves : System.Web.UI.Page
     {
         List<LeaveType> leavesTypeList = new List<LeaveType>();
+        List<HolidaySheet> holidaySheetsList = new List<HolidaySheet>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -130,7 +131,27 @@ namespace ManPowerWeb
         protected void txtNoOfDates_TextChanged(object sender, EventArgs e)
         {
 
-            txtDateResuming.Text = DateTime.Parse(txtDateCommencing.Text).AddDays(Convert.ToInt32(txtNoOfDates.Text)).ToString("yyyy-MM-dd");
+            int dayCount = CheckDate(DateTime.Parse(txtDateCommencing.Text)) + Convert.ToInt32(txtNoOfDates.Text);
+            txtDateResuming.Text = DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount).ToString("yyyy-MM-dd");
+
+        }
+
+        protected int CheckDate(DateTime day)
+        {
+            holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
+            holidaySheetsList = holidaySheetsList.Where(x => x.HolidayDate.Month == day.Month && x.HolidayDate.Year == day.Year).ToList();
+            int dayCount = 0;
+
+            foreach (var holiday in holidaySheetsList)
+            {
+                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday || day == holiday.HolidayDate)
+                {
+                    dayCount++;
+                }
+            }
+
+            return dayCount;
+
 
         }
     }

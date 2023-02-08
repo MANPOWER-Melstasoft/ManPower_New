@@ -19,5 +19,8 @@ namespace ManPowerCore.Domain
 
         [DBField("Description")]
         public string Description { get; set; }
+
+        [DBField("Is_Active")]
+        public int IsActive { get; set; }
     }
 }

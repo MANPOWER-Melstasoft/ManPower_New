@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="ManPowerWeb.Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
 
     <div>
 
@@ -182,6 +183,38 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+
+
+            <!--  New Program target-->
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel1">
+                    <ContentTemplate>
+                        <div class="card border-left-primary shadow h-100 py-2" data-toggle="modal" data-target="#myModal" data-ui-class="a-fadeUp">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            New Program Target
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="lblNoOfNewPTarget" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-bullseye fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer1" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+
+
             </div>
         </div>
 
@@ -429,5 +462,115 @@
 
     </div>
 
+    <%--dialog box--%>
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">View New Program Target</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="gvProgramTargetNotification"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+                                <asp:TemplateField HeaderText="#" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Title" HeaderText="Program Target Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="RecommendedDate" HeaderText="Date Recommended" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btn_View" runat="server" CssClass="btn btn-success" ToolTip="Mark as Read" OnClick="btn_View_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <EmptyDataTemplate>No New Program Target To Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box--%>
+    <%--    <style>
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>--%>
 </asp:Content>

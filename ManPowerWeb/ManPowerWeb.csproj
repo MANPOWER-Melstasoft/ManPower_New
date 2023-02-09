@@ -116,6 +116,7 @@
     <Content Include="AddProgram.aspx" />
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
+    <Content Include="ResetPassword.aspx" />
     <Content Include="TrainingFront.aspx" />
     <Content Include="AddTransfersRetirementResignation.aspx" />
     <Content Include="AddVacancyPosition.aspx" />
@@ -2043,6 +2044,13 @@
     </Compile>
     <Compile Include="AddTrainingFront.aspx.designer.cs">
       <DependentUpon>AddTrainingFront.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrainingFront.aspx.cs">
       <DependentUpon>TrainingFront.aspx</DependentUpon>

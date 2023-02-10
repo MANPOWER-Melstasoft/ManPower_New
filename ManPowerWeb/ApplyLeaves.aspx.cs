@@ -124,7 +124,7 @@ namespace ManPowerWeb
         {
 
 
-            Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpNumber"]));
+            Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpId"]));
 
         }
 

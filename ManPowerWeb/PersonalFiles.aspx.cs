@@ -598,8 +598,9 @@ namespace ManPowerWeb
             emp.ReligionId = 0;
             emp.EthnicityId = 0;
             emp.EmployeeNIC = nic.Text;
-            emp.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
-            emp.EmployeePassportNumber = empPassport.Text;
+            //emp.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
+            //emp.EmployeePassportNumber = empPassport.Text;
+            emp.EmployeePassportNumber = "";
             emp.EmpInitials = initial.Text;
             emp.LastName = lname.Text;
             emp.NameWithInitials = nameOfInitials.Text;
@@ -689,11 +690,11 @@ namespace ManPowerWeb
 
         protected void page1NextClick(object sender, EventArgs e)
         {
-            if (Convert.ToDateTime(nicIssuedDate.Text) >= DateTime.Today)
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'NIC Issued Date can not be a Future Date!', 'error');", true);
-            }
-            else if (Convert.ToDateTime(dob.Text) >= DateTime.Today)
+            //if (Convert.ToDateTime(nicIssuedDate.Text) >= DateTime.Today)
+            //{
+            //    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'NIC Issued Date can not be a Future Date!', 'error');", true);
+            //}
+            if (Convert.ToDateTime(dob.Text) >= DateTime.Today)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth is Invaid!', 'error');", true);
             }

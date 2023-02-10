@@ -15,7 +15,7 @@ namespace ManPowerCore.Domain
 
         [DBField("Day_Type_id")]
         public int DayTypeId { get; set; }
-        [DBField("Day_Type_id")]
+        [DBField("Leave_Type_id")]
         public int LeaveTypeId { get; set; }
         [DBField("Employee_ID")]
 

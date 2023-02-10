@@ -386,7 +386,7 @@ namespace ManPowerCore.Controller
                     }
 
                     Report report2 = new Report();
-                    report2.ApprovedLeaves = countCasual;
+                    report2.ApprovedLeaves = countMedical;
                     report2.PendingApproval = pendingApproval;
                     report2.Entitlement = reportsMedical[0].Entitlement;
                     report2.LeaveBalannce = Convert.ToInt32(report2.Entitlement) - report2.ApprovedLeaves;

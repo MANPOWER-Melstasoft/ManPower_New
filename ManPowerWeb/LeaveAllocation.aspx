@@ -127,6 +127,9 @@
                 </div>
 
             </ContentTemplate>
+            <Triggers>
+                <asp:PostBackTrigger ControlID="btnSaveLeaveAllocation" />
+            </Triggers>
         </asp:UpdatePanel>
     </div>
 </asp:Content>

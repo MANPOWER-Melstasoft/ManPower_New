@@ -22,7 +22,7 @@ namespace ManPowerCore.Infrastructure
         {
             DataTable tableLeaveBalance = new DataTable();
 
-            dBConnection.cmd.CommandText = "SELECT Staff_Leave.Leave_Type_id,staff_Leave.Employee_ID,Staff_Leave_Allocation.Entitlement,Staff_Leave.No_Of_Leave,Staff_Leave.Approved_By FROM Staff_Leave_Allocation INNER JOIN Staff_Leave ON Staff_Leave.Leave_Type_id = Staff_Leave_Allocation.Leave_Type_id";
+            dBConnection.cmd.CommandText = "SELECT Staff_Leave_Allocation.Leave_Type_id,Staff_Leave_Allocation.Employee_ID,Staff_Leave_Allocation.Entitlement,Staff_Leave.No_Of_Leave,Staff_Leave.Approved_By FROM Staff_Leave_Allocation INNER JOIN Staff_Leave ON Staff_Leave.Employee_ID = Staff_Leave_Allocation.Employee_ID AND Staff_Leave.Leave_Type_id = Staff_Leave_Allocation.Leave_Type_id";
             SqlDataAdapter dataAdapter = new SqlDataAdapter(dBConnection.cmd);
             dataAdapter.Fill(tableLeaveBalance);
 

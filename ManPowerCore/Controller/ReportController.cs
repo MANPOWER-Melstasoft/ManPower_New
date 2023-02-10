@@ -301,9 +301,6 @@ namespace ManPowerCore.Controller
                 foreach (DataRow row in tableLeave.Rows)
                 {
                     Report report = new Report();
-
-
-
                     if (row["Approved_By"].ToString() != "")
                     {
 

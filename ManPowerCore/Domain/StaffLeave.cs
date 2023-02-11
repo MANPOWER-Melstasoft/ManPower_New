@@ -44,7 +44,7 @@ namespace ManPowerCore.Domain
         [DBField("Resuming_Date")]
         public DateTime ResumingDate { get; set; }
         [DBField("No_Of_Leave")]
-        public int NoOfLeaves { get; set; }
+        public float NoOfLeaves { get; set; }
 
         [DBField("Leave_Document")]
         public string LeaveDocument { get; set; }

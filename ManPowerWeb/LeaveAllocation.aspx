@@ -73,9 +73,9 @@
                                         <asp:Literal ID="Literal2" runat="server" Text="Per Month Limit"></asp:Literal>
                                     </div>
                                     <div class="col-md-6">
-                                        <asp:TextBox runat="server" ID="txtPerMontLimit" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="txtPerMontLimit" CssClass="form-control form-control-user" TextMode="Number" step="0.5"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-                                        <asp:RangeValidator ID="RangeValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="30" Type="Integer" ForeColor="Red"></asp:RangeValidator>
+                                        <asp:RangeValidator ID="RangeValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="30" Type="Double" ForeColor="Red"></asp:RangeValidator>
 
                                     </div>
 

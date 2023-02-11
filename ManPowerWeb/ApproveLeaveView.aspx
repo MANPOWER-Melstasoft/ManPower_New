@@ -33,10 +33,9 @@
 
                                 <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" min="0" Enabled="false">
                                 </asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                                <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
                                 <asp:RangeValidator runat="server" ControlToValidate="txtNoOfDates" ErrorMessage="Invalid number"
-                                    Type="Integer" MinimumValue="1" MaximumValue="1000" ForeColor="Red"></asp:RangeValidator>
-
+                                    Type="Integer" MinimumValue="1" MaximumValue="1000" ForeColor="Red"></asp:RangeValidator>--%>
                             </div>
 
                         </div>

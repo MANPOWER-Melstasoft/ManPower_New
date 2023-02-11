@@ -59,7 +59,7 @@ namespace ManPowerWeb
             //staffLeaveAllocation.LeaveYear = 10;
             staffLeaveAllocation.LeaveTypeId = Convert.ToInt32(ddlLeaveType.SelectedValue);
             // staffLeaveAllocation.NoOfDays = 10;
-            staffLeaveAllocation.MonthLimit = Convert.ToInt32(txtPerMontLimit.Text);
+            staffLeaveAllocation.MonthLimit = float.Parse(txtPerMontLimit.Text);
             staffLeaveAllocation.MonthLimitAppliedTo = DateTime.Parse(txtAppliedTo.Text);
 
             int response = staffLeaveAllocationController.saveStaffLeaveAllocation(staffLeaveAllocation);

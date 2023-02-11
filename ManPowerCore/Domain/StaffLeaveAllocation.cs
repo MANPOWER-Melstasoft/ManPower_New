@@ -12,26 +12,26 @@ namespace ManPowerCore.Domain
     {
         [DBField("id")]
         public int StaffLeaveAllocationId { get; set; }
+
         [DBField("Employee_ID")]
         public int EmployeesID { get; set; }
 
         [DBField("Leave_Year")]
         public int LeaveYear { get; set; }
-        [DBField("Leave_Type_id")]
 
+        [DBField("Leave_Type_id")]
         public int LeaveTypeId { get; set; }
+
         [DBField("No_Of_Days")]
         public int NoOfDays { get; set; }
+
         [DBField("Entitlement")]
-
         public string Entitlement { get; set; }
+
         [DBField("Month_Limit")]
+        public float MonthLimit { get; set; }
 
-
-
-        public int MonthLimit { get; set; }
         [DBField("Month_Limit_Applied_To")]
-
         public DateTime MonthLimitAppliedTo { get; set; }
 
         public List<LeaveType> _leaveTypes { get; set; } = new List<LeaveType>();

@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-md-6">
 
-                                <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtNoOfDates_TextChanged">
+                                <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" Step="0.5" min="0" AutoPostBack="true" OnTextChanged="txtNoOfDates_TextChanged">
                                 </asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
                                 <asp:RangeValidator runat="server" ControlToValidate="txtNoOfDates" ErrorMessage="Invalid number"

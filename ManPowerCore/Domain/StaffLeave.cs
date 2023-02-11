@@ -15,7 +15,7 @@ namespace ManPowerCore.Domain
 
         [DBField("Day_Type_id")]
         public int DayTypeId { get; set; }
-        [DBField("Day_Type_id")]
+        [DBField("Leave_Type_id")]
         public int LeaveTypeId { get; set; }
         [DBField("Employee_ID")]
 
@@ -44,7 +44,7 @@ namespace ManPowerCore.Domain
         [DBField("Resuming_Date")]
         public DateTime ResumingDate { get; set; }
         [DBField("No_Of_Leave")]
-        public int NoOfLeaves { get; set; }
+        public float NoOfLeaves { get; set; }
 
         [DBField("Leave_Document")]
         public string LeaveDocument { get; set; }

@@ -43,7 +43,7 @@ namespace ManPowerWeb
 
             int response = 0;
 
-            staffLeave.NoOfLeaves = int.Parse(txtNoOfDates.Text);
+            staffLeave.NoOfLeaves = float.Parse(txtNoOfDates.Text);
 
             if (DateTime.Parse(txtDateCommencing.Text) > DateTime.Now)
             {
@@ -73,7 +73,7 @@ namespace ManPowerWeb
                 staffLeave.IsHalfDay = 1;
             }
 
-            staffLeave.NoOfLeaves = int.Parse(txtNoOfDates.Text);
+            staffLeave.NoOfLeaves = float.Parse(txtNoOfDates.Text);
             staffLeave.ReasonForLeave = txtLeaveReason.Text;
             staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
             staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
@@ -131,7 +131,7 @@ namespace ManPowerWeb
         protected void txtNoOfDates_TextChanged(object sender, EventArgs e)
         {
 
-            int dayCount = CheckDate(DateTime.Parse(txtDateCommencing.Text)) + Convert.ToInt32(txtNoOfDates.Text);
+            float dayCount = float.Parse(txtNoOfDates.Text);
             txtDateResuming.Text = DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount).ToString("yyyy-MM-dd");
 
         }

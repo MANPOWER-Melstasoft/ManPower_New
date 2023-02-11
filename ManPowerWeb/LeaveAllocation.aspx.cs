@@ -66,8 +66,13 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success')", true);
-                Response.Redirect(Request.RawUrl);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Allocated !', 'success');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
+                //Response.Redirect(Request.RawUrl);
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
 
             }
 

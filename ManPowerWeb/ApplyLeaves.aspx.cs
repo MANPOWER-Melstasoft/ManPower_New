@@ -133,26 +133,61 @@ namespace ManPowerWeb
         {
 
             float dayCount = float.Parse(txtNoOfDates.Text);
-            txtDateResuming.Text = DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount).ToString("yyyy-MM-dd");
 
+            dayCount = dayCount + CheckDate(DateTime.Parse(txtDateCommencing.Text), DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount));
+
+            //int resumingday = CheckResumingDate(DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount));
+
+            txtDateResuming.Text = CheckResumingDate(DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount)).ToString("yyyy-MM-dd");
         }
 
-        protected int CheckDate(DateTime day)
+        protected int CheckDate(DateTime Startday, DateTime Endday)
         {
             holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
-            holidaySheetsList = holidaySheetsList.Where(x => x.HolidayDate.Month == day.Month && x.HolidayDate.Year == day.Year).ToList();
+
             int dayCount = 0;
 
-            foreach (var holiday in holidaySheetsList)
+            for (DateTime i = Startday; i <= Endday; i = i.AddDays(1))
             {
-                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday || day == holiday.HolidayDate)
+                if (i.DayOfWeek == DayOfWeek.Saturday || i.DayOfWeek == DayOfWeek.Sunday)
                 {
                     dayCount++;
                 }
+                else
+                {
+                    holidaySheetsList = holidaySheetsList.Where(x => x.HolidayDate.Month == Startday.Month && x.HolidayDate.Year == Startday.Year).ToList();
+                    foreach (var holiday in holidaySheetsList)
+                    {
+                        if (i == holiday.HolidayDate)
+                        {
+                            dayCount++;
+                        }
+                    }
+                }
             }
-
             return dayCount;
 
+
+        }
+        protected DateTime CheckResumingDate(DateTime day)
+        {
+            if (day.DayOfWeek == DayOfWeek.Saturday)
+            {
+                day = day.AddDays(2);
+            }
+            if (day.DayOfWeek == DayOfWeek.Sunday)
+            {
+                day = day.AddDays(1);
+
+            }
+
+            holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
+
+            if (holidaySheetsList.Where(x => x.HolidayDate == day).Count() > 0)
+            {
+                day = day.AddDays(1);
+            }
+            return day;
 
         }
     }

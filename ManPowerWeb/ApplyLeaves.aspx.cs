@@ -134,11 +134,13 @@ namespace ManPowerWeb
 
             float dayCount = float.Parse(txtNoOfDates.Text);
 
-            dayCount = dayCount + CheckDate(DateTime.Parse(txtDateCommencing.Text), DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount));
+            // dayCount = dayCount + CheckDate(DateTime.Parse(txtDateCommencing.Text), DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount));
 
             //int resumingday = CheckResumingDate(DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount));
 
-            txtDateResuming.Text = CheckResumingDate(DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount)).ToString("yyyy-MM-dd");
+            //   txtDateResuming.Text = CheckResumingDate(DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount)).ToString("yyyy-MM-dd");
+
+            txtDateResuming.Text = holidayChecker(DateTime.Parse(txtDateCommencing.Text), dayCount).ToString("yyyy-MM-dd");
         }
 
         protected int CheckDate(DateTime Startday, DateTime Endday)
@@ -147,7 +149,7 @@ namespace ManPowerWeb
 
             int dayCount = 0;
 
-            for (DateTime i = Startday; i <= Endday; i = i.AddDays(1))
+            for (DateTime i = Startday; i < Endday; i = i.AddDays(1))
             {
                 if (i.DayOfWeek == DayOfWeek.Saturday || i.DayOfWeek == DayOfWeek.Sunday)
                 {
@@ -195,6 +197,26 @@ namespace ManPowerWeb
 
             return day;
 
+        }
+
+        private DateTime holidayChecker(DateTime day, float daycount)
+        {
+            holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
+
+            for (int i = 1; i <= daycount; i++)
+            {
+                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday || holidaySheetsList.Where(x => x.HolidayDate == day).Count() > 0)
+                {
+                    day = day.AddDays(1);
+                    daycount = daycount + 1;
+                }
+                else
+                {
+                    day = day.AddDays(1);
+                }
+
+            }
+            return day;
         }
     }
 }

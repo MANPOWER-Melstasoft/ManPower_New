@@ -11,6 +11,21 @@
                 <h4><b>Personal Details</b></h4>
             </div>
 
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>File Number : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="row mt-5">
                 <div class="col-6">
                     <div class="row">
@@ -100,26 +115,11 @@
                             <label>Date of Birth : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="dob" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:TextBox ID="dob" runat="server" CssClass="form-control form-control-user" TextMode="Date" AutoPostBack="true"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="dob" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Marital Status : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row mt-4">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -134,7 +134,23 @@
                     </div>
                 </div>
 
+            </div>
+
+
+            <div class="row mt-4">
+
                 <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Marital Status : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+                <%--<div class="col-6">
                     <div class="row">
                         <div class="col-4">
                             <label>NIC Issued Date : </label>
@@ -144,12 +160,12 @@
                             <asp:RequiredFieldValidator ControlToValidate="nicIssuedDate" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                </div>
+                </div>--%>
             </div>
 
 
             <div class="row mt-4">
-                <div class="col-6">
+                <%--<div class="col-6">
                     <div class="row">
                         <div class="col-4">
                             <label>Passport Number : </label>
@@ -160,7 +176,7 @@
 							Invalid Passport</asp:RegularExpressionValidator>
                         </div>
                     </div>
-                </div>
+                </div>--%>
 
                 <div class="col-6">
                     <div class="row">
@@ -173,10 +189,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-
-            <div class="row mt-4">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -188,6 +201,12 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+
+
+            <div class="row mt-4">
+
 
                 <div class="col-6">
                     <div class="row">
@@ -230,17 +249,6 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>File Number : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
 
                 <%if (dob.Text != "")
                     {

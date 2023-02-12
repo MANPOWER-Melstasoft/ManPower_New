@@ -55,7 +55,7 @@ namespace ManPowerCore.Controller
                     if (row["Approved_By"].ToString() != "")
                     {
 
-                        report.ApprovedLeaves = Convert.ToInt32(row["Approved_By"]);
+                        report.ApprovedLeaves = Convert.ToDouble(row["Approved_By"]);
                     }
                     else
                     {
@@ -65,7 +65,7 @@ namespace ManPowerCore.Controller
                     report.Entitlement = row["Entitlement"].ToString();
                     report.LeaveType = row["Leave_Type_id"].ToString();
 
-                    report.NoOfDays = Convert.ToInt32(row["No_Of_Days"]);
+                    report.NoOfDays = Convert.ToDouble(row["No_Of_Days"]);
                     report.EmployeeId = Convert.ToInt32(row["Employee_ID"]);
 
                     reportsAllType.Add(report);
@@ -79,14 +79,14 @@ namespace ManPowerCore.Controller
                 reportsDuty = reportsAllType.Where(x => x.LeaveType == "5").ToList();
                 reportsLeaveTo = reportsAllType.Where(x => x.LeaveType == "6").ToList();
 
-                int countCasual = 0;
-                int countMedical = 0;
-                int countSpecial = 0;
-                int countShort = 0;
-                int countDuty = 0;
-                int countLeaveTo = 0;
+                double countCasual = 0;
+                double countMedical = 0;
+                double countSpecial = 0;
+                double countShort = 0;
+                double countDuty = 0;
+                double countLeaveTo = 0;
 
-                int pendingApproval = 0;
+                double pendingApproval = 0;
 
                 if (reportsCasual.Count > 0)
                 {
@@ -108,7 +108,7 @@ namespace ManPowerCore.Controller
                     report1.ApprovedLeaves = countCasual;
                     report1.PendingApproval = pendingApproval;
                     report1.Entitlement = reportsCasual[0].Entitlement;
-                    report1.LeaveBalannce = Convert.ToInt32(report1.Entitlement) - report1.ApprovedLeaves;
+                    report1.LeaveBalannce = Convert.ToDouble(report1.Entitlement) - report1.ApprovedLeaves;
                     report1.LeaveType = "Casual";
                     report1.EmployeeId = reportsCasual[0].EmployeeId;
 
@@ -138,7 +138,7 @@ namespace ManPowerCore.Controller
                     report2.ApprovedLeaves = countCasual;
                     report2.PendingApproval = pendingApproval;
                     report2.Entitlement = reportsMedical[0].Entitlement;
-                    report2.LeaveBalannce = Convert.ToInt32(report2.Entitlement) - report2.ApprovedLeaves;
+                    report2.LeaveBalannce = Convert.ToDouble(report2.Entitlement) - report2.ApprovedLeaves;
                     report2.LeaveType = "Medical";
                     report2.EmployeeId = reportsMedical[0].EmployeeId;
 
@@ -168,7 +168,7 @@ namespace ManPowerCore.Controller
                     report3.ApprovedLeaves = countSpecial;
                     report3.PendingApproval = pendingApproval;
                     report3.Entitlement = reportsSpecial[0].Entitlement;
-                    report3.LeaveBalannce = Convert.ToInt32(report3.Entitlement) - report3.ApprovedLeaves;
+                    report3.LeaveBalannce = Convert.ToDouble(report3.Entitlement) - report3.ApprovedLeaves;
                     report3.LeaveType = "Special";
                     report3.EmployeeId = reportsSpecial[0].EmployeeId;
 
@@ -198,7 +198,7 @@ namespace ManPowerCore.Controller
                     report4.ApprovedLeaves = countShort;
                     report4.PendingApproval = pendingApproval;
                     report4.Entitlement = reportsShort[0].Entitlement;
-                    report4.LeaveBalannce = Convert.ToInt32(report4.Entitlement) - report4.ApprovedLeaves;
+                    report4.LeaveBalannce = Convert.ToDouble(report4.Entitlement) - report4.ApprovedLeaves;
                     report4.LeaveType = "Special";
                     report4.EmployeeId = reportsShort[0].EmployeeId;
 
@@ -228,7 +228,7 @@ namespace ManPowerCore.Controller
                     report5.ApprovedLeaves = countDuty;
                     report5.PendingApproval = pendingApproval;
                     report5.Entitlement = reportsDuty[0].Entitlement;
-                    report5.LeaveBalannce = Convert.ToInt32(report5.Entitlement) - report5.ApprovedLeaves;
+                    report5.LeaveBalannce = Convert.ToDouble(report5.Entitlement) - report5.ApprovedLeaves;
                     report5.LeaveType = "Duty";
                     report5.EmployeeId = reportsDuty[0].EmployeeId;
 
@@ -258,7 +258,7 @@ namespace ManPowerCore.Controller
                     report6.ApprovedLeaves = countLeaveTo;
                     report6.PendingApproval = pendingApproval;
                     report6.Entitlement = reportsLeaveTo[0].Entitlement;
-                    report6.LeaveBalannce = Convert.ToInt32(report6.Entitlement) - report6.ApprovedLeaves;
+                    report6.LeaveBalannce = Convert.ToDouble(report6.Entitlement) - report6.ApprovedLeaves;
                     report6.LeaveType = "Leave To Leave";
                     report6.EmployeeId = reportsLeaveTo[0].EmployeeId;
 
@@ -301,9 +301,6 @@ namespace ManPowerCore.Controller
                 foreach (DataRow row in tableLeave.Rows)
                 {
                     Report report = new Report();
-
-
-
                     if (row["Approved_By"].ToString() != "")
                     {
 
@@ -317,7 +314,7 @@ namespace ManPowerCore.Controller
                     report.Entitlement = row["Entitlement"].ToString();
                     report.LeaveType = row["Leave_Type_id"].ToString();
 
-                    report.NoOfDays = Convert.ToInt32(row["No_Of_Leave"]);
+                    report.NoOfDays = Convert.ToDouble(row["No_Of_Leave"]);
                     report.EmployeeId = Convert.ToInt32(row["Employee_ID"]);
 
                     reportsAllType.Add(report);
@@ -331,14 +328,14 @@ namespace ManPowerCore.Controller
                 reportsDuty = reportsAllType.Where(x => x.LeaveType == "5" && x.EmployeeId == EmployeId).ToList();
                 reportsLeaveTo = reportsAllType.Where(x => x.LeaveType == "6" && x.EmployeeId == EmployeId).ToList();
 
-                int countCasual = 0;
-                int countMedical = 0;
-                int countSpecial = 0;
-                int countShort = 0;
-                int countDuty = 0;
-                int countLeaveTo = 0;
+                double countCasual = 0;
+                double countMedical = 0;
+                double countSpecial = 0;
+                double countShort = 0;
+                double countDuty = 0;
+                double countLeaveTo = 0;
 
-                int pendingApproval = 0;
+                double pendingApproval = 0;
 
                 if (reportsCasual.Count > 0)
                 {
@@ -360,7 +357,7 @@ namespace ManPowerCore.Controller
                     report1.ApprovedLeaves = countCasual;
                     report1.PendingApproval = pendingApproval;
                     report1.Entitlement = reportsCasual[0].Entitlement;
-                    report1.LeaveBalannce = Convert.ToInt32(report1.Entitlement) - report1.ApprovedLeaves;
+                    report1.LeaveBalannce = Convert.ToDouble(report1.Entitlement) - report1.ApprovedLeaves;
                     report1.LeaveType = "Casual";
 
                     reportFinal.Add(report1);
@@ -386,10 +383,10 @@ namespace ManPowerCore.Controller
                     }
 
                     Report report2 = new Report();
-                    report2.ApprovedLeaves = countCasual;
+                    report2.ApprovedLeaves = countMedical;
                     report2.PendingApproval = pendingApproval;
                     report2.Entitlement = reportsMedical[0].Entitlement;
-                    report2.LeaveBalannce = Convert.ToInt32(report2.Entitlement) - report2.ApprovedLeaves;
+                    report2.LeaveBalannce = Convert.ToDouble(report2.Entitlement) - report2.ApprovedLeaves;
                     report2.LeaveType = "Medical";
 
                     reportFinal.Add(report2);
@@ -418,7 +415,7 @@ namespace ManPowerCore.Controller
                     report3.ApprovedLeaves = countSpecial;
                     report3.PendingApproval = pendingApproval;
                     report3.Entitlement = reportsSpecial[0].Entitlement;
-                    report3.LeaveBalannce = Convert.ToInt32(report3.Entitlement) - report3.ApprovedLeaves;
+                    report3.LeaveBalannce = Convert.ToDouble(report3.Entitlement) - report3.ApprovedLeaves;
                     report3.LeaveType = "Special";
 
                     reportFinal.Add(report3);
@@ -447,7 +444,7 @@ namespace ManPowerCore.Controller
                     report4.ApprovedLeaves = countShort;
                     report4.PendingApproval = pendingApproval;
                     report4.Entitlement = reportsShort[0].Entitlement;
-                    report4.LeaveBalannce = Convert.ToInt32(report4.Entitlement) - report4.ApprovedLeaves;
+                    report4.LeaveBalannce = Convert.ToDouble(report4.Entitlement) - report4.ApprovedLeaves;
                     report4.LeaveType = "Special";
 
                     reportFinal.Add(report4);
@@ -476,7 +473,7 @@ namespace ManPowerCore.Controller
                     report5.ApprovedLeaves = countDuty;
                     report5.PendingApproval = pendingApproval;
                     report5.Entitlement = reportsDuty[0].Entitlement;
-                    report5.LeaveBalannce = Convert.ToInt32(report5.Entitlement) - report5.ApprovedLeaves;
+                    report5.LeaveBalannce = Convert.ToDouble(report5.Entitlement) - report5.ApprovedLeaves;
                     report5.LeaveType = "Duty";
 
                     reportFinal.Add(report5);
@@ -505,7 +502,7 @@ namespace ManPowerCore.Controller
                     report6.ApprovedLeaves = countLeaveTo;
                     report6.PendingApproval = pendingApproval;
                     report6.Entitlement = reportsLeaveTo[0].Entitlement;
-                    report6.LeaveBalannce = Convert.ToInt32(report6.Entitlement) - report6.ApprovedLeaves;
+                    report6.LeaveBalannce = Convert.ToDouble(report6.Entitlement) - report6.ApprovedLeaves;
                     report6.LeaveType = "Duty";
 
                     reportFinal.Add(report6);

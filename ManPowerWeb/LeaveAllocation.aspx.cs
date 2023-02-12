@@ -16,6 +16,7 @@ namespace ManPowerWeb
         List<Employee> employeesList = new List<Employee>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
                 bindDataSource();
@@ -58,15 +59,20 @@ namespace ManPowerWeb
             //staffLeaveAllocation.LeaveYear = 10;
             staffLeaveAllocation.LeaveTypeId = Convert.ToInt32(ddlLeaveType.SelectedValue);
             // staffLeaveAllocation.NoOfDays = 10;
-            staffLeaveAllocation.MonthLimit = Convert.ToInt32(txtPerMontLimit.Text);
+            staffLeaveAllocation.MonthLimit = float.Parse(txtPerMontLimit.Text);
             staffLeaveAllocation.MonthLimitAppliedTo = DateTime.Parse(txtAppliedTo.Text);
 
             int response = staffLeaveAllocationController.saveStaffLeaveAllocation(staffLeaveAllocation);
 
-            if (response == 1)
+            if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success')", true);
-                Response.Redirect(Request.RawUrl);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Allocated !', 'success');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
+                //Response.Redirect(Request.RawUrl);
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
 
             }
 

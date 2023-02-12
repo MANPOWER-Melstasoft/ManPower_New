@@ -16,6 +16,8 @@ namespace ManPowerWeb
         List<HolidaySheet> holidaySheetsList = new List<HolidaySheet>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 bindData();
@@ -32,6 +34,8 @@ namespace ManPowerWeb
             ddlLeaveType.DataValueField = "LeaveTypeId";
             ddlLeaveType.DataTextField = "Name";
             ddlLeaveType.DataBind();
+            ddlLeaveType.Items.Insert(0, new ListItem("Select Leave Type", ""));
+
         }
 
         protected void btnApplyLeave_Click(object sender, EventArgs e)
@@ -43,7 +47,7 @@ namespace ManPowerWeb
 
             int response = 0;
 
-            staffLeave.NoOfLeaves = int.Parse(txtNoOfDates.Text);
+
 
             if (DateTime.Parse(txtDateCommencing.Text) > DateTime.Now)
             {
@@ -73,11 +77,37 @@ namespace ManPowerWeb
                 staffLeave.IsHalfDay = 1;
             }
 
-            staffLeave.NoOfLeaves = int.Parse(txtNoOfDates.Text);
+
             staffLeave.ReasonForLeave = txtLeaveReason.Text;
-            staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
             staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
             staffLeave.LeaveStatusId = 1;
+
+            if (ddlLeaveType.SelectedValue == "4")
+            {
+                staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtFrom.Text));
+
+                staffLeave.ToTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtTo.Text));
+                staffLeave.NoOfLeaves = 0;
+                staffLeave.ResumingDate = DateTime.Parse(txtDateCommencing.Text);
+                if (staffLeave.FromTime < staffLeave.ToTime)
+                {
+                    validation = true;
+                }
+                else
+                {
+                    validation = false;
+                }
+
+
+            }
+            else
+            {
+                staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text); ;
+                staffLeave.ToTime = DateTime.Parse(txtDateResuming.Text); ;
+                staffLeave.NoOfLeaves = float.Parse(txtNoOfDates.Text);
+                staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
+
+            }
 
 
             if (Uploader.HasFile)
@@ -101,6 +131,8 @@ namespace ManPowerWeb
                 staffLeave.LeaveDocument = "";
             }
 
+
+
             if (validation)
             {
                 response = staffLeaveController.saveStaffLeave(staffLeave);
@@ -109,12 +141,13 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                Response.Redirect(Request.RawUrl);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Leave Apply Succesfully!', 'success');window.setTimeout(function(){window.location='ApplyLeaves.aspx'},2500);", true);
+                //Response.Redirect(Request.RawUrl);
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApplyLeaves.aspx'},2500);", true);
+
             }
 
 
@@ -130,29 +163,109 @@ namespace ManPowerWeb
 
         protected void txtNoOfDates_TextChanged(object sender, EventArgs e)
         {
+            if (txtDateCommencing.Text != null)
+            {
+                if (ddlLeaveType.SelectedValue != "4")
+                {
+                    float dayCount = float.Parse(txtNoOfDates.Text);
+                    txtDateResuming.Text = holidayChecker(DateTime.Parse(txtDateCommencing.Text), dayCount).ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    txtDateResuming.Text = txtDateCommencing.Text;
+                }
 
-            int dayCount = CheckDate(DateTime.Parse(txtDateCommencing.Text)) + Convert.ToInt32(txtNoOfDates.Text);
-            txtDateResuming.Text = DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount).ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Warning!', 'Select consuming date first!', 'warning');window.setTimeout(function(){window.location='ApplyLeaves.aspx'},2500);", true);
+
+            }
+
+
+            // dayCount = dayCount + CheckDate(DateTime.Parse(txtDateCommencing.Text), DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount));
+
+            //int resumingday = CheckResumingDate(DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount));
+
+            //   txtDateResuming.Text = CheckResumingDate(DateTime.Parse(txtDateCommencing.Text).AddDays(dayCount)).ToString("yyyy-MM-dd");
+
 
         }
 
-        protected int CheckDate(DateTime day)
+        protected int CheckDate(DateTime Startday, DateTime Endday)
         {
             holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
-            holidaySheetsList = holidaySheetsList.Where(x => x.HolidayDate.Month == day.Month && x.HolidayDate.Year == day.Year).ToList();
+
             int dayCount = 0;
 
-            foreach (var holiday in holidaySheetsList)
+            for (DateTime i = Startday; i < Endday; i = i.AddDays(1))
             {
-                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday || day == holiday.HolidayDate)
+                if (i.DayOfWeek == DayOfWeek.Saturday || i.DayOfWeek == DayOfWeek.Sunday)
                 {
                     dayCount++;
                 }
-            }
+                else
+                {
+                    // holidaySheetsList = holidaySheetsList.Where(x => x.HolidayDate.Month == Startday.Month && x.HolidayDate.Year == Startday.Year).ToList();
 
+                    if (holidaySheetsList.Where(x => x.HolidayDate == i).Count() > 0)
+                    {
+                        dayCount++;
+                    }
+                    //foreach (var holiday in holidaySheetsList)
+                    //{
+                    //    if (i == holiday.HolidayDate)
+                    //    {
+                    //        dayCount++;
+                    //    }
+                    //}
+                }
+            }
             return dayCount;
 
 
+        }
+        protected DateTime CheckResumingDate(DateTime day)
+        {
+            holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
+
+            if (day.DayOfWeek == DayOfWeek.Saturday)
+            {
+                day = day.AddDays(2);
+            }
+            if (day.DayOfWeek == DayOfWeek.Sunday)
+            {
+                day = day.AddDays(1);
+
+            }
+
+            if (holidaySheetsList.Where(x => x.HolidayDate == day).Count() > 0)
+            {
+                day = day.AddDays(1);
+            }
+
+            return day;
+
+        }
+
+        private DateTime holidayChecker(DateTime day, float daycount)
+        {
+            holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
+
+            for (int i = 1; i <= daycount; i++)
+            {
+                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday || holidaySheetsList.Where(x => x.HolidayDate == day).Count() > 0)
+                {
+                    day = day.AddDays(1);
+                    daycount = daycount + 1;
+                }
+                else
+                {
+                    day = day.AddDays(1);
+                }
+
+            }
+            return day;
         }
     }
 }

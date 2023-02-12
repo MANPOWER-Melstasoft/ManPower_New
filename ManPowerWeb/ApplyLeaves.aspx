@@ -8,6 +8,94 @@
                 <div class="card ml-4 p-4">
                     <h2><b>Apply Leave</b></h2>
                     <div class="mt-3">
+
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+
+                                        <asp:Literal ID="Literal2" runat="server" Text="Leave Type"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <asp:DropDownList runat="server" ID="ddlLeaveType" CssClass="form-control form-control-user" AutoPostBack="true">
+                                        </asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="ddlLeaveType" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <% if (ddlLeaveType.SelectedValue != "4")
+                            { %>
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+
+                                        <asp:Literal ID="Literal6" runat="server" Text="Day Type"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <asp:DropDownList runat="server" ID="ddlDayType" CssClass="form-control form-control-user">
+                                            <asp:ListItem Value="1">Morning-Half</asp:ListItem>
+                                            <asp:ListItem Value="2">Evening-Half</asp:ListItem>
+                                            <asp:ListItem Value="3">Full Day</asp:ListItem>
+                                        </asp:DropDownList>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="ddlDayType" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <% } %>
+
+                        <%--Starttime and EndTime--%>
+                        <% if (ddlLeaveType.SelectedValue == "4")
+                            { %>
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+
+                                        <asp:Literal ID="Literal8" runat="server" Text="From"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:TextBox runat="server" ID="txtFrom" TextMode="Time" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" ControlToValidate="txtFrom" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+
+                                        <asp:Literal ID="Literal9" runat="server" Text="To"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:TextBox runat="server" ID="txtTo" TextMode="Time" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="txtTo" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <% } %>
+
+                        <%--  --%>
                         <div class="row mb-3 ms-1">
 
                             <div class="col-sm-6">
@@ -26,6 +114,8 @@
                                 </div>
                             </div>
                         </div>
+                        <% if (ddlLeaveType.SelectedValue != "4")
+                            { %>
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
                                 <div class="row">
@@ -49,6 +139,7 @@
 
 
                         </div>
+                        <% } %>
 
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
@@ -61,27 +152,10 @@
 
                                         <asp:TextBox runat="server" ID="txtDateResuming" TextMode="Date" CssClass="form-control form-control-user" Enabled="false">
                                         </asp:TextBox>
+                                        <% if (ddlLeaveType.SelectedValue != "4")
+                                            { %>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtDateResuming" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-sm-6">
-
-                                        <asp:Literal ID="Literal2" runat="server" Text="Leave Type"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList runat="server" ID="ddlLeaveType" CssClass="form-control form-control-user">
-                                        </asp:DropDownList>
-
+                                        <% } %>
                                     </div>
 
                                 </div>
@@ -91,28 +165,6 @@
 
                         </div>
 
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-sm-6">
-
-                                        <asp:Literal ID="Literal6" runat="server" Text="Day Type"></asp:Literal>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <asp:DropDownList runat="server" ID="ddlDayType" CssClass="form-control form-control-user">
-                                            <asp:ListItem Value="1">Morning-Half</asp:ListItem>
-                                            <asp:ListItem Value="2">Evening-Half</asp:ListItem>
-                                            <asp:ListItem Value="3">Full Day</asp:ListItem>
-                                        </asp:DropDownList>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-
-                        </div>
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
                                 <div class="row">

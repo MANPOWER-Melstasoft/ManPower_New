@@ -49,6 +49,12 @@ namespace ManPowerCore.Domain
         [DBField("Leave_Document")]
         public string LeaveDocument { get; set; }
 
+        [DBField("From_Time")]
+        public DateTime FromTime { get; set; }
+
+        [DBField("To_Time")]
+        public DateTime ToTime { get; set; }
+
         public Employee _EMployeeDetails { get; set; }
 
 

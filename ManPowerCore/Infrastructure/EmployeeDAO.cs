@@ -25,22 +25,22 @@ namespace ManPowerCore.Infrastructure
         {
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,NIC_Issue_Date,Passport_Number" +
+            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,Passport_Number" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
                                             ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type, " +
-                                            " Pension_Date,VNOP_No,Appointment_No,File_No,Absorb,Emp_No) " +
+                                            " Pension_Date,VNOP_No,Appointment_No,File_No,Emp_No) " +
 
-                                            "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@NicIssueDate,@EmployeePassportNumber " +
+                                            "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@EmployeePassportNumber " +
                                             ", @EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
                                             ", @MaritalStatus,@SupervisorId,@ManagerId,@DSDivisionId,@DistrictId,@UnitType " +
-                                            ", @PensionDate,@VNOPNo,@AppointmentNo,@FileNo,@EpmAbsorb,@EmpNo) SELECT SCOPE_IDENTITY() ";
+                                            ", @PensionDate,@VNOPNo,@AppointmentNo,@FileNo,@EmpNo) SELECT SCOPE_IDENTITY() ";
 
 
 
             dbConnection.cmd.Parameters.AddWithValue("@ReligionId", emp.ReligionId);
             dbConnection.cmd.Parameters.AddWithValue("@EthnicityId", emp.EthnicityId);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeNIC", emp.EmployeeNIC);
-            dbConnection.cmd.Parameters.AddWithValue("@NicIssueDate", emp.NicIssueDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@NicIssueDate", emp.NicIssueDate);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeePassportNumber", emp.EmployeePassportNumber);
             dbConnection.cmd.Parameters.AddWithValue("@MaritalStatus", emp.MaritalStatus);
             dbConnection.cmd.Parameters.AddWithValue("@SupervisorId", emp.SupervisorId);
@@ -57,7 +57,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@VNOPNo", emp.VNOPNo);
             dbConnection.cmd.Parameters.AddWithValue("@AppointmentNo", emp.AppointmentNo);
             dbConnection.cmd.Parameters.AddWithValue("@FileNo", emp.FileNo);
-            dbConnection.cmd.Parameters.AddWithValue("@EpmAbsorb", emp.EpmAbsorb);
+            //dbConnection.cmd.Parameters.AddWithValue("@EpmAbsorb", emp.EpmAbsorb);
             dbConnection.cmd.Parameters.AddWithValue("@EmpNo", emp.EmpNo);
 
             int result = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());

@@ -12,13 +12,13 @@ namespace ManPowerCore.Domain
 
         public String Entitlement { get; set; }
 
-        public int ApprovedLeaves { get; set; }
+        public double ApprovedLeaves { get; set; }
 
-        public int PendingApproval { get; set; }
+        public double PendingApproval { get; set; }
 
-        public int LeaveBalannce { get; set; }
+        public double LeaveBalannce { get; set; }
 
-        public int NoOfDays { get; set; }
+        public double NoOfDays { get; set; }
         public int EmployeeId { get; set; }
 
 

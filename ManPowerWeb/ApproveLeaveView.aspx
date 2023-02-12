@@ -33,10 +33,9 @@
 
                                 <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" min="0" Enabled="false">
                                 </asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                                <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
                                 <asp:RangeValidator runat="server" ControlToValidate="txtNoOfDates" ErrorMessage="Invalid number"
-                                    Type="Integer" MinimumValue="1" MaximumValue="1000" ForeColor="Red"></asp:RangeValidator>
-
+                                    Type="Integer" MinimumValue="1" MaximumValue="1000" ForeColor="Red"></asp:RangeValidator>--%>
                             </div>
 
                         </div>
@@ -140,12 +139,17 @@
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6 d-flex">
                         <div class="col-sm-4">
+                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
+                        </div>
+                        <div class="col-sm-4">
                             <asp:Button runat="server" ID="btnApprove" Text="Approve" CssClass="btn btn-primary btn-user btn-block" OnClick="btnApprove_Click" />
                         </div>
                         <div class="col-sm-4">
                             <button runat="server" id="btnModalReject" type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
 
                         </div>
+
+
 
                     </div>
                 </div>

@@ -155,14 +155,19 @@ namespace ManPowerWeb
                 }
                 else
                 {
-                    holidaySheetsList = holidaySheetsList.Where(x => x.HolidayDate.Month == Startday.Month && x.HolidayDate.Year == Startday.Year).ToList();
-                    foreach (var holiday in holidaySheetsList)
+                    // holidaySheetsList = holidaySheetsList.Where(x => x.HolidayDate.Month == Startday.Month && x.HolidayDate.Year == Startday.Year).ToList();
+
+                    if (holidaySheetsList.Where(x => x.HolidayDate == i).Count() > 0)
                     {
-                        if (i == holiday.HolidayDate)
-                        {
-                            dayCount++;
-                        }
+                        dayCount++;
                     }
+                    //foreach (var holiday in holidaySheetsList)
+                    //{
+                    //    if (i == holiday.HolidayDate)
+                    //    {
+                    //        dayCount++;
+                    //    }
+                    //}
                 }
             }
             return dayCount;
@@ -171,6 +176,8 @@ namespace ManPowerWeb
         }
         protected DateTime CheckResumingDate(DateTime day)
         {
+            holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
+
             if (day.DayOfWeek == DayOfWeek.Saturday)
             {
                 day = day.AddDays(2);
@@ -181,12 +188,11 @@ namespace ManPowerWeb
 
             }
 
-            holidaySheetsList = ControllerFactory.CreateHolidaySheetController().getAllHolidays();
-
             if (holidaySheetsList.Where(x => x.HolidayDate == day).Count() > 0)
             {
                 day = day.AddDays(1);
             }
+
             return day;
 
         }

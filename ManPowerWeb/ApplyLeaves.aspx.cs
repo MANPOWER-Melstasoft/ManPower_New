@@ -84,8 +84,9 @@ namespace ManPowerWeb
 
             if (ddlLeaveType.SelectedValue == "4")
             {
-                staffLeave.FromTime = DateTime.Parse(txtFrom.Text);
-                staffLeave.ToTime = DateTime.Parse(txtTo.Text);
+                staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtFrom.Text));
+
+                staffLeave.ToTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtTo.Text));
                 staffLeave.NoOfLeaves = 0;
                 staffLeave.ResumingDate = DateTime.Parse(txtDateCommencing.Text);
                 if (staffLeave.FromTime < staffLeave.ToTime)

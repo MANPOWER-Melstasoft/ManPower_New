@@ -46,16 +46,45 @@ namespace ManPowerWeb
             paymentVoucher.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
 
             paymentVoucher.IsVoucherAuthorized = Convert.ToInt32(rbIsVoucherAuthorized.SelectedValue);
-            paymentVoucher.VouAuthorizedDate = DateTime.Parse(txtVAutorizedDate.Text);
-            paymentVoucher.VouAuthorizedUser = txtVAutorizedName.Text;
+            if (rbIsVoucherAuthorized.SelectedValue == "1")
+            {
+                paymentVoucher.VouAuthorizedDate = DateTime.Parse(txtVAutorizedDate.Text);
+                paymentVoucher.VouAuthorizedUser = txtVAutorizedName.Text;
+            }
+            else
+            {
+                paymentVoucher.VouAuthorizedDate = DateTime.Parse(txtVAutorizedDate.Text);
+                paymentVoucher.VouAuthorizedUser = null;
+            }
+
 
             paymentVoucher.IsPayAuthorized = Convert.ToInt32(rbPayAutorized.SelectedValue);
-            paymentVoucher.PayAuthorizedDate = DateTime.Parse(txtPayAutorizedDate.Text);
-            paymentVoucher.PayAuthorizedUser = txtPayAutorizedName.Text;
+            if (rbPayAutorized.SelectedValue == "1")
+            {
+                paymentVoucher.PayAuthorizedDate = DateTime.Parse(txtPayAutorizedDate.Text);
+                paymentVoucher.PayAuthorizedUser = txtPayAutorizedName.Text;
+            }
+            else
+            {
+                DateTime? dt = null;
+                paymentVoucher.PayAuthorizedDate = Convert.ToDateTime(dt);
+                paymentVoucher.PayAuthorizedUser = null;
+            }
+
 
             paymentVoucher.IsCanceled = Convert.ToInt32(rbIsCanceled.SelectedValue);
-            paymentVoucher.CanceledDate = DateTime.Parse(txtCancelDate.Text);
-            paymentVoucher.CanceledUser = txtCancelName.Text;
+            if (rbIsCanceled.SelectedValue == "1")
+            {
+                paymentVoucher.CanceledDate = DateTime.Parse(txtCancelDate.Text);
+                paymentVoucher.CanceledUser = txtCancelName.Text;
+            }
+            else
+            {
+                DateTime? dt = null;
+                paymentVoucher.CanceledDate = Convert.ToDateTime(dt);
+                paymentVoucher.CanceledUser = null;
+            }
+
 
             paymentVoucher.BankAccount = txtBankAcc.Text;
             paymentVoucher.CreatedDate = DateTime.Now;

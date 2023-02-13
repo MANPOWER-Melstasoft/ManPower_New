@@ -116,6 +116,7 @@
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
     <Content Include="AddSupplier.aspx" />
+    <Content Include="AddSupplierType.aspx" />
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
     <Content Include="ResetPassword.aspx" />
@@ -2046,6 +2047,13 @@
     </Compile>
     <Compile Include="AddSupplier.aspx.designer.cs">
       <DependentUpon>AddSupplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSupplierType.aspx.cs">
+      <DependentUpon>AddSupplierType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSupplierType.aspx.designer.cs">
+      <DependentUpon>AddSupplierType.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddTraining.aspx.cs">
       <DependentUpon>AddTraining.aspx</DependentUpon>

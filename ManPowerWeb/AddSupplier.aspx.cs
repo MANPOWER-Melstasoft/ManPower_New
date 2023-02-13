@@ -25,6 +25,7 @@ namespace ManPowerWeb
         {
             SupplierTypeController supplierTypeController = ControllerFactory.CreateSupplierTypeController();
             supplierTypeList = supplierTypeController.GetAllSupplierType();
+            supplierTypeList = supplierTypeList.Where(x => x.IsActive == 1).ToList();
 
             ddlSupplierType.DataSource = supplierTypeList;
             ddlSupplierType.DataValueField = "Id";

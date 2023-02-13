@@ -22,6 +22,7 @@ namespace ManPowerWeb
         {
 
             supplierTypeList = supplierTypeController.GetAllSupplierType();
+            supplierTypeList = supplierTypeList.Where(x => x.IsActive == 1).ToList();
             gvAddSupplierType.DataSource = supplierTypeList;
             gvAddSupplierType.DataBind();
 
@@ -36,6 +37,7 @@ namespace ManPowerWeb
                 SupplierType supplierType = new SupplierType();
                 supplierType.Id = rowIndex;
                 supplierType.SupplyTypeName = txtSupplierName.Text;
+                supplierType.IsActive = 1;
 
                 supplierTypeController.Update(supplierType);
                 btnSave.Text = "Save";
@@ -44,6 +46,7 @@ namespace ManPowerWeb
             {
                 SupplierType supplierType = new SupplierType();
                 supplierType.SupplyTypeName = txtSupplierName.Text;
+                supplierType.IsActive = 1;
 
                 supplierTypeController.Save(supplierType);
             }

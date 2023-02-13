@@ -36,7 +36,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", supplier.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@StatusId", supplier.StatusId);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
             return output;
         }

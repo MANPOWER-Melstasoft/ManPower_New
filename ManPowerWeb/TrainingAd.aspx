@@ -5,7 +5,7 @@
         <asp:ListView ID="lvTrainingAd" runat="server">
             <ItemTemplate>
                 <div class="card" style="align-items: center; padding-top: 20px;">
-                    <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Post_img") %>' />
+                    <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Post_img") %>' Height="100%" Width="100%" />
                     <h4 style="margin-top: 20px; margin-bottom: 20px;"><%# Eval("Title") %></h4>
                     <h6 style="margin-bottom: 20px;">From <%# Eval("Start_Date") %> To <%# Eval("End_date") %></h6>
                     <p><%# Eval("Content") %></p>

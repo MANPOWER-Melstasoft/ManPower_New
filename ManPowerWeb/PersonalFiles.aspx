@@ -70,16 +70,7 @@
                     </div>
                 </div>
 
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Gender : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:DropDownList ID="ddlGender" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
 
@@ -150,6 +141,17 @@
                     </div>
                 </div>
 
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Gender : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:DropDownList ID="ddlGender" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
                 <%--<div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -190,7 +192,7 @@
                     </div>
                 </div>
 
-                <div class="col-6">
+                <div class="col-6" runat="server" id="DsDiv" visible="false">
                     <div class="row">
                         <div class="col-4">
                             <label>DS Division : </label>
@@ -205,7 +207,7 @@
             </div>
 
 
-            <div class="row mt-4">
+            <%-- <div class="row mt-4">
 
 
                 <div class="col-6">
@@ -219,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
 
             <div class="row mt-4">
@@ -234,7 +236,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+
+            <div class="row mt-4">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
@@ -267,6 +272,67 @@
                 </div>
 
                 <%} %>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Address : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="address" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="address" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Mobile Phone : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="EmpMobilePhone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="EmpMobilePhone" ID="RequiredFieldValidator52" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="EmpMobilePhone" ValidationGroup="4"
+                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Telephone (Landline): </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="telephone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="telephone" ID="RequiredFieldValidator31" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="telephone" ValidationGroup="4"
+                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Personal Email : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="email" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="email" ID="RequiredFieldValidator33" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="4" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ValidationGroup="4" ID="RegularExpressionValidator4" ControlToValidate="email" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+							Invalid Email</asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row justify-content-end mt-5">

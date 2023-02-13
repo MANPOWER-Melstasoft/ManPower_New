@@ -79,13 +79,17 @@ namespace ManPowerCore.Controller
                     }
                 }
 
-                //if (id != 0)
+
+                if (emp._EmployeeContact != null)
+                {
+                    emp._EmployeeContact.EmpID = id;
+                    employeeContactDAO.SaveEmployeeContact(emp._EmployeeContact, dBConnection);
+                }
+
+                //if (emp._EmergencyContact != null)
                 //{
                 //    emp._EmergencyContact.EmployeeId = id;
                 //    emergencyContactDAO.SaveEmergencyContact(emp._EmergencyContact, dBConnection);
-
-                //    emp._EmployeeContact.EmpID = id;
-                //    employeeContactDAO.SaveEmployeeContact(emp._EmployeeContact, dBConnection);
                 //}
 
 

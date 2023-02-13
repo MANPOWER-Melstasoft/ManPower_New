@@ -29,7 +29,7 @@ namespace ManPowerWeb
         int[] attempt = { 1, 2, 3 };
         string[] eduStatus = { "Completed", "Not Completed" };
         string[] isResigned = { "Yes", "No" };
-        string[] absorbStatus = { "Yes", "Not Relevent" };
+        //string[] absorbStatus = { "Yes", "Not Relevent" };
         int[] yearslist =
         {
             (DateTime.Today.Year),
@@ -93,17 +93,28 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+            if (Session["UserId"] != null)
             {
-                BindDataSource();
+                if (!IsPostBack)
+                {
+                    BindDataSource();
 
-                id1.Visible = true;
-                id2.Visible = false;
-                id3.Visible = false;
-                //id4.Visible = false;
-                //id5.Visible = false;
-                //id6.Visible = false;
-                id7.Visible = false;
+                    id1.Visible = true;
+                    id2.Visible = false;
+                    id3.Visible = false;
+                    //id4.Visible = false;
+                    //id5.Visible = false;
+                    //id6.Visible = false;
+                    id7.Visible = false;
+                }
+            }
+            else
+            {
+                HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
+                HttpContext.Current.Response.AddHeader("Expires", "0");
+                Response.Redirect("Login.aspx");
             }
         }
 
@@ -172,8 +183,8 @@ namespace ManPowerWeb
             ddlMaritalStatus.DataSource = mmStatus;
             ddlMaritalStatus.DataBind();
 
-            ddlAbsorb.DataSource = absorbStatus;
-            ddlAbsorb.DataBind();
+            //ddlAbsorb.DataSource = absorbStatus;
+            //ddlAbsorb.DataBind();
 
             ddlService.DataSource = serviceTypeList;
             ddlService.DataValueField = "ServiceTypeId";
@@ -224,7 +235,15 @@ namespace ManPowerWeb
 
         protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bindDSDivision();
+            if (ddlDistrict.Text == "1")
+            {
+                DsDiv.Visible = false;
+            }
+            else
+            {
+                DsDiv.Visible = true;
+                bindDSDivision();
+            }
         }
 
         protected void addDependant(object sender, EventArgs e)
@@ -610,7 +629,7 @@ namespace ManPowerWeb
             emp.SupervisorId = 0;
             emp.ManagerId = 0;
             emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
-            emp.EpmAbsorb = ddlAbsorb.SelectedValue;
+            //emp.EpmAbsorb = ddlAbsorb.SelectedValue;
             emp.PensionDate = Convert.ToDateTime(dob.Text).AddYears(60);
             emp.VNOPNo = int.Parse(vnop.Text);
             emp.FileNo = int.Parse(fileNo.Text);
@@ -647,12 +666,12 @@ namespace ManPowerWeb
             //emp._EmergencyContact.EmgMobile = int.Parse(ecMobile.Text);
             //emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
 
-            //emp._EmployeeContact.EmpAddress = address.Text;
-            //emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
-            //emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
-            //emp._EmployeeContact.EmpEmail = email.Text;
+            emp._EmployeeContact.EmpAddress = address.Text;
+            emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
+            emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
+            emp._EmployeeContact.EmpEmail = email.Text;
             //emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
-            //emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
+            //emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
 
 
             int result1 = employeeController.SaveEmployee(emp);

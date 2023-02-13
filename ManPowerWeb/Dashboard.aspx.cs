@@ -38,7 +38,7 @@ namespace ManPowerWeb
         }
         protected bool IsNotSubmitDME()
         {
-            if (DateTime.Now.Day > 10)
+            if (DateTime.Now.Day > 25)
             {
                 int DepUnitPossiId = Convert.ToInt32(Session["DepUnitPositionId"]);
                 TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();

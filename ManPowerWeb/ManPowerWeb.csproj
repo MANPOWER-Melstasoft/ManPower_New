@@ -114,8 +114,10 @@
     <Content Include="AddParent.aspx" />
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
+    <Content Include="AddSupplier.aspx" />
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
+    <Content Include="PaymentVoucher.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="TrainingFront.aspx" />
     <Content Include="AddTransfersRetirementResignation.aspx" />
@@ -2031,6 +2033,13 @@
     <Compile Include="AddProgram.aspx.designer.cs">
       <DependentUpon>AddProgram.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddSupplier.aspx.cs">
+      <DependentUpon>AddSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSupplier.aspx.designer.cs">
+      <DependentUpon>AddSupplier.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddTraining.aspx.cs">
       <DependentUpon>AddTraining.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2044,6 +2053,13 @@
     </Compile>
     <Compile Include="AddTrainingFront.aspx.designer.cs">
       <DependentUpon>AddTrainingFront.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucher.aspx.cs">
+      <DependentUpon>PaymentVoucher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVoucher.aspx.designer.cs">
+      <DependentUpon>PaymentVoucher.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>

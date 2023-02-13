@@ -23,6 +23,10 @@ namespace ManPowerWeb
             {
                 if (!IsPostBack)
                 {
+                    if (IsNotSubmitDME())
+                    {
+                        RaiseNotification();
+                    }
                     BindCardData();
                     bindDialogbox();
                 }
@@ -31,6 +35,50 @@ namespace ManPowerWeb
             {
                 Response.Redirect("Login.aspx");
             }
+        }
+        protected bool IsNotSubmitDME()
+        {
+            if (DateTime.Now.Day > 25)
+            {
+                int DepUnitPossiId = Convert.ToInt32(Session["DepUnitPositionId"]);
+                TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+                List<TaskAllocation> taskAllocations = taskAllocationController.GetAllTaskAllocationByDepartmentUnitPositionId(DepUnitPossiId);
+
+                List<TaskAllocation> taskAllocationsFinal = new List<TaskAllocation>();
+
+                foreach (var item in taskAllocations)
+                {
+                    DateTime dateTime = item.TaskYearMonth;
+
+                    DateTime currentDate = DateTime.Now;
+                    DateTime nextMonth = currentDate.AddMonths(1);
+
+                    //DateTime nextMonth = DateTime.Now;
+                    //nextMonth.AddMonths(1);
+
+                    if (dateTime.Year == DateTime.Today.Year && dateTime.Month == nextMonth.Month && item.StatusId != 0)
+                    {
+                        taskAllocationsFinal.Add(item);
+                    }
+                }
+
+                if (taskAllocationsFinal.Count > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        protected void RaiseNotification()
+        {
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Warning!', 'You have to Submit DME 21 quickly!', 'warning');", true);
         }
 
         protected void BindCardData()

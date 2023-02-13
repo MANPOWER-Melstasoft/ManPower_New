@@ -28,6 +28,9 @@ namespace ManPowerCore.Domain
         [DBField("PASSPORT_NUMBER")]
         public string EmployeePassportNumber { get; set; }
 
+        [DBField("TITLE")]
+        public string Title { get; set; }
+
         [DBField("INITIAL")]
         public string EmpInitials { get; set; }
 

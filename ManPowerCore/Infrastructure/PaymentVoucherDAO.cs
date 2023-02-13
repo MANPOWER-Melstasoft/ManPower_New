@@ -25,7 +25,7 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Checqu_Number, Total_Amount, Is_Voucher_Authorized, Vou_Authorized_Date, Vou_Authorized_User, Is_Pay_Authorized, Pay_Authorized_Date, Pay_Authorized_User, Is_Canceled, Canceled_Date, Canceled_User, Created_User, Created_Date, Bank_Account) " +
+            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Cheque_Number, Total_Amount, Is_Voucher_Authorized, Vou_Authorized_Date, Vou_Authorized_User, Is_Pay_Authorized, Pay_Authorized_Date, Pay_Authorized_User, Is_Canceled, Canceled_Date, Canceled_User, Created_User, Created_Date, Bank_Account) " +
                 "VALUES (@SupplierId, @VoucherNumber, @VoucherDate, @PayeeName, @PayeeAddress, @ChequeNumber, @TotalAmount, @IsVoucherAuthorized, @VouAuthorizedDate, @VouAuthorizedUser, @IsPayAuthorized, @PayAuthorizedDate, @PayAuthorizedUser, @IsCanceled, @CanceledDate, @CanceledUser, @CreatedUser, @CreatedDate, @BankAccount)";
 
             dbConnection.cmd.Parameters.AddWithValue("@SupplierId", paymentVoucher.SupplierId);
@@ -48,7 +48,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", paymentVoucher.CreatedDate);
             dbConnection.cmd.Parameters.AddWithValue("@BankAccount", paymentVoucher.BankAccount);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
             return output;
         }

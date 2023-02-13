@@ -538,5 +538,35 @@ namespace ManPowerCore.Common
             TrainingRequestsDAO trainingRequestsDAO = new TrainingRequestsDAOSqlImpl();
             return (TrainingRequestsDAO)trainingRequestsDAO;
         }
+
+        public static AccountCodeDAO createAccountCodeDAO()
+        {
+            AccountCodeDAO accountCodeDAO = new AccountCodeDAOSqlImpl();
+            return (AccountCodeDAO)accountCodeDAO;
+        }
+
+        public static PaymentVoucherDAO createPaymentVoucherDAO()
+        {
+            PaymentVoucherDAO paymentVoucherDAO = new PaymentVoucherDAOSqlImpl();
+            return (PaymentVoucherDAO)paymentVoucherDAO;
+        }
+
+        public static SupplierDAO createSupplierDAO()
+        {
+            SupplierDAO supplierDAO = new SupplierDAOSqlImpl();
+            return (SupplierDAO)supplierDAO;
+        }
+
+        public static SupplierTypeDAO createSupplierTypeDAO()
+        {
+            SupplierTypeDAO supplierTypeDAO = new SupplierTypeDAOSqlImpl();
+            return (SupplierTypeDAO)supplierTypeDAO;
+        }
+
+        public static VoucherDetailDAO createVoucherDetailDAO()
+        {
+            VoucherDetailDAO voucherDetailDAO = new VoucherDetailDAOSqlImpl();
+            return (VoucherDetailDAO)voucherDetailDAO;
+        }
     }
 }

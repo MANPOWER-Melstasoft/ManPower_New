@@ -137,6 +137,7 @@
     <Compile Include="Controller\VoteAllocationController.cs" />
     <Compile Include="Controller\VoteLedgerController.cs" />
     <Compile Include="Controller\VoteTypeController.cs" />
+    <Compile Include="Domain\AccountCode.cs" />
     <Compile Include="Domain\ApproveAction.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
@@ -158,6 +159,9 @@
     <Compile Include="Domain\DependantType.cs" />
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
+    <Compile Include="Domain\PaymentVoucher.cs" />
+    <Compile Include="Domain\Supplier.cs" />
+    <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
     <Compile Include="Domain\TrainingRequests.cs" />
     <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />

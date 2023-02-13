@@ -28,7 +28,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,Passport_Number" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
                                             ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type, " +
-                                            " Pension_Date,VNOP_No,Appointment_No,File_No,Emp_No) " +
+                                            " Pension_Date,VNOP_No,Appointment_No,File_No) " +
 
                                             "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@EmployeePassportNumber " +
                                             ", @EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
@@ -58,7 +58,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@AppointmentNo", emp.AppointmentNo);
             dbConnection.cmd.Parameters.AddWithValue("@FileNo", emp.FileNo);
             //dbConnection.cmd.Parameters.AddWithValue("@EpmAbsorb", emp.EpmAbsorb);
-            dbConnection.cmd.Parameters.AddWithValue("@EmpNo", emp.EmpNo);
+            //dbConnection.cmd.Parameters.AddWithValue("@EmpNo", emp.EmpNo);
 
             int result = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
             return result;

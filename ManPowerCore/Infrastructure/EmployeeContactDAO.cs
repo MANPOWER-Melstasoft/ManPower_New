@@ -29,8 +29,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_CONTACT(EMPLOYEE_ID,ADDRESS,MOBILE_NUMBER,TELEPHONE,OFFICE_PHONE,POSTAL_CODE,EMAIL) " +
-                "VALUES(@EmpID,@EmpAddress,@MobileNumber,@EmpTelephone,@OfficePhone,@PostalCode,@EmpEmail)";
+            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_CONTACT(EMPLOYEE_ID,ADDRESS,MOBILE_NUMBER,TELEPHONE,EMAIL) " +
+                "VALUES(@EmpID,@EmpAddress,@MobileNumber,@EmpTelephone,@EmpEmail)";
 
 
 
@@ -38,9 +38,10 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@EmpAddress", empContact.EmpAddress);
             dbConnection.cmd.Parameters.AddWithValue("@MobileNumber", empContact.MobileNumber);
             dbConnection.cmd.Parameters.AddWithValue("@EmpTelephone", empContact.EmpTelephone);
-            dbConnection.cmd.Parameters.AddWithValue("@OfficePhone", empContact.OfficePhone);
             dbConnection.cmd.Parameters.AddWithValue("@EmpEmail", empContact.EmpEmail);
-            dbConnection.cmd.Parameters.AddWithValue("@PostalCode", empContact.PostalCode);
+            //dbConnection.cmd.Parameters.AddWithValue("@OfficePhone", empContact.OfficePhone);
+            //dbConnection.cmd.Parameters.AddWithValue("@PostalCode", empContact.PostalCode);
+
             dbConnection.cmd.ExecuteNonQuery();
             return 1;
         }

@@ -43,16 +43,17 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-            if (staffLeave.ApprovedBy < 0)
+            if (staffLeave.ApprovedBy == 0)
             {
-                btnApprove.Visible = false;
-                btnModalReject.Visible = false;
+                btnApprove.Visible = true;
+                btnModalReject.Visible = true;
+
 
             }
             else
             {
-                btnApprove.Visible = true;
-                btnModalReject.Visible = true;
+                btnApprove.Visible = false;
+                btnModalReject.Visible = false;
             }
 
         }
@@ -103,11 +104,11 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Approved Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
 
 
             }
@@ -133,9 +134,15 @@ namespace ManPowerWeb
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
 
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("approveleave.aspx");
+
         }
     }
 }

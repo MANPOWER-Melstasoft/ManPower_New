@@ -7,7 +7,7 @@
             <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
                 <asp:GridView Style="margin-top: 30px;" ID="gvLeaveBalance" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                     CellPadding="4" GridLines="None" AllowPaging="true" HeaderStyle-HorizontalAlign="center" ShowFooter="true" OnRowDataBound="gvLeaveBalance_RowDataBound"
-                    FooterStyle-HorizontalAlign="Center">
+                    FooterStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                     <Columns>
                         <asp:BoundField DataField="LeaveType" HeaderText="Leave Type" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                         <asp:BoundField DataField="Entitlement" HeaderText="Entitlement" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
@@ -15,6 +15,8 @@
                         <asp:BoundField DataField="PendingApproval" HeaderText="Pending Leaves" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                         <asp:BoundField DataField="LeaveBalannce" HeaderText="Leave Balance" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                     </Columns>
+                    <EmptyDataTemplate>No records</EmptyDataTemplate>
+
                 </asp:GridView>
             </div>
 

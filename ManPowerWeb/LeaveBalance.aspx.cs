@@ -34,17 +34,17 @@ namespace ManPowerWeb
             leaveListFromTable = reportController.GetLeaveBalanceByEmployeeId(employeId);
 
             gvLeaveBalance.DataSource = leaveListFromTable;
-            int sumEntiletment = 0;
-            int sumApprovedLeaves = 0;
-            int sumPendingApproval = 0;
-            int sumLeaveBalance = 0;
+            double sumEntiletment = 0;
+            double sumApprovedLeaves = 0;
+            double sumPendingApproval = 0;
+            double sumLeaveBalance = 0;
 
             foreach (var leave in leaveListFromTable)
             {
-                sumEntiletment += Convert.ToInt32(leave.Entitlement);
-                sumApprovedLeaves += Convert.ToInt32(leave.ApprovedLeaves);
-                sumPendingApproval += Convert.ToInt32(leave.PendingApproval);
-                sumLeaveBalance += Convert.ToInt32(leave.LeaveBalannce);
+                sumEntiletment += float.Parse(leave.Entitlement);
+                sumApprovedLeaves += leave.ApprovedLeaves;
+                sumPendingApproval += leave.PendingApproval;
+                sumLeaveBalance += leave.LeaveBalannce;
             }
             gvLeaveBalance.Columns[0].FooterText = "Summary";
             gvLeaveBalance.Columns[1].FooterText = sumEntiletment.ToString();

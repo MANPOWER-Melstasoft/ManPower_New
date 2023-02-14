@@ -178,7 +178,7 @@
                         <div class="col-sm-3">
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Send To Admin Approval" CssClass="btn btn-primary" ValidationGroup="1" />
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Send to Approval" CssClass="btn btn-primary" ValidationGroup="1" />
                                 </div>
                                 <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />

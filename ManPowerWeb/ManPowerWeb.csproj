@@ -120,6 +120,8 @@
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
     <Content Include="ApproveLoan.aspx" />
+    <Content Include="ApproveLoanHead.aspx" />
+    <Content Include="ApproveLoanView.aspx" />
     <Content Include="RequestLoan.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="TrainingFront.aspx" />
@@ -2077,6 +2079,20 @@
     </Compile>
     <Compile Include="ApproveLoan.aspx.designer.cs">
       <DependentUpon>ApproveLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveLoanHead.aspx.cs">
+      <DependentUpon>ApproveLoanHead.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanHead.aspx.designer.cs">
+      <DependentUpon>ApproveLoanHead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveLoanView.aspx.cs">
+      <DependentUpon>ApproveLoanView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanView.aspx.designer.cs">
+      <DependentUpon>ApproveLoanView.aspx</DependentUpon>
     </Compile>
     <Compile Include="RequestLoan.aspx.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>

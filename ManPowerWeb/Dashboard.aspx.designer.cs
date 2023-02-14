@@ -60,6 +60,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label lblTotalProgramms;
 
         /// <summary>
+        /// gvUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvUser;
+
+        /// <summary>
         /// lblUCTM control.
         /// </summary>
         /// <remarks>

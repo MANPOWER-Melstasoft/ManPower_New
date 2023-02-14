@@ -552,5 +552,35 @@ namespace ManPowerCore.Common
             TrainingRequestsController trainingRequestsController = new TrainingRequestsControllerImpl();
             return (TrainingRequestsController)trainingRequestsController;
         }
+
+        public static AccountCodeController CreateAccountCodeController()
+        {
+            AccountCodeController accountCodeController = new AccountCodeControllerImpl();
+            return (AccountCodeController)accountCodeController;
+        }
+
+        public static PaymentVoucherController CreatePaymentVoucherController()
+        {
+            PaymentVoucherController paymentVoucherController = new PaymentVoucherControllerImpl();
+            return (PaymentVoucherController)paymentVoucherController;
+        }
+
+        public static SupplierController CreateSupplierController()
+        {
+            SupplierController supplierController = new SupplierControllerImpl();
+            return (SupplierController)supplierController;
+        }
+
+        public static SupplierTypeController CreateSupplierTypeController()
+        {
+            SupplierTypeController supplierTypeController = new SupplierTypeControllerImpl();
+            return (SupplierTypeController)supplierTypeController;
+        }
+
+        public static VoucherDetailController CreateVoucherDetailController()
+        {
+            VoucherDetailController voucherDetailController = new VoucherDetailControllerImpl();
+            return (VoucherDetailController)voucherDetailController;
+        }
     }
 }

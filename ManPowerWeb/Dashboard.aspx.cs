@@ -23,6 +23,10 @@ namespace ManPowerWeb
             {
                 if (!IsPostBack)
                 {
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 3 && IsNotSubmitDME())
+                    {
+                        RaiseNotification();
+                    }
                     BindCardData();
                     bindDialogbox();
                 }
@@ -30,6 +34,54 @@ namespace ManPowerWeb
             else
             {
                 Response.Redirect("Login.aspx");
+            }
+        }
+        protected bool IsNotSubmitDME()
+        {
+            if (DateTime.Now.Day > 10)
+            {
+                int DepUnitPossiId = Convert.ToInt32(Session["DepUnitPositionId"]);
+                TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+                List<TaskAllocation> taskAllocations = taskAllocationController.GetAllTaskAllocationByDepartmentUnitPositionId(DepUnitPossiId);
+
+                List<TaskAllocation> taskAllocationsFinal = new List<TaskAllocation>();
+
+                foreach (var item in taskAllocations)
+                {
+                    DateTime dateTime = item.TaskYearMonth;
+
+                    DateTime currentDate = DateTime.Now;
+                    DateTime nextMonth = currentDate.AddMonths(1);
+
+                    //DateTime nextMonth = DateTime.Now;
+                    //nextMonth.AddMonths(1);
+
+                    if (dateTime.Year == DateTime.Today.Year && dateTime.Month == nextMonth.Month && item.StatusId != 0)
+                    {
+                        taskAllocationsFinal.Add(item);
+                    }
+                }
+
+                if (taskAllocationsFinal.Count > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        protected void RaiseNotification()
+        {
+            if (Session["DME21Notifi"] == null)
+            {
+                Session["DME21Notifi"] = "1";
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Alert!', 'You have to Submit DME 21 quickly!', 'warning');", true);
             }
         }
 

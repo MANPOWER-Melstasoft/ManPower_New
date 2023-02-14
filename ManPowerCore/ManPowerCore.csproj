@@ -49,6 +49,7 @@
     <Compile Include="Common\DBConnection.cs" />
     <Compile Include="Common\DBFieldAttribute.cs" />
     <Compile Include="Common\Utility.cs" />
+    <Compile Include="Controller\AccountCodeController.cs" />
     <Compile Include="Controller\ApproveActionController.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
     <Compile Include="Controller\AutSystemRoleFunctionController.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
     <Compile Include="Controller\OfficerListController.cs" />
+    <Compile Include="Controller\PaymentVoucherController.cs" />
     <Compile Include="Controller\PossitionsController.cs" />
     <Compile Include="Controller\ProgramAssigneeController.cs" />
     <Compile Include="Controller\ProgramAttendenceController.cs" />
@@ -115,6 +117,8 @@
     <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\StaffLeaveAllocationController.cs" />
     <Compile Include="Controller\StaffLeaveController.cs" />
+    <Compile Include="Controller\SupplierController.cs" />
+    <Compile Include="Controller\SupplierTypeController.cs" />
     <Compile Include="Controller\SystemUserController.cs" />
     <Compile Include="Controller\TaskAllocationController.cs" />
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
@@ -137,6 +141,8 @@
     <Compile Include="Controller\VoteAllocationController.cs" />
     <Compile Include="Controller\VoteLedgerController.cs" />
     <Compile Include="Controller\VoteTypeController.cs" />
+    <Compile Include="Controller\VoucherDetailController.cs" />
+    <Compile Include="Domain\AccountCode.cs" />
     <Compile Include="Domain\ApproveAction.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
@@ -158,8 +164,13 @@
     <Compile Include="Domain\DependantType.cs" />
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
+    <Compile Include="Domain\PaymentVoucher.cs" />
+    <Compile Include="Domain\Supplier.cs" />
+    <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
     <Compile Include="Domain\TrainingRequests.cs" />
+    <Compile Include="Domain\VoucherDetail.cs" />
+    <Compile Include="Infrastructure\AccountCodeDAO.cs" />
     <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
     <Compile Include="Domain\DistrictTASummaryReport.cs" />
     <Compile Include="Domain\DME21Model.cs" />
@@ -266,6 +277,7 @@
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />
     <Compile Include="Infrastructure\OfficerListDAO.cs" />
+    <Compile Include="Infrastructure\PaymentVoucherDAO.cs" />
     <Compile Include="Infrastructure\PossitionsDAO.cs" />
     <Compile Include="Infrastructure\ProgramAssigneeDAO.cs" />
     <Compile Include="Infrastructure\ProgramAttendenceDAO.cs" />
@@ -292,6 +304,8 @@
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveDAO.cs" />
+    <Compile Include="Infrastructure\SupplierDAO.cs" />
+    <Compile Include="Infrastructure\SupplierTypeDAO.cs" />
     <Compile Include="Infrastructure\SystemUserDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDAO.cs" />
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
@@ -314,6 +328,7 @@
     <Compile Include="Infrastructure\VoteAllocationDAO.cs" />
     <Compile Include="Infrastructure\VoteLedgerDAO.cs" />
     <Compile Include="Infrastructure\VoteTypeDAO.cs" />
+    <Compile Include="Infrastructure\VoucherDetailDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

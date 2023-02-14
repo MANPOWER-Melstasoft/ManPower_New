@@ -23,7 +23,7 @@ namespace ManPowerWeb
             {
                 if (!IsPostBack)
                 {
-                    if (IsNotSubmitDME())
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 3 && IsNotSubmitDME())
                     {
                         RaiseNotification();
                     }
@@ -38,7 +38,7 @@ namespace ManPowerWeb
         }
         protected bool IsNotSubmitDME()
         {
-            if (DateTime.Now.Day > 25)
+            if (DateTime.Now.Day > 10)
             {
                 int DepUnitPossiId = Convert.ToInt32(Session["DepUnitPositionId"]);
                 TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
@@ -78,7 +78,11 @@ namespace ManPowerWeb
         }
         protected void RaiseNotification()
         {
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Warning!', 'You have to Submit DME 21 quickly!', 'warning');", true);
+            if (Session["DME21Notifi"] == null)
+            {
+                Session["DME21Notifi"] = "1";
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Alert!', 'You have to Submit DME 21 quickly!', 'warning');", true);
+            }
         }
 
         protected void BindCardData()

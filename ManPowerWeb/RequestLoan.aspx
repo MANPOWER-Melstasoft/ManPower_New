@@ -44,10 +44,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="row mb-3 ms-1 mt-3">
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -66,23 +62,7 @@
                     </div>
 
 
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal3" runat="server" Text="Work Place"></asp:Literal>
-                                </div>
 
-                                <div class="col-md-6">
-                                    <asp:TextBox ID="txtWorkPlace" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtWorkPlace" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div class="row mb-3 ms-1 mt-3">
@@ -101,7 +81,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <asp:Literal ID="Literal3" runat="server" Text="Work Place"></asp:Literal>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtWorkPlace" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    <div class="d-flex text-danger">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="1"
+                                            ControlToValidate="txtWorkPlace" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
+
 
                     <div class="row mb-3 ms-1 mt-3">
                         <div class="col-sm-6">
@@ -137,9 +135,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mb-3 ms-1 mt-3">
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -156,6 +152,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
 
                     <div class="row mb-3 ms-1 mt-3">
@@ -180,7 +178,7 @@
                         <div class="col-sm-3">
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Add" CssClass="btn btn-primary btn-user btn-block" ValidationGroup="1" />
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Send To Admin Approval" CssClass="btn btn-primary" ValidationGroup="1" />
                                 </div>
                                 <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />

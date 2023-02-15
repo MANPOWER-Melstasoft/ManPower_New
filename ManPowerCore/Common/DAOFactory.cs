@@ -568,5 +568,23 @@ namespace ManPowerCore.Common
             VoucherDetailDAO voucherDetailDAO = new VoucherDetailDAOSqlImpl();
             return (VoucherDetailDAO)voucherDetailDAO;
         }
+
+        public static LoanTypeDAO createLoanTypeDAO()
+        {
+            LoanTypeDAO loanTypeDAO = new LoanTypeDAOSqlImpl();
+            return (LoanTypeDAO)loanTypeDAO;
+        }
+
+        public static ApprovalTypeDAO createApprovalTypeDAO()
+        {
+            ApprovalTypeDAO approvalType = new ApprovalTypeDAOImpl();
+            return (ApprovalTypeDAO)approvalType;
+        }
+
+        public static LoanDetailDAO createLoanDetailDAO()
+        {
+            LoanDetailDAO loanDetailDAO = new LoanDetailDAOSqlImpl();
+            return (LoanDetailDAO)loanDetailDAO;
+        }
     }
 }

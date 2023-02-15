@@ -582,5 +582,23 @@ namespace ManPowerCore.Common
             VoucherDetailController voucherDetailController = new VoucherDetailControllerImpl();
             return (VoucherDetailController)voucherDetailController;
         }
+
+        public static LoanTypeController CreateLoanTypeController()
+        {
+            LoanTypeController loanTypeController = new LoanTypeControllerImpl();
+            return (LoanTypeController)loanTypeController;
+        }
+
+        public static ApprovalTypeController CreateApprovalTypeController()
+        {
+            ApprovalTypeController approvalTypeController = new ApprovalTypeControllerImpl();
+            return (ApprovalTypeController)approvalTypeController;
+        }
+
+        public static LoanDetailsController CreateLoanDetailsController()
+        {
+            LoanDetailsController loanDetailsController = new LoanDetailsControllerImpl();
+            return (LoanDetailsController)loanDetailsController;
+        }
     }
 }

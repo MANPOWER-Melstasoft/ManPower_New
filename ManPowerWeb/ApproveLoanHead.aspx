@@ -8,6 +8,7 @@
                 <asp:BoundField HeaderText="Id" />
                 <asp:BoundField HeaderText="Employee Name" />
                 <asp:BoundField HeaderText="Date Request" />
+                <asp:BoundField HeaderText="Status" />
                 <asp:TemplateField HeaderText="Action">
                     <ItemTemplate>
                         <asp:LinkButton runat="server" ID="BtnView">View</asp:LinkButton>

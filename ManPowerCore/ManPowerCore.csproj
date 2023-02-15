@@ -50,6 +50,7 @@
     <Compile Include="Common\DBFieldAttribute.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controller\AccountCodeController.cs" />
+    <Compile Include="Controller\ApprovalTypeController.cs" />
     <Compile Include="Controller\ApproveActionController.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
     <Compile Include="Controller\AutSystemRoleFunctionController.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="Controller\JobCategoryController.cs" />
     <Compile Include="Controller\JobPlacementFeedbackController.cs" />
     <Compile Include="Controller\JobRefferalsController.cs" />
+    <Compile Include="Controller\LoanDetailsController.cs" />
+    <Compile Include="Controller\LoanTypeController.cs" />
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />
@@ -143,6 +146,9 @@
     <Compile Include="Controller\VoteTypeController.cs" />
     <Compile Include="Controller\VoucherDetailController.cs" />
     <Compile Include="Domain\AccountCode.cs" />
+    <Compile Include="Domain\ApprovalType.cs" />
+    <Compile Include="Domain\LoanDetail.cs" />
+    <Compile Include="Domain\LoanType.cs" />
     <Compile Include="Domain\ApproveAction.cs" />
     <Compile Include="Domain\AutFunction.cs" />
     <Compile Include="Domain\AutSystem.cs" />
@@ -171,6 +177,7 @@
     <Compile Include="Domain\TrainingRequests.cs" />
     <Compile Include="Domain\VoucherDetail.cs" />
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
+    <Compile Include="Infrastructure\ApprovalTypeDAO.cs" />
     <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
     <Compile Include="Domain\DistrictTASummaryReport.cs" />
     <Compile Include="Domain\DME21Model.cs" />
@@ -273,6 +280,8 @@
     <Compile Include="Infrastructure\JobCategoryDAO.cs" />
     <Compile Include="Infrastructure\JobPlacementFeedbackDAO.cs" />
     <Compile Include="Infrastructure\JobRefferalsDAO.cs" />
+    <Compile Include="Infrastructure\LoanDetailDAO.cs" />
+    <Compile Include="Infrastructure\LoanTypeDAO.cs" />
     <Compile Include="Infrastructure\MaintenanceCategoryDAO.cs" />
     <Compile Include="Infrastructure\LeaveTypeDAO.cs" />
     <Compile Include="Infrastructure\MarketTypeDAO.cs" />

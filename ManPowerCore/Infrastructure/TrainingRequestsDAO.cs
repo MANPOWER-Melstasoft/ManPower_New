@@ -36,7 +36,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@AcceptedDate", trainingRequests.Accepted_Date);
             dbConnection.cmd.Parameters.AddWithValue("@AcceptedUser", trainingRequests.Accepted_User);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
             return output;
         }

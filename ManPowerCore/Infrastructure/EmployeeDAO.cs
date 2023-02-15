@@ -25,15 +25,15 @@ namespace ManPowerCore.Infrastructure
         {
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE(Religion_Id,Ethnicity_Id,NIC,Passport_Number" +
+            dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE (Religion_Id, Ethnicity_Id, NIC, Passport_Number, Title" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
                                             ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type, " +
                                             " Pension_Date,VNOP_No,Appointment_No,File_No) " +
 
-                                            "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@EmployeePassportNumber " +
+                                            "VALUES(@ReligionId,@EthnicityId,@EmployeeNIC,@EmployeePassportNumber, @Title " +
                                             ", @EmpInitials,@LastName,@NameWithInitials,@EmpGender,@DOB " +
                                             ", @MaritalStatus,@SupervisorId,@ManagerId,@DSDivisionId,@DistrictId,@UnitType " +
-                                            ", @PensionDate,@VNOPNo,@AppointmentNo,@FileNo,@EmpNo) SELECT SCOPE_IDENTITY() ";
+                                            ", @PensionDate,@VNOPNo,@AppointmentNo,@FileNo) SELECT SCOPE_IDENTITY() ";
 
 
 
@@ -45,6 +45,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@MaritalStatus", emp.MaritalStatus);
             dbConnection.cmd.Parameters.AddWithValue("@SupervisorId", emp.SupervisorId);
             dbConnection.cmd.Parameters.AddWithValue("@ManagerId", emp.ManagerId);
+            dbConnection.cmd.Parameters.AddWithValue("@Title", emp.Title);
+
             dbConnection.cmd.Parameters.AddWithValue("@EmpInitials", emp.EmpInitials);
             dbConnection.cmd.Parameters.AddWithValue("@LastName", emp.LastName);
             dbConnection.cmd.Parameters.AddWithValue("@NameWithInitials", emp.NameWithInitials);

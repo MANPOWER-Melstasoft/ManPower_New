@@ -29,6 +29,7 @@ namespace ManPowerWeb
         int[] attempt = { 1, 2, 3 };
         string[] eduStatus = { "Completed", "Not Completed" };
         string[] isResigned = { "Yes", "No" };
+        string[] title = { "Mr", "Mrs", "Ms", "Master", "Other" };
         //string[] absorbStatus = { "Yes", "Not Relevent" };
         int[] yearslist =
         {
@@ -150,6 +151,9 @@ namespace ManPowerWeb
 
             ddlGender.DataSource = gen;
             ddlGender.DataBind();
+
+            ddlMR.DataSource = title;
+            ddlMR.DataBind();
 
             //ddlEducationStatus.DataSource = eduStatus;
             //ddlEducationStatus.DataBind();
@@ -620,6 +624,7 @@ namespace ManPowerWeb
             //emp.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
             //emp.EmployeePassportNumber = empPassport.Text;
             emp.EmployeePassportNumber = "";
+            emp.Title = ddlMR.SelectedValue;
             emp.EmpInitials = initial.Text;
             emp.LastName = lname.Text;
             emp.NameWithInitials = nameOfInitials.Text;

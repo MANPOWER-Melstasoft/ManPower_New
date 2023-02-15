@@ -38,7 +38,7 @@ namespace ManPowerCore.Domain
         public int IsVoucherAuthorized { get; set; }
 
         [DBField("Vou_Authorized_Date")]
-        public DateTime VouAuthorizedDate { get; set; }
+        public DateTime? VouAuthorizedDate { get; set; }
 
         [DBField("Vou_Authorized_User")]
         public string VouAuthorizedUser { get; set; }

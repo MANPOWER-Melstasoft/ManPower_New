@@ -139,14 +139,14 @@
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <asp:Literal ID="Literal7" runat="server" Text="Appeal Amount"></asp:Literal>
+                                    <asp:Literal ID="Literal7" runat="server" Text="Requesting Loan Amount"></asp:Literal>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <asp:TextBox ID="txtAppealAmounr" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    <asp:TextBox ID="txtLoanAmount" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtAppealAmounr" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            ControlToValidate="txtLoanAmount" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                         <div class="col-sm-3">
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Send to Admin" CssClass="btn btn-primary" ValidationGroup="1" />
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Send to Admin" CssClass="btn btn-primary" ValidationGroup="1" OnClick="btnSubmit_Click" />
                                 </div>
                                 <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />

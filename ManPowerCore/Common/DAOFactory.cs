@@ -574,5 +574,11 @@ namespace ManPowerCore.Common
             LoanTypeDAO loanTypeDAO = new LoanTypeDAOSqlImpl();
             return (LoanTypeDAO)loanTypeDAO;
         }
+
+        public static ApprovalTypeDAO createApprovalTypeDAO()
+        {
+            ApprovalTypeDAO approvalType = new ApprovalTypeDAOImpl();
+            return (ApprovalTypeDAO)approvalType;
+        }
     }
 }

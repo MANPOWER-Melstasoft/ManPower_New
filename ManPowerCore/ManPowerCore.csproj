@@ -144,6 +144,7 @@
     <Compile Include="Controller\VoteTypeController.cs" />
     <Compile Include="Controller\VoucherDetailController.cs" />
     <Compile Include="Domain\AccountCode.cs" />
+    <Compile Include="Domain\ApprovalType.cs" />
     <Compile Include="Domain\LoanType.cs" />
     <Compile Include="Domain\ApproveAction.cs" />
     <Compile Include="Domain\AutFunction.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Domain\TrainingRequests.cs" />
     <Compile Include="Domain\VoucherDetail.cs" />
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
+    <Compile Include="Infrastructure\ApprovalTypeDAO.cs" />
     <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
     <Compile Include="Domain\DistrictTASummaryReport.cs" />
     <Compile Include="Domain\DME21Model.cs" />

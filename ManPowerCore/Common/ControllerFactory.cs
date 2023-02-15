@@ -594,5 +594,11 @@ namespace ManPowerCore.Common
             ApprovalTypeController approvalTypeController = new ApprovalTypeControllerImpl();
             return (ApprovalTypeController)approvalTypeController;
         }
+
+        public static LoanDetailsController CreateLoanDetailsController()
+        {
+            LoanDetailsController loanDetailsController = new LoanDetailsControllerImpl();
+            return (LoanDetailsController)loanDetailsController;
+        }
     }
 }

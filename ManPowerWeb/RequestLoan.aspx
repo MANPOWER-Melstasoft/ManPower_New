@@ -160,7 +160,7 @@
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <asp:Literal ID="Literal8" runat="server" Text="Date Wanted"></asp:Literal>
+                                    <asp:Literal ID="Literal8" runat="server" Text="Date Required"></asp:Literal>
                                 </div>
 
                                 <div class="col-md-6">
@@ -178,7 +178,7 @@
                         <div class="col-sm-3">
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Send to Approval" CssClass="btn btn-primary" ValidationGroup="1" />
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Send to Admin" CssClass="btn btn-primary" ValidationGroup="1" />
                                 </div>
                                 <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />

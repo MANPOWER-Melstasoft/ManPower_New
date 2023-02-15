@@ -85,6 +85,7 @@
     <Compile Include="Controller\JobCategoryController.cs" />
     <Compile Include="Controller\JobPlacementFeedbackController.cs" />
     <Compile Include="Controller\JobRefferalsController.cs" />
+    <Compile Include="Controller\LoanTypeController.cs" />
     <Compile Include="Controller\MaintenanceCategoryController.cs" />
     <Compile Include="Controller\LeaveTypeController.cs" />
     <Compile Include="Controller\MarketTypeController.cs" />

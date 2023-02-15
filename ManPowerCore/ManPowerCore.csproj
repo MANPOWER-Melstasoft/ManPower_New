@@ -50,6 +50,7 @@
     <Compile Include="Common\DBFieldAttribute.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controller\AccountCodeController.cs" />
+    <Compile Include="Controller\ApprovalTypeController.cs" />
     <Compile Include="Controller\ApproveActionController.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
     <Compile Include="Controller\AutSystemRoleFunctionController.cs" />

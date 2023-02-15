@@ -588,5 +588,11 @@ namespace ManPowerCore.Common
             LoanTypeController loanTypeController = new LoanTypeControllerImpl();
             return (LoanTypeController)loanTypeController;
         }
+
+        public static ApprovalTypeController CreateApprovalTypeController()
+        {
+            ApprovalTypeController approvalTypeController = new ApprovalTypeControllerImpl();
+            return (ApprovalTypeController)approvalTypeController;
+        }
     }
 }

@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="card p-4">
-            <h2>Developed Entrepreneur / Self Employers Details</h2>
+            <h2>Individual Beneficiaries</h2>
 
             <div class="row mt-5">
                 <div class="col-6">

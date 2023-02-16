@@ -130,6 +130,10 @@ namespace ManPowerWeb
 
                     }
                 }
+                if (systemUserListFilterFinal.Count > 0)
+                {
+                    DME21Heading.Visible = true;
+                }
 
                 gvUser.DataSource = systemUserListFilterFinal;
                 gvUser.DataBind();

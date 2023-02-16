@@ -43,7 +43,7 @@
             </div>
 
             <div class="row mt-4 p-2">
-                <asp:Button ID="Button1" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
+                <asp:Button ID="Button1" runat="server" Text="Search" OnClick="btnSearch_Click" AutoPostBack="true" CssClass="btn btn-primary" />
             </div>
 
             <div class="row mt-3 p-2">
@@ -60,6 +60,7 @@
                         <asp:BoundField HeaderText="Job Preference" DataField="JobPreference" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Contact Number" DataField="ContactNumber" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Date Of Birth" DataField="DateOfBirth" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                        <asp:BoundField HeaderText="Created User" DataField="systemCreatedUser.Name" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
                             <ItemTemplate>
                                 <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
@@ -83,6 +84,10 @@
                     </Columns>
                 </asp:GridView>
             </div>
+
+            <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success col-3" title="Export To Excel" visible="false">
+                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+            </button>
         </div>
     </div>
 

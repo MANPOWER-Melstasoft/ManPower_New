@@ -55,7 +55,7 @@ namespace ManPowerWeb
         {
 
             ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
-            resourcePeopleList = resourcePersonController.GetAllResourcePerson();
+            resourcePeopleList = resourcePersonController.GetAllResourcePerson(false);
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
 

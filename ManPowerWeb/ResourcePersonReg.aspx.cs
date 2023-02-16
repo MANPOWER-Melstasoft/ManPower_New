@@ -40,6 +40,7 @@ namespace ManPowerWeb
             resourcePerson.ContactNumber = contact.Text;
             resourcePerson.WhatsappNumber = whatsapp.Text;
             resourcePerson.Email = email.Text;
+            resourcePerson.CreatedUser = Convert.ToInt32(Session["UserId"]);
 
             int result1 = rp.SaveResourcePerson(resourcePerson);
 
@@ -55,7 +56,7 @@ namespace ManPowerWeb
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-           
+
             desig.Text = null;
             nic.Text = null;
             workPlace.Text = null;
@@ -64,7 +65,7 @@ namespace ManPowerWeb
             contact.Text = null;
             whatsapp.Text = null;
             email.Text = null;
-            name.Text=null;
+            name.Text = null;
         }
     }
 }

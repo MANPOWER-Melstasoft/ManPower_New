@@ -26,10 +26,10 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Loan_Details (Payment_Voucher_Id, Employee_ID, Approval_Status_Id, Loan_Type_Id, Full_Name, Position, Work_Place, Work_Type, Appointed_Date, Basic_Salary, Loan_Amount, Loan_Require_Date, Created_Date) " +
-                                "VALUES (@PaymentVoucherId, @EmployeeId, @ApprovalStatusId, @LoanTypeId, @FullName, @Position, @WorkPlace, @WorkType, @AppointedDate, @BasicSalary, @LoanAmount, @LoanRequireDate, @CreatedDate)";
+            dbConnection.cmd.CommandText = "INSERT INTO Loan_Details (Employee_ID, Approval_Status_Id, Loan_Type_Id, Full_Name, Position, Work_Place, Work_Type, Appointed_Date, Basic_Salary, Loan_Amount, Loan_Require_Date, Created_Date) " +
+                                "VALUES (@EmployeeId, @ApprovalStatusId, @LoanTypeId, @FullName, @Position, @WorkPlace, @WorkType, @AppointedDate, @BasicSalary, @LoanAmount, @LoanRequireDate, @CreatedDate)";
 
-            dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
+            //dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", loanDetails.EmployeeId);
             dbConnection.cmd.Parameters.AddWithValue("@ApprovalStatusId", loanDetails.ApprovalStatusId);
             dbConnection.cmd.Parameters.AddWithValue("@LoanTypeId", loanDetails.LoanTypeId);

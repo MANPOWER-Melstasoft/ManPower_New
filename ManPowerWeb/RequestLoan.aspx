@@ -186,12 +186,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 m-3">
-                        <asp:Label ID="lblSuccessMsg" runat="server" Text="" ForeColor="#33cc33"></asp:Label>
-                    </div>
+
 
                 </div>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnSubmit" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

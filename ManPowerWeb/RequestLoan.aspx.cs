@@ -15,6 +15,8 @@ namespace ManPowerWeb
         List<LoanType> loanTypeList = new List<LoanType>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 bindDatasource();
@@ -49,8 +51,19 @@ namespace ManPowerWeb
             loanDetail.LoanRequireDate = Convert.ToDateTime(txtDateWanted.Text);
             loanDetail.CreatedDate = DateTime.Now;
             loanDetail.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+            loanDetail.ApprovalStatusId = 1;
 
             int response = loanDetailsController.Save(loanDetail);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='RequestLoan.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='RequestLoan.aspx'},2500);", true);
+
+            }
 
         }
     }

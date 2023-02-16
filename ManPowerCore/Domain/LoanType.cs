@@ -14,8 +14,8 @@ namespace ManPowerCore.Domain
         [DBField("Id")]
         public int Id { get; set; }
 
-        [DBField("Loan_Type")]
-        public string Loan_Type { get; set; }
+        [DBField("Loan_Type_Name")]
+        public string Loan_Type_Name { get; set; }
     }
 
 }

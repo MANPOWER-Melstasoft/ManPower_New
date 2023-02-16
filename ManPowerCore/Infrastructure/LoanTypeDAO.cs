@@ -26,11 +26,11 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Loan_Type (Loan_Type) VALUES (@LoanType)";
+            dbConnection.cmd.CommandText = "INSERT INTO Loan_Type_Name (Loan_Type_Name) VALUES (@LoanType)";
 
-            dbConnection.cmd.Parameters.AddWithValue("@LoanType", loanType.Loan_Type);
+            dbConnection.cmd.Parameters.AddWithValue("@LoanType", loanType.Loan_Type_Name);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
             return output;
         }
@@ -41,13 +41,13 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "UPDATE Loan_Type SET Loan_Type = @LoanType WHERE Id = @Id";
+            dbConnection.cmd.CommandText = "UPDATE Loan_Type SET Loan_Type_Name = @LoanType WHERE Id = @Id";
 
-            dbConnection.cmd.Parameters.AddWithValue("@LoanType", loanType.Loan_Type);
+            dbConnection.cmd.Parameters.AddWithValue("@LoanType", loanType.Loan_Type_Name);
             dbConnection.cmd.Parameters.AddWithValue("@Id", loanType.Id);
 
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
             return output;
         }

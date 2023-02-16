@@ -40,6 +40,7 @@ namespace ManPowerWeb
             resourcePerson.ContactNumber = contact.Text;
             resourcePerson.WhatsappNumber = whatsapp.Text;
             resourcePerson.Email = email.Text;
+            resourcePerson.Gender = ddlGender.SelectedValue;
             resourcePerson.CreatedUser = Convert.ToInt32(Session["UserId"]);
 
             int result1 = rp.SaveResourcePerson(resourcePerson);

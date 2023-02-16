@@ -46,7 +46,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO RESOURCE_PERSON(RESOURCE_PERSON_TYPE,NIC,NAME,DESIGNATION,WORK_PLACE,QUALIFICATIONS,ADDRESS,CONTACT_NUMBER,WHATSAPP_NUMBER,EMAIL) " +
-            "VALUES(@ResourcePersonType,@NIC,@Name,@Designation,@WorkPlace,@Qualifications,@Address,@ContactNumber,@WhatsappNumber,@Email) ";
+            "VALUES(@ResourcePersonType,@NIC,@Name,@Designation,@WorkPlace,@Qualifications,@Address,@ContactNumber,@WhatsappNumber,@Email, @Gender) ";
 
             dbConnection.cmd.Parameters.AddWithValue("@ResourcePersonType", resourcePerson.ResourcePersonType);
             dbConnection.cmd.Parameters.AddWithValue("@NIC", resourcePerson.NIC);
@@ -58,6 +58,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ContactNumber", resourcePerson.ContactNumber);
             dbConnection.cmd.Parameters.AddWithValue("@WhatsappNumber", resourcePerson.WhatsappNumber);
             dbConnection.cmd.Parameters.AddWithValue("@Email", resourcePerson.Email);
+            dbConnection.cmd.Parameters.AddWithValue("@Email", resourcePerson.Gender);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

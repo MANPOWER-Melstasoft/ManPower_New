@@ -17,7 +17,7 @@ namespace ManPowerCore.Controller
 
         int DeleteInduvidualBeneficiary(int id);
 
-        List<InduvidualBeneficiary> GetAllInduvidualBeneficiary();
+        List<InduvidualBeneficiary> GetAllInduvidualBeneficiary(bool withCreatedUser);
 
         List<InduvidualBeneficiary> GetAllInduvidualBeneficiary(string runName);
 
@@ -96,13 +96,26 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<InduvidualBeneficiary> GetAllInduvidualBeneficiary()
+        public List<InduvidualBeneficiary> GetAllInduvidualBeneficiary(bool withCreatedUser)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
                 InduvidualBeneficiaryDAO DAO = DAOFactory.CreateInduvidualBeneficiaryDAO();
-                return DAO.GetAllInduvidualBeneficiary(dbConnection);
+                List<InduvidualBeneficiary> induvidualBeneficiaries = DAO.GetAllInduvidualBeneficiary(dbConnection);
+
+                if (withCreatedUser)
+                {
+                    SystemUserDAO autFunctionDAO = DAOFactory.CreateSystemUserDAO();
+                    List<SystemUser> systemUsers = autFunctionDAO.GetAllSystemUser(dbConnection);
+
+                    foreach (var item in induvidualBeneficiaries)
+                    {
+                        item.systemCreatedUser = systemUsers.Where(x => x.SystemUserId == item.CreatedUser).Single();
+                    }
+                }
+
+                return induvidualBeneficiaries;
             }
             catch (Exception ex)
             {

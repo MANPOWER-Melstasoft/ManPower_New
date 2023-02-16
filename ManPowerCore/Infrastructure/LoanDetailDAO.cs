@@ -69,8 +69,7 @@ namespace ManPowerCore.Infrastructure
                                 "Basic_Salary = @BasicSalary, Loan_Amount = @LoanAmount, " +
                                 "Loan_Require_Date = @LoanRequireDate, Created_Date = @CreatedDate, " +
                                 "Salary_No = @SalaryNo, Last_Loan_Date = @LastLoanDate, " +
-                                "Last_Loan_Paid_Month = @LastLoanPaidMonth, Reject_Reason = @RejectReason, " +
-                                "Approval_Date = @ApprovalDate, Head_Approval_Date = @HeadApprovalDate, " +
+                                "Last_Loan_Paid_Month = @LastLoanPaidMonth, " +
                                 "WHERE Id = @LoanDetailsId";
 
             dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
@@ -89,9 +88,6 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@SalaryNo", loanDetails.SalaryNo);
             dbConnection.cmd.Parameters.AddWithValue("@LastLoanDate", loanDetails.LastLoanDate);
             dbConnection.cmd.Parameters.AddWithValue("@LastLoanPaidMonth", loanDetails.LastLoanPaidMonth);
-            dbConnection.cmd.Parameters.AddWithValue("@RejectReason", loanDetails.RejectReason);
-            dbConnection.cmd.Parameters.AddWithValue("@ApprovalDate", loanDetails.ApprovalDate);
-            dbConnection.cmd.Parameters.AddWithValue("@HeadApprovalDate", loanDetails.HeadApprovalDate);
             dbConnection.cmd.Parameters.AddWithValue("@LoanDetailsId", loanDetails.LoanDetailsId);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());

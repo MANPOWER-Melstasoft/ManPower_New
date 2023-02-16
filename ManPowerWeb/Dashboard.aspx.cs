@@ -43,7 +43,7 @@ namespace ManPowerWeb
         }
         protected bool IsNotSubmitDME()
         {
-            if (DateTime.Now.Day > 10)
+            if (DateTime.Now.Day > 25)
             {
                 int DepUnitPossiId = Convert.ToInt32(Session["DepUnitPositionId"]);
                 TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
@@ -84,7 +84,7 @@ namespace ManPowerWeb
 
         protected void IsNotSubmitDMEParentGV()
         {
-            if (DateTime.Now.Day > 10)
+            if (DateTime.Now.Day > 25)
             {
                 SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
                 List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
@@ -98,14 +98,14 @@ namespace ManPowerWeb
                     systemUserList.RemoveAll(x => x.UserTypeId == 4);
                     systemUserList.RemoveAll(x => x.UserTypeId == 5);
 
-                    systemUserListFilter = systemUserList;
-                    systemUserListFilterFinal = systemUserList;
+                    systemUserListFilter = systemUserList.ToList();
+                    systemUserListFilterFinal = systemUserList.ToList();
                 }
                 if (Session["UserTypeId"].ToString() == "2")
                 {
                     SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, false);
                     systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();
-                    systemUserListFilterFinal = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();
+                    systemUserListFilterFinal = systemUserListFilter.ToList();
                 }
 
 
@@ -126,10 +126,13 @@ namespace ManPowerWeb
                         if (dateTime.Year == DateTime.Today.Year && dateTime.Month == nextMonth.Month && itemTask.StatusId != 0)
                         {
                             systemUserListFilterFinal.RemoveAll(x => x.SystemUserId == item.SystemUserId);
-
                         }
 
                     }
+                }
+                if (systemUserListFilterFinal.Count > 0)
+                {
+                    DME21Heading.Visible = true;
                 }
 
                 gvUser.DataSource = systemUserListFilterFinal;

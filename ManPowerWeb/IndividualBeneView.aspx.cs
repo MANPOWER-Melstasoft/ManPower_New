@@ -36,7 +36,7 @@ namespace ManPowerWeb
                 bindProgramPlan();
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
-                beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary();
+                beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary(true);
 
                 BenficiaryId = Request.QueryString["id"];
 

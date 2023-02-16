@@ -38,9 +38,9 @@ namespace ManPowerWeb
             if (rp.Count > 0)
             {
                 btnRun.Visible = true;
-            }
+            } 
 
-            ViewState["rp"] = rp;
+            ViewState["rp"] = rp; 
             GridView1.DataSource = rp;
             GridView1.DataBind();
         }

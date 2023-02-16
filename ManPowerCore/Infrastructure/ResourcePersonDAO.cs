@@ -45,7 +45,7 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO RESOURCE_PERSON(RESOURCE_PERSON_TYPE,NIC,NAME,DESIGNATION,WORK_PLACE,QUALIFICATIONS,ADDRESS,CONTACT_NUMBER,WHATSAPP_NUMBER,EMAIL, Created_User) " +
+            dbConnection.cmd.CommandText = "INSERT INTO RESOURCE_PERSON(RESOURCE_PERSON_TYPE,NIC,NAME,DESIGNATION,WORK_PLACE,QUALIFICATIONS,ADDRESS,CONTACT_NUMBER,WHATSAPP_NUMBER,EMAIL, Gender, Created_User) " +
             "VALUES(@ResourcePersonType,@NIC,@Name,@Designation,@WorkPlace,@Qualifications,@Address,@ContactNumber,@WhatsappNumber,@Email, @Gender, @CreatedUser) ";
 
 

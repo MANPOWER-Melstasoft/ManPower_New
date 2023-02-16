@@ -47,7 +47,7 @@ namespace ManPowerCore.Domain
         public float LoanAmount { get; set; }
 
         [DBField("Loan_Require_Date")]
-        public string LoanRequireDate { get; set; }
+        public DateTime LoanRequireDate { get; set; }
 
         [DBField("Created_Date")]
         public DateTime CreatedDate { get; set; }

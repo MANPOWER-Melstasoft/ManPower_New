@@ -18,7 +18,7 @@ namespace ManPowerWeb
         {
             ResourcePersonController resourcePerson = ControllerFactory.CreateResourcePersonController();
 
-            rp = resourcePerson.GetAllResourcePerson();
+            rp = resourcePerson.GetAllResourcePerson(true);
 
             string id = Request.QueryString["id"];
 

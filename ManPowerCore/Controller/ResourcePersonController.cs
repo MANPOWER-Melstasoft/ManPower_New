@@ -13,7 +13,7 @@ namespace ManPowerCore.Controller
     {
         int SaveResourcePerson(ResourcePerson resourcePerson);
 
-        List<ResourcePerson> GetAllResourcePerson();
+        List<ResourcePerson> GetAllResourcePerson(bool withCreatedUser);
     }
 
     public class ResourcePersonControllerImpl : ResourcePersonController
@@ -41,13 +41,27 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public List<ResourcePerson> GetAllResourcePerson()
+        public List<ResourcePerson> GetAllResourcePerson(bool withCreatedUser)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
                 ResourcePersonDAO DAO = DAOFactory.CreateResourcePersonDAO();
-                return DAO.GetAllResourcePerson(dbConnection);
+                List<ResourcePerson> resourcePeople = DAO.GetAllResourcePerson(dbConnection);
+
+                if (withCreatedUser)
+                {
+                    SystemUserDAO autFunctionDAO = DAOFactory.CreateSystemUserDAO();
+                    List<SystemUser> systemUsers = autFunctionDAO.GetAllSystemUser(dbConnection);
+
+                    foreach (var item in resourcePeople)
+                    {
+                        item.systemCreatedUser = systemUsers.Where(x => x.SystemUserId == item.CreatedUser).Single();
+                    }
+                }
+
+                return resourcePeople;
+
             }
             catch (Exception ex)
             {

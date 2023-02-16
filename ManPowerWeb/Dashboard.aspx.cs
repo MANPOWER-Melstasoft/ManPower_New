@@ -23,6 +23,11 @@ namespace ManPowerWeb
             {
                 if (!IsPostBack)
                 {
+
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 1 || Convert.ToInt32(Session["UserTypeId"]) == 2)
+                    {
+                        IsNotSubmitDMEParentGV();
+                    }
                     if (Convert.ToInt32(Session["UserTypeId"]) == 3 && IsNotSubmitDME())
                     {
                         RaiseNotification();
@@ -38,7 +43,7 @@ namespace ManPowerWeb
         }
         protected bool IsNotSubmitDME()
         {
-            if (DateTime.Now.Day > 10)
+            if (DateTime.Now.Day > 25)
             {
                 int DepUnitPossiId = Convert.ToInt32(Session["DepUnitPositionId"]);
                 TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
@@ -76,6 +81,71 @@ namespace ManPowerWeb
                 return false;
             }
         }
+
+        protected void IsNotSubmitDMEParentGV()
+        {
+            if (DateTime.Now.Day > 25)
+            {
+                SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+                List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
+                List<SystemUser> systemUserListFilter = new List<SystemUser>();
+                List<SystemUser> systemUserListFilterFinal = new List<SystemUser>();
+
+                if (Session["UserTypeId"].ToString() == "1")
+                {
+                    systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]));
+                    systemUserList.RemoveAll(x => x.UserTypeId == 1);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 4);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 5);
+
+                    systemUserListFilter = systemUserList.ToList();
+                    systemUserListFilterFinal = systemUserList.ToList();
+                }
+                if (Session["UserTypeId"].ToString() == "2")
+                {
+                    SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, false);
+                    systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();
+                    systemUserListFilterFinal = systemUserListFilter.ToList();
+                }
+
+
+
+                foreach (var item in systemUserListFilter)
+                {
+                    int DepUnitPossiId = item._DepartmentUnitPositions.DepartmetUnitPossitionsId;
+                    TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+                    List<TaskAllocation> taskAllocations = taskAllocationController.GetAllTaskAllocationByDepartmentUnitPositionId(DepUnitPossiId);
+
+                    foreach (var itemTask in taskAllocations)
+                    {
+                        DateTime dateTime = itemTask.TaskYearMonth;
+
+                        DateTime currentDate = DateTime.Now;
+                        DateTime nextMonth = currentDate.AddMonths(1);
+
+                        if (dateTime.Year == DateTime.Today.Year && dateTime.Month == nextMonth.Month && itemTask.StatusId != 0)
+                        {
+                            systemUserListFilterFinal.RemoveAll(x => x.SystemUserId == item.SystemUserId);
+                        }
+
+                    }
+                }
+                if (systemUserListFilterFinal.Count > 0)
+                {
+                    DME21Heading.Visible = true;
+                }
+
+                gvUser.DataSource = systemUserListFilterFinal;
+                gvUser.DataBind();
+
+            }
+        }
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUser.PageIndex = e.NewPageIndex;
+            IsNotSubmitDMEParentGV();
+
+        }
         protected void RaiseNotification()
         {
             if (Session["DME21Notifi"] == null)
@@ -91,12 +161,13 @@ namespace ManPowerWeb
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
             if (Session["UserTypeId"].ToString() == "1")
             {
+                systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]));
                 lblNumberOfEmp.Text = systemUserList.Count.ToString();
             }
             if (Session["UserTypeId"].ToString() == "2")
             {
                 SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, false);
-                List<SystemUser> systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmentUnitId).ToList();
+                List<SystemUser> systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();
                 lblNumberOfEmp.Text = systemUserListFilter.Count.ToString();
             }
 

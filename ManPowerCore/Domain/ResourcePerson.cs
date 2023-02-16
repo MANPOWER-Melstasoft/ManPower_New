@@ -45,5 +45,10 @@ namespace ManPowerCore.Domain
 
         [DBField("Gender")]
         public string Gender { get; set; }
+
+        [DBField("Created_User")]
+        public int CreatedUser { get; set; }
+
+        public SystemUser systemCreatedUser { get; set; }
     }
 }

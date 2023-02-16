@@ -56,6 +56,7 @@ namespace ManPowerWeb
             induvidualBeneficiary.JobPreference = jobType.Text;
             induvidualBeneficiary.ContactNumber = contact.Text;
             induvidualBeneficiary.WhatsappNumber = whatsapp.Text;
+            induvidualBeneficiary.CreatedUser = Convert.ToInt32(Session["UserId"]);
 
             if (ddl2.SelectedValue.ToLower() == "school")
             {

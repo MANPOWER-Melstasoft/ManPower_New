@@ -26,10 +26,10 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Loan_Details (Payment_Voucher_Id, Employee_ID, Approval_Status_Id, Loan_Type_Id, Full_Name, Position, Work_Place, Work_Type, Appointed_Date, Basic_Salary, Loan_Amount, Loan_Require_Date, Created_Date, Salary_No, Last_Loan_Date, Last_Loan_Paid_Month, Reject_Reason, Approval_Date, Head_Approval_Date, Is_Active) " +
-                                "VALUES (@PaymentVoucherId, @EmployeeId, @ApprovalStatusId, @LoanTypeId, @FullName, @Position, @WorkPlace, @WorkType, @AppointedDate, @BasicSalary, @LoanAmount, @LoanRequireDate, @CreatedDate, @SalaryNo, @LastLoanDate, @LastLoanPaidMonth)";
+            dbConnection.cmd.CommandText = "INSERT INTO Loan_Details (Employee_ID, Approval_Status_Id, Loan_Type_Id, Full_Name, Position, Work_Place, Work_Type, Appointed_Date, Basic_Salary, Loan_Amount, Loan_Require_Date, Created_Date) " +
+                                "VALUES (@EmployeeId, @ApprovalStatusId, @LoanTypeId, @FullName, @Position, @WorkPlace, @WorkType, @AppointedDate, @BasicSalary, @LoanAmount, @LoanRequireDate, @CreatedDate)";
 
-            dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
+            //dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", loanDetails.EmployeeId);
             dbConnection.cmd.Parameters.AddWithValue("@ApprovalStatusId", loanDetails.ApprovalStatusId);
             dbConnection.cmd.Parameters.AddWithValue("@LoanTypeId", loanDetails.LoanTypeId);
@@ -42,9 +42,12 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@LoanAmount", loanDetails.LoanAmount);
             dbConnection.cmd.Parameters.AddWithValue("@LoanRequireDate", loanDetails.LoanRequireDate);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", loanDetails.CreatedDate);
-            dbConnection.cmd.Parameters.AddWithValue("@SalaryNo", loanDetails.SalaryNo);
-            dbConnection.cmd.Parameters.AddWithValue("@LastLoanDate", loanDetails.LastLoanDate);
-            dbConnection.cmd.Parameters.AddWithValue("@LastLoanPaidMonth", loanDetails.LastLoanPaidMonth);
+            //dbConnection.cmd.Parameters.AddWithValue("@SalaryNo", loanDetails.SalaryNo);
+            //dbConnection.cmd.Parameters.AddWithValue("@LastLoanDate", loanDetails.LastLoanDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@LastLoanPaidMonth", loanDetails.LastLoanPaidMonth);
+            //dbConnection.cmd.Parameters.AddWithValue("@RejectReason", loanDetails.RejectReason);
+            //dbConnection.cmd.Parameters.AddWithValue("@ApprovalDate", loanDetails.ApprovalDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@HeadApprovalDate", loanDetails.HeadApprovalDate);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
             return output;

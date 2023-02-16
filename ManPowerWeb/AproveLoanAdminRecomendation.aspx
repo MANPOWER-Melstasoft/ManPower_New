@@ -3,15 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="card p-4 m-4">
         <h2>Loan Admin Recommendation</h2>
-        <asp:GridView runat="server">
+        <asp:GridView runat="server" Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center" ID="gvLoanAdminRec">
             <Columns>
-                <asp:BoundField HeaderText="Id" />
-                <asp:BoundField HeaderText="Employee Name" />
-                <asp:BoundField HeaderText="Date Request" />
-                <asp:BoundField HeaderText="Status" />
-                <asp:TemplateField HeaderText="Action">
+                <asp:BoundField DataField="LoanDetailsId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="FullName" HeaderText="Employee Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="CreatedDate" HeaderText="Date Request" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="ApprovalStatusId" HeaderText="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                     <ItemTemplate>
-                        <asp:LinkButton runat="server" ID="BtnView">View</asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="BtnView" CssClass="btn btn-success" OnClick="BtnView_Click">View</asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
@@ -123,11 +124,11 @@
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-3">
-                            <asp:Literal ID="Literal7" runat="server" Text="Appeal Amount"></asp:Literal>
+                            <asp:Literal ID="Literal7" runat="server" Text="Loan Amount"></asp:Literal>
                         </div>
 
                         <div class="col-md-6">
-                            <asp:TextBox ID="txtAppealAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                            <asp:TextBox ID="txtLoanAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
 
                         </div>
                     </div>
@@ -157,11 +158,11 @@
                 <div class="col-sm-3">
                     <div class="row mb-3 ms-1">
                         <div class="col-4">
-                            <asp:Button ID="btnApproval" runat="server" Text="Approve" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnApproval" runat="server" Text="Approve" CssClass="btn btn-primary" OnClick="btnApproval_Click" />
                         </div>
 
                         <div class="col-4">
-                            <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" />
+                            <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" OnClick="btnReject_Click" />
                         </div>
                     </div>
                 </div>

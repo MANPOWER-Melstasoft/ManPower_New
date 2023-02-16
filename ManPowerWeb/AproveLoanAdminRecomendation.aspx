@@ -9,7 +9,15 @@
                 <asp:BoundField DataField="LoanDetailsId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                 <asp:BoundField DataField="FullName" HeaderText="Employee Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                 <asp:BoundField DataField="CreatedDate" HeaderText="Date Request" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                <asp:BoundField DataField="ApprovalStatusId" HeaderText="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+
+
+                <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                    <ItemTemplate>
+                        <asp:Label runat="server" Visible='<%#Eval("ApprovalStatusId").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Green">  </asp:Label>
+                        <asp:Label runat="server" Visible='<%#Eval("ApprovalStatusId").ToString() == "2" ?true:false %>' Text="Admin Approve" ForeColor="Blue">  </asp:Label>
+                        <asp:Label runat="server" Visible='<%#Eval("ApprovalStatusId").ToString() == "3" ?true:false %>' Text="Admin Reject" ForeColor="Red"> </asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                     <ItemTemplate>
                         <asp:LinkButton runat="server" ID="BtnView" CssClass="btn btn-success" OnClick="BtnView_Click">View</asp:LinkButton>

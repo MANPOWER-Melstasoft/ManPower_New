@@ -754,8 +754,8 @@
                                     <div class="col-3">
                                         <asp:TextBox ID="jobPlacememntDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
                                         <div class="d-flex text-danger">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob4" runat="server" ValidationGroup="Job"
-                                                ControlToValidate="jobPlacememntDate" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                            <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob4" runat="server" ValidationGroup="Job"
+                                                ControlToValidate="jobPlacememntDate" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>--%>
                                         </div>
                                     </div>
 

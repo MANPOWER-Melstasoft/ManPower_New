@@ -771,15 +771,6 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox jobPlacememntDate;
 
         /// <summary>
-        /// RequiredFieldValidatorJob4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorJob4;
-
-        /// <summary>
         /// careerGuidance control.
         /// </summary>
         /// <remarks>

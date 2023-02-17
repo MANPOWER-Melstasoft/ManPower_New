@@ -184,7 +184,9 @@
                             <label>Grade : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="grade" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
+                            <asp:TextBox ID="grade" runat="server" CssClass="form-control form-control-user" AutoPostBack="true" OnTextChanged="grade_TextChanged" TextMode="Number"></asp:TextBox>
+                            <asp:RangeValidator ID="RangeValidator1" ControlToValidate="grade" runat="server" ErrorMessage="Invalid" MinimumValue="1" MaximumValue="13" Type="Integer" ForeColor="Red" ValidationGroup="1"></asp:RangeValidator>
                             <asp:RequiredFieldValidator ControlToValidate="grade" ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -197,10 +199,14 @@
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="parentNic" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
+
                             <asp:RequiredFieldValidator ControlToValidate="parentNic" ID="RequiredFieldValidator12" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <%} %>

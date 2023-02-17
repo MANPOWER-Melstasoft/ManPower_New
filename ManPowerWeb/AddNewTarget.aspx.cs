@@ -186,7 +186,7 @@ namespace ManPowerWeb
         private void bindProgram()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false, false);
+            program = programController.GetAllProgram(true, false, false);
             if (ddlProgramType.SelectedValue != "")
             {
                 ddlProgram.DataSource = program.Where(u => u.ProgramType.ToString() == ddlProgramType.SelectedValue);

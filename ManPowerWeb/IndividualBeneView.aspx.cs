@@ -296,7 +296,7 @@ namespace ManPowerWeb
             JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
             List<JobRefferals> jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
 
-            GridView3.DataSource = jobRefferalsList;
+            GridView3.DataSource = jobRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
             GridView3.DataBind();
         }
 
@@ -489,7 +489,7 @@ namespace ManPowerWeb
             CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
             List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
 
-            gvAnnaualPlan.DataSource = careerKeyTestResultsList;
+            gvAnnaualPlan.DataSource = careerKeyTestResultsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
             gvAnnaualPlan.DataBind();
 
         }
@@ -739,7 +739,7 @@ namespace ManPowerWeb
             TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
             List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
 
-            GridView2.DataSource = trainingRefferalsList;
+            GridView2.DataSource = trainingRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
             GridView2.DataBind();
         }
 

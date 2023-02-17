@@ -221,7 +221,7 @@ namespace ManPowerWeb
         private void BindDesignationList()
         {
             DesignationController designationController = ControllerFactory.CreateDesignationController();
-            List<Designation> designationList = designationController.GetAllDesignation(false, false);
+            List<Designation> designationList = designationController.GetAllDesignation(true, false, false);
 
 
             ddlDesignation.DataSource = designationList;

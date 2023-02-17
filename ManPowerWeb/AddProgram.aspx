@@ -9,7 +9,7 @@
 
             <div class="row mb-3 ms-1 mt-3">
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <asp:Literal ID="lblName" runat="server" Text="Program Name"></asp:Literal>
                 </div>
 
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <asp:Literal ID="lblType" runat="server" Text="Program Type"></asp:Literal>
                 </div>
                 <div class="col-md-3">
@@ -61,6 +61,16 @@
                 <asp:BoundField DataField="ProgramId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
                 <asp:BoundField DataField="ProgramName" HeaderText="PROGRAM NAME" HeaderStyle-CssClass="table-dark" />
                 <asp:BoundField DataField="_ProgramType.ProgramTypeName" HeaderText="PROGRAM TYPE" HeaderStyle-CssClass="table-dark" />
+                <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                    <ItemTemplate>
+                        <asp:LinkButton runat="server" ID="BtnEdit" CssClass="btn btn-warning" OnClick="BtnEdit_Click">Edit</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                    <ItemTemplate>
+                        <asp:LinkButton runat="server" ID="BtnDelete" CssClass="btn btn-danger" OnClick="BtnDelete_Click">Delete</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>

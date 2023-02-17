@@ -16,7 +16,7 @@ namespace ManPowerCore.Controller
 
         int UpdateProgram(Program program);
 
-        List<Program> GetAllProgram(bool withProgramTarget, bool withProgramType);
+        List<Program> GetAllProgram(bool withOut0, bool withProgramTarget, bool withProgramType);
 
         Program GetProgram(int id, bool withProgramTarget);
     }
@@ -73,12 +73,17 @@ namespace ManPowerCore.Controller
         }
 
 
-        public List<Program> GetAllProgram(bool withProgramTarget, bool withProgramType)
+        public List<Program> GetAllProgram(bool withOut0, bool withProgramTarget, bool withProgramType)
         {
             try
             {
                 dBConnection = new DBConnection();
                 List<Program> list = programDAO.GetAllProgram(dBConnection);
+
+                if (withOut0)
+                {
+                    list = list.Where(x => x.IsActive == 1).ToList();
+                }
 
                 if (withProgramTarget)
                 {

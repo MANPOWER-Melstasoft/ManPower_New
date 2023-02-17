@@ -1,16 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPosition.aspx.cs" Inherits="ManPowerWeb.AddPosition" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddDesignation.aspx.cs" Inherits="ManPowerWeb.AddDesignation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
     <div class="card o-hidden border-0 shadow-lg my-3">
         <div class="card-header d-flex align-items-center justify-content-center" style="height: 5%">
-            <h5 class="text-center  mt-3 mb-3">Add Position</h5>
+            <h5 class="text-center  mt-3 mb-3">Add Designation</h5>
         </div>
         <div class="card-body">
 
             <div class="row mb-3 ms-1 mt-3">
                 <div class="col-sm-3">
-                    <asp:Literal ID="lblName" runat="server" Text="Position Name"></asp:Literal>
+                    <asp:Literal ID="lblName" runat="server" Text="Designation Name"></asp:Literal>
                 </div>
 
                 <div class="col-md-4">
@@ -46,8 +45,8 @@
         <asp:GridView Style="margin-top: 30px;" ID="gvPosition" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
             CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
             <Columns>
-                <asp:BoundField DataField="PossitionId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
-                <asp:BoundField DataField="PositionName" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="DesignationId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="DesigntionName" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
                 <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                     <ItemTemplate>
                         <asp:LinkButton runat="server" ID="BtnEdit" CssClass="btn btn-warning" OnClick="BtnEdit_Click">Edit</asp:LinkButton>

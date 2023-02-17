@@ -92,7 +92,7 @@ namespace ManPowerWeb
             educationTypes = et.GetAllEducationType();
 
             DesignationController d = ControllerFactory.CreateDesignationController();
-            designation = d.GetAllDesignation(false, false);
+            designation = d.GetAllDesignation(true, false, false);
 
             ServiceTypeController stc = ControllerFactory.CreateServiceTypeController();
             serviceTypeList = stc.GetAllServiceType();

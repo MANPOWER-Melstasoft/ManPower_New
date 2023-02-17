@@ -3,7 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
+    <%--<asp:UpdatePanel ID="UpdatePanel3" runat="server">
+        <ContentTemplate>
+    --%>
     <div class="container" style="padding-left: 30px;">
         <h2>Individual Beneficiary </h2>
 
@@ -136,7 +138,7 @@
 
         <div class="row mb-5 mt-5">
             <div class="col-2">
-                <asp:Button runat="server" ID="btnSave" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="isClicked" ValidationGroup="1" />
+                <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="isClicked" />
             </div>
         </div>
 
@@ -969,7 +971,13 @@
             </div>
         </div>
     </div>
+    <%--</ContentTemplate>
 
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnBack" />
+        </Triggers>
+
+    </asp:UpdatePanel>--%>
     <style>
         .nav-tabs .nav-link {
             color: gray;

@@ -47,7 +47,7 @@ namespace ManPowerCore.Domain
         public float LoanAmount { get; set; }
 
         [DBField("Loan_Require_Date")]
-        public string LoanRequireDate { get; set; }
+        public DateTime LoanRequireDate { get; set; }
 
         [DBField("Created_Date")]
         public DateTime CreatedDate { get; set; }
@@ -60,15 +60,6 @@ namespace ManPowerCore.Domain
 
         [DBField("Last_Loan_Paid_Month")]
         public DateTime LastLoanPaidMonth { get; set; }
-
-        [DBField("Reject_Reason")]
-        public string RejectReason { get; set; }
-
-        [DBField("Approval_Date")]
-        public DateTime ApprovalDate { get; set; }
-
-        [DBField("Head_Approval_Date")]
-        public DateTime HeadApprovalDate { get; set; }
 
         [DBField("Approval_Status_Id")]
         public int ApprovalStatus { get; set; }

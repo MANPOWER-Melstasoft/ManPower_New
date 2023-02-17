@@ -48,11 +48,11 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO INDUVIDUAL_BENEFICIARY(ID,NIC, NAME, GENDER, DATE_OF_BIRTH , PERSONAL_ADDRESS, EMAIL, JOB_PREFERENCE, " +
-                                            "CONTACT_NUMBER, WHATSAPP_NUMBER, SCHOOL_NAME, ADDRESS_OF_SCHOOL, GRADE, PARENT_NIC, IS_IN_SCHOOL, IS_ACTIVE) " +
+                                            "CONTACT_NUMBER, WHATSAPP_NUMBER, SCHOOL_NAME, ADDRESS_OF_SCHOOL, GRADE, PARENT_NIC, IS_IN_SCHOOL, IS_ACTIVE, Created_User) " +
 
                                            "VALUES(@BenificiaryId,@BeneficiaryNic ,@InduvidualBeneficiaryName, @BeneficiaryGender, " +
                                            "@DateOfBirth, @PersonalAddress, @BeneficiaryEmail, @JobPreference, @ContactNumber, @WhatsappNumber, @SchoolName, " +
-                                           " @AddressOfSchool, @SchoolGrade, @ParentNic, @IsSchoolStudent, @IsActive)";
+                                           " @AddressOfSchool, @SchoolGrade, @ParentNic, @IsSchoolStudent, @IsActive, @CreatedUser)";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@BenificiaryId", induvidualBeneficiary.BeneficiaryId);
@@ -71,6 +71,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ParentNic", induvidualBeneficiary.ParentNic);
             dbConnection.cmd.Parameters.AddWithValue("@IsSchoolStudent", induvidualBeneficiary.IsSchoolStudent);
             dbConnection.cmd.Parameters.AddWithValue("@IsActive", 1);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", induvidualBeneficiary.CreatedUser);
 
             dbConnection.cmd.ExecuteNonQuery();
 

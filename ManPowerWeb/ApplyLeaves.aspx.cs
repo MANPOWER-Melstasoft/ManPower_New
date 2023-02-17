@@ -14,13 +14,17 @@ namespace ManPowerWeb
     {
         List<LeaveType> leavesTypeList = new List<LeaveType>();
         List<HolidaySheet> holidaySheetsList = new List<HolidaySheet>();
+        static List<StaffLeave> staffLeavesList = new List<StaffLeave>();
+        int empId;
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
+            empId = Convert.ToInt32(Session["EmpNumber"]);
             if (!IsPostBack)
             {
                 bindData();
+                bindgvMyLeaves();
             }
         }
         private void bindData()
@@ -38,6 +42,20 @@ namespace ManPowerWeb
 
         }
 
+        private void bindgvMyLeaves()
+        {
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+            staffLeavesList = staffLeaveController.getStaffLeaves(false);
+            // ViewState["staffLeavesList"] = staffLeavesList.Where(x => x.EmployeeId == empId);
+            gvMyLeaves.DataSource = staffLeavesList.Where(x => x.EmployeeId == empId).ToList();
+            gvMyLeaves.DataBind();
+
+        }
+        protected void gvMyLeaves_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvMyLeaves.PageIndex = e.NewPageIndex;
+            bindgvMyLeaves();
+        }
         protected void btnApplyLeave_Click(object sender, EventArgs e)
         {
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
@@ -267,5 +285,7 @@ namespace ManPowerWeb
             }
             return day;
         }
+
+
     }
 }

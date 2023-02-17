@@ -113,8 +113,6 @@ namespace ManPowerWeb
 
                     trainingMain.Post_img = fileName;
 
-
-
                     trainingMainController.Save(trainingMain);
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='AddTrainingFront.aspx'},2500);", true);
 

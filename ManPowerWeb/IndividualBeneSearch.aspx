@@ -46,6 +46,18 @@
                 <asp:Button ID="Button1" runat="server" Text="Search" OnClick="btnSearch_Click" AutoPostBack="true" CssClass="btn btn-primary" />
             </div>
 
+            <div class="row mt-4">
+                <div class="col-2">
+                    <label>Search Any Keyword : </label>
+                </div>
+                <div class="col-5">
+                    <asp:TextBox ID="txtKeyword" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                </div>
+                <div class="col-3" style="width: 100%">
+                    <asp:Button ID="btnSearch2" runat="server" Text="Search" OnClick="btnSearch2_Click" AutoPostBack="true" CssClass="btn btn-primary" />
+                </div>
+            </div>
+
             <div class="row mt-3 p-2">
                 <a href="ResourcePersonReg.aspx">
                     <asp:Button ID="Button2" runat="server" Text="Add New Indvidual Beneficiaries" OnClick="isClicked" CssClass="btn btn-primary" />

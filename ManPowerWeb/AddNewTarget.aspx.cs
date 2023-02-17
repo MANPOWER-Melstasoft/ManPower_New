@@ -36,7 +36,7 @@ namespace ManPowerWeb
 
 
             DesignationController designationController = ControllerFactory.CreateDesignationController();
-            listDesignation = designationController.GetAllDesignation(true, false);
+            listDesignation = designationController.GetAllDesignation(false, true, false);
 
             DepartmentUnitPositionsController unitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
             listUser = unitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);

@@ -10,43 +10,38 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class AddPosition : System.Web.UI.Page
+    public partial class AddDesignation : System.Web.UI.Page
     {
-        static List<Possitions> positionList = new List<Possitions>();
-        UserPrevilage userPrevilage = new UserPrevilage();
-        int functionId = 37;
-
+        static List<Designation> designationList = new List<Designation>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
+            if (!IsPostBack)
             {
-                if (!IsPostBack)
-                {
-                    BindDataSource();
-                }
+                BindDataSource();
             }
         }
+
         private void BindDataSource()
         {
-            PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
-            positionList = possitionsController.GetAllPossitions(false, false);
-            gvPosition.DataSource = positionList;
+            DesignationController designationController = ControllerFactory.CreateDesignationController();
+            designationList = designationController.GetAllDesignation(true, false, false);
+            gvPosition.DataSource = designationList;
             gvPosition.DataBind();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int output;
-            PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
+            DesignationController designationController = ControllerFactory.CreateDesignationController();
 
-            Possitions possitions = new Possitions();
-            possitions.PositionName = txtName.Text;
+            Designation designation = new Designation();
+            designation.DesigntionName = txtName.Text;
 
             if (btnSubmit.Text == "Update")
             {
-                possitions.PossitionId = Convert.ToInt32(ViewState["posId"]);
-                possitions.IsActive = 1;
-                output = possitionsController.UpdatePosition(possitions);
+                designation.DesignationId = Convert.ToInt32(ViewState["desId"]);
+                designation.IsActive = 1;
+                output = designationController.UpdateDesignation(designation);
 
                 if (output == 1)
                 {
@@ -62,7 +57,7 @@ namespace ManPowerWeb
             }
             else
             {
-                output = possitionsController.SavePosition(possitions);
+                output = designationController.SaveDesignation(designation);
                 if (output == 1)
                 {
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Possition Updated Succesfully!', 'success')", true);
@@ -85,11 +80,11 @@ namespace ManPowerWeb
             int pageindex = gvPosition.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
 
-            Possitions possitions = positionList[rowIndex];
-            txtName.Text = possitions.PositionName;
+            Designation designation = designationList[rowIndex];
+            txtName.Text = designation.DesigntionName;
 
             btnSubmit.Text = "Update";
-            ViewState["posId"] = possitions.PossitionId;
+            ViewState["desId"] = designation.DesignationId;
         }
 
         protected void BtnDelete_Click(object sender, EventArgs e)
@@ -99,12 +94,12 @@ namespace ManPowerWeb
             int pageindex = gvPosition.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
 
-            Possitions possitions = positionList[rowIndex];
+            Designation possitions = designationList[rowIndex];
             int output;
-            PossitionsController possitionsController = ControllerFactory.CreatePossitionsController();
+            DesignationController designationController = ControllerFactory.CreateDesignationController();
 
             possitions.IsActive = 0;
-            output = possitionsController.UpdatePosition(possitions);
+            output = designationController.UpdateDesignation(possitions);
 
             if (output == 1)
             {

@@ -5,7 +5,39 @@
     <div class="container">
         <asp:UpdatePanel runat="server" ID="updatepannel1">
             <ContentTemplate>
-                <div class="card ml-4 p-4">
+                <div class="card m-4 p-4">
+                    <h2><b>My Leave</b></h2>
+                    <asp:GridView Style="margin-top: 30px;" ID="gvMyLeaves" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered"
+                        CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="center" ShowFooter="true" AllowPaging="true" OnPageIndexChanging="gvMyLeaves_PageIndexChanging" PageSize="5"
+                        FooterStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Leave Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "1" ?true:false %>' Text="Casual Leave">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "2" ?true:false %>' Text="Medical Leave">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "3" ?true:false %>' Text="Special Leave"> </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "4" ?true:false %>' Text="Short Leave">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "5" ?true:false %>' Text="Duty Leave">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "6" ?true:false %>' Text="Leave to Leave"> </asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="LeaveDate" HeaderText="Leave Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="NoOfLeaves" HeaderText="No of Leaves " HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="CreatedDate" HeaderText="Leave Apply Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Visible='<%#Eval("ApprovedBy").ToString() == "0" ?true:false %>' Text="Pending" ForeColor="Blue">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("ApprovedBy").ToString() == "-1" ?true:false %>' Text="Rejected" ForeColor="Red">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Convert.ToInt32( Eval("ApprovedBy")) > 0  ?true:false %>' Text="Approved" ForeColor="Green">  </asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                        </Columns>
+                        <EmptyDataTemplate>No records</EmptyDataTemplate>
+                    </asp:GridView>
+                </div>
+
+                <div class="card m-4 p-4">
                     <h2><b>Apply Leave</b></h2>
                     <div class="mt-3">
 

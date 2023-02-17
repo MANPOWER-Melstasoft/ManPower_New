@@ -29,6 +29,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user">
+                                    <asp:ListItem Value="">Select Month</asp:ListItem>
                                     <asp:ListItem Value="1">January</asp:ListItem>
                                     <asp:ListItem Value="2">February</asp:ListItem>
                                     <asp:ListItem Value="3">March</asp:ListItem>
@@ -46,14 +47,26 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-2">
-                        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success btn-user btn-block" Text="Search" OnClick="btnSearch_Click" />
-                    </div>
+
 
 
                 </div>
+                <div class="row mb-3 ms-1 mt-4">
 
-                <div class="row mb-3 ms-1">
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search" OnClick="btnSearch_Click" />
+                            </div>
+
+                            <div class="col-sm-6">
+                                <asp:Button ID="btnShowAll" runat="server" CssClass="btn btn- btn-primary " Text="Show All" OnClick="btnShowAll_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3 ms-1 mt-4">
 
                     <div class="col-sm-4">
                         <div class="row">
@@ -63,13 +76,12 @@
                             </div>
                             <div class="col-sm-6">
                                 <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" AutoPostBack="true">
-
+                                    <asp:ListItem Value="">Select Status</asp:ListItem>
                                     <asp:ListItem Value="0">Not Recommended</asp:ListItem>
                                     <asp:ListItem Value="1">Pending</asp:ListItem>
                                     <asp:ListItem Value="2">Approved</asp:ListItem>
                                     <asp:ListItem Value="3">Reject</asp:ListItem>
                                     <asp:ListItem Value="4">All</asp:ListItem>
-
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -138,5 +150,4 @@
 
 
     </div>
-
 </asp:Content>

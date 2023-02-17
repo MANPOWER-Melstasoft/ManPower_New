@@ -15,9 +15,9 @@ namespace ManPowerWeb
 {
     public partial class AnnualTarget : System.Web.UI.Page
     {
-        List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
-        List<ProgramTarget> programTargetsListState = new List<ProgramTarget>();
-        List<ProgramTarget> programTargetsSearchList = new List<ProgramTarget>();
+        static List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
+        static List<ProgramTarget> programTargetsListState = new List<ProgramTarget>();
+        static List<ProgramTarget> programTargetsSearchList = new List<ProgramTarget>();
 
         bool isCLicked = false;
 
@@ -37,6 +37,9 @@ namespace ManPowerWeb
                 //ddlYear.Items.FindByText(year.ToString()).Selected = true;
                 ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
                 BindDataSource();
+
+
+
             }
 
 
@@ -72,7 +75,10 @@ namespace ManPowerWeb
                 ViewState["programTargetsListNotRecommended"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
                 GridView1.DataSource = programTargetsList;
             }
-
+            if (ddlMonth.SelectedValue != "" || ddlYear.SelectedValue != "" || ddlStatus.SelectedValue != "")
+            {
+                bindDataSearch();
+            }
 
             GridView1.DataBind();
 
@@ -106,9 +112,9 @@ namespace ManPowerWeb
         private void bindDataSearch()
         {
             programTargetsListState = (List<ProgramTarget>)ViewState["programTargetsList"];
-            ViewState["programTargetsSearchList"] = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue || x.StartDate.Month.ToString() == ddlMonth.SelectedValue).ToList();
+            ViewState["programTargetsSearchList"] = programTargetsListState.Where(x => x.StartDate.Month.ToString() == ddlMonth.SelectedValue && x.StartDate.Year.ToString() == ddlYear.SelectedValue).ToList();
 
-            GridView1.DataSource = programTargetsListState.Where(x => x.TargetYear.ToString() == ddlYear.SelectedValue && x.TargetMonth.ToString() == ddlMonth.SelectedValue).ToList();
+            GridView1.DataSource = programTargetsListState.Where(x => x.StartDate.Month.ToString() == ddlMonth.SelectedValue && x.StartDate.Year.ToString() == ddlYear.SelectedValue).ToList();
 
 
             GridView1.DataBind();
@@ -154,19 +160,19 @@ namespace ManPowerWeb
         {
 
 
-            if (ddlStatus.SelectedIndex == 0)
+            if (ddlStatus.SelectedValue == "0")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListNotRecommended"];
             }
-            else if (ddlStatus.SelectedIndex == 1)
+            else if (ddlStatus.SelectedValue == "1")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListPending"];
             }
-            else if (ddlStatus.SelectedIndex == 2)
+            else if (ddlStatus.SelectedValue == " 2")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListApproved"];
             }
-            else if (ddlStatus.SelectedIndex == 3)
+            else if (ddlStatus.SelectedValue == "3")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListRejected"];
             }
@@ -175,12 +181,16 @@ namespace ManPowerWeb
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsList"];
             }
 
+
+
             GridView1.DataBind();
         }
 
-
-
-
+        protected void btnShowAll_Click(object sender, EventArgs e)
+        {
+            GridView1.DataSource = ViewState["programTargetsList"] = programTargetsList.ToList();
+            GridView1.DataBind();
+        }
     }
 
 

@@ -88,7 +88,7 @@ namespace ManPowerCore.Controller
 
                 ProgramController programController = ControllerFactory.CreateProgramController();
 
-                programList = programController.GetAllProgram(false, false);
+                programList = programController.GetAllProgram(true, false, false);
 
                 ProjectStatusController statusController = ControllerFactory.CreateProjectStatusController();
 
@@ -142,7 +142,7 @@ namespace ManPowerCore.Controller
 
                 ProgramController programController = ControllerFactory.CreateProgramController();
 
-                programList = programController.GetAllProgram(false, false);
+                programList = programController.GetAllProgram(true, false, false);
 
                 ProjectStatusController statusController = ControllerFactory.CreateProjectStatusController();
 
@@ -196,7 +196,7 @@ namespace ManPowerCore.Controller
 
                 ProgramController programController = ControllerFactory.CreateProgramController();
 
-                programList = programController.GetAllProgram(false, false);
+                programList = programController.GetAllProgram(true, false, false);
 
                 ProjectStatusController statusController = ControllerFactory.CreateProjectStatusController();
 

@@ -12,6 +12,7 @@ namespace ManPowerCore.Infrastructure
     {
 
         int SavePosition(Possitions possitions, DBConnection dbConnection);
+        int UpdatePosition(Possitions possitions, DBConnection dbConnection);
         List<Possitions> GetAllPossitions(bool with0, DBConnection dbConnection);
         Possitions GetPossitions(int id, DBConnection dbConnection);
         List<Possitions> GetAllPossitionsById(int runPosition, DBConnection dbConnection);
@@ -59,7 +60,22 @@ namespace ManPowerCore.Infrastructure
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
+        public int UpdatePosition(Possitions possitions, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
 
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE POSSITIONS SET NAME = @PositionName, IS_ACTIVE = @IsActive  WHERE ID = @PossitionId ";
+
+
+            dbConnection.cmd.Parameters.AddWithValue("@PossitionId", possitions.PossitionId);
+            dbConnection.cmd.Parameters.AddWithValue("@PositionName", possitions.PositionName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", possitions.IsActive);
+
+
+            return dbConnection.cmd.ExecuteNonQuery();
+        }
 
 
         public List<Possitions> GetAllPossitions(bool with0, DBConnection dbConnection)

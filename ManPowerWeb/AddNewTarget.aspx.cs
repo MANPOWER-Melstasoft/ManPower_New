@@ -36,7 +36,7 @@ namespace ManPowerWeb
 
 
             DesignationController designationController = ControllerFactory.CreateDesignationController();
-            listDesignation = designationController.GetAllDesignation(true, false);
+            listDesignation = designationController.GetAllDesignation(false, true, false);
 
             DepartmentUnitPositionsController unitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
             listUser = unitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
@@ -186,7 +186,7 @@ namespace ManPowerWeb
         private void bindProgram()
         {
             ProgramController programController = ControllerFactory.CreateProgramController();
-            program = programController.GetAllProgram(false, false);
+            program = programController.GetAllProgram(true, false, false);
             if (ddlProgramType.SelectedValue != "")
             {
                 ddlProgram.DataSource = program.Where(u => u.ProgramType.ToString() == ddlProgramType.SelectedValue);

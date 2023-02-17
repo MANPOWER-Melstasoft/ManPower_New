@@ -141,10 +141,13 @@
         </div>
         <div class="row mt-3">
             <div class="col-2">
+                <asp:Button runat="server" ID="btnback" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnback_Click" />
+            </div>
+            <div class="col-2">
                 <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidationGroup="1" />
             </div>
             <div class="col-2">
-                <asp:Button runat="server" ID="Button1" Text="Clear" CssClass="btn btn-primary btn-user btn-block" OnClick="btnClear_Click" />
+                <asp:Button runat="server" ID="Button1" Text="Clear" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnClear_Click" />
             </div>
         </div>
         <br />

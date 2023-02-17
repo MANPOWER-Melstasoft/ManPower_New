@@ -67,6 +67,12 @@ namespace ManPowerWeb
             whatsapp.Text = null;
             email.Text = null;
             name.Text = null;
+
+        }
+
+        protected void btnback_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ResourcePersonRegSearch.aspx");
         }
     }
 }

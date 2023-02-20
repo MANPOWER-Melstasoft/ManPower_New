@@ -50,6 +50,7 @@
     <Compile Include="Common\DBFieldAttribute.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controller\AccountCodeController.cs" />
+    <Compile Include="Controller\ApprovalHistoryController.cs" />
     <Compile Include="Controller\ApprovalTypeController.cs" />
     <Compile Include="Controller\ApproveActionController.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Controller\DependantController.cs" />
     <Compile Include="Controller\DependantTypeController.cs" />
     <Compile Include="Controller\DesignationController.cs" />
+    <Compile Include="Controller\DistressLoanController.cs" />
     <Compile Include="Controller\DistricDsParentController.cs" />
     <Compile Include="Controller\DistrictTASummaryController.cs" />
     <Compile Include="Controller\EducationDetailsController.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Controller\EmploymentDetailsController.cs" />
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
+    <Compile Include="Controller\GuarantorDetailController.cs" />
     <Compile Include="Controller\HolidaySheetController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
     <Compile Include="Controller\JobCategoryController.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="Controller\QuatationController.cs" />
     <Compile Include="Controller\ReligionController.cs" />
     <Compile Include="Controller\ReportController.cs" />
+    <Compile Include="Controller\RequestorGuarantorController.cs" />
     <Compile Include="Controller\RequestTypeController.cs" />
     <Compile Include="Controller\ResignationController.cs" />
     <Compile Include="Controller\ResourcePersonController.cs" />
@@ -148,6 +152,8 @@
     <Compile Include="Domain\AccountCode.cs" />
     <Compile Include="Domain\ApprovalType.cs" />
     <Compile Include="Domain\ApprovalHistory.cs" />
+    <Compile Include="Domain\DistressLoan.cs" />
+    <Compile Include="Domain\GuarantorDetail.cs" />
     <Compile Include="Domain\LoanDetail.cs" />
     <Compile Include="Domain\LoanType.cs" />
     <Compile Include="Domain\ApproveAction.cs" />
@@ -172,6 +178,7 @@
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
     <Compile Include="Domain\PaymentVoucher.cs" />
+    <Compile Include="Domain\RequestorGuarantor.cs" />
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
@@ -180,6 +187,7 @@
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
     <Compile Include="Infrastructure\ApprovalHistoryDAO.cs" />
     <Compile Include="Infrastructure\ApprovalTypeDAO.cs" />
+    <Compile Include="Infrastructure\DistressLoanDAO.cs" />
     <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
     <Compile Include="Domain\DistrictTASummaryReport.cs" />
     <Compile Include="Domain\DME21Model.cs" />
@@ -277,6 +285,7 @@
     <Compile Include="Infrastructure\EmploymentDetailsDAO.cs" />
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
+    <Compile Include="Infrastructure\GuarantorDetailDAO.cs" />
     <Compile Include="Infrastructure\HolidaySheetDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\JobCategoryDAO.cs" />
@@ -305,6 +314,7 @@
     <Compile Include="Infrastructure\QuatationDAO.cs" />
     <Compile Include="Infrastructure\ReligionDAO.cs" />
     <Compile Include="Infrastructure\ReportDAO.cs" />
+    <Compile Include="Infrastructure\RequestorGuarantorDAO.cs" />
     <Compile Include="Infrastructure\RequestTypeDAO.cs" />
     <Compile Include="Infrastructure\ResignationDAO.cs" />
     <Compile Include="Infrastructure\ResourcePersonDAO.cs" />

@@ -15,7 +15,7 @@ namespace ManPowerCore.Controller
 
         int Update(ApprovalHistory approvalHistory);
 
-        List<ApprovalType> GetAllApprovalHistory();
+        List<ApprovalHistory> GetAllApprovalHistory();
     }
 
     public class ApprovalHistoryControllerImpl : ApprovalHistoryController
@@ -59,7 +59,7 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
         }
-        public List<ApprovalType> GetAllApprovalHistory()
+        public List<ApprovalHistory> GetAllApprovalHistory()
         {
             try
             {

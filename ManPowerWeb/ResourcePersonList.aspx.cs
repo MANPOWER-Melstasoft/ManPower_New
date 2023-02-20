@@ -45,7 +45,7 @@ namespace ManPowerWeb
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             rp = (List<ResourcePerson>)ViewState["rp"];
-            GridView1.DataSource = rp.Where(u => u.ResourcePersonType.ToLower().Contains(ddlType.SelectedValue.ToLower()) && u.Designation.ToLower().Contains(desig.Text.ToLower()));
+            GridView1.DataSource = rp.Where(u => u.ResourcePersonType.ToLower().Contains(ddlType.SelectedValue.ToLower()) && u.Designation.ToLower().Contains(desig.Text.ToLower())).ToList();
             GridView1.DataBind();
         }
 

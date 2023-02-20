@@ -586,5 +586,29 @@ namespace ManPowerCore.Common
             LoanDetailDAO loanDetailDAO = new LoanDetailDAOSqlImpl();
             return (LoanDetailDAO)loanDetailDAO;
         }
+
+        public static ApprovalHistoryDAO createApprovalHistoryDAO()
+        {
+            ApprovalHistoryDAO approvalHistoryDAO = new ApprovalHistoryDAOSqlImpl();
+            return (ApprovalHistoryDAO)approvalHistoryDAO;
+        }
+
+        public static DistressLoanDAO createDistressLoanDAO()
+        {
+            DistressLoanDAO distressLoanDAO = new DistressLoanDAOSqlImpl();
+            return (DistressLoanDAO)distressLoanDAO;
+        }
+
+        public static GuarantorDetailDAO createGuarantorDetailDAO()
+        {
+            GuarantorDetailDAO guarantorDetailDAO = new GuarantorDetailDAOSqlImpl();
+            return (GuarantorDetailDAO)guarantorDetailDAO;
+        }
+
+        public static RequestorGuarantorDAO createRequestorGuarantorDAO()
+        {
+            RequestorGuarantorDAO requestorGuarantorDAO = new GuarantorDetailDAOSqlImpl();
+            return (RequestorGuarantorDAO)requestorGuarantorDAO;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace ManPowerCore.Infrastructure
         int Save(LoanDetail loanDetail, DBConnection dbConnection);
 
         int Update(LoanDetail loanDetail, DBConnection dbConnection);
+        int UpdateStatus(int id, int approvalstatusId, DBConnection dbConnection);
 
         List<LoanDetail> GetAllLoanDetail(DBConnection dbConnection);
     }
@@ -103,5 +105,20 @@ namespace ManPowerCore.Infrastructure
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<LoanDetail>(dbConnection.dr);
         }
+
+
+        public int UpdateStatus(int id, int approvalstatusId, DBConnection dbConnection)
+        {
+            int output = 0;
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.CommandText = "UPDATE Loan_Details SET  Approval_Status_Id= " + approvalstatusId + " WHERE Id=" + id + " ";
+
+
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+            return output;
+        }
+
     }
 }

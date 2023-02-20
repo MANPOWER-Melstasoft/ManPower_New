@@ -16,7 +16,11 @@ namespace ManPowerWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //----------------------To clear cache in browser ----------------
 
+            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            //Response.Cache.SetNoStore();
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

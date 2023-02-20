@@ -15,6 +15,15 @@ namespace ManPowerWeb
     {
 
         /// <summary>
+        /// gvLoanAdminRec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvLoanAdminRec;
+
+        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>
@@ -150,13 +159,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal7;
 
         /// <summary>
-        /// txtAppealAmount control.
+        /// txtLoanAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAppealAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtLoanAmount;
 
         /// <summary>
         /// Literal8 control.

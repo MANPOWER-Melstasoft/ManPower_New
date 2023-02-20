@@ -320,7 +320,7 @@
                             <%----------------------------------------------------------------------------------------------%>
                             <div class="table-responsive">
                                 <asp:GridView ID="gvAnnaualPlan" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
-                                    DataKeyNames="Id" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
+                                    DataKeyNames="Id" OnRowDataBound="gvAnnaualPlan_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                                     <Columns>
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
@@ -393,6 +393,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
+                                    <EmptyDataTemplate>No Records To Show</EmptyDataTemplate>
                                 </asp:GridView>
                             </div>
                         </ContentTemplate>
@@ -544,7 +545,7 @@
                             <%----------------------------------------------------------------------------------------------%>
                             <div class="table-responsive">
                                 <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
-                                    DataKeyNames="Id" OnRowDataBound="GridView2_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
+                                    DataKeyNames="Id" OnRowDataBound="GridView2_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                                     <Columns>
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
@@ -647,6 +648,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
+                                    <EmptyDataTemplate>No Records To Show</EmptyDataTemplate>
                                 </asp:GridView>
                             </div>
                         </ContentTemplate>
@@ -752,8 +754,8 @@
                                     <div class="col-3">
                                         <asp:TextBox ID="jobPlacememntDate" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
                                         <div class="d-flex text-danger">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob4" runat="server" ValidationGroup="Job"
-                                                ControlToValidate="jobPlacememntDate" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                            <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidatorJob4" runat="server" ValidationGroup="Job"
+                                                ControlToValidate="jobPlacememntDate" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>--%>
                                         </div>
                                     </div>
 
@@ -820,7 +822,7 @@
 
                             <div class="table-responsive">
                                 <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="false" CssClass=" table-bordered mt-4 ParentGrid mb-4"
-                                    DataKeyNames="JobRefferalsId" OnRowDataBound="GridView3_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center">
+                                    DataKeyNames="JobRefferalsId" OnRowDataBound="GridView3_RowDataBound" GridLines="None" HeaderStyle-CssClass="GridHeader" HeaderStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                                     <Columns>
                                         <asp:TemplateField HeaderStyle-CssClass="table-dark">
                                             <ItemTemplate>
@@ -907,6 +909,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
+                                    <EmptyDataTemplate>No Records To Show</EmptyDataTemplate>
                                 </asp:GridView>
                             </div>
 

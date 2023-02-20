@@ -12,6 +12,7 @@ namespace ManPowerCore.Controller
     public interface PossitionsController
     {
         int SavePosition(Possitions possitions);
+        int UpdatePosition(Possitions possitions);
         List<Possitions> GetAllPossitions(bool with0, bool withDepartmentUnitPositions);
         Possitions GetPossitions(int id, bool withDepartmentUnitPositions);
         List<Possitions> GetAllPossitions(int runPosition);
@@ -31,6 +32,26 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return possitionsDAO.SavePosition(possitions, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdatePosition(Possitions possitions)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return possitionsDAO.UpdatePosition(possitions, dBConnection);
             }
             catch (Exception)
             {

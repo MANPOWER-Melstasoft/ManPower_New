@@ -15,6 +15,8 @@ namespace ManPowerCore.Controller
 
         int Update(LoanDetail loanDetail);
 
+        int UpdateStatus(int id, int approvalstatusId);
+
         List<LoanDetail> GetAllLoanDetail();
     }
 
@@ -46,6 +48,25 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return loanDetailDAO.Update(loanDetail, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateStatus(int id, int approvalstatusId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return loanDetailDAO.UpdateStatus(id, approvalstatusId, dBConnection);
             }
             catch (Exception)
             {

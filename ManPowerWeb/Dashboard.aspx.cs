@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -19,8 +20,17 @@ namespace ManPowerWeb
         List<DepartmentUnitPositions> DepartmentUnitPositionsList = new List<DepartmentUnitPositions>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            //----------------------To clear cache in browser ----------------
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+
+            //----------------------END ----------------
+
             if (Session["UserId"] != null)
             {
+
                 if (!IsPostBack)
                 {
 

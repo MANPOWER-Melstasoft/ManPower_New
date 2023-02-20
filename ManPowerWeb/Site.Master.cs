@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,6 +17,11 @@ namespace ManPowerWeb
         public static int divisionId;
         protected void Page_Load(object sender, EventArgs e)
         {
+            // FormsAuthentication.SignOut();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+
             if (Session["UserId"] != null)
             {
                 if (Session["Division"] != null)
@@ -34,9 +40,7 @@ namespace ManPowerWeb
             }
             else
             {
-                HttpContext.Current.Response.AddHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                HttpContext.Current.Response.AddHeader("Pragma", "no-cache");
-                HttpContext.Current.Response.AddHeader("Expires", "0");
+
                 Response.Redirect("Login.aspx");
             }
         }
@@ -157,8 +161,17 @@ namespace ManPowerWeb
 
         protected void btnLogut_Click(object sender, EventArgs e)
         {
+
+            //----------------------To clear cache in browser ----------------
+            //FormsAuthentication.SignOut();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+
             if (Session["UserId"] != null)
             {
+
+
                 Session.Abandon();
                 Response.Redirect("Login.aspx");
 

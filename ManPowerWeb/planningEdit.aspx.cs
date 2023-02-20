@@ -117,6 +117,17 @@ namespace ManPowerWeb
 
             txtEstimateAmount.Text = programTarget.EstimatedAmount.ToString();
 
+            if (programPlansListBind[0].ProjectStatusId == 4)
+            {
+                btnComplete.Visible = false;
+                btnSave.Visible = false;
+            }
+            else
+            {
+                btnComplete.Visible = true;
+                btnSave.Visible = true;
+            }
+
 
 
 
@@ -246,6 +257,11 @@ namespace ManPowerWeb
             }
 
             ViewState["projectPlanResourceStringList"] = projectPlanResourceStringList.ToList();
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("planning.aspx");
         }
 
         //protected void Button1_Click(object sender, EventArgs e)

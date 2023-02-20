@@ -11,19 +11,67 @@ namespace ManPowerCore.Controller
 {
     public interface DesignationController
     {
-        List<Designation> GetAllDesignation(bool withSystemUser, bool withProgramAssignee);
+        int SaveDesignation(Designation designation);
+        int UpdateDesignation(Designation designation);
+        List<Designation> GetAllDesignation(bool withOut0, bool withSystemUser, bool withProgramAssignee);
         Designation GetDesignation(int id, bool withSystemUser, bool withProgramAssignee);
     }
     public class DesignationControllerImpl : DesignationController
     {
         DBConnection dBConnection;
         DesignationDAO designationDAO = DAOFactory.CreateDesignationDAO();
-        public List<Designation> GetAllDesignation(bool withSystemUser, bool withProgramAssignee)
+
+        public int SaveDesignation(Designation designation)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return designationDAO.SaveDesignation(designation, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateDesignation(Designation designation)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return designationDAO.UpdateDesignation(designation, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<Designation> GetAllDesignation(bool withOut0, bool withSystemUser, bool withProgramAssignee)
         {
             try
             {
                 dBConnection = new DBConnection();
                 List<Designation> list = designationDAO.GetAllDesignation(dBConnection);
+
+                if (withOut0)
+                {
+                    list = list.Where(x => x.IsActive == 1).ToList();
+                }
 
                 if (withSystemUser)
                 {

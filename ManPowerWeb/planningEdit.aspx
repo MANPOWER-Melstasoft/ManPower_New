@@ -209,14 +209,19 @@
                 </div>
             </div>
 
-            <div class="row mb-3 ms-1">
+            <div class="row mb-3 ms-1 mt-5">
 
                 <div class="col-sm-6">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
+                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" ValidationGroup="1" BackColor="#212529" BorderColor="#212529" />
+                        </div>
+                        <div class="col-sm-2">
+                            <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click1" ValidationGroup="1" />
 
-                            <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click1" ValidationGroup="1" />
-                            <asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success" OnClick="btnComplete_Click" />
+                        </div>
+                        <div class="col-sm-2">
+                            <asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success " OnClick="btnComplete_Click" />
 
                         </div>
 

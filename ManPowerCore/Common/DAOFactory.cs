@@ -592,5 +592,11 @@ namespace ManPowerCore.Common
             ApprovalHistoryDAO approvalHistoryDAO = new ApprovalHistoryDAOSqlImpl();
             return (ApprovalHistoryDAO)approvalHistoryDAO;
         }
+
+        public static DistressLoanDAO createDistressLoanDAO()
+        {
+            DistressLoanDAO distressLoanDAO = new DistressLoanDAOSqlImpl();
+            return (DistressLoanDAO)distressLoanDAO;
+        }
     }
 }

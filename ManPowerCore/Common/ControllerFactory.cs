@@ -606,5 +606,11 @@ namespace ManPowerCore.Common
             ApprovalHistoryController approvalHistoryController = new ApprovalHistoryControllerImpl();
             return (ApprovalHistoryController)approvalHistoryController;
         }
+
+        public static DistressLoanController CreateDistressLoanController()
+        {
+            DistressLoanController distressLoanController = new DistressLoanControllerImpl();
+            return (DistressLoanController)distressLoanController;
+        }
     }
 }

@@ -614,10 +614,16 @@ namespace ManPowerCore.Common
             return (DistressLoanController)distressLoanController;
         }
 
-        public static GuarantorDetailDAO CreateDistressLoanController()
+        public static GuarantorDetailController CreateGuarantorDetailController()
         {
-            GuarantorDetailDAO guarantorDetailDAO = new GuarantorDetailDAOSqlImpl();
-            return (GuarantorDetailDAO)guarantorDetailDAO;
+            GuarantorDetailController guarantorDetailController = new GuarantorDetailControllerImpl();
+            return (GuarantorDetailController)guarantorDetailController;
+        }
+
+        public static RequestorGuarantorController CreateRequestorGuarantorController()
+        {
+            RequestorGuarantorController requestorGuarantorController = new RequestorGuarantorControllerImpl();
+            return (RequestorGuarantorController)requestorGuarantorController;
         }
     }
 }

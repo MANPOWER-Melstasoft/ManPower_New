@@ -26,15 +26,14 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Requestor_Guarantor (Distress_Loan_Id, Name_Of_Officer, Amount, Periodical_Amount, Interest) " +
-                                "VALUES (@DistressLoanId, @OfficerName, @Amount, @PeriodicalAmount, @Interest)";
+                                "VALUES (@DistressLoanId, @OfficerName, @Amount, @PeriodicalAmount, @Interest, @Position)";
 
             dbConnection.cmd.Parameters.AddWithValue("@DistressLoanId", requestorGuarantor.DistressLoanId);
             dbConnection.cmd.Parameters.AddWithValue("@OfficerName", requestorGuarantor.OfficerName);
             dbConnection.cmd.Parameters.AddWithValue("@Amount", requestorGuarantor.Amount);
             dbConnection.cmd.Parameters.AddWithValue("@PeriodicalAmount", requestorGuarantor.PeriodicalAmount);
             dbConnection.cmd.Parameters.AddWithValue("@Interest", requestorGuarantor.Interest);
-
-            int rowsAffected = dbConnection.cmd.ExecuteNonQuery();
+            dbConnection.cmd.Parameters.AddWithValue("@Position", requestorGuarantor.Position);
 
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
@@ -48,16 +47,15 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Requestor_Guarantor (Distress_Loan_Id, Name_Of_Officer, Amount, Periodical_Amount, Interest) " +
-                                "VALUES (@DistressLoanId, @OfficerName, @Amount, @PeriodicalAmount, @Interest)";
+            dbConnection.cmd.CommandText = "UPDATE Requestor_Guarantor SET Name_Of_Officer = @OfficerName, Amount = @Amount, Periodical_Amount = @PeriodicalAmount, Interest = @Interest, Position = @Position " +
+                                "WHERE Id = @GuarantorDetailId";
 
-            dbConnection.cmd.Parameters.AddWithValue("@DistressLoanId", requestorGuarantor.DistressLoanId);
             dbConnection.cmd.Parameters.AddWithValue("@OfficerName", requestorGuarantor.OfficerName);
             dbConnection.cmd.Parameters.AddWithValue("@Amount", requestorGuarantor.Amount);
             dbConnection.cmd.Parameters.AddWithValue("@PeriodicalAmount", requestorGuarantor.PeriodicalAmount);
             dbConnection.cmd.Parameters.AddWithValue("@Interest", requestorGuarantor.Interest);
-
-            int rowsAffected = dbConnection.cmd.ExecuteNonQuery();
+            dbConnection.cmd.Parameters.AddWithValue("@GuarantorDetailId", requestorGuarantor.GuarantorDetailId);
+            dbConnection.cmd.Parameters.AddWithValue("@Position", requestorGuarantor.Position);
 
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());

@@ -598,5 +598,11 @@ namespace ManPowerCore.Common
             DistressLoanDAO distressLoanDAO = new DistressLoanDAOSqlImpl();
             return (DistressLoanDAO)distressLoanDAO;
         }
+
+        public static GuarantorDetailDAO createGuarantorDetailDAO()
+        {
+            GuarantorDetailDAO guarantorDetailDAO = new GuarantorDetailDAOSqlImpl();
+            return (GuarantorDetailDAO)guarantorDetailDAO;
+        }
     }
 }

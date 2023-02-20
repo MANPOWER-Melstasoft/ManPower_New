@@ -1,5 +1,6 @@
 ﻿using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -611,6 +612,12 @@ namespace ManPowerCore.Common
         {
             DistressLoanController distressLoanController = new DistressLoanControllerImpl();
             return (DistressLoanController)distressLoanController;
+        }
+
+        public static GuarantorDetailDAO CreateDistressLoanController()
+        {
+            GuarantorDetailDAO guarantorDetailDAO = new GuarantorDetailDAOSqlImpl();
+            return (GuarantorDetailDAO)guarantorDetailDAO;
         }
     }
 }

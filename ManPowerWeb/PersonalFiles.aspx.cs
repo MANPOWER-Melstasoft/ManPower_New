@@ -200,6 +200,12 @@ namespace ManPowerWeb
             ddContract.DataTextField = "ContractTypeName";
             ddContract.DataBind();
 
+            ddlEmpDesignation.DataSource = designation;
+            ddlEmpDesignation.DataValueField = "DesignationId";
+            ddlEmpDesignation.DataTextField = "DesigntionName";
+            ddlEmpDesignation.DataBind();
+            ddlEmpDesignation.Items.Insert(0, new ListItem("-- select designation --", ""));
+
             ddlDesignation.DataSource = designation;
             ddlDesignation.DataValueField = "DesignationId";
             ddlDesignation.DataTextField = "DesigntionName";
@@ -503,72 +509,6 @@ namespace ManPowerWeb
             emplDetailsGV.DataBind();
         }
 
-
-        //protected void addEducation(object sender, EventArgs e)
-        //{
-
-        //    retiredDate.Text = DateTime.Today.ToString();
-        //    if (educationDetails.Count == 0 && ViewState["educationDetails"] != null)
-        //    {
-        //        educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
-        //    }
-
-        //    if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
-        //    {
-        //        educationDetails.Add(new EducationDetails()
-        //        {
-        //            EducationTypeId = int.Parse(ddlEducation.SelectedValue),
-        //            StudiedInstitute = uni.Text,
-        //            NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
-        //            ExamYear = int.Parse(ddlYear.SelectedValue),
-        //            ExamIndex = index.Text,
-        //            ExamSubject = sub.Text,
-        //            ExamStream = stream.Text,
-        //            ExamGrade = grade.Text,
-        //            ExamStatus = ddlEducationStatus.SelectedValue
-        //        });
-        //    }
-        //    else
-        //    {
-        //        educationDetails.Add(new EducationDetails()
-        //        {
-        //            EducationTypeId = int.Parse(ddlEducation.SelectedValue),
-        //            StudiedInstitute = uni.Text,
-        //            NoOfAttempts = 1,
-        //            ExamYear = int.Parse(ddlYear.SelectedValue),
-        //            ExamIndex = index.Text,
-        //            ExamSubject = "",
-        //            ExamStream = "",
-        //            ExamGrade = "",
-        //            ExamStatus = ddlEducationStatus.SelectedValue
-        //        });
-        //    }
-
-
-        //    uni.Text = null;
-        //    index.Text = null;
-        //    sub.Text = null;
-        //    stream.Text = null;
-        //    grade.Text = null;
-
-        //    ViewState["educationDetails"] = educationDetails;
-        //    educationGV.DataSource = educationDetails;
-        //    educationGV.DataBind();
-        //}
-
-        //protected void RemoveEducation(object sender, EventArgs e)
-        //{
-        //    GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
-        //    int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-        //    educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
-        //    educationDetails.RemoveAt(rowIndex);
-
-        //    ViewState["educationDetails"] = educationDetails;
-        //    educationGV.DataSource = educationDetails;
-        //    educationGV.DataBind();
-        //}
-
         protected void addServices(object sender, EventArgs e)
         {
             if (employeeServices.Count == 0 && ViewState["employeeServices"] != null)
@@ -639,6 +579,9 @@ namespace ManPowerWeb
             emp.VNOPNo = int.Parse(vnop.Text);
             emp.FileNo = int.Parse(fileNo.Text);
             emp.AppointmentNo = int.Parse(appointmenLetterNo.Text);
+            emp.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
+            emp.SalaryNo = txtSalaryNum.Text;
+            emp.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
 
             if (ddlDS.SelectedValue != "")
             {
@@ -862,6 +805,70 @@ namespace ManPowerWeb
         //    id7.Visible = false;
         //}
 
+        //protected void addEducation(object sender, EventArgs e)
+        //{
+
+        //    retiredDate.Text = DateTime.Today.ToString();
+        //    if (educationDetails.Count == 0 && ViewState["educationDetails"] != null)
+        //    {
+        //        educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+        //    }
+
+        //    if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
+        //    {
+        //        educationDetails.Add(new EducationDetails()
+        //        {
+        //            EducationTypeId = int.Parse(ddlEducation.SelectedValue),
+        //            StudiedInstitute = uni.Text,
+        //            NoOfAttempts = int.Parse(ddlAttempt.SelectedValue),
+        //            ExamYear = int.Parse(ddlYear.SelectedValue),
+        //            ExamIndex = index.Text,
+        //            ExamSubject = sub.Text,
+        //            ExamStream = stream.Text,
+        //            ExamGrade = grade.Text,
+        //            ExamStatus = ddlEducationStatus.SelectedValue
+        //        });
+        //    }
+        //    else
+        //    {
+        //        educationDetails.Add(new EducationDetails()
+        //        {
+        //            EducationTypeId = int.Parse(ddlEducation.SelectedValue),
+        //            StudiedInstitute = uni.Text,
+        //            NoOfAttempts = 1,
+        //            ExamYear = int.Parse(ddlYear.SelectedValue),
+        //            ExamIndex = index.Text,
+        //            ExamSubject = "",
+        //            ExamStream = "",
+        //            ExamGrade = "",
+        //            ExamStatus = ddlEducationStatus.SelectedValue
+        //        });
+        //    }
+
+
+        //    uni.Text = null;
+        //    index.Text = null;
+        //    sub.Text = null;
+        //    stream.Text = null;
+        //    grade.Text = null;
+
+        //    ViewState["educationDetails"] = educationDetails;
+        //    educationGV.DataSource = educationDetails;
+        //    educationGV.DataBind();
+        //}
+
+        //protected void RemoveEducation(object sender, EventArgs e)
+        //{
+        //    GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //    int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+        //    educationDetails = (List<EducationDetails>)ViewState["educationDetails"];
+        //    educationDetails.RemoveAt(rowIndex);
+
+        //    ViewState["educationDetails"] = educationDetails;
+        //    educationGV.DataSource = educationDetails;
+        //    educationGV.DataBind();
+        //}
 
     }
 }

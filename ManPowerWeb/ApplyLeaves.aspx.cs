@@ -15,6 +15,8 @@ namespace ManPowerWeb
         List<LeaveType> leavesTypeList = new List<LeaveType>();
         List<HolidaySheet> holidaySheetsList = new List<HolidaySheet>();
         static List<StaffLeave> staffLeavesList = new List<StaffLeave>();
+        List<StaffLeaveAllocation> staffLeaveAllocationsList = new List<StaffLeaveAllocation>();
+
         int empId;
         protected void Page_Load(object sender, EventArgs e)
         {

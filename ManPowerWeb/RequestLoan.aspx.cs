@@ -13,6 +13,10 @@ namespace ManPowerWeb
     public partial class RequestLoan : System.Web.UI.Page
     {
         List<LoanType> loanTypeList = new List<LoanType>();
+        List<DistressLoan> distressLoansList = new List<DistressLoan>();
+        static List<GuarantorDetail> guarantorDetailList = new List<GuarantorDetail>();
+        static List<RequestorGuarantor> requestorGuarantorsList = new List<RequestorGuarantor>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -65,6 +69,31 @@ namespace ManPowerWeb
 
             }
 
+        }
+
+        protected void btnAddGuarantor_Click(object sender, EventArgs e)
+        {
+            GuarantorDetail gurontor = new GuarantorDetail();
+
+            gurontor.Name = txtGuarantorName.Text;
+            gurontor.Address = txtGuarantorAdress.Text;
+            gurontor.Position = txtGuarantorPosition.Text;
+            gurontor.AppointedDate = DateTime.Parse(txtGuarantorAppointedDate.Text);
+
+            guarantorDetailList.Add(gurontor);
+            clearGurontor();
+
+            gvGuarantor.DataSource = guarantorDetailList;
+            gvGuarantor.DataBind();
+
+        }
+
+        private void clearGurontor()
+        {
+            txtGuarantorName.Text = null;
+            txtGuarantorAdress.Text = null;
+            txtGuarantorPosition.Text = null;
+            txtGuarantorAppointedDate.Text = null;
         }
     }
 }

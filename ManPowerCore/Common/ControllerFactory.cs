@@ -600,5 +600,11 @@ namespace ManPowerCore.Common
             LoanDetailsController loanDetailsController = new LoanDetailsControllerImpl();
             return (LoanDetailsController)loanDetailsController;
         }
+
+        public static ApprovalHistoryController CreateApprovalHistoryController()
+        {
+            ApprovalHistoryController approvalHistoryController = new ApprovalHistoryControllerImpl();
+            return (ApprovalHistoryController)approvalHistoryController;
+        }
     }
 }

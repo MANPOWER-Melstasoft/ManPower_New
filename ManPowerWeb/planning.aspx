@@ -140,7 +140,8 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-Width="150px">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton runat="server" CommandName="Edit" ID="btnEdit" CssClass="btn btn-warning" OnClick="btnEdit_Click" Enabled='<%#Eval("ProjectStatusId").ToString() != "4" ?true:false %>'>Edit</asp:LinkButton>
+                                                        <asp:LinkButton runat="server" CommandName="Edit" ID="btnEdit" CssClass="btn btn-warning" OnClick="btnEdit_Click" Visible='<%#Eval("ProjectStatusId").ToString() != "4" ?true:false %>' Text="Edit"></asp:LinkButton>
+                                                        <asp:LinkButton runat="server" CommandName="View" ID="btnView" CssClass="btn btn-warning" OnClick="btnView_Click" Visible='<%#Eval("ProjectStatusId").ToString() == "4" ?true:false %>' Text="View"></asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

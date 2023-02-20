@@ -2,6 +2,7 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,16 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CereatedDate", jobRefferals.CereatedDate);
             dbConnection.cmd.Parameters.AddWithValue("@RefferalRemarks", jobRefferals.RefferalRemarks);
             dbConnection.cmd.Parameters.AddWithValue("@RefferalsDate", jobRefferals.RefferalsDate);
-            dbConnection.cmd.Parameters.AddWithValue("@JobPlacementDate", jobRefferals.JobPlacementDate);
+            if (jobRefferals.JobPlacementDate.Year == 1)
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@JobPlacementDate", SqlDateTime.MinValue);
+
+            }
+            else
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@JobPlacementDate", jobRefferals.JobPlacementDate);
+
+            }
             dbConnection.cmd.Parameters.AddWithValue("@CareerGuidance", jobRefferals.CareerGuidance);
             dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", jobRefferals.ProgramPlanId);
 

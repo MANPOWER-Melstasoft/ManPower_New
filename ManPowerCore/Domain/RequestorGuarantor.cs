@@ -19,6 +19,9 @@ namespace ManPowerCore.Domain
         [DBField("Name_Of_Officer")]
         public string OfficerName { get; set; }
 
+        [DBField("Position")]
+        public string Position { get; set; }
+
         [DBField("Amount")]
         public float Amount { get; set; }
 

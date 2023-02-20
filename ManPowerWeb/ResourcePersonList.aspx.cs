@@ -1,10 +1,8 @@
-﻿using Antlr.Runtime;
-using ManPowerCore.Common;
+﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ResourcePersonRegSearch : System.Web.UI.Page
+    public partial class ResourcePersonList : System.Web.UI.Page
     {
         static List<ResourcePerson> rp = new List<ResourcePerson>();
         string[] type = { "DME", "External" };
@@ -25,7 +23,6 @@ namespace ManPowerWeb
                 BindDataSource();
             }
         }
-
         private void BindDataSource()
         {
             ddlType.DataSource = type;
@@ -35,10 +32,10 @@ namespace ManPowerWeb
 
             rp = resourcePerson.GetAllResourcePerson(true);
 
-            //if (rp.Count > 0)
-            //{
-            //    btnRun.Visible = true;
-            //}
+            if (rp.Count > 0)
+            {
+                btnRun.Visible = true;
+            }
 
             ViewState["rp"] = rp;
             GridView1.DataSource = rp;
@@ -48,18 +45,15 @@ namespace ManPowerWeb
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             rp = (List<ResourcePerson>)ViewState["rp"];
-            GridView1.DataSource = rp.Where(u => u.ResourcePersonType.ToLower().Contains(ddlType.SelectedValue.ToLower()) && u.Designation.ToLower().Contains(desig.Text.ToLower()));
+            GridView1.DataSource = rp.Where(u => u.ResourcePersonType.ToLower().Contains(ddlType.SelectedValue.ToLower()) && u.Designation.ToLower().Contains(desig.Text.ToLower())).ToList();
             GridView1.DataBind();
-        }
-
-        protected void isClicked(object sender, EventArgs e)
-        {
-            Response.Redirect("ResourcePersonReg.aspx");
         }
 
         protected void reset(object sender, EventArgs e)
         {
-            Response.Redirect("ResourcePersonRegSearch.aspx");
+            desig.Text = string.Empty;
+            GridView1.DataSource = rp;
+            GridView1.DataBind();
         }
 
         public override void VerifyRenderingInServerForm(Control control)
@@ -95,6 +89,5 @@ namespace ManPowerWeb
             GridView1.PageIndex = e.NewPageIndex;
             BindDataSource();
         }
-
     }
 }

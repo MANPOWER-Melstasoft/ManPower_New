@@ -83,9 +83,21 @@ namespace ManPowerCore.Domain
         public int UnitType { get; set; }
 
 
+        [DBField("Designation_Id")]
+        public int DesignationId { get; set; }
+
+        [DBField("Salary_Num")]
+        public string SalaryNo { get; set; }
+
+
+        [DBField("ED_Completion_Date")]
+        public DateTime EDCompletionDate { get; set; }
+
 
         public string fullName { get; set; }
 
+
+        public Designation designation { get; set; }
 
         public EmergencyContact _EmergencyContact { get; set; } = new EmergencyContact();
         public EmployeeContact _EmployeeContact { get; set; } = new EmployeeContact();

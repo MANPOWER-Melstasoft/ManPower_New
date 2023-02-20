@@ -115,6 +115,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Designation : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:DropDownList ID="ddlEmpDesignation" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:RequiredFieldValidator ControlToValidate="ddlEmpDesignation" ID="RequiredFieldValidator29" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -125,7 +136,7 @@
                             <label>Marital Status : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                         </div>
                     </div>
                 </div>
@@ -135,7 +146,7 @@
                             <label>Gender : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlGender" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                         </div>
                     </div>
                 </div>
@@ -167,6 +178,33 @@
                 </div>
             </div>
 
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>ED Completion Date : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="txtEDComDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="txtEDComDate" ID="RequiredFieldValidator30" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Salary Number : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="txtSalaryNum" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="txtSalaryNum" ID="RequiredFieldValidator32" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="row mt-4">
                 <div class="col-6">
                     <div class="row">
@@ -179,10 +217,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <%--  </div>
 
 
-            <div class="row mt-4">
+            <div class="row mt-4">--%>
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">

@@ -67,7 +67,7 @@ namespace ManPowerWeb
 
                 if (autUserFunctionListPlaning.Count > 0)
                 {
-                    cstextCard.Append("<div class=\"sidebar-heading\">Planing</div>");
+                    cstextCard.Append("<div class=\"sidebar-heading\">General</div>");
                     foreach (var item in autUserFunctionListPlaning)
                     {
                         cstextCard.Append("<li class=\"nav-item\">");

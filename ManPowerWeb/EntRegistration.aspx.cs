@@ -20,6 +20,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 BindDataSource();
@@ -97,6 +99,20 @@ namespace ManPowerWeb
         protected void isClicked(object sender, EventArgs e)
         {
             Response.Redirect("EntRegistrationSearch.aspx");
+        }
+
+        protected void AddFacilitatin_Click(object sender, EventArgs e)
+        {
+            if (btnAddFacilitatin.Text == "Add Facilitatin")
+            {
+                DivFacilitaion.Visible = true;
+                btnAddFacilitatin.Text = "Remove Facilitatin";
+            }
+            else
+            {
+                DivFacilitaion.Visible = false;
+                btnAddFacilitatin.Text = "Add Facilitatin";
+            }
         }
     }
 }

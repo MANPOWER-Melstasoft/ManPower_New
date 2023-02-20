@@ -95,5 +95,32 @@ namespace ManPowerWeb
             txtGuarantorPosition.Text = null;
             txtGuarantorAppointedDate.Text = null;
         }
+
+        protected void btnAddApplicant_Click(object sender, EventArgs e)
+        {
+            RequestorGuarantor requestorGuarantor = new RequestorGuarantor();
+            requestorGuarantor.OfficerName = txtOfficerName.Text;
+            requestorGuarantor.Position = txtOfficerPosition.Text;
+            requestorGuarantor.Amount = float.Parse(txtApplicantLoanAmount.Text);
+            requestorGuarantor.Interest = float.Parse(txtInterest.Text);
+            requestorGuarantor.PeriodicalAmount = float.Parse(txtPremiumAmount.Text);
+
+            requestorGuarantorsList.Add(requestorGuarantor);
+            clearApplicant();
+
+            gvApplicantAsGurontor.DataSource = requestorGuarantorsList;
+            gvApplicantAsGurontor.DataBind();
+
+        }
+
+        private void clearApplicant()
+        {
+
+            txtOfficerName.Text = null;
+            txtApplicantLoanAmount.Text = null;
+            txtInterest.Text = null;
+            txtPremiumAmount.Text = null;
+            txtOfficerPosition.Text = null;
+        }
     }
 }

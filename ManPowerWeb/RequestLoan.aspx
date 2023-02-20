@@ -129,10 +129,11 @@
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtBasicSalary" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtBasicSalary"
-                                            ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="1"
                                             ControlToValidate="txtBasicSalary" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtBasicSalary"
+                                            ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
+
                                     </div>
                                 </div>
                             </div>
@@ -147,10 +148,11 @@
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtLoanAmount" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtLoanAmount"
-                                            ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ValidationGroup="1"
                                             ControlToValidate="txtLoanAmount" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtLoanAmount"
+                                            ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
+
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +231,7 @@
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtGuarantorName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ValidationGroup="1"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ValidationGroup="2"
                                             ControlToValidate="txtGuarantorName" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -245,7 +247,7 @@
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtGuarantorPosition" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ValidationGroup="1"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ValidationGroup="2"
                                             ControlToValidate="txtGuarantorPosition" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -262,8 +264,8 @@
 
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtGuarantorAdress" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ValidationGroup="1"
-                                        ControlToValidate="txtGuarantorAdress" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ValidationGroup="2"
+                                        ControlToValidate="txtGuarantorAdress" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -276,8 +278,8 @@
 
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtGuarantorAppointedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ValidationGroup="1"
-                                        ControlToValidate="txtGuarantorAppointedDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ValidationGroup="2"
+                                        ControlToValidate="txtGuarantorAppointedDate" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -287,7 +289,7 @@
                         <div class="col-sm-3">
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
-                                    <asp:Button ID="btnAddGuarantor" runat="server" Text="Add To Table" CssClass="btn btn-success" OnClick="btnAddGuarantor_Click" />
+                                    <asp:Button ID="btnAddGuarantor" runat="server" Text="Add To Table" CssClass="btn btn-success" OnClick="btnAddGuarantor_Click" ValidationGroup="2" />
                                 </div>
                                 <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />
@@ -324,6 +326,8 @@
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtOfficerName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ValidationGroup="3"
+                                            ControlToValidate="txtOfficerName" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -338,6 +342,8 @@
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtOfficerPosition" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ValidationGroup="3"
+                                            ControlToValidate="txtOfficerPosition" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -353,8 +359,10 @@
 
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtApplicantLoanAmount" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ValidationGroup="3"
+                                        ControlToValidate="txtApplicantLoanAmount" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtApplicantLoanAmount"
-                                        ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
+                                        ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="3" ForeColor="Red"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
@@ -368,8 +376,10 @@
 
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtPremiumAmount" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ValidationGroup="3"
+                                        ControlToValidate="txtPremiumAmount" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="revNumber" runat="server" ControlToValidate="txtPremiumAmount"
-                                        ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ForeColor="Red"></asp:RegularExpressionValidator>
+                                        ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ForeColor="Red" ValidationGroup="3"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
@@ -386,7 +396,8 @@
 
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtInterest" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ValidationGroup="3"
+                                        ControlToValidate="txtInterest" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
@@ -396,13 +407,28 @@
                         <div class="col-sm-3">
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
-                                    <asp:Button ID="btnAddApplicant" runat="server" Text="Add To Table" CssClass="btn btn-success" />
+                                    <asp:Button ID="btnAddApplicant" runat="server" Text="Add To Table" CssClass="btn btn-success" OnClick="btnAddApplicant_Click" ValidationGroup="3" />
                                 </div>
                                 <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />
                         </div>--%>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+                        <asp:GridView Style="margin-top: 30px;" ID="gvApplicantAsGurontor" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" AllowPaging="true" HeaderStyle-HorizontalAlign="center"
+                            FooterStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+                            <Columns>
+                                <asp:BoundField DataField="OfficerName" HeaderText="Officer Name" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+                                <asp:BoundField DataField="Amount" HeaderText="Loan Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+                                <asp:BoundField DataField="PeriodicalAmount" HeaderText="Periodical Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+                                <asp:BoundField DataField="Interest" HeaderText="Interest" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+                            </Columns>
+                            <EmptyDataTemplate>No records</EmptyDataTemplate>
+
+                        </asp:GridView>
                     </div>
 
                     <% } %>
@@ -430,6 +456,8 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSubmit" />
+            <%-- <asp:PostBackTrigger ControlID="btnAddGuarantor" />
+            <asp:PostBackTrigger ControlID="btnAddApplicant" />--%>
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

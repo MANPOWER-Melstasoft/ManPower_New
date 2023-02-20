@@ -663,7 +663,14 @@ namespace ManPowerWeb
             //}
             if (Convert.ToDateTime(dob.Text) >= DateTime.Today)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth is Invaid!', 'error');", true);
+                if (Convert.ToDateTime(txtEDComDate.Text) >= DateTime.Today)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'ED Completion Date is Invaid!', 'error');", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth is Invaid!', 'error');", true);
+                }
             }
             else
             {

@@ -136,7 +136,7 @@
                             <label>Marital Status : </label>
                         </div>
                         <div class="col-6">
-                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                         </div>
                     </div>
                 </div>

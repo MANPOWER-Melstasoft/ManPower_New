@@ -127,6 +127,7 @@
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="RequestLoan.aspx" />
+    <Content Include="RequestLoanFront.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="ResourcePersonList.aspx" />
     <Content Include="TrainingFront.aspx" />
@@ -2133,6 +2134,13 @@
     </Compile>
     <Compile Include="RequestLoan.aspx.designer.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RequestLoanFront.aspx.cs">
+      <DependentUpon>RequestLoanFront.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestLoanFront.aspx.designer.cs">
+      <DependentUpon>RequestLoanFront.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>

@@ -18,6 +18,8 @@ namespace ManPowerCore.Controller
         int UpdateStatus(int id, int approvalstatusId);
 
         List<LoanDetail> GetAllLoanDetail();
+
+        List<LoanDetail> GetAllLoanDetailWithStatus(bool withStatus, bool withLoanType);
     }
 
     public class LoanDetailsControllerImpl : LoanDetailsController
@@ -86,6 +88,52 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return loanDetailDAO.GetAllLoanDetail(dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<LoanDetail> GetAllLoanDetailWithStatus(bool withStatus, bool withLoanType)
+        {
+            ApprovalTypeDAO approvalTypeDAO = DAOFactory.createApprovalTypeDAO();
+            LoanTypeDAO loanTypeDAO = DAOFactory.createLoanTypeDAO();
+
+            List<ApprovalType> approvalTypeList = new List<ApprovalType>();
+            List<LoanType> loanTypeList = new List<LoanType>();
+            List<LoanDetail> loanDetailList = new List<LoanDetail>();
+            try
+            {
+                dBConnection = new DBConnection();
+
+                loanDetailList = loanDetailDAO.GetAllLoanDetail(dBConnection);
+                loanTypeList = loanTypeDAO.GetAllLoanType(dBConnection);
+                approvalTypeList = approvalTypeDAO.GetAllApprovalType(dBConnection);
+
+                if (withStatus)
+                {
+                    foreach (var item in loanDetailList)
+                    {
+                        item.ApprovalType = approvalTypeList.Where(x => x.ApprovalStatusId == item.ApprovalStatusId).Single();
+                    }
+                }
+
+                if (withLoanType)
+                {
+                    foreach (var item in loanDetailList)
+                    {
+                        item.LoanType = loanTypeList.Where(x => x.Id == item.LoanTypeId).Single();
+                    }
+                }
+
+                return loanDetailList;
             }
             catch (Exception)
             {

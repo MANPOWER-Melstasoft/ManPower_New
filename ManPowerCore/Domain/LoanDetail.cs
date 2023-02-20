@@ -63,5 +63,9 @@ namespace ManPowerCore.Domain
 
         [DBField("Approval_Status_Id")]
         public int ApprovalStatus { get; set; }
+
+        public ApprovalType ApprovalType { get; set; }
+
+        public LoanType LoanType { get; set; }
     }
 }

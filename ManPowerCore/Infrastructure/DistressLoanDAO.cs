@@ -60,7 +60,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "UPDATE Distress_Loan " +
-                                "SET Approval_Status_Id = @ApprovalStatusId, " +
+                                "SET " +
                                 "Reason_For_Loan = @ReasonForLoan, " +
                                 "Last_Loan_Balance = @LastLoanBalance, " +
                                 "Is_Probation = @IsProbation, " +
@@ -80,7 +80,7 @@ namespace ManPowerCore.Infrastructure
                                 "Guarantor_Approve = @GuarantorApprove " +
                                 "WHERE Id = @DistressLoanId";
 
-            dbConnection.cmd.Parameters.AddWithValue("@ApprovalStatusId", distressLoan.ApprovalStatusId);
+            
             dbConnection.cmd.Parameters.AddWithValue("@ReasonForLoan", distressLoan.ReasonForLoan);
             dbConnection.cmd.Parameters.AddWithValue("@LastLoanBalance", distressLoan.LastLoanBalance);
             dbConnection.cmd.Parameters.AddWithValue("@IsProbation", distressLoan.IsProbation);

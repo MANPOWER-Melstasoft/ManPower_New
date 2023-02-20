@@ -607,7 +607,7 @@ namespace ManPowerCore.Common
 
         public static RequestorGuarantorDAO createRequestorGuarantorDAO()
         {
-            RequestorGuarantorDAO requestorGuarantorDAO = new GuarantorDetailDAOSqlImpl();
+            RequestorGuarantorDAO requestorGuarantorDAO = new RequestorGuarantorDAOSqlImpl();
             return (RequestorGuarantorDAO)requestorGuarantorDAO;
         }
     }

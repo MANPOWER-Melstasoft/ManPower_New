@@ -63,47 +63,67 @@ namespace ManPowerWeb
                 trainingMain.Content = txtDescription.Text;
                 trainingMain.Member_Count = Convert.ToInt32(txtCount.Text);
 
-                if (FileUploader.HasFile)
+                if (trainingMain.Start_Date > DateTime.Now && trainingMain.End_date >= trainingMain.Start_Date)
                 {
-                    HttpPostedFile uploadFile = Request.Files[0];
+                    if (FileUploader.HasFile)
+                    {
+                        HttpPostedFile uploadFile = Request.Files[0];
 
-                    uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/TrainingImages/") + uploadFile.FileName);
+                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/TrainingImages/") + uploadFile.FileName);
 
-                    fileName = uploadFile.FileName;
+                        fileName = uploadFile.FileName;
 
-                    trainingMain.Post_img = fileName;
+                        trainingMain.Post_img = fileName;
+                    }
+
+                    trainingMainController.Update(trainingMain);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='AddTrainingFront.aspx'},2500);", true);
+
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Please Enter a Valid Date!', 'error');", true);
                 }
 
-                trainingMainController.Update(trainingMain);
+
             }
 
             else
             {
-                trainingMain.Created_Date = DateTime.Now;
-                trainingMain.Start_Date = Convert.ToDateTime(txtStartDate.Value);
-                trainingMain.End_date = Convert.ToDateTime(txtEndDate.Value);
-                trainingMain.Title = txtTitle.Text;
-                trainingMain.Content = txtDescription.Text;
-                trainingMain.Created_User = depId;
-                trainingMain.Member_Count = Convert.ToInt32(txtCount.Text);
-
-                if (FileUploader.HasFile)
+                if (Convert.ToDateTime(txtStartDate.Value) > DateTime.Now && Convert.ToDateTime(txtEndDate.Value) >= Convert.ToDateTime(txtStartDate.Value))
                 {
-                    HttpPostedFile uploadFile = Request.Files[0];
 
-                    uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/TrainingImages/") + uploadFile.FileName);
 
-                    fileName = uploadFile.FileName;
+                    trainingMain.Created_Date = DateTime.Now;
+                    trainingMain.Start_Date = Convert.ToDateTime(txtStartDate.Value);
+                    trainingMain.End_date = Convert.ToDateTime(txtEndDate.Value);
+                    trainingMain.Title = txtTitle.Text;
+                    trainingMain.Content = txtDescription.Text;
+                    trainingMain.Created_User = depId;
+                    trainingMain.Member_Count = Convert.ToInt32(txtCount.Text);
+
+                    if (FileUploader.HasFile)
+                    {
+                        HttpPostedFile uploadFile = Request.Files[0];
+
+                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/TrainingImages/") + uploadFile.FileName);
+
+                        fileName = uploadFile.FileName;
+                    }
+
+                    trainingMain.Post_img = fileName;
+
+                    trainingMainController.Save(trainingMain);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='AddTrainingFront.aspx'},2500);", true);
+
                 }
-
-                trainingMain.Post_img = fileName;
-
-                trainingMainController.Save(trainingMain);
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Please Enter a Valid Date!', 'error');", true);
+                }
 
             }
 
-            string url = "AddTrainingFront.aspx";
-            Response.Redirect(url);
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

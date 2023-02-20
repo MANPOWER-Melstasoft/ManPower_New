@@ -207,5 +207,22 @@ namespace ManPowerWeb
             }
         }
 
+        protected void btnSearch2_Click(object sender, EventArgs e)
+        {
+            InduvidualBeneficiaryController bc = ControllerFactory.CreateInduvidualBeneficiaryController();
+            beneficiaries = bc.GetAllInduvidualBeneficiary(true);
+
+            string keyword = txtKeyword.Text.Trim();
+
+            beneficiaries = beneficiaries.Where(x => x.InduvidualBeneficiaryName.ToLower().Contains(keyword.ToLower())
+            || x.BeneficiaryNic.ToLower().Contains(keyword.ToLower())
+            || x.SchoolName.ToLower().Contains(keyword.ToLower())
+            || x.BeneficiaryEmail.ToLower().Contains(keyword.ToLower())
+            || x.PersonalAddress.ToLower().Contains(keyword.ToLower())
+            || x.JobPreference.ToLower().Contains(keyword.ToLower())).ToList();
+
+            GridView1.DataSource = beneficiaries;
+            GridView1.DataBind();
+        }
     }
 }

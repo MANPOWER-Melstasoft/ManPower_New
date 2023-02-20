@@ -29,7 +29,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Loan_Details (Employee_ID, Approval_Status_Id, Loan_Type_Id, Full_Name, Position, Work_Place, Work_Type, Appointed_Date, Basic_Salary, Loan_Amount, Loan_Require_Date, Created_Date) " +
-                                "VALUES (@EmployeeId, @ApprovalStatusId, @LoanTypeId, @FullName, @Position, @WorkPlace, @WorkType, @AppointedDate, @BasicSalary, @LoanAmount, @LoanRequireDate, @CreatedDate)";
+                                "VALUES (@EmployeeId, @ApprovalStatusId, @LoanTypeId, @FullName, @Position, @WorkPlace, @WorkType, @AppointedDate, @BasicSalary, @LoanAmount, @LoanRequireDate, @CreatedDate) SELECT SCOPE_IDENTITY()";
 
             //dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", loanDetails.EmployeeId);
@@ -51,7 +51,7 @@ namespace ManPowerCore.Infrastructure
             //dbConnection.cmd.Parameters.AddWithValue("@ApprovalDate", loanDetails.ApprovalDate);
             //dbConnection.cmd.Parameters.AddWithValue("@HeadApprovalDate", loanDetails.HeadApprovalDate);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
             return output;
         }
 

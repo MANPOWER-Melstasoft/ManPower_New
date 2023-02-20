@@ -13,6 +13,8 @@ namespace ManPowerCore.Controller
     {
         int Save(LoanDetail loanDetail);
 
+        int SaveAll(LoanDetail loanDetail, DistressLoan distressLoan, List<GuarantorDetail> guarantorDetailList, List<RequestorGuarantor> requestorGuarantorsList);
+
         int Update(LoanDetail loanDetail);
 
         int UpdateStatus(int id, int approvalstatusId);
@@ -26,12 +28,61 @@ namespace ManPowerCore.Controller
     {
         DBConnection dBConnection;
         LoanDetailDAO loanDetailDAO = DAOFactory.createLoanDetailDAO();
+        GuarantorDetailDAO guarantorDetailDAO = DAOFactory.createGuarantorDetailDAO();
+        RequestorGuarantorDAO requestorGuarantorDAO = DAOFactory.createRequestorGuarantorDAO();
+        DistressLoanDAO DistressLoanDAO = DAOFactory.createDistressLoanDAO();
         public int Save(LoanDetail loanDetail)
         {
             try
             {
                 dBConnection = new DBConnection();
                 return loanDetailDAO.Save(loanDetail, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int SaveAll(LoanDetail loanDetail, DistressLoan distressLoan, List<GuarantorDetail> guarantorDetailList, List<RequestorGuarantor> requestorGuarantorsList)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+
+                int loanDetailId = loanDetailDAO.Save(loanDetail, dBConnection);
+
+                distressLoan.LoanDetailsId = loanDetailId;
+
+                int distressLoanId = DistressLoanDAO.Save(distressLoan, dBConnection);
+
+                if (guarantorDetailList.Count() > 0)
+                {
+                    for (int i = 0; i < guarantorDetailList.Count(); i++)
+                    {
+                        guarantorDetailList[i].DistressLoanId = distressLoanId; //change
+                        guarantorDetailDAO.Save(guarantorDetailList[i], dBConnection);
+
+                    }
+                }
+
+                if (requestorGuarantorsList.Count() > 0)
+                {
+                    for (int i = 0; i < requestorGuarantorsList.Count(); i++)
+                    {
+                        requestorGuarantorsList[i].DistressLoanId = distressLoanId; //change
+                        requestorGuarantorDAO.Save(requestorGuarantorsList[i], dBConnection);
+                    }
+                }
+
+                return 1;
             }
             catch (Exception)
             {

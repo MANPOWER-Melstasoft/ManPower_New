@@ -42,13 +42,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// txtLocation control.
+        /// RequiredFieldValidator21 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocation;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator21;
 
         /// <summary>
         /// btnSearch control.
@@ -60,40 +60,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// btnGetAll control.
+        /// lblSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetAll;
+        protected global::System.Web.UI.WebControls.Label lblSearch;
 
         /// <summary>
-        /// lblMSG control.
+        /// gvPersonalFiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMSG;
-
-        /// <summary>
-        /// tblTaSummary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblTaSummary;
-
-        /// <summary>
-        /// gvIndividualTASummary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvIndividualTASummary;
+        protected global::System.Web.UI.WebControls.GridView gvPersonalFiles;
 
         /// <summary>
         /// btnRun control.

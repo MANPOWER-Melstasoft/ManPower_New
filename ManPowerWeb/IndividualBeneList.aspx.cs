@@ -2,7 +2,6 @@
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class IndividualBeneSearch : System.Web.UI.Page
+    public partial class IndividualBeneList : System.Web.UI.Page
     {
         List<InduvidualBeneficiary> beneficiaries = new List<InduvidualBeneficiary>();
         static List<InduvidualBeneficiary> beneficiariesFinalList = new List<InduvidualBeneficiary>();
@@ -30,8 +29,6 @@ namespace ManPowerWeb
 
         private void BindDataSource()
         {
-            //InduvidualBeneficiaryController bc = ControllerFactory.CreateInduvidualBeneficiaryController();
-            //beneficiaries = bc.GetAllInduvidualBeneficiary();
 
             ddlGen.DataSource = gen;
             ddlGen.DataBind();
@@ -40,14 +37,18 @@ namespace ManPowerWeb
             ddlScl.DataSource = scl;
             ddlScl.DataBind();
             ddlScl.Items.Insert(0, new ListItem(""));
+
+            InduvidualBeneficiaryController bc = ControllerFactory.CreateInduvidualBeneficiaryController();
+            beneficiaries = bc.GetAllInduvidualBeneficiary(true);
+
+            GridView1.DataSource = beneficiaries;
+            GridView1.DataBind();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             InduvidualBeneficiaryController bc = ControllerFactory.CreateInduvidualBeneficiaryController();
             beneficiaries = bc.GetAllInduvidualBeneficiary(true);
-
-            //beneficiariesFinalList = beneficiaries.ToList();
 
             if (dob.Text != "" && ddlGen.SelectedValue == "" && ddlScl.SelectedValue == "")
             {
@@ -143,22 +144,12 @@ namespace ManPowerWeb
                 GridView1.DataBind();
             }
 
-            //if (beneficiariesFinalList.Count > 0)
-            //{
-            //    btnRun.Visible = true;
-            //}
+            if (beneficiariesFinalList.Count > 0)
+            {
+                btnRun.Visible = true;
+            }
         }
 
-        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GridView1.PageIndex = e.NewPageIndex;
-            BindDataSource();
-        }
-
-        protected void isClicked(object sender, EventArgs e)
-        {
-            Response.Redirect("IndividualBene.aspx");
-        }
 
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -167,9 +158,8 @@ namespace ManPowerWeb
 
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
-            if (beneficiariesFinalList.Count > 0)
+            if (beneficiaries.Count > 0 || beneficiariesFinalList.Count > 0)
             {
-
                 Response.Clear();
                 Response.Buffer = true;
                 Response.ClearContent();
@@ -189,5 +179,10 @@ namespace ManPowerWeb
             }
         }
 
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindDataSource();
+        }
     }
 }

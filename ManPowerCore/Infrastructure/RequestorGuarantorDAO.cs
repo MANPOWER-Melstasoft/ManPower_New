@@ -25,7 +25,7 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Requestor_Guarantor (Distress_Loan_Id, Name_Of_Officer, Amount, Periodical_Amount, Interest) " +
+            dbConnection.cmd.CommandText = "INSERT INTO Requestor_Guarantor (Distress_Loan_Id, Name_Of_Officer, Amount, Periodical_Amount, Interest,Position) " +
                                 "VALUES (@DistressLoanId, @OfficerName, @Amount, @PeriodicalAmount, @Interest, @Position)";
 
             dbConnection.cmd.Parameters.AddWithValue("@DistressLoanId", requestorGuarantor.DistressLoanId);

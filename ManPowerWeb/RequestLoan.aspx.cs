@@ -42,6 +42,8 @@ namespace ManPowerWeb
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             LoanDetail loanDetail = new LoanDetail();
+            DistressLoan distressLoan = new DistressLoan();
+            int response = 0;
             LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
 
             loanDetail.FullName = txtName.Text;
@@ -57,14 +59,27 @@ namespace ManPowerWeb
             loanDetail.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
             loanDetail.ApprovalStatusId = 1;
 
-            int response = loanDetailsController.Save(loanDetail);
+            if (ddlLoanType.SelectedValue == "3")
+            {
+                distressLoan.ReasonForLoan = txtLoanReason.Text;
+                distressLoan.LastLoanDate = DateTime.Parse(txtLastLoan.Text);
+                response = loanDetailsController.SaveAll(loanDetail, distressLoan, guarantorDetailList, requestorGuarantorsList);
+            }
+            else
+            {
+                response = loanDetailsController.Save(loanDetail);
+            }
 
             if (response != 0)
             {
+                guarantorDetailList.Clear();
+                requestorGuarantorsList.Clear();
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='RequestLoan.aspx'},2500);", true);
             }
             else
             {
+                guarantorDetailList.Clear();
+                requestorGuarantorsList.Clear();
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='RequestLoan.aspx'},2500);", true);
 
             }

@@ -24,7 +24,6 @@ namespace ManPowerWeb
             {
                 if (!IsPostBack)
                 {
-                    BindDesignationList();
                     BindUserTypeList();
                     BindEmpList();
                     BindPositionList();
@@ -73,6 +72,15 @@ namespace ManPowerWeb
 
                         lblErrorUser.Text = "";
                         lblSuccessMsg.Text = "Record Updated Successfully!";
+                        if (systemUser.SystemUserId > 0)
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'User Registerd Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+                        }
                     }
                 }
                 else
@@ -218,20 +226,6 @@ namespace ManPowerWeb
 
         }
 
-        private void BindDesignationList()
-        {
-            DesignationController designationController = ControllerFactory.CreateDesignationController();
-            List<Designation> designationList = designationController.GetAllDesignation(true, false, false);
-
-
-            ddlDesignation.DataSource = designationList;
-            ddlDesignation.DataValueField = "DesignationId";
-            ddlDesignation.DataTextField = "DesigntionName";
-            ddlDesignation.DataBind();
-            ddlDesignation.Items.Insert(0, new ListItem("-- select designation --", ""));
-
-        }
-
         private void BindUserTypeList()
         {
             UserTypeController userTypeController = ControllerFactory.CreateUserTypeController();
@@ -300,6 +294,7 @@ namespace ManPowerWeb
         protected void ddlUserName_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindDepartmentUnitList();
+            BindDesignationList();
         }
 
         private void BindDepartmentUnitList()
@@ -345,8 +340,29 @@ namespace ManPowerWeb
                 ddlDepartmentUnit.Items.Clear();
             }
 
-
         }
+
+        private void BindDesignationList()
+        {
+            if (ddlUserName.SelectedValue != "")
+            {
+                List<Employee> employeeList = (List<Employee>)ViewState["EmpList"];
+                Employee employee = employeeList.Where(x => x.EmployeeId == Convert.ToInt32(ddlUserName.SelectedValue)).Single();
+
+                DesignationController designationController = ControllerFactory.CreateDesignationController();
+                List<Designation> designationList = designationController.GetAllDesignation(true, false, false);
+
+                ddlDesignation.DataSource = designationList.Where(x => x.DesignationId == employee.DesignationId).ToList();
+                ddlDesignation.DataValueField = "DesignationId";
+                ddlDesignation.DataTextField = "DesigntionName";
+                ddlDesignation.DataBind();
+            }
+            else
+            {
+                ddlDesignation.Items.Clear();
+            }
+        }
+
 
         private void Clear()
         {

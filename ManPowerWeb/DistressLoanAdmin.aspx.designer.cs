@@ -11,26 +11,8 @@ namespace ManPowerWeb
 {
 
 
-    public partial class ApproveLoan
+    public partial class DistressLoanAdmin
     {
-
-        /// <summary>
-        /// scriptmanger1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager scriptmanger1;
-
-        /// <summary>
-        /// updatePannel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePannel1;
 
         /// <summary>
         /// gvLoan control.
@@ -42,40 +24,112 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvLoan;
 
         /// <summary>
-        /// Literal2 control.
+        /// Literal5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal2;
+        protected global::System.Web.UI.WebControls.Literal Literal5;
 
         /// <summary>
-        /// txtEmployeeId control.
+        /// txtLoandetailId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployeeId;
+        protected global::System.Web.UI.WebControls.TextBox txtLoandetailId;
 
         /// <summary>
-        /// Literal1 control.
+        /// Literal9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.Literal Literal9;
 
         /// <summary>
-        /// txtLoanAmount control.
+        /// txtIsprobation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLoanAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtIsprobation;
+
+        /// <summary>
+        /// Literal10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal10;
+
+        /// <summary>
+        /// txtIsPermenentAfterProbation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIsPermenentAfterProbation;
+
+        /// <summary>
+        /// Literal11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal11;
+
+        /// <summary>
+        /// txtRetireDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRetireDate;
+
+        /// <summary>
+        /// Literal12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal12;
+
+        /// <summary>
+        /// txtIsPermannet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIsPermannet;
+
+        /// <summary>
+        /// Literal6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal6;
+
+        /// <summary>
+        /// txtPermanentDaterom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPermanentDaterom;
 
         /// <summary>
         /// Literal13 control.
@@ -87,31 +141,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal13;
 
         /// <summary>
-        /// txtBasicSalary control.
+        /// txtLoanReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBasicSalary;
-
-        /// <summary>
-        /// RequiredFieldValidator14 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator14;
-
-        /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.TextBox txtLoanReason;
 
         /// <summary>
         /// Literal14 control.
@@ -123,58 +159,85 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal14;
 
         /// <summary>
-        /// txtTotalDeduction control.
+        /// txtIsSuspend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotalDeduction;
+        protected global::System.Web.UI.WebControls.TextBox txtIsSuspend;
 
         /// <summary>
-        /// RequiredFieldValidator15 control.
+        /// Literal1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator15;
+        protected global::System.Web.UI.WebControls.Literal Literal1;
 
         /// <summary>
-        /// RegularExpressionValidator2 control.
+        /// txtIsGurantor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        protected global::System.Web.UI.WebControls.TextBox txtIsGurantor;
 
         /// <summary>
-        /// lblCkeckerSuccess control.
+        /// Literal2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCkeckerSuccess;
+        protected global::System.Web.UI.WebControls.Literal Literal2;
 
         /// <summary>
-        /// lblCkeckerfailed control.
+        /// txtLastLoanDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCkeckerfailed;
+        protected global::System.Web.UI.WebControls.TextBox txtLastLoanDate;
 
         /// <summary>
-        /// btnCheck control.
+        /// Literal3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCheck;
+        protected global::System.Web.UI.WebControls.Literal Literal3;
+
+        /// <summary>
+        /// txtLastLoanType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLastLoanType;
+
+        /// <summary>
+        /// Literal4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal4;
+
+        /// <summary>
+        /// txtLastLoanAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLastLoanAmount;
 
         /// <summary>
         /// btnApprove control.

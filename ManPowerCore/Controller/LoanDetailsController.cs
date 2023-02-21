@@ -18,6 +18,7 @@ namespace ManPowerCore.Controller
         int Update(LoanDetail loanDetail);
 
         int UpdateStatus(int id, int approvalstatusId);
+        int UpdateStatusWithHistory(int id, int approvalstatusId, ApprovalHistory approvalHistory);
 
         List<LoanDetail> GetAllLoanDetail();
 
@@ -31,6 +32,8 @@ namespace ManPowerCore.Controller
         GuarantorDetailDAO guarantorDetailDAO = DAOFactory.createGuarantorDetailDAO();
         RequestorGuarantorDAO requestorGuarantorDAO = DAOFactory.createRequestorGuarantorDAO();
         DistressLoanDAO DistressLoanDAO = DAOFactory.createDistressLoanDAO();
+        ApprovalHistoryDAO approvalHistoryDAO = DAOFactory.createApprovalHistoryDAO();
+
         public int Save(LoanDetail loanDetail)
         {
             try
@@ -120,6 +123,31 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return loanDetailDAO.UpdateStatus(id, approvalstatusId, dBConnection);
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateStatusWithHistory(int id, int approvalstatusId, ApprovalHistory approvalHistory)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                loanDetailDAO.UpdateStatus(id, approvalstatusId, dBConnection);
+
+                return approvalHistoryDAO.Save(approvalHistory, dBConnection);
+
+
             }
             catch (Exception)
             {

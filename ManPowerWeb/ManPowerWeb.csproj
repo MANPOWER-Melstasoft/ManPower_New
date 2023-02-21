@@ -125,6 +125,7 @@
     <Content Include="ApproveLoanAdmin1Front.aspx" />
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
+    <Content Include="DistressLoanAdmin.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="RequestLoan.aspx" />
@@ -2121,6 +2122,13 @@
     </Compile>
     <Compile Include="ApproveLoanView.aspx.designer.cs">
       <DependentUpon>ApproveLoanView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DistressLoanAdmin.aspx.cs">
+      <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DistressLoanAdmin.aspx.designer.cs">
+      <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="IndividualBeneList.aspx.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>

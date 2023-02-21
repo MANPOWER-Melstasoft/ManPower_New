@@ -62,17 +62,17 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "UPDATE Loan_Details " +
-                                "SET Payment_Voucher_Id = @PaymentVoucherId, Employee_ID = @EmployeeId, " +
+                                "SET Employee_ID = @EmployeeId, " +
                                 "Approval_Status_Id = @ApprovalStatusId, Loan_Type_Id = @LoanTypeId, " +
                                 "Full_Name = @FullName, Position = @Position, Work_Place = @WorkPlace, " +
                                 "Work_Type = @WorkType, Appointed_Date = @AppointedDate, " +
                                 "Basic_Salary = @BasicSalary, Loan_Amount = @LoanAmount, " +
                                 "Loan_Require_Date = @LoanRequireDate, Created_Date = @CreatedDate, " +
                                 "Salary_No = @SalaryNo, Last_Loan_Date = @LastLoanDate, " +
-                                "Last_Loan_Paid_Month = @LastLoanPaidMonth, " +
+                                "Last_Loan_Paid_Month = @LastLoanPaidMonth " +
                                 "WHERE Id = @LoanDetailsId";
 
-            dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
+            //dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", loanDetails.EmployeeId);
             dbConnection.cmd.Parameters.AddWithValue("@ApprovalStatusId", loanDetails.ApprovalStatusId);
             dbConnection.cmd.Parameters.AddWithValue("@LoanTypeId", loanDetails.LoanTypeId);

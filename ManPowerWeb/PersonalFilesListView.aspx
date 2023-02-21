@@ -712,6 +712,168 @@
             <%} %>
         </div>
 
+        <div>
+            <div class="row mt-5 pl-2 mb-2">
+                <h4><b>Education Details</b></h4>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Select Exam Index: </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:DropDownList ID="ddlEducationDetailsList" runat="server" OnSelectedIndexChanged="ddlEducation_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%if (ddlEducationDetailsList.SelectedValue != "")
+                {  %>
+
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Education Type : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:DropDownList ID="ddlEducation" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Institute / School / University : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="uni" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Index Number: </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="index" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Year : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="year" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <%if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
+                {  %>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Attempt : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="attempt" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Subject : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="sub" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Stream : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="stream" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Grade : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="grade" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <%} %>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Status : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="status" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="eduRowId" runat="server">
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-4">
+                                <label>ID : </label>
+                            </div>
+                            <div class="col-6">
+                                <asp:TextBox ID="eduId" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%} %>
+        </div>
+
         <div class="row mt-5 mb-5">
             <div class="col-2">
                 <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />

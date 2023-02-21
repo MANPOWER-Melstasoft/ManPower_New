@@ -107,6 +107,22 @@ namespace ManPowerWeb
             ddlDependantList.DataTextField = "FirstName";
             ddlDependantList.DataBind();
             ddlDependantList.Items.Insert(0, new ListItem("- Select -", ""));
+
+
+            EducationTypeController et = ControllerFactory.CreateEducationTypeController();
+            educationTypes = et.GetAllEducationType();
+            ddlEducation.DataSource = educationTypes;
+            ddlEducation.DataValueField = "EducationTypeId";
+            ddlEducation.DataTextField = "EducationTypeName";
+            ddlEducation.DataBind();
+
+            EducationDetailsController educationDetailsController = ControllerFactory.CreateEducationDetailsController();
+            educationDetails = educationDetailsController.GetEducationDetailsByEmpId(Convert.ToInt32(EmployeeId));
+            ddlEducationDetailsList.DataSource = educationDetails;
+            ddlEducationDetailsList.DataValueField = "EducationDetailsId";
+            ddlEducationDetailsList.DataTextField = "ExamIndex";
+            ddlEducationDetailsList.DataBind();
+            ddlEducationDetailsList.Items.Insert(0, new ListItem("- Select -", ""));
         }
 
         private void BindEmpData()
@@ -194,7 +210,7 @@ namespace ManPowerWeb
 
 
 
-
+        //-------------- employment details ----------------------
         protected void ddlEmpDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
             bindEmploymentDetails();
@@ -225,8 +241,10 @@ namespace ManPowerWeb
                 }
             }
         }
+        //------------------------------------------------------
 
 
+        //-------------- dependant details ----------------------
         protected void ddlDependantList_SelectedIndexChanged(object sender, EventArgs e)
         {
             bindDependant();
@@ -262,10 +280,46 @@ namespace ManPowerWeb
                 }
             }
         }
+        //------------------------------------------------------
 
 
+        //-------------- Education details ----------------------
+        protected void ddlEducation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindEducation();
+        }
+
+        private void bindEducation()
+        {
+
+            EducationDetailsController educationDetailsController = ControllerFactory.CreateEducationDetailsController();
+            List<EducationDetails> edu = new List<EducationDetails>();
+            edu = educationDetailsController.GetEducationDetailsByEmpId(Convert.ToInt32(EmployeeId));
+
+            if (ddlEducationDetailsList.SelectedValue != "")
+            {
+                foreach (var i in edu.Where(u => u.EducationDetailsId == int.Parse(ddlEducationDetailsList.SelectedValue)))
+                {
+                    ddlEducation.SelectedValue = i.EducationTypeId.ToString();
+                    uni.Text = i.StudiedInstitute;
+                    index.Text = i.ExamIndex;
+                    year.Text = i.ExamYear.ToString();
+                    attempt.Text = i.NoOfAttempts.ToString();
+                    sub.Text = i.ExamSubject;
+                    stream.Text = i.ExamStream;
+                    grade.Text = i.ExamGrade;
+                    status.Text = i.ExamStatus;
 
 
+                    eduId.Text = i.EducationDetailsId.ToString();
+
+                }
+            }
+        }
+        //------------------------------------------------------
+
+
+        //------------ Emergency Contact details --------------
         private void bindEmpEmergencyContact()
         {
             EmergencyContactController emergencyContactController = ControllerFactory.CreateEmergencyContactController();
@@ -278,5 +332,6 @@ namespace ManPowerWeb
             ecMobile.Text = emergencyContact.EmgMobile.ToString();
             ecOfficePhone.Text = emergencyContact.OfficePhone.ToString();
         }
+        //----------------------------------------------------
     }
 }

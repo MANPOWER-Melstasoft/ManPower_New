@@ -143,10 +143,16 @@ namespace ManPowerWeb
                 GridView1.DataBind();
             }
 
-            if (beneficiariesFinalList.Count > 0)
-            {
-                btnRun.Visible = true;
-            }
+            //if (beneficiariesFinalList.Count > 0)
+            //{
+            //    btnRun.Visible = true;
+            //}
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindDataSource();
         }
 
         protected void isClicked(object sender, EventArgs e)
@@ -163,49 +169,42 @@ namespace ManPowerWeb
         {
             if (beneficiariesFinalList.Count > 0)
             {
+
                 Response.Clear();
                 Response.Buffer = true;
-                string FileName = "Individual Beneficiary List" + DateTime.Now + ".xls";
-                Response.AddHeader("content-disposition", "attachment;filename=" + FileName);
+                Response.ClearContent();
+                Response.ClearHeaders();
                 Response.Charset = "";
+                string FileName = "Individual Beneficiary List" + DateTime.Now + ".xls";
+                StringWriter strwritter = new StringWriter();
+                HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 Response.ContentType = "application/vnd.ms-excel";
-
-                using (StringWriter sw = new StringWriter())
-                {
-                    HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-                    GridView gridView = GridView1;
-
-                    gridView.DataSource = beneficiariesFinalList;
-                    gridView.AllowPaging = false;
-                    gridView.AllowSorting = false;
-                    gridView.DataBind();
-
-                    gridView.RenderControl(hw);
-
-                    Response.Output.Write(sw.ToString());
-                    Response.Flush();
-                    Response.End();
-                }
-
-                //Response.Clear();
-                //Response.Buffer = true;
-                //Response.ClearContent();
-                //Response.ClearHeaders();
-                //Response.Charset = "";
-                //string FileName = "Individual Beneficiary List" + DateTime.Now + ".xls";
-                //StringWriter strwritter = new StringWriter();
-                //HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
-                //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                //Response.ContentType = "application/vnd.ms-excel";
-                //Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-                //GridView1.GridLines = GridLines.Both;
-                ////tblTaSummary.HeaderStyle.Font.Bold = true;
-                //GridView1.RenderControl(htmltextwrtter);
-                //Response.Write(strwritter.ToString());
-                //Response.End();
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+                GridView1.GridLines = GridLines.Both;
+                //tblTaSummary.HeaderStyle.Font.Bold = true;
+                GridView1.RenderControl(htmltextwrtter);
+                Response.Write(strwritter.ToString());
+                Response.End();
             }
         }
 
+        protected void btnSearch2_Click(object sender, EventArgs e)
+        {
+            InduvidualBeneficiaryController bc = ControllerFactory.CreateInduvidualBeneficiaryController();
+            beneficiaries = bc.GetAllInduvidualBeneficiary(true);
+
+            string keyword = txtKeyword.Text.Trim();
+
+            beneficiaries = beneficiaries.Where(x => x.InduvidualBeneficiaryName.ToLower().Contains(keyword.ToLower())
+            || x.BeneficiaryNic.ToLower().Contains(keyword.ToLower())
+            || x.SchoolName.ToLower().Contains(keyword.ToLower())
+            || x.BeneficiaryEmail.ToLower().Contains(keyword.ToLower())
+            || x.PersonalAddress.ToLower().Contains(keyword.ToLower())
+            || x.JobPreference.ToLower().Contains(keyword.ToLower())).ToList();
+
+            GridView1.DataSource = beneficiaries;
+            GridView1.DataBind();
+        }
     }
 }

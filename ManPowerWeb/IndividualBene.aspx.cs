@@ -58,6 +58,8 @@ namespace ManPowerWeb
             induvidualBeneficiary.WhatsappNumber = whatsapp.Text;
             induvidualBeneficiary.CreatedUser = Convert.ToInt32(Session["UserId"]);
 
+
+
             if (ddl2.SelectedValue.ToLower() == "school")
             {
                 induvidualBeneficiary.IsSchoolStudent = 1;
@@ -98,6 +100,18 @@ namespace ManPowerWeb
         protected void isClicked(object sender, EventArgs e)
         {
             Response.Redirect("IndividualBeneSearch.aspx");
+        }
+
+        protected void grade_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(grade.Text) >= 11)
+            {
+                RequiredFieldValidator12.Enabled = false;
+            }
+            else
+            {
+                RequiredFieldValidator12.Enabled = true;
+            }
         }
     }
 }

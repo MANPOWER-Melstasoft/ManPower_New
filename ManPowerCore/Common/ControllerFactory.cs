@@ -1,5 +1,6 @@
 ﻿using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -599,6 +600,30 @@ namespace ManPowerCore.Common
         {
             LoanDetailsController loanDetailsController = new LoanDetailsControllerImpl();
             return (LoanDetailsController)loanDetailsController;
+        }
+
+        public static ApprovalHistoryController CreateApprovalHistoryController()
+        {
+            ApprovalHistoryController approvalHistoryController = new ApprovalHistoryControllerImpl();
+            return (ApprovalHistoryController)approvalHistoryController;
+        }
+
+        public static DistressLoanController CreateDistressLoanController()
+        {
+            DistressLoanController distressLoanController = new DistressLoanControllerImpl();
+            return (DistressLoanController)distressLoanController;
+        }
+
+        public static GuarantorDetailController CreateGuarantorDetailController()
+        {
+            GuarantorDetailController guarantorDetailController = new GuarantorDetailControllerImpl();
+            return (GuarantorDetailController)guarantorDetailController;
+        }
+
+        public static RequestorGuarantorController CreateRequestorGuarantorController()
+        {
+            RequestorGuarantorController requestorGuarantorController = new RequestorGuarantorControllerImpl();
+            return (RequestorGuarantorController)requestorGuarantorController;
         }
     }
 }

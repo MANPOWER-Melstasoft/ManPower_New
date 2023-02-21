@@ -66,11 +66,12 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE PROGRAM SET NAME = @ProgramName, IS_ACTIVE = @IsActive  WHERE ID = @ProgramId ";
+            dbConnection.cmd.CommandText = "UPDATE PROGRAM SET NAME = @ProgramName, Program_Type_Id = @ProgramType, IS_ACTIVE = @IsActive  WHERE ID = @ProgramId ";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@ProgramId", program.ProgramId);
             dbConnection.cmd.Parameters.AddWithValue("@ProgramName", program.ProgramName);
+            dbConnection.cmd.Parameters.AddWithValue("@ProgramType", program.ProgramType);
             dbConnection.cmd.Parameters.AddWithValue("@IsActive", program.IsActive);
 
 

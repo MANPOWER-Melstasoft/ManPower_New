@@ -108,6 +108,7 @@
     <Content Include="500.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AddDepartment.aspx" />
+    <Content Include="AddDesignation.aspx" />
     <Content Include="AddDME21.aspx" />
     <Content Include="AddHoliday.aspx" />
     <Content Include="AddNewTarget.aspx" />
@@ -123,8 +124,12 @@
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
     <Content Include="AproveLoanAdminRecomendation.aspx" />
+    <Content Include="IndividualBeneList.aspx" />
+    <Content Include="PersonalFilesList.aspx" />
     <Content Include="RequestLoan.aspx" />
+    <Content Include="RequestLoanFront.aspx" />
     <Content Include="ResetPassword.aspx" />
+    <Content Include="ResourcePersonList.aspx" />
     <Content Include="TrainingFront.aspx" />
     <Content Include="AddTransfersRetirementResignation.aspx" />
     <Content Include="AddVacancyPosition.aspx" />
@@ -1997,6 +2002,13 @@
     <Compile Include="AddDepartment.aspx.designer.cs">
       <DependentUpon>AddDepartment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddDesignation.aspx.cs">
+      <DependentUpon>AddDesignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDesignation.aspx.designer.cs">
+      <DependentUpon>AddDesignation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddDME21.aspx.cs">
       <DependentUpon>AddDME21.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2102,6 +2114,20 @@
     <Compile Include="AproveLoanAdminRecomendation.aspx.designer.cs">
       <DependentUpon>AproveLoanAdminRecomendation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="IndividualBeneList.aspx.cs">
+      <DependentUpon>IndividualBeneList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndividualBeneList.aspx.designer.cs">
+      <DependentUpon>IndividualBeneList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalFilesList.aspx.cs">
+      <DependentUpon>PersonalFilesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFilesList.aspx.designer.cs">
+      <DependentUpon>PersonalFilesList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RequestLoan.aspx.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2109,12 +2135,26 @@
     <Compile Include="RequestLoan.aspx.designer.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RequestLoanFront.aspx.cs">
+      <DependentUpon>RequestLoanFront.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestLoanFront.aspx.designer.cs">
+      <DependentUpon>RequestLoanFront.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourcePersonList.aspx.cs">
+      <DependentUpon>ResourcePersonList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourcePersonList.aspx.designer.cs">
+      <DependentUpon>ResourcePersonList.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrainingFront.aspx.cs">
       <DependentUpon>TrainingFront.aspx</DependentUpon>

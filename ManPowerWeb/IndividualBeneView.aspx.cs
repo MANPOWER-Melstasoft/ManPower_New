@@ -170,20 +170,28 @@ namespace ManPowerWeb
         {
             JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
 
-            JobRefferals jobRefferals = new JobRefferals
-            {
-                BeneficiaryId = Convert.ToInt32(BenficiaryId),
-                VacancyRegistrationId = Convert.ToInt32(ddlCompanyVacancies.SelectedValue.ToString()),
-                JobCategoryId = Convert.ToInt32(ddlJobCategory.SelectedValue.ToString()),
-                CereatedDate = DateTime.Today,
-                JobPlacementDate = DateTime.Parse(jobPlacememntDate.Text).Date,
-                RefferalsDate = DateTime.Parse(jobRefferalsDate.Text).Date,
-                RefferalRemarks = jobRefferalRemark.Text,
-                CareerGuidance = careerGuidance.Text,
-                ProgramPlanId = Convert.ToInt32(ddlJobProgramPlan.SelectedValue),
-                CreatedUser = Session["Name"].ToString(),
+            JobRefferals jobRefferals = new JobRefferals();
 
-            };
+            jobRefferals.BeneficiaryId = Convert.ToInt32(BenficiaryId);
+            jobRefferals.VacancyRegistrationId = Convert.ToInt32(ddlCompanyVacancies.SelectedValue.ToString());
+            jobRefferals.JobCategoryId = Convert.ToInt32(ddlJobCategory.SelectedValue.ToString());
+            jobRefferals.CereatedDate = DateTime.Today;
+            if (jobPlacememntDate.Text != "")
+            {
+                jobRefferals.JobPlacementDate = DateTime.Parse(jobPlacememntDate.Text).Date;
+
+            }
+            jobRefferals.RefferalsDate = DateTime.Parse(jobRefferalsDate.Text).Date;
+            jobRefferals.RefferalRemarks = jobRefferalRemark.Text;
+            jobRefferals.CareerGuidance = careerGuidance.Text;
+            if (ddlJobProgramPlan.SelectedValue != "")
+            {
+                jobRefferals.ProgramPlanId = Convert.ToInt32(ddlJobProgramPlan.SelectedValue);
+
+            }
+            jobRefferals.CreatedUser = Session["Name"].ToString();
+
+
 
             int output = jobRefferalsController.SaveJobRefferals(jobRefferals);
             if (output != 0)
@@ -296,7 +304,7 @@ namespace ManPowerWeb
             JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
             List<JobRefferals> jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
 
-            GridView3.DataSource = jobRefferalsList;
+            GridView3.DataSource = jobRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
             GridView3.DataBind();
         }
 
@@ -306,6 +314,8 @@ namespace ManPowerWeb
             {
                 int minID = int.Parse(GridView3.DataKeys[e.Row.RowIndex].Value.ToString());
                 GridView gvPlanDetails = e.Row.FindControl("childgridView3") as GridView;
+
+
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
                 List<JobPlacementFeedback> jobPlacementFeedbacksList = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
@@ -489,7 +499,7 @@ namespace ManPowerWeb
             CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
             List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
 
-            gvAnnaualPlan.DataSource = careerKeyTestResultsList;
+            gvAnnaualPlan.DataSource = careerKeyTestResultsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
             gvAnnaualPlan.DataBind();
 
         }
@@ -739,7 +749,7 @@ namespace ManPowerWeb
             TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
             List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
 
-            GridView2.DataSource = trainingRefferalsList;
+            GridView2.DataSource = trainingRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
             GridView2.DataBind();
         }
 

@@ -102,18 +102,6 @@
                 <div class="col-sm-6">
                     <div class="row mb-3">
                         <div class="col-sm-6">
-                            <asp:Literal ID="lblDesignation" runat="server" Text="Designation"></asp:Literal>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:DropDownList ID="ddlDesignation" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control"></asp:DropDownList>
-                            <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="1"
-                                    ControlToValidate="ddlDesignation" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm-6">
                             <asp:Literal ID="lblUserType" runat="server" Text="User Type"></asp:Literal>
                         </div>
                         <div class="col-md-6">
@@ -139,6 +127,18 @@
                     <%-- <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>--%>
+                    <div class="row mb-3">
+                        <div class="col-sm-6">
+                            <asp:Literal ID="lblDesignation" runat="server" Text="Designation"></asp:Literal>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:DropDownList ID="ddlDesignation" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control" Enabled="false"></asp:DropDownList>
+                            <div class="d-flex text-danger">
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="1"
+                                    ControlToValidate="ddlDesignation" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <div class="col-sm-6">
                             <asp:Literal ID="lblDepartmentType" runat="server" Text="Department Type"></asp:Literal>

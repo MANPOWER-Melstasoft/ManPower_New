@@ -35,12 +35,12 @@ namespace ManPowerWeb
 
             rp = resourcePerson.GetAllResourcePerson(true);
 
-            if (rp.Count > 0)
-            {
-                btnRun.Visible = true;
-            } 
+            //if (rp.Count > 0)
+            //{
+            //    btnRun.Visible = true;
+            //}
 
-            ViewState["rp"] = rp; 
+            ViewState["rp"] = rp;
             GridView1.DataSource = rp;
             GridView1.DataBind();
         }
@@ -48,7 +48,7 @@ namespace ManPowerWeb
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             rp = (List<ResourcePerson>)ViewState["rp"];
-            GridView1.DataSource = rp.Where(u => u.ResourcePersonType == ddlType.SelectedValue && u.Designation == desig.Text);
+            GridView1.DataSource = rp.Where(u => u.ResourcePersonType.ToLower().Contains(ddlType.SelectedValue.ToLower()) && u.Designation.ToLower().Contains(desig.Text.ToLower()));
             GridView1.DataBind();
         }
 
@@ -73,45 +73,27 @@ namespace ManPowerWeb
             {
                 Response.Clear();
                 Response.Buffer = true;
-                string FileName = "Individual Beneficiary List" + DateTime.Now + ".xls";
-                Response.AddHeader("content-disposition", "attachment;filename=" + FileName);
+                Response.ClearContent();
+                Response.ClearHeaders();
                 Response.Charset = "";
+                string FileName = "Resource Person List" + DateTime.Now + ".xls";
+                StringWriter strwritter = new StringWriter();
+                HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 Response.ContentType = "application/vnd.ms-excel";
-
-                using (StringWriter sw = new StringWriter())
-                {
-                    HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-                    GridView gridView = GridView1;
-
-                    gridView.AllowPaging = false;
-                    gridView.AllowSorting = false;
-                    gridView.DataBind();
-
-                    gridView.RenderControl(hw);
-
-                    Response.Output.Write(sw.ToString());
-                    Response.Flush();
-                    Response.End();
-                }
-
-                //Response.Clear();
-                //Response.Buffer = true;
-                //Response.ClearContent();
-                //Response.ClearHeaders();
-                //Response.Charset = "";
-                //string FileName = "Individual Beneficiary List" + DateTime.Now + ".xls";
-                //StringWriter strwritter = new StringWriter();
-                //HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
-                //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                //Response.ContentType = "application/vnd.ms-excel";
-                //Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-                //GridView1.GridLines = GridLines.Both;
-                ////tblTaSummary.HeaderStyle.Font.Bold = true;
-                //GridView1.RenderControl(htmltextwrtter);
-                //Response.Write(strwritter.ToString());
-                //Response.End();
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+                GridView1.GridLines = GridLines.Both;
+                //tblTaSummary.HeaderStyle.Font.Bold = true;
+                GridView1.RenderControl(htmltextwrtter);
+                Response.Write(strwritter.ToString());
+                Response.End();
             }
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindDataSource();
         }
 
     }

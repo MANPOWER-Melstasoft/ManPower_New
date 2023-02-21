@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IndividualBeneSearch.aspx.cs" Inherits="ManPowerWeb.IndividualBeneSearch" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IndividualBeneSearch.aspx.cs" Inherits="ManPowerWeb.IndividualBeneSearch" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
@@ -46,15 +46,31 @@
                 <asp:Button ID="Button1" runat="server" Text="Search" OnClick="btnSearch_Click" AutoPostBack="true" CssClass="btn btn-primary" />
             </div>
 
+            <div class="row mt-4">
+                <div class="col-2">
+                    <label>Search Any Keyword : </label>
+                </div>
+                <div class="col-5">
+                    <asp:TextBox ID="txtKeyword" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                </div>
+                <div class="col-3" style="width: 100%">
+                    <asp:Button ID="btnSearch2" runat="server" Text="Search" OnClick="btnSearch2_Click" AutoPostBack="true" CssClass="btn btn-primary" />
+                </div>
+            </div>
+
             <div class="row mt-3 p-2">
                 <a href="ResourcePersonReg.aspx">
                     <asp:Button ID="Button2" runat="server" Text="Add New Indvidual Beneficiaries" OnClick="isClicked" CssClass="btn btn-primary" />
                 </a>
             </div>
 
+            <%-- <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success col-3 mt-3" title="Export To Excel" visible="false">
+                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+            </button>--%>
+
             <div class="table-responsive mt-5" style="width: 100%;">
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                    CellPadding="4" GridLines="None">
+                    CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="10">
                     <Columns>
                         <asp:BoundField HeaderText="Name" DataField="InduvidualBeneficiaryName" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Job Preference" DataField="JobPreference" HeaderStyle-CssClass="table-dark" />
@@ -85,9 +101,6 @@
                 </asp:GridView>
             </div>
 
-            <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success col-3" title="Export To Excel" visible="false">
-                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
-            </button>
         </div>
     </div>
 

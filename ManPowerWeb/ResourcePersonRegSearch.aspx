@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResourcePersonRegSearch.aspx.cs" Inherits="ManPowerWeb.ResourcePersonRegSearch" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResourcePersonRegSearch.aspx.cs" Inherits="ManPowerWeb.ResourcePersonRegSearch" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
@@ -47,9 +47,13 @@
         <br />
         <br />
 
+        <%-- <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success col-3 mt-3" title="Export To Excel" visible="false">
+            <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+        </button>--%>
+
         <div class="table-responsive" style="width: 100%;">
             <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                CellPadding="4" GridLines="None">
+                CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="10">
                 <Columns>
                     <asp:BoundField HeaderText="Resource Person Type" DataField="ResourcePersonType" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Designation" DataField="Designation" HeaderStyle-CssClass="table-dark" />
@@ -66,10 +70,6 @@
                 </Columns>
             </asp:GridView>
         </div>
-
-        <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success col-3" title="Export To Excel" visible="false">
-            <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
-        </button>
 
     </div>
 </asp:Content>

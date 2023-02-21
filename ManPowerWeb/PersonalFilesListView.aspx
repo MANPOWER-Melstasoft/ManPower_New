@@ -298,10 +298,7 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-2">
-                    <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
-                </div>
+            <div class="row justify-content-end mt-3 mr-5">
                 <div class="col-2">
                     <asp:Button runat="server" ID="btnUpdate" Text="Update" CssClass="btn btn-success btn-user btn-block" OnClick="btnUpdate_Click" ValidationGroup="1" />
                 </div>
@@ -715,6 +712,13 @@
             <%} %>
         </div>
 
+        <div class="row mt-5 mb-5">
+            <div class="col-2">
+                <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
+            </div>
+        </div>
+
     </div>
+
 
 </asp:Content>

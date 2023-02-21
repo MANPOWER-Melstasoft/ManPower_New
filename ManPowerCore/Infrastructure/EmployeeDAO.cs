@@ -74,24 +74,35 @@ namespace ManPowerCore.Infrastructure
         {
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Religion_Id = @ReligionId, Ethnicity_Id = @EthnicityId," +
-                "NIC = @EmployeeNIC , NIC_Issue_Date = @NicIssueDate, Passport_Number = @EmployeePassportNumber, Initial = @EmpInitials," +
-                "Last_Name = @LastName, Name_Denote_By_Initial = @NameWithInitials, Marital_Status = @MaritalStatus," +
-                "Supervisor_Id = @SupervisorId, Manager_Id = @ManagerId WHERE ID = @EmployeeId";
+            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Title = @Title, Gender = @EmpGender, Pension_Date = @PensionDate, " +
+                "Unit_Type = @UnitType, NIC = @EmployeeNIC, Initial = @EmpInitials, Date_Of_Birth = @DOB, DSDivision_Id = @DSDivisionId, " +
+                "District_Id = @DistrictId, Last_Name = @LastName, Name_Denote_By_Initial = @NameWithInitials, Marital_Status = @MaritalStatus," +
+                "File_No = @FileNo, Designation_Id = @DesignationId, VNOP_No = @VNOPNo, Appointment_No = @AppointmentNo, " +
+                "Salary_Num = @SalaryNo, ED_Completion_Date = @EDCompletionDate WHERE ID = @EmployeeId";
 
 
-            dbConnection.cmd.Parameters.AddWithValue("@ReligionId", emp.ReligionId);
-            dbConnection.cmd.Parameters.AddWithValue("@EthnicityId", emp.EthnicityId);
-            dbConnection.cmd.Parameters.AddWithValue("@EmployeeNIC", emp.EmployeeNIC);
-            dbConnection.cmd.Parameters.AddWithValue("@NicIssueDate", emp.NicIssueDate);
-            dbConnection.cmd.Parameters.AddWithValue("@EmployeePassportNumber", emp.EmployeePassportNumber);
+            dbConnection.cmd.Parameters.AddWithValue("@Title", emp.Title);
+            dbConnection.cmd.Parameters.AddWithValue("@EmpGender", emp.EmpGender);
+            dbConnection.cmd.Parameters.AddWithValue("@MaritalStatus", emp.MaritalStatus);
+            dbConnection.cmd.Parameters.AddWithValue("@FileNo", emp.FileNo);
             dbConnection.cmd.Parameters.AddWithValue("@EmpInitials", emp.EmpInitials);
             dbConnection.cmd.Parameters.AddWithValue("@LastName", emp.LastName);
             dbConnection.cmd.Parameters.AddWithValue("@NameWithInitials", emp.NameWithInitials);
-            dbConnection.cmd.Parameters.AddWithValue("@MaritalStatus", emp.MaritalStatus);
-            dbConnection.cmd.Parameters.AddWithValue("@SupervisorId", emp.SupervisorId);
-            dbConnection.cmd.Parameters.AddWithValue("@ManagerId", emp.ManagerId);
+            dbConnection.cmd.Parameters.AddWithValue("@DOB", emp.DOB);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeNIC", emp.EmployeeNIC);
+            dbConnection.cmd.Parameters.AddWithValue("@DesignationId", emp.DesignationId);
+
+            dbConnection.cmd.Parameters.AddWithValue("@PensionDate", emp.PensionDate);
+            dbConnection.cmd.Parameters.AddWithValue("@DSDivisionId", emp.DSDivisionId);
+            dbConnection.cmd.Parameters.AddWithValue("@DistrictId", emp.DistrictId);
+            dbConnection.cmd.Parameters.AddWithValue("@UnitType", emp.UnitType);
+
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", emp.EmployeeId);
+
+            dbConnection.cmd.Parameters.AddWithValue("@EDCompletionDate", emp.EDCompletionDate);
+            dbConnection.cmd.Parameters.AddWithValue("@SalaryNo", emp.SalaryNo);
+            dbConnection.cmd.Parameters.AddWithValue("@VNOPNo", emp.VNOPNo);
+            dbConnection.cmd.Parameters.AddWithValue("@AppointmentNo", emp.AppointmentNo);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

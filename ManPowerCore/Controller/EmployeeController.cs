@@ -215,6 +215,14 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
+
+                Employee employeeOld = employeeDAO.GetEmployeeById(emp.EmployeeId, dBConnection);
+
+                if (employeeOld.UnitType != emp.UnitType || employeeOld.DistrictId != emp.DistrictId || employeeOld.DSDivisionId != emp.DSDivisionId)
+                {
+
+                }
+
                 int results = employeeDAO.UpdateEmployee(emp, dBConnection);
 
                 return results;

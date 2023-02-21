@@ -148,6 +148,22 @@ namespace ManPowerWeb
             vnop.Text = employee.VNOPNo.ToString();
             appointmenLetterNo.Text = employee.AppointmentNo.ToString();
 
+            if (employee.UnitType == 3)
+            {
+                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                listDSDivision = departmentUnitController.GetAllDepartmentUnit(false, false).Where(u => u.DepartmentUnitTypeId == 3 && u.ParentId == int.Parse(ddlDistrict.SelectedValue)).ToList();
+
+                ddlDS.DataSource = listDSDivision.Where(u => u.ParentId.ToString() == ddlDistrict.SelectedValue);
+                ddlDS.DataTextField = "Name";
+                ddlDS.DataValueField = "DepartmentUnitId";
+                ddlDS.DataBind();
+                ddlDS.Items.Insert(0, new ListItem("-- select DS --", ""));
+
+                DsDiv.Visible = true;
+                ddlDS.SelectedValue = employee.DSDivisionId.ToString();
+            }
+
+
             EmployeeContactController employeeContactController = ControllerFactory.CreateEmployeeContactController();
             List<EmployeeContact> employeeContact = employeeContactController.GetAllEmployeeContact();
 

@@ -173,7 +173,6 @@
                         </div>
                         <div class="col-6">
                             <asp:DropDownList ID="ddlDS" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                            <asp:RequiredFieldValidator ControlToValidate="ddlDS" ID="RequiredFieldValidator27" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="10" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>

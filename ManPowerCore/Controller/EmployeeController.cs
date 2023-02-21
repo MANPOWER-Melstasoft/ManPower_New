@@ -114,9 +114,20 @@ namespace ManPowerCore.Controller
             {
                 List<Employee> employeesList = employeeDAO.GetAllEmployee(dBConnection);
 
+                DepartmentUnitDAO departmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
+                List<DepartmentUnit> departmentUnitsList = departmentUnitDAO.GetAllDepartmentUnit(dBConnection);
+
                 foreach (var item in employeesList)
                 {
                     item.fullName = item.EmpInitials + " " + item.LastName;
+                    if (item.UnitType == 3)
+                    {
+                        item._DepartmentUnit = departmentUnitsList.Where(x => x.DepartmentUnitId == item.DSDivisionId).Single();
+                    }
+                    else
+                    {
+                        item._DepartmentUnit = departmentUnitsList.Where(x => x.DepartmentUnitId == item.DistrictId).Single();
+                    }
                 }
 
                 return employeesList;

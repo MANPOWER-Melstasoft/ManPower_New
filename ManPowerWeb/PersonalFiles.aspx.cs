@@ -235,6 +235,7 @@ namespace ManPowerWeb
                 ddlDS.DataTextField = "Name";
                 ddlDS.DataValueField = "DepartmentUnitId";
                 ddlDS.DataBind();
+                ddlDS.Items.Insert(0, new ListItem("- Select -", ""));
             }
             else
             {

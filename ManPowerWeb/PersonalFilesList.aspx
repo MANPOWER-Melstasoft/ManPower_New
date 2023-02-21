@@ -14,7 +14,7 @@
                     <div class="mb-2 mt-4">
                         <div class="row">
                             <div class="col-4">
-                                <asp:TextBox ID="txtName" runat="server" placeholder="Search by Name" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:TextBox ID="txtName" runat="server" placeholder="Search by Name or Department" CssClass="form-control form-control-user"></asp:TextBox>
                                 <asp:RequiredFieldValidator ControlToValidate="txtName" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-2">
@@ -50,8 +50,15 @@
                                 <asp:BoundField DataField="EmpInitials" HeaderText="Initials" HeaderStyle-CssClass="table-dark" />
                                 <asp:BoundField DataField="LastName" HeaderText="Last Name" HeaderStyle-CssClass="table-dark" />
                                 <asp:BoundField DataField="EmpGender" HeaderText="Gender" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="DOB" HeaderText="DOB" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                                <asp:BoundField DataField="_DepartmentUnit.Name" HeaderText="Department" HeaderStyle-CssClass="table-dark" />
 
+                                <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnView" runat="server" Text="View" CssClass="btn btn-success" Width="100px" Height="35px" OnClick="btnView_Click" />
+                                    </ItemTemplate>
 
+                                </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                     </div>

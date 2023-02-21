@@ -93,6 +93,8 @@ namespace ManPowerCore.Domain
         [DBField("ED_Completion_Date")]
         public DateTime EDCompletionDate { get; set; }
 
+        [DBField("Is_Active")]
+        public int IsActive { get; set; }
 
         public string fullName { get; set; }
 
@@ -107,5 +109,7 @@ namespace ManPowerCore.Domain
         public EmploymentDetails _EmploymentDetailsSingle { get; set; } = new EmploymentDetails();
         public List<EducationDetails> _EducationDetails { get; set; } = new List<EducationDetails>();
         public List<EmployeeServices> _EmployeeServices { get; set; } = new List<EmployeeServices>();
+
+        public DepartmentUnit _DepartmentUnit { get; set; }
     }
 }

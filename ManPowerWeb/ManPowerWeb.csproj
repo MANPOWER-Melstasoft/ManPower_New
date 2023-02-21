@@ -121,9 +121,11 @@
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
     <Content Include="ApproveLoan.aspx" />
+    <Content Include="ApproveLoanAdmin1.aspx" />
+    <Content Include="ApproveLoanAdmin1Front.aspx" />
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
-    <Content Include="AproveLoanAdminRecomendation.aspx" />
+    <Content Include="DistressLoanAdmin.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="PersonalFilesListView.aspx" />
@@ -2094,6 +2096,20 @@
     <Compile Include="ApproveLoan.aspx.designer.cs">
       <DependentUpon>ApproveLoan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveLoanAdmin1.aspx.cs">
+      <DependentUpon>ApproveLoanAdmin1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanAdmin1.aspx.designer.cs">
+      <DependentUpon>ApproveLoanAdmin1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveLoanAdmin1Front.aspx.cs">
+      <DependentUpon>ApproveLoanAdmin1Front.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanAdmin1Front.aspx.designer.cs">
+      <DependentUpon>ApproveLoanAdmin1Front.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveLoanHead.aspx.cs">
       <DependentUpon>ApproveLoanHead.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2108,12 +2124,12 @@
     <Compile Include="ApproveLoanView.aspx.designer.cs">
       <DependentUpon>ApproveLoanView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AproveLoanAdminRecomendation.aspx.cs">
-      <DependentUpon>AproveLoanAdminRecomendation.aspx</DependentUpon>
+    <Compile Include="DistressLoanAdmin.aspx.cs">
+      <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AproveLoanAdminRecomendation.aspx.designer.cs">
-      <DependentUpon>AproveLoanAdminRecomendation.aspx</DependentUpon>
+    <Compile Include="DistressLoanAdmin.aspx.designer.cs">
+      <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="IndividualBeneList.aspx.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>

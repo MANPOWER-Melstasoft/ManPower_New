@@ -192,10 +192,41 @@
                 <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-outline-success" Style="width: 150px;" OnClick="btnApprove_Click" />
             </div>
             <div class="col-2">
-                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-outline-danger" Style="width: 150px;" OnClick="btnReject_Click" />
+                <button runat="server" id="btnModalReject" type="button" class="btn btn-outline-danger" style="width: 150px;" data-toggle="modal" data-target="#exampleModalCenter" visible="true">Reject</button>
+            </div>
+        </div>
+
+        <%---------------------dialog box----------------------%>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Reject Loan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-4">
+                                    <label>Reason to reject </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <asp:TextBox ID="txtrejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-outline-danger" Style="width: 150px;" OnClick="btnReject_Click" />
+                    </div>
+                </div>
             </div>
         </div>
 
 
+        <%--------------end of dialog box--------------------%>
     </div>
 </asp:Content>

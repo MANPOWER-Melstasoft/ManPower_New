@@ -43,6 +43,7 @@ namespace ManPowerWeb
             loanDetailObj = loanDetailList.Where(x => x.LoanDetailsId == loanDetailsId).Single();
 
             BindDdlLoanType();
+
             ddlLoanType.SelectedValue = loanDetailObj.LoanTypeId.ToString();
             txtName.Text = loanDetailObj.FullName;
             txtPosition.Text = loanDetailObj.Position;
@@ -87,6 +88,9 @@ namespace ManPowerWeb
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             loanDetailObj.ApprovalStatusId = 2;
+            loanDetailObj.LastLoanDate = DateTime.Now;
+            loanDetailObj.LastLoanPaidMonth = DateTime.Now;
+            loanDetailObj.SalaryNo = "0";
 
             loanDetailsController.Update(loanDetailObj);
 
@@ -103,7 +107,22 @@ namespace ManPowerWeb
 
         protected void btnReject_Click(object sender, EventArgs e)
         {
+            loanDetailObj.ApprovalStatusId = 3;
+            loanDetailObj.LastLoanDate = DateTime.Now;
+            loanDetailObj.LastLoanPaidMonth = DateTime.Now;
+            loanDetailObj.SalaryNo = "0";
 
+            loanDetailsController.Update(loanDetailObj);
+
+            approvalHistoryObj.ApprovalStatusId = 3;
+            approvalHistoryObj.ApproveDate = DateTime.Now;
+            approvalHistoryObj.ApproveBy = EmpId;
+            approvalHistoryObj.LoanDetailsId = loanDetailsId;
+            approvalHistoryObj.RejectReason = txtrejectReason.Text;
+
+            approvalHistoryController.Save(approvalHistoryObj);
+
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLoanAdmin1Front.aspx'},2500);", true);
         }
     }
 }

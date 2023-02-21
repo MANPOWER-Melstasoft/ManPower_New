@@ -61,8 +61,8 @@ namespace ManPowerCore.Domain
         [DBField("Last_Loan_Paid_Month")]
         public DateTime LastLoanPaidMonth { get; set; }
 
-        [DBField("Approval_Status_Id")]
-        public int ApprovalStatus { get; set; }
+        [DBField("Is_Active")]
+        public int IsActive { get; set; }
 
         public ApprovalType ApprovalType { get; set; }
 

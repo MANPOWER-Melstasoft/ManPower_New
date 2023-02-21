@@ -874,6 +874,17 @@
         </div>
 
         <div class="row mt-5 mb-5">
+            <div class="col-3">
+                <h4>Status - 
+                <asp:Label ID="lblstatus" runat="server"></asp:Label>
+                </h4>
+            </div>
+            <div class="col-2">
+                <asp:Button ID="btnActiveInAc" runat="server" Text="Back" CssClass="btn btn-danger btn-user btn-block" OnClick="btnActiveInAc_Click" />
+            </div>
+        </div>
+
+        <div class="row mt-5 mb-5">
             <div class="col-2">
                 <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
             </div>

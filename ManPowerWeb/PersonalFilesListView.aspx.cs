@@ -180,7 +180,16 @@ namespace ManPowerWeb
                     break;
                 }
             }
-
+            if (employee.IsActive == 0)
+            {
+                lblstatus.Text = "InActive";
+                btnActiveInAc.Text = "Active";
+            }
+            else
+            {
+                lblstatus.Text = "Active";
+                btnActiveInAc.Text = "InActive";
+            }
 
         }
 
@@ -254,7 +263,7 @@ namespace ManPowerWeb
 
                 if (output2 == 1)
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFilesListView.aspx?Id=" + EmployeeId + "'},2000);", true);
                 }
                 else
                 {
@@ -432,5 +441,30 @@ namespace ManPowerWeb
             ecOfficePhone.Text = emergencyContact.OfficePhone.ToString();
         }
         //----------------------------------------------------
+
+
+        protected void btnActiveInAc_Click(object sender, EventArgs e)
+        {
+            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+            int output;
+            if (btnActiveInAc.Text == "Active")
+            {
+                output = employeeController.AcInAcEmployee(Convert.ToInt32(EmployeeId), 1);
+            }
+            else
+            {
+                output = employeeController.AcInAcEmployee(Convert.ToInt32(EmployeeId), 0);
+            }
+
+            if (output == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFilesListView.aspx?Id=" + EmployeeId + "'},2000);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+            }
+        }
+
     }
 }

@@ -834,6 +834,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox eduId;
 
         /// <summary>
+        /// lblstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblstatus;
+
+        /// <summary>
+        /// btnActiveInAc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnActiveInAc;
+
+        /// <summary>
         /// btnBack control.
         /// </summary>
         /// <remarks>

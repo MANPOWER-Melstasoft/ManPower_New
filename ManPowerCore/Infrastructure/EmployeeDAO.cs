@@ -17,6 +17,7 @@ namespace ManPowerCore.Infrastructure
         int SaveEmployee(Employee emp, DBConnection dbConnection);
 
         int UpdateEmployee(Employee emp, DBConnection dbConnection);
+        int AcInAcEmployee(int EmpId, int isActive, DBConnection dbConnection);
     }
 
     public class EmployeeDAOImpl : EmployeeDAO
@@ -149,6 +150,19 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.GetSingleOject<Employee>(dbConnection.dr);
         }
 
+        public int AcInAcEmployee(int EmpId, int isActive, DBConnection dbConnection)
+        {
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Is_Active = @Is_Active  WHERE ID = @EmployeeId";
 
+            dbConnection.cmd.Parameters.AddWithValue("@Is_Active", isActive);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", EmpId);
+
+
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
+        }
     }
 }

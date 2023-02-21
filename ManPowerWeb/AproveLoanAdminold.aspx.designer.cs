@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class AproveLoanAdminRecomendation
+    public partial class AproveLoanAdmin1
     {
 
         /// <summary>

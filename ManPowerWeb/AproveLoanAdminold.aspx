@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AproveLoanAdminRecomendation.aspx.cs" Inherits="ManPowerWeb.AproveLoanAdminRecomendation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AproveLoanAdminold.aspx.cs" Inherits="ManPowerWeb.AproveLoanAdmin1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="card p-4 m-4">

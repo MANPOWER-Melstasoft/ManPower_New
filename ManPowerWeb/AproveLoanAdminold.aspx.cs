@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class AproveLoanAdminRecomendation : System.Web.UI.Page
+    public partial class approveloanadminold : System.Web.UI.Page
     {
         static List<LoanDetail> loanDetailsList = new List<LoanDetail>();
         static List<LoanType> loanTypeList = new List<LoanType>();

@@ -28,39 +28,12 @@ namespace ManPowerWeb
         public void BindDataSource()
         {
             loanDetailList = loanDetailsController.GetAllLoanDetailWithStatus(true, true);
-             loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 2).ToList();
+            //    loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 2).ToList();
 
             gvLoan.DataSource = loanDetailList;
             gvLoan.DataBind();
         }
 
-        protected void btnCheck_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        protected void btnCheck_Click1(object sender, EventArgs e)
-        {
-            double caluculation = float.Parse(txtBasicSalary.Text) * 0.4;
-
-            double balance = caluculation - double.Parse(txtTotalDeduction.Text);
-
-            if (balance > double.Parse(txtLoanAmount.Text))
-            {
-                lblCkeckerSuccess.Text = "Pass";
-                lblCkeckerSuccess.Visible = true;
-                lblCkeckerfailed.Visible = false;
-                btnApprove.Visible = true;
-            }
-            else
-            {
-                lblCkeckerfailed.Text = "Failed";
-                lblCkeckerSuccess.Visible = false;
-                lblCkeckerfailed.Visible = true;
-                btnApprove.Visible = false;
-            }
-        }
 
         protected void BtnView_Click(object sender, EventArgs e)
         {
@@ -97,6 +70,52 @@ namespace ManPowerWeb
             else
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+            }
+        }
+
+
+        protected void btnRejectReason_Click(object sender, EventArgs e)
+        {
+            ApprovalHistory approvalHistory = new ApprovalHistory();
+            approvalHistory.ApproveDate = DateTime.Now;
+            approvalHistory.ApproveBy = Convert.ToInt32(Session["EmpNumber"]);
+            approvalHistory.ApprovalStatusId = 5;
+            approvalHistory.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
+            approvalHistory.RejectReason = txtrejectReason.Text;
+
+            int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 5, approvalHistory);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+            }
+        }
+
+        protected void btnCheck_Click(object sender, EventArgs e)
+        {
+            double caluculation = float.Parse(txtBasicSalary.Text) * 0.4;
+
+            double balance = caluculation - double.Parse(txtTotalDeduction.Text);
+
+            if (balance > double.Parse(txtLoanAmount.Text))
+            {
+                lblCkeckerSuccess.Text = "Pass";
+                lblCkeckerSuccess.Visible = true;
+                lblCkeckerfailed.Visible = false;
+                btnApprove.Visible = true;
+                btnReject.Visible = true;
+            }
+            else
+            {
+                lblCkeckerfailed.Text = "Failed";
+                lblCkeckerSuccess.Visible = false;
+                lblCkeckerfailed.Visible = true;
+                btnApprove.Visible = false;
+                btnReject.Visible = true;
             }
         }
     }

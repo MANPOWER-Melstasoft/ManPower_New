@@ -64,11 +64,11 @@
                             </div>
 
                             <div class="col-md-6">
-                                <asp:TextBox ID="txtBasicSalary" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:TextBox ID="txtBasicSalary" runat="server" CssClass="form-control form-control-user" ValidationGroup="1"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ValidationGroup="1"
                                     ControlToValidate="txtBasicSalary" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtBasicSalary"
-                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ForeColor="Red" ValidationGroup="1"></asp:RegularExpressionValidator>
 
                             </div>
                         </div>
@@ -81,11 +81,11 @@
                             </div>
 
                             <div class="col-md-6">
-                                <asp:TextBox ID="txtTotalDeduction" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:TextBox ID="txtTotalDeduction" runat="server" CssClass="form-control form-control-user" ValidationGroup="1"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ValidationGroup="1"
                                     ControlToValidate="txtTotalDeduction" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtTotalDeduction"
-                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ForeColor="Red" ValidationGroup="1"></asp:RegularExpressionValidator>
 
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                     <div class="col-sm-3">
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
-                                <asp:Button ID="btnCheck" runat="server" Text="Check" CssClass="btn btn-primary" OnClick="btnCheck_Click1" ValidationGroup="1" />
+                                <asp:Button ID="btnCheck" runat="server" Text="Check" CssClass="btn btn-primary" OnClick="btnCheck_Click" ValidationGroup="1" />
                             </div>
                             <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />
@@ -113,10 +113,10 @@
                     <div class="col-sm-3">
                         <div class="row mb-3 ms-1">
                             <div class="col">
-                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" />
+                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" Visible="false" />
                             </div>
                             <div class="col">
-                                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" />
+                                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" Visible="false" />
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,41 @@
         <Triggers>
             <asp:PostBackTrigger ControlID="btnCheck" />
             <asp:PostBackTrigger ControlID="btnApprove" />
+            <%--<asp:PostBackTrigger ControlID="btnReject" />--%>
         </Triggers>
     </asp:UpdatePanel>
 
+
+    <%---------------------dialog box----------------------%>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Reject Loan By Finance</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-4">
+                                <label>Reason to reject </label>
+                            </div>
+                            <div class="col-sm-4">
+                                <asp:TextBox ID="txtrejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="txtrejectReason" ValidationGroup="3" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button runat="server" ID="btnRejectReason" Text="Reject" OnClick="btnRejectReason_Click" CssClass="btn btn-danger" Width="100px" ValidationGroup="3" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--------------end of dialog box--------------------%>
 </asp:Content>

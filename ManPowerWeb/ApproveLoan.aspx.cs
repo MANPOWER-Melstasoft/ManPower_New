@@ -28,7 +28,7 @@ namespace ManPowerWeb
         public void BindDataSource()
         {
             loanDetailList = loanDetailsController.GetAllLoanDetailWithStatus(true, true);
-            //  loanDetailList = loanDetailList.Where(x => x.EmployeeId == EmpId).ToList();
+             loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 2).ToList();
 
             gvLoan.DataSource = loanDetailList;
             gvLoan.DataBind();
@@ -51,15 +51,14 @@ namespace ManPowerWeb
                 lblCkeckerSuccess.Text = "Pass";
                 lblCkeckerSuccess.Visible = true;
                 lblCkeckerfailed.Visible = false;
-
-
-
+                btnApprove.Visible = true;
             }
             else
             {
                 lblCkeckerfailed.Text = "Failed";
                 lblCkeckerSuccess.Visible = false;
                 lblCkeckerfailed.Visible = true;
+                btnApprove.Visible = false;
             }
         }
 
@@ -75,6 +74,30 @@ namespace ManPowerWeb
             txtLoanAmount.Text = loanDetailObj.LoanAmount.ToString();
             txtEmployeeId.Text = loanDetailObj.EmployeeId.ToString();
 
+            ViewState["LoanDetailId"] = loanDetailObj.LoanDetailsId;
+
+
+        }
+
+        protected void btnApprove_Click(object sender, EventArgs e)
+        {
+            ApprovalHistory approvalHistory = new ApprovalHistory();
+            approvalHistory.ApproveDate = DateTime.Now;
+            approvalHistory.ApproveBy = Convert.ToInt32(Session["EmpNumber"]);
+            approvalHistory.ApprovalStatusId = 4;
+            approvalHistory.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
+            approvalHistory.RejectReason = "";
+
+            int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 4, approvalHistory);
+
+            if (response != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+            }
         }
     }
 }

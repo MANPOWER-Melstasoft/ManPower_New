@@ -96,11 +96,11 @@
                 <asp:Label runat="server" ID="lblCkeckerSuccess" CssClass="alert-success" Visible="false" Font-Size="XX-Large" Font-Bold="true"></asp:Label>
                 <asp:Label runat="server" ID="lblCkeckerfailed" CssClass="alert-danger" Visible="false" Font-Size="XX-Large" Font-Bold="true"></asp:Label>
 
-                <div class="row mb-3 ms-1 mt-3">
+                <div class="row mb-1 ms-1 mt-3">
                     <div class="col-sm-3">
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
-                                <asp:Button ID="btnCheck" runat="server" Text="Check" CssClass="btn btn-success" OnClick="btnCheck_Click1" ValidationGroup="1" />
+                                <asp:Button ID="btnCheck" runat="server" Text="Check" CssClass="btn btn-primary" OnClick="btnCheck_Click1" ValidationGroup="1" />
                             </div>
                             <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />
@@ -108,10 +108,24 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row mb-3 ms-1 mt-3">
+                    <div class="col-sm-3">
+                        <div class="row mb-3 ms-1">
+                            <div class="col">
+                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" />
+                            </div>
+                            <div class="col">
+                                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnCheck" />
+            <asp:PostBackTrigger ControlID="btnApprove" />
         </Triggers>
     </asp:UpdatePanel>
 

@@ -21,6 +21,8 @@ namespace ManPowerWeb
         public List<RequestorGuarantor> requestorGuarantorList = new List<RequestorGuarantor>();
         public ApprovalHistory approvalHistoryObj = new ApprovalHistory();
         public int EmpId;
+        public string salarySlip;
+        public string SalarySlip { get { return salarySlip; } }
 
         LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
         DistressLoanController distressLoanController = ControllerFactory.CreateDistressLoanController();
@@ -68,7 +70,9 @@ namespace ManPowerWeb
                 txtDistressLoanBalance.Text = distressLoanObj.DistressLoanBalance.ToString();
                 txtPremiumAmount.Text = distressLoanObj.PeriodicalAmount.ToString();
                 txtNumberOfInstallments.Text = distressLoanObj.NoOfPeriods.ToString();
-
+                txt40SalaryExceed.Text = distressLoanObj.FourtyOfSalary;
+                txtGuarantorFaith.Text = distressLoanObj.GuarantorApprove;
+                salarySlip = distressLoanObj.SalarySlip;
 
                 guarantordetailList = guarantorDetailController.GetAllGuarantorDetail().Where(x => x.DistressLoanId == distressLoanObj.DistressLoanId).ToList();
 

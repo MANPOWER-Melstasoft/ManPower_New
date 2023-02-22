@@ -66,5 +66,8 @@ namespace ManPowerCore.Domain
 
         [DBField("Guarantor_Approve")]
         public string GuarantorApprove { get; set; }
+
+        [DBField("Salary_Slip")]
+        public string SalarySlip { get; set; }
     }
 }

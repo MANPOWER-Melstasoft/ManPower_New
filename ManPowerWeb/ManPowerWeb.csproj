@@ -2852,6 +2852,7 @@
     <Folder Include="SystemDocuments\Quatations\" />
     <Folder Include="SystemDocuments\Resignation\" />
     <Folder Include="SystemDocuments\Retirement\" />
+    <Folder Include="SystemDocuments\SalarySlips\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
     <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>

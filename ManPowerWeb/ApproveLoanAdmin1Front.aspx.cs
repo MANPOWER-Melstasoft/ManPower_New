@@ -22,7 +22,7 @@ namespace ManPowerWeb
         public void BindDataSource()
         {
             loanDetailList = loanDetailsController.GetAllLoanDetailWithStatus(true, true);
-            loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 1).ToList();
+            loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 4).ToList();
 
             gvApprove1Admin.DataSource = loanDetailList;
             gvApprove1Admin.DataBind();

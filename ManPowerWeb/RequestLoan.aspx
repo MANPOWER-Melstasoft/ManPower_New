@@ -431,6 +431,22 @@
                         </asp:GridView>
                     </div>
 
+                    <div class="row mb-3 ms-1 mt-5">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <asp:Literal ID="Literal20" runat="server" Text="Salary Slip"></asp:Literal>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <asp:FileUpload ID="FUSalarySlip" runat="server" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ValidationGroup="1"
+                                        ControlToValidate="FUSalarySlip" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <% } %>
 
                     <%--End of Distress Div--%>

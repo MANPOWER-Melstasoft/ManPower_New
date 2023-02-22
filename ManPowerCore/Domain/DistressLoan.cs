@@ -50,7 +50,7 @@ namespace ManPowerCore.Domain
         public double LastLoanAmount { get; set; }
 
         [DBField("Fourty_Of_Salary")]
-        public double FourtyOfSalary { get; set; }
+        public string FourtyOfSalary { get; set; }
 
         [DBField("Payable_Amount")]
         public double PayableAmount { get; set; }

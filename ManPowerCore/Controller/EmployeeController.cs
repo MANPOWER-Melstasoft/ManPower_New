@@ -58,7 +58,15 @@ namespace ManPowerCore.Controller
                     foreach (var item in emp._Dependant)
                     {
                         item.EmpId = id;
-                        dependentDAO.SaveDependant(item, dBConnection);
+                        if (item.DependantTypeId == 1)
+                        {
+                            dependentDAO.SaveDependantSpouse(item, dBConnection);
+                        }
+                        else
+                        {
+                            dependentDAO.SaveDependantOther(item, dBConnection);
+                        }
+
                     }
                 }
 

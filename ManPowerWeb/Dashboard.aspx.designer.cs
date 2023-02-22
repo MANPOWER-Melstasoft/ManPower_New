@@ -276,22 +276,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvthisMonthProgram;
 
         /// <summary>
-        /// GridView2 control.
+        /// gvCompletedProgrm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView gvCompletedProgrm;
 
         /// <summary>
-        /// GridView3 control.
+        /// gvTotalUpComingProgrm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.GridView gvTotalUpComingProgrm;
 
         /// <summary>
         /// gvProgramTargetNotification control.

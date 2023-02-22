@@ -181,7 +181,7 @@ namespace ManPowerWeb
                 lblNumberOfEmp.Text = systemUserListFilter.Count.ToString();
             }
 
-
+            //---------------------------- Vote Allocation ----------------------------------------------------------
             VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
             List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
             List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
@@ -203,18 +203,18 @@ namespace ManPowerWeb
             List<ProgramPlan> programPlanList = programPlanController.GetAllProgramPlan();
             //List<ProgramPlan> programPlanFilter = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year).ToList();
 
-            List<ProgramPlan> programPlanFilterUCTM = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.Date.Month == DateTime.Today.Month && x.ActualOutput == 0).ToList();
-            lblUCTM.Text = programPlanFilterUCTM.Count.ToString();
+            //List<ProgramPlan> programPlanFilterUCTM = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.Date.Month == DateTime.Today.Month && x.ActualOutput == 0).ToList();
+            //lblUCTM.Text = programPlanFilterUCTM.Count.ToString();
 
-            List<ProgramPlan> programPlanFilterCP = programPlanList.Where(x => x.ActualOutput != 0).ToList();
-            lblCP.Text = programPlanFilterCP.Count.ToString();
+            //List<ProgramPlan> programPlanFilterCP = programPlanList.Where(x => x.ActualOutput != 0).ToList();
+            //lblCP.Text = programPlanFilterCP.Count.ToString();
 
-            List<ProgramPlan> programPlanFilterTUCP = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.ActualOutput == 0).ToList();
-            lblTUCP.Text = programPlanFilterTUCP.Count.ToString();
+            //List<ProgramPlan> programPlanFilterTUCP = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.ActualOutput == 0).ToList();
+            //lblTUCP.Text = programPlanFilterTUCP.Count.ToString();
 
             //------------------------------------- This month Target --------------------------------------------------------------
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, true, false);
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, true, true);
             List<ProgramTarget> programTargetsListFilter = new List<ProgramTarget>();
             List<ProgramTarget> programTargetsListFilterTotal = new List<ProgramTarget>();
 
@@ -222,7 +222,7 @@ namespace ManPowerWeb
             foreach (var i in programTargetsList)
             {
                 flagProgrmTarget = 0;
-                if (i.TargetMonth == DateTime.Today.Month)
+                if (i.TargetMonth == DateTime.Today.Month || (i.StartDate <= DateTime.Now && i.EndDate >= DateTime.Now))
                 {
                     if (Session["UserTypeId"].ToString() != "1")
                     {
@@ -245,6 +245,7 @@ namespace ManPowerWeb
                     programTargetsListFilter.Add(i);
                 }
             }
+
             lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
             gvThisMonthTarget.DataSource = programTargetsListFilter;
             gvThisMonthTarget.DataBind();
@@ -275,6 +276,70 @@ namespace ManPowerWeb
             gvTotalProgrms.DataSource = programTargetsListFilterTotal;
             gvTotalProgrms.DataBind();
 
+            //------------------ THIS MONTH UPCOMING PROGRAMS ---------------------------------------
+
+            lblUCTM.Text = programTargetsListFilter.Count.ToString();
+            gvthisMonthProgram.DataSource = programTargetsListFilter;
+            gvthisMonthProgram.DataBind();
+
+
+            //-------------------------- NO OF COMPLETED PROGRAMS ---------------------------------
+            List<ProgramPlan> programPlanListComplete = new List<ProgramPlan>();
+            List<ProgramTarget> programTargetsListComplete = new List<ProgramTarget>();
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                foreach (var item in i._ProgramAssignee)
+                {
+                    if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                    {
+                        flagProgrmTarget = 1;
+                    }
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListComplete.Add(i);
+                }
+            }
+            foreach (var item1 in programTargetsListComplete)
+            {
+                foreach (var item2 in item1._ProgramPlan)
+                {
+                    if (item2.ProjectStatusId == 4)
+                    {
+                        programPlanListComplete.Add(item2);
+                    }
+                }
+            }
+            lblCP.Text = programPlanListComplete.Count.ToString();
+            gvCompletedProgrm.DataSource = programPlanListComplete;
+            gvCompletedProgrm.DataBind();
+
+            //--------------------- TOTAL UPCOMING PROGRAMS ---------------------------------------
+            List<ProgramTarget> programTargetsListFilterTotalUpComming = new List<ProgramTarget>();
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                if (i.TargetMonth >= DateTime.Today.Month || i.StartDate >= DateTime.Now)
+                {
+                    foreach (var item in i._ProgramAssignee)
+                    {
+                        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                        {
+                            flagProgrmTarget = 1;
+                        }
+                    }
+                }
+
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilterTotalUpComming.Add(i);
+                }
+            }
+
+            lblTUCP.Text = programTargetsListFilterTotalUpComming.Count.ToString();
+            gvTotalUpComingProgrm.DataSource = programTargetsListFilterTotalUpComming;
+            gvTotalUpComingProgrm.DataBind();
         }
 
         private void bindDialogbox()

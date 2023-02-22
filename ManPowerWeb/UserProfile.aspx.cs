@@ -231,7 +231,29 @@ namespace ManPowerWeb
 
         protected void ddlDependantList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bindDependant();
+            if (ddlDependantList.SelectedValue != "")
+            {
+                btnDependant.Text = "Update";
+                bindDependant();
+            }
+            else
+            {
+                btnDependant.Text = "Add";
+                ddlDependant.SelectedIndex = 0;
+                dependantRelationship.Text = string.Empty;
+                dependantFname.Text = string.Empty;
+                dependantLname.Text = string.Empty;
+                depDob.Text = string.Empty;
+                bcNumber.Text = string.Empty;
+                ppNumber.Text = string.Empty;
+                sickness.Text = string.Empty;
+                mDate.Text = string.Empty;
+                mCertificateNo.Text = string.Empty;
+                depNic.Text = string.Empty;
+                workingCompany.Text = string.Empty;
+                city.Text = string.Empty;
+                depId.Text = string.Empty;
+            }
         }
 
         private void bindDependant()
@@ -265,6 +287,57 @@ namespace ManPowerWeb
 
                 }
             }
+        }
+
+        protected void submitDependant(object sender, EventArgs e)
+        {
+
+            DependantController dc = ControllerFactory.CreateDependantController();
+            Dependant dependant = new Dependant();
+            List<Dependant> dependantList = new List<Dependant>();
+            //dependant = dc.GetDependantById(int.Parse(depId.Text));
+
+            dependant.DependantTypeId = int.Parse(ddlDependant.SelectedValue);
+            dependant.RelationshipToEmp = dependantRelationship.Text;
+            dependant.FirstName = dependantFname.Text;
+            dependant.LastName = dependantLname.Text;
+            dependant.Dob = Convert.ToDateTime(depDob.Text);
+            dependant.BirthCertificateNumber = bcNumber.Text;
+            dependant.DependantPassportNo = ppNumber.Text;
+            dependant.Remarks = sickness.Text;
+            dependant.MarriageCertificateNo = mCertificateNo.Text;
+
+            if (dependant.DependantTypeId == 1)
+            {
+                dependant.MarriageDate = Convert.ToDateTime(mDate.Text);
+            }
+            dependant.DependantNIC = depNic.Text;
+            dependant.WorkingCompany = workingCompany.Text;
+            dependant.City = city.Text;
+
+            int result1;
+            if (btnDependant.Text == "Add")
+            {
+                dependant.EmpId = Convert.ToInt32(Session["EmpNumber"]);
+                dependant.DocumentUploads = "";
+                result1 = dc.SaveDependant(dependant);
+            }
+            else
+            {
+                dependant.DependantId = int.Parse(depId.Text);
+                result1 = dc.UpdateDependant(dependant);
+            }
+
+            if (result1 == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+            }
+
         }
 
 
@@ -515,42 +588,7 @@ namespace ManPowerWeb
 
         }
 
-        protected void submitDependant(object sender, EventArgs e)
-        {
 
-            DependantController dc = ControllerFactory.CreateDependantController();
-            Dependant dependant = new Dependant();
-            List<Dependant> dependantList = new List<Dependant>();
-            dependant = dc.GetDependantById(int.Parse(depId.Text));
-
-            dependant.DependantTypeId = int.Parse(ddlDependant.SelectedValue);
-            dependant.RelationshipToEmp = dependantRelationship.Text;
-            dependant.FirstName = dependantFname.Text;
-            dependant.LastName = dependantLname.Text;
-            dependant.Dob = Convert.ToDateTime(depDob.Text);
-            dependant.BirthCertificateNumber = bcNumber.Text;
-            dependant.DependantPassportNo = ppNumber.Text;
-            dependant.Remarks = sickness.Text;
-            dependant.MarriageCertificateNo = mDate.Text;
-            dependant.MarriageDate = Convert.ToDateTime(mDate.Text);
-            dependant.DependantNIC = depNic.Text;
-            dependant.WorkingCompany = workingCompany.Text;
-            dependant.City = city.Text;
-            dependant.DependantId = int.Parse(depId.Text);
-
-            int result1 = dc.UpdateDependant(dependant);
-
-            if (result1 == 1)
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-
-            }
-
-        }
 
         protected void submitEducation(object sender, EventArgs e)
         {

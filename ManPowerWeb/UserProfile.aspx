@@ -669,17 +669,9 @@
                                 </div>
                             </div>
 
-                            <%if (ddlDependantList.SelectedValue != "")
-                                {  %>
+                            <%--  <%if (ddlDependantList.SelectedValue != "")
+                                {  %>--%>
 
-
-                            <%--<div class="row mt-5">
-                            <div class="col-3">
-                                <h5><b>
-                                    <asp:Label ID="dep" runat="server"></asp:Label>
-                                </b></h5>
-                            </div>
-                        </div>--%>
 
                             <div class="row mt-5">
                                 <div class="col-6">
@@ -689,6 +681,10 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:DropDownList ID="ddlDependant" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="dependnt"
+                                                    ControlToValidate="ddlDependant" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -700,6 +696,10 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="dependantRelationship" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="dependnt"
+                                                    ControlToValidate="dependantRelationship" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -714,6 +714,10 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="dependantFname" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ValidationGroup="dependnt"
+                                                    ControlToValidate="dependantFname" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -725,6 +729,10 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="dependantLname" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ValidationGroup="dependnt"
+                                                    ControlToValidate="dependantLname" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -739,6 +747,10 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="depDob" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ValidationGroup="dependnt"
+                                                    ControlToValidate="depDob" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -793,6 +805,10 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="mDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="dependnt"
+                                                    ControlToValidate="mDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -804,6 +820,10 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="mCertificateNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ValidationGroup="dependnt"
+                                                    ControlToValidate="mCertificateNo" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -818,8 +838,11 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="depNic" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                            <asp:RegularExpressionValidator ValidationGroup="3" ID="RegularExpressionValidator10" ControlToValidate="depNic" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
+                                            <asp:RegularExpressionValidator ValidationGroup="dependnt" ID="RegularExpressionValidator10" ControlToValidate="depNic" runat="server"
+                                                ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
 									Invalid NIC</asp:RegularExpressionValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ValidationGroup="dependnt"
+                                                ControlToValidate="depNic" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -867,18 +890,17 @@
                                 </div>
                             </div>
 
-                            <%} %>
-                            <%----------------------------------------------------------------------------%>
-
-
                             <div class="row mt-5 mb-4">
                                 <div class="col-2">
-                                    <asp:Button runat="server" ID="Button3" Text="Update" ValidationGroup="5" OnClick="submitDependant" CssClass="btn btn-primary btn-user btn-block" />
+                                    <asp:Button runat="server" ID="btnDependant" Text="Add" ValidationGroup="dependnt" OnClick="submitDependant" CssClass="btn btn-primary btn-user btn-block" />
                                 </div>
                             </div>
+
+                            <%-- <%} %>--%>
+                            <%----------------------------------------------------------------------------%>
                         </ContentTemplate>
                         <Triggers>
-                            <asp:PostBackTrigger ControlID="Button3" />
+                            <asp:PostBackTrigger ControlID="btnDependant" />
                         </Triggers>
                     </asp:UpdatePanel>
                 </div>

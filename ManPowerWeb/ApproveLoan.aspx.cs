@@ -55,8 +55,17 @@ namespace ManPowerWeb
 
             txtLoanAmount.Text = loanDetailObj.LoanAmount.ToString();
             txtEmployeeId.Text = loanDetailObj.EmployeeId.ToString();
+            txtLoanType.Text = loanDetailObj.LoanTypeId.ToString();
+
+            if (loanDetailObj.LoanTypeId == 3)
+            {
+                btnApprove.Visible = false;
+                btnReject.Visible = false;
+            }
 
             ViewState["LoanDetailId"] = loanDetailObj.LoanDetailsId;
+            ViewState["LoanTypeId"] = loanDetailObj.LoanTypeId;
+
 
 
         }
@@ -64,28 +73,136 @@ namespace ManPowerWeb
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             ApprovalHistory approvalHistory = new ApprovalHistory();
+            DistressLoan distressLoan = null;
+            LoanDetail loanDetail = null;
+
+            DistressLoanController distressLoanController = ControllerFactory.CreateDistressLoanController();
+
+            bool validationFlag = false;
+
             approvalHistory.ApproveDate = DateTime.Now;
             approvalHistory.ApproveBy = Convert.ToInt32(Session["EmpNumber"]);
             approvalHistory.ApprovalStatusId = 4;
             approvalHistory.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
             approvalHistory.RejectReason = "";
 
-
-            int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 4, approvalHistory);
-
-            if (response != 0)
+            if (Convert.ToInt32(ViewState["LoanTypeId"]) != 3)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                loanDetail = new LoanDetail();
+
+                if (txtLastLoanPaidDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.Parse(txtLastLoanPaidDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.MinValue;
+
+                }
+
+                if (txtLastLoanDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanDate = DateTime.Parse(txtLastLoanDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanDate = DateTime.MinValue;
+
+                }
+
+
+                loanDetail.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
+                loanDetail.ApprovalStatusId = 4;
+
+                int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 4, approvalHistory, loanDetail, distressLoan);
+
+                if (response != 0)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                }
             }
+            //Only if Distress Loan
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                distressLoan = new DistressLoan();
+                distressLoan.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
+
+                if (ddlLastLoanType.Text != "")
+                {
+                    distressLoan.LastLoanDate = DateTime.Parse(txtLastLoanDate.Text);
+                    distressLoan.LastLoanAmount = double.Parse(txtLastLoanAmount.Text);
+                    distressLoan.LastLoanBalance = float.Parse(txtLastLoanBalance.Text);
+
+                }
+                else
+                {
+                    distressLoan.LastLoanDate = DateTime.MinValue;
+                    distressLoan.LastLoanAmount = 0;
+                    distressLoan.LastLoanBalance = 0;
+
+                }
+                distressLoan.LastLoanAmount = double.Parse(txtLastLoanAmount.Text);
+                distressLoan.FourtyOfSalary = rbIsFourty.SelectedItem.Text;
+                distressLoan.PayableAmount = float.Parse(txtPayableLoanAmount.Text);
+                distressLoan.DistressLoanBalance = float.Parse(txtDistressLoanBalance.Text);
+                distressLoan.PeriodicalAmount = float.Parse(txtPremiumAmount.Text);
+                distressLoan.NoOfPeriods = Convert.ToInt32(txtNumberOfInstallments.Text);
+
+                if (rbIsGurontorAcceptable.SelectedValue != "")
+                {
+                    distressLoan.GuarantorApprove = rbIsGurontorAcceptable.SelectedItem.Text;
+
+                }
+                else
+                {
+                    distressLoan.GuarantorApprove = "";
+
+                }
+
+
+
+                if (txtLastLoanDate.Text != "" && DateTime.Parse(txtLastLoanDate.Text) < DateTime.Now)
+                {
+                    lbllastLoandate.Visible = true;
+                    validationFlag = true;
+                }
+                else
+                {
+                    lbllastLoandate.Visible = false;
+                }
+
+                if (validationFlag)
+                {
+
+                    int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 4, approvalHistory, loanDetail, distressLoan);
+
+                    if (response != 0)
+                    {
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                    }
+                    else
+                    {
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                    }
+                }
             }
+
+
         }
 
 
         protected void btnRejectReason_Click(object sender, EventArgs e)
         {
+            DistressLoanController distressLoanController = ControllerFactory.CreateDistressLoanController();
+            DistressLoan distressLoan = null;
+            LoanDetail loanDetail = null;
+
             ApprovalHistory approvalHistory = new ApprovalHistory();
             approvalHistory.ApproveDate = DateTime.Now;
             approvalHistory.ApproveBy = Convert.ToInt32(Session["EmpNumber"]);
@@ -93,15 +210,100 @@ namespace ManPowerWeb
             approvalHistory.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
             approvalHistory.RejectReason = txtrejectReason.Text;
 
-            int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 5, approvalHistory);
 
-            if (response != 0)
+
+            if (Convert.ToInt32(ViewState["LoanTypeId"]) != 3)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                loanDetail = new LoanDetail();
+
+                if (txtLastLoanPaidDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.Parse(txtLastLoanPaidDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.MinValue;
+
+                }
+
+                if (txtLastLoanDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanDate = DateTime.Parse(txtLastLoanDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanDate = DateTime.MinValue;
+
+                }
+
+                loanDetail.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
+                loanDetail.ApprovalStatusId = 5;
+
+                int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 5, approvalHistory, loanDetail, distressLoan);
+
+                if (response != 0)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                }
             }
+            //Only if Distress Loan
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                distressLoan = new DistressLoan();
+                distressLoan.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
+
+                distressLoan.LastLoanType = Convert.ToInt32(ddlLastLoanType.SelectedValue);
+
+                if (ddlLastLoanType.Text != "")
+                {
+                    distressLoan.LastLoanDate = DateTime.Parse(txtLastLoanDate.Text);
+                    distressLoan.LastLoanAmount = double.Parse(txtLastLoanAmount.Text);
+                    distressLoan.LastLoanBalance = float.Parse(txtLastLoanBalance.Text);
+
+                }
+                else
+                {
+                    distressLoan.LastLoanDate = DateTime.MinValue;
+                    distressLoan.LastLoanAmount = 0;
+                    distressLoan.LastLoanBalance = 0;
+
+                }
+
+
+                distressLoan.FourtyOfSalary = rbIsFourty.SelectedItem.Text;
+                distressLoan.PayableAmount = float.Parse(txtPayableLoanAmount.Text);
+                distressLoan.DistressLoanBalance = float.Parse(txtDistressLoanBalance.Text);
+                distressLoan.PeriodicalAmount = float.Parse(txtPremiumAmount.Text);
+                distressLoan.NoOfPeriods = Convert.ToInt32(txtNumberOfInstallments.Text);
+
+
+                if (rbIsGurontorAcceptable.SelectedValue != "")
+                {
+                    distressLoan.GuarantorApprove = rbIsGurontorAcceptable.SelectedItem.Text;
+
+                }
+                else
+                {
+                    distressLoan.GuarantorApprove = "";
+
+                }
+
+                int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 5, approvalHistory, loanDetail, distressLoan);
+
+                if (response != 0)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error');window.setTimeout(function(){window.location='ApproveLoan.aspx'},2500);", true);
+                }
             }
         }
 

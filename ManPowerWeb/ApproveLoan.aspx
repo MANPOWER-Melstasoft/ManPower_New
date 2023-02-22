@@ -16,6 +16,15 @@
                             <asp:BoundField DataField="LoanDetailsId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="EmployeeId" HeaderText="Employee ID" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="FullName" HeaderText="Employee Name" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+
+                            <asp:TemplateField HeaderText="Loan Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Visible='<%#Eval("LoanTypeId").ToString() == "1" ?true:false %>' Text="Special Loan">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LoanTypeId").ToString() == "2" ?true:false %>' Text="Festival Loan">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LoanTypeId").ToString() == "3" ?true:false %>' Text="Distress Loan"> </asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                             <asp:BoundField DataField="LoanAmount" HeaderText="Loan Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="CreatedDate" HeaderText="Date Request" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="ApprovalStatusId" HeaderText="Status" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
@@ -47,7 +56,58 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-6" hidden="hidden">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal15" runat="server" Text="Loan Type"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtLoanType" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <% if (txtLoanType.Text != "3")
+                    { %>
+
+                <div class="row ms-1 mb-5 mt-3">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal16" runat="server" Text="Last Loan Date"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtLastLoanDateAdvance" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal17" runat="server" Text="Last Loan Paid Date"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtLastLoanPaidDateAdvance" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+
+                <% if (txtLoanType.Text == "3")
+                    { %>
+
+
                 <h4>Last Loan Details</h4>
 
                 <div class="row ms-1 mb-5 mt-3">
@@ -82,12 +142,24 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3">
+                                <asp:Literal ID="Literal12" runat="server" Text="Last Loan Balance"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtLastLoanBalance" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
                                 <asp:Literal ID="Literal5" runat="server" Text="Last Loan Date"></asp:Literal>
                             </div>
 
                             <div class="col-md-6">
-                                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-
+                                <asp:TextBox ID="txtLastLoanDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                <asp:Label runat="server" Text="Incorrect " ID="lbllastLoandate" ForeColor="Red" Visible="false"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -165,6 +237,26 @@
                     </div>
                 </div>
 
+                <div class="row ms-1 mb-3">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal10" runat="server" Text="Is Loan amount exceed 40% of salary"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:RadioButtonList runat="server" ID="rbIsFourty" CssClass="form-check">
+                                    <asp:ListItem Value="1"> Yes</asp:ListItem>
+                                    <asp:ListItem Value="2"> No</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ValidationGroup="4"
+                                    ControlToValidate="rbIsFourty" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row ms-1 mb-1">
                     <div class="col-sm-6">
                         <div class="row">
@@ -236,15 +328,38 @@
                     </div>
                 </div>
 
+                <div class="row ms-1 mb-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal11" runat="server" Text="Is Gurontor Acceptable"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:RadioButtonList runat="server" ID="rbIsGurontorAcceptable" CssClass="form-check">
+                                    <asp:ListItem Value="1"> Yes</asp:ListItem>
+                                    <asp:ListItem Value="2"> No</asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="4"
+                                    ControlToValidate="rbIsGurontorAcceptable" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <% } %>
+
                 <%--Approve and Reject button--%>
                 <div class="row mb-3 ms-1 mt-3">
                     <div class="col-sm-3">
                         <div class="row mb-3 ms-1">
                             <div class="col">
-                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" ValidationGroup="4" Visible="false" />
+                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" ValidationGroup="4" />
                             </div>
                             <div class="col">
-                                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" Visible="false" />
+                                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" />
                             </div>
                         </div>
                     </div>

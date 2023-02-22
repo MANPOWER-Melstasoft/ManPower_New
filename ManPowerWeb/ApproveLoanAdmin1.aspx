@@ -227,6 +227,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="lblSlip" runat="server" Text="Salary Slip"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a href="/SystemDocuments/SalarySlips/<%=SalarySlip%>" target="_blank">View PDF</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row ms-1 mb-5">
@@ -275,6 +286,32 @@
 
                         <div class="col-md-6">
                             <asp:TextBox ID="txtNumberOfInstallments" runat="server" CssClass="form-control form-control-user" TextMode="Number" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ms-1 mb-5">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal24" runat="server" Text="Is Exceed 40% of Salary"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txt40SalaryExceed" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal25" runat="server" Text="Is Guarantor faithful?"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtGuarantorFaith" runat="server" CssClass="form-control form-control-user" TextMode="Number" Enabled="false"></asp:TextBox>
                         </div>
                     </div>
                 </div>

@@ -63,6 +63,13 @@ namespace ManPowerWeb
             {
                 distressLoan.ReasonForLoan = txtLoanReason.Text;
                 distressLoan.LastLoanDate = DateTime.Parse(txtLastLoan.Text);
+                if (FUSalarySlip.HasFile)
+                {
+                    string fileName = FUSalarySlip.FileName;
+                    string filePath = Server.MapPath("~/SystemDocuments/SalarySlips/" + fileName);
+                    FUSalarySlip.SaveAs(filePath);
+                    distressLoan.SalarySlip = fileName;
+                }
                 response = loanDetailsController.SaveAll(loanDetail, distressLoan, guarantorDetailList, requestorGuarantorsList);
             }
             else

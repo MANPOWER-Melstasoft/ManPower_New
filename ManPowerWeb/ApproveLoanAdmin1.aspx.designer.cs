@@ -285,6 +285,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtlastLoanDate;
 
         /// <summary>
+        /// lblSlip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblSlip;
+
+        /// <summary>
         /// Literal20 control.
         /// </summary>
         /// <remarks>
@@ -355,6 +364,42 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumberOfInstallments;
+
+        /// <summary>
+        /// Literal24 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal24;
+
+        /// <summary>
+        /// txt40SalaryExceed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt40SalaryExceed;
+
+        /// <summary>
+        /// Literal25 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal25;
+
+        /// <summary>
+        /// txtGuarantorFaith control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGuarantorFaith;
 
         /// <summary>
         /// Literal11 control.

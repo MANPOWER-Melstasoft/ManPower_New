@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,6 +16,7 @@ namespace ManPowerWeb
     {
         static string EmployeeId;
         static int ContactFlag = 0;
+        string encryptedTicket;
 
         string[] gen = { "Male", "Female" };
         string[] mmStatus = { "Married", "Single" };
@@ -38,7 +40,13 @@ namespace ManPowerWeb
         {
             if (!IsPostBack)
             {
-                EmployeeId = Request.QueryString["id"];
+                //----------------------- Decrypt URL ---------------------------------------------------
+                encryptedTicket = Request.QueryString["encryptedTicket"];
+                FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+                EmployeeId = HttpUtility.ParseQueryString(decryptedTicket.UserData)["Id"];
+
+
+                //EmployeeId = Request.QueryString["id"];
                 lblEmpNo.Text = "Employee ID : " + EmployeeId;
 
                 BindData();

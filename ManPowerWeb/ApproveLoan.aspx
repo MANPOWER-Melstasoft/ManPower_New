@@ -70,6 +70,40 @@
                         </div>
                     </div>
                 </div>
+
+                <% if (txtLoanType.Text != "3")
+                    { %>
+
+                <div class="row ms-1 mb-5 mt-3">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal16" runat="server" Text="Last Loan Date"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtLastLoanDateAdvance" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal17" runat="server" Text="Last Loan Paid Date"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtLastLoanPaidDateAdvance" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+
                 <% if (txtLoanType.Text == "3")
                     { %>
 
@@ -322,10 +356,10 @@
                     <div class="col-sm-3">
                         <div class="row mb-3 ms-1">
                             <div class="col">
-                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" ValidationGroup="4" Visible="false" />
+                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" ValidationGroup="4" />
                             </div>
                             <div class="col">
-                                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" Visible="false" />
+                                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" />
                             </div>
                         </div>
                     </div>

@@ -14,8 +14,21 @@ namespace ManPowerWeb
     {
         List<LoanType> loanTypeList = new List<LoanType>();
         static List<LoanDetail> loanDetailList = new List<LoanDetail>();
+        //public DistressLoan distressLoanObj = new DistressLoan();
+        public List<GuarantorDetail> guarantordetailList = new List<GuarantorDetail>();
+        public List<RequestorGuarantor> requestorGuarantorList = new List<RequestorGuarantor>();
+        public int loanDetailsId;
+
         LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
+        DistressLoanController distressLoanController = ControllerFactory.CreateDistressLoanController();
+        GuarantorDetailController guarantorDetailController = ControllerFactory.CreateGuarantorDetailController();
+        RequestorGuarantorController requestorGuarantorController = ControllerFactory.CreateRequestorGuarantorController();
+        ApprovalHistoryController approvalHistoryController = ControllerFactory.CreateApprovalHistoryController();
+
         public int EmpId;
+
+        public string salarySlip;
+        public string SalarySlip { get { return salarySlip; } }
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -35,6 +48,13 @@ namespace ManPowerWeb
 
             LoanTypeController loanTypeController = ControllerFactory.CreateLoanTypeController();
             loanTypeList = loanTypeController.GetAllLoanType();
+
+            ddlLoanType.DataSource = loanTypeList;
+            ddlLoanType.DataValueField = "Id";
+            ddlLoanType.DataTextField = "Loan_Type_Name";
+            ddlLoanType.DataBind();
+            ddlLoanType.Items.Insert(0, new ListItem("Select Loan Type", ""));
+
 
             ddlLastLoanType.DataSource = loanTypeList;
             ddlLastLoanType.DataValueField = "Id";
@@ -65,6 +85,51 @@ namespace ManPowerWeb
 
             ViewState["LoanDetailId"] = loanDetailObj.LoanDetailsId;
             ViewState["LoanTypeId"] = loanDetailObj.LoanTypeId;
+
+            //loanDetailList = loanDetailsController.GetAllLoanDetailWithStatus(true, true);
+
+            //loanDetailObj = loanDetailList.Where(x => x.LoanDetailsId == loanDetailsId).Single();
+
+
+
+            ddlLoanType.SelectedValue = loanDetailObj.LoanTypeId.ToString();
+            txtName.Text = loanDetailObj.FullName;
+            txtPosition.Text = loanDetailObj.Position;
+            txtPositionType.Text = loanDetailObj.WorkType;
+            txtWorkPlace.Text = loanDetailObj.WorkPlace;
+            txtAppointmentDate.Text = loanDetailObj.AppointedDate.ToString("yyyy-MM-dd");
+            txtViewBasicSalary.Text = loanDetailObj.BasicSalary.ToString();
+            txtRequestinLoanAmount.Text = loanDetailObj.LoanAmount.ToString();
+            txtDateWanted.Text = loanDetailObj.LoanRequireDate.ToString("yyyy-MM-dd");
+
+
+            List<DistressLoan> distressLoanObj = distressLoanController.GetAllDistressLoan();
+            distressLoanObj = distressLoanObj.Where(x => x.LoanDetailsId == loanDetailObj.LoanDetailsId).ToList();
+
+            if (distressLoanObj.Count > 0)
+            {
+                txtLoanReason.Text = distressLoanObj[0].ReasonForLoan;
+                txtLastLoan.Text = distressLoanObj[0].LastLoanDate.ToString("yyyy-MM-dd");
+
+                //ddlLastLoanType.SelectedValue = distressLoanObj.LastLoanType.ToString();
+                //txtLastLoanAmount.Text = distressLoanObj.LastLoanAmount.ToString();
+                //txtPayableLoanAmount.Text = distressLoanObj.PayableAmount.ToString();
+                //txtDistressLoanBalance.Text = distressLoanObj.DistressLoanBalance.ToString();
+                //txtPremiumAmount.Text = distressLoanObj.PeriodicalAmount.ToString();
+                //txtNumberOfInstallments.Text = distressLoanObj.NoOfPeriods.ToString();
+
+                salarySlip = distressLoanObj[0].SalarySlip;
+
+                guarantordetailList = guarantorDetailController.GetAllGuarantorDetail().Where(x => x.DistressLoanId == distressLoanObj[0].DistressLoanId).ToList();
+
+                gvGuarantor.DataSource = guarantordetailList;
+                gvGuarantor.DataBind();
+
+                requestorGuarantorList = requestorGuarantorController.GetAllRequestorGuarantor().Where(x => x.DistressLoanId == distressLoanObj[0].DistressLoanId).ToList();
+
+                gvApplicantAsGurontor.DataSource = requestorGuarantorList;
+                gvApplicantAsGurontor.DataBind();
+            }
 
 
 

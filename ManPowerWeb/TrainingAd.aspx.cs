@@ -46,7 +46,12 @@ namespace ManPowerWeb
             foreach (var item in trainingMainList)
             {
                 item.Post_img = "~/SystemDocuments/TrainingImages/" + item.Post_img;
-
+                int depID = Convert.ToInt32(Session["DepUnitPositionId"]);
+                if (item.Created_User == Convert.ToInt32(Session["DepUnitPositionId"]))
+                {
+                    btnApply.Visible = false;
+                    btnReject.Visible = false;
+                }
             }
 
             lvTrainingAd.DataSource = trainingMainList;
@@ -80,7 +85,6 @@ namespace ManPowerWeb
                 btnReject.Enabled = true;
                 btnReject.CssClass = "btn btn-outline-danger";
             }
-
             else
             {
                 btnApply.Enabled = true;

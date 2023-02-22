@@ -157,7 +157,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
-                            <label>District : </label>
+                            <label>Current Working Palce : </label>
                         </div>
                         <div class="col-6">
                             <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>

@@ -482,11 +482,11 @@ namespace ManPowerWeb
                 if (i != null)
                 {
                     emp.EmpAddress = address.Text;
-                    emp.EmpTelephone = int.Parse(telephone.Text);
-                    emp.PostalCode = int.Parse(postalCode.Text);
+                    emp.EmpTelephone = (int)Convert.ToInt64(telephone.Text);
+                    emp.PostalCode = Convert.ToInt32(postalCode.Text);
                     emp.EmpEmail = email.Text;
-                    emp.OfficePhone = int.Parse(EmpOfficePhone.Text);
-                    emp.MobileNumber = int.Parse(EmpMobilePhone.Text);
+                    emp.OfficePhone = (int)Convert.ToInt64(EmpOfficePhone.Text);
+                    emp.MobileNumber = (int)Convert.ToInt64(EmpMobilePhone.Text);
                     emp.EmpID = Convert.ToInt32(Session["EmpNumber"]);
 
                     int result1 = ec.UpdateEmployeeContact(emp);

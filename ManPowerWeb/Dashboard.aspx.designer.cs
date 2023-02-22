@@ -33,6 +33,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label lblNumberOfEmp;
 
         /// <summary>
+        /// updatePanel6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanel6;
+
+        /// <summary>
         /// lblThisMonthTarget control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,24 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblThisMonthTarget;
+
+        /// <summary>
+        /// timer6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer6;
+
+        /// <summary>
+        /// updatePanel5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanel5;
 
         /// <summary>
         /// lblVoteAmount control.
@@ -51,6 +78,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label lblVoteAmount;
 
         /// <summary>
+        /// timer5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer5;
+
+        /// <summary>
+        /// updatePanel7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanel7;
+
+        /// <summary>
         /// lblTotalProgramms control.
         /// </summary>
         /// <remarks>
@@ -58,6 +103,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalProgramms;
+
+        /// <summary>
+        /// timer7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer7;
 
         /// <summary>
         /// DME21Heading control.
@@ -78,6 +132,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvUser;
 
         /// <summary>
+        /// updatePanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanel4;
+
+        /// <summary>
         /// lblUCTM control.
         /// </summary>
         /// <remarks>
@@ -85,6 +148,24 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblUCTM;
+
+        /// <summary>
+        /// timer4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer4;
+
+        /// <summary>
+        /// updatePanel3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanel3;
 
         /// <summary>
         /// lblCP control.
@@ -96,6 +177,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label lblCP;
 
         /// <summary>
+        /// timer3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer3;
+
+        /// <summary>
+        /// updatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanel2;
+
+        /// <summary>
         /// lblTUCP control.
         /// </summary>
         /// <remarks>
@@ -103,6 +202,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTUCP;
+
+        /// <summary>
+        /// timer2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer timer2;
 
         /// <summary>
         /// updatePanel1 control.
@@ -130,6 +238,69 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.Timer timer1;
+
+        /// <summary>
+        /// gvAnnualTarget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAnnualTarget;
+
+        /// <summary>
+        /// gvThisMonthTarget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvThisMonthTarget;
+
+        /// <summary>
+        /// gvVoteAllocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvVoteAllocation;
+
+        /// <summary>
+        /// gvTotalProgrms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTotalProgrms;
+
+        /// <summary>
+        /// gvthisMonthProgram control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvthisMonthProgram;
+
+        /// <summary>
+        /// gvCompletedProgrm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCompletedProgrm;
+
+        /// <summary>
+        /// gvTotalUpComingProgrm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTotalUpComingProgrm;
 
         /// <summary>
         /// gvProgramTargetNotification control.

@@ -32,6 +32,15 @@ namespace ManPowerWeb
 
             gvLoan.DataSource = loanDetailList;
             gvLoan.DataBind();
+
+            LoanTypeController loanTypeController = ControllerFactory.CreateLoanTypeController();
+            loanTypeList = loanTypeController.GetAllLoanType();
+
+            ddlLastLoanType.DataSource = loanTypeList;
+            ddlLastLoanType.DataValueField = "Id";
+            ddlLastLoanType.DataTextField = "Loan_Type_Name";
+            ddlLastLoanType.DataBind();
+            ddlLastLoanType.Items.Insert(0, new ListItem("Select Loan Type", ""));
         }
 
 
@@ -60,6 +69,7 @@ namespace ManPowerWeb
             approvalHistory.ApprovalStatusId = 4;
             approvalHistory.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
             approvalHistory.RejectReason = "";
+
 
             int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 4, approvalHistory);
 
@@ -103,17 +113,17 @@ namespace ManPowerWeb
 
             if (balance > double.Parse(txtLoanAmount.Text))
             {
-                lblCkeckerSuccess.Text = "Pass";
-                lblCkeckerSuccess.Visible = true;
-                lblCkeckerfailed.Visible = false;
+                lblCkecker.Text = "Pass";
+                lblCkecker.Visible = true;
+                lblCkecker.CssClass = "alert-success";
                 btnApprove.Visible = true;
                 btnReject.Visible = true;
             }
             else
             {
-                lblCkeckerfailed.Text = "Failed";
-                lblCkeckerSuccess.Visible = false;
-                lblCkeckerfailed.Visible = true;
+                lblCkecker.Text = "Failed";
+                lblCkecker.CssClass = "alert-danger";
+                lblCkecker.Visible = true;
                 btnApprove.Visible = false;
                 btnReject.Visible = true;
             }

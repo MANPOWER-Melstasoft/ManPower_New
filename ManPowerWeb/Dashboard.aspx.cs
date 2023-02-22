@@ -44,6 +44,10 @@ namespace ManPowerWeb
                     }
                     BindCardData();
                     bindDialogbox();
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 2 || Convert.ToInt32(Session["UserTypeId"]) == 3)
+                    {
+                        BindAnnualTarget();
+                    }
                 }
             }
             else
@@ -382,6 +386,43 @@ namespace ManPowerWeb
         protected void timer1_Tick(object sender, EventArgs e)
         {
             bindDialogbox();
+        }
+
+        private void BindAnnualTarget()
+        {
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, true, true);
+            List<ProgramTarget> programTargetsListFilter = new List<ProgramTarget>();
+
+            int flagProgrmTarget = 0;
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                if (i.TargetYear == DateTime.Today.Year)
+                {
+                    foreach (var item in i._ProgramAssignee)
+                    {
+                        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                        {
+                            flagProgrmTarget = 1;
+                        }
+                    }
+
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilter.Add(i);
+                }
+            }
+
+            gvAnnualTarget.DataSource = programTargetsListFilter;
+            gvAnnualTarget.DataBind();
+        }
+
+        protected void gvAnnualTarget_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAnnualTarget.PageIndex = e.NewPageIndex;
+            BindAnnualTarget();
         }
     }
 }

@@ -7,7 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h4 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h2 mb-0 text-gray-800">Dashboard</h1>
         </div>
 
         <!-- Content Row -->
@@ -260,6 +260,37 @@
 
         </div>
 
+        <%} %>
+
+        <% if (Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "2")
+            {
+        %>
+        <div class="card m-4 p-4">
+
+            <div class="d-sm-flex align-items-center justify-content-between mt-2">
+                <h3>Annual Target List
+                </h3>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+                    <asp:GridView Style="margin-top: 30px;" ID="gvAnnualTarget" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                        CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="gvAnnualTarget_PageIndexChanging"
+                        ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+                        <Columns>
+                            <asp:BoundField DataField="ProgramTargetId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                            <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                            <asp:BoundField DataField="Outcome" HeaderText="Outcome" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                            <asp:BoundField DataField="NoOfProjects" HeaderText="No of Projects" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                            <asp:BoundField DataField="EstimatedAmount" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
+                            <asp:BoundField DataField="StartDate" HeaderText="Start Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                            <asp:BoundField DataField="EndDate" HeaderText="End Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                        </Columns>
+                        <EmptyDataTemplate>No Programs to Show </EmptyDataTemplate>
+                    </asp:GridView>
+                </div>
+            </div>
+        </div>
         <%} %>
     </div>
 

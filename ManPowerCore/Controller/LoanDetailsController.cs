@@ -18,7 +18,7 @@ namespace ManPowerCore.Controller
         int Update(LoanDetail loanDetail);
 
         int UpdateStatus(int id, int approvalstatusId);
-        int UpdateStatusWithHistory(int id, int approvalstatusId, ApprovalHistory approvalHistory);
+        int UpdateStatusWithHistory(int id, int approvalstatusId, ApprovalHistory approvalHistory, DistressLoan distressLoan);
 
         List<LoanDetail> GetAllLoanDetail();
 
@@ -137,13 +137,15 @@ namespace ManPowerCore.Controller
             }
         }
 
-        public int UpdateStatusWithHistory(int id, int approvalstatusId, ApprovalHistory approvalHistory)
+        public int UpdateStatusWithHistory(int id, int approvalstatusId, ApprovalHistory approvalHistory, DistressLoan distressLoan)
         {
             try
             {
                 dBConnection = new DBConnection();
 
                 loanDetailDAO.UpdateStatus(id, approvalstatusId, dBConnection);
+
+                DistressLoanDAO.Update(distressLoan, dBConnection);
 
                 return approvalHistoryDAO.Save(approvalHistory, dBConnection);
 

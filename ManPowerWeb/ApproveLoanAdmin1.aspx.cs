@@ -61,6 +61,15 @@ namespace ManPowerWeb
                 txtLoanReason.Text = distressLoanObj.ReasonForLoan;
                 txtLastLoan.Text = distressLoanObj.LastLoanDate.ToString("yyyy-MM-dd");
 
+                ddlLastLoanType.SelectedValue = distressLoanObj.LastLoanType.ToString();
+                txtLastLoanAmount.Text = distressLoanObj.LastLoanAmount.ToString();
+                txtlastLoanDate.Text = distressLoanObj.LastLoanDate.ToString("yyyy-MM-dd");
+                txtPayableLoanAmount.Text = distressLoanObj.PayableAmount.ToString();
+                txtDistressLoanBalance.Text = distressLoanObj.DistressLoanBalance.ToString();
+                txtPremiumAmount.Text = distressLoanObj.PeriodicalAmount.ToString();
+                txtNumberOfInstallments.Text = distressLoanObj.NoOfPeriods.ToString();
+
+
                 guarantordetailList = guarantorDetailController.GetAllGuarantorDetail().Where(x => x.DistressLoanId == distressLoanObj.DistressLoanId).ToList();
 
                 gvGuarantor.DataSource = guarantordetailList;
@@ -83,6 +92,11 @@ namespace ManPowerWeb
             ddlLoanType.DataValueField = "Id";
             ddlLoanType.DataTextField = "Loan_Type_Name";
             ddlLoanType.DataBind();
+
+            ddlLastLoanType.DataSource = loanTypeList;
+            ddlLastLoanType.DataValueField = "Id";
+            ddlLastLoanType.DataTextField = "Loan_Type_Name";
+            ddlLastLoanType.DataBind();
         }
 
         protected void btnApprove_Click(object sender, EventArgs e)

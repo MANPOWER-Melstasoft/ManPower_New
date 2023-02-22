@@ -185,6 +185,103 @@
             </asp:GridView>
         </div>
 
+        <%---------------------------------------Fianace Department--------------------------%>
+
+        <div style="padding-left: 50px; padding-top: 40px; padding-bottom: 40px;">
+            <div class="row ms-1 mb-5 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal15" runat="server" Text="Last Loan Type"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:DropDownList ID="ddlLastLoanType" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal18" runat="server" Text="Last Loan Amount"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtLastLoanAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ms-1 mb-5 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal19" runat="server" Text="Last Loan Date"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtlastLoanDate" runat="server" CssClass="form-control form-control-user" TextMode="Date" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ms-1 mb-5">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal20" runat="server" Text="Payable Loan Amount"></asp:Literal>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtPayableLoanAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal21" runat="server" Text="Distress Loan Balance"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtDistressLoanBalance" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ms-1 mb-5">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal22" runat="server" Text="Premium Amount "></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtPremiumAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal23" runat="server" Text="Number of Installments"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtNumberOfInstallments" runat="server" CssClass="form-control form-control-user" TextMode="Number" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%---------------------------------------End Fianace Department--------------------------%>
+
         <%---------------------------------------Data Form------------------------------------%>
 
         <div class="card" style="padding-left: 50px; padding-top: 40px; padding-bottom: 40px;">

@@ -41,7 +41,7 @@ namespace ManPowerCore.Domain
         public string IsSuspend { get; set; }
 
         [DBField("Last_Loan_Type")]
-        public string LastLoanType { get; set; }
+        public int LastLoanType { get; set; }
 
         [DBField("Last_Loan_Date")]
         public DateTime LastLoanDate { get; set; }

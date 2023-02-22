@@ -15,6 +15,7 @@ namespace ManPowerWeb
     public partial class PersonalFilesList : System.Web.UI.Page
     {
         static List<Employee> employees = new List<Employee>();
+        static List<Employee> employeesFilter = new List<Employee>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,17 +31,21 @@ namespace ManPowerWeb
         {
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
             employees = employeeController.GetAllEmployees();
+            //employeesFilter = employees.ToList();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            if (txtName.Text != "")
+            if (txtName.Text != "" && txtName.Text != null)
             {
-                gvPersonalFiles.DataSource = employees.
-                    Where(x => x.NameWithInitials.ToLower().Contains(txtName.Text) ||
-                    x.EmpInitials.ToLower().Contains(txtName.Text) ||
-                    x.LastName.ToLower().Contains(txtName.Text)).ToList();
+                employeesFilter = employees.
+                   Where(x => x.NameWithInitials.ToLower().Contains(txtName.Text) ||
+                   x.EmpInitials.ToLower().Contains(txtName.Text) ||
+                   x._DepartmentUnit.Name.ToLower().Contains(txtName.Text) ||
+                   x.LastName.ToLower().Contains(txtName.Text)).ToList();
 
+
+                gvPersonalFiles.DataSource = employeesFilter;
                 gvPersonalFiles.DataBind();
 
                 lblSearch.Text = "Search Result for '" + txtName.Text + "'";
@@ -53,7 +58,8 @@ namespace ManPowerWeb
             }
             else
             {
-                gvPersonalFiles.DataSource = null;
+                employeesFilter.Clear();
+                gvPersonalFiles.DataSource = employeesFilter;
                 gvPersonalFiles.DataBind();
 
                 lblSearch.Text = string.Empty;
@@ -86,6 +92,15 @@ namespace ManPowerWeb
                 Response.Write(strwritter.ToString());
                 Response.End();
             }
+        }
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = gvPersonalFiles.PageSize;
+            int pageindex = gvPersonalFiles.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
+            Response.Redirect("PersonalFilesListView.aspx?Id=" + employeesFilter[rowIndex].EmployeeId);
         }
     }
 }

@@ -57,6 +57,12 @@ namespace ManPowerWeb
             txtEmployeeId.Text = loanDetailObj.EmployeeId.ToString();
             txtLoanType.Text = loanDetailObj.LoanTypeId.ToString();
 
+            if (loanDetailObj.LoanTypeId == 3)
+            {
+                btnApprove.Visible = false;
+                btnReject.Visible = false;
+            }
+
             ViewState["LoanDetailId"] = loanDetailObj.LoanDetailsId;
             ViewState["LoanTypeId"] = loanDetailObj.LoanTypeId;
 
@@ -83,8 +89,30 @@ namespace ManPowerWeb
             if (Convert.ToInt32(ViewState["LoanTypeId"]) != 3)
             {
                 loanDetail = new LoanDetail();
-                loanDetail.LastLoanPaidMonth = DateTime.Parse(txtLastLoanPaidDateAdvance.Text);
-                loanDetail.LastLoanDate = DateTime.Parse(txtLastLoanDateAdvance.Text);
+
+                if (txtLastLoanPaidDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.Parse(txtLastLoanPaidDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.MinValue;
+
+                }
+
+                if (txtLastLoanDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanDate = DateTime.Parse(txtLastLoanDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanDate = DateTime.MinValue;
+
+                }
+
+
                 loanDetail.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
                 loanDetail.ApprovalStatusId = 4;
 
@@ -104,16 +132,40 @@ namespace ManPowerWeb
             {
                 distressLoan = new DistressLoan();
                 distressLoan.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
-                distressLoan.LastLoanType = Convert.ToInt32(ddlLastLoanType.SelectedValue);
-                distressLoan.LastLoanDate = DateTime.Parse(txtLastLoanDate.Text);
+
+                if (ddlLastLoanType.Text != "")
+                {
+                    distressLoan.LastLoanDate = DateTime.Parse(txtLastLoanDate.Text);
+                    distressLoan.LastLoanAmount = double.Parse(txtLastLoanAmount.Text);
+                    distressLoan.LastLoanBalance = float.Parse(txtLastLoanBalance.Text);
+
+                }
+                else
+                {
+                    distressLoan.LastLoanDate = DateTime.MinValue;
+                    distressLoan.LastLoanAmount = 0;
+                    distressLoan.LastLoanBalance = 0;
+
+                }
                 distressLoan.LastLoanAmount = double.Parse(txtLastLoanAmount.Text);
                 distressLoan.FourtyOfSalary = rbIsFourty.SelectedItem.Text;
                 distressLoan.PayableAmount = float.Parse(txtPayableLoanAmount.Text);
                 distressLoan.DistressLoanBalance = float.Parse(txtDistressLoanBalance.Text);
                 distressLoan.PeriodicalAmount = float.Parse(txtPremiumAmount.Text);
                 distressLoan.NoOfPeriods = Convert.ToInt32(txtNumberOfInstallments.Text);
-                distressLoan.LastLoanBalance = float.Parse(txtLastLoanBalance.Text);
-                distressLoan.GuarantorApprove = rbIsGurontorAcceptable.SelectedItem.Text;
+
+                if (rbIsGurontorAcceptable.SelectedValue != "")
+                {
+                    distressLoan.GuarantorApprove = rbIsGurontorAcceptable.SelectedItem.Text;
+
+                }
+                else
+                {
+                    distressLoan.GuarantorApprove = "";
+
+                }
+
+
 
                 if (txtLastLoanDate.Text != "" && DateTime.Parse(txtLastLoanDate.Text) < DateTime.Now)
                 {
@@ -163,8 +215,29 @@ namespace ManPowerWeb
             if (Convert.ToInt32(ViewState["LoanTypeId"]) != 3)
             {
                 loanDetail = new LoanDetail();
-                loanDetail.LastLoanPaidMonth = DateTime.Parse(txtLastLoanPaidDateAdvance.Text);
-                loanDetail.LastLoanDate = DateTime.Parse(txtLastLoanDateAdvance.Text);
+
+                if (txtLastLoanPaidDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.Parse(txtLastLoanPaidDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanPaidMonth = DateTime.MinValue;
+
+                }
+
+                if (txtLastLoanDateAdvance.Text != "")
+                {
+                    loanDetail.LastLoanDate = DateTime.Parse(txtLastLoanDateAdvance.Text);
+
+                }
+                else
+                {
+                    loanDetail.LastLoanDate = DateTime.MinValue;
+
+                }
+
                 loanDetail.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
                 loanDetail.ApprovalStatusId = 5;
 
@@ -184,16 +257,42 @@ namespace ManPowerWeb
             {
                 distressLoan = new DistressLoan();
                 distressLoan.LoanDetailsId = Convert.ToInt32(ViewState["LoanDetailId"]);
+
                 distressLoan.LastLoanType = Convert.ToInt32(ddlLastLoanType.SelectedValue);
-                distressLoan.LastLoanDate = DateTime.Parse(txtLastLoanDate.Text);
-                distressLoan.LastLoanAmount = double.Parse(txtLastLoanAmount.Text);
+
+                if (ddlLastLoanType.Text != "")
+                {
+                    distressLoan.LastLoanDate = DateTime.Parse(txtLastLoanDate.Text);
+                    distressLoan.LastLoanAmount = double.Parse(txtLastLoanAmount.Text);
+                    distressLoan.LastLoanBalance = float.Parse(txtLastLoanBalance.Text);
+
+                }
+                else
+                {
+                    distressLoan.LastLoanDate = DateTime.MinValue;
+                    distressLoan.LastLoanAmount = 0;
+                    distressLoan.LastLoanBalance = 0;
+
+                }
+
+
                 distressLoan.FourtyOfSalary = rbIsFourty.SelectedItem.Text;
                 distressLoan.PayableAmount = float.Parse(txtPayableLoanAmount.Text);
                 distressLoan.DistressLoanBalance = float.Parse(txtDistressLoanBalance.Text);
                 distressLoan.PeriodicalAmount = float.Parse(txtPremiumAmount.Text);
                 distressLoan.NoOfPeriods = Convert.ToInt32(txtNumberOfInstallments.Text);
-                distressLoan.LastLoanBalance = float.Parse(txtLastLoanBalance.Text);
-                distressLoan.GuarantorApprove = rbIsGurontorAcceptable.SelectedItem.Text;
+
+
+                if (rbIsGurontorAcceptable.SelectedValue != "")
+                {
+                    distressLoan.GuarantorApprove = rbIsGurontorAcceptable.SelectedItem.Text;
+
+                }
+                else
+                {
+                    distressLoan.GuarantorApprove = "";
+
+                }
 
                 int response = loanDetailsController.UpdateStatusWithHistory(approvalHistory.LoanDetailsId, 5, approvalHistory, loanDetail, distressLoan);
 

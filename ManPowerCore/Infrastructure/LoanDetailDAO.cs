@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,7 +65,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "UPDATE Loan_Details " +
                                 "SET " +
                                 //"Employee_ID = @EmployeeId, " +
-                                //"Approval_Status_Id = @ApprovalStatusId, Loan_Type_Id = @LoanTypeId, " +
+                                "Approval_Status_Id = @ApprovalStatusId," +
+                                //" Loan_Type_Id = @LoanTypeId, " +
                                 //"Full_Name = @FullName, Position = @Position, Work_Place = @WorkPlace, " +
                                 //"Work_Type = @WorkType, Appointed_Date = @AppointedDate, " +
                                 //"Basic_Salary = @BasicSalary, Loan_Amount = @LoanAmount, " +
@@ -76,7 +78,7 @@ namespace ManPowerCore.Infrastructure
 
             //dbConnection.cmd.Parameters.AddWithValue("@PaymentVoucherId", loanDetails.PaymentVoucherId);
             //dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", loanDetails.EmployeeId);
-            //dbConnection.cmd.Parameters.AddWithValue("@ApprovalStatusId", loanDetails.ApprovalStatusId);
+            dbConnection.cmd.Parameters.AddWithValue("@ApprovalStatusId", loanDetails.ApprovalStatusId);
             //dbConnection.cmd.Parameters.AddWithValue("@LoanTypeId", loanDetails.LoanTypeId);
             //dbConnection.cmd.Parameters.AddWithValue("@FullName", loanDetails.FullName);
             //dbConnection.cmd.Parameters.AddWithValue("@Position", loanDetails.Position);
@@ -88,8 +90,27 @@ namespace ManPowerCore.Infrastructure
             //dbConnection.cmd.Parameters.AddWithValue("@LoanRequireDate", loanDetails.LoanRequireDate);
             //dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", loanDetails.CreatedDate);
             //dbConnection.cmd.Parameters.AddWithValue("@SalaryNo", loanDetails.SalaryNo);
-            dbConnection.cmd.Parameters.AddWithValue("@LastLoanDate", loanDetails.LastLoanDate);
-            dbConnection.cmd.Parameters.AddWithValue("@LastLoanPaidMonth", loanDetails.LastLoanPaidMonth);
+            if (loanDetails.LastLoanDate.Year == 1)
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@LastLoanDate", SqlDateTime.Null);
+
+            }
+            else
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@LastLoanDate", loanDetails.LastLoanDate);
+
+            }
+
+            if (loanDetails.LastLoanPaidMonth.Year == 1)
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@LastLoanPaidMonth", SqlDateTime.Null);
+
+            }
+            else
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@LastLoanPaidMonth", loanDetails.LastLoanPaidMonth);
+
+            }
             dbConnection.cmd.Parameters.AddWithValue("@LoanDetailsId", loanDetails.LoanDetailsId);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());

@@ -184,21 +184,24 @@ namespace ManPowerWeb
 
             VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
             List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+            List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
             float vCount = 0;
             foreach (var i in voteAllocationList)
             {
                 if (i.Year.Year == DateTime.Today.Year)
                 {
                     vCount += i.Amount;
+                    voteAllocationListFilter.Add(i);
                 }
             }
             lblVoteAmount.Text = vCount.ToString("N");
+            gvVoteAllocation.DataSource = voteAllocationListFilter;
+            gvVoteAllocation.DataBind();
 
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             List<ProgramPlan> programPlanList = programPlanController.GetAllProgramPlan();
             //List<ProgramPlan> programPlanFilter = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year).ToList();
-            lblTotalProgramms.Text = programPlanList.Count.ToString();
 
             List<ProgramPlan> programPlanFilterUCTM = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.Date.Month == DateTime.Today.Month && x.ActualOutput == 0).ToList();
             lblUCTM.Text = programPlanFilterUCTM.Count.ToString();
@@ -209,21 +212,70 @@ namespace ManPowerWeb
             List<ProgramPlan> programPlanFilterTUCP = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.ActualOutput == 0).ToList();
             lblTUCP.Text = programPlanFilterTUCP.Count.ToString();
 
-
+            //------------------------------------- This month Target --------------------------------------------------------------
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
-            int mCount = 0;
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, true, false);
+            List<ProgramTarget> programTargetsListFilter = new List<ProgramTarget>();
+            List<ProgramTarget> programTargetsListFilterTotal = new List<ProgramTarget>();
+
+            int flagProgrmTarget = 0;
             foreach (var i in programTargetsList)
             {
+                flagProgrmTarget = 0;
                 if (i.TargetMonth == DateTime.Today.Month)
                 {
-                    mCount++;
+                    if (Session["UserTypeId"].ToString() != "1")
+                    {
+                        foreach (var item in i._ProgramAssignee)
+                        {
+                            if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                            {
+                                flagProgrmTarget = 1;
+                            }
+                        }
+                    }
+                    if (Session["UserTypeId"].ToString() == "1")
+                    {
+                        flagProgrmTarget = 1;
+                    }
+
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilter.Add(i);
                 }
             }
-            lblThisMonthTarget.Text = mCount.ToString();
+            lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
+            gvThisMonthTarget.DataSource = programTargetsListFilter;
+            gvThisMonthTarget.DataBind();
+
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                if (Session["UserTypeId"].ToString() != "1")
+                {
+                    foreach (var item in i._ProgramAssignee)
+                    {
+                        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                        {
+                            flagProgrmTarget = 1;
+                        }
+                    }
+                }
+                if (Session["UserTypeId"].ToString() == "1")
+                {
+                    flagProgrmTarget = 1;
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilterTotal.Add(i);
+                }
+            }
+            lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
+            gvTotalProgrms.DataSource = programTargetsListFilterTotal;
+            gvTotalProgrms.DataBind();
 
         }
-
 
         private void bindDialogbox()
         {

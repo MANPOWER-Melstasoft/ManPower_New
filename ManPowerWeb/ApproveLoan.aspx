@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveLoan.aspx.cs" Inherits="ManPowerWeb.ApproveLoan" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" ID="scriptmanger1"></asp:ScriptManager>
     <asp:UpdatePanel runat="server" ID="updatePannel1">
@@ -30,7 +32,9 @@
 
             </div>
             <div class="card m-4 p-4">
-                <div class="row mb-5 ms-1 mt-5">
+                <h2>For Finance</h2>
+
+                <div class="row ms-1 mt-3 mb-5">
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3">
@@ -43,6 +47,55 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <h4>Last Loan Details</h4>
+
+                <div class="row ms-1 mb-5 mt-3">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal3" runat="server" Text="Last Loan Type"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:DropDownList ID="ddlLastLoanType" runat="server" CssClass="form-control form-control-user"></asp:DropDownList>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal4" runat="server" Text="Last Loan Amount"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtLastLoanAmount" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ms-1 mb-5 mt-3">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal5" runat="server" Text="Last Loan Date"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%--===============================================--%>
+                <h4>Approval of Loan</h4>
+                <div class="row ms-1 mb-1 mt-3">
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3">
@@ -51,12 +104,16 @@
 
                             <div class="col-md-6">
                                 <asp:TextBox ID="txtLoanAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="1"
+                                    ControlToValidate="txtLoanAmount" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row ms-1">
+
+
+                <div class="row ms-1 mb-1 mt-3">
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-3">
@@ -93,14 +150,13 @@
                 </div>
 
 
-                <asp:Label runat="server" ID="lblCkeckerSuccess" CssClass="alert-success" Visible="false" Font-Size="XX-Large" Font-Bold="true"></asp:Label>
-                <asp:Label runat="server" ID="lblCkeckerfailed" CssClass="alert-danger" Visible="false" Font-Size="XX-Large" Font-Bold="true"></asp:Label>
+                <asp:Label runat="server" ID="lblCkecker" CssClass="alert-success" Visible="false" Font-Size="XX-Large" Font-Bold="true"></asp:Label>
 
-                <div class="row mb-1 ms-1 mt-3">
+                <div class="row mb-3 ms-1 mt-1">
                     <div class="col-sm-3">
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
-                                <asp:Button ID="btnCheck" runat="server" Text="Check" CssClass="btn btn-primary" OnClick="btnCheck_Click" ValidationGroup="1" />
+                                <asp:Button ID="btnCheck" runat="server" Text="Check" CssClass="btn btn-primary" OnClick="btnCheck_Click" ValidationGroup="1" ToolTip="Check the 40%" />
                             </div>
                             <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />
@@ -109,11 +165,83 @@
                     </div>
                 </div>
 
+                <div class="row ms-1 mb-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal6" runat="server" Text="Payable Loan Amount"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtPayableLoanAmount" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="4"
+                                    ControlToValidate="txtPayableLoanAmount" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtPayableLoanAmount"
+                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ForeColor="Red" ValidationGroup="4"></asp:RegularExpressionValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal9" runat="server" Text="Distress Loan Balance"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtDistressLoanBalance" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="4"
+                                    ControlToValidate="txtDistressLoanBalance" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txtDistressLoanBalance"
+                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ForeColor="Red" ValidationGroup="4"></asp:RegularExpressionValidator>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ms-1 mb-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal7" runat="server" Text="Premium Amount "></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtPremiumAmount" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="4"
+                                    ControlToValidate="txtPremiumAmount" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtPremiumAmount"
+                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ForeColor="Red" ValidationGroup="4"></asp:RegularExpressionValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <asp:Literal ID="Literal8" runat="server" Text="Number of Installments"></asp:Literal>
+                            </div>
+
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtNumberOfInstallments" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="4"
+                                    ControlToValidate="txtNumberOfInstallments" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="RangeValidator" ControlToValidate="txtNumberOfInstallments" Type="Integer" MinimumValue="0" MaximumValue="480" ForeColor="Red"></asp:RangeValidator>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%--Approve and Reject button--%>
                 <div class="row mb-3 ms-1 mt-3">
                     <div class="col-sm-3">
                         <div class="row mb-3 ms-1">
                             <div class="col">
-                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" Visible="false" />
+                                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success" OnClick="btnApprove_Click" ValidationGroup="4" Visible="false" />
                             </div>
                             <div class="col">
                                 <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" Visible="false" />

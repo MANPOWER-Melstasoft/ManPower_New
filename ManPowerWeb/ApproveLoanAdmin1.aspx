@@ -185,7 +185,202 @@
             </asp:GridView>
         </div>
 
+        <%---------------------------------------Fianace Department--------------------------%>
+
+        <div style="padding-left: 50px; padding-top: 40px; padding-bottom: 40px;">
+            <div class="row ms-1 mb-5 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal15" runat="server" Text="Last Loan Type"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:DropDownList ID="ddlLastLoanType" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal18" runat="server" Text="Last Loan Amount"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtLastLoanAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ms-1 mb-5 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal19" runat="server" Text="Last Loan Date"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtlastLoanDate" runat="server" CssClass="form-control form-control-user" TextMode="Date" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ms-1 mb-5">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal20" runat="server" Text="Payable Loan Amount"></asp:Literal>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtPayableLoanAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal21" runat="server" Text="Distress Loan Balance"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtDistressLoanBalance" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ms-1 mb-5">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal22" runat="server" Text="Premium Amount "></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtPremiumAmount" runat="server" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal23" runat="server" Text="Number of Installments"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtNumberOfInstallments" runat="server" CssClass="form-control form-control-user" TextMode="Number" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%---------------------------------------End Fianace Department--------------------------%>
+
+        <%---------------------------------------Data Form------------------------------------%>
+
+        <div class="card" style="padding-left: 50px; padding-top: 40px; padding-bottom: 40px;">
+            <h2>Form for Admin Department</h2>
+            <div style="height: 20px;"></div>
+            <div class="row mb-3 ms-1 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal11" runat="server" Text="Is Probation"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtIsprobation" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="1"
+                                ControlToValidate="txtIsprobation" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal12" runat="server" Text="Probability to permeanent after probation"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtIsPermenentAfterProbation" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 ms-1 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal14" runat="server" Text="Is permanent"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtIsPermannet" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="1"
+                                ControlToValidate="txtIsPermannet" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal13" runat="server" Text="Retire date"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtRetireDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="1"
+                                ControlToValidate="txtRetireDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3 ms-1 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal16" runat="server" Text="Is suspend? Details"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtIsSuspend" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ValidationGroup="1"
+                                ControlToValidate="txtIsSuspend" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal17" runat="server" Text="Monthly Consolidated salary"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtConsolidatedSalary" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="1"
+                                ControlToValidate="txtConsolidatedSalary" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-outline-primary" Style="width: 150px;" ValidationGroup="1" OnClick="btnSubmit_Click" />
+            </div>
+        </div>
+        <%---------------------------------------End Data Form------------------------------------%>
+
         <% } %>
+
 
         <div class="row mb-3 ms-1 mt-4">
             <div class="col-2">

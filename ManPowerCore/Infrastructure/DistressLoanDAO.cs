@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
 
         int Update(DistressLoan distressLoan, DBConnection dbConnection);
 
+        int UpdatetoAdmin(DistressLoan distressLoan, DBConnection dbConnection);
+
         List<DistressLoan> GetAllDistressLoan(DBConnection dbConnection);
     }
 
@@ -34,7 +36,7 @@ namespace ManPowerCore.Infrastructure
             //dbConnection.cmd.Parameters.AddWithValue("@IsProbation", distressLoan.IsProbation);
             //dbConnection.cmd.Parameters.AddWithValue("@PossibilityToPermanent", distressLoan.PossibilityToPermanent);
             //dbConnection.cmd.Parameters.AddWithValue("@IsPermanent", distressLoan.IsPermanent);
-            //   dbConnection.cmd.Parameters.AddWithValue("@RetireDate", distressLoan.RetireDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@RetireDate", distressLoan.RetireDate);
             //dbConnection.cmd.Parameters.AddWithValue("@MonthlyConsolidatedSalary", distressLoan.MonthlyConsolidatedSalary);
             //dbConnection.cmd.Parameters.AddWithValue("@IsSuspend", distressLoan.IsSuspend);
             //dbConnection.cmd.Parameters.AddWithValue("@LastLoanType", distressLoan.LastLoanType);
@@ -98,6 +100,38 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@PeriodicalAmount", distressLoan.PeriodicalAmount);
             dbConnection.cmd.Parameters.AddWithValue("@NoOfPeriods", distressLoan.NoOfPeriods);
             dbConnection.cmd.Parameters.AddWithValue("@GuarantorApprove", distressLoan.GuarantorApprove);
+            dbConnection.cmd.Parameters.AddWithValue("@DistressLoanId", distressLoan.DistressLoanId);
+
+
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+
+            return output;
+        }
+
+        public int UpdatetoAdmin(DistressLoan distressLoan, DBConnection dbConnection)
+        {
+            int output = 0;
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.CommandText = "UPDATE Distress_Loan " +
+                                "SET " +
+                                "Is_Probation = @IsProbation, " +
+                                "Possibility_To_Permanent = @PossibilityToPermanent, " +
+                                "Is_Permanent = @IsPermanent, " +
+                                "Retire_Date = @RetireDate, " +
+                                "Monthly_Consolidated_salary = @MonthlyConsolidatedSalary, " +
+                                "Is_Suspend = @IsSuspend " +
+                                "WHERE Id = @DistressLoanId";
+
+
+
+            dbConnection.cmd.Parameters.AddWithValue("@IsProbation", distressLoan.IsProbation);
+            dbConnection.cmd.Parameters.AddWithValue("@PossibilityToPermanent", distressLoan.PossibilityToPermanent);
+            dbConnection.cmd.Parameters.AddWithValue("@IsPermanent", distressLoan.IsPermanent);
+            dbConnection.cmd.Parameters.AddWithValue("@RetireDate", distressLoan.RetireDate);
+            dbConnection.cmd.Parameters.AddWithValue("@MonthlyConsolidatedSalary", distressLoan.MonthlyConsolidatedSalary);
+            dbConnection.cmd.Parameters.AddWithValue("@IsSuspend", distressLoan.IsSuspend);
             dbConnection.cmd.Parameters.AddWithValue("@DistressLoanId", distressLoan.DistressLoanId);
 
 

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -100,7 +101,23 @@ namespace ManPowerWeb
             int pagesize = gvPersonalFiles.PageSize;
             int pageindex = gvPersonalFiles.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
-            Response.Redirect("PersonalFilesListView.aspx?Id=" + employeesFilter[rowIndex].EmployeeId);
+
+            //------------------ Encrypt URL ---------------------------------------
+            string queryString = "Id=" + employeesFilter[rowIndex].EmployeeId;
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                version: 1,
+                name: "MyAuthTicket",
+                issueDate: DateTime.Now,
+                expiration: DateTime.Now.AddMinutes(10),
+                isPersistent: false,
+                userData: queryString,
+                cookiePath: FormsAuthentication.FormsCookiePath);
+
+            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+            string url = "PersonalFilesListView.aspx?encryptedTicket=" + encryptedTicket;
+            Response.Redirect(url);
+
+            //Response.Redirect("PersonalFilesListView.aspx?Id=" + employeesFilter[rowIndex].EmployeeId);
         }
     }
 }

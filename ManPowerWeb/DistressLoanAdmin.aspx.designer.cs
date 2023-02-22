@@ -132,24 +132,6 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtPermanentDaterom;
 
         /// <summary>
-        /// Literal13 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal13;
-
-        /// <summary>
-        /// txtLoanReason control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLoanReason;
-
-        /// <summary>
         /// Literal14 control.
         /// </summary>
         /// <remarks>
@@ -166,6 +148,24 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIsSuspend;
+
+        /// <summary>
+        /// Literal13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal13;
+
+        /// <summary>
+        /// txtConsolidatedSalary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtConsolidatedSalary;
 
         /// <summary>
         /// Literal1 control.

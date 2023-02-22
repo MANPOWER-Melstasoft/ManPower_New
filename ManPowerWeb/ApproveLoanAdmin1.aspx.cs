@@ -124,5 +124,19 @@ namespace ManPowerWeb
 
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLoanAdmin1Front.aspx'},2500);", true);
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            distressLoanObj.IsProbation = txtIsprobation.Text;
+            distressLoanObj.PossibilityToPermanent = txtIsPermenentAfterProbation.Text;
+            distressLoanObj.RetireDate = Convert.ToDateTime(txtRetireDate.Text);
+            distressLoanObj.IsPermanent = txtIsPermannet.Text;
+            distressLoanObj.IsSuspend = txtIsSuspend.Text;
+            distressLoanObj.MonthlyConsolidatedSalary = Convert.ToDouble(txtConsolidatedSalary.Text);
+
+            distressLoanController.UpdatetoAdmin(distressLoanObj);
+
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Submitted Succesfully!', 'success')", true);
+        }
     }
 }

@@ -616,8 +616,8 @@ namespace ManPowerWeb
             //emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
 
             emp._EmployeeContact.EmpAddress = address.Text;
-            emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
-            emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
+            emp._EmployeeContact.EmpTelephone = telephone.Text;
+            emp._EmployeeContact.MobileNumber = EmpMobilePhone.Text;
             emp._EmployeeContact.EmpEmail = email.Text;
             //emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
             //emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);

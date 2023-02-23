@@ -227,195 +227,9 @@ namespace ManPowerWeb
 
         }
 
-        //-------------- dependant details ----------------------
-
-        protected void ddlDependantList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlDependantList.SelectedValue != "")
-            {
-                btnDependant.Text = "Update";
-                bindDependant();
-            }
-            else
-            {
-                btnDependant.Text = "Add";
-                ddlDependant.SelectedIndex = 0;
-                dependantRelationship.Text = string.Empty;
-                dependantFname.Text = string.Empty;
-                dependantLname.Text = string.Empty;
-                depDob.Text = string.Empty;
-                bcNumber.Text = string.Empty;
-                ppNumber.Text = string.Empty;
-                sickness.Text = string.Empty;
-                mDate.Text = string.Empty;
-                mCertificateNo.Text = string.Empty;
-                depNic.Text = string.Empty;
-                workingCompany.Text = string.Empty;
-                city.Text = string.Empty;
-                depId.Text = string.Empty;
-            }
-        }
-
-        private void bindDependant()
-        {
-
-            DependantController dependantController = ControllerFactory.CreateDependantController();
-            dependant = dependantController.GetDependantByEmpId(Convert.ToInt32(Session["EmpNumber"]));
 
 
-
-            if (ddlDependantList.SelectedValue != "")
-            {
-                foreach (var i in dependant.Where(u => u.DependantId == int.Parse(ddlDependantList.SelectedValue)))
-                {
-                    ddlDependant.SelectedIndex = i.DependantTypeId - 1;
-                    dependantRelationship.Text = i.RelationshipToEmp;
-                    dependantFname.Text = i.FirstName;
-                    dependantLname.Text = i.LastName;
-                    depDob.Text = i.Dob.ToString("yyyy-MM-dd");
-                    bcNumber.Text = i.BirthCertificateNumber;
-                    ppNumber.Text = i.DependantPassportNo;
-                    sickness.Text = i.Remarks;
-                    mDate.Text = i.MarriageDate.ToString("yyyy-MM-dd");
-                    mCertificateNo.Text = i.MarriageCertificateNo;
-                    depNic.Text = i.DependantNIC;
-                    workingCompany.Text = i.WorkingCompany;
-                    city.Text = i.City;
-
-
-                    depId.Text = i.DependantId.ToString();
-
-                }
-            }
-        }
-
-        protected void submitDependant(object sender, EventArgs e)
-        {
-
-            DependantController dc = ControllerFactory.CreateDependantController();
-            Dependant dependant = new Dependant();
-            List<Dependant> dependantList = new List<Dependant>();
-            //dependant = dc.GetDependantById(int.Parse(depId.Text));
-
-            dependant.DependantTypeId = int.Parse(ddlDependant.SelectedValue);
-            dependant.RelationshipToEmp = dependantRelationship.Text;
-            dependant.FirstName = dependantFname.Text;
-            dependant.LastName = dependantLname.Text;
-            dependant.Dob = Convert.ToDateTime(depDob.Text);
-            dependant.BirthCertificateNumber = bcNumber.Text;
-            dependant.DependantPassportNo = ppNumber.Text;
-            dependant.Remarks = sickness.Text;
-            dependant.MarriageCertificateNo = mCertificateNo.Text;
-
-            if (dependant.DependantTypeId == 1)
-            {
-                dependant.MarriageDate = Convert.ToDateTime(mDate.Text);
-            }
-            dependant.DependantNIC = depNic.Text;
-            dependant.WorkingCompany = workingCompany.Text;
-            dependant.City = city.Text;
-
-            int result1;
-            if (btnDependant.Text == "Add")
-            {
-                dependant.EmpId = Convert.ToInt32(Session["EmpNumber"]);
-                dependant.DocumentUploads = "";
-                result1 = dc.SaveDependant(dependant);
-            }
-            else
-            {
-                dependant.DependantId = int.Parse(depId.Text);
-                result1 = dc.UpdateDependant(dependant);
-            }
-
-            if (result1 == 1)
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-
-            }
-
-        }
-
-
-
-        //-------------- Education details ----------------------
-
-        protected void ddlEducation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bindEducation();
-        }
-
-        private void bindEducation()
-        {
-
-            EducationDetailsController educationDetailsController = ControllerFactory.CreateEducationDetailsController();
-            List<EducationDetails> edu = new List<EducationDetails>();
-            edu = educationDetailsController.GetEducationDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
-
-            if (ddlEducationDetailsList.SelectedValue != "")
-            {
-                foreach (var i in edu.Where(u => u.EducationDetailsId == int.Parse(ddlEducationDetailsList.SelectedValue)))
-                {
-                    ddlEducation.SelectedValue = i.EducationTypeId.ToString();
-                    uni.Text = i.StudiedInstitute;
-                    index.Text = i.ExamIndex;
-                    year.Text = i.ExamYear.ToString();
-                    attempt.Text = i.NoOfAttempts.ToString();
-                    sub.Text = i.ExamSubject;
-                    stream.Text = i.ExamStream;
-                    grade.Text = i.ExamGrade;
-                    status.Text = i.ExamStatus;
-
-
-                    eduId.Text = i.EducationDetailsId.ToString();
-
-                }
-            }
-        }
-
-
-        //-------------- employment details ----------------------
-
-        protected void ddlEmpDetails_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bindEmploymentDetails();
-        }
-
-        private void bindEmploymentDetails()
-        {
-
-            EmploymentDetailsController employmentDetailsController = ControllerFactory.CreateEmploymentDetailsController();
-            List<EmploymentDetails> emp = new List<EmploymentDetails>();
-            emp = employmentDetailsController.GetEmploymentDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
-
-
-
-            if (ddlEmpDetails.SelectedValue != "")
-            {
-                foreach (var i in emp.Where(u => u.EmploymentDetailId == int.Parse(ddlEmpDetails.SelectedValue)))
-                {
-                    ddContract.SelectedIndex = i.ContractTypeId - 1;
-                    ddlDesignation.SelectedIndex = i.DesignationId - 1;
-                    companyName.Text = i.CompanyName;
-                    sDate.Text = i.StartDate.ToString("yyyy-MM-dd");
-                    eDate.Text = i.EndDate.ToString("yyyy-MM-dd");
-                    reseg.SelectedIndex = i.IsResigned;
-
-                    if (i.IsResigned == 1)
-                    {
-                        retiredDate.Text = i.RetirementDate.ToString("yyyy-MM-dd");
-                    }
-
-                    empDetailId.Text = i.EmploymentDetailId.ToString();
-
-                }
-            }
-        }
-
+        //-------------- employee details ----------------------
         protected void submitEmployee(object sender, EventArgs e)
         {
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
@@ -469,6 +283,8 @@ namespace ManPowerWeb
             }
         }
 
+
+        //-------------- Contact details ----------------------
         protected void submitContact(object sender, EventArgs e)
         {
 
@@ -482,11 +298,11 @@ namespace ManPowerWeb
                 if (i != null)
                 {
                     emp.EmpAddress = address.Text;
-                    emp.EmpTelephone = (int)Convert.ToInt64(telephone.Text);
-                    emp.PostalCode = Convert.ToInt32(postalCode.Text);
+                    emp.EmpTelephone = telephone.Text;
+                    emp.PostalCode = postalCode.Text;
                     emp.EmpEmail = email.Text;
-                    emp.OfficePhone = (int)Convert.ToInt64(EmpOfficePhone.Text);
-                    emp.MobileNumber = (int)Convert.ToInt64(EmpMobilePhone.Text);
+                    emp.OfficePhone = EmpOfficePhone.Text;
+                    emp.MobileNumber = EmpMobilePhone.Text;
                     emp.EmpID = Convert.ToInt32(Session["EmpNumber"]);
 
                     int result1 = ec.UpdateEmployeeContact(emp);
@@ -504,11 +320,11 @@ namespace ManPowerWeb
                 else
                 {
                     emp.EmpAddress = address.Text;
-                    emp.EmpTelephone = int.Parse(telephone.Text);
-                    emp.PostalCode = int.Parse(postalCode.Text);
+                    emp.EmpTelephone = telephone.Text;
+                    emp.PostalCode = postalCode.Text;
                     emp.EmpEmail = email.Text;
-                    emp.OfficePhone = int.Parse(EmpOfficePhone.Text);
-                    emp.MobileNumber = int.Parse(EmpMobilePhone.Text);
+                    emp.OfficePhone = EmpOfficePhone.Text;
+                    emp.MobileNumber = EmpMobilePhone.Text;
                     emp.EmpID = Convert.ToInt32(Session["EmpNumber"]);
 
                     int result1 = ec.SaveEmployeeContact(emp);
@@ -529,6 +345,8 @@ namespace ManPowerWeb
 
         }
 
+
+        //-------------- Emergency Contact details ----------------------
         protected void submitEmergencyContact(object sender, EventArgs e)
         {
             EmergencyContactController ec = ControllerFactory.CreateEmergencyContactController();
@@ -542,10 +360,10 @@ namespace ManPowerWeb
                 {
                     emp.Name = ecName.Text;
                     emp.DependentToEmployee = ecRelationship.Text;
+                    emp.EmgMobile = ecMobile.Text;
+                    emp.EmgTelephone = landLine.Text;
                     emp.EmgAddress = ecAddress.Text;
-                    emp.EmgTelephone = int.Parse(landLine.Text);
-                    emp.EmgMobile = int.Parse(ecMobile.Text);
-                    emp.OfficePhone = int.Parse(ecOfficePhone.Text);
+                    emp.OfficePhone = ecOfficePhone.Text;
                     emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
                     emp.DependantTypeId = i.DependantTypeId;
 
@@ -566,9 +384,9 @@ namespace ManPowerWeb
                     emp.Name = ecName.Text;
                     emp.DependentToEmployee = ecRelationship.Text;
                     emp.EmgAddress = ecAddress.Text;
-                    emp.EmgTelephone = int.Parse(landLine.Text);
-                    emp.EmgMobile = int.Parse(ecMobile.Text);
-                    emp.OfficePhone = int.Parse(ecOfficePhone.Text);
+                    emp.EmgTelephone = landLine.Text;
+                    emp.EmgMobile = ecMobile.Text;
+                    emp.OfficePhone = ecOfficePhone.Text;
                     emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
 
                     int result1 = ec.SaveEmergencyContact(emp);
@@ -589,7 +407,105 @@ namespace ManPowerWeb
         }
 
 
+        //-------------- employment details ----------------------
+        protected void ddlEmpDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindEmploymentDetails();
+        }
+        private void bindEmploymentDetails()
+        {
+            EmploymentDetailsController employmentDetailsController = ControllerFactory.CreateEmploymentDetailsController();
+            List<EmploymentDetails> emp = new List<EmploymentDetails>();
+            emp = employmentDetailsController.GetEmploymentDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
 
+            if (ddlEmpDetails.SelectedValue != "")
+            {
+                foreach (var i in emp.Where(u => u.EmploymentDetailId == int.Parse(ddlEmpDetails.SelectedValue)))
+                {
+                    ddContract.SelectedIndex = i.ContractTypeId - 1;
+                    ddlDesignation.SelectedIndex = i.DesignationId - 1;
+                    companyName.Text = i.CompanyName;
+                    sDate.Text = i.StartDate.ToString("yyyy-MM-dd");
+                    eDate.Text = i.EndDate.ToString("yyyy-MM-dd");
+                    reseg.SelectedIndex = i.IsResigned;
+
+                    if (i.IsResigned == 1)
+                    {
+                        retiredDate.Text = i.RetirementDate.ToString("yyyy-MM-dd");
+                    }
+
+                    empDetailId.Text = i.EmploymentDetailId.ToString();
+
+                }
+            }
+        }
+        protected void submitEmploymentDetails(object sender, EventArgs e)
+        {
+
+            EmploymentDetailsController ed = ControllerFactory.CreateEmploymentDetailsController();
+            EmploymentDetails employmentDetails = new EmploymentDetails();
+            employmentDetails = ed.GetEmploymentDetails(int.Parse(empDetailId.Text));
+
+            employmentDetails.ContractTypeId = int.Parse(ddContract.SelectedValue);
+            employmentDetails.DesignationId = int.Parse(ddlDesignation.SelectedValue);
+            employmentDetails.CompanyName = companyName.Text;
+            employmentDetails.StartDate = Convert.ToDateTime(sDate.Text);
+            employmentDetails.EndDate = Convert.ToDateTime(eDate.Text);
+            employmentDetails.IsResigned = int.Parse(reseg.SelectedValue);
+
+            if (retiredDate.Text != "")
+            {
+                employmentDetails.RetirementDate = Convert.ToDateTime(retiredDate.Text);
+            }
+            employmentDetails.EmploymentDetailId = int.Parse(empDetailId.Text);
+
+            int result1 = ed.UpdateEmploymentDetails(employmentDetails);
+
+            if (result1 == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+            }
+
+        }
+
+
+        //-------------- Education details ----------------------
+        protected void ddlEducation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindEducation();
+        }
+        private void bindEducation()
+        {
+
+            EducationDetailsController educationDetailsController = ControllerFactory.CreateEducationDetailsController();
+            List<EducationDetails> edu = new List<EducationDetails>();
+            edu = educationDetailsController.GetEducationDetailsByEmpId(Convert.ToInt32(Session["EmpNumber"]));
+
+            if (ddlEducationDetailsList.SelectedValue != "")
+            {
+                foreach (var i in edu.Where(u => u.EducationDetailsId == int.Parse(ddlEducationDetailsList.SelectedValue)))
+                {
+                    ddlEducation.SelectedValue = i.EducationTypeId.ToString();
+                    uni.Text = i.StudiedInstitute;
+                    index.Text = i.ExamIndex;
+                    year.Text = i.ExamYear.ToString();
+                    attempt.Text = i.NoOfAttempts.ToString();
+                    sub.Text = i.ExamSubject;
+                    stream.Text = i.ExamStream;
+                    grade.Text = i.ExamGrade;
+                    status.Text = i.ExamStatus;
+
+
+                    eduId.Text = i.EducationDetailsId.ToString();
+
+                }
+            }
+        }
         protected void submitEducation(object sender, EventArgs e)
         {
 
@@ -629,27 +545,101 @@ namespace ManPowerWeb
 
         }
 
-        protected void submitEmploymentDetails(object sender, EventArgs e)
+
+        //-------------- dependant details ----------------------
+        protected void ddlDependantList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDependantList.SelectedValue != "")
+            {
+                btnDependant.Text = "Update";
+                bindDependant();
+            }
+            else
+            {
+                btnDependant.Text = "Add";
+                ddlDependant.SelectedIndex = 0;
+                dependantRelationship.Text = string.Empty;
+                dependantFname.Text = string.Empty;
+                dependantLname.Text = string.Empty;
+                depDob.Text = string.Empty;
+                bcNumber.Text = string.Empty;
+                ppNumber.Text = string.Empty;
+                sickness.Text = string.Empty;
+                mDate.Text = string.Empty;
+                mCertificateNo.Text = string.Empty;
+                depNic.Text = string.Empty;
+                workingCompany.Text = string.Empty;
+                city.Text = string.Empty;
+                depId.Text = string.Empty;
+            }
+        }
+        private void bindDependant()
+        {
+            DependantController dependantController = ControllerFactory.CreateDependantController();
+            dependant = dependantController.GetDependantByEmpId(Convert.ToInt32(Session["EmpNumber"]));
+
+            if (ddlDependantList.SelectedValue != "")
+            {
+                foreach (var i in dependant.Where(u => u.DependantId == int.Parse(ddlDependantList.SelectedValue)))
+                {
+                    ddlDependant.SelectedIndex = i.DependantTypeId - 1;
+                    dependantRelationship.Text = i.RelationshipToEmp;
+                    dependantFname.Text = i.FirstName;
+                    dependantLname.Text = i.LastName;
+                    depDob.Text = i.Dob.ToString("yyyy-MM-dd");
+                    bcNumber.Text = i.BirthCertificateNumber;
+                    ppNumber.Text = i.DependantPassportNo;
+                    sickness.Text = i.Remarks;
+                    mDate.Text = i.MarriageDate.ToString("yyyy-MM-dd");
+                    mCertificateNo.Text = i.MarriageCertificateNo;
+                    depNic.Text = i.DependantNIC;
+                    workingCompany.Text = i.WorkingCompany;
+                    city.Text = i.City;
+
+
+                    depId.Text = i.DependantId.ToString();
+
+                }
+            }
+        }
+        protected void submitDependant(object sender, EventArgs e)
         {
 
-            EmploymentDetailsController ed = ControllerFactory.CreateEmploymentDetailsController();
-            EmploymentDetails employmentDetails = new EmploymentDetails();
-            employmentDetails = ed.GetEmploymentDetails(int.Parse(empDetailId.Text));
+            DependantController dc = ControllerFactory.CreateDependantController();
+            Dependant dependant = new Dependant();
+            List<Dependant> dependantList = new List<Dependant>();
+            //dependant = dc.GetDependantById(int.Parse(depId.Text));
 
-            employmentDetails.ContractTypeId = int.Parse(ddContract.SelectedValue);
-            employmentDetails.DesignationId = int.Parse(ddlDesignation.SelectedValue);
-            employmentDetails.CompanyName = companyName.Text;
-            employmentDetails.StartDate = Convert.ToDateTime(sDate.Text);
-            employmentDetails.EndDate = Convert.ToDateTime(eDate.Text);
-            employmentDetails.IsResigned = int.Parse(reseg.SelectedValue);
+            dependant.DependantTypeId = int.Parse(ddlDependant.SelectedValue);
+            dependant.RelationshipToEmp = dependantRelationship.Text;
+            dependant.FirstName = dependantFname.Text;
+            dependant.LastName = dependantLname.Text;
+            dependant.Dob = Convert.ToDateTime(depDob.Text);
+            dependant.BirthCertificateNumber = bcNumber.Text;
+            dependant.DependantPassportNo = ppNumber.Text;
+            dependant.Remarks = sickness.Text;
+            dependant.MarriageCertificateNo = mCertificateNo.Text;
 
-            if (retiredDate.Text != "")
+            if (dependant.DependantTypeId == 1)
             {
-                employmentDetails.RetirementDate = Convert.ToDateTime(retiredDate.Text);
+                dependant.MarriageDate = Convert.ToDateTime(mDate.Text);
             }
-            employmentDetails.EmploymentDetailId = int.Parse(empDetailId.Text);
+            dependant.DependantNIC = depNic.Text;
+            dependant.WorkingCompany = workingCompany.Text;
+            dependant.City = city.Text;
 
-            int result1 = ed.UpdateEmploymentDetails(employmentDetails);
+            int result1;
+            if (btnDependant.Text == "Add")
+            {
+                dependant.EmpId = Convert.ToInt32(Session["EmpNumber"]);
+                dependant.DocumentUploads = "";
+                result1 = dc.SaveDependant(dependant);
+            }
+            else
+            {
+                dependant.DependantId = int.Parse(depId.Text);
+                result1 = dc.UpdateDependant(dependant);
+            }
 
             if (result1 == 1)
             {
@@ -663,6 +653,8 @@ namespace ManPowerWeb
 
         }
 
+
+        //-------------- Reset Password ----------------------
         protected void btnResetPassword_Click(object sender, EventArgs e)
         {
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();

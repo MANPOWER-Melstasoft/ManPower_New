@@ -19,8 +19,11 @@
                             <label>File Number : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="10" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ValidationGroup="10" ID="RegularExpressionValidator7" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                Invalid Number
+                            </asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -212,8 +215,11 @@
                             <label>VNOP Number : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="vnop" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="vnop" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="vnop" ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="10" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ValidationGroup="10" ID="RegularExpressionValidator2" ControlToValidate="vnop" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                Invalid Number
+                            </asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -285,6 +291,35 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
+                            <label>Office Phone : : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="officephone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator11" runat="server" ErrorMessage="Invalid Mobile Number."
+                                ValidationExpression="^([0-9]{10})$" ControlToValidate="officephone" ValidationGroup="10"
+                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Postal Code : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="postalCode" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+                            <asp:RegularExpressionValidator ValidationGroup="10" ID="RegularExpressionValidator9" ControlToValidate="postalCode" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                Invalid Postal Code
+                            </asp:RegularExpressionValidator>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4">
                             <label>Personal Email : </label>
                         </div>
                         <div class="col-6">
@@ -304,6 +339,8 @@
             </div>
 
         </div>
+
+        <%--------------------------------------------------------------------------------------------------------------%>
 
         <div>
             <div class="row mt-5 pl-2 mb-2">

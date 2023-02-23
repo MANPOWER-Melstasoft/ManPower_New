@@ -41,7 +41,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 //----------------------- Decrypt URL ---------------------------------------------------
-                encryptedTicket = Request.QueryString["encryptedTicket"];
+                encryptedTicket = Request.QueryString["Ticket"];
                 FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
                 EmployeeId = HttpUtility.ParseQueryString(decryptedTicket.UserData)["Id"];
 
@@ -152,7 +152,7 @@ namespace ManPowerWeb
             ddlEmpDesignation.SelectedValue = employee.DesignationId.ToString();
             ddlDistrict.SelectedValue = employee.DistrictId.ToString();
             txtEDComDate.Text = employee.EDCompletionDate.ToString("yyyy-MM-dd");
-            txtSalaryNum.Text = employee.SalaryNo.ToString();
+            txtSalaryNum.Text = employee.SalaryNo;
             vnop.Text = employee.VNOPNo.ToString();
             appointmenLetterNo.Text = employee.AppointmentNo.ToString();
 
@@ -180,9 +180,11 @@ namespace ManPowerWeb
                 if (item.EmpID == Convert.ToInt32(EmployeeId))
                 {
                     address.Text = item.EmpAddress;
-                    EmpMobilePhone.Text = item.MobileNumber.ToString();
-                    telephone.Text = item.EmpTelephone.ToString();
+                    EmpMobilePhone.Text = item.MobileNumber;
+                    telephone.Text = item.EmpTelephone;
                     email.Text = item.EmpEmail;
+                    postalCode.Text = item.PostalCode;
+                    officephone.Text = item.OfficePhone;
 
                     ContactFlag = 1;
                     break;
@@ -211,9 +213,11 @@ namespace ManPowerWeb
 
             employeeContact.EmpID = Convert.ToInt32(EmployeeId);
             employeeContact.EmpAddress = address.Text;
-            employeeContact.EmpTelephone = Convert.ToInt32(telephone.Text);
+            employeeContact.EmpTelephone = telephone.Text;
             employeeContact.EmpEmail = email.Text;
-            employeeContact.MobileNumber = Convert.ToInt32(EmpMobilePhone.Text);
+            employeeContact.MobileNumber = EmpMobilePhone.Text;
+            employeeContact.OfficePhone = officephone.Text;
+            employeeContact.PostalCode = postalCode.Text;
 
             if (ContactFlag == 1)
             {
@@ -271,7 +275,21 @@ namespace ManPowerWeb
 
                 if (output2 == 1)
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFilesListView.aspx?Id=" + EmployeeId + "'},2000);", true);
+                    //------------------ Encrypt URL ---------------------------------------
+                    string queryString = "Id=" + EmployeeId;
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                        version: 1,
+                        name: "MyAuthTicket",
+                        issueDate: DateTime.Now,
+                        expiration: DateTime.Now.AddMinutes(10),
+                        isPersistent: false,
+                        userData: queryString,
+                        cookiePath: FormsAuthentication.FormsCookiePath);
+
+                    string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+                    string url = "PersonalFilesListView.aspx?Ticket=" + encryptedTicket;
+
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='" + url + "'},2000);", true);
                 }
                 else
                 {
@@ -444,9 +462,9 @@ namespace ManPowerWeb
             ecName.Text = emergencyContact.Name;
             ecRelationship.Text = emergencyContact.DependentToEmployee;
             ecAddress.Text = emergencyContact.EmgAddress;
-            landLine.Text = emergencyContact.EmgTelephone.ToString();
-            ecMobile.Text = emergencyContact.EmgMobile.ToString();
-            ecOfficePhone.Text = emergencyContact.OfficePhone.ToString();
+            landLine.Text = emergencyContact.EmgTelephone;
+            ecMobile.Text = emergencyContact.EmgMobile;
+            ecOfficePhone.Text = emergencyContact.OfficePhone;
         }
         //----------------------------------------------------
 

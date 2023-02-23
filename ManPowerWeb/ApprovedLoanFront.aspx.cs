@@ -52,7 +52,7 @@ namespace ManPowerWeb
 
             string encryptedTicket = FormsAuthentication.Encrypt(ticket);
 
-            string url = "ApprovedLoansView.aspx?LoanDetailId=" + encryptedTicket;
+            string url = "ApprovedLoansView.aspx?encrypt=" + encryptedTicket;
             Response.Redirect(url);
 
         }

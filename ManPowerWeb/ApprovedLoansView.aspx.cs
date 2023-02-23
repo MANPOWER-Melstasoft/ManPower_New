@@ -40,7 +40,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 //----------------------- Decrypt URL ---------------------------------------------------
-                encryptedTicket = Request.QueryString["LoanDetailId"];
+                encryptedTicket = Request.QueryString["encrypt"];
                 FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
                 loanDetailsId = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["LoanDetailId"]);
 
@@ -60,6 +60,18 @@ namespace ManPowerWeb
             BindDdlLoanType();
 
             ddlLoanType.SelectedValue = loanDetailObj.LoanTypeId.ToString();
+            if (loanDetailObj.LoanTypeId == 1)
+            {
+                lblLoanType.Text = "Special Loan";
+            }
+            else if (loanDetailObj.LoanTypeId == 2)
+            {
+                lblLoanType.Text = "Festival Loan";
+            }
+            else
+            {
+                lblLoanType.Text = "Distress Loan";
+            }
             txtName.Text = loanDetailObj.FullName;
             txtPosition.Text = loanDetailObj.Position;
             txtPositionType.Text = loanDetailObj.WorkType;
@@ -77,6 +89,19 @@ namespace ManPowerWeb
                 txtLastLoan.Text = distressLoanObj.LastLoanDate.ToString("yyyy-MM-dd");
 
                 ddlLastLoanType.SelectedValue = distressLoanObj.LastLoanType.ToString();
+                if (distressLoanObj.LastLoanType == 1)
+                {
+                    lblLoanType.Text = "Special Loan";
+                }
+                else if (distressLoanObj.LastLoanType == 2)
+                {
+                    lblLoanType.Text = "Festival Loan";
+                }
+                else
+                {
+                    lblLoanType.Text = "Distress Loan";
+                }
+
                 txtLastLoanAmount.Text = distressLoanObj.LastLoanAmount.ToString();
                 txtlastLoanDate.Text = distressLoanObj.LastLoanDate.ToString("yyyy-MM-dd");
                 txtPayableLoanAmount.Text = distressLoanObj.PayableAmount.ToString();

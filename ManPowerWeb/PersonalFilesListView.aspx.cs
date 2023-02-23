@@ -361,8 +361,8 @@ namespace ManPowerWeb
             {
                 foreach (var i in emp.Where(u => u.EmploymentDetailId == int.Parse(ddlEmpDetails.SelectedValue)))
                 {
-                    ddContract.SelectedIndex = i.ContractTypeId - 1;
-                    ddlDesignation.SelectedIndex = i.DesignationId - 1;
+                    ddContract.SelectedValue = i.ContractTypeId.ToString();
+                    ddlDesignation.SelectedValue = i.DesignationId.ToString();
                     sDate.Text = i.StartDate.ToString("yyyy-MM-dd");
                     eDate.Text = i.EndDate.ToString("yyyy-MM-dd");
                     reseg.SelectedIndex = i.IsResigned;

@@ -26,10 +26,11 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO DESIGNATION(NAME) values (@DesigntionName) ";
+            dbConnection.cmd.CommandText = "INSERT INTO DESIGNATION(NAME, IS_ACTIVE) values (@DesigntionName, @IsActive) ";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@DesigntionName", designation.DesigntionName);
+            dbConnection.cmd.Parameters.AddWithValue("@IsActive", designation.IsActive);
 
             return dbConnection.cmd.ExecuteNonQuery();
         }

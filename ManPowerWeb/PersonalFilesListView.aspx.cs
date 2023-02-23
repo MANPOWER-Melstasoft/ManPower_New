@@ -38,6 +38,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 //----------------------- Decrypt URL ---------------------------------------------------
@@ -203,112 +205,6 @@ namespace ManPowerWeb
 
         }
 
-
-
-        protected void btnUpdate_Click(object sender, EventArgs e)
-        {
-            int output1;
-            EmployeeContactController employeeContactController = ControllerFactory.CreateEmployeeContactController();
-            EmployeeContact employeeContact = new EmployeeContact();
-
-            employeeContact.EmpID = Convert.ToInt32(EmployeeId);
-            employeeContact.EmpAddress = address.Text;
-            employeeContact.EmpTelephone = telephone.Text;
-            employeeContact.EmpEmail = email.Text;
-            employeeContact.MobileNumber = EmpMobilePhone.Text;
-            employeeContact.OfficePhone = officephone.Text;
-            employeeContact.PostalCode = postalCode.Text;
-
-            if (ContactFlag == 1)
-            {
-                output1 = employeeContactController.UpdateEmployeeContact(employeeContact);
-            }
-            else
-            {
-                output1 = employeeContactController.SaveEmployeeContact(employeeContact);
-            }
-
-            if (output1 == 1)
-            {
-                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
-                List<DepartmentUnit> filter = departmentUnitController.GetAllDepartmentUnit(false, false);
-                int output2;
-                EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
-                Employee employee = new Employee();
-
-                employee.EmployeeId = Convert.ToInt32(EmployeeId);
-                employee.Title = ddlMR.SelectedValue;
-                employee.EmpGender = ddlGender.SelectedValue;
-                employee.MaritalStatus = ddlMaritalStatus.SelectedValue;
-                employee.FileNo = int.Parse(fileNo.Text);
-                employee.NameWithInitials = nameOfInitials.Text;
-                employee.EmpInitials = initial.Text;
-                employee.LastName = lname.Text;
-                employee.DOB = Convert.ToDateTime(dob.Text);
-                employee.EmployeeNIC = nic.Text;
-                employee.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
-                employee.DistrictId = int.Parse(ddlDistrict.SelectedValue);
-                employee.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
-                employee.SalaryNo = txtSalaryNum.Text;
-                employee.VNOPNo = int.Parse(vnop.Text);
-                employee.AppointmentNo = int.Parse(appointmenLetterNo.Text);
-                employee.PensionDate = Convert.ToDateTime(dob.Text).AddYears(60);
-
-                if (ddlDS.SelectedValue != "")
-                {
-                    employee.DSDivisionId = int.Parse(ddlDS.SelectedValue);
-                    foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDS.SelectedValue)))
-                    {
-                        employee.UnitType = i.DepartmentUnitTypeId;
-                    }
-                }
-                else
-                {
-                    employee.DSDivisionId = 0;
-                    foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue)))
-                    {
-                        employee.UnitType = i.DepartmentUnitTypeId;
-                    }
-                }
-
-                output2 = employeeController.UpdateEmployee(employee);
-
-                if (output2 == 1)
-                {
-                    //------------------ Encrypt URL ---------------------------------------
-                    string queryString = "Id=" + EmployeeId;
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                        version: 1,
-                        name: "MyAuthTicket",
-                        issueDate: DateTime.Now,
-                        expiration: DateTime.Now.AddMinutes(10),
-                        isPersistent: false,
-                        userData: queryString,
-                        cookiePath: FormsAuthentication.FormsCookiePath);
-
-                    string encryptedTicket = FormsAuthentication.Encrypt(ticket);
-                    string url = "PersonalFilesListView.aspx?Ticket=" + encryptedTicket;
-
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='" + url + "'},2000);", true);
-                }
-                else
-                {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-                }
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-            }
-
-        }
-
-        protected void btnBack_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("PersonalFilesList.aspx");
-        }
-
-
         private void bindDSDivision()
         {
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
@@ -469,6 +365,96 @@ namespace ManPowerWeb
         //----------------------------------------------------
 
 
+        protected void btnUpdatePersonal_Click(object sender, EventArgs e)
+        {
+            DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+            List<DepartmentUnit> filter = departmentUnitController.GetAllDepartmentUnit(false, false);
+            int output;
+            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+            Employee employee = new Employee();
+
+            employee.EmployeeId = Convert.ToInt32(EmployeeId);
+            employee.Title = ddlMR.SelectedValue;
+            employee.EmpGender = ddlGender.SelectedValue;
+            employee.MaritalStatus = ddlMaritalStatus.SelectedValue;
+            employee.FileNo = int.Parse(fileNo.Text);
+            employee.NameWithInitials = nameOfInitials.Text;
+            employee.EmpInitials = initial.Text;
+            employee.LastName = lname.Text;
+            employee.DOB = Convert.ToDateTime(dob.Text);
+            employee.EmployeeNIC = nic.Text;
+            employee.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
+            employee.DistrictId = int.Parse(ddlDistrict.SelectedValue);
+            employee.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
+            employee.SalaryNo = txtSalaryNum.Text;
+            employee.VNOPNo = int.Parse(vnop.Text);
+            employee.AppointmentNo = int.Parse(appointmenLetterNo.Text);
+            employee.PensionDate = Convert.ToDateTime(dob.Text).AddYears(60);
+
+            if (ddlDS.SelectedValue != "")
+            {
+                employee.DSDivisionId = int.Parse(ddlDS.SelectedValue);
+                foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDS.SelectedValue)))
+                {
+                    employee.UnitType = i.DepartmentUnitTypeId;
+                }
+            }
+            else
+            {
+                employee.DSDivisionId = 0;
+                foreach (var i in filter.Where(u => u.DepartmentUnitId == int.Parse(ddlDistrict.SelectedValue)))
+                {
+                    employee.UnitType = i.DepartmentUnitTypeId;
+                }
+            }
+
+            output = employeeController.UpdateEmployee(employee);
+
+            if (output == 1)
+            {
+                BindEmpData();
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+            }
+
+        }
+
+        protected void btnUpdateContact_Click(object sender, EventArgs e)
+        {
+            int output;
+            EmployeeContactController employeeContactController = ControllerFactory.CreateEmployeeContactController();
+            EmployeeContact employeeContact = new EmployeeContact();
+
+            employeeContact.EmpID = Convert.ToInt32(EmployeeId);
+            employeeContact.EmpAddress = address.Text;
+            employeeContact.EmpTelephone = telephone.Text;
+            employeeContact.EmpEmail = email.Text;
+            employeeContact.MobileNumber = EmpMobilePhone.Text;
+            employeeContact.OfficePhone = officephone.Text;
+            employeeContact.PostalCode = postalCode.Text;
+
+            if (ContactFlag == 1)
+            {
+                output = employeeContactController.UpdateEmployeeContact(employeeContact);
+            }
+            else
+            {
+                output = employeeContactController.SaveEmployeeContact(employeeContact);
+            }
+            if (output == 1)
+            {
+                BindEmpData();
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+            }
+        }
+
         protected void btnActiveInAc_Click(object sender, EventArgs e)
         {
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
@@ -484,13 +470,20 @@ namespace ManPowerWeb
 
             if (output == 1)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFilesListView.aspx?Id=" + EmployeeId + "'},2000);", true);
+                BindEmpData();
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
             }
             else
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
             }
         }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PersonalFilesList.aspx");
+        }
+
 
     }
 }

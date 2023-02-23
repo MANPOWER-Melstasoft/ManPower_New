@@ -510,46 +510,7 @@ namespace ManPowerWeb
             emplDetailsGV.DataBind();
         }
 
-        protected void addServices(object sender, EventArgs e)
-        {
-            if (employeeServices.Count == 0 && ViewState["employeeServices"] != null)
-            {
-                employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
-            }
 
-            employeeServices.Add(new EmployeeServices()
-            {
-                ServicesTypeId = int.Parse(ddlService.SelectedValue),
-                AppointmentDate = Convert.ToDateTime(appointmentDate.Text),
-                DateAssumedDuty = dateAssumedDuty.Text,
-                MethodOfRecruitment = method.Text,
-                MediumOfRecruitment = medium.Text,
-                ServiceConfirmed = int.Parse(confirmation.Text),
-                empGrade = empServicesGrade.Text
-            });
-
-            appointmentDate.Text = null;
-            dateAssumedDuty.Text = null;
-            method.Text = null;
-            medium.Text = null;
-
-            ViewState["employeeServices"] = employeeServices;
-            servicesGV.DataSource = employeeServices;
-            servicesGV.DataBind();
-        }
-
-        protected void RemoveServices(object sender, EventArgs e)
-        {
-            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-            employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
-            employeeServices.RemoveAt(rowIndex);
-
-            ViewState["employeeServices"] = employeeServices;
-            servicesGV.DataSource = employeeServices;
-            servicesGV.DataBind();
-        }
 
         protected void submit(object sender, EventArgs e)
         {
@@ -654,14 +615,51 @@ namespace ManPowerWeb
         }
 
 
+        //protected void addServices(object sender, EventArgs e)
+        //{
+        //    if (employeeServices.Count == 0 && ViewState["employeeServices"] != null)
+        //    {
+        //        employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
+        //    }
+
+        //    employeeServices.Add(new EmployeeServices()
+        //    {
+        //        ServicesTypeId = int.Parse(ddlService.SelectedValue),
+        //        AppointmentDate = Convert.ToDateTime(appointmentDate.Text),
+        //        DateAssumedDuty = dateAssumedDuty.Text,
+        //        MethodOfRecruitment = method.Text,
+        //        MediumOfRecruitment = medium.Text,
+        //        ServiceConfirmed = int.Parse(confirmation.Text),
+        //        empGrade = empServicesGrade.Text
+        //    });
+
+        //    appointmentDate.Text = null;
+        //    dateAssumedDuty.Text = null;
+        //    method.Text = null;
+        //    medium.Text = null;
+
+        //    ViewState["employeeServices"] = employeeServices;
+        //    servicesGV.DataSource = employeeServices;
+        //    servicesGV.DataBind();
+        //}
+
+
+        //protected void RemoveServices(object sender, EventArgs e)
+        //{
+        //    GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //    int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+        //    employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
+        //    employeeServices.RemoveAt(rowIndex);
+
+        //    ViewState["employeeServices"] = employeeServices;
+        //    servicesGV.DataSource = employeeServices;
+        //    servicesGV.DataBind();
+        //}
 
 
         protected void page1NextClick(object sender, EventArgs e)
         {
-            //if (Convert.ToDateTime(nicIssuedDate.Text) >= DateTime.Today)
-            //{
-            //    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'NIC Issued Date can not be a Future Date!', 'error');", true);
-            //}
             if (Convert.ToDateTime(dob.Text) >= DateTime.Today)
             {
                 if (Convert.ToDateTime(txtEDComDate.Text) >= DateTime.Today)

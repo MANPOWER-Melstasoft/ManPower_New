@@ -44,6 +44,10 @@ namespace ManPowerWeb
                     }
                     BindCardData();
                     bindDialogbox();
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 2 || Convert.ToInt32(Session["UserTypeId"]) == 3)
+                    {
+                        BindAnnualTarget();
+                    }
                 }
             }
             else
@@ -181,49 +185,166 @@ namespace ManPowerWeb
                 lblNumberOfEmp.Text = systemUserListFilter.Count.ToString();
             }
 
-
+            //---------------------------- Vote Allocation ----------------------------------------------------------
             VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
             List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+            List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
             float vCount = 0;
             foreach (var i in voteAllocationList)
             {
                 if (i.Year.Year == DateTime.Today.Year)
                 {
                     vCount += i.Amount;
+                    voteAllocationListFilter.Add(i);
                 }
             }
             lblVoteAmount.Text = vCount.ToString("N");
+            gvVoteAllocation.DataSource = voteAllocationListFilter;
+            gvVoteAllocation.DataBind();
 
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             List<ProgramPlan> programPlanList = programPlanController.GetAllProgramPlan();
             //List<ProgramPlan> programPlanFilter = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year).ToList();
-            lblTotalProgramms.Text = programPlanList.Count.ToString();
 
-            List<ProgramPlan> programPlanFilterUCTM = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.Date.Month == DateTime.Today.Month && x.ActualOutput == 0).ToList();
-            lblUCTM.Text = programPlanFilterUCTM.Count.ToString();
+            //List<ProgramPlan> programPlanFilterUCTM = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.Date.Month == DateTime.Today.Month && x.ActualOutput == 0).ToList();
+            //lblUCTM.Text = programPlanFilterUCTM.Count.ToString();
 
-            List<ProgramPlan> programPlanFilterCP = programPlanList.Where(x => x.ActualOutput != 0).ToList();
-            lblCP.Text = programPlanFilterCP.Count.ToString();
+            //List<ProgramPlan> programPlanFilterCP = programPlanList.Where(x => x.ActualOutput != 0).ToList();
+            //lblCP.Text = programPlanFilterCP.Count.ToString();
 
-            List<ProgramPlan> programPlanFilterTUCP = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.ActualOutput == 0).ToList();
-            lblTUCP.Text = programPlanFilterTUCP.Count.ToString();
+            //List<ProgramPlan> programPlanFilterTUCP = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.ActualOutput == 0).ToList();
+            //lblTUCP.Text = programPlanFilterTUCP.Count.ToString();
 
-
+            //------------------------------------- This month Target --------------------------------------------------------------
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
-            int mCount = 0;
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, true, true);
+            List<ProgramTarget> programTargetsListFilter = new List<ProgramTarget>();
+            List<ProgramTarget> programTargetsListFilterTotal = new List<ProgramTarget>();
+
+            int flagProgrmTarget = 0;
             foreach (var i in programTargetsList)
             {
-                if (i.TargetMonth == DateTime.Today.Month)
+                flagProgrmTarget = 0;
+                if (i.TargetMonth == DateTime.Today.Month || (i.StartDate <= DateTime.Now && i.EndDate >= DateTime.Now))
                 {
-                    mCount++;
+                    if (Session["UserTypeId"].ToString() != "1")
+                    {
+                        foreach (var item in i._ProgramAssignee)
+                        {
+                            if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                            {
+                                flagProgrmTarget = 1;
+                            }
+                        }
+                    }
+                    if (Session["UserTypeId"].ToString() == "1")
+                    {
+                        flagProgrmTarget = 1;
+                    }
+
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilter.Add(i);
                 }
             }
-            lblThisMonthTarget.Text = mCount.ToString();
 
+            lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
+            gvThisMonthTarget.DataSource = programTargetsListFilter;
+            gvThisMonthTarget.DataBind();
+
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                if (Session["UserTypeId"].ToString() != "1")
+                {
+                    foreach (var item in i._ProgramAssignee)
+                    {
+                        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                        {
+                            flagProgrmTarget = 1;
+                        }
+                    }
+                }
+                if (Session["UserTypeId"].ToString() == "1")
+                {
+                    flagProgrmTarget = 1;
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilterTotal.Add(i);
+                }
+            }
+            lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
+            gvTotalProgrms.DataSource = programTargetsListFilterTotal;
+            gvTotalProgrms.DataBind();
+
+            //------------------ THIS MONTH UPCOMING PROGRAMS ---------------------------------------
+
+            lblUCTM.Text = programTargetsListFilter.Count.ToString();
+            gvthisMonthProgram.DataSource = programTargetsListFilter;
+            gvthisMonthProgram.DataBind();
+
+
+            //-------------------------- NO OF COMPLETED PROGRAMS ---------------------------------
+            List<ProgramPlan> programPlanListComplete = new List<ProgramPlan>();
+            List<ProgramTarget> programTargetsListComplete = new List<ProgramTarget>();
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                foreach (var item in i._ProgramAssignee)
+                {
+                    if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                    {
+                        flagProgrmTarget = 1;
+                    }
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListComplete.Add(i);
+                }
+            }
+            foreach (var item1 in programTargetsListComplete)
+            {
+                foreach (var item2 in item1._ProgramPlan)
+                {
+                    if (item2.ProjectStatusId == 4)
+                    {
+                        programPlanListComplete.Add(item2);
+                    }
+                }
+            }
+            lblCP.Text = programPlanListComplete.Count.ToString();
+            gvCompletedProgrm.DataSource = programPlanListComplete;
+            gvCompletedProgrm.DataBind();
+
+            //--------------------- TOTAL UPCOMING PROGRAMS ---------------------------------------
+            List<ProgramTarget> programTargetsListFilterTotalUpComming = new List<ProgramTarget>();
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                if (i.TargetMonth >= DateTime.Today.Month || i.StartDate >= DateTime.Now)
+                {
+                    foreach (var item in i._ProgramAssignee)
+                    {
+                        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                        {
+                            flagProgrmTarget = 1;
+                        }
+                    }
+                }
+
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilterTotalUpComming.Add(i);
+                }
+            }
+
+            lblTUCP.Text = programTargetsListFilterTotalUpComming.Count.ToString();
+            gvTotalUpComingProgrm.DataSource = programTargetsListFilterTotalUpComming;
+            gvTotalUpComingProgrm.DataBind();
         }
-
 
         private void bindDialogbox()
         {
@@ -265,6 +386,43 @@ namespace ManPowerWeb
         protected void timer1_Tick(object sender, EventArgs e)
         {
             bindDialogbox();
+        }
+
+        private void BindAnnualTarget()
+        {
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, true, true);
+            List<ProgramTarget> programTargetsListFilter = new List<ProgramTarget>();
+
+            int flagProgrmTarget = 0;
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                if (i.TargetYear == DateTime.Today.Year)
+                {
+                    foreach (var item in i._ProgramAssignee)
+                    {
+                        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                        {
+                            flagProgrmTarget = 1;
+                        }
+                    }
+
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilter.Add(i);
+                }
+            }
+
+            gvAnnualTarget.DataSource = programTargetsListFilter;
+            gvAnnualTarget.DataBind();
+        }
+
+        protected void gvAnnualTarget_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAnnualTarget.PageIndex = e.NewPageIndex;
+            BindAnnualTarget();
         }
     }
 }

@@ -59,7 +59,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@Id", trainingRequests.TrainingRequestsId);
             dbConnection.cmd.Parameters.AddWithValue("@IsActive", trainingRequests.Is_Active);
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
             return output;
         }

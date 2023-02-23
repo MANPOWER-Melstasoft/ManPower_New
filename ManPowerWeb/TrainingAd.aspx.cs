@@ -24,6 +24,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             trainingMainId = Convert.ToInt32(Request.QueryString["TrainingMainId"]);
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);
             ParenId = Convert.ToInt32(Session["DepUnitParentId"]);
@@ -44,7 +46,12 @@ namespace ManPowerWeb
             foreach (var item in trainingMainList)
             {
                 item.Post_img = "~/SystemDocuments/TrainingImages/" + item.Post_img;
-
+                int depID = Convert.ToInt32(Session["DepUnitPositionId"]);
+                if (item.Created_User == Convert.ToInt32(Session["DepUnitPositionId"]))
+                {
+                    btnApply.Visible = false;
+                    btnReject.Visible = false;
+                }
             }
 
             lvTrainingAd.DataSource = trainingMainList;
@@ -78,7 +85,6 @@ namespace ManPowerWeb
                 btnReject.Enabled = true;
                 btnReject.CssClass = "btn btn-outline-danger";
             }
-
             else
             {
                 btnApply.Enabled = true;
@@ -91,6 +97,7 @@ namespace ManPowerWeb
 
         protected void btnApply_Click(object sender, EventArgs e)
         {
+            int output;
             TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
 
             trainingRequests.TrainingMainId = trainingMainId;
@@ -100,14 +107,24 @@ namespace ManPowerWeb
             trainingRequests.Accepted_User = ParenId;
             trainingRequests.Accepted_Date = DateTime.Now;
 
-            trainingRequestsController.Save(trainingRequests);
+            output = trainingRequestsController.Save(trainingRequests);
 
-            string url = "TrainingAd.aspx?TrainingMainId=" + trainingMainId;
-            Response.Redirect(url);
+            //string url = "TrainingAd.aspx?TrainingMainId=" + trainingMainId;
+
+            if (output == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Applied Succesfully!', 'success');window.setTimeout(function(){window.location='trainingfront.aspx'},2000);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+            }
+            //Response.Redirect(url);
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
         {
+            int output;
             TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
 
             List<TrainingRequests> trainingRequestsList1 = new List<TrainingRequests>();
@@ -120,10 +137,18 @@ namespace ManPowerWeb
 
             trainingRequests1.Is_Active = 0;
 
-            trainingRequestsController.Update(trainingRequests1);
+            output = trainingRequestsController.Update(trainingRequests1);
 
-            string url = "TrainingAd.aspx?TrainingMainId=" + trainingMainId;
-            Response.Redirect(url);
+            if (output == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Cancelled Succesfully!', 'success');window.setTimeout(function(){window.location='trainingfront.aspx'},2000);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+            }
+            //string url = "TrainingAd.aspx?TrainingMainId=" + trainingMainId;
+            //Response.Redirect(url);
         }
     }
 }

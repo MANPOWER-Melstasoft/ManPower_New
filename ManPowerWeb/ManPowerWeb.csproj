@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\LIS\LIS-Melstasoft\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -121,11 +125,14 @@
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
     <Content Include="ApproveLoan.aspx" />
+    <Content Include="ApproveLoanAdmin1.aspx" />
+    <Content Include="ApproveLoanAdmin1Front.aspx" />
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
-    <Content Include="AproveLoanAdminRecomendation.aspx" />
+    <Content Include="DistressLoanAdmin.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="PersonalFilesList.aspx" />
+    <Content Include="PersonalFilesListView.aspx" />
     <Content Include="RequestLoan.aspx" />
     <Content Include="RequestLoanFront.aspx" />
     <Content Include="ResetPassword.aspx" />
@@ -2093,6 +2100,20 @@
     <Compile Include="ApproveLoan.aspx.designer.cs">
       <DependentUpon>ApproveLoan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveLoanAdmin1.aspx.cs">
+      <DependentUpon>ApproveLoanAdmin1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanAdmin1.aspx.designer.cs">
+      <DependentUpon>ApproveLoanAdmin1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveLoanAdmin1Front.aspx.cs">
+      <DependentUpon>ApproveLoanAdmin1Front.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanAdmin1Front.aspx.designer.cs">
+      <DependentUpon>ApproveLoanAdmin1Front.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveLoanHead.aspx.cs">
       <DependentUpon>ApproveLoanHead.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2107,12 +2128,12 @@
     <Compile Include="ApproveLoanView.aspx.designer.cs">
       <DependentUpon>ApproveLoanView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AproveLoanAdminRecomendation.aspx.cs">
-      <DependentUpon>AproveLoanAdminRecomendation.aspx</DependentUpon>
+    <Compile Include="DistressLoanAdmin.aspx.cs">
+      <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AproveLoanAdminRecomendation.aspx.designer.cs">
-      <DependentUpon>AproveLoanAdminRecomendation.aspx</DependentUpon>
+    <Compile Include="DistressLoanAdmin.aspx.designer.cs">
+      <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="IndividualBeneList.aspx.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>
@@ -2127,6 +2148,13 @@
     </Compile>
     <Compile Include="PersonalFilesList.aspx.designer.cs">
       <DependentUpon>PersonalFilesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalFilesListView.aspx.cs">
+      <DependentUpon>PersonalFilesListView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonalFilesListView.aspx.designer.cs">
+      <DependentUpon>PersonalFilesListView.aspx</DependentUpon>
     </Compile>
     <Compile Include="RequestLoan.aspx.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>
@@ -2824,6 +2852,7 @@
     <Folder Include="SystemDocuments\Quatations\" />
     <Folder Include="SystemDocuments\Resignation\" />
     <Folder Include="SystemDocuments\Retirement\" />
+    <Folder Include="SystemDocuments\SalarySlips\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
     <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>

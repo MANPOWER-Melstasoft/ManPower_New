@@ -33,7 +33,15 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                aa.SaveDependant(dependant, dBConnection);
+                if (dependant.DependantTypeId == 1)
+                {
+                    aa.SaveDependantSpouse(dependant, dBConnection);
+                }
+                else
+                {
+                    aa.SaveDependantOther(dependant, dBConnection);
+                }
+
                 return 1;
             }
             catch (Exception)
@@ -115,8 +123,17 @@ namespace ManPowerCore.Controller
         {
             try
             {
+                int results;
                 dBConnection = new DBConnection();
-                int results = aa.UpdateDependant(dependant, dBConnection);
+                if (dependant.DependantTypeId == 1)
+                {
+                    results = aa.UpdateDependantSpouse(dependant, dBConnection);
+                }
+                else
+                {
+                    results = aa.UpdateDependantOther(dependant, dBConnection);
+                }
+
 
                 return results;
             }

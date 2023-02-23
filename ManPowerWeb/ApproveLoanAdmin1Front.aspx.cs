@@ -16,7 +16,11 @@ namespace ManPowerWeb
         LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDataSource();
+            if (!IsPostBack)
+            {
+                BindDataSource();
+            }
+
         }
 
         public void BindDataSource()

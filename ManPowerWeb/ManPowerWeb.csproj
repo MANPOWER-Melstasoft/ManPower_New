@@ -124,6 +124,8 @@
     <Content Include="AddSupplierType.aspx" />
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
+    <Content Include="ApprovedLoanFront.aspx" />
+    <Content Include="ApprovedLoansView.aspx" />
     <Content Include="ApproveLoan.aspx" />
     <Content Include="ApproveLoanAdmin1.aspx" />
     <Content Include="ApproveLoanAdmin1Front.aspx" />
@@ -2092,6 +2094,20 @@
     </Compile>
     <Compile Include="AddTrainingFront.aspx.designer.cs">
       <DependentUpon>AddTrainingFront.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovedLoanFront.aspx.cs">
+      <DependentUpon>ApprovedLoanFront.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovedLoanFront.aspx.designer.cs">
+      <DependentUpon>ApprovedLoanFront.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovedLoansView.aspx.cs">
+      <DependentUpon>ApprovedLoansView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovedLoansView.aspx.designer.cs">
+      <DependentUpon>ApprovedLoansView.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApproveLoan.aspx.cs">
       <DependentUpon>ApproveLoan.aspx</DependentUpon>

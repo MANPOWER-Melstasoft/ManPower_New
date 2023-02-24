@@ -111,5 +111,7 @@ namespace ManPowerCore.Domain
         public List<EmployeeServices> _EmployeeServices { get; set; } = new List<EmployeeServices>();
 
         public DepartmentUnit _DepartmentUnit { get; set; }
+
+        public EmployeeServices _EmployeeServicesDetails { get; set; }
     }
 }

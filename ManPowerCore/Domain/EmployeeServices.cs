@@ -32,8 +32,20 @@ namespace ManPowerCore.Domain
         [DBField("CONFIRMED")]
         public int ServiceConfirmed { get; set; }
 
+        [DBField("Confirmed_Date")]
+        public DateTime ServiceConfirmedDate { get; set; }
+
         [DBField("GRADE")]
         public string empGrade { get; set; }
+
+        [DBField("EB_Completed_Date_Grade_1")]
+        public DateTime EBCompletedDateGrade1 { get; set; }
+
+        [DBField("EB_Completed_Date_Grade_2")]
+        public DateTime EBCompletedDateGrade2 { get; set; }
+
+        [DBField("EB_Completed_Date_Grade_3")]
+        public DateTime EBCompletedDateGrade3 { get; set; }
 
     }
 }

@@ -18,8 +18,11 @@
                             <label>File Number : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator1" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                Invalid Number
+                            </asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -211,8 +214,11 @@
                             <label>VNOP Number : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="vnop" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="vnop" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="vnop" ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator2" ControlToValidate="vnop" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                Invalid Number
+                            </asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -366,13 +372,223 @@
 
         <%---------------------------------------------------------------------%>
 
-        <%--<% } %>
 
 
-		<%else if (Count == 1) { %>--%>
+
+
 
         <div id="id2" runat="server">
 
+
+            <div class="row mt-5 pl-2">
+                <h4><b>Employee Services Details</b></h4>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Service Type : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:DropDownList ID="ddlService" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Date of Appointment: </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="appointmentDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="appointmentDate" ID="RequiredFieldValidator47" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Date Assumed Duty : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="dateAssumedDuty" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="dateAssumedDuty" ID="RequiredFieldValidator48" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+
+                <%-- <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Grade : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="empServicesGrade" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="empServicesGrade" ID="RequiredFieldValidator22" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>--%>
+            </div>
+
+
+            <%-- <%if (int.Parse(ddlService.SelectedValue) == 2)
+                { %>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Medium of Recruitment : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="medium" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="medium" ID="RequiredFieldValidator49" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Method of Recruitment : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="method" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="method" ID="RequiredFieldValidator50" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <%} %>--%>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Is Confirmed : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:RadioButtonList ID="confirmation" runat="server" AutoPostBack="true">
+                                <asp:ListItem Value="1" Selected="True">Yes</asp:ListItem>
+                                <asp:ListItem Value="0">No</asp:ListItem>
+                            </asp:RadioButtonList>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="confirmation" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+
+                <%if (int.Parse(confirmation.SelectedValue) == 1)
+                    { %>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Date of Appointment: </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="txtAppoinDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="txtAppoinDate" ID="RequiredFieldValidator27" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+
+                <%} %>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>EB Completed Date Grade 1 : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="txtEBDate1" runat="server" AutoPostBack="true" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <%if (!string.IsNullOrEmpty(txtEBDate1.Text))
+                    { %>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>EB Completed Date Grade 2 : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="txtEBDate2" runat="server" AutoPostBack="true" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <%} %>
+            </div>
+            <%if (!string.IsNullOrEmpty(txtEBDate2.Text))
+                { %>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>EB Completed Date Grade 3 : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="txtEBDate3" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%} %>
+
+            <%-- <div class="row mt-4">
+                <div class="col-2">
+                    <asp:Button runat="server" ID="Button5" Text="Add" CssClass="btn btn-primary btn-user btn-block" OnClick="addServices" ValidationGroup="7" />
+                </div>
+            </div>
+
+
+            <div cssclass="table-responsive" style="width: 100%;">
+                <asp:GridView Style="margin-top: 30px;" ID="servicesGV" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                    CellPadding="4" GridLines="None">
+                    <Columns>
+                        <asp:BoundField HeaderText="Services Type" DataField="ServicesTypeId" HeaderStyle-CssClass="table-dark" />
+                        <asp:BoundField HeaderText="Appointment Date" DataField="AppointmentDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                        <asp:BoundField HeaderText="Date Assumed Duty" DataField="DateAssumedDuty" HeaderStyle-CssClass="table-dark" />
+                        <asp:BoundField HeaderText="Method Of Recruitment" DataField="MethodOfRecruitment" HeaderStyle-CssClass="table-dark" />
+                        <asp:BoundField HeaderText="Medium Of Recruitment" DataField="MediumOfRecruitment" HeaderStyle-CssClass="table-dark" />
+                        <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
+                            <ItemTemplate>
+                                <asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveServices">Remove</asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>--%>
+
+
+            <%--<% } %>--%>
+
+            <div class="row justify-content-between mt-5">
+                <div class="col-2">
+                    <asp:Button runat="server" ID="page21" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page2PrevClick" />
+                </div>
+                <div class="col-2" style="text-align: end">
+                    <asp:Button runat="server" ID="page22" Text="Next >>" ValidationGroup="empService" CssClass="btn btn-success btn-user btn-block" OnClick="page2NextClick" />
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <%-----------------------------------------------------------%>
+
+        <div id="id3" runat="server">
 
             <div class="row mt-5 pl-2">
                 <h4><b>Employement History Details</b></h4>
@@ -524,26 +740,22 @@
             </div>
 
 
-
-
             <div class="row justify-content-between mt-5">
                 <div class="col-2">
-                    <asp:Button runat="server" ID="page21" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page2PrevClick" />
+                    <asp:Button runat="server" ID="page31" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page3PrevClick" />
                 </div>
                 <div class="col-2" style="text-align: end">
-                    <asp:Button runat="server" ID="page22" Text="Next >>" CssClass="btn btn-success btn-user btn-block" OnClick="page2NextClick" />
+                    <asp:Button runat="server" ID="page32" Text="Next >>" CssClass="btn btn-success btn-user btn-block" OnClick="page3NextClick" />
                 </div>
             </div>
 
-
         </div>
-        <%--<% } %>
 
-		<%else if (Count == 2) { %>--%>
 
         <%-----------------------------------------------------------%>
 
-        <div id="id3" runat="server">
+
+        <div id="id7" runat="server">
 
             <div class="row mt-5 pl-2">
                 <h4><b>Dependant Details</b></h4>
@@ -782,14 +994,16 @@
 
             <div class="row justify-content-between mt-5">
                 <div class="col-2">
-                    <asp:Button runat="server" ID="page31" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page3PrevClick" />
+                    <asp:Button runat="server" ID="nn" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page4PrevClick" />
                 </div>
                 <div class="col-2" style="text-align: end">
-                    <asp:Button runat="server" ID="page32" Text="Next >>" CssClass="btn btn-success btn-user btn-block" OnClick="page3NextClick" />
+                    <asp:Button runat="server" ID="mm" Text="Submit" CssClass="btn btn-danger btn-user btn-block" OnClick="submit" />
                 </div>
             </div>
 
         </div>
+
+
 
         <%---------------------------------------------------------%>
 
@@ -901,7 +1115,7 @@
 
         </div>--%>
 
-        <%--<% -------------------------------------------------------------- %>--%>
+        <%-----------------------------------------------------------%>
 
         <%--<div id="id5" runat="server">
 
@@ -1202,156 +1416,7 @@
         </div>--%>
 
 
-        <%---------------------------------------------------------------------------%>
-
-        <div id="id7" runat="server">
-
-            <div class="row mt-5 pl-2">
-                <h4><b>Employee Services Details</b></h4>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Service Type : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:DropDownList ID="ddlService" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Date of Appointment: </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="appointmentDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="appointmentDate" ID="RequiredFieldValidator47" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Date Assumed Duty : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="dateAssumedDuty" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="dateAssumedDuty" ID="RequiredFieldValidator48" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Grade : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="empServicesGrade" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="empServicesGrade" ID="RequiredFieldValidator22" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <%if (int.Parse(ddlService.SelectedValue) == 2)
-                { %>
-
-            <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Medium of Recruitment : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="medium" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="medium" ID="RequiredFieldValidator49" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Method of Recruitment : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:TextBox ID="method" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="method" ID="RequiredFieldValidator50" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <%} %>
-
-            <div class="row mt-4">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Is Confirmed : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:RadioButtonList ID="confirmation" runat="server" AutoPostBack="true">
-                                <asp:ListItem Value="1">Yes</asp:ListItem>
-                                <asp:ListItem Value="2">No</asp:ListItem>
-                            </asp:RadioButtonList>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="confirmation" ValidationGroup="7" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row mt-4">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="Button5" Text="Add" CssClass="btn btn-primary btn-user btn-block" OnClick="addServices" ValidationGroup="7" />
-                </div>
-            </div>
-
-
-            <div cssclass="table-responsive" style="width: 100%;">
-                <asp:GridView Style="margin-top: 30px;" ID="servicesGV" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                    CellPadding="4" GridLines="None">
-                    <Columns>
-                        <asp:BoundField HeaderText="Services Type" DataField="ServicesTypeId" HeaderStyle-CssClass="table-dark" />
-                        <asp:BoundField HeaderText="Appointment Date" DataField="AppointmentDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
-                        <asp:BoundField HeaderText="Date Assumed Duty" DataField="DateAssumedDuty" HeaderStyle-CssClass="table-dark" />
-                        <asp:BoundField HeaderText="Method Of Recruitment" DataField="MethodOfRecruitment" HeaderStyle-CssClass="table-dark" />
-                        <asp:BoundField HeaderText="Medium Of Recruitment" DataField="MediumOfRecruitment" HeaderStyle-CssClass="table-dark" />
-                        <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
-                            <ItemTemplate>
-                                <asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveServices">Remove</asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
-            </div>
-
-
-            <%--<% } %>--%>
-
-            <div class="row justify-content-between mt-5">
-                <div class="col-2">
-                    <asp:Button runat="server" ID="nn" Text="<< Previous" CssClass="btn btn-success btn-user btn-block" OnClick="page4PrevClick" />
-                </div>
-                <div class="col-2" style="text-align: end">
-                    <asp:Button runat="server" ID="mm" Text="Submit" CssClass="btn btn-danger btn-user btn-block" OnClick="submit" />
-                </div>
-            </div>
-
-        </div>
-
+        <%--------------------------------------------------------------------%>
     </div>
     <%--</ContentTemplate>
 		</asp:UpdatePanel>--%>

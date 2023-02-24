@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveLoanAdmin1 : System.Web.UI.Page
+    public partial class ApproveLoanDGM : System.Web.UI.Page
     {
         public int loanDetailsId;
         public List<LoanDetail> loanDetailList = new List<LoanDetail>();
@@ -76,6 +76,12 @@ namespace ManPowerWeb
                 txt40SalaryExceed.Text = distressLoanObj.FourtyOfSalary;
                 txtGuarantorFaith.Text = distressLoanObj.GuarantorApprove;
                 salarySlip = distressLoanObj.SalarySlip;
+                txtIsprobation.Text = distressLoanObj.IsProbation;
+                txtIsPermenentAfterProbation.Text = distressLoanObj.PossibilityToPermanent;
+                txtIsPermannet.Text = distressLoanObj.IsPermanent;
+                txtRetireDate.Text = distressLoanObj.RetireDate.ToString("yyyy-MM-dd");
+                txtIsSuspend.Text = distressLoanObj.IsSuspend;
+                txtConsolidatedSalary.Text = distressLoanObj.MonthlyConsolidatedSalary.ToString();
 
                 guarantordetailList = guarantorDetailController.GetAllGuarantorDetail().Where(x => x.DistressLoanId == distressLoanObj.DistressLoanId).ToList();
 
@@ -109,14 +115,9 @@ namespace ManPowerWeb
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
-            loanDetailObj.ApprovalStatusId = 2;
-            loanDetailObj.LastLoanDate = DateTime.Now;
-            loanDetailObj.LastLoanPaidMonth = DateTime.Now;
-            loanDetailObj.SalaryNo = "0";
+            loanDetailsController.UpdateStatus(loanDetailsId, 8);
 
-            loanDetailsController.Update(loanDetailObj);
-
-            approvalHistoryObj.ApprovalStatusId = 2;
+            approvalHistoryObj.ApprovalStatusId = 8;
             approvalHistoryObj.ApproveDate = DateTime.Now;
             approvalHistoryObj.ApproveBy = EmpId;
             approvalHistoryObj.LoanDetailsId = loanDetailsId;
@@ -124,19 +125,15 @@ namespace ManPowerWeb
 
             approvalHistoryController.Save(approvalHistoryObj);
 
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Approved Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLoanAdmin1Front.aspx'},2500);", true);
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Approved Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLoanDGMFront.aspx'},2500);", true);
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
         {
-            loanDetailObj.ApprovalStatusId = 3;
-            loanDetailObj.LastLoanDate = DateTime.Now;
-            loanDetailObj.LastLoanPaidMonth = DateTime.Now;
-            loanDetailObj.SalaryNo = "0";
 
-            loanDetailsController.Update(loanDetailObj);
+            loanDetailsController.UpdateStatus(loanDetailsId, 9);
 
-            approvalHistoryObj.ApprovalStatusId = 3;
+            approvalHistoryObj.ApprovalStatusId = 9;
             approvalHistoryObj.ApproveDate = DateTime.Now;
             approvalHistoryObj.ApproveBy = EmpId;
             approvalHistoryObj.LoanDetailsId = loanDetailsId;
@@ -144,21 +141,7 @@ namespace ManPowerWeb
 
             approvalHistoryController.Save(approvalHistoryObj);
 
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLoanAdmin1Front.aspx'},2500);", true);
-        }
-
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            distressLoanObj.IsProbation = txtIsprobation.Text;
-            distressLoanObj.PossibilityToPermanent = txtIsPermenentAfterProbation.Text;
-            distressLoanObj.RetireDate = Convert.ToDateTime(txtRetireDate.Text);
-            distressLoanObj.IsPermanent = txtIsPermannet.Text;
-            distressLoanObj.IsSuspend = txtIsSuspend.Text;
-            distressLoanObj.MonthlyConsolidatedSalary = Convert.ToDouble(txtConsolidatedSalary.Text);
-
-            distressLoanController.UpdatetoAdmin(distressLoanObj);
-
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Submitted Succesfully!', 'success')", true);
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLoanDGMFront.aspx'},2500);", true);
         }
     }
 }

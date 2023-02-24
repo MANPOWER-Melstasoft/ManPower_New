@@ -45,29 +45,30 @@ namespace ManPowerWeb
 
                 if (output == 1)
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Possition Updated Succesfully!', 'success')", true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Designation Updated Succesfully!', 'success')", true);
                     btnSubmit.Text = "Create";
                     Clear();
                     BindDataSource();
                 }
                 else
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Possition Updated Fail!', 'error');", true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Designation Updated Fail!', 'error');", true);
                 }
             }
             else
             {
+                designation.IsActive = 1;
                 output = designationController.SaveDesignation(designation);
                 if (output == 1)
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Possition Updated Succesfully!', 'success')", true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Designation Created Succesfully!', 'success')", true);
                     btnSubmit.Text = "Create";
                     Clear();
                     BindDataSource();
                 }
                 else
                 {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Possition Updated Fail!', 'error');", true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Designation Created Fail!', 'error');", true);
                 }
                 //lblSuccessMsg.Text = "Record Updated Successfully!";
             }

@@ -114,7 +114,7 @@ namespace ManPowerWeb
                 cookiePath: FormsAuthentication.FormsCookiePath);
 
             string encryptedTicket = FormsAuthentication.Encrypt(ticket);
-            string url = "PersonalFilesListView.aspx?encryptedTicket=" + encryptedTicket;
+            string url = "PersonalFilesListView.aspx?Ticket=" + encryptedTicket;
             Response.Redirect(url);
 
             //Response.Redirect("PersonalFilesListView.aspx?Id=" + employeesFilter[rowIndex].EmployeeId);

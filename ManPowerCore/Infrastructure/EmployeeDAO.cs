@@ -24,6 +24,9 @@ namespace ManPowerCore.Infrastructure
     {
         public int SaveEmployee(Employee emp, DBConnection dbConnection)
         {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE (Religion_Id, Ethnicity_Id, NIC, Passport_Number, Title" +
@@ -73,6 +76,9 @@ namespace ManPowerCore.Infrastructure
 
         public int UpdateEmployee(Employee emp, DBConnection dbConnection)
         {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Title = @Title, Gender = @EmpGender, Pension_Date = @PensionDate, " +
@@ -152,14 +158,17 @@ namespace ManPowerCore.Infrastructure
 
         public int AcInAcEmployee(int EmpId, int isActive, DBConnection dbConnection)
         {
-            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close(); dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Is_Active = @Is_Active  WHERE ID = @EmployeeId";
 
             dbConnection.cmd.Parameters.AddWithValue("@Is_Active", isActive);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", EmpId);
-
-
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

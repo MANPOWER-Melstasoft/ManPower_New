@@ -20,16 +20,16 @@ namespace ManPowerCore.Domain
         public string EmpAddress { get; set; }
 
         [DBField("MOBILE_NUMBER")]
-        public int MobileNumber { get; set; }
+        public string MobileNumber { get; set; }
 
         [DBField("TELEPHONE")]
-        public int EmpTelephone { get; set; }
+        public string EmpTelephone { get; set; }
 
         [DBField("OFFICE_PHONE")]
-        public int OfficePhone { get; set; }
+        public string OfficePhone { get; set; }
 
         [DBField("POSTAL_CODE")]
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         [DBField("EMAIL")]
         public string EmpEmail { get; set; }

@@ -64,7 +64,7 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Name Denoted by Initials : </label>
+                                            <label>Name with Initials : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="nameOfInitials" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
@@ -246,6 +246,9 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="fileNo" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RegularExpressionValidator ValidationGroup="pDetail" ID="RegularExpressionValidator2" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                Invalid Number
+                                            </asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +272,7 @@
 
                             <div class="row mt-5 mb-4">
                                 <div class="col-2">
-                                    <asp:Button runat="server" ID="btnSubmit1" Text="Update" CssClass="btn btn-primary btn-user btn-block" />
+                                    <asp:Button runat="server" ID="btnSubmit1" ValidationGroup="pDetail" Text="Update" CssClass="btn btn-primary btn-user btn-block" />
                                 </div>
                             </div>
                         </ContentTemplate>
@@ -322,7 +325,7 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Telephone (Landline): </label>
+                                            <label>Telephone (Landline) : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="telephone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
@@ -342,8 +345,9 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="postalCode" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ControlToValidate="postalCode" ID="RequiredFieldValidator19" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="contact" ForeColor="Red">*</asp:RequiredFieldValidator>
-
+                                            <asp:RegularExpressionValidator ValidationGroup="contact" ID="RegularExpressionValidator11" ControlToValidate="postalCode" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                Invalid Postal Code
+                                            </asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -361,7 +365,6 @@
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="EmpOfficePhone" ValidationGroup="contact"
                                                 ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
-                                            <asp:RequiredFieldValidator ControlToValidate="EmpOfficePhone" ID="RequiredFieldValidator18" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="contact" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -376,7 +379,6 @@
                                             <asp:RegularExpressionValidator ValidationGroup="contact" ID="RegularExpressionValidator4" ControlToValidate="email" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
 							    Invalid Email</asp:RegularExpressionValidator>
                                             <asp:RequiredFieldValidator ControlToValidate="email" ID="RequiredFieldValidator17" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="contact" ForeColor="Red">*</asp:RequiredFieldValidator>
-
                                         </div>
                                     </div>
                                 </div>
@@ -408,19 +410,50 @@
                             <div class="row mt-5">
                                 <div class="col-6">
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-5">
                                             <label>Name : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="ecName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="ecName" ID="RequiredFieldValidator18" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emcontact" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-6">
                                     <div class="row">
-                                        <div class="col-4">
-                                            <label>Home Telephone Number : </label>
+                                        <div class="col-5">
+                                            <label>Relationship To Employee : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="ecRelationship" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="ecRelationship" ID="RequiredFieldValidator19" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emcontact" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label>Mobile Phone : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="ecMobile" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RegularExpressionValidator ID="revMobNo" runat="server" ErrorMessage="Invalid Mobile Number."
+                                                ValidationExpression="^([0-9]{10})$" ControlToValidate="ecMobile" ValidationGroup="5"
+                                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
+                                            <asp:RequiredFieldValidator ControlToValidate="ecMobile" ID="RequiredFieldValidator20" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emcontact" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label>Telephone (Landline) : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="landLine" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
@@ -436,19 +469,18 @@
                             <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
-                                        <div class="col-4">
-                                            <label>Relationship To Employee : </label>
+                                        <div class="col-5">
+                                            <label>Address of Emergancy Contact Person : </label>
                                         </div>
                                         <div class="col-6">
-                                            <asp:TextBox ID="ecRelationship" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:TextBox ID="ecAddress" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-6">
                                     <div class="row">
-                                        <div class="col-4">
-                                            <label>Office Phone Number : </label>
+                                        <div class="col-5">
+                                            <label>Office Phone : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="ecOfficePhone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
@@ -461,40 +493,9 @@
                             </div>
 
 
-                            <div class="row mt-4">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Address of Emergancy Contact Person : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:TextBox ID="ecAddress" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Mobile Number : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:TextBox ID="ecMobile" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                            <asp:RegularExpressionValidator ID="revMobNo" runat="server" ErrorMessage="Invalid Mobile Number."
-                                                ValidationExpression="^([0-9]{10})$" ControlToValidate="ecMobile" ValidationGroup="5"
-                                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <%----------------------------------------------------------------------------%>
-
-
                             <div class="row mt-5 mb-4">
                                 <div class="col-2">
-                                    <asp:Button runat="server" ID="Button2" Text="Update" ValidationGroup="5" OnClick="submitEmergencyContact" CssClass="btn btn-primary btn-user btn-block" />
+                                    <asp:Button runat="server" ID="Button2" Text="Update" ValidationGroup="emcontact" OnClick="submitEmergencyContact" CssClass="btn btn-primary btn-user btn-block" />
                                 </div>
                             </div>
                         </ContentTemplate>

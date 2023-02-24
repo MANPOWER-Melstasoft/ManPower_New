@@ -22,17 +22,17 @@ namespace ManPowerCore.Domain
         [DBField("DEPENDENT_TYPE_TO_EMPLOYEE")]
         public string DependentToEmployee { get; set; }
 
-        [DBField("ADDRESS_OF_EMERGENCY_PERSON")]
+        [DBField("Address_OF_Emegency_Person")]
         public string EmgAddress { get; set; }
 
         [DBField("TELEPHONE")]
-        public int EmgTelephone { get; set; }
+        public string EmgTelephone { get; set; }
 
         [DBField("MOBILE")]
-        public int EmgMobile { get; set; }
+        public string EmgMobile { get; set; }
 
         [DBField("OFFICE_PHONE")]
-        public int OfficePhone { get; set; }
+        public string OfficePhone { get; set; }
 
         //public Employee _Employee { get; set; } = new Employee();
     }

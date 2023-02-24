@@ -3,10 +3,14 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
@@ -153,5 +157,6 @@ namespace ManPowerWeb
             ddlLastLoanType.DataTextField = "Loan_Type_Name";
             ddlLastLoanType.DataBind();
         }
+
     }
 }

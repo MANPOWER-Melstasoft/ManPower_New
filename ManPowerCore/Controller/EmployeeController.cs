@@ -89,6 +89,15 @@ namespace ManPowerCore.Controller
                     }
                 }
 
+                if (emp._EmployeeServicesDetails != null)
+                {
+
+
+                    emp._EmployeeServicesDetails.EmpId = id;
+                    employeeServicesDAO.SaveEmployeeServices(emp._EmployeeServicesDetails, dBConnection);
+
+                }
+
 
                 if (emp._EmployeeContact != null)
                 {

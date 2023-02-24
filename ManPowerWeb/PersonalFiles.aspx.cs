@@ -583,6 +583,16 @@ namespace ManPowerWeb
             //emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
             //emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
 
+            EmployeeServices employeeServicesDetails = new EmployeeServices();
+
+            employeeServicesDetails.ServicesTypeId = int.Parse(ddlService.SelectedValue);
+            employeeServicesDetails.AppointmentDate = Convert.ToDateTime(appointmentDate.Text);
+            employeeServicesDetails.DateAssumedDuty = dateAssumedDuty.Text;
+            employeeServicesDetails.ServiceConfirmed = int.Parse(confirmation.Text);
+            //employeeServicesDetails.empGrade = empServicesGrade.Text;
+
+
+            emp._EmployeeServicesDetails = employeeServicesDetails;
 
             int result1 = employeeController.SaveEmployee(emp);
 

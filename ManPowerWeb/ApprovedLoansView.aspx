@@ -1,41 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApprovedLoansView.aspx.cs" Inherits="ManPowerWeb.ApprovedLoansView" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="server">
-    <script language="javascript" type="text/javascript">
 
-        function printDiv() {
-            var divContents = document.getElementById("PrintPart").innerHTML;
-            var a = window.open('', '');
-            a.document.write('<html><head>' +
-
-                '<style>' +
-                ' @media print {' +
-                '   .parent {' +
-                'overflow: scroll;' +
-                'display: block;' +
-                ' }' +
-                ' .pb_after  { page -break-after: always!important; }' +
-                ' }    ' +
-                '</style > ' +
-
-                '<link rel="icon" type="image/x-icon" href="img/favicon.png" />' +
-                '<link href="css/sb-admin-2.min.css" rel="stylesheet">' +
-                '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">' +
-                '<link rel = "stylesheet" href = "https://www.w3schools.com/w3css/4/w3.css" media="print">' +
-                '<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" media=\"print\"/>' +
-                '<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" media="print">' +
-                '<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" media="print">' +
-                '</head>');
-            a.document.write('<body > ');
-            a.document.write(divContents);
-            a.document.write('</body></html>');
-            a.document.close();
-            a.print();
-            setTimeout(function () { a.print(); }, 1000);
-        }
-
-    </script>
-</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server">
@@ -43,14 +8,14 @@
             <div class="PrintPart " id="PrintPart">
                 <% if (ddlLoanType.SelectedValue == "1")
                     { %>
-                <div class="card-header d-flex align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center">
                     <h2>SPECIAL LOAN APPLICATION</h2>
 
                 </div>
                 <% } %>
                 <% if (ddlLoanType.SelectedValue == "2")
                     { %>
-                <div class="card-header d-flex align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center">
 
                     <h2>FESTIVAL LOAN APPLICATION</h2>
 
@@ -58,7 +23,7 @@
                 <% } %>
                 <% if (ddlLoanType.SelectedValue == "3")
                     { %>
-                <div class="card-header d-flex align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center">
 
                     <h2>DISTRESS LOAN APPLICATION</h2>
                 </div>
@@ -482,7 +447,7 @@
 
                 <% } %>
             </div>
-            <%--</div>--%>
+
             <div class="m-4" runat="server">
                 <asp:Button runat="server" ID="btnPrint" Text="Print Document" CssClass="btn btn-success" OnClientClick="javascript:printDiv()" />
             </div>
@@ -491,4 +456,40 @@
             <asp:PostBackTrigger ControlID="btnPrint" />
         </Triggers>
     </asp:UpdatePanel>
+
+    <script language="javascript" type="text/javascript">
+
+        function printDiv() {
+            var divContents = document.getElementById("PrintPart").innerHTML;
+            var a = window.open('', '');
+            a.document.write('<html><head>' +
+
+                '<style>' +
+                ' @media print {' +
+                '   .parent {' +
+                'overflow: scroll;' +
+                'display: block;' +
+                ' }' +
+                ' .pb_after  { page -break-after: always!important; }' +
+                ' }    ' +
+                '</style > ' +
+
+                '<link rel="icon" type="image/x-icon" href="img/favicon.png" />' +
+                '<link href="css/sb-admin-2.min.css" rel="stylesheet">' +
+                '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">' +
+                '<link rel = "stylesheet" href = "https://www.w3schools.com/w3css/4/w3.css" media="print">' +
+                '<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" media=\"print\"/>' +
+                '<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" media="print">' +
+                '<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" media="print">' +
+                '</head>');
+            a.document.write('<body > ');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+            setTimeout(function () { a.print(); }, 1000);
+        }
+
+    </script>
 </asp:Content>
+

@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -144,5 +145,43 @@ namespace ManPowerWeb
             txtPremiumAmount.Text = null;
             txtOfficerPosition.Text = null;
         }
+
+        protected void btnPdfDownload_Click(object sender, EventArgs e)
+        {
+            string filePath = "~/SystemDocuments/Quatations/Session-1 IT3090-Mid Examination -2022 (BMIT 3090.pdf";
+
+            string fileName = Path.GetFileName(filePath);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+            Response.BinaryWrite(fileBytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        protected void LinkButtonDownloadPdf_Click(object sender, EventArgs e)
+        {
+            Response.ContentType = "Application/pdf";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=Session-1 IT3090-Mid Examination -2022 (BMIT 3090.pdf");
+            Response.TransmitFile(Server.MapPath("~/SystemDocuments/Quatations/Session-1 IT3090-Mid Examination -2022 (BMIT 3090.pdf"));
+            Response.End();
+        }
+
+
+        //protected void btnPdfDownload_Click(object sender, EventArgs e)
+        //{
+        //    string filePath = "SystemDocuments/DistreesLoanAggrement/Test.pdf";
+
+        //    Response.Clear();
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+        //    Response.TransmitFile(filePath);
+        //    Response.End();
+        //}
+
+
     }
 }

@@ -248,6 +248,7 @@ namespace ManPowerWeb
         protected void btnAccept_Click(object sender, EventArgs e)
         {
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
             int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 2, "");
 
             if (TargetResponse != 0)
@@ -274,6 +275,8 @@ namespace ManPowerWeb
         protected void btnReject_Click1(object sender, EventArgs e)
         {
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+
             int TargetResponse = programTargetController.UpdateProgramTargetApproval(ProgramTargetId, 3, txtrejectReason.Text);
 
             if (TargetResponse != 0)

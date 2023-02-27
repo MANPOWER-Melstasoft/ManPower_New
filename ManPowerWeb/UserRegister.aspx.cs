@@ -99,7 +99,6 @@ namespace ManPowerWeb
                 }
             }
 
-
         }
 
         private int GetParentId()

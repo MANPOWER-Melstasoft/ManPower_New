@@ -240,6 +240,20 @@
                 </div>
             </div>
 
+            <div class="row ms-1 mb-5 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal26" runat="server" Text="Aggrement"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <a href="/SystemDocuments/DistreesLoanAggrement/<%=LoanAggrement%>" target="_blank">View Loan Agrrement</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row ms-1 mb-5">
                 <div class="col-sm-6">
                     <div class="row">

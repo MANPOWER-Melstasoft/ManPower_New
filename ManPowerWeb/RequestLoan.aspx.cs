@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -24,6 +25,8 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 bindDatasource();
+                lblgvApplicantAsGurontor.Visible = false;
+                lblgvGuarantor.Visible = false;
             }
         }
 
@@ -44,6 +47,7 @@ namespace ManPowerWeb
             LoanDetail loanDetail = new LoanDetail();
             DistressLoan distressLoan = new DistressLoan();
             int response = 0;
+            bool validationflag = false;
             LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
 
             loanDetail.FullName = txtName.Text;
@@ -51,10 +55,29 @@ namespace ManPowerWeb
             loanDetail.Position = txtPosition.Text;
             loanDetail.WorkType = txtPositionType.Text;
             loanDetail.WorkPlace = txtWorkPlace.Text;
-            loanDetail.AppointedDate = Convert.ToDateTime(txtAppointmentDate.Text);
+            if (Convert.ToDateTime(txtAppointmentDate.Text) < DateTime.Now)
+            {
+                loanDetail.AppointedDate = Convert.ToDateTime(txtAppointmentDate.Text);
+                validationflag = true;
+
+            }
+            else
+            {
+                validationflag = false;
+            }
             loanDetail.BasicSalary = float.Parse(txtBasicSalary.Text);
             loanDetail.LoanAmount = float.Parse(txtLoanAmount.Text);
-            loanDetail.LoanRequireDate = Convert.ToDateTime(txtDateWanted.Text);
+
+            if (Convert.ToDateTime(txtDateWanted.Text) > DateTime.Now)
+            {
+                loanDetail.LoanRequireDate = Convert.ToDateTime(txtDateWanted.Text);
+                validationflag = true;
+
+            }
+            else
+            {
+                validationflag = false;
+            }
             loanDetail.CreatedDate = DateTime.Now;
             loanDetail.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
             loanDetail.ApprovalStatusId = 1;
@@ -70,11 +93,27 @@ namespace ManPowerWeb
                     FUSalarySlip.SaveAs(filePath);
                     distressLoan.SalarySlip = fileName;
                 }
-                response = loanDetailsController.SaveAll(loanDetail, distressLoan, guarantorDetailList, requestorGuarantorsList);
+
+                if (FileUploadAggrement.HasFile)
+                {
+                    string fileName = FileUploadAggrement.FileName;
+                    string filePath = Server.MapPath("~/SystemDocuments/DistreesLoanAggrement/" + fileName);
+                    FUSalarySlip.SaveAs(filePath);
+                    distressLoan.AgreementDoc = fileName;
+                }
+                if (validationflag)
+                {
+                    response = loanDetailsController.SaveAll(loanDetail, distressLoan, guarantorDetailList, requestorGuarantorsList);
+
+                }
             }
             else
             {
-                response = loanDetailsController.Save(loanDetail);
+                if (validationflag)
+                {
+                    response = loanDetailsController.Save(loanDetail);
+
+                }
             }
 
             if (response != 0)
@@ -144,5 +183,69 @@ namespace ManPowerWeb
             txtPremiumAmount.Text = null;
             txtOfficerPosition.Text = null;
         }
+
+        protected void btnPdfDownload_Click(object sender, EventArgs e)
+        {
+            string filePath = "~/SystemDocuments/Quatations/Session-1 IT3090-Mid Examination -2022 (BMIT 3090.pdf";
+
+            string fileName = Path.GetFileName(filePath);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+            Response.BinaryWrite(fileBytes);
+            Response.Flush();
+            Response.End();
+        }
+
+        protected void LinkButtonDownloadPdf_Click(object sender, EventArgs e)
+        {
+            Response.ContentType = "Application/pdf";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=Session-1 IT3090-Mid Examination -2022 (BMIT 3090.pdf");
+            Response.TransmitFile(Server.MapPath("~/SystemDocuments/Quatations/Session-1 IT3090-Mid Examination -2022 (BMIT 3090.pdf"));
+            Response.End();
+        }
+
+        protected void btnRemovegvGuarantor_Click(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            guarantorDetailList.RemoveAt(rowIndex);
+
+            gvGuarantor.DataSource = guarantorDetailList;
+            gvGuarantor.DataBind();
+
+        }
+
+        protected void btnRemovegvApplicantAsGurontor_Click(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            requestorGuarantorsList.RemoveAt(rowIndex);
+
+            gvApplicantAsGurontor.DataSource = requestorGuarantorsList;
+            gvApplicantAsGurontor.DataBind();
+
+        }
+
+
+        //protected void btnPdfDownload_Click(object sender, EventArgs e)
+        //{
+        //    string filePath = "SystemDocuments/DistreesLoanAggrement/Test.pdf";
+
+        //    Response.Clear();
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(filePath));
+        //    Response.TransmitFile(filePath);
+        //    Response.End();
+        //}
+
+
     }
 }

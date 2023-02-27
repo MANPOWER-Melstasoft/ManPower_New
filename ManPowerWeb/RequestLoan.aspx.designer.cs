@@ -474,6 +474,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvGuarantor;
 
         /// <summary>
+        /// lblgvGuarantor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblgvGuarantor;
+
+        /// <summary>
         /// Literal15 control.
         /// </summary>
         /// <remarks>
@@ -645,6 +654,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvApplicantAsGurontor;
 
         /// <summary>
+        /// lblgvApplicantAsGurontor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblgvApplicantAsGurontor;
+
+        /// <summary>
         /// Literal20 control.
         /// </summary>
         /// <remarks>
@@ -670,6 +688,33 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator21;
+
+        /// <summary>
+        /// Literal21 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal21;
+
+        /// <summary>
+        /// FileUploadAggrement control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadAggrement;
+
+        /// <summary>
+        /// RequiredFieldValidator22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator22;
 
         /// <summary>
         /// btnSubmit control.

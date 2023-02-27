@@ -45,51 +45,54 @@ namespace ManPowerWeb
 
                 if (systemUserTst == null)
                 {
-                    if (CheckAvailableEmpNum(Convert.ToInt32(txtEmpNumber.Text)) && CheckExistsEmpNum(Convert.ToInt32(txtEmpNumber.Text), systemUserController) && CheckExistsRegUSer())
+                    if (CheckExistsRegUSer() && CheckDistricSD())
                     {
-                        SystemUser systemUser = new SystemUser();
-                        systemUser.Name = ddlUserName.SelectedItem.Text;
-                        systemUser.UserName = txtUserName.Text.ToLower();
-                        systemUser.Email = txtEmail.Text;
-                        systemUser.ContactNumber = txtContactNumber.Text;
-                        systemUser.EmpNumber = Convert.ToInt32(txtEmpNumber.Text);
-                        systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1");
-                        systemUser.CreatedDate = DateTime.Now;
-                        systemUser.CreatedUser = Session["UserId"].ToString();
-                        systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
-                        systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
-
-                        //DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
-                        //List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
-                        //departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
-
-                        systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
-                        systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
-                        systemUser.ParentId = GetParentId();
-                        if (systemUser.ParentId != 0)
+                        if (CheckAvailableEmpNum(Convert.ToInt32(txtEmpNumber.Text)) && CheckExistsEmpNum(Convert.ToInt32(txtEmpNumber.Text), systemUserController))
                         {
+                            SystemUser systemUser = new SystemUser();
+                            systemUser.Name = ddlUserName.SelectedItem.Text;
+                            systemUser.UserName = txtUserName.Text.ToLower();
+                            systemUser.Email = txtEmail.Text;
+                            systemUser.ContactNumber = txtContactNumber.Text;
+                            systemUser.EmpNumber = Convert.ToInt32(txtEmpNumber.Text);
+                            systemUser.UserPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1");
+                            systemUser.CreatedDate = DateTime.Now;
+                            systemUser.CreatedUser = Session["UserId"].ToString();
+                            systemUser.DesignationId = Convert.ToInt32(ddlDesignation.SelectedValue);
+                            systemUser.UserTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
 
-                            systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
+                            //DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
+                            //List<DepartmentUnit> departmentUnitList = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+                            //departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitId == Convert.ToInt32(ddlDepartmentUnit.SelectedValue)).ToList();
 
-                            Clear();
-                            BindEmpList();
-
-                            lblErrorUser.Text = "";
-                            lblSuccessMsg.Text = "Record Updated Successfully!";
-                            if (systemUser.SystemUserId > 0)
+                            systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
+                            systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
+                            systemUser.ParentId = GetParentId();
+                            if (systemUser.ParentId != 0)
                             {
-                                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'User Registerd Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
-                            }
-                            else
-                            {
-                                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
+                                systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
+
+                                Clear();
+                                BindEmpList();
+
+                                lblErrorUser.Text = "";
+                                lblSuccessMsg.Text = "Record Updated Successfully!";
+                                if (systemUser.SystemUserId > 0)
+                                {
+                                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'User Registerd Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
+                                }
+                                else
+                                {
+                                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+                                }
                             }
+                            //else
+                            //{
+                            //    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', '" + ErrorMsg + "' , 'error');", true);
+                            //}
                         }
-                        //else
-                        //{
-                        //    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', '" + ErrorMsg + "' , 'error');", true);
-                        //}
                     }
                 }
                 else
@@ -602,8 +605,56 @@ namespace ManPowerWeb
 
             else
             {
-                return false;
+                return true;
             }
+        }
+
+
+        private bool CheckDistricSD()
+        {
+            int userTypeId = Convert.ToInt32(ddlUserType.SelectedValue);
+            int depId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
+            int depType = Convert.ToInt32(ddlDepartmentType.SelectedValue);
+
+            if (depType == 3)
+            {
+                if (userTypeId == 6 || userTypeId == 7)
+                {
+                    return true;
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This User Can Only Assign to DS Division!', 'error');", true);
+                    return false;
+                }
+            }
+            else if (depType == 2)
+            {
+                if (userTypeId == 8 || userTypeId == 9)
+                {
+                    return true;
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This User Can Only Assign to District Office!', 'error');", true);
+                    return false;
+                }
+            }
+            else
+            {
+                if (userTypeId == 1 || userTypeId == 2 || userTypeId == 3 || userTypeId == 4 || userTypeId == 5 ||
+                    userTypeId == 10 || userTypeId == 11 || userTypeId == 12 || userTypeId == 13 || userTypeId == 14)
+                {
+                    return true;
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This User Can Only Assign to Head Office!', 'error');", true);
+                    return false;
+                }
+            }
+
+
         }
 
 

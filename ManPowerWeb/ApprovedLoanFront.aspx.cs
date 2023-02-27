@@ -5,28 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveLoanAdmin1Front : System.Web.UI.Page
+    public partial class ApprovedLoanFront : System.Web.UI.Page
     {
         static List<LoanDetail> loanDetailList = new List<LoanDetail>();
-        LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindDataSource();
             }
-
         }
 
         public void BindDataSource()
         {
+            LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
+
             loanDetailList = loanDetailsController.GetAllLoanDetailWithStatus(true, true);
-            loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 4).ToList();
+            loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 8).ToList();
 
             gvApprove1Admin.DataSource = loanDetailList;
             gvApprove1Admin.DataBind();
@@ -38,8 +39,22 @@ namespace ManPowerWeb
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            string url = "ApproveLoanDGM.aspx?LoanDetailId=" + loanDetailList[rowIndex].LoanDetailsId;
+            //------------------Encrypt URL-------------------------------------- -
+            string queryString = "LoanDetailId=" + loanDetailList[rowIndex].LoanDetailsId;
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                version: 1,
+                name: "MyAuthTicket",
+                issueDate: DateTime.Now,
+                expiration: DateTime.Now.AddMinutes(10),
+                isPersistent: false,
+                userData: queryString,
+                cookiePath: FormsAuthentication.FormsCookiePath);
+
+            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+
+            string url = "ApprovedLoansView.aspx?encrypt=" + encryptedTicket;
             Response.Redirect(url);
+
         }
     }
 }

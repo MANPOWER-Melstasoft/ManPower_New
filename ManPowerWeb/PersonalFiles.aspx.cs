@@ -510,46 +510,7 @@ namespace ManPowerWeb
             emplDetailsGV.DataBind();
         }
 
-        protected void addServices(object sender, EventArgs e)
-        {
-            if (employeeServices.Count == 0 && ViewState["employeeServices"] != null)
-            {
-                employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
-            }
 
-            employeeServices.Add(new EmployeeServices()
-            {
-                ServicesTypeId = int.Parse(ddlService.SelectedValue),
-                AppointmentDate = Convert.ToDateTime(appointmentDate.Text),
-                DateAssumedDuty = dateAssumedDuty.Text,
-                MethodOfRecruitment = method.Text,
-                MediumOfRecruitment = medium.Text,
-                ServiceConfirmed = int.Parse(confirmation.Text),
-                empGrade = empServicesGrade.Text
-            });
-
-            appointmentDate.Text = null;
-            dateAssumedDuty.Text = null;
-            method.Text = null;
-            medium.Text = null;
-
-            ViewState["employeeServices"] = employeeServices;
-            servicesGV.DataSource = employeeServices;
-            servicesGV.DataBind();
-        }
-
-        protected void RemoveServices(object sender, EventArgs e)
-        {
-            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-            employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
-            employeeServices.RemoveAt(rowIndex);
-
-            ViewState["employeeServices"] = employeeServices;
-            servicesGV.DataSource = employeeServices;
-            servicesGV.DataBind();
-        }
 
         protected void submit(object sender, EventArgs e)
         {
@@ -616,12 +577,22 @@ namespace ManPowerWeb
             //emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
 
             emp._EmployeeContact.EmpAddress = address.Text;
-            emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
-            emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
+            emp._EmployeeContact.EmpTelephone = telephone.Text;
+            emp._EmployeeContact.MobileNumber = EmpMobilePhone.Text;
             emp._EmployeeContact.EmpEmail = email.Text;
             //emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
             //emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
 
+            EmployeeServices employeeServicesDetails = new EmployeeServices();
+
+            employeeServicesDetails.ServicesTypeId = int.Parse(ddlService.SelectedValue);
+            employeeServicesDetails.AppointmentDate = Convert.ToDateTime(appointmentDate.Text);
+            employeeServicesDetails.DateAssumedDuty = dateAssumedDuty.Text;
+            employeeServicesDetails.ServiceConfirmed = int.Parse(confirmation.Text);
+            //employeeServicesDetails.empGrade = empServicesGrade.Text;
+
+
+            emp._EmployeeServicesDetails = employeeServicesDetails;
 
             int result1 = employeeController.SaveEmployee(emp);
 
@@ -654,14 +625,51 @@ namespace ManPowerWeb
         }
 
 
+        //protected void addServices(object sender, EventArgs e)
+        //{
+        //    if (employeeServices.Count == 0 && ViewState["employeeServices"] != null)
+        //    {
+        //        employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
+        //    }
+
+        //    employeeServices.Add(new EmployeeServices()
+        //    {
+        //        ServicesTypeId = int.Parse(ddlService.SelectedValue),
+        //        AppointmentDate = Convert.ToDateTime(appointmentDate.Text),
+        //        DateAssumedDuty = dateAssumedDuty.Text,
+        //        MethodOfRecruitment = method.Text,
+        //        MediumOfRecruitment = medium.Text,
+        //        ServiceConfirmed = int.Parse(confirmation.Text),
+        //        empGrade = empServicesGrade.Text
+        //    });
+
+        //    appointmentDate.Text = null;
+        //    dateAssumedDuty.Text = null;
+        //    method.Text = null;
+        //    medium.Text = null;
+
+        //    ViewState["employeeServices"] = employeeServices;
+        //    servicesGV.DataSource = employeeServices;
+        //    servicesGV.DataBind();
+        //}
+
+
+        //protected void RemoveServices(object sender, EventArgs e)
+        //{
+        //    GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //    int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+        //    employeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
+        //    employeeServices.RemoveAt(rowIndex);
+
+        //    ViewState["employeeServices"] = employeeServices;
+        //    servicesGV.DataSource = employeeServices;
+        //    servicesGV.DataBind();
+        //}
 
 
         protected void page1NextClick(object sender, EventArgs e)
         {
-            //if (Convert.ToDateTime(nicIssuedDate.Text) >= DateTime.Today)
-            //{
-            //    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'NIC Issued Date can not be a Future Date!', 'error');", true);
-            //}
             if (Convert.ToDateTime(dob.Text) >= DateTime.Today)
             {
                 if (Convert.ToDateTime(txtEDComDate.Text) >= DateTime.Today)

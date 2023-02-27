@@ -34,6 +34,8 @@ namespace ManPowerWeb
         EmployeeContact employeeContact = new EmployeeContact();
         List<EmploymentDetails> empDetails = new List<EmploymentDetails>();
         List<EducationDetails> educationDetails = new List<EducationDetails>();
+        List<ServiceType> serviceTypeList = new List<ServiceType>();
+
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -135,6 +137,13 @@ namespace ManPowerWeb
             ddlEducationDetailsList.DataTextField = "ExamIndex";
             ddlEducationDetailsList.DataBind();
             ddlEducationDetailsList.Items.Insert(0, new ListItem("- Select -", ""));
+
+            ServiceTypeController stc = ControllerFactory.CreateServiceTypeController();
+            serviceTypeList = stc.GetAllServiceType();
+            ddlService.DataSource = serviceTypeList;
+            ddlService.DataValueField = "ServiceTypeId";
+            ddlService.DataTextField = "ServiceTypeName";
+            ddlService.DataBind();
         }
 
         private void BindEmpData()

@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace ManPowerCore.Controller
         List<LoanDetail> GetAllLoanDetail();
 
         List<LoanDetail> GetAllLoanDetailWithStatus(bool withStatus, bool withLoanType);
+
+        DataTable getLoanReport();
     }
 
     public class LoanDetailsControllerImpl : LoanDetailsController
@@ -228,6 +231,25 @@ namespace ManPowerCore.Controller
                 }
 
                 return loanDetailList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public DataTable getLoanReport()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return loanDetailDAO.GetLoanReport(dBConnection);
             }
             catch (Exception)
             {

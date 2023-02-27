@@ -135,10 +135,13 @@
     <Content Include="ApproveLoan.aspx" />
     <Content Include="ApproveLoanAdmin1.aspx" />
     <Content Include="ApproveLoanAdmin1Front.aspx" />
+    <Content Include="ApproveLoanDGM.aspx" />
+    <Content Include="ApproveLoanDGMFront.aspx" />
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
     <Content Include="DistressLoanAdmin.aspx" />
     <Content Include="IndividualBeneList.aspx" />
+    <Content Include="LoanReport.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="PersonalFilesListView.aspx" />
     <Content Include="RequestLoan.aspx" />
@@ -2136,6 +2139,20 @@
     <Compile Include="ApproveLoanAdmin1Front.aspx.designer.cs">
       <DependentUpon>ApproveLoanAdmin1Front.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveLoanDGM.aspx.cs">
+      <DependentUpon>ApproveLoanDGM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanDGM.aspx.designer.cs">
+      <DependentUpon>ApproveLoanDGM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveLoanDGMFront.aspx.cs">
+      <DependentUpon>ApproveLoanDGMFront.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveLoanDGMFront.aspx.designer.cs">
+      <DependentUpon>ApproveLoanDGMFront.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveLoanHead.aspx.cs">
       <DependentUpon>ApproveLoanHead.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2163,6 +2180,13 @@
     </Compile>
     <Compile Include="IndividualBeneList.aspx.designer.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoanReport.aspx.cs">
+      <DependentUpon>LoanReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoanReport.aspx.designer.cs">
+      <DependentUpon>LoanReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="PersonalFilesList.aspx.cs">
       <DependentUpon>PersonalFilesList.aspx</DependentUpon>

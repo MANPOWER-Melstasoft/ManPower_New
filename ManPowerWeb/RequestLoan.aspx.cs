@@ -206,6 +206,16 @@ namespace ManPowerWeb
             Response.End();
         }
 
+        protected void btnRemovegvGuarantor_Click(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            guarantorDetailList.RemoveAt(rowIndex);
+
+        }
+
 
         //protected void btnPdfDownload_Click(object sender, EventArgs e)
         //{

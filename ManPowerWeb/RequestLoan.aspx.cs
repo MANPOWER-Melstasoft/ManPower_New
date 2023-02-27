@@ -71,6 +71,14 @@ namespace ManPowerWeb
                     FUSalarySlip.SaveAs(filePath);
                     distressLoan.SalarySlip = fileName;
                 }
+
+                if (FileUploadAggrement.HasFile)
+                {
+                    string fileName = FileUploadAggrement.FileName;
+                    string filePath = Server.MapPath("~/SystemDocuments/DistreesLoanAggrement/" + fileName);
+                    FUSalarySlip.SaveAs(filePath);
+                    distressLoan.AgreementDoc = fileName;
+                }
                 response = loanDetailsController.SaveAll(loanDetail, distressLoan, guarantorDetailList, requestorGuarantorsList);
             }
             else

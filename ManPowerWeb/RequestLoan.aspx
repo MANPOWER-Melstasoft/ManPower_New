@@ -462,7 +462,7 @@
                             <div class="col-md-6">
                                 <asp:FileUpload ID="FileUploadAggrement" runat="server" />
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ValidationGroup="1"
-                                    ControlToValidate="FUSalarySlip" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    ControlToValidate="FileUploadAggrement" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
                     </div>

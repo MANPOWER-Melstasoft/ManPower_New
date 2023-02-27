@@ -69,5 +69,8 @@ namespace ManPowerCore.Domain
 
         [DBField("Salary_Slip")]
         public string SalarySlip { get; set; }
+
+        [DBField("Agreement_Doc")]
+        public string AgreementDoc { get; set; }
     }
 }

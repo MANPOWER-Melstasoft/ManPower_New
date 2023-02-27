@@ -12,7 +12,7 @@ namespace ManPowerWeb
 {
     public partial class ApproveLoanAdmin1Front : System.Web.UI.Page
     {
-        List<LoanDetail> loanDetailList = new List<LoanDetail>();
+        static List<LoanDetail> loanDetailList = new List<LoanDetail>();
         LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
         protected void Page_Load(object sender, EventArgs e)
         {

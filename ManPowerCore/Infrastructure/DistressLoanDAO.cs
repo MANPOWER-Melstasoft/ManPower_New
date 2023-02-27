@@ -27,8 +27,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Distress_Loan (Loan_Details_Id, Reason_For_Loan,  Last_Loan_Date, Salary_Slip) " +
-                                "VALUES (@LoanDetailsId, @ReasonForLoan,@LastLoanDate, @SalarySlip) SELECT SCOPE_IDENTITY()";
+            dbConnection.cmd.CommandText = "INSERT INTO Distress_Loan (Loan_Details_Id, Reason_For_Loan,  Last_Loan_Date, Salary_Slip,Agreement_Doc) " +
+                                "VALUES (@LoanDetailsId, @ReasonForLoan,@LastLoanDate, @SalarySlip,@AgreementDoc) SELECT SCOPE_IDENTITY()";
 
             dbConnection.cmd.Parameters.AddWithValue("@LoanDetailsId", distressLoan.LoanDetailsId);
             dbConnection.cmd.Parameters.AddWithValue("@ReasonForLoan", distressLoan.ReasonForLoan);
@@ -49,6 +49,8 @@ namespace ManPowerCore.Infrastructure
             //dbConnection.cmd.Parameters.AddWithValue("@NoOfPeriods", distressLoan.NoOfPeriods);
             //dbConnection.cmd.Parameters.AddWithValue("@GuarantorApprove", distressLoan.GuarantorApprove);
             dbConnection.cmd.Parameters.AddWithValue("@SalarySlip", distressLoan.SalarySlip);
+            dbConnection.cmd.Parameters.AddWithValue("@AgreementDoc", distressLoan.AgreementDoc);
+
 
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());

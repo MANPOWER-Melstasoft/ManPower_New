@@ -163,7 +163,7 @@ namespace ManPowerWeb
             programPlan.ApprovedDate = DateTime.Now;
             programPlan.TotalEstimatedAmount = (float)Convert.ToDouble(txtEstimateAmount.Text);
 
-            if ((float)Convert.ToDouble(txtEstimateAmount.Text) > (float)Convert.ToDouble(txtBudget.Text))
+            if ((float)Convert.ToDouble(txtEstimateAmount.Text) >= (float)Convert.ToDouble(txtBudget.Text))
             {
                 programPlan.ApprovedAmount = (float)Convert.ToDouble(txtBudget.Text);
                 validationflag = true;

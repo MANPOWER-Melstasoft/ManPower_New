@@ -25,6 +25,8 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 bindDatasource();
+                lblgvApplicantAsGurontor.Visible = false;
+                lblgvGuarantor.Visible = false;
             }
         }
 
@@ -214,6 +216,9 @@ namespace ManPowerWeb
 
             guarantorDetailList.RemoveAt(rowIndex);
 
+            gvGuarantor.DataSource = guarantorDetailList;
+            gvGuarantor.DataBind();
+
         }
 
         protected void btnRemovegvApplicantAsGurontor_Click(object sender, EventArgs e)
@@ -223,6 +228,9 @@ namespace ManPowerWeb
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
             requestorGuarantorsList.RemoveAt(rowIndex);
+
+            gvApplicantAsGurontor.DataSource = requestorGuarantorsList;
+            gvApplicantAsGurontor.DataBind();
 
         }
 

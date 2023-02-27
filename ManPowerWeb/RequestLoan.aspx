@@ -310,13 +310,15 @@
                                 <asp:BoundField DataField="AppointedDate" HeaderText="Appointed Date of Guarantor" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                                 <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton runat="server" ID="btnRemovegvGuarantor" Text="Remove" CssClass="btn btn-user btn-dark" OnClick="btnRemovegvGuarantor_Click"></asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnRemovegvGuarantor" Text="Remove" CssClass="btn btn-user btn-warning" OnClick="btnRemovegvGuarantor_Click"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                             <EmptyDataTemplate>No records</EmptyDataTemplate>
 
                         </asp:GridView>
+                        <asp:Label Text="Succesfully Removed !" CssClass="alert-success" runat="server" ID="lblgvGuarantor" Visible="false"></asp:Label>
+
                     </div>
                     <h4>If aplicant is a guarantor </h4>
 
@@ -432,13 +434,14 @@
                                 <asp:BoundField DataField="Interest" HeaderText="Interest" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                                 <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton runat="server" ID="btnRemovegvApplicantAsGurontor" Text="Remove" OnClick="btnRemovegvApplicantAsGurontor_Click"></asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnRemovegvApplicantAsGurontor" Text="Remove" OnClick="btnRemovegvApplicantAsGurontor_Click" CssClass="btn btn-user btn-warning"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                             <EmptyDataTemplate>No records</EmptyDataTemplate>
 
                         </asp:GridView>
+                        <asp:Label Text="Succesfully Removed !" CssClass="alert-success" runat="server" ID="lblgvApplicantAsGurontor" Visible="false"></asp:Label>
                     </div>
 
                     <div class="row mb-3 ms-1 mt-5">

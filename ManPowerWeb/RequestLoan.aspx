@@ -432,7 +432,7 @@
                                 <asp:BoundField DataField="Interest" HeaderText="Interest" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
                                 <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <asp:LinkButton runat="server" ID="btnRemovegvApplicantAsGurontor" Text="Remove"></asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btnRemovegvApplicantAsGurontor" Text="Remove" OnClick="btnRemovegvApplicantAsGurontor_Click"></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

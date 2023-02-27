@@ -45,6 +45,7 @@ namespace ManPowerWeb
             LoanDetail loanDetail = new LoanDetail();
             DistressLoan distressLoan = new DistressLoan();
             int response = 0;
+            bool validationflag = false;
             LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
 
             loanDetail.FullName = txtName.Text;
@@ -52,10 +53,29 @@ namespace ManPowerWeb
             loanDetail.Position = txtPosition.Text;
             loanDetail.WorkType = txtPositionType.Text;
             loanDetail.WorkPlace = txtWorkPlace.Text;
-            loanDetail.AppointedDate = Convert.ToDateTime(txtAppointmentDate.Text);
+            if (Convert.ToDateTime(txtAppointmentDate.Text) < DateTime.Now)
+            {
+                loanDetail.AppointedDate = Convert.ToDateTime(txtAppointmentDate.Text);
+                validationflag = true;
+
+            }
+            else
+            {
+                validationflag = false;
+            }
             loanDetail.BasicSalary = float.Parse(txtBasicSalary.Text);
             loanDetail.LoanAmount = float.Parse(txtLoanAmount.Text);
-            loanDetail.LoanRequireDate = Convert.ToDateTime(txtDateWanted.Text);
+
+            if (Convert.ToDateTime(txtDateWanted.Text) > DateTime.Now)
+            {
+                loanDetail.LoanRequireDate = Convert.ToDateTime(txtDateWanted.Text);
+                validationflag = true;
+
+            }
+            else
+            {
+                validationflag = false;
+            }
             loanDetail.CreatedDate = DateTime.Now;
             loanDetail.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
             loanDetail.ApprovalStatusId = 1;
@@ -79,11 +99,19 @@ namespace ManPowerWeb
                     FUSalarySlip.SaveAs(filePath);
                     distressLoan.AgreementDoc = fileName;
                 }
-                response = loanDetailsController.SaveAll(loanDetail, distressLoan, guarantorDetailList, requestorGuarantorsList);
+                if (validationflag)
+                {
+                    response = loanDetailsController.SaveAll(loanDetail, distressLoan, guarantorDetailList, requestorGuarantorsList);
+
+                }
             }
             else
             {
-                response = loanDetailsController.Save(loanDetail);
+                if (validationflag)
+                {
+                    response = loanDetailsController.Save(loanDetail);
+
+                }
             }
 
             if (response != 0)

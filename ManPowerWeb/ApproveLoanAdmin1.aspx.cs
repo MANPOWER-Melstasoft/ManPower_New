@@ -22,7 +22,10 @@ namespace ManPowerWeb
         public ApprovalHistory approvalHistoryObj = new ApprovalHistory();
         public int EmpId;
         public string salarySlip;
+        public string LoanAggrement;
         public string SalarySlip { get { return salarySlip; } }
+
+        public string AgreementDoc { get { return LoanAggrement; } }
 
         LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
         DistressLoanController distressLoanController = ControllerFactory.CreateDistressLoanController();
@@ -73,6 +76,8 @@ namespace ManPowerWeb
                 txt40SalaryExceed.Text = distressLoanObj.FourtyOfSalary;
                 txtGuarantorFaith.Text = distressLoanObj.GuarantorApprove;
                 salarySlip = distressLoanObj.SalarySlip;
+                LoanAggrement = distressLoanObj.AgreementDoc;
+
 
                 guarantordetailList = guarantorDetailController.GetAllGuarantorDetail().Where(x => x.DistressLoanId == distressLoanObj.DistressLoanId).ToList();
 

@@ -294,6 +294,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal lblSlip;
 
         /// <summary>
+        /// Literal26 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal26;
+
+        /// <summary>
         /// Literal20 control.
         /// </summary>
         /// <remarks>

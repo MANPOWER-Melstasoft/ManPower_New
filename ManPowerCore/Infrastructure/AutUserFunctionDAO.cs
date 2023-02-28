@@ -121,7 +121,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "SELECT uf.aut_user_id FROM aut_user_function uf LEFT JOIN Company_User cu ON cu.Id = uf.aut_user_id " +
-                "WHERE cu.User_Type_Id = @userType GROUP BY uf.aut_user_id;; ";
+                "WHERE cu.User_Type_Id = @userType GROUP BY uf.aut_user_id; ";
 
             dbConnection.cmd.Parameters.AddWithValue("@userType", userType);
             dbConnection.dr = dbConnection.cmd.ExecuteReader();

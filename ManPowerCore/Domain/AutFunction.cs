@@ -29,6 +29,9 @@ namespace ManPowerCore.Domain
         [DBField("DIVISION")]
         public int division { get; set; }
 
+        [DBField("order_number")]
+        public int OrderNumber { get; set; }
+
         public string Status { get; set; }
     }
 }

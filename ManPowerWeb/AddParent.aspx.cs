@@ -138,6 +138,7 @@ namespace ManPowerWeb
         {
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
             List<DepartmentUnit> departmentUnitList = departmentUnitController.GetAllDepartmentUnit(false, false);
+            departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitTypeId == 2).ToList();
 
             ddlDepartment.DataSource = departmentUnitList;
             ddlDepartment.DataValueField = "DepartmentUnitId";

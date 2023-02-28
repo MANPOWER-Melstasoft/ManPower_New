@@ -450,6 +450,7 @@
 
             <div class="m-4" runat="server">
                 <asp:Button runat="server" ID="btnPrint" Text="Print Document" CssClass="btn btn-success" OnClientClick="javascript:printDiv()" />
+                <asp:Button runat="server" ID="btnAddPayment" Text="Add Payment Voucher" CssClass="btn btn-primary" OnClick="btnAddPayment_Click" />
             </div>
         </ContentTemplate>
         <Triggers>

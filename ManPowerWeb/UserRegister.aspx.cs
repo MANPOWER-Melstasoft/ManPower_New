@@ -80,7 +80,7 @@ namespace ManPowerWeb
                                 lblSuccessMsg.Text = "Record Updated Successfully!";
                                 if (systemUser.SystemUserId > 0)
                                 {
-                                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'User Registerd Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
+                                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'User Registerd Succesfully!', 'success');", true);
                                 }
                                 else
                                 {
@@ -199,9 +199,12 @@ namespace ManPowerWeb
                     //----------------- For Division Head -----------------
                     if (userType == 6)
                     {
+                        DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                        DepartmentUnit departmentUnit = departmentUnitController.GetDepartmentUnit(depId, false, false);
+
                         foreach (var x in departmentUnitPositionsList)
                         {
-                            if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 8)
+                            if (x.DepartmentUnitId == departmentUnit.ParentId && x._SystemUser.UserTypeId == 8)
                             {
                                 parentId = x.DepartmetUnitPossitionsId;
                                 break;
@@ -222,9 +225,12 @@ namespace ManPowerWeb
                     //----------------- For Division User -----------------
                     if (userType == 7)
                     {
+                        DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                        DepartmentUnit departmentUnit = departmentUnitController.GetDepartmentUnit(depId, false, false);
+
                         foreach (var x in departmentUnitPositionsList)
                         {
-                            if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 6)
+                            if (x.DepartmentUnitId == departmentUnit.ParentId && x._SystemUser.UserTypeId == 8)
                             {
                                 parentId = x.DepartmetUnitPossitionsId;
                                 break;

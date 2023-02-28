@@ -19,7 +19,7 @@ namespace ManPowerWeb
 
         protected void btnHR_Click(object sender, EventArgs e)
         {
-            if (Session["UserTypeId"].ToString() == "1")
+            if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "14")
             {
                 Session["Division"] = 1;
                 Response.Redirect("Dashboard.aspx");
@@ -34,7 +34,7 @@ namespace ManPowerWeb
 
         protected void btnPROCRU_Click(object sender, EventArgs e)
         {
-            if (Session["UserTypeId"].ToString() == "1")
+            if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "12" || Session["UserTypeId"].ToString() == "13")
             {
                 Session["Division"] = 2;
                 Response.Redirect("SessionManager.aspx");
@@ -47,7 +47,7 @@ namespace ManPowerWeb
 
         protected void btnFINAN_Click(object sender, EventArgs e)
         {
-            if (Session["UserTypeId"].ToString() == "1")
+            if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "10" || Session["UserTypeId"].ToString() == "11")
             {
                 Session["Division"] = 3;
                 Response.Redirect("Dashboard.aspx");
@@ -60,7 +60,9 @@ namespace ManPowerWeb
 
         protected void btnPLAN_Click(object sender, EventArgs e)
         {
-            if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2" || Session["UserTypeId"].ToString() == "3")
+            if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2" || Session["UserTypeId"].ToString() == "3"
+                || Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
+                || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
                 Session["Division"] = 4;
                 Response.Redirect("Dashboard.aspx");

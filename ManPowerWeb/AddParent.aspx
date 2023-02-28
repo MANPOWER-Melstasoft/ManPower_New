@@ -25,7 +25,7 @@
 
                     <div class="row mb-3">
                         <div class="col-sm-6">
-                            <asp:Literal ID="lblYear" runat="server" Text="Select Department"></asp:Literal>
+                            <asp:Literal ID="lblYear" runat="server" Text="Select District"></asp:Literal>
                         </div>
                         <div class="col-md-6">
                             <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="btn btn-outline-dark dropdown-toggle form-control"></asp:DropDownList>
@@ -46,7 +46,7 @@
                 <div class="col-sm-3">
                     <div class="row mb-3 ms-1">
                         <div class="col-sm-6">
-                            <asp:Button ID="btnSubmit" runat="server" Text="Create" CssClass="btn btn-primary btn-user btn-block" ValidationGroup="1" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnSubmit" runat="server" Text="Assign" CssClass="btn btn-primary btn-user btn-block" ValidationGroup="1" OnClick="btnSubmit_Click" />
                         </div>
                         <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529" OnClick="btnReset_Click" />
@@ -70,7 +70,7 @@
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
                 <asp:BoundField DataField="systemUser.UserName" HeaderText="USER" HeaderStyle-CssClass="table-dark" />
-                <asp:BoundField DataField="departmentUnit.Name" HeaderText="ASSIGNED DEPARTMENT" HeaderStyle-CssClass="table-dark" />
+                <asp:BoundField DataField="departmentUnit.Name" HeaderText="ASSIGNED DISTRICT" HeaderStyle-CssClass="table-dark" />
                 <asp:TemplateField HeaderStyle-CssClass="table-dark">
                     <ItemTemplate>
                         <asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click">Edit</asp:LinkButton>

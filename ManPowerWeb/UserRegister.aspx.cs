@@ -242,7 +242,7 @@ namespace ManPowerWeb
                         }
                         else
                         {
-                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a Division Head Account First' , 'error');", true);
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a District Head Account First' , 'error');", true);
                             ErrorMsg = "You Should Create a Division Head Account First";
                             return 0;
                         }

@@ -11,17 +11,8 @@ namespace ManPowerWeb
 {
 
 
-    public partial class ApprovedLoansView
+    public partial class ApproveLoanDGM
     {
-
-        /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
         /// lblName control.
@@ -30,16 +21,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
-
-        /// <summary>
-        /// lblLoanType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLoanType;
+        protected global::System.Web.UI.WebControls.Literal lblName;
 
         /// <summary>
         /// ddlLoanType control.
@@ -57,7 +39,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal1;
+        protected global::System.Web.UI.WebControls.Literal Literal1;
 
         /// <summary>
         /// txtName control.
@@ -66,7 +48,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtName;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
         /// Literal2 control.
@@ -75,7 +57,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal2;
+        protected global::System.Web.UI.WebControls.Literal Literal2;
 
         /// <summary>
         /// txtPosition control.
@@ -84,7 +66,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtPosition;
+        protected global::System.Web.UI.WebControls.TextBox txtPosition;
 
         /// <summary>
         /// Literal4 control.
@@ -93,7 +75,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal4;
+        protected global::System.Web.UI.WebControls.Literal Literal4;
 
         /// <summary>
         /// txtPositionType control.
@@ -102,7 +84,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtPositionType;
+        protected global::System.Web.UI.WebControls.TextBox txtPositionType;
 
         /// <summary>
         /// Literal3 control.
@@ -111,7 +93,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal3;
+        protected global::System.Web.UI.WebControls.Literal Literal3;
 
         /// <summary>
         /// txtWorkPlace control.
@@ -120,7 +102,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtWorkPlace;
+        protected global::System.Web.UI.WebControls.TextBox txtWorkPlace;
 
         /// <summary>
         /// Literal5 control.
@@ -129,7 +111,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal5;
+        protected global::System.Web.UI.WebControls.Literal Literal5;
 
         /// <summary>
         /// txtAppointmentDate control.
@@ -138,7 +120,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtAppointmentDate;
+        protected global::System.Web.UI.WebControls.TextBox txtAppointmentDate;
 
         /// <summary>
         /// Literal6 control.
@@ -147,7 +129,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal6;
+        protected global::System.Web.UI.WebControls.Literal Literal6;
 
         /// <summary>
         /// txtBasicSalary control.
@@ -156,7 +138,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtBasicSalary;
+        protected global::System.Web.UI.WebControls.TextBox txtBasicSalary;
 
         /// <summary>
         /// Literal7 control.
@@ -165,7 +147,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal7;
+        protected global::System.Web.UI.WebControls.Literal Literal7;
 
         /// <summary>
         /// txtLoanAmount control.
@@ -174,7 +156,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtLoanAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtLoanAmount;
 
         /// <summary>
         /// Literal8 control.
@@ -183,7 +165,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal8;
+        protected global::System.Web.UI.WebControls.Literal Literal8;
 
         /// <summary>
         /// txtDateWanted control.
@@ -192,7 +174,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtDateWanted;
+        protected global::System.Web.UI.WebControls.TextBox txtDateWanted;
 
         /// <summary>
         /// Literal9 control.
@@ -201,7 +183,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal9;
+        protected global::System.Web.UI.WebControls.Literal Literal9;
 
         /// <summary>
         /// txtLoanReason control.
@@ -210,7 +192,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtLoanReason;
+        protected global::System.Web.UI.WebControls.TextBox txtLoanReason;
 
         /// <summary>
         /// Literal10 control.
@@ -219,7 +201,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal10;
+        protected global::System.Web.UI.WebControls.Literal Literal10;
 
         /// <summary>
         /// txtLastLoan control.
@@ -228,7 +210,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtLastLoan;
+        protected global::System.Web.UI.WebControls.TextBox txtLastLoan;
 
         /// <summary>
         /// gvGuarantor control.
@@ -255,16 +237,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal15;
-
-        /// <summary>
-        /// lblLastLoanType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLastLoanType;
+        protected global::System.Web.UI.WebControls.Literal Literal15;
 
         /// <summary>
         /// ddlLastLoanType control.
@@ -282,7 +255,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal18;
+        protected global::System.Web.UI.WebControls.Literal Literal18;
 
         /// <summary>
         /// txtLastLoanAmount control.
@@ -291,7 +264,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtLastLoanAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtLastLoanAmount;
 
         /// <summary>
         /// Literal19 control.
@@ -300,7 +273,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal19;
+        protected global::System.Web.UI.WebControls.Literal Literal19;
 
         /// <summary>
         /// txtlastLoanDate control.
@@ -309,7 +282,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtlastLoanDate;
+        protected global::System.Web.UI.WebControls.TextBox txtlastLoanDate;
 
         /// <summary>
         /// lblSlip control.
@@ -318,7 +291,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSlip;
+        protected global::System.Web.UI.WebControls.Literal lblSlip;
 
         /// <summary>
         /// Literal20 control.
@@ -327,7 +300,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal20;
+        protected global::System.Web.UI.WebControls.Literal Literal20;
 
         /// <summary>
         /// txtPayableLoanAmount control.
@@ -336,7 +309,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtPayableLoanAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtPayableLoanAmount;
 
         /// <summary>
         /// Literal21 control.
@@ -345,7 +318,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal21;
+        protected global::System.Web.UI.WebControls.Literal Literal21;
 
         /// <summary>
         /// txtDistressLoanBalance control.
@@ -354,7 +327,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtDistressLoanBalance;
+        protected global::System.Web.UI.WebControls.TextBox txtDistressLoanBalance;
 
         /// <summary>
         /// Literal22 control.
@@ -363,7 +336,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal22;
+        protected global::System.Web.UI.WebControls.Literal Literal22;
 
         /// <summary>
         /// txtPremiumAmount control.
@@ -372,7 +345,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtPremiumAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtPremiumAmount;
 
         /// <summary>
         /// Literal23 control.
@@ -381,7 +354,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal23;
+        protected global::System.Web.UI.WebControls.Literal Literal23;
 
         /// <summary>
         /// txtNumberOfInstallments control.
@@ -390,7 +363,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtNumberOfInstallments;
+        protected global::System.Web.UI.WebControls.TextBox txtNumberOfInstallments;
 
         /// <summary>
         /// Literal24 control.
@@ -399,7 +372,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal24;
+        protected global::System.Web.UI.WebControls.Literal Literal24;
 
         /// <summary>
         /// txt40SalaryExceed control.
@@ -408,7 +381,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txt40SalaryExceed;
+        protected global::System.Web.UI.WebControls.TextBox txt40SalaryExceed;
 
         /// <summary>
         /// Literal25 control.
@@ -417,7 +390,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal25;
+        protected global::System.Web.UI.WebControls.Literal Literal25;
 
         /// <summary>
         /// txtGuarantorFaith control.
@@ -426,7 +399,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtGuarantorFaith;
+        protected global::System.Web.UI.WebControls.TextBox txtGuarantorFaith;
 
         /// <summary>
         /// Literal11 control.
@@ -435,7 +408,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal11;
+        protected global::System.Web.UI.WebControls.Literal Literal11;
 
         /// <summary>
         /// txtIsprobation control.
@@ -444,7 +417,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtIsprobation;
+        protected global::System.Web.UI.WebControls.TextBox txtIsprobation;
 
         /// <summary>
         /// Literal12 control.
@@ -453,7 +426,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal12;
+        protected global::System.Web.UI.WebControls.Literal Literal12;
 
         /// <summary>
         /// txtIsPermenentAfterProbation control.
@@ -462,7 +435,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtIsPermenentAfterProbation;
+        protected global::System.Web.UI.WebControls.TextBox txtIsPermenentAfterProbation;
 
         /// <summary>
         /// Literal14 control.
@@ -471,7 +444,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal14;
+        protected global::System.Web.UI.WebControls.Literal Literal14;
 
         /// <summary>
         /// txtIsPermannet control.
@@ -480,7 +453,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtIsPermannet;
+        protected global::System.Web.UI.WebControls.TextBox txtIsPermannet;
 
         /// <summary>
         /// Literal13 control.
@@ -489,7 +462,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal13;
+        protected global::System.Web.UI.WebControls.Literal Literal13;
 
         /// <summary>
         /// txtRetireDate control.
@@ -498,7 +471,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtRetireDate;
+        protected global::System.Web.UI.WebControls.TextBox txtRetireDate;
 
         /// <summary>
         /// Literal16 control.
@@ -507,7 +480,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal16;
+        protected global::System.Web.UI.WebControls.Literal Literal16;
 
         /// <summary>
         /// txtIsSuspend control.
@@ -516,7 +489,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtIsSuspend;
+        protected global::System.Web.UI.WebControls.TextBox txtIsSuspend;
 
         /// <summary>
         /// Literal17 control.
@@ -525,7 +498,7 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Literal17;
+        protected global::System.Web.UI.WebControls.Literal Literal17;
 
         /// <summary>
         /// txtConsolidatedSalary control.
@@ -534,24 +507,42 @@ namespace ManPowerWeb
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtConsolidatedSalary;
+        protected global::System.Web.UI.WebControls.TextBox txtConsolidatedSalary;
 
         /// <summary>
-        /// btnPrint control.
+        /// btnApprove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrint;
+        protected global::System.Web.UI.WebControls.Button btnApprove;
 
         /// <summary>
-        /// btnAddPayment control.
+        /// btnModalReject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddPayment;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnModalReject;
+
+        /// <summary>
+        /// txtrejectReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtrejectReason;
+
+        /// <summary>
+        /// btnReject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReject;
     }
 }

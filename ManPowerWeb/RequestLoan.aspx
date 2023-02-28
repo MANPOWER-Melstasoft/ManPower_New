@@ -463,53 +463,54 @@
 
                     <div>
                     </div>
-                </div>
+                    <div class="row mb-3 ms-1 mt-5">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <asp:Literal ID="Literal21" runat="server" Text="Aggrement Upload"></asp:Literal>
+                                </div>
 
-                <div class="row mb-3 ms-1 mt-5">
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <asp:Literal ID="Literal21" runat="server" Text="Aggrement Upload"></asp:Literal>
+                                <div class="col-md-6">
+                                    <asp:FileUpload ID="FileUploadAggrement" runat="server" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ValidationGroup="1"
+                                        ControlToValidate="FileUploadAggrement" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <asp:FileUpload ID="FileUploadAggrement" runat="server" />
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ValidationGroup="1"
-                                    ControlToValidate="FileUploadAggrement" ErrorMessage="Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="SystemDocuments/Test.pdf" download><i class="fas fa-download mr-2"></i>Download Aggrement Here </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <a href="SystemDocuments/Test.pdf" download><i class="fas fa-download mr-2"></i>Download Aggrement Here </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <% } %>
+                    <% } %>
 
-                <%--End of Distress Div--%>
+                    <%--End of Distress Div--%>
 
 
 
-                <div class="row mb-3 ms-1 mt-5">
-                    <div class="col-sm-3">
-                        <div class="row mb-3 ms-1">
-                            <div class="col-sm-6">
-                                <asp:Button ID="btnSubmit" runat="server" Text="Send to Admin" CssClass="btn btn-primary" ValidationGroup="1" OnClick="btnSubmit_Click" />
-                            </div>
-                            <%--  <div class="col-sm-6">
+                    <div class="row mb-3 ms-1 mt-5">
+                        <div class="col-sm-3">
+                            <div class="row mb-3 ms-1">
+                                <div class="col-sm-6">
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Send to Admin" CssClass="btn btn-primary" ValidationGroup="1" OnClick="btnSubmit_Click" />
+                                </div>
+                                <%--  <div class="col-sm-6">
                             <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />
                         </div>--%>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
+
+
             </div>
-            </div>
+
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSubmit" />

@@ -10,26 +10,22 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveLoanAdmin1Front : System.Web.UI.Page
+    public partial class ApproveLoanDGMFront : System.Web.UI.Page
     {
-        static List<LoanDetail> loanDetailList = new List<LoanDetail>();
+        List<LoanDetail> loanDetailList = new List<LoanDetail>();
         LoanDetailsController loanDetailsController = ControllerFactory.CreateLoanDetailsController();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                BindDataSource();
-            }
-
+            BindDataSource();
         }
 
         public void BindDataSource()
         {
             loanDetailList = loanDetailsController.GetAllLoanDetailWithStatus(true, true);
-            loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 4).ToList();
+            loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 2).ToList();
 
-            gvApprove1Admin.DataSource = loanDetailList;
-            gvApprove1Admin.DataBind();
+            gvApproveDGM.DataSource = loanDetailList;
+            gvApproveDGM.DataBind();
         }
 
         protected void btnView_Click(object sender, EventArgs e)

@@ -2,7 +2,9 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,8 @@ namespace ManPowerCore.Infrastructure
         int UpdateStatus(int id, int approvalstatusId, DBConnection dbConnection);
 
         List<LoanDetail> GetAllLoanDetail(DBConnection dbConnection);
+
+        DataTable GetLoanReport(DBConnection dbConnection);
     }
 
     public class LoanDetailDAOSqlImpl : LoanDetailDAO
@@ -141,6 +145,26 @@ namespace ManPowerCore.Infrastructure
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
             return output;
+        }
+
+        public DataTable GetLoanReport(DBConnection dbConnection)
+        {
+            DataTable LoanReportTable = new DataTable();
+
+            dbConnection.cmd.CommandText = "select b.id, a.Full_Name, a.Created_Date, a.Loan_Amount, a.loan_type_id, " +
+                "a.Position, du.Name As District, du2.Name As DSDivision,  c.Approve_Date, lt.Loan_Type_Name " +
+                "from Loan_Details a inner join employee b ON b.id = a.Employee_ID " +
+                "inner join approval_history c on c.loan_details_id = a.id " +
+                "left join Loan_Type lt On lt.Id = a.Loan_Type_Id " +
+                "left join Department_Unit du on du.Id = b.District_Id " +
+                "left join Department_Unit du2 on du2.Id = b.DSDivision_Id " +
+                "where c.Approval_Status_Id = 8;";
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(dbConnection.cmd);
+            dataAdapter.Fill(LoanReportTable);
+
+
+            return LoanReportTable;
         }
 
     }

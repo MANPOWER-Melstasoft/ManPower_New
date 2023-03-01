@@ -44,7 +44,7 @@ namespace ManPowerWeb
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
-
+            programTargetsList = programTargetsList.Where(x => x.CreatedBy == Convert.ToInt32(Session["UserId"])).ToList();
 
 
             if (isCLicked)
@@ -73,15 +73,15 @@ namespace ManPowerWeb
             }
 
 
-            if(ddlStatus.SelectedValue=="1")
+            if (ddlStatus.SelectedValue == "1")
             {
                 GridView1.DataSource = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
             }
-            else if(ddlStatus.SelectedValue=="2")
+            else if (ddlStatus.SelectedValue == "2")
             {
                 GridView1.DataSource = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
             }
-            else if( ddlStatus.SelectedValue=="3")
+            else if (ddlStatus.SelectedValue == "3")
             {
                 GridView1.DataSource = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
             }

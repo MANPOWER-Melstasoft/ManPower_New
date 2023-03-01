@@ -27,8 +27,6 @@ namespace ManPowerWeb
         {
             if (!IsPostBack)
             {
-
-
                 for (int i = year - 10; i <= year + 10; i++)
                 {
                     ListItem li = new ListItem(i.ToString());
@@ -37,13 +35,7 @@ namespace ManPowerWeb
                 //ddlYear.Items.FindByText(year.ToString()).Selected = true;
                 ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
                 BindDataSource();
-
-
-
             }
-
-
-
 
         }
 
@@ -75,9 +67,27 @@ namespace ManPowerWeb
                 ViewState["programTargetsListNotRecommended"] = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
                 GridView1.DataSource = programTargetsList;
             }
-            if (ddlMonth.SelectedValue != "" || ddlYear.SelectedValue != "" || ddlStatus.SelectedValue != "")
+            if (ddlMonth.SelectedValue != "" || ddlYear.SelectedValue != "")
             {
                 bindDataSearch();
+            }
+
+
+            if(ddlStatus.SelectedValue=="1")
+            {
+                GridView1.DataSource = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
+            }
+            else if(ddlStatus.SelectedValue=="2")
+            {
+                GridView1.DataSource = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
+            }
+            else if( ddlStatus.SelectedValue=="3")
+            {
+                GridView1.DataSource = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
+            }
+            else
+            {
+                GridView1.DataSource = programTargetsList;
             }
 
             GridView1.DataBind();

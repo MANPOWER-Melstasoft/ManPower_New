@@ -623,7 +623,7 @@
                                 <asp:BoundField DataField="RecommendedDate" HeaderText="Date Approved" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                                 <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="btn_View_Annual_Target_Recommendation" runat="server" CssClass="btn btn-success" ToolTip="Mark as Read"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btn_View_Annual_Target_Recommendation" runat="server" CssClass="btn btn-success" ToolTip="Mark as Read" OnClick="btn_View_Annual_Target_Recommendation_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

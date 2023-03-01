@@ -376,8 +376,10 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 btnSendToRecommendation.Visible = true;
+                btnSave.Visible = false;
                 bindOficerRecomendation();
-                clear();
+
+                //clear();
 
             }
             else
@@ -522,6 +524,7 @@ namespace ManPowerWeb
                 programTargetController.UpdateProgramTargetApprovalRecomended(TargetResponseBtn, selectedOficerRecomendation, 1);
 
             }
+
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send Recommendation Succesfully!', 'success')", true);
             Response.Redirect(Request.RawUrl);
         }

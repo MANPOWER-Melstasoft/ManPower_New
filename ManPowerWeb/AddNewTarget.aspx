@@ -2,10 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%--  <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>--%>
-    <div class="container mb-3" id="mainContainer" runat="server">
-
-
-        <div class="card ml-4 p-4">
+    <div class="container" id="mainContainer" runat="server">
+        <div class="card m-4 p-4">
             <h2>Add New Target</h2>
             <br />
             <div class="form-group">
@@ -395,13 +393,13 @@
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6 d-flex">
                         <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
+                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" BackColor="#212529" BorderColor="#212529" />
                         </div>
                         <div class="col-sm-4">
                             <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click" ValidateRequestMode="Enabled" ValidationGroup="1" />
                         </div>
                         <div class="col-sm-6">
-                            <button runat="server" type="button" id="btnSendToRecommendation" class="btn btn-primary btn-user btn-block" data-toggle="modal" data-target="#myModal" visible="false">Send to Recomendation</button>
+                            <button runat="server" type="button" id="btnSendToRecommendation" class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#myModal" visible="false">Send to Recomendation</button>
 
                         </div>
                     </div>

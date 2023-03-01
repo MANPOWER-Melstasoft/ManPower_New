@@ -101,6 +101,7 @@ namespace ManPowerWeb
             };
             districDsParentController.Delete(districDsParent);
 
+            Clear();
             BindDataSource();
         }
 

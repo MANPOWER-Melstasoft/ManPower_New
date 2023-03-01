@@ -13,6 +13,8 @@ namespace ManPowerCore.Infrastructure
         List<AutFunction> GetAllAutFunctionById(int AutFunctionId, DBConnection dbConnection);
         List<AutFunction> GetAllAutFunction(DBConnection dbConnection);
 
+        int Update(AutFunction autFunction, DBConnection dbConnection);
+
     }
 
     public class AutFunctionDAOImpl : AutFunctionDAO
@@ -45,6 +47,25 @@ namespace ManPowerCore.Infrastructure
                 return dataAccessObject.ReadCollection<AutFunction>(dbConnection.dr);
             }
         }
+
+        public int Update(AutFunction autFunction, DBConnection dbConnection)
+        {
+            int output = 0;
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.CommandText = "UPDATE AUT_FUNCTION SET DIVISION = @division, order_number = @OrderNumber, MENU_ICON = @MenuIcon WHERE ID = @AutFunctionId";
+
+            dbConnection.cmd.Parameters.AddWithValue("@AutFunctionId", autFunction.AutFunctionId);
+            dbConnection.cmd.Parameters.AddWithValue("@division", autFunction.division);
+            dbConnection.cmd.Parameters.AddWithValue("@OrderNumber", autFunction.OrderNumber);
+            dbConnection.cmd.Parameters.AddWithValue("@MenuIcon", autFunction.MenuIcon);
+
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+
+            return output;
+        }
+
     }
 
 }

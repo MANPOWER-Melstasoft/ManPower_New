@@ -38,13 +38,16 @@ namespace ManPowerWeb
                     {
                         IsNotSubmitDMEParentGV();
                     }
-                    if (Convert.ToInt32(Session["UserTypeId"]) == 3 && IsNotSubmitDME())
+                    if ((Convert.ToInt32(Session["UserTypeId"]) == 6 || Convert.ToInt32(Session["UserTypeId"]) == 7
+                        || Convert.ToInt32(Session["UserTypeId"]) == 8 || Convert.ToInt32(Session["UserTypeId"]) == 9)
+                        && IsNotSubmitDME())
                     {
                         RaiseNotification();
                     }
                     BindCardData();
                     bindDialogbox();
-                    if (Convert.ToInt32(Session["UserTypeId"]) == 2 || Convert.ToInt32(Session["UserTypeId"]) == 3)
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 6 || Convert.ToInt32(Session["UserTypeId"]) == 7
+                        || Convert.ToInt32(Session["UserTypeId"]) == 8 || Convert.ToInt32(Session["UserTypeId"]) == 9)
                     {
                         BindAnnualTarget();
                     }
@@ -154,12 +157,14 @@ namespace ManPowerWeb
 
             }
         }
+
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvUser.PageIndex = e.NewPageIndex;
             IsNotSubmitDMEParentGV();
 
         }
+
         protected void RaiseNotification()
         {
             if (Session["DME21Notifi"] == null)

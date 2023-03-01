@@ -55,6 +55,7 @@ namespace ManPowerWeb
 
             List<AutUserFunction> autUserFunctionList = autUserFunctionController.GetAllAutUserFunctionByUserId(true, userId);
             autUserFunctionList = autUserFunctionList.Where(x => x.autFunction.division == divisionId || x.autFunction.division == -1).ToList();
+            autUserFunctionList = autUserFunctionList.OrderBy(x => x.autFunction.OrderNumber).ToList();
 
             StringBuilder cstextCard = new StringBuilder();
 

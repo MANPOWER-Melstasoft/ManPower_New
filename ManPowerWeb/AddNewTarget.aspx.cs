@@ -268,13 +268,17 @@ namespace ManPowerWeb
         {
             List<SystemUser> listOficerRecomendation = new List<SystemUser>();
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            listOficerRecomendation = systemUserController.GetAllSystemUser(false, false, false);
+            listOficerRecomendation = systemUserController.GetAllSystemUser(true, false, false);
+
+
 
             if (ddlOfficer.SelectedValue != "")
             {
                 int userId = Convert.ToInt32(Session["UserId"]);
                 int selectedOfficerid = Convert.ToInt32(ViewState["SelectedOfficer"]);
-                ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.SystemUserId != userId && u.SystemUserId != selectedOfficerid);
+                //ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u.UserTypeId == 2 && u.SystemUserId != userId && u.SystemUserId != selectedOfficerid);
+                ddlOficerRecomended.DataSource = listOficerRecomendation.Where(u => u._DepartmentUnitPositions.DepartmetUnitPossitionsId == Convert.ToInt32(Session["DepUnitParentId"]));
+
                 ddlOficerRecomended.DataTextField = "Name";
                 ddlOficerRecomended.DataValueField = "SystemUserId";
                 ddlOficerRecomended.DataBind();
@@ -376,8 +380,10 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 btnSendToRecommendation.Visible = true;
+                btnSave.Visible = false;
                 bindOficerRecomendation();
-                clear();
+
+                //clear();
 
             }
             else
@@ -522,6 +528,7 @@ namespace ManPowerWeb
                 programTargetController.UpdateProgramTargetApprovalRecomended(TargetResponseBtn, selectedOficerRecomendation, 1);
 
             }
+
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send Recommendation Succesfully!', 'success')", true);
             Response.Redirect(Request.RawUrl);
         }

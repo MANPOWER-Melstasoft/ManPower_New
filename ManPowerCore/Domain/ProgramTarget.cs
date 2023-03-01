@@ -81,6 +81,9 @@ namespace ManPowerCore.Domain
         [DBField("Period_Type")]
         public string Period_Type { get; set; }
 
+        [DBField("Is_View")]
+        public int IsView { get; set; }
+
         public Program _Program { get; set; } = new Program();
         public ProgramType _ProgramType { get; set; } = new ProgramType();
         public List<ProgramAssignee> _ProgramAssignee { get; set; } = new List<ProgramAssignee>();

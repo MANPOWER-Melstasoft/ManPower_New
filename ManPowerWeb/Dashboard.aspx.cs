@@ -48,6 +48,8 @@ namespace ManPowerWeb
                     {
                         BindAnnualTarget();
                     }
+
+                    annulTargetSendToRecommendationBind();
                 }
             }
             else
@@ -424,5 +426,26 @@ namespace ManPowerWeb
             gvAnnualTarget.PageIndex = e.NewPageIndex;
             BindAnnualTarget();
         }
+
+        private void annulTargetSendToRecommendationBind()
+        {
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
+            programTargetsList = programTargetsList.Where(x => x.IsView == 0 && x.IsRecommended == 2 && x.CreatedBy == Convert.ToInt32(Session["UserId"])).ToList();
+            if (programTargetsList.Count > 0)
+            {
+                lblAnnualTargetRecommendationApproval.Text = programTargetsList.Count.ToString();
+
+            }
+            else
+            {
+                lblAnnualTargetRecommendationApproval.Text = "N/A";
+
+            }
+            gvAnnualTargetSendToRecommendation.DataSource = programTargetsList;
+            gvAnnualTargetSendToRecommendation.DataBind();
+
+        }
+
     }
 }

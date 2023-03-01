@@ -17,7 +17,7 @@ namespace ManPowerWeb
     {
         UserPrevilage userPrevilage = new UserPrevilage();
         int functionId = 24;
-        int parentFlag = 0;
+        int DGMUser = 0;
         string ErrorMsg = "";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace ManPowerWeb
                             systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
                             systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
                             systemUser.ParentId = GetParentId();
-                            if (systemUser.ParentId != 0)
+                            if (systemUser.ParentId != 0 || DGMUser == 1)
                             {
 
                                 systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
@@ -118,7 +118,7 @@ namespace ManPowerWeb
             //---------------- For DGM ---------------------
             if (userType == 5)
             {
-                parentFlag = 1;
+                DGMUser = 1;
                 return parentId;
             }
             //----------------------------------------------

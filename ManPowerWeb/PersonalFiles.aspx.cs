@@ -588,7 +588,23 @@ namespace ManPowerWeb
             employeeServicesDetails.ServicesTypeId = int.Parse(ddlService.SelectedValue);
             employeeServicesDetails.AppointmentDate = Convert.ToDateTime(appointmentDate.Text);
             employeeServicesDetails.DateAssumedDuty = dateAssumedDuty.Text;
-            employeeServicesDetails.ServiceConfirmed = int.Parse(confirmation.Text);
+            employeeServicesDetails.ServiceConfirmed = Convert.ToInt32(confirmation.SelectedValue);
+            if (employeeServicesDetails.ServiceConfirmed == 1)
+            {
+                employeeServicesDetails.ServiceConfirmedDate = Convert.ToDateTime(ConfirmedDate.Text);
+            }
+            if (txtEBDate1.Text != "")
+            {
+                employeeServicesDetails.EBCompletedDateGrade1 = Convert.ToDateTime(txtEBDate1.Text);
+            }
+            if (txtEBDate2.Text != "")
+            {
+                employeeServicesDetails.EBCompletedDateGrade2 = Convert.ToDateTime(txtEBDate2.Text);
+            }
+            if (txtEBDate3.Text != "")
+            {
+                employeeServicesDetails.EBCompletedDateGrade3 = Convert.ToDateTime(txtEBDate3.Text);
+            }
             //employeeServicesDetails.empGrade = empServicesGrade.Text;
 
 

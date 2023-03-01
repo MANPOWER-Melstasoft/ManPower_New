@@ -45,7 +45,7 @@ namespace ManPowerCore.Controller
                 departmentUnitPositions.PossitionsId = systemUser.PossitionsId;
                 departmentUnitPositions.DepartmentUnitId = systemUser.DepartmentUnitId;
                 departmentUnitPositions.ParentId = systemUser.ParentId;
-                departmentUnitPositionsDAO.SaveDepartmentUnitPositions(departmentUnitPositions, dBConnection);
+                output = departmentUnitPositionsDAO.SaveDepartmentUnitPositions(departmentUnitPositions, dBConnection);
 
 
                 AutSystemRoleFunctionDAO autSystemRoleFunctionDAO = DAOFactory.CreateAutSystemRoleFunctionDAO();

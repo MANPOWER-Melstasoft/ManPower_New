@@ -18,7 +18,7 @@ namespace ManPowerWeb
 {
     public partial class ApprovedLoansView : System.Web.UI.Page
     {
-        public int loanDetailsId;
+        static public int loanDetailsId;
         public List<LoanDetail> loanDetailList = new List<LoanDetail>();
         public LoanDetail loanDetailObj = new LoanDetail();
         public List<LoanType> loanTypeList = new List<LoanType>();
@@ -29,7 +29,6 @@ namespace ManPowerWeb
         public int EmpId;
         public string salarySlip;
 
-        static string EmployeeId;
         string encryptedTicket;
         public string SalarySlip { get { return salarySlip; } }
 
@@ -158,5 +157,23 @@ namespace ManPowerWeb
             ddlLastLoanType.DataBind();
         }
 
+        protected void btnAddPayment_Click(object sender, EventArgs e)
+        {
+            //------------------Encrypt URL-------------------------------------- -
+            string queryString = "LoanDetailId=" + loanDetailsId;
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                version: 1,
+                name: "MyAuthTicket",
+                issueDate: DateTime.Now,
+                expiration: DateTime.Now.AddMinutes(10),
+                isPersistent: false,
+                userData: queryString,
+                cookiePath: FormsAuthentication.FormsCookiePath);
+
+            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+
+            string url = "AddPaymentVoucher.aspx?encrypt=" + encryptedTicket;
+            Response.Redirect(url);
+        }
     }
 }

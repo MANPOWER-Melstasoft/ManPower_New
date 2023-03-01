@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class UserRolePrivileges
+    public partial class SystemFunctions
     {
 
         /// <summary>
@@ -33,30 +33,12 @@ namespace ManPowerWeb
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// lblUser control.
+        /// gvSystemFunctions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblUser;
-
-        /// <summary>
-        /// ddlUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUser;
-
-        /// <summary>
-        /// gvUserPrevilages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUserPrevilages;
+        protected global::System.Web.UI.WebControls.GridView gvSystemFunctions;
     }
 }

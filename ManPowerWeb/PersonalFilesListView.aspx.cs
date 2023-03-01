@@ -1,8 +1,10 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Globalization;
 using System.Linq;
 using System.Web;
@@ -17,6 +19,7 @@ namespace ManPowerWeb
         static string EmployeeId;
         static int ContactFlag = 0;
         string encryptedTicket;
+        int DGMUser = 0;
 
         string[] gen = { "Male", "Female" };
         string[] mmStatus = { "Married", "Single" };
@@ -417,17 +420,64 @@ namespace ManPowerWeb
                 }
             }
 
-            output = employeeController.UpdateEmployee(employee);
 
-            if (output == 1)
+            int depChangeFlag = 0;
+            int depChangeSuccessFlag = 0;
+            int depId;
+            if (employee.DSDivisionId == 0)
             {
-                BindEmpData();
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
+                depId = employee.DistrictId;
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+                depId = employee.DSDivisionId;
             }
+
+            //-------------get system user ID --------------------------
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUser = systemUserController.CheckEmpNumberExists(employee.EmployeeId);
+
+            if (systemUser.SystemUserId != 0)
+            {
+                //--------------check if department has changed ---------------------------------
+                Employee employeeOld = employeeController.GetEmployeeById(employee.EmployeeId);
+                DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsController.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, true);
+
+
+                if (employeeOld.UnitType != employee.UnitType || employeeOld.DistrictId != employee.DistrictId || employeeOld.DSDivisionId != employee.DSDivisionId)
+                {
+                    depChangeFlag = 1;
+                    if (CheckDistricSD(systemUser.UserTypeId, employee.UnitType) && CheckExistsRegUSer(systemUser.UserTypeId, depId))
+                    {
+                        int parentId = GetParentId(systemUser.UserTypeId, depId);
+                        if (parentId != 0 || DGMUser == 1)
+                        {
+                            departmentUnitPositions.ParentId = parentId;
+                            departmentUnitPositions.DepartmentUnitId = depId;
+
+                            depChangeSuccessFlag = departmentUnitPositionsController.UpdateDepartmentUnitPositions(departmentUnitPositions);
+                        }
+                    }
+                }
+            }
+
+            if ((depChangeFlag == 0) || (depChangeSuccessFlag == 1 && depChangeSuccessFlag == 1))
+            {
+                output = employeeController.UpdateEmployee(employee);
+
+                if (output == 1)
+                {
+                    BindEmpData();
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+                }
+            }
+
+
 
         }
 
@@ -491,6 +541,387 @@ namespace ManPowerWeb
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("PersonalFilesList.aspx");
+        }
+
+        private bool CheckDistricSD(int userType, int DeptypeId)
+        {
+            int userTypeId = userType;
+            int depType = DeptypeId;
+
+            if (userTypeId == 6 || userTypeId == 7)
+            {
+                if (depType == 3)
+                {
+                    return true;
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This User Can Only Assign to DS Division!', 'error');", true);
+                    return false;
+                }
+            }
+            else if (userTypeId == 8 || userTypeId == 9)
+            {
+                if (depType == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This User Can Only Assign to District Office!', 'error');", true);
+                    return false;
+                }
+            }
+            else
+            {
+                if (depType == 1)
+                //if (userTypeId == 1 || userTypeId == 2 || userTypeId == 3 || userTypeId == 4 || userTypeId == 5 ||
+                //userTypeId == 10 || userTypeId == 11 || userTypeId == 12 || userTypeId == 13 || userTypeId == 14)
+                {
+                    return true;
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This User Can Only Assign to Head Office!', 'error');", true);
+                    return false;
+                }
+            }
+
+
+        }
+
+        private bool CheckExistsRegUSer(int userTypeId, int dep)
+        {
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            List<DepartmentUnitPositions> departmentUnitPositionsList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
+
+            int flag;
+            int depId = dep;
+            int userType = userTypeId;
+
+            //---------------- For Division Head --------------------
+            if (userType == 6)
+            {
+                flag = 0;
+                foreach (var x in departmentUnitPositionsList)
+                {
+                    if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 6)
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }
+                if (flag == 1)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This Division Already Has Division Head Account!', 'error');", true);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            //---------------- For District Head --------------------
+            if (userType == 8)
+            {
+                flag = 0;
+                foreach (var x in departmentUnitPositionsList)
+                {
+                    if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 8)
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }
+                if (flag == 1)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'This District Already Has District Head Account!', 'error');", true);
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            else
+            {
+                return true;
+            }
+        }
+
+        private int GetParentId(int userTypeId, int dep)
+        {
+            int parentId = 0;
+            int DGMparentId = 0;
+            int userType = userTypeId;
+            int depId = dep;
+
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            List<DepartmentUnitPositions> departmentUnitPositionsList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
+
+            //---------------- For DGM ---------------------
+            if (userType == 5)
+            {
+                DGMUser = 1;
+                return parentId;
+            }
+            //----------------------------------------------
+
+            else
+            {
+                //---------------- Get DGM Position Id --------------------
+                foreach (var x in departmentUnitPositionsList)
+                {
+                    if (x._SystemUser.UserTypeId == 5)
+                    {
+                        DGMparentId = x.DepartmetUnitPossitionsId;
+                        break;
+                    }
+                }
+                if (DGMparentId != 0)
+                {
+                    //--------- For Planning Admin(Head Office) -----------
+                    if (userType == 1)
+                    {
+                        parentId = DGMparentId;
+                        return parentId;
+                    }
+                    //-----------------------------------------------------
+                    //--------- For Planning Manager(Head Office) ---------
+                    if (userType == 2)
+                    {
+                        foreach (var x in departmentUnitPositionsList)
+                        {
+                            if (x._SystemUser.UserTypeId == 1)
+                            {
+                                parentId = x.DepartmetUnitPossitionsId;
+                                break;
+                            }
+                        }
+                        if (parentId != 0)
+                        {
+                            return parentId;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a Planning Admin Account First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //--------- For Planning User(Head Office) ------------
+                    if (userType == 3)
+                    {
+                        foreach (var x in departmentUnitPositionsList)
+                        {
+                            if (x._SystemUser.UserTypeId == 2)
+                            {
+                                parentId = x.DepartmetUnitPossitionsId;
+                                break;
+                            }
+                        }
+                        if (parentId != 0)
+                        {
+                            return parentId;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a Planning Manager Account First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //----------------- For ITAdmin -----------------------
+                    if (userType == 4)
+                    {
+                        parentId = DGMparentId;
+                        return parentId;
+                    }
+                    //-----------------------------------------------------
+                    //----------------- For Division Head -----------------
+                    if (userType == 6)
+                    {
+                        DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                        DepartmentUnit departmentUnit = departmentUnitController.GetDepartmentUnit(depId, false, false);
+
+                        foreach (var x in departmentUnitPositionsList)
+                        {
+                            if (x.DepartmentUnitId == departmentUnit.ParentId && x._SystemUser.UserTypeId == 8)
+                            {
+                                parentId = x.DepartmetUnitPossitionsId;
+                                break;
+                            }
+                        }
+                        if (parentId != 0)
+                        {
+                            return parentId;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a District Head Account First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //----------------- For Division User -----------------
+                    if (userType == 7)
+                    {
+                        DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                        DepartmentUnit departmentUnit = departmentUnitController.GetDepartmentUnit(depId, false, false);
+
+                        foreach (var x in departmentUnitPositionsList)
+                        {
+                            if (x.DepartmentUnitId == departmentUnit.ParentId && x._SystemUser.UserTypeId == 8)
+                            {
+                                parentId = x.DepartmetUnitPossitionsId;
+                                break;
+                            }
+                        }
+                        if (parentId != 0)
+                        {
+                            return parentId;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a District Head Account First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //----------------- For District Head -----------------
+                    if (userType == 8)
+                    {
+                        DistricDsParentController districDsParentController = ControllerFactory.CreateDistricDsParentController();
+                        List<DistricDsParent> districDsParentList = districDsParentController.GetAllDistricDsParent(false, false);
+                        int userId = 0;
+                        foreach (var x in districDsParentList)
+                        {
+                            if (x.DepartmentId == depId)
+                            {
+                                userId = x.ParentUserId;
+                            }
+                        }
+                        if (userId != 0)
+                        {
+                            foreach (var x in departmentUnitPositionsList)
+                            {
+                                if (x.SystemUserId == userId)
+                                {
+                                    parentId = x.DepartmetUnitPossitionsId;
+                                    break;
+                                }
+                            }
+                            if (parentId != 0)
+                            {
+                                return parentId;
+                            }
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Assign User to this District First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //----------------- For District User -----------------
+                    if (userType == 9)
+                    {
+                        foreach (var x in departmentUnitPositionsList)
+                        {
+                            if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 8)
+                            {
+                                parentId = x.DepartmetUnitPossitionsId;
+                                break;
+                            }
+                        }
+                        if (parentId != 0)
+                        {
+                            return parentId;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a District Head Account First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //---------------- For Finance Head -------------------
+                    if (userType == 10)
+                    {
+                        parentId = DGMparentId;
+                        return parentId;
+                    }
+                    //-----------------------------------------------------
+                    //---------------- For Finance User -------------------
+                    if (userType == 11)
+                    {
+                        foreach (var x in departmentUnitPositionsList)
+                        {
+                            if (x._SystemUser.UserTypeId == 10)
+                            {
+                                parentId = x.DepartmetUnitPossitionsId;
+                                break;
+                            }
+                        }
+                        if (parentId != 0)
+                        {
+                            return parentId;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a Finance Head Account First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //---------------- For Procurement Head ---------------
+                    if (userType == 12)
+                    {
+                        parentId = DGMparentId;
+                        return parentId;
+                    }
+                    //---------------- For Procurement User ---------------
+                    if (userType == 13)
+                    {
+                        foreach (var x in departmentUnitPositionsList)
+                        {
+                            if (x._SystemUser.UserTypeId == 12)
+                            {
+                                parentId = x.DepartmetUnitPossitionsId;
+                                break;
+                            }
+                        }
+                        if (parentId != 0)
+                        {
+                            return parentId;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a Procurement Head Account First' , 'error');", true);
+                            return 0;
+                        }
+                    }
+                    //-----------------------------------------------------
+                    //---------------- For Administrator ------------------
+                    if (userType == 14)
+                    {
+                        parentId = DGMparentId;
+                        return parentId;
+                    }
+                    //-----------------------------------------------------
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a DGM Account First' , 'error');", true);
+                    return 0;
+                }
+            }
         }
 
 

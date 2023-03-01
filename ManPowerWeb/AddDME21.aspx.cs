@@ -88,6 +88,36 @@ namespace ManPowerWeb
         {
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlanList = programPlanController.getddlProgramPlan(depId, year);
+            programPlanList = programPlanList.Where(p => p.Date.Month == DateTime.Now.AddMonths(1).Month).ToList();
+
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+            List<TaskAllocation> taskAllocationList = taskAllocationController.GetAllTaskAllocation(false, false, false, false);
+
+            TaskAllocationDetailController taskAllocationDetailController = ControllerFactory.CreateTaskAllocationDetailController();
+
+            int taskAllocationId = 0;
+
+            foreach (var item in taskAllocationList)
+            {
+                if (item.DepartmetUnitPossitionsId == depId && item.TaskYearMonth.Month == DateTime.Now.AddMonths(1).Month && item.TaskYearMonth.Year == DateTime.Now.AddMonths(1).Year)
+                {
+                    taskAllocationId = item.TaskAllocationId;
+                    break;
+                }
+            }
+
+            if (taskAllocationId == 0)
+            {
+                ddlProgram.DataSource = programPlanList;
+                ddlProgram.DataBind();
+            }
+
+            else
+            {
+                List<TaskAllocationDetail> taskAllocationDetailList = taskAllocationDetailController.GetAllTaskAllocationDetail().Where(x => x.TaskAllocationId == taskAllocationId && x.TaskTypeId == 1).ToList();
+
+
+            }
             ddlProgram.DataSource = programPlanList;
             ddlProgram.DataBind();
         }

@@ -52,9 +52,12 @@
                                         <asp:BoundField DataField="Url" HeaderText="URL" HeaderStyle-CssClass="table-dark">
                                             <HeaderStyle CssClass="table-dark"></HeaderStyle>
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Status" HeaderText="Status" HeaderStyle-CssClass="table-dark">
-                                            <HeaderStyle CssClass="table-dark"></HeaderStyle>
-                                        </asp:BoundField>
+                                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">
+                                            <ItemTemplate>
+                                                <asp:Label runat="server" Visible='<%#Eval("Status").ToString() == "YES" ?true:false %>' Text="YES" ForeColor="Blue"> </asp:Label>
+                                                <asp:Label runat="server" Visible='<%#Eval("Status").ToString() == "NO" ?true:false %>' Text="NO" ForeColor="red"> </asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField ItemStyle-HorizontalAlign="center">
                                             <HeaderStyle CssClass="table-dark"></HeaderStyle>
                                             <ItemTemplate>

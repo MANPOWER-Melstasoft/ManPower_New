@@ -157,12 +157,14 @@ namespace ManPowerWeb
 
             }
         }
+
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvUser.PageIndex = e.NewPageIndex;
             IsNotSubmitDMEParentGV();
 
         }
+
         protected void RaiseNotification()
         {
             if (Session["DME21Notifi"] == null)

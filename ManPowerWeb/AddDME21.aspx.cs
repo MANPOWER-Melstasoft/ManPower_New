@@ -88,7 +88,7 @@ namespace ManPowerWeb
         {
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             programPlanList = programPlanController.getddlProgramPlan(depId, year);
-            programPlanList = programPlanList.Where(p => p.Date.Month == DateTime.Now.AddMonths(1).Month).ToList();
+            programPlanList = programPlanList.Where(p => p.Date.Month == DateTime.Now.AddMonths(1).Month && p.Date.Year == DateTime.Now.AddMonths(1).Year).ToList();
 
             TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
             List<TaskAllocation> taskAllocationList = taskAllocationController.GetAllTaskAllocation(false, false, false, false);
@@ -116,10 +116,21 @@ namespace ManPowerWeb
             {
                 List<TaskAllocationDetail> taskAllocationDetailList = taskAllocationDetailController.GetAllTaskAllocationDetail().Where(x => x.TaskAllocationId == taskAllocationId && x.TaskTypeId == 1).ToList();
 
+                foreach (var item in programPlanList.ToList())
+                {
+                    foreach (var item1 in taskAllocationDetailList)
+                    {
+                        if (item.ProgramPlanId == item1.programPlanId)
+                        {
+                            programPlanList.Remove(item);
+                        }
+                    }
+                }
 
+                ddlProgram.DataSource = programPlanList;
+                ddlProgram.DataBind();
             }
-            ddlProgram.DataSource = programPlanList;
-            ddlProgram.DataBind();
+
         }
 
         public void DivVisibility()

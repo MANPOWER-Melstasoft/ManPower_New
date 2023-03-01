@@ -212,18 +212,18 @@ namespace ManPowerWeb
             ecName.Text = emergencyContact.Name;
             ecRelationship.Text = emergencyContact.DependentToEmployee;
             ecAddress.Text = emergencyContact.EmgAddress;
-            landLine.Text = emergencyContact.EmgTelephone.ToString();
-            ecMobile.Text = emergencyContact.EmgMobile.ToString();
-            ecOfficePhone.Text = emergencyContact.OfficePhone.ToString();
+            landLine.Text = emergencyContact.EmgTelephone;
+            ecMobile.Text = emergencyContact.EmgMobile;
+            ecOfficePhone.Text = emergencyContact.OfficePhone;
 
             //---------------- employmentContact --------------------
 
             address.Text = employeeContact.EmpAddress;
-            telephone.Text = employeeContact.EmpTelephone.ToString();
-            postalCode.Text = employeeContact.PostalCode.ToString();
+            telephone.Text = employeeContact.EmpTelephone;
+            postalCode.Text = employeeContact.PostalCode;
             email.Text = employeeContact.EmpEmail;
-            EmpOfficePhone.Text = employeeContact.OfficePhone.ToString();
-            EmpMobilePhone.Text = employeeContact.MobileNumber.ToString();
+            EmpOfficePhone.Text = employeeContact.OfficePhone;
+            EmpMobilePhone.Text = employeeContact.MobileNumber;
 
         }
 

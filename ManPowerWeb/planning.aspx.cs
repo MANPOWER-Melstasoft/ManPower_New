@@ -86,9 +86,6 @@ namespace ManPowerWeb
             gvAnnaualPlan.Columns[1].Visible = false;
             gvAnnaualPlan.Columns[7].Visible = false;
 
-
-
-
         }
 
         protected void btnAddPlan_Click(object sender, EventArgs e)
@@ -97,6 +94,8 @@ namespace ManPowerWeb
             programTargetsStates = (List<ProgramAssignee>)(ViewState["programTargetsStates"]);
             ProgramPlan programPlan = new ProgramPlan();
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+
+
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int pagesize = gvAnnaualPlan.PageSize;
             int pageindex = gvAnnaualPlan.PageIndex;
@@ -123,7 +122,6 @@ namespace ManPowerWeb
             programPlan.ProgramTargetId = programTargetsStates[rowIndex].ProgramTargetId;
             programPlan.ProgramName = programTargetsStates[rowIndex]._ProgramTarget.Description;
             programPlan.Coordinater = "";
-
 
             programPlanController.SaveProgramPlan(programPlan);
 

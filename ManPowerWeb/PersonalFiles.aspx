@@ -485,17 +485,17 @@
                     </div>
                 </div>
 
-                <%if (int.Parse(confirmation.SelectedValue) == 1)
+                <%if (confirmation.SelectedValue == "1")
                     { %>
 
                 <div class="col-6">
                     <div class="row">
                         <div class="col-5">
-                            <label>Date of Appointment: </label>
+                            <label>Confirmed Date : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="txtAppoinDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="txtAppoinDate" ID="RequiredFieldValidator27" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:TextBox ID="ConfirmedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                            <asp:RequiredFieldValidator ControlToValidate="ConfirmedDate" ID="RequiredFieldValidator27" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>

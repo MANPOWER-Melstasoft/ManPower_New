@@ -101,6 +101,7 @@ namespace ManPowerWeb
             };
             districDsParentController.Delete(districDsParent);
 
+            Clear();
             BindDataSource();
         }
 
@@ -138,12 +139,13 @@ namespace ManPowerWeb
         {
             DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
             List<DepartmentUnit> departmentUnitList = departmentUnitController.GetAllDepartmentUnit(false, false);
+            departmentUnitList = departmentUnitList.Where(x => x.DepartmentUnitTypeId == 2).ToList();
 
             ddlDepartment.DataSource = departmentUnitList;
             ddlDepartment.DataValueField = "DepartmentUnitId";
             ddlDepartment.DataTextField = "Name";
             ddlDepartment.DataBind();
-            ddlDepartment.Items.Insert(0, new ListItem("-- select department --", ""));
+            ddlDepartment.Items.Insert(0, new ListItem("-- select district --", ""));
         }
 
         private bool checkExsits()

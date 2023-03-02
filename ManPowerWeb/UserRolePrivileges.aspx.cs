@@ -12,11 +12,19 @@ namespace ManPowerWeb
 {
     public partial class UserRolePrivileges : System.Web.UI.Page
     {
+        UserPrevilage userPrevilage = new UserPrevilage();
+        int functionId = 1060;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
+            if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
             {
-                BindUserType();
+                if (!IsPostBack)
+                {
+                    BindUserType();
+                }
             }
         }
 

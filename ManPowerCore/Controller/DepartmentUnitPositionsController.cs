@@ -23,6 +23,8 @@ namespace ManPowerCore.Controller
 
         DepartmentUnitPositions departmentUnitPositionWithPID(int userID, bool withDepartmentUnit);
 
+        DepartmentUnitPositions GetAllDepartmentUnitPositionsBySystemUserId(int userID, bool withDepartment);
+
         List<DepartmentUnitPositions> GetAllUsersBySystemUserId(int systemUserId);
 
     }
@@ -262,6 +264,34 @@ namespace ManPowerCore.Controller
                         }
                         break;
                     }
+                }
+
+                return DepUnitPosition;
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public DepartmentUnitPositions GetAllDepartmentUnitPositionsBySystemUserId(int userID, bool withDepartment)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                DepartmentUnitPositions DepUnitPosition = departmentUnitPositionsDAO.GetAllDepartmentUnitPositionsBySystemUserId(userID, dBConnection);
+
+                if (withDepartment)
+                {
+                    DepartmentUnitDAO departmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
+                    DepUnitPosition._DepartmentUnit = departmentUnitDAO.GetDepartmentUnit(DepUnitPosition.DepartmentUnitId, dBConnection);
                 }
 
                 return DepUnitPosition;

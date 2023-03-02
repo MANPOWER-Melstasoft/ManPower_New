@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,11 +13,20 @@ namespace ManPowerWeb
 {
     public partial class AddPaymentVoucher : System.Web.UI.Page
     {
+
+
+        static string EmployeeId;
+        static string encryptedTicket;
+        int loanDetailsId;
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
-            {
+            {         //----------------------- Decrypt URL ---------------------------------------------------
+                encryptedTicket = Request.QueryString["encrypt"];
+                FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+                loanDetailsId = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["LoanDetailId"]);
+
                 bindDataSource();
             }
         }
@@ -97,16 +107,22 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='AddPaymentVoucher.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Sent!', 'success');window.setTimeout(function(){{window.location='AddPaymentVoucher.aspx?encrypt={0}'}} ,2500);", encryptedTicket), true);
 
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='AddPaymentVoucher.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Error!', 'Something Went Wrong!', 'error');window.setTimeout(function(){{window.location='AddPaymentVoucher.aspx?encrypt={0}'}} ,2500);", encryptedTicket), true);
             }
 
 
 
+
+        }
+
+        protected void btnSendToRecommendation_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Sent!', 'success');window.setTimeout(function(){{window.location='AddPaymentVoucher.aspx?encrypt={0}'}} ,2500);", encryptedTicket), true);
 
         }
     }

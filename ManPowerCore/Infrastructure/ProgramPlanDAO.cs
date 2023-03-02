@@ -256,7 +256,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "select * from Program_Plan inner join Program_Target on" +
                                  " Program_Plan.Program_Target_Id = Program_Target.id inner join Program_Assignee on" +
                                  " Program_Plan.Program_Target_Id = Program_Assignee.Program_Target_Id " +
-                                 "where Program_Assignee.Department_Unit_Possitions_Id =" + depId + "AND Program_Target.Target_Year =" + year;
+                                 "where Program_Assignee.Department_Unit_Possitions_Id =" + depId;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

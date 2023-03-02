@@ -11,52 +11,52 @@ namespace ManPowerWeb
 {
 
 
-    public partial class UserRolePrivileges
+    public partial class LoanReport
     {
 
         /// <summary>
-        /// ScriptManager1 control.
+        /// txtKeyWord control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.TextBox txtKeyWord;
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// lblUser control.
+        /// btnGetAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblUser;
+        protected global::System.Web.UI.WebControls.Button btnGetAll;
 
         /// <summary>
-        /// ddlUser control.
+        /// gvLoanReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUser;
+        protected global::System.Web.UI.WebControls.GridView gvLoanReport;
 
         /// <summary>
-        /// gvUserPrevilages control.
+        /// btnRun control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUserPrevilages;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
     }
 }

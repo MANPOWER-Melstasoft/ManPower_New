@@ -17,7 +17,7 @@ namespace ManPowerWeb
     {
         UserPrevilage userPrevilage = new UserPrevilage();
         int functionId = 24;
-        int parentFlag = 0;
+        int DGMUser = 0;
         string ErrorMsg = "";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace ManPowerWeb
                             systemUser.PossitionsId = Convert.ToInt32(ddlPosition.SelectedValue);
                             systemUser.DepartmentUnitId = Convert.ToInt32(ddlDepartmentUnit.SelectedValue);
                             systemUser.ParentId = GetParentId();
-                            if (systemUser.ParentId != 0)
+                            if (systemUser.ParentId != 0 || DGMUser == 1)
                             {
 
                                 systemUser.SystemUserId = systemUserController.SaveSystemUser(systemUser);
@@ -80,7 +80,7 @@ namespace ManPowerWeb
                                 lblSuccessMsg.Text = "Record Updated Successfully!";
                                 if (systemUser.SystemUserId > 0)
                                 {
-                                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'User Registerd Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
+                                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'User Registerd Succesfully!', 'success');", true);
                                 }
                                 else
                                 {
@@ -118,7 +118,7 @@ namespace ManPowerWeb
             //---------------- For DGM ---------------------
             if (userType == 5)
             {
-                parentFlag = 1;
+                DGMUser = 1;
                 return parentId;
             }
             //----------------------------------------------
@@ -199,9 +199,12 @@ namespace ManPowerWeb
                     //----------------- For Division Head -----------------
                     if (userType == 6)
                     {
+                        DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                        DepartmentUnit departmentUnit = departmentUnitController.GetDepartmentUnit(depId, false, false);
+
                         foreach (var x in departmentUnitPositionsList)
                         {
-                            if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 8)
+                            if (x.DepartmentUnitId == departmentUnit.ParentId && x._SystemUser.UserTypeId == 8)
                             {
                                 parentId = x.DepartmetUnitPossitionsId;
                                 break;
@@ -222,9 +225,12 @@ namespace ManPowerWeb
                     //----------------- For Division User -----------------
                     if (userType == 7)
                     {
+                        DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                        DepartmentUnit departmentUnit = departmentUnitController.GetDepartmentUnit(depId, false, false);
+
                         foreach (var x in departmentUnitPositionsList)
                         {
-                            if (x.DepartmentUnitId == depId && x._SystemUser.UserTypeId == 6)
+                            if (x.DepartmentUnitId == departmentUnit.ParentId && x._SystemUser.UserTypeId == 8)
                             {
                                 parentId = x.DepartmetUnitPossitionsId;
                                 break;
@@ -236,7 +242,7 @@ namespace ManPowerWeb
                         }
                         else
                         {
-                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a Division Head Account First' , 'error');", true);
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a District Head Account First' , 'error');", true);
                             ErrorMsg = "You Should Create a Division Head Account First";
                             return 0;
                         }

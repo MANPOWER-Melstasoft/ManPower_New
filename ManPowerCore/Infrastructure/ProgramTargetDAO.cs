@@ -27,6 +27,10 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateProgramTarget(ProgramTarget programTarget, DBConnection dbConnection);
 
+
+        int UpdateIsView(int programTargetId, DBConnection dbConnection);
+
+
         int UpdateProgramTargetApproval(int id, int status, string reason, DBConnection dbConnection);
         int UpdateProgramTargetApprovalRecomended(int id, int recomendedby, int status, DBConnection dbConnection);
 
@@ -178,6 +182,18 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;
+        }
+
+
+        public int UpdateIsView(int programTargetId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE PROGRAM_TARGET SET Is_View =1 WHERE Id=" + programTargetId + "";
+
+            return dbConnection.cmd.ExecuteNonQuery();
         }
 
         public List<ProgramTarget> GetAllProgramTargetFilter(int runYear, int runMonth, DBConnection dbConnection)

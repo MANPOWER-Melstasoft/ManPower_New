@@ -18,6 +18,7 @@ namespace ManPowerWeb
 
         List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
         List<DepartmentUnitPositions> DepartmentUnitPositionsList = new List<DepartmentUnitPositions>();
+        static List<ProgramTarget> programTargetsListForannulTargetSendToRecommendation = new List<ProgramTarget>();
         protected void Page_Load(object sender, EventArgs e)
         {
             //----------------------To clear cache in browser ----------------
@@ -38,16 +39,21 @@ namespace ManPowerWeb
                     {
                         IsNotSubmitDMEParentGV();
                     }
-                    if (Convert.ToInt32(Session["UserTypeId"]) == 3 && IsNotSubmitDME())
+                    if ((Convert.ToInt32(Session["UserTypeId"]) == 6 || Convert.ToInt32(Session["UserTypeId"]) == 7
+                        || Convert.ToInt32(Session["UserTypeId"]) == 8 || Convert.ToInt32(Session["UserTypeId"]) == 9)
+                        && IsNotSubmitDME())
                     {
                         RaiseNotification();
                     }
                     BindCardData();
                     bindDialogbox();
-                    if (Convert.ToInt32(Session["UserTypeId"]) == 2 || Convert.ToInt32(Session["UserTypeId"]) == 3)
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 6 || Convert.ToInt32(Session["UserTypeId"]) == 7
+                        || Convert.ToInt32(Session["UserTypeId"]) == 8 || Convert.ToInt32(Session["UserTypeId"]) == 9)
                     {
                         BindAnnualTarget();
                     }
+
+                    annulTargetSendToRecommendationBind();
                 }
             }
             else
@@ -154,12 +160,14 @@ namespace ManPowerWeb
 
             }
         }
+
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvUser.PageIndex = e.NewPageIndex;
             IsNotSubmitDMEParentGV();
 
         }
+
         protected void RaiseNotification()
         {
             if (Session["DME21Notifi"] == null)
@@ -386,6 +394,7 @@ namespace ManPowerWeb
         protected void timer1_Tick(object sender, EventArgs e)
         {
             bindDialogbox();
+            annulTargetSendToRecommendationBind();
         }
 
         private void BindAnnualTarget()
@@ -423,6 +432,46 @@ namespace ManPowerWeb
         {
             gvAnnualTarget.PageIndex = e.NewPageIndex;
             BindAnnualTarget();
+        }
+
+        private void annulTargetSendToRecommendationBind()
+        {
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            programTargetsListForannulTargetSendToRecommendation = programTargetController.GetAllProgramTarget(false, false, false, false);
+            programTargetsListForannulTargetSendToRecommendation = programTargetsListForannulTargetSendToRecommendation.Where(x => x.IsView == 0 && x.IsRecommended == 2 && x.CreatedBy == Convert.ToInt32(Session["UserId"])).ToList();
+            if (programTargetsListForannulTargetSendToRecommendation.Count > 0)
+            {
+                lblAnnualTargetRecommendationApproval.Text = programTargetsListForannulTargetSendToRecommendation.Count.ToString();
+
+            }
+            else
+            {
+                lblAnnualTargetRecommendationApproval.Text = "N/A";
+
+            }
+            gvAnnualTargetSendToRecommendation.DataSource = programTargetsListForannulTargetSendToRecommendation;
+            gvAnnualTargetSendToRecommendation.DataBind();
+
+        }
+
+        protected void btn_View_Annual_Target_Recommendation_Click(object sender, EventArgs e)
+        {
+            annulTargetSendToRecommendationBind();
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = gvProgramTargetNotification.PageSize;
+            int pageindex = gvProgramTargetNotification.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
+
+            int programTargetId = programTargetsListForannulTargetSendToRecommendation[rowIndex].ProgramTargetId;
+
+
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+
+            programTargetController.UpdateIsView(programTargetId);
+
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+
+
         }
     }
 }

@@ -13,6 +13,8 @@ namespace ManPowerCore.Controller
     {
         List<AutFunction> GetAllAutFunctionById(int AutFunctionId);
         List<AutFunction> GetAllAutFunction();
+
+        int Update(AutFunction autFunction);
     }
     public class AutFunctionControllerImpl : AutFunctionController
     {
@@ -43,6 +45,26 @@ namespace ManPowerCore.Controller
             {
                 AutFunctionDAO DAO = DAOFactory.CreateAutFunctionDAO();
                 return DAO.GetAllAutFunction(dbConnection);
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
+        public int Update(AutFunction autFunction)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                AutFunctionDAO DAO = DAOFactory.CreateAutFunctionDAO();
+                return DAO.Update(autFunction, dbConnection);
             }
             catch (Exception ex)
             {

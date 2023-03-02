@@ -19,7 +19,7 @@ namespace ManPowerCore.Controller
         List<TaskAllocationDetail> GetAllTaskAllocationDetail();
         List<TaskAllocationDetail> GetAllTaskAllocationDetail(bool withProjectTask, bool withTaskType, bool withTaskAllocation);
         TaskAllocationDetail GetTaskAllocationDetail(int id, bool withProjectTask, bool withTaskType, bool withTaskAllocation);
-        int DeleteTaskAllocationDetail(int allocationId, int detailId);
+        int DeleteTaskAllocationDetail(int detailId);
         List<TaskAllocationDetail> GetTaskAllocationDetail(int depId, DateTime date);
 
         List<TaskAllocationDetail> GetAllTaskAllocationDetailByTaskAllocationId(int taskId);
@@ -272,7 +272,7 @@ namespace ManPowerCore.Controller
         }
 
 
-        public int DeleteTaskAllocationDetail(int allocationId, int detailId)
+        public int DeleteTaskAllocationDetail(int detailId)
         {
             DBConnection dbConnection = new DBConnection();
             try

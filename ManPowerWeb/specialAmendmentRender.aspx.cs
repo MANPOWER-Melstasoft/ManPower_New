@@ -69,6 +69,9 @@ namespace ManPowerWeb
                 txtRemarks.Text = taskAllocationDetail.TaskRemarks;
                 ddlProgram.SelectedValue = taskAllocationDetail.programPlanId.ToString();
                 LinkButton1.Text = "Update";
+
+                btnDelete.Enabled = true;
+                btnDelete.CssClass = "btn btn-outline-danger";
             }
         }
 
@@ -139,7 +142,7 @@ namespace ManPowerWeb
                     taskAllocationDetail.EndTime = DateTime.Today;
                     taskAllocationDetail.TaskRemarks = "";
                     taskAllocationDetail.TaskAmendments = txtAmendment.Text;
-                    taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+                    //taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
                     allocationDetail.UpdateTaskAllocationDetail(taskAllocationDetail);
 
@@ -167,7 +170,7 @@ namespace ManPowerWeb
                     taskAllocationDetail.EndTime = DateTime.Today;
                     taskAllocationDetail.TaskRemarks = txtRemarks.Text;
                     taskAllocationDetail.TaskAmendments = txtAmendment.Text;
-                    taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
+                    //taskAllocationDetail.programPlanId = Convert.ToInt32(ddlProgram.SelectedValue);
 
                     allocationDetail.UpdateTaskAllocationDetail(taskAllocationDetail);
 
@@ -185,6 +188,17 @@ namespace ManPowerWeb
 
                 Response.Redirect("specialAmendment.aspx");
             }
+
+
+
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            TaskAllocationDetailController taskAllocationDetailController = ControllerFactory.CreateTaskAllocationDetailController();
+
+            taskAllocationDetailController.DeleteTaskAllocationDetail(rowIndex);
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Successfuly Deleted!', 'success');window.setTimeout(function(){window.location='specialAmendment.aspx'},2500);", true);
 
         }
     }

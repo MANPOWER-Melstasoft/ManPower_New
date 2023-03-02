@@ -159,6 +159,16 @@ namespace ManPowerWeb
 
             TaskAllocation taskAllocationObj = new TaskAllocation();
 
+            List<TaskAllocationDetail> taskAllocationDetailList1 = taskAllocationDetailController.GetAllTaskAllocationDetail();
+
+            foreach (var item in taskAllocationDetailList1)
+            {
+                if (item.TaskTypeId == 1 && item.programPlanId == programPlanId)
+                {
+                    taskAllocationDetailController.DeleteTaskAllocationDetail(item.TaskAllocationDetailId);
+                }
+            }
+
             foreach (var item in taskAllocationList)
             {
                 if (item.TaskYearMonth.Month == Convert.ToDateTime(txtDate.Text).Month && item.TaskYearMonth.Year == Convert.ToDateTime(txtDate.Text).Year)
@@ -184,7 +194,7 @@ namespace ManPowerWeb
 
                 if (flag1 == 1)
                 {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'You Have a task on That Date!', 'error')", true);
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'You Have a task on That Date! (DME21)', 'error')", true);
                 }
 
                 else

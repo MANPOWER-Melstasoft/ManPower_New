@@ -26,6 +26,8 @@ namespace ManPowerWeb
 
             if (!IsPostBack)
             {
+                BenficiaryId = Request.QueryString["id"];
+
                 BindVacancies();
                 BindJobcategory();
                 BindJobGridView();
@@ -37,8 +39,6 @@ namespace ManPowerWeb
 
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary(true);
-
-                BenficiaryId = Request.QueryString["id"];
 
                 foreach (var i in beneficiaries.Where(u => u.BeneficiaryId == int.Parse(BenficiaryId)))
                 {
@@ -304,7 +304,9 @@ namespace ManPowerWeb
             JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
             List<JobRefferals> jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
 
-            GridView3.DataSource = jobRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
+            jobRefferalsList = jobRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId)).ToList();
+
+            GridView3.DataSource = jobRefferalsList;
             GridView3.DataBind();
         }
 
@@ -314,8 +316,6 @@ namespace ManPowerWeb
             {
                 int minID = int.Parse(GridView3.DataKeys[e.Row.RowIndex].Value.ToString());
                 GridView gvPlanDetails = e.Row.FindControl("childgridView3") as GridView;
-
-
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
                 List<JobPlacementFeedback> jobPlacementFeedbacksList = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
@@ -499,7 +499,9 @@ namespace ManPowerWeb
             CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
             List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
 
-            gvAnnaualPlan.DataSource = careerKeyTestResultsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
+            careerKeyTestResultsList = careerKeyTestResultsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId)).ToList();
+
+            gvAnnaualPlan.DataSource = careerKeyTestResultsList;
             gvAnnaualPlan.DataBind();
 
         }
@@ -634,6 +636,7 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 TrainingRefferalClear();
+                GridView2DataBind();
             }
         }
 
@@ -645,9 +648,6 @@ namespace ManPowerWeb
             contactNo.Text = null;
             trainingRefferalDate.Text = null;
         }
-
-
-
 
         protected void btnAddCarrier_Click(object sender, EventArgs e)
         {
@@ -696,8 +696,6 @@ namespace ManPowerWeb
 
         }
 
-
-
         protected void btnTrainingFeed_Click(object sender, EventArgs e)
         {
             TrainingRefferalFeedbackController trainingRefferalFeedbackController = ControllerFactory.CreateTrainingRefferalFeedbackController();
@@ -734,7 +732,7 @@ namespace ManPowerWeb
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                int minID = int.Parse(GridView3.DataKeys[e.Row.RowIndex].Value.ToString());
+                int minID = int.Parse(GridView2.DataKeys[e.Row.RowIndex].Value.ToString());
                 GridView ChildGridView2 = e.Row.FindControl("ChildGridView2") as GridView;
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
@@ -749,7 +747,9 @@ namespace ManPowerWeb
             TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
             List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
 
-            GridView2.DataSource = trainingRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId));
+            trainingRefferalsList = trainingRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId)).ToList();
+
+            GridView2.DataSource = trainingRefferalsList;
             GridView2.DataBind();
         }
 
@@ -766,8 +766,6 @@ namespace ManPowerWeb
             int parentid = trainingRefferalsList[rowIndex].Id;
             txtTrainingId.Text = parentid.ToString();
         }
-
-
 
         protected void ddlTrainningProgramplan_SelectedIndexChanged(object sender, EventArgs e)
         {

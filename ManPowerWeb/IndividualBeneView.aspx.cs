@@ -20,6 +20,10 @@ namespace ManPowerWeb
         List<DepartmentUnit> listDistrict = new List<DepartmentUnit>();
         List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
 
+        static List<CareerKeyTestResults> careerKeyTestResultsList = new List<CareerKeyTestResults>();
+        static List<TrainingRefferals> trainingRefferalsList = new List<TrainingRefferals>();
+        static List<JobRefferals> jobRefferalsList = new List<JobRefferals>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -298,11 +302,10 @@ namespace ManPowerWeb
         }
 
 
-
         protected void BindJobGridView()
         {
             JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
-            List<JobRefferals> jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
+            jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
 
             jobRefferalsList = jobRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId)).ToList();
 
@@ -382,29 +385,17 @@ namespace ManPowerWeb
 
         protected void btnAddFeedBackJob_Click(object sender, EventArgs e)
         {
-
-
             jobRefferals.Visible = false;
             jobFeedback.Visible = true;
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            JobRefferalsController jobRefferalsController = ControllerFactory.CreateJobRefferalsController();
-            List<JobRefferals> jobRefferalsList = jobRefferalsController.GetAllJobRefferals();
-
-            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
-            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
-
             ViewState["jobparentid"] = jobRefferalsList[rowIndex].JobRefferalsId;
-
 
         }
 
         protected void btnSubmitJobFeedback_Click(object sender, EventArgs e)
         {
-            CareerGuidanceFeedbackController careerGuidanceFeedbackController = ControllerFactory.CreateCareerGuidanceFeedbackController();
-            CareerGuidanceFeedback careerGuidanceFeedback = new CareerGuidanceFeedback();
-
             JobPlacementFeedbackController jobPlacementFeedbackController = ControllerFactory.CreateJobPlacementFeedbackController();
 
             JobPlacementFeedback jobPlacementFeedback = new JobPlacementFeedback();
@@ -422,6 +413,7 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
                 JobRefferalClear();
+                BindJobGridView();
                 jobRefferals.Visible = true;
                 jobFeedback.Visible = false;
             }
@@ -499,7 +491,7 @@ namespace ManPowerWeb
         private void bindCarrierGrid()
         {
             CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
-            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
+            careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
 
             careerKeyTestResultsList = careerKeyTestResultsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId)).ToList();
 
@@ -507,6 +499,7 @@ namespace ManPowerWeb
             gvAnnaualPlan.DataBind();
 
         }
+
         protected void gvAnnaualPlan_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -610,6 +603,45 @@ namespace ManPowerWeb
 
         }
 
+        protected void btnAddPlan_Click(object sender, EventArgs e)
+        {
+
+            //  ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalView", "<script>$('#exampleModalCenter').modal('show');</script>", false);
+
+            careerkey.Visible = false;
+            careerkeyfeddback.Visible = true;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            int parentid = careerKeyTestResultsList[rowIndex].Id;
+            txtParentId.Text = parentid.ToString();
+
+        }
+
+        protected void Button1Feed_Click(object sender, EventArgs e)
+        {
+
+            CareerGuidanceFeedbackController careerGuidanceFeedbackController = ControllerFactory.CreateCareerGuidanceFeedbackController();
+            CareerGuidanceFeedback careerGuidanceFeedback = new CareerGuidanceFeedback();
+
+            careerGuidanceFeedback.CareerKeyTestResultsId = Convert.ToInt32(txtParentId.Text);
+            careerGuidanceFeedback.InJob = txtInJob.Text;
+            careerGuidanceFeedback.InTraining = txtTraining.Text;
+            careerGuidanceFeedback.Remarks = txtRemarksFeedCareer.Text;
+            careerGuidanceFeedback.CreatedUser = Session["Name"].ToString();
+            careerGuidanceFeedback.Date = DateTime.Today;
+            int output = careerGuidanceFeedbackController.Save(careerGuidanceFeedback);
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
+                CareerRefferalFeedbackClear();
+                bindCarrierGrid();
+                careerkey.Visible = true;
+                careerkeyfeddback.Visible = false;
+            }
+
+        }
+
         //----------------------------------------------------- End Carrer Refferal ---------------------------------------------------------------------------------------
 
 
@@ -658,47 +690,6 @@ namespace ManPowerWeb
         {
             string feedbackCarrier = txtFeedbackCarrier.Text;
             //  int id = int.Parse((sender as Button).CommandArgument);
-        }
-
-        protected void btnAddPlan_Click(object sender, EventArgs e)
-        {
-
-            //  ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalView", "<script>$('#exampleModalCenter').modal('show');</script>", false);
-
-            careerkey.Visible = false;
-            careerkeyfeddback.Visible = true;
-
-            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-            CareerKeyTestResultsController careerKeyTestResultsController = ControllerFactory.CreateCareerKeyTestResultsController();
-            List<CareerKeyTestResults> careerKeyTestResultsList = careerKeyTestResultsController.GetAllCareerKeyTestResults(false);
-
-            int parentid = careerKeyTestResultsList[rowIndex].Id;
-            txtParentId.Text = parentid.ToString();
-
-        }
-
-        protected void Button1Feed_Click(object sender, EventArgs e)
-        {
-
-            CareerGuidanceFeedbackController careerGuidanceFeedbackController = ControllerFactory.CreateCareerGuidanceFeedbackController();
-            CareerGuidanceFeedback careerGuidanceFeedback = new CareerGuidanceFeedback();
-
-            careerGuidanceFeedback.CareerKeyTestResultsId = Convert.ToInt32(txtParentId.Text);
-            careerGuidanceFeedback.InJob = txtInJob.Text;
-            careerGuidanceFeedback.InTraining = txtTraining.Text;
-            careerGuidanceFeedback.Remarks = txtRemarksFeedCareer.Text;
-            careerGuidanceFeedback.CreatedUser = Session["Name"].ToString();
-            careerGuidanceFeedback.Date = DateTime.Today;
-            int output = careerGuidanceFeedbackController.Save(careerGuidanceFeedback);
-            if (output != 0)
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success')", true);
-                CareerRefferalFeedbackClear();
-                careerkey.Visible = true;
-                careerkeyfeddback.Visible = false;
-            }
-
         }
 
         protected void btnTrainingFeed_Click(object sender, EventArgs e)
@@ -752,7 +743,7 @@ namespace ManPowerWeb
         public void GridView2DataBind()
         {
             TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
-            List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
+            trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
 
             trainingRefferalsList = trainingRefferalsList.Where(x => x.BeneficiaryId == Convert.ToInt32(BenficiaryId)).ToList();
 
@@ -766,9 +757,6 @@ namespace ManPowerWeb
             trainingDivFeedback.Visible = true;
 
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-            TrainingRefferalsController trainingRefferalsController = ControllerFactory.CreateTrainingRefferalController();
-            List<TrainingRefferals> trainingRefferalsList = trainingRefferalsController.GetAllTrainingRefferals(false);
 
             int parentid = trainingRefferalsList[rowIndex].Id;
             txtTrainingId.Text = parentid.ToString();

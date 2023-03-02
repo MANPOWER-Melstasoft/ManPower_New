@@ -13,9 +13,10 @@
                 <Columns>
                     <asp:BoundField DataField="TrainingMainId" HeaderText="Training ID" />
                     <asp:BoundField DataField="Title" HeaderText="Title" />
-                    <asp:BoundField DataField="Start_Date" HeaderText="Start Date" />
-                    <asp:BoundField DataField="End_date" HeaderText="End date" />
+                    <asp:BoundField DataField="Start_Date" HeaderText="Start Date" DataFormatString="{0:dd-MM-yyyy}" />
+                    <asp:BoundField DataField="End_date" HeaderText="End date" DataFormatString="{0:dd-MM-yyyy}" />
                     <asp:BoundField DataField="Member_Count" HeaderText="Member Count" />
+                    <asp:BoundField DataField="createdUser.Name" HeaderText="Created User" />
                     <asp:BoundField DataField="Post_img" HeaderText="Image URL" />
                     <asp:TemplateField HeaderText="Edit">
                         <ItemTemplate>

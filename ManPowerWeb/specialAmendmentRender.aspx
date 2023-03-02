@@ -20,7 +20,7 @@
                         <asp:Label CssClass="font-weight-bold" ID="Label4" runat="server" Text="Program Name"></asp:Label>
                     </div>
                     <div class="col-sm-6" style="width: 90%;">
-                        <asp:DropDownList Style="width: 80%; height: 40px; padding-left: 10px;" ID="ddlProgram" runat="server" DataTextField="ProgramName" DataValueField="ProgramPlanId"></asp:DropDownList>
+                        <asp:DropDownList Style="width: 80%; height: 40px; padding-left: 10px;" ID="ddlProgram" runat="server" DataTextField="ProgramName" DataValueField="ProgramPlanId" Enabled="false"></asp:DropDownList>
                     </div>
                 </div>
                 <div class="row mb-5" style="text-align: center; width: 70%;" runat="server" visible="false" id="OtherDisplay">
@@ -56,13 +56,18 @@
                     </div>
                 </div>
                 <div class="row mb-5" style="text-align: center; width: 70%;">
-                    <div class="col-sm-6 my-auto">
+                    <div class="col-sm-6 d-flex justify-content-end">
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" OnClick="LinkButton1_Click" Style="width: 150px;">Save DME21</asp:LinkButton>
                     </div>
-                    <div class="col-sm-6" style="width: 90%;">
-                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary" OnClick="LinkButton1_Click">Save DME21</asp:LinkButton>
+                    <div class="col-sm-6">
+                        <asp:LinkButton ID="btnDelete" runat="server" Style="width: 150px;" OnClick="btnDelete_Click">Delete</asp:LinkButton>
                     </div>
                 </div>
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="LinkButton1" />
+            <asp:PostBackTrigger ControlID="btnDelete" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

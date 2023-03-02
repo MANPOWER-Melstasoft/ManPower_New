@@ -319,6 +319,8 @@ namespace ManPowerWeb
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
                 List<JobPlacementFeedback> jobPlacementFeedbacksList = ControllerFactory.CreateJobPlacementFeedbackController().GetAllJobPlacementFeedback();
+                jobPlacementFeedbacksList = jobPlacementFeedbacksList.Where(x => x.JobRefferalsId == minID).ToList();
+
                 gvPlanDetails.DataSource = jobPlacementFeedbacksList;
                 gvPlanDetails.DataBind();
             }
@@ -514,7 +516,10 @@ namespace ManPowerWeb
                 GridView gvPlanDetails = e.Row.FindControl("gvPlanDetails") as GridView;
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
-                gvPlanDetails.DataSource = ControllerFactory.CreateCareerGuidanceFeedbackController().GetAllCareerKeyTestResults(false);
+                List<CareerGuidanceFeedback> careerGuidanceFeedbacks = ControllerFactory.CreateCareerGuidanceFeedbackController().GetAllCareerKeyTestResults(false);
+                careerGuidanceFeedbacks = careerGuidanceFeedbacks.Where(x => x.CareerKeyTestResultsId == minID).ToList();
+
+                gvPlanDetails.DataSource = careerGuidanceFeedbacks;
                 gvPlanDetails.DataBind();
             }
         }
@@ -737,6 +742,8 @@ namespace ManPowerWeb
 
                 //gvMIND.DataSource = ControllerFactory.CreateMinDetailControllerr().GetMinDetails(minID);
                 List<TrainingRefferalFeedback> trainingRefferalFeedbacks = ControllerFactory.CreateTrainingRefferalFeedbackController().GetAllTrainingRefferalFeedback(false);
+                trainingRefferalFeedbacks = trainingRefferalFeedbacks.Where(x => x.TrainingRefferalId == minID).ToList();
+
                 ChildGridView2.DataSource = trainingRefferalFeedbacks;
                 ChildGridView2.DataBind();
             }

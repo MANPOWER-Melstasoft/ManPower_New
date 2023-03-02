@@ -4,7 +4,7 @@
     <asp:ScriptManager ID="scriptmanger" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="updatepannel1" runat="server">
         <ContentTemplate>
-            <div class="card o-hidden border-0 shadow-lg my-3 p-4">
+            <div class="card o-hidden border-0 shadow-lg m-3 p-4">
 
                 <h2>Payment Voucher</h2>
 
@@ -350,17 +350,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3 ms-1">
-                        <div class="col-sm-3">
-                            <div class="row mb-3 ms-1">
-                                <div class="col-sm-6">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Add" CssClass="btn btn-primary btn-user btn-block" ValidationGroup="1" OnClick="btnSubmit_Click" />
-                                </div>
-                                <%--  <div class="col-sm-6">
-                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529"  />
-                        </div>--%>
-                            </div>
-                        </div>
+                    <div>
+
+
+                        <asp:Button ID="btnSubmit" runat="server" Text="Add" CssClass="btn btn-primary mr-3" ValidationGroup="1" OnClick="btnSubmit_Click" />
+                        <asp:Button ID="btnSendToRecommendation" runat="server" Text="Send To Recommendation" CssClass="btn btn-success btn-user " OnClick="btnSendToRecommendation_Click" />
                     </div>
                     <div class="col-sm-6 m-3">
                         <asp:Label ID="lblSuccessMsg" runat="server" Text="" ForeColor="#33cc33"></asp:Label>
@@ -371,6 +365,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSubmit" />
+            <asp:PostBackTrigger ControlID="btnSendToRecommendation" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

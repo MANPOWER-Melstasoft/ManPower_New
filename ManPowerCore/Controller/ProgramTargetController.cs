@@ -17,6 +17,8 @@ namespace ManPowerCore.Controller
 
         int UpdateProgramTarget(ProgramTarget programAssignee);
 
+        int UpdateIsView(int programTargetId);
+
         int UpdateProgramTargetApproval(int id, int status, string reason);
         int UpdateProgramTargetApprovalRecomended(int id, int recomendedby, int status);
 
@@ -347,6 +349,27 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return programTargetDAO.GetProgramTarget(id, dBConnection);
+
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateIsView(int programTargetId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return programTargetDAO.UpdateIsView(programTargetId, dBConnection);
 
             }
 

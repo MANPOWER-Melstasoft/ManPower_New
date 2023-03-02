@@ -271,7 +271,7 @@ namespace ManPowerWeb
                         taskAllocationDetailObj.TaskTypeId = 1;
                         taskAllocationDetailObj.TaskAllocationId = taskAllocationId;
                         taskAllocationDetailObj.TaskDescription = "";
-                        taskAllocationDetailObj.WorkLocation = txtProgramName.Text;
+                        taskAllocationDetailObj.WorkLocation = txtLocation.Text;
                         taskAllocationDetailObj.Isconmpleated = 0;
                         taskAllocationDetailObj.NotCompleatedReason = "";
                         taskAllocationDetailObj.StartTime = Convert.ToDateTime(txtDate.Text);

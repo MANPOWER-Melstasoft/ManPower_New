@@ -65,7 +65,18 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return trainingMainDAO.GetAllTrainingMain(dBConnection);
+                List<TrainingMain> trainingMains = trainingMainDAO.GetAllTrainingMain(dBConnection);
+                DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
+                SystemUserDAO systemUserDAO = DAOFactory.CreateSystemUserDAO();
+
+                foreach (TrainingMain trainingMain in trainingMains)
+                {
+                    DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsDAO.GetDepartmentUnitPositions(trainingMain.Created_User, dBConnection);
+
+                    trainingMain.createdUser = systemUserDAO.GetSystemUser(departmentUnitPositions.SystemUserId, dBConnection);
+                }
+
+                return trainingMains;
             }
             catch (Exception)
             {

@@ -39,5 +39,7 @@ namespace ManPowerCore.Domain
 
         [DBField("Is_Active")]
         public int Is_Active { get; set; }
+
+        public SystemUser createdUser { get; set; }
     }
 }

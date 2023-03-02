@@ -87,7 +87,7 @@ namespace ManPowerWeb
 
         private void bindData()
         {
-            ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+            //ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(true, true, true, true);
@@ -175,7 +175,7 @@ namespace ManPowerWeb
 
 
 
-            if (Convert.ToInt32(Request.QueryString["Status"]) == 3)
+            if (status == 3)
             {
                 rowRejectRemarks.Visible = true;
                 txtRejectRemarks.Text = myList[0].RejectRemarks;
@@ -230,7 +230,7 @@ namespace ManPowerWeb
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+            //ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             int selectedOficerRecomendation = Convert.ToInt32(ddlOficerRecomended.SelectedValue);

@@ -176,7 +176,9 @@ namespace ManPowerWeb
 
 
             //------------------Encrypt URL-------------------------------------- -
-            string queryString = " ProgramTargetId = " + programTargetsList[rowIndex].ProgramTargetId.ToString() + " & Status = " + programTargetsList[rowIndex].IsRecommended;
+            //string queryString = " ProgramTargetId = " + programTargetsList[rowIndex].ProgramTargetId.ToString() + " & Status = " + programTargetsList[rowIndex].IsRecommended;
+            string queryString = "ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended;
+
 
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                 version: 1,

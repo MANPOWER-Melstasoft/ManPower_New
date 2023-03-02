@@ -22,7 +22,7 @@ namespace ManPowerWeb
 
             string id = Request.QueryString["id"];
 
-            foreach (var i in pp.Where(u => u.ProgramPlanId == int.Parse(id)))
+            foreach (var i in pp.Where(u => u.ProgramPlanId == 2048))
             {
                 pName.Text = i.ProgramName;
                 place.Text = i.Location;

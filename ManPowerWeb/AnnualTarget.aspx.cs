@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
@@ -89,6 +90,11 @@ namespace ManPowerWeb
                 programTargetsList = programTargetsList.Where(x => x.IsRecommended == 3).ToList();
                 GridView1.DataSource = programTargetsList;
             }
+            else if (ddlStatus.SelectedValue == "0")
+            {
+                programTargetsList = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
+                GridView1.DataSource = programTargetsList;
+            }
             else
             {
                 GridView1.DataSource = programTargetsList;
@@ -166,7 +172,27 @@ namespace ManPowerWeb
             int pagesize = GridView1.PageSize;
             int pageindex = GridView1.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
-            Response.Redirect("AnnualTargetView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
+
+
+
+            //------------------Encrypt URL-------------------------------------- -
+            string queryString = " ProgramTargetId = " + programTargetsList[rowIndex].ProgramTargetId.ToString() + " & Status = " + programTargetsList[rowIndex].IsRecommended;
+
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                version: 1,
+                name: "MyAuthTicket",
+                issueDate: DateTime.Now,
+                expiration: DateTime.Now.AddMinutes(10),
+                isPersistent: false,
+                userData: queryString,
+                cookiePath: FormsAuthentication.FormsCookiePath);
+
+            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+
+            string url = "AnnualTargetView.aspx?encrypt=" + encryptedTicket;
+            Response.Redirect(url);
+
+            //Response.Redirect("AnnualTargetView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
 
         }
 
@@ -182,7 +208,7 @@ namespace ManPowerWeb
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListPending"];
             }
-            else if (ddlStatus.SelectedValue == " 2")
+            else if (ddlStatus.SelectedValue == "2")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListApproved"];
             }

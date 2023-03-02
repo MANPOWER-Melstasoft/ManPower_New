@@ -54,7 +54,7 @@ namespace ManPowerWeb
             asignee = programAssigneeController.GetAllProgramAssignee(true, true, false);
 
 
-            foreach (var asignee in asignee)
+            foreach (var asignee in asignee.Where(x => x.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"])))
             {
                 foreach (var plans in ProgramPlanlist.Where(x => x.ProjectStatusId == 4 && x.ProgramTargetId == asignee.ProgramTargetId))
                 {

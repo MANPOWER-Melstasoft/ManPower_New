@@ -70,7 +70,8 @@
 
         <div class="table-responsive " style="width: 100%; padding-left: 40px; padding-right: 40px;">
             <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
+                CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging"
+                ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                 <Columns>
                     <asp:BoundField DataField="Date" HeaderText="Date" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Location" HeaderText="Location" HeaderStyle-CssClass="table-dark" />
@@ -84,6 +85,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
+                <EmptyDataTemplate>No Completed Programs to Show </EmptyDataTemplate>
             </asp:GridView>
         </div>
 

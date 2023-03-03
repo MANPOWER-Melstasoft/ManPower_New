@@ -136,6 +136,13 @@
                                                         <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "3" ?true:false %>' Text="Hold" ForeColor="Yellow"> </asp:Label>
                                                         <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "4" ?true:false %>' Text="Complete" ForeColor="Green"> </asp:Label>
 
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2013" ?true:false %>' Text="Pending Recommendation District Head" ForeColor="red"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2014" ?true:false %>' Text="Approved Recommendation District Head" ForeColor="Blue"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2015" ?true:false %>' Text="Reject Recommendation District Head" ForeColor="Yellow"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2016" ?true:false %>' Text="Pending Recommendation Head Office" ForeColor="Green"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2017" ?true:false %>' Text="Approved Recommendation Head Office" ForeColor="Yellow"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2018" ?true:false %>' Text="Reject Recommendation Head Office " ForeColor="Green"> </asp:Label>
+
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-Width="150px">

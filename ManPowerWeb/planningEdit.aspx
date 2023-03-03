@@ -293,16 +293,18 @@
                         <div class="col-sm-2">
                             <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" ValidationGroup="1" BackColor="#212529" BorderColor="#212529" />
                         </div>
+
                         <div class="col-sm-2">
                             <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click1" ValidationGroup="1" />
 
                         </div>
+
                         <%if (DateTime.Now > DateTime.Parse(txtDate.Text) && txtDate.Text != "")
                             {
                         %>
                         <div class="col-sm-2">
-                            <asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success " OnClick="btnComplete_Click" />
-
+                            <%--<asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success " OnClick="btnComplete_Click" />--%>
+                            <asp:Button runat="server" ID="btnSendToRecommendation" Text="Send To Recommendation" CssClass="btn btn-success " OnClick="btnSendToRecommendation_Click" />
                         </div>
                         <%} %>
                     </div>

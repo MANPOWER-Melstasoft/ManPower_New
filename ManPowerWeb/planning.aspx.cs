@@ -283,17 +283,18 @@ namespace ManPowerWeb
 
         protected void gvPlanDetails_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //GridView parentGridView = e.Row.NamingContainer as GridView;
-            //GridView childGridView = parentGridView.FindControl("gvPlanDetails") as GridView;
 
-            //LinkButton button = (LinkButton)childGridView.FindControl("btnEdit");
-            //if (childGridView.Rows.)
-            //    button.Text = "Enter Program Details";
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 TableCell cell = e.Row.Cells[0];
                 string cellValue = cell.Text;
+
+                if (Convert.ToDateTime(e.Row.Cells[2].Text) < DateTime.Now)
+                {
+                    LinkButton childEditButton = (LinkButton)e.Row.FindControl("btnEdit");
+                    childEditButton.Text = "Enter Program Details";
+                }
             }
         }
 

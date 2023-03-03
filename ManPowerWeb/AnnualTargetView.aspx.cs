@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static System.Net.Mime.MediaTypeNames;
@@ -14,7 +15,9 @@ namespace ManPowerWeb
     public partial class AnnualTargetView : System.Web.UI.Page
     {
 
-        int ProgramTargetId;
+        static int ProgramTargetId;
+        static int status;
+        string encryptedTicket;
 
         List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
         List<ProgramTarget> myList = new List<ProgramTarget>();
@@ -28,6 +31,12 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            //----------------------- Decrypt URL ---------------------------------------------------
+
+            encryptedTicket = Request.QueryString["encrypt"];
+            FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+            ProgramTargetId = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["ProgramTargetId"]);
+            status = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["Status"]);
 
             if (!IsPostBack)
             {
@@ -64,7 +73,9 @@ namespace ManPowerWeb
                 bindData();
                 bindOficerRecomendation();
 
-                if (Convert.ToInt32(Request.QueryString["Status"]) == 0)
+
+
+                if (status == 0)
                 {
                     btnSendToRecommendation.Visible = true;
                 }
@@ -76,7 +87,7 @@ namespace ManPowerWeb
 
         private void bindData()
         {
-            ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+            //ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(true, true, true, true);
@@ -164,7 +175,7 @@ namespace ManPowerWeb
 
 
 
-            if (Convert.ToInt32(Request.QueryString["Status"]) == 3)
+            if (status == 3)
             {
                 rowRejectRemarks.Visible = true;
                 txtRejectRemarks.Text = myList[0].RejectRemarks;
@@ -219,7 +230,7 @@ namespace ManPowerWeb
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+            //ProgramTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             int selectedOficerRecomendation = Convert.ToInt32(ddlOficerRecomended.SelectedValue);

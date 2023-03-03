@@ -13,6 +13,8 @@ namespace ManPowerCore.Infrastructure
     public interface ProgramPlanApprovalDetailsDAO
     {
         int Save(ProgramPlanApprovalDetails programPlanApprovalDetails, DBConnection dbConnection);
+
+        List<ProgramPlanApprovalDetails> GetAll(DBConnection dbConnection);
     }
     public class ProgramPlanApprovalDetailsDAOImpl : ProgramPlanApprovalDetailsDAO
     {
@@ -57,6 +59,17 @@ namespace ManPowerCore.Infrastructure
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
             return output;
+        }
+
+        public List<ProgramPlanApprovalDetails> GetAll(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Program_Plan_Approval_Details";
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<ProgramPlanApprovalDetails>(dbConnection.dr);
         }
     }
 }

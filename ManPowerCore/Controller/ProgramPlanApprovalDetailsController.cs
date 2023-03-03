@@ -12,6 +12,7 @@ namespace ManPowerCore.Controller
     public interface ProgramPlanApprovalDetailsController
     {
         int Save(ProgramPlanApprovalDetails programPlanApprovalDetails);
+        List<ProgramPlanApprovalDetails> GetAll();
 
     }
     public class ProgramPlanApprovalDetailsControllerImpl : ProgramPlanApprovalDetailsController
@@ -40,5 +41,28 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
         }
+
+        public List<ProgramPlanApprovalDetails> GetAll()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                return programPlanApprovalDetailsDAO.GetAll(dBConnection);
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
     }
+
+
 }

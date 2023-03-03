@@ -96,8 +96,6 @@ namespace ManPowerWeb
 
             foreach (var item in projectPlanResourcesList)
             {
-
-
                 for (int i = 0; i < chkList.Items.Count; i++)
                 {
                     if (chkList.Items[i].Value == item.ResourcePersonId.ToString())

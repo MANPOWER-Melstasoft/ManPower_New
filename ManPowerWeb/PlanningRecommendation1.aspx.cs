@@ -59,6 +59,8 @@ namespace ManPowerWeb
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
 
+            ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
+
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
             projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlansListBind.ProgramPlanId);
 
@@ -86,6 +88,72 @@ namespace ManPowerWeb
 
 
 
+        }
+
+        protected void btnRejectReason_Click(object sender, EventArgs e)
+        {
+            int programPlanId = Convert.ToInt32(ViewState["ProgramPlanId"]);
+
+            ProgramPlanApprovalDetailsController programPlanApprovalDetailsController = ControllerFactory.CreateProgramPlanApprovalDetailsController();
+
+            ProgramPlanApprovalDetails programPlanApprovalDetails = new ProgramPlanApprovalDetails();
+
+            programPlanApprovalDetails.ProgramPlanId = programPlanId;
+            programPlanApprovalDetails.ProjectStatus = 2015;
+
+            programPlanApprovalDetails.Recommendation1By = Convert.ToInt32(Session["DepUnitPositionId"]);
+            programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
+
+            programPlanApprovalDetails.Recommendation2By = 0; ;
+            //  programPlanApprovalDetails.Recommendation2Date =;
+
+            programPlanApprovalDetails.RejectReason = txtrejectReason.Text;
+
+            int response = programPlanApprovalDetailsController.Save(programPlanApprovalDetails);
+
+            if (response != 0)
+            {
+
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation1.aspx'},2500);", true);
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
+        }
+
+        protected void btnSendToRecommendation_Click(object sender, EventArgs e)
+        {
+            int programPlanId = Convert.ToInt32(ViewState["ProgramPlanId"]);
+
+            ProgramPlanApprovalDetailsController programPlanApprovalDetailsController = ControllerFactory.CreateProgramPlanApprovalDetailsController();
+
+            ProgramPlanApprovalDetails programPlanApprovalDetails = new ProgramPlanApprovalDetails();
+
+            programPlanApprovalDetails.ProgramPlanId = programPlanId;
+            programPlanApprovalDetails.ProjectStatus = 2016;
+
+            programPlanApprovalDetails.Recommendation1By = Convert.ToInt32(Session["DepUnitPositionId"]);
+            programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
+
+            programPlanApprovalDetails.Recommendation2By = Convert.ToInt32(Session["DepUnitParentId"]); ;
+            //  programPlanApprovalDetails.Recommendation2Date =;
+
+            programPlanApprovalDetails.RejectReason = "";
+
+            int response = programPlanApprovalDetailsController.Save(programPlanApprovalDetails);
+
+            if (response != 0)
+            {
+
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Sent To Recommendation!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation1.aspx'},2500);", true);
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+            }
         }
     }
 }

@@ -62,8 +62,8 @@ namespace ManPowerWeb
 
             taskAllocationObj = taskAllocationController.GetTaskAllocation(taskAllocationId, false, false);
 
-            taskAllocationObj.StatusId = 8;
-            taskAllocationObj.DME22_ApprovedBy = Convert.ToInt32(Session["DepUnitParentId"]);
+            taskAllocationObj.StatusId = 2011;
+            taskAllocationObj.DME22Rec1By = Convert.ToInt32(Session["DepUnitParentId"]);
 
 
             taskAllocationController.UpdateTaskAllocation(taskAllocationObj);

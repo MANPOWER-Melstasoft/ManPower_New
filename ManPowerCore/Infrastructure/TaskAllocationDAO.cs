@@ -113,7 +113,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE TASK_ALLOCATION SET DEPARTMENT_UNIT_POSSITIONS_ID = @DepartmetUnitPossitionsId, TASK_YEAR_MONTH = @TaskYearMonth " +
                                            ", CREATED_DATE = @CreatedDate, CREATED_USER = @CreatedUser, STATUS_ID = @StatusId, DME21_Recommended_by1 = @RecommendedBy1, " +
-                                           "RECOMMENDED_DATE = @RecommendedDate, DME22_Approved_by = @ApprovedBy, APPROVED_DATE = @ApprovedDate,DME21_Recommended_by2 = @dme21Rec2,DME21_Approved_by = @dme21ApprovedBy WHERE ID = @TaskAllocationId ";
+                                           "RECOMMENDED_DATE = @RecommendedDate, DME22_Approved_by = @ApprovedBy, APPROVED_DATE = @ApprovedDate,DME21_Recommended_by2 = @dme21Rec2,DME21_Approved_by = @dme21ApprovedBy, DME22_Rec1_By = @dme22Rec1By,DME22_Rec2_By = @dme22Rec2By WHERE ID = @TaskAllocationId ";
 
             dbConnection.cmd.Parameters.AddWithValue("@TaskAllocationId", taskAllocation.TaskAllocationId);
             dbConnection.cmd.Parameters.AddWithValue("@DepartmetUnitPossitionsId", taskAllocation.DepartmetUnitPossitionsId);
@@ -127,6 +127,8 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ApprovedDate", taskAllocation.ApprovedDate);
             dbConnection.cmd.Parameters.AddWithValue("@dme21Rec2", taskAllocation.DME21RecommendedBy2);
             dbConnection.cmd.Parameters.AddWithValue("@dme21ApprovedBy", taskAllocation.DME21ApprovedBy);
+            dbConnection.cmd.Parameters.AddWithValue("@dme22Rec1By", taskAllocation.DME22Rec1By);
+            dbConnection.cmd.Parameters.AddWithValue("@dme22Rec2By", taskAllocation.DME22Rec2By);
 
             return dbConnection.cmd.ExecuteNonQuery();
         }

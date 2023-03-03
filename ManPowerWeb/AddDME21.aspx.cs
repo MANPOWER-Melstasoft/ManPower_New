@@ -64,8 +64,6 @@ namespace ManPowerWeb
                 IsUpdate();
             }
             DivVisibility();
-
-
         }
 
         private void IsUpdate()

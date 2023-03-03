@@ -51,6 +51,11 @@ namespace ManPowerCore.Domain
         [DBField("DME21_Approved_by")]
         public int DME21ApprovedBy { get; set; }
 
+        [DBField("DME22_Rec1_By")]
+        public int DME22Rec1By { get; set; }
+
+        [DBField("DME22_Rec2_By")]
+        public int DME22Rec2By { get; set; }
 
         public List<TaskAllocationDetail> _TaskAllocationDetail { get; set; } = new List<TaskAllocationDetail>();
         public DepartmentUnitPositions _DepartmentUnitPositions { get; set; } = new DepartmentUnitPositions();

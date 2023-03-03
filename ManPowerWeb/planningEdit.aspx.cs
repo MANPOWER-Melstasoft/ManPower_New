@@ -118,7 +118,11 @@ namespace ManPowerWeb
             txtBudget.Text = programPlansListBind[0].ApprovedAmount.ToString();
             txtFemaleCount.Text = programPlansListBind[0].FemaleCount.ToString();
             txtMaleCount.Text = programPlansListBind[0].MaleCount.ToString();
+            txtTotalCount.Text = (programPlansListBind[0].FemaleCount + programPlansListBind[0].MaleCount).ToString();
             txtLocation.Text = programPlansListBind[0].Location.ToString();
+            txtActualOutcome.Text = programPlansListBind[0].Outcome.ToString();
+            txtActualOutput.Text = programPlansListBind[0].ActualOutput.ToString();
+            txtExpenditure.Text = programPlansListBind[0].ActualAmount.ToString();
 
             txtEstimateAmount.Text = programTarget.EstimatedAmount.ToString();
 
@@ -219,9 +223,26 @@ namespace ManPowerWeb
                     programPlan.FinancialSource = "";
                     programPlan.ProgramCategoryId = 1;
                     programPlan.Location = txtLocation.Text;
-                    programPlan.Outcome = 0;
+                    if (txtActualOutcome.Text != "")
+                    {
+                        programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
+
+                    }
+                    else
+                    {
+                        programPlan.Outcome = 0;
+                    }
                     programPlan.Output = 0;
-                    programPlan.ActualOutput = 0;
+
+                    if (txtActualOutput.Text != "")
+                    {
+                        programPlan.ActualOutput = Convert.ToInt32(txtActualOutput.Text);
+                    }
+                    else
+                    {
+                        programPlan.ActualOutput = 0;
+                    }
+
                     programPlan.IsApproved = 0;
                     programPlan.ApprovedBy = "";
                     programPlan.ApprovedDate = DateTime.Now;
@@ -238,9 +259,35 @@ namespace ManPowerWeb
                         validationflag = false;
 
                     }
-                    programPlan.ActualAmount = 0;
-                    programPlan.MaleCount = int.Parse(txtMaleCount.Text);
-                    programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
+
+                    if (txtExpenditure.Text != "")
+                    {
+                        programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
+                    }
+                    else
+                    {
+                        programPlan.ActualAmount = 0;
+                    }
+
+                    if (txtMaleCount.Text != "")
+                    {
+                        programPlan.MaleCount = int.Parse(txtMaleCount.Text);
+                    }
+                    else
+                    {
+                        programPlan.MaleCount = 0;
+                    }
+                    if (txtFemaleCount.Text != "")
+                    {
+                        programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
+                    }
+                    else
+                    {
+                        programPlan.FemaleCount = 0;
+                    }
+
+
+
                     programPlan.Remark = "";
                     programPlan.ProgramTargetId = programTargetId;
                     programPlan.Coordinater = "";
@@ -329,9 +376,9 @@ namespace ManPowerWeb
                 programPlan.FinancialSource = "";
                 programPlan.ProgramCategoryId = 1;
                 programPlan.Location = txtLocation.Text;
-                programPlan.Outcome = 0;
+                programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
                 programPlan.Output = 0;
-                programPlan.ActualOutput = 0;
+                programPlan.ActualOutput = Convert.ToInt32(txtActualOutput.Text);
                 programPlan.IsApproved = 0;
                 programPlan.ApprovedBy = "";
                 programPlan.ApprovedDate = DateTime.Now;
@@ -348,7 +395,7 @@ namespace ManPowerWeb
                     validationflag = false;
 
                 }
-                programPlan.ActualAmount = 0;
+                programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
                 programPlan.MaleCount = int.Parse(txtMaleCount.Text);
                 programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
                 programPlan.Remark = "";
@@ -374,7 +421,7 @@ namespace ManPowerWeb
                 }
 
                 ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
-                if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
+                if (DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
                 {
                     lblDate.Text = "Invalid Date";
                     validationflag = false;

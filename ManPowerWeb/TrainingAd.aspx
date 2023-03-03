@@ -13,11 +13,14 @@
                 </div>
             </ItemTemplate>
         </asp:ListView>
-        <div class="row" style="margin-bottom: 30px; margin-top: 20px;">
-            <div class="col d-flex flex-row-reverse">
+        <div class="row d-flex justify-content-center" style="margin-bottom: 30px; margin-top: 20px;">
+            <div class="col-3">
+                <asp:LinkButton ID="btnBack" runat="server" Style="width: 150px;" CssClass="btn btn-outline-primary" OnClick="btnBack_Click">Back</asp:LinkButton>
+            </div>
+            <div class="col-3">
                 <asp:LinkButton ID="btnApply" runat="server" Style="width: 150px;" OnClick="btnApply_Click">Apply</asp:LinkButton>
             </div>
-            <div class="col">
+            <div class="col-3">
                 <asp:LinkButton ID="btnReject" runat="server" Style="width: 150px;" OnClick="btnReject_Click">Cancel</asp:LinkButton>
             </div>
         </div>

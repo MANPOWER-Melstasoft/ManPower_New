@@ -140,6 +140,10 @@
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
     <Content Include="DistressLoanAdmin.aspx" />
+    <Content Include="DME22Rec1.aspx" />
+    <Content Include="DME22Rec1Render.aspx" />
+    <Content Include="DME22Rec2.aspx" />
+    <Content Include="DME22Rec2Render.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="PersonalFilesList.aspx" />
@@ -2176,6 +2180,34 @@
     </Compile>
     <Compile Include="DistressLoanAdmin.aspx.designer.cs">
       <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22Rec1.aspx.cs">
+      <DependentUpon>DME22Rec1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22Rec1.aspx.designer.cs">
+      <DependentUpon>DME22Rec1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22Rec1Render.aspx.cs">
+      <DependentUpon>DME22Rec1Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22Rec1Render.aspx.designer.cs">
+      <DependentUpon>DME22Rec1Render.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22Rec2.aspx.cs">
+      <DependentUpon>DME22Rec2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22Rec2.aspx.designer.cs">
+      <DependentUpon>DME22Rec2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DME22Rec2Render.aspx.cs">
+      <DependentUpon>DME22Rec2Render.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DME22Rec2Render.aspx.designer.cs">
+      <DependentUpon>DME22Rec2Render.aspx</DependentUpon>
     </Compile>
     <Compile Include="IndividualBeneList.aspx.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>

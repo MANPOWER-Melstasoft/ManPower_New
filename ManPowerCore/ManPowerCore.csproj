@@ -102,6 +102,7 @@
     <Compile Include="Controller\ProgramBudgetController.cs" />
     <Compile Include="Controller\ProgramCategoryController.cs" />
     <Compile Include="Controller\ProgramController.cs" />
+    <Compile Include="Controller\ProgramPlanApprovalDetailsController.cs" />
     <Compile Include="Controller\ProgramPlanController.cs" />
     <Compile Include="Controller\ProgramTargetController.cs" />
     <Compile Include="Controller\ProgramTypeController.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
     <Compile Include="Domain\PaymentVoucher.cs" />
+    <Compile Include="Domain\ProgramPlanApprovalDetails.cs" />
     <Compile Include="Domain\RequestorGuarantor.cs" />
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Domain\SupplierType.cs" />
@@ -304,6 +306,7 @@
     <Compile Include="Infrastructure\ProgramBudgetDAO.cs" />
     <Compile Include="Infrastructure\ProgramCategoryDAO.cs" />
     <Compile Include="Infrastructure\ProgramDAO.cs" />
+    <Compile Include="Infrastructure\ProgramPlanApprovalDetailsDAO.cs" />
     <Compile Include="Infrastructure\ProgramPlanDAO.cs" />
     <Compile Include="Infrastructure\ProgramTargetDAO.cs" />
     <Compile Include="Infrastructure\ProgramTypeDAO.cs" />

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebGrease.Css.Extensions;
+using System.Globalization;
 
 namespace ManPowerWeb
 {
@@ -189,9 +190,6 @@ namespace ManPowerWeb
                 lbl.Text = programPlansList.Count.ToString();
                 gvPlanDetails.DataSource = programPlansList;
                 gvPlanDetails.DataBind();
-
-
-
                 if (lbl.Text != "" && e.Row.Cells[8].Text != "")
                 {
 
@@ -206,6 +204,8 @@ namespace ManPowerWeb
 
                     }
                 }
+
+
 
 
             }
@@ -252,49 +252,100 @@ namespace ManPowerWeb
             Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
         }
 
-        //protected void gvPlanDetails_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        LinkButton childEditButton = (LinkButton)e.Row.FindControl("btnEdit");
+        protected void btnEnterProgramDetails_Click(object sender, EventArgs e)
+        {
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-        //        if (e.Row.Cells[6].Text == "Complete")
-        //        {
-        //            childEditButton.Text = "View";
-        //        }
-        //        else
-        //        {
-        //            childEditButton.Text = "Edit";
-
-        //        }
-
-        //    }
-        //}
+            GridViewRow Gv2Row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            GridView Childgrid = (GridView)(Gv2Row.Parent.Parent);
+            GridViewRow Gv1Row = (GridViewRow)(Childgrid.NamingContainer);
+            rowIndex = Gv1Row.RowIndex;
 
 
+            int rowindexChild = Gv2Row.RowIndex;
+
+            int pagesize = gvAnnaualPlan.PageSize;
+            int pageindex = gvAnnaualPlan.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
 
 
-        //protected void gvPlanDetails_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    if (e.CommandName == "Edit")
-        //    {
-        //        GridViewRow Gv2Row = (GridViewRow)((LinkButton)sender).NamingContainer;
-        //        GridView Childgrid = (GridView)(Gv2Row.Parent.Parent);
-        //        GridViewRow Gv1Row = (GridViewRow)(Childgrid.NamingContainer);
-        //        int b = Gv1Row.RowIndex;
+            var PrTargetId = int.Parse(gvAnnaualPlan.Rows[rowIndex].Cells[1].Text);
+            var prName = gvAnnaualPlan.Rows[rowIndex].Cells[2].Text;
+
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+            programPlansList = programPlanController.GetAllProgramPlan();
+
+            programPlansList = programPlansList.Where(x => x.ProgramTargetId == PrTargetId).ToList();
 
 
-        //    }
-        //}
+            Response.Redirect("planningEdit.aspx?ProgramTargetId=" + PrTargetId + "&ProgramplanId=" + programPlansList[rowindexChild].ProgramPlanId);
+        }
 
-        //   foreach (GridViewRow row in gvAnnaualPlan.Rows)
-        //    {
+        protected void gvPlanDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
 
 
-        //        Label lbl1 = (Label)row.FindControl("lblPlannedCount");
-        //lbl1.Text = ViewState["programPlansListCount"].ToString();
-        //lbl1.Text = programPlansList.Count.ToString()};
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TableCell cell = e.Row.Cells[0];
+                string cellValue = cell.Text;
+
+                if (Convert.ToDateTime(e.Row.Cells[2].Text) < DateTime.Now)
+                {
+                    LinkButton childEditButton = (LinkButton)e.Row.FindControl("btnEdit");
+                    childEditButton.Text = "Enter Program Details";
+                }
+            }
+        }
+
+
+
 
 
     }
+
+    //protected void gvPlanDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    //{
+    //    if (e.Row.RowType == DataControlRowType.DataRow)
+    //    {
+    //        LinkButton childEditButton = (LinkButton)e.Row.FindControl("btnEdit");
+
+    //        if (e.Row.Cells[6].Text == "Complete")
+    //        {
+    //            childEditButton.Text = "View";
+    //        }
+    //        else
+    //        {
+    //            childEditButton.Text = "Edit";
+
+    //        }
+
+    //    }
+    //}
+
+
+
+
+    //protected void gvPlanDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+    //{
+    //    if (e.CommandName == "Edit")
+    //    {
+    //        GridViewRow Gv2Row = (GridViewRow)((LinkButton)sender).NamingContainer;
+    //        GridView Childgrid = (GridView)(Gv2Row.Parent.Parent);
+    //        GridViewRow Gv1Row = (GridViewRow)(Childgrid.NamingContainer);
+    //        int b = Gv1Row.RowIndex;
+
+
+    //    }
+    //}
+
+    //   foreach (GridViewRow row in gvAnnaualPlan.Rows)
+    //    {
+
+
+    //        Label lbl1 = (Label)row.FindControl("lblPlannedCount");
+    //lbl1.Text = ViewState["programPlansListCount"].ToString();
+    //lbl1.Text = programPlansList.Count.ToString()};
+
+
 }

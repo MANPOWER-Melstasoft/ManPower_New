@@ -610,5 +610,11 @@ namespace ManPowerCore.Common
             RequestorGuarantorDAO requestorGuarantorDAO = new RequestorGuarantorDAOSqlImpl();
             return (RequestorGuarantorDAO)requestorGuarantorDAO;
         }
+
+        public static ProgramPlanApprovalDetailsDAO createProgramPlanApprovalDetailsDAO()
+        {
+            ProgramPlanApprovalDetailsDAO programPlanApprovalDetailsDAO = new ProgramPlanApprovalDetailsDAOImpl();
+            return (ProgramPlanApprovalDetailsDAO)programPlanApprovalDetailsDAO;
+        }
     }
 }

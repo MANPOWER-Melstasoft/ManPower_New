@@ -448,6 +448,7 @@ namespace ManPowerWeb
             BindAnnualTarget();
         }
 
+        //------------------------Send To Recommendation------------------------------------
         private void annulTargetSendToRecommendationBind()
         {
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();

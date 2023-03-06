@@ -625,5 +625,11 @@ namespace ManPowerCore.Common
             RequestorGuarantorController requestorGuarantorController = new RequestorGuarantorControllerImpl();
             return (RequestorGuarantorController)requestorGuarantorController;
         }
+
+        public static ProgramPlanApprovalDetailsController CreateProgramPlanApprovalDetailsController()
+        {
+            ProgramPlanApprovalDetailsController programPlanApprovalDetailsController = new ProgramPlanApprovalDetailsControllerImpl();
+            return (ProgramPlanApprovalDetailsController)programPlanApprovalDetailsController;
+        }
     }
 }

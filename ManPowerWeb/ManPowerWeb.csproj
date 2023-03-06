@@ -148,6 +148,8 @@
     <Content Include="LoanReport.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="PersonalFilesListView.aspx" />
+    <Content Include="PlanningRecommendation1.aspx" />
+    <Content Include="PlanningRecommendation2.aspx" />
     <Content Include="RequestLoan.aspx" />
     <Content Include="RequestLoanFront.aspx" />
     <Content Include="ResetPassword.aspx" />
@@ -2234,6 +2236,20 @@
     </Compile>
     <Compile Include="PersonalFilesListView.aspx.designer.cs">
       <DependentUpon>PersonalFilesListView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanningRecommendation1.aspx.cs">
+      <DependentUpon>PlanningRecommendation1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanningRecommendation1.aspx.designer.cs">
+      <DependentUpon>PlanningRecommendation1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlanningRecommendation2.aspx.cs">
+      <DependentUpon>PlanningRecommendation2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanningRecommendation2.aspx.designer.cs">
+      <DependentUpon>PlanningRecommendation2.aspx</DependentUpon>
     </Compile>
     <Compile Include="RequestLoan.aspx.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>

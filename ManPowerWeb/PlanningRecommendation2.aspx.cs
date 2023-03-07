@@ -15,6 +15,8 @@ namespace ManPowerWeb
         static List<ProgramPlan> plansList = new List<ProgramPlan>();
         List<ProgramPlanApprovalDetails> ProgramPlanApprovalDetails = new List<ProgramPlanApprovalDetails>();
         List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
+        List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
+        SystemUser systemUser = new SystemUser();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,7 +24,16 @@ namespace ManPowerWeb
             {
                 DataSourceBind();
 
+                ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
+                resourcePeopleList = resourcePersonController.GetAllResourcePerson(false);
 
+                //Bind Data To CheckBox List
+                chkList.DataSource = resourcePeopleList;
+                chkList.DataValueField = "ResoursePersonId";
+                chkList.DataTextField = "Name";
+                chkList.DataBind();
+
+                //End Bind Data To CheckBox List
             }
         }
 
@@ -33,7 +44,7 @@ namespace ManPowerWeb
 
             ProgramPlanApprovalDetails = programPlanApprovalDetailsController.GetAll();
 
-            plansList = programPlanController.GetAllProgramPlan();
+            plansList = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
             plansList = plansList.Where(x => x.ProjectStatusId == 2016).ToList();
 
             foreach (var item in plansList)
@@ -57,6 +68,10 @@ namespace ManPowerWeb
 
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
+
+
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            systemUser = systemUserController.GetSystemUser(programPlansListBind._ProgramTarget.CreatedBy, false, false, false);
 
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
 
@@ -84,6 +99,8 @@ namespace ManPowerWeb
             txtActualOutcome.Text = programPlansListBind.Outcome.ToString();
             txtActualOutput.Text = programPlansListBind.ActualOutput.ToString();
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
+            txtManger.Text = systemUser.Name;
+            txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
 
 
 

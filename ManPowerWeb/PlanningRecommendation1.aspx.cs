@@ -17,6 +17,8 @@ namespace ManPowerWeb
         List<ProgramPlanApprovalDetails> ProgramPlanApprovalDetails = new List<ProgramPlanApprovalDetails>();
         List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
         SystemUser systemUser = new SystemUser();
+        List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +26,16 @@ namespace ManPowerWeb
             {
                 DataSourceBind();
 
+                ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
+                resourcePeopleList = resourcePersonController.GetAllResourcePerson(false);
 
+                //Bind Data To CheckBox List
+                chkList.DataSource = resourcePeopleList;
+                chkList.DataValueField = "ResoursePersonId";
+                chkList.DataTextField = "Name";
+                chkList.DataBind();
+
+                //End Bind Data To CheckBox List
             }
         }
 
@@ -67,8 +78,13 @@ namespace ManPowerWeb
 
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
 
+
+
+
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
             projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlansListBind.ProgramPlanId);
+
+
 
             foreach (var item in projectPlanResourcesList)
             {
@@ -92,6 +108,7 @@ namespace ManPowerWeb
             txtActualOutcome.Text = programPlansListBind.Outcome.ToString();
             txtActualOutput.Text = programPlansListBind.ActualOutput.ToString();
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
+            txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
 
 
 

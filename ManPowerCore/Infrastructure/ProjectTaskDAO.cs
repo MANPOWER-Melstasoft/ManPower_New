@@ -14,6 +14,7 @@ namespace ManPowerCore.Infrastructure
         List<ProjectTask> GetAllProjectTask(DBConnection dbConnection);
         ProjectTask GetProjectTask(int id, DBConnection dbConnection);
 
+        int DeletefromProgramPlanId(int programPlanId, DBConnection dbConnection);
         List<ProjectTask> GetProjectTaskByTaskAllocationDetailId(int TaskAllocationDetailId, DBConnection dbConnection);
         List<ProjectTask> GetAllProjectTaskByProgramPlanId(int ProgramPlanId, DBConnection dbConnection);
 
@@ -75,6 +76,18 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<ProjectTask>(dbConnection.dr);
+        }
+
+        public int DeletefromProgramPlanId(int programPlanId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "delete from project_task where program_plan_id =" + programPlanId;
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
         }
     }
 }

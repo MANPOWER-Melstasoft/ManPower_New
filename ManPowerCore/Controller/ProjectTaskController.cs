@@ -15,6 +15,8 @@ namespace ManPowerCore.Controller
         List<ProjectTask> GetAllProjectTask(bool withTaskAllocationDetail);
         ProjectTask GetProjectTask(int id, bool withTaskAllocationDetail);
 
+        int DeletefromProgramPlanId(int programPlanId);
+
     }
 
     public class ProjectTaskControllerImpl : ProjectTaskController
@@ -96,6 +98,28 @@ namespace ManPowerCore.Controller
                 }
 
                 return _ProjectTask;
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+        public int DeletefromProgramPlanId(int programPlanId)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                ProjectTaskDAO DAO = DAOFactory.CreateProjectTaskDAO();
+
+                DAO.DeletefromProgramPlanId(programPlanId, dbConnection);
+
+                return 1;
             }
             catch (Exception ex)
             {

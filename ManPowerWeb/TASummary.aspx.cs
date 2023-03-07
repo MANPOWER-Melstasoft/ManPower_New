@@ -321,6 +321,7 @@ namespace ManPowerWeb
         }
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
+            BindDataSource();
 
             Response.Clear();
             Response.Buffer = true;

@@ -456,31 +456,31 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvVehicleMain;
 
         /// <summary>
-        /// GridView1 control.
+        /// gvTraininReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView gvTraininReq;
 
         /// <summary>
-        /// GridView2 control.
+        /// gvAppLeave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView gvAppLeave;
 
         /// <summary>
-        /// GridView3 control.
+        /// gvAppResign control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.GridView gvAppResign;
 
         /// <summary>
         /// gvAnnualTargetSendToRecommendation control.

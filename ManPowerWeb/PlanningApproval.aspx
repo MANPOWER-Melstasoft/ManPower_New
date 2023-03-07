@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PlanningRecommendation2.aspx.cs" Inherits="ManPowerWeb.PlanningRecommendation2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PlanningApproval.aspx.cs" Inherits="ManPowerWeb.PlanningApproval" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -281,7 +281,7 @@
 
                                 </div>
                                 <div class="col-sm-2">
-                                    <asp:Button runat="server" ID="btnSendToRecommendation" Text="Send To Recommendation" CssClass="btn btn-success " OnClick="btnSendToRecommendation_Click" />
+                                    <asp:Button runat="server" ID="btnSendToRecommendation" Text="Approved" CssClass="btn btn-success " OnClick="btnSendToRecommendation_Click" />
 
                                 </div>
                             </div>

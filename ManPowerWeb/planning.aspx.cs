@@ -290,7 +290,7 @@ namespace ManPowerWeb
                 TableCell cell = e.Row.Cells[0];
                 string cellValue = cell.Text;
 
-                if (Convert.ToDateTime(e.Row.Cells[2].Text) < DateTime.Now)
+                if (Convert.ToDateTime(e.Row.Cells[2].Text) < DateTime.Now && e.Row.Cells[6].Text == "In Progress")
                 {
                     LinkButton childEditButton = (LinkButton)e.Row.FindControl("btnEdit");
                     childEditButton.Text = "Enter Program Details";

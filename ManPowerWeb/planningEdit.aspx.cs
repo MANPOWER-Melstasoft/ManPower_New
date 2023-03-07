@@ -195,10 +195,14 @@ namespace ManPowerWeb
 
             List<TaskAllocationDetail> taskAllocationDetailList1 = taskAllocationDetailController.GetAllTaskAllocationDetail();
 
+            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+
             foreach (var item in taskAllocationDetailList1)
             {
+
                 if (item.TaskTypeId == 1 && item.programPlanId == programPlanId)
                 {
+                    projectTaskController.DeletefromProgramPlanId(item.programPlanId);
                     taskAllocationDetailController.DeleteTaskAllocationDetail(item.TaskAllocationDetailId);
                 }
             }

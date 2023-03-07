@@ -116,111 +116,111 @@
             </div>
 
             <%-- After Complete button content --%>
-            <%if (DateTime.Now > DateTime.Parse(txtDate.Text) && txtDate.Text != "")
-                {
-            %>
-            <h5><b>Count</b></h5>
-            <div class="row mb-3 ms-1">
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
+            <div id="DivAfterComplete" runat="server">
 
-                            <asp:Literal ID="Literal6" runat="server" Text="Male Count"></asp:Literal>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtMaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtMaleCount_TextChanged"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtMaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
-                        </div>
-                    </div>
-                </div>
+                <h5><b>Count</b></h5>
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
 
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
+                                <asp:Literal ID="Literal6" runat="server" Text="Male Count"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server" ID="txtMaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtMaleCount_TextChanged"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtMaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
-                            <asp:Literal ID="Literal7" runat="server" Text="Female Count"></asp:Literal>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtFemaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtFemaleCount_TextChanged"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFemaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
+                            </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal7" runat="server" Text="Female Count"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server" ID="txtFemaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtFemaleCount_TextChanged"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFemaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
 
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal12" runat="server" Text="Total Count"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server" ID="txtTotalCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFemaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal8" runat="server" Text="Total Expenditure"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server" ID="txtExpenditure" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtExpenditure" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtExpenditure"
+                                    ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal13" runat="server" Text="Actual Output"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server" ID="txtActualOutput" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtActualOutput" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal14" runat="server" Text="Actual Outcome"></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server" ID="txtActualOutcome" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtActualOutcome" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
-
-
-            <div class="row mb-3 ms-1">
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-
-                            <asp:Literal ID="Literal12" runat="server" Text="Total Count"></asp:Literal>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtTotalCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFemaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-
-                            <asp:Literal ID="Literal8" runat="server" Text="Total Expenditure"></asp:Literal>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtExpenditure" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtExpenditure" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtExpenditure"
-                                ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-            </div>
-
-
-            <div class="row mb-3 ms-1">
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-
-                            <asp:Literal ID="Literal13" runat="server" Text="Actual Output"></asp:Literal>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtActualOutput" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtActualOutput" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-4">
-
-                            <asp:Literal ID="Literal14" runat="server" Text="Actual Outcome"></asp:Literal>
-                        </div>
-                        <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtActualOutcome" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtActualOutcome" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <%} %>
 
             <%-- End After Complete button Content--%>
 
@@ -265,10 +265,8 @@
                     </div>
                 </div>--%>
             </div>
-            <%if (DateTime.Now > DateTime.Parse(txtDate.Text) && txtDate.Text != "")
-                {
-            %>
-            <div class="row mb-3 ms-1">
+
+            <div class="row mb-3 ms-1" id="divUplaod" runat="server">
 
                 <div class="col-sm-6">
                     <div class="row">
@@ -284,7 +282,6 @@
                 </div>
             </div>
 
-            <%} %>
 
             <div class="row mb-3 ms-1 mt-5">
 

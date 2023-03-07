@@ -4,7 +4,7 @@
     <asp:ScriptManager runat="server" ID="scriptManager"></asp:ScriptManager>
     <div class="container"></div>
     <div class="card ml-4 p-4">
-        <h2><b>Edit Program Plan</b></h2>
+        <h2><b>Program Plan</b></h2>
         <div class="mt-3">
             <div class="row mb-3 ms-1">
 
@@ -115,11 +115,12 @@
 
             </div>
 
+            <%-- After Complete button content --%>
+            <%if (DateTime.Now > DateTime.Parse(txtDate.Text) && txtDate.Text != "")
+                {
+            %>
             <h5><b>Count</b></h5>
-
-
             <div class="row mb-3 ms-1">
-
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-4">
@@ -141,7 +142,7 @@
                             <asp:Literal ID="Literal7" runat="server" Text="Female Count"></asp:Literal>
                         </div>
                         <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtFemaleCount" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtFemaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFemaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </div>
@@ -150,6 +151,78 @@
 
 
             </div>
+
+
+            <div class="row mb-3 ms-1">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <asp:Literal ID="Literal12" runat="server" Text="Total Count"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:TextBox runat="server" ID="txtTotalCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFemaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <asp:Literal ID="Literal8" runat="server" Text="Total Expenditure"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:TextBox runat="server" ID="txtExpenditure" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtExpenditure" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtExpenditure"
+                                ErrorMessage="Incorrect Input" ValidationExpression="^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$" ValidationGroup="1" ForeColor="Red"></asp:RegularExpressionValidator>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="row mb-3 ms-1">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <asp:Literal ID="Literal13" runat="server" Text="Actual Output"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:TextBox runat="server" ID="txtActualOutput" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtActualOutput" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <asp:Literal ID="Literal14" runat="server" Text="Actual Outcome"></asp:Literal>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:TextBox runat="server" ID="txtActualOutcome" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtActualOutcome" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <%} %>
+
+            <%-- End After Complete button Content--%>
 
             <div class="row mb-3 ms-1">
 
@@ -192,7 +265,9 @@
                     </div>
                 </div>--%>
             </div>
-
+            <%if (DateTime.Now > DateTime.Parse(txtDate.Text) && txtDate.Text != "")
+                {
+            %>
             <div class="row mb-3 ms-1">
 
                 <div class="col-sm-6">
@@ -209,6 +284,8 @@
                 </div>
             </div>
 
+            <%} %>
+
             <div class="row mb-3 ms-1 mt-5">
 
                 <div class="col-sm-6">
@@ -216,15 +293,20 @@
                         <div class="col-sm-2">
                             <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" ValidationGroup="1" BackColor="#212529" BorderColor="#212529" />
                         </div>
+
                         <div class="col-sm-2">
                             <asp:Button runat="server" ID="btnSave" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSave_Click1" ValidationGroup="1" />
 
                         </div>
+
+                        <%if (DateTime.Now > DateTime.Parse(txtDate.Text) && txtDate.Text != "")
+                            {
+                        %>
                         <div class="col-sm-2">
-                            <asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success " OnClick="btnComplete_Click" />
-
+                            <%--<asp:Button runat="server" ID="btnComplete" Text="Complete" CssClass="btn btn-success " OnClick="btnComplete_Click" />--%>
+                            <asp:Button runat="server" ID="btnSendToRecommendation" Text="Send To Recommendation" CssClass="btn btn-success " OnClick="btnSendToRecommendation_Click" />
                         </div>
-
+                        <%} %>
                     </div>
                 </div>
             </div>

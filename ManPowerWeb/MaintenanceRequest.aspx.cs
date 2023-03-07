@@ -15,9 +15,6 @@ namespace ManPowerWeb
     public partial class MaintenanceRequest : System.Web.UI.Page
     {
         List<MaintenanceCategory> maintenanceCategories = new List<MaintenanceCategory>();
-        List<SystemUser> listUsers = new List<SystemUser>();
-        int empId;
-        string name;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,27 +37,11 @@ namespace ManPowerWeb
             ddlCategory.DataValueField = "MaintenanceCategoryId";
             ddlCategory.DataBind();
 
-            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            listUsers = systemUserController.GetAllSystemUser(true, false, false);
-
-            foreach (var i in listUsers.Where(u => u.SystemUserId == Convert.ToInt32(Session["UserId"])))
-            {
-                name = i.Name;
-            }
-
-            requestedBy.Text = name;
+            requestedBy.Text = Session["Name"].ToString();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            listUsers = systemUserController.GetAllSystemUser(true, false, false);
-
-            foreach (var i in listUsers.Where(u => u.SystemUserId == Convert.ToInt32(Session["UserId"])))
-            {
-                empId = i.EmpNumber;
-            }
-
             VehicleMeintenance vehicleRequest = new VehicleMeintenance();
             VehicleMaintenanceController vehicleMaintenance = ControllerFactory.CreateVehicleMaintenanceController();
 
@@ -74,7 +55,7 @@ namespace ManPowerWeb
             vehicleRequest.RequestDescription = description.Text;
             vehicleRequest.IsApproved = 0;
             vehicleRequest.EstimatedCost = 0;
-            vehicleRequest.EmpId = 25;
+            vehicleRequest.EmpId = Convert.ToInt32(Session["EmpNumber"]);
             vehicleRequest.RejectedReason = "";
 
 

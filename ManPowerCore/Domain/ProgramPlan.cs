@@ -90,6 +90,8 @@ namespace ManPowerCore.Domain
         public List<ProgramBudget> _ProgramBudget { get; set; }
         public List<ProjectTask> _ProjectTask { get; set; }
 
+        public List<ProgramPlanApprovalDetails> _ProgramPlanApprovalDetails { get; set; }
+
         public ProgramCategory _ProgramCategory { get; set; } = new ProgramCategory();
         public ProjectStatus _ProjectStatus { get; set; } = new ProjectStatus();
         public ProgramTarget _ProgramTarget { get; set; } = new ProgramTarget();

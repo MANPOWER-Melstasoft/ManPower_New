@@ -38,9 +38,9 @@ namespace ManPowerWeb
             ddlCategory.DataValueField = "MaintenanceCategoryId";
             ddlCategory.DataBind();
 
-            
 
-            foreach(var i in vehicleMeintenances.Where(u => u.IsApproved == 1 && u.ApprovedBy == Convert.ToInt32(Session["UserId"])))
+
+            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 1 && u.ApprovedBy == Convert.ToInt32(Session["UserId"])))
             {
                 searchList.Add(i);
             }
@@ -65,5 +65,9 @@ namespace ManPowerWeb
             }
         }
 
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

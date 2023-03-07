@@ -69,6 +69,7 @@ namespace ManPowerWeb
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
 
+            List<ProgramPlan> programPlansList = plansList.Where(x => x.ProgramPlanId == programPlansListBind.ProgramPlanId).ToList();
 
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             systemUser = systemUserController.GetSystemUser(programPlansListBind._ProgramTarget.CreatedBy, false, false, false);
@@ -101,6 +102,17 @@ namespace ManPowerWeb
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
             txtManger.Text = systemUser.Name;
             txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
+
+
+            if (programPlansListBind.FinancialSource != "")
+            {
+                gvFileResourses.DataSource = programPlansList;
+                gvFileResourses.DataBind();
+            }
+            else
+            {
+                lblListOfUploadedFiles.Text = "N/A";
+            }
 
 
 

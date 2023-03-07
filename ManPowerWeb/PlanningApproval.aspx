@@ -266,8 +266,21 @@
                                     <asp:Literal ID="Literal9" runat="server" Text="Upload Documnents"></asp:Literal>
                                 </div>
                                 <div class="col-md-4">
-                                    <asp:FileUpload ID="Uploader" CssClass="form-control form-control-user" runat="server" AllowMultiple="true" />
                                     <asp:Label ID="lblListOfUploadedFiles" runat="server" />
+                                    <asp:GridView runat="server" ID="gvFileResourses" AutoGenerateColumns="false" CssClass="table table-bordered" ShowHeaderWhenEmpty="true"
+                                        EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+                                        <Columns>
+                                            <asp:BoundField DataField="FinancialSource" HeaderText="File Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                            <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <a href="/SystemDocuments/ProgramPlanResources/<%# Eval("FinancialSource") %>" download>Download</a>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <EmptyDataTemplate>
+                                            No Resourses
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
                                 </div>
                             </div>
                         </div>

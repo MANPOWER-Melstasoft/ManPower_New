@@ -150,5 +150,10 @@ namespace ManPowerWeb
             //string url = "TrainingAd.aspx?TrainingMainId=" + trainingMainId;
             //Response.Redirect(url);
         }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TrainingFront.aspx");
+        }
     }
 }

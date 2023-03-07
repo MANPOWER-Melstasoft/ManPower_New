@@ -17,45 +17,82 @@ namespace ManPowerWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (!IsPostBack)
+            //{
+            //    BindListView();
+            //}
+        }
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
             if (!IsPostBack)
             {
                 BindListView();
             }
         }
 
+        //public void BindListView()
+        //{
+        //    List<TrainingMain> trainningMainList = new List<TrainingMain>();
+        //    TrainingMainController trainingMainController = ControllerFactory.CreateTrainingMainController();
+
+        //    trainningMainList = trainingMainController.GetAllTrainingMain();
+        //    trainningMainList = trainningMainList.Where(x => x.Is_Active == 1 && x.Start_Date > DateTime.Now).ToList();
+
+        //    foreach (var item in trainningMainList)
+        //    {
+        //        item.Post_img = "SystemDocuments/TrainingImages/" + item.Post_img;
+        //    }
+
+        //    foreach (var item in trainningMainList)
+        //    {
+        //        StringBuilder cstextCard = new StringBuilder();
+
+        //        cstextCard.Append(" <div class=\"col-xl-3 col-md-6\">   <div class=\"card mb-4\">   <div class=\"card-body\">   <asp:Image ID=\"");
+        //        cstextCard.Append(item.TrainingMainId.ToString());
+        //        cstextCard.Append("\" runat=\"server\" Height=\"100%\" Width=\"100%\" ImageUrl=\"");
+        //        cstextCard.Append(item.Post_img);
+        //        cstextCard.Append("\" />    <a class=\"small text-white stretched-link\" href=\"TrainingAd.aspx?TrainingMainId=");
+        //        cstextCard.Append(item.TrainingMainId.ToString());
+        //        cstextCard.Append("\"></a>    </div>    <div class=\"card-footer\">  <div class=\"text-center\">");
+        //        cstextCard.Append(item.Title);
+        //        cstextCard.Append("</div>     </div> </div>   </div>");
+
+        //        ltTraining.Text += cstextCard;
+        //    }
+
+
+        //}
+
         public void BindListView()
         {
-            List<TrainingMain> trainningMainList = new List<TrainingMain>();
-
+            List<TrainingMain> trainingMainList = new List<TrainingMain>();
             TrainingMainController trainingMainController = ControllerFactory.CreateTrainingMainController();
 
-            trainningMainList = trainingMainController.GetAllTrainingMain();
+            trainingMainList = trainingMainController.GetAllTrainingMain();
+            trainingMainList = trainingMainList.Where(x => x.Is_Active == 1 && x.Start_Date > DateTime.Now).ToList();
 
-            trainningMainList = trainningMainList.Where(x => x.Is_Active == 1 && x.Start_Date > DateTime.Now).ToList();
-
-            foreach (var item in trainningMainList)
+            foreach (var item in trainingMainList)
             {
                 item.Post_img = "SystemDocuments/TrainingImages/" + item.Post_img;
-            }
+                //item.Post_img = "SystemDocuments/TrainingImages/bottomimg2.jpg";
 
-            foreach (var item in trainningMainList)
-            {
                 StringBuilder cstextCard = new StringBuilder();
 
-                cstextCard.Append(" <div class=\"col-xl-3 col-md-6\">   <div class=\"card mb-4\">   <div class=\"card-body\">   <asp:Image ID=\"");
+
+
+                cstextCard.Append(" <div class='col-xl-3 col-md-6'>   <div class='card mb-4'>   <div class='card-body'>   <img id =");
                 cstextCard.Append(item.TrainingMainId.ToString());
-                cstextCard.Append("\" runat=\"server\" Height=\"100%\" Width=\"100%\" ImageUrl=\"");
+                cstextCard.Append("\" style=\"height:100%;width:220px;\" src=");
                 cstextCard.Append(item.Post_img);
-                cstextCard.Append("\" />    <a class=\"small text-white stretched-link\" href=\"TrainingAd.aspx?TrainingMainId=");
+                cstextCard.Append(">    <a class=\"small text-white stretched-link\" href=\"TrainingAd.aspx?TrainingMainId=");
                 cstextCard.Append(item.TrainingMainId.ToString());
                 cstextCard.Append("\"></a>    </div>    <div class=\"card-footer\">  <div class=\"text-center\">");
                 cstextCard.Append(item.Title);
                 cstextCard.Append("</div>     </div> </div>   </div>");
 
-                ltTraining.Text += cstextCard;
+                ltTraining.Text += cstextCard.ToString();
             }
-
-
         }
     }
 }

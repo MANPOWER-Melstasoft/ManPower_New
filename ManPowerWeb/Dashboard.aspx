@@ -12,10 +12,9 @@
 
         <!-- Content Row -->
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                      || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                         || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
-
         <div class="row">
 
             <!-- No of Employees -->
@@ -119,28 +118,27 @@
                 </asp:UpdatePanel>
             </div>
 
-
         </div>
 
+        <div>
+            <div class="d-sm-flex align-items-center justify-content-between mt-4">
+                <h1 runat="server" id="DME21Heading" class="h4 mb-0 text-gray-800" visible="false">Users who haven't submitted DME 21 for Next Month
 
+                </h1>
+            </div>
 
-        <div class="d-sm-flex align-items-center justify-content-between mt-4">
-            <h1 runat="server" id="DME21Heading" class="h4 mb-0 text-gray-800" visible="false">Users who haven't submitted DME 21 for Next Month
-
-            </h1>
-        </div>
-
-        <div class="row">
-            <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
-                <asp:GridView Style="margin-top: 30px;" ID="gvUser" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                    CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
-                    <Columns>
-                        <asp:BoundField DataField="SystemUserId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
-                        <asp:BoundField DataField="Name" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
-                        <asp:BoundField DataField="EmpNumber" HeaderText="EMPLOYEE NUMBER" HeaderStyle-CssClass="table-dark" />
-                        <asp:BoundField DataField="Email" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
-                    </Columns>
-                </asp:GridView>
+            <div class="row">
+                <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
+                    <asp:GridView Style="margin-top: 30px;" ID="gvUser" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                        CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging">
+                        <Columns>
+                            <asp:BoundField DataField="SystemUserId" HeaderText="ID" HeaderStyle-CssClass="table-dark" />
+                            <asp:BoundField DataField="Name" HeaderText="NAME" HeaderStyle-CssClass="table-dark" />
+                            <asp:BoundField DataField="EmpNumber" HeaderText="EMPLOYEE NUMBER" HeaderStyle-CssClass="table-dark" />
+                            <asp:BoundField DataField="Email" HeaderText="EMAIL" HeaderStyle-CssClass="table-dark" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
 
@@ -149,7 +147,7 @@
 
         <!-- Content Row -->
         <% if (Session["UserTypeId"].ToString() == "6"
-                        || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                         || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
             {
         %>
 
@@ -289,8 +287,10 @@
 
         <%} %>
 
+
+
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+                         || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -318,6 +318,122 @@
                     </asp:GridView>
                 </div>
             </div>
+        </div>
+        <%} %>
+
+
+
+        <!-- Admin widgets -->
+        <% if (Session["UserTypeId"].ToString() == "14")
+            {
+        %>
+        <div class="row">
+
+            <!-- Approved vehicle maintenances -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel12">
+                    <ContentTemplate>
+                        <div class="card border-left-primary shadow h-100 py-2" data-toggle="modal" data-target="#ApprovedVehicleMaintenances" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            No of Approved vehicle maintenances
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="lblAppVehicle" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fa fa-car fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer12" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+            <!-- Approved trainings -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel9">
+                    <ContentTemplate>
+                        <div class="card border-left-success shadow h-100 py-2" data-toggle="modal" data-target="#ApprovedTrainings" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            No Of Approved trainings
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="lblAppTrain" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer9" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+            <!-- Approved leaves -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel10">
+                    <ContentTemplate>
+                        <div class="card border-left-info shadow h-100 py-2" data-toggle="modal" data-target="#Approvedleaves" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            No Of Approved leaves
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="lblAppLeave" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer10" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+            <!-- Approved Resignations -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel11">
+                    <ContentTemplate>
+                        <div class="card border-left-warning shadow h-100 py-2" data-toggle="modal" data-target="#ApprovedResignations" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            No Of Approved Resignations
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="lblAppResign" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer11" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+
         </div>
         <%} %>
     </div>
@@ -594,6 +710,169 @@
         </div>
     </div>
     <%--end dialog box--%>
+
+
+
+
+
+
+
+
+
+    <%--Admin Widgets--%>
+
+    <%--dialog box ApprovedVehicleMaintenances--%>
+    <div class="modal" id="ApprovedVehicleMaintenances" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">View No Of Approved Vehicle Maintenances</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="gvVehicleMain"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+
+                                <asp:BoundField DataField="VehicleMeintenanceId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="EmpId" HeaderText="EmpId" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="RequestDate" HeaderText="Request Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="ApprovedDate" HeaderText="Approved Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="VehicleNumber" HeaderText="Vehicle Number" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="EstimatedCost" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
+
+                            </Columns>
+                            <EmptyDataTemplate>No This month Targets To Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box--%>
+
+    <%--dialog box ApprovedTrainings--%>
+    <div class="modal" id="ApprovedTrainings" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">View Total Approved Trainings</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="GridView1"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+
+                                <asp:BoundField DataField="ProgramTargetId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Outcome" HeaderText="Outcome" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="NoOfProjects" HeaderText="No of Projects" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="EstimatedAmount" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
+
+                            </Columns>
+                            <EmptyDataTemplate>No This month Targets To Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box--%>
+
+    <%--dialog box Approvedleaves--%>
+    <div class="modal" id="Approvedleaves" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">View Total Approved Leaves</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="GridView2"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+                                <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="VoteNumber" HeaderText="Vote Number" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Amount" HeaderText="Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
+                            </Columns>
+
+                            <EmptyDataTemplate>No Vote Allocation To Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box--%>
+
+    <%--dialog box ApprovedResignations--%>
+    <div class="modal" id="ApprovedResignations" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">View Total Approved Resignations</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="GridView3"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+                                <asp:BoundField DataField="ProgramTargetId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Outcome" HeaderText="Outcome" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="NoOfProjects" HeaderText="No of Projects" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="EstimatedAmount" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
+                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="EndDate" HeaderText="End Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                            </Columns>
+                            <EmptyDataTemplate>No Programs to Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box--%>
+
+
+
 
 
 

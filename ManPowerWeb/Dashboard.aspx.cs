@@ -31,10 +31,8 @@ namespace ManPowerWeb
 
             if (Session["UserId"] != null)
             {
-
                 if (!IsPostBack)
                 {
-
                     if (Convert.ToInt32(Session["UserTypeId"]) == 1 || Convert.ToInt32(Session["UserTypeId"]) == 2)
                     {
                         IsNotSubmitDMEParentGV();
@@ -45,14 +43,14 @@ namespace ManPowerWeb
                     {
                         RaiseNotification();
                     }
-                    BindCardData();
-                    bindDialogbox();
                     if (Convert.ToInt32(Session["UserTypeId"]) == 6 || Convert.ToInt32(Session["UserTypeId"]) == 7
                         || Convert.ToInt32(Session["UserTypeId"]) == 8 || Convert.ToInt32(Session["UserTypeId"]) == 9)
                     {
                         BindAnnualTarget();
                     }
 
+                    BindCardData();
+                    bindDialogbox();
                     annulTargetSendToRecommendationBind();
                 }
             }
@@ -61,6 +59,8 @@ namespace ManPowerWeb
                 Response.Redirect("Login.aspx");
             }
         }
+
+
         protected bool IsNotSubmitDME()
         {
             if (DateTime.Now.Day > 25)
@@ -179,6 +179,8 @@ namespace ManPowerWeb
 
         protected void BindCardData()
         {
+            BindAdminCardData();
+
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
             if (Session["UserTypeId"].ToString() == "1")
@@ -352,6 +354,18 @@ namespace ManPowerWeb
             lblTUCP.Text = programTargetsListFilterTotalUpComming.Count.ToString();
             gvTotalUpComingProgrm.DataSource = programTargetsListFilterTotalUpComming;
             gvTotalUpComingProgrm.DataBind();
+        }
+
+        protected void BindAdminCardData()
+        {
+            //--------------------- VEHICLE MAINTAINCE ---------------------------------------
+            VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
+            List<VehicleMeintenance> vehicleMeintenances = vehicleMaintenanceController.GetAllVehicleMeintenance();
+            vehicleMeintenances = vehicleMeintenances.Where(x => x.IsApproved == 2).ToList();
+            lblAppVehicle.Text = vehicleMeintenances.Count.ToString();
+            gvVehicleMain.DataSource = vehicleMeintenances;
+            gvVehicleMain.DataBind();
+
         }
 
         private void bindDialogbox()

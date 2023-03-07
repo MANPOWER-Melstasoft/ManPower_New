@@ -149,7 +149,7 @@ namespace ManPowerWeb
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation2.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send To Recommendation Succesfully!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation2.aspx'},2500);", true);
 
             }
             else

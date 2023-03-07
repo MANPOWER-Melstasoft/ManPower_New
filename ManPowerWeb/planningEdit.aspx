@@ -128,7 +128,7 @@
                             <asp:Literal ID="Literal6" runat="server" Text="Male Count"></asp:Literal>
                         </div>
                         <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtMaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtMaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtMaleCount_TextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtMaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </div>
@@ -142,7 +142,7 @@
                             <asp:Literal ID="Literal7" runat="server" Text="Female Count"></asp:Literal>
                         </div>
                         <div class="col-md-4">
-                            <asp:TextBox runat="server" ID="txtFemaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtFemaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0" AutoPostBack="true" OnTextChanged="txtFemaleCount_TextChanged"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="txtFemaleCount" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </div>

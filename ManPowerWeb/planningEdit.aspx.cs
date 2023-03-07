@@ -561,8 +561,16 @@ namespace ManPowerWeb
             }
         }
 
+        protected void txtFemaleCount_TextChanged(object sender, EventArgs e)
+        {
+            txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
+        }
 
+        protected void txtMaleCount_TextChanged(object sender, EventArgs e)
+        {
+            txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
 
+        }
     }
 
 

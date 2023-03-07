@@ -134,6 +134,7 @@ namespace ManPowerWeb
 
             List<OfficerList> listSystemUseerOfficer = new List<OfficerList>();
             listSystemUseerOfficer = officerListController.getOfficerList();
+            listSystemUseerOfficer = listSystemUseerOfficer.Where(x => x.UserTypeId == 6 || x.UserTypeId == 7 || x.UserTypeId == 8 || x.UserTypeId == 9).ToList();
 
             if (ddlPosition.SelectedValue != "")
             {

@@ -10,12 +10,11 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class PlanningRecommendation2 : System.Web.UI.Page
+    public partial class PlanningApproval : System.Web.UI.Page
     {
         static List<ProgramPlan> plansList = new List<ProgramPlan>();
         List<ProgramPlanApprovalDetails> ProgramPlanApprovalDetails = new List<ProgramPlanApprovalDetails>();
         List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,6 +24,7 @@ namespace ManPowerWeb
 
             }
         }
+
 
         private void DataSourceBind()
         {
@@ -98,13 +98,16 @@ namespace ManPowerWeb
             ProgramPlanApprovalDetails programPlanApprovalDetails = new ProgramPlanApprovalDetails();
 
             programPlanApprovalDetails.ProgramPlanId = programPlanId;
-            programPlanApprovalDetails.ProjectStatus = 2018;
+            programPlanApprovalDetails.ProjectStatus = 7;
 
             programPlanApprovalDetails.Recommendation1By = 0;
             //programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
 
-            programPlanApprovalDetails.Recommendation2By = Convert.ToInt32(Session["DepUnitPositionId"]); ;
-            programPlanApprovalDetails.Recommendation2Date = DateTime.Now;
+            programPlanApprovalDetails.Recommendation2By = 0;
+            // programPlanApprovalDetails.Recommendation2Date = DateTime.Now;
+
+            programPlanApprovalDetails.ApprovedDate = DateTime.Now;
+            programPlanApprovalDetails.ApprovedBy = Convert.ToInt32(Session["DepUnitPositionId"]);
 
             programPlanApprovalDetails.RejectReason = txtrejectReason.Text;
 
@@ -113,7 +116,7 @@ namespace ManPowerWeb
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation2.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='PlanningApproval.aspx'},2500);", true);
 
             }
             else
@@ -131,16 +134,16 @@ namespace ManPowerWeb
             ProgramPlanApprovalDetails programPlanApprovalDetails = new ProgramPlanApprovalDetails();
 
             programPlanApprovalDetails.ProgramPlanId = programPlanId;
-            programPlanApprovalDetails.ProjectStatus = 2017;
+            programPlanApprovalDetails.ProjectStatus = 4;
 
             programPlanApprovalDetails.Recommendation1By = 0;
             //programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
 
-            programPlanApprovalDetails.Recommendation2By = Convert.ToInt32(Session["DepUnitPositionId"]);
-            programPlanApprovalDetails.Recommendation2Date = DateTime.Now;
+            programPlanApprovalDetails.Recommendation2By = 0;
+            //            programPlanApprovalDetails.Recommendation2Date = DateTime.Now;
 
-            programPlanApprovalDetails.ApprovedBy = Convert.ToInt32(Session["DepUnitParentId"]);
-            //programPlanApprovalDetails.ApprovedDate = DateTime.Now;
+            programPlanApprovalDetails.ApprovedBy = Convert.ToInt32(Session["DepUnitPositionId"]);
+            programPlanApprovalDetails.ApprovedDate = DateTime.Now;
 
             programPlanApprovalDetails.RejectReason = "";
 
@@ -149,7 +152,7 @@ namespace ManPowerWeb
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send To Recommendation Succesfully!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation2.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='PlanningApproval.aspx'},2500);", true);
 
             }
             else

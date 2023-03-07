@@ -24,8 +24,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Program_Plan_Approval_Details(ProgramPlan_Id,ProgramPlan_Status,Recommendation1_By,Recommendation1_Date,Recommendation2_By,Recommendation2_Date,Reject_Reason) " +
-                "VALUES(@ProgramPlanId,@ProjectStatus,@Recommendation1By,@Recommendation1Date,@Recommendation2By,@Recommendation2Date,@RejectReason)";
+            dbConnection.cmd.CommandText = "INSERT INTO Program_Plan_Approval_Details(ProgramPlan_Id,ProgramPlan_Status,Recommendation1_By,Recommendation1_Date,Recommendation2_By,Recommendation2_Date,Reject_Reason,Approval_By,Approval_Date) " +
+                "VALUES(@ProgramPlanId,@ProjectStatus,@Recommendation1By,@Recommendation1Date,@Recommendation2By,@Recommendation2Date,@RejectReason,@ApprovedBy,@ApprovedDate)";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@ProgramPlanId", programPlanApprovalDetails.ProgramPlanId);
@@ -51,6 +51,18 @@ namespace ManPowerCore.Infrastructure
             else
             {
                 dbConnection.cmd.Parameters.AddWithValue("@Recommendation2Date", programPlanApprovalDetails.Recommendation2Date);
+
+            }
+
+            dbConnection.cmd.Parameters.AddWithValue("@ApprovedBy", programPlanApprovalDetails.ApprovedBy);
+            if (programPlanApprovalDetails.ApprovedDate.Year == 1)
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@ApprovedDate", SqlDateTime.Null);
+
+            }
+            else
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@ApprovedDate", programPlanApprovalDetails.Recommendation2Date);
 
             }
             dbConnection.cmd.Parameters.AddWithValue("@RejectReason", programPlanApprovalDetails.RejectReason);

@@ -52,7 +52,8 @@ namespace ManPowerWeb
 
                 }
 
-
+                DivAfterComplete.Visible = false;
+                divUplaod.Visible = false;
 
                 dataSource();
             }
@@ -126,10 +127,18 @@ namespace ManPowerWeb
 
             txtEstimateAmount.Text = programTarget.EstimatedAmount.ToString();
 
-            if (programPlansListBind[0].Date < DateTime.Now)
+            if (programPlansListBind[0].Date <= DateTime.Now)
             {
+                if (programPlansListBind[0].ProjectStatusId == 1)
+                {
+                    btnSave.Visible = true;
+                }
+                else
+                {
+                    btnSave.Visible = false;
+                }
 
-                btnSave.Visible = false;
+
             }
             else
             {
@@ -144,10 +153,17 @@ namespace ManPowerWeb
 
             }
 
-            if (programPlansListBind[0].ProjectStatusId == 4)
+            if (programPlansListBind[0].ProjectStatusId == 4 || programPlansListBind[0].ProjectStatusId == 1)
             {
                 btnSendToRecommendation.Visible = false;
 
+
+            }
+
+            if (programPlansListBind[0].Date < DateTime.Now && programPlansListBind[0].ProjectStatusId != 1)
+            {
+                DivAfterComplete.Visible = true;
+                divUplaod.Visible = true;
             }
 
 
@@ -561,8 +577,16 @@ namespace ManPowerWeb
             }
         }
 
+        protected void txtFemaleCount_TextChanged(object sender, EventArgs e)
+        {
+            txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
+        }
 
+        protected void txtMaleCount_TextChanged(object sender, EventArgs e)
+        {
+            txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
 
+        }
     }
 
 

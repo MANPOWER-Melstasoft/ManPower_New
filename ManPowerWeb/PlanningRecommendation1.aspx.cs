@@ -16,6 +16,7 @@ namespace ManPowerWeb
         static List<ProgramPlan> plansList = new List<ProgramPlan>();
         List<ProgramPlanApprovalDetails> ProgramPlanApprovalDetails = new List<ProgramPlanApprovalDetails>();
         List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
+        SystemUser systemUser = new SystemUser();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,8 +35,10 @@ namespace ManPowerWeb
 
             ProgramPlanApprovalDetails = programPlanApprovalDetailsController.GetAll();
 
-            plansList = programPlanController.GetAllProgramPlan();
+            plansList = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
             plansList = plansList.Where(x => x.ProjectStatusId == 2013).ToList();
+
+
 
             foreach (var item in plansList)
             {
@@ -59,6 +62,9 @@ namespace ManPowerWeb
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
 
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            systemUser = systemUserController.GetSystemUser(programPlansListBind._ProgramTarget.CreatedBy, false, false, false);
+
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
 
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
@@ -75,6 +81,7 @@ namespace ManPowerWeb
                 }
             }
 
+            txtManger.Text = systemUser.Name;
             txtProgramName.Text = programPlansListBind.ProgramName;
             txtDate.Text = programPlansListBind.Date.ToString("yyyy-MM-dd");
             txtBudget.Text = programPlansListBind.ApprovedAmount.ToString();

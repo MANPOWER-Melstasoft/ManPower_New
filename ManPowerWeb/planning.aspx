@@ -97,6 +97,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="_ProgramTarget.ProgramTargetId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.Title" HeaderText="Title" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.Description" HeaderText="Description" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetYear" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetMonth" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
@@ -121,7 +122,7 @@
                             <tr>
                                 <td colspan="999">
                                     <div id="ProgramTargetId-<%# Eval("ProgramTargetId") %>" style="display: none; position: relative;">
-                                        <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId">
+                                        <asp:GridView ID="gvPlanDetails" runat="server" AutoGenerateColumns="false" CssClass="table  ChildGrid" EmptyDataText="No Item Found" DataKeyNames="ProgramTargetId" OnRowDataBound="gvPlanDetails_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProgramPlanId" HeaderStyle-CssClass="table-dark" HeaderText="Program Plan Id" />
                                                 <asp:BoundField DataField="ProgramName" HeaderStyle-CssClass="table-dark" HeaderText="Program Name" />
@@ -136,12 +137,22 @@
                                                         <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "3" ?true:false %>' Text="Hold" ForeColor="Yellow"> </asp:Label>
                                                         <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "4" ?true:false %>' Text="Complete" ForeColor="Green"> </asp:Label>
 
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2013" ?true:false %>' Text="Pending Recommendation District Head" ForeColor="red"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2014" ?true:false %>' Text="Approved Recommendation District Head" ForeColor="Blue"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2015" ?true:false %>' Text="Reject Recommendation District Head" ForeColor="Yellow"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2016" ?true:false %>' Text="Pending Recommendation Head Office" ForeColor="Green"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2017" ?true:false %>' Text="Approved Recommendation Head Office" ForeColor="Yellow"> </asp:Label>
+                                                        <asp:Label runat="server" Visible='<%#Eval("ProjectStatusId").ToString() == "2018" ?true:false %>' Text="Reject Recommendation Head Office " ForeColor="Green"> </asp:Label>
+
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-Width="150px">
                                                     <ItemTemplate>
+
                                                         <asp:LinkButton runat="server" CommandName="Edit" ID="btnEdit" CssClass="btn btn-warning" OnClick="btnEdit_Click" Visible='<%#Eval("ProjectStatusId").ToString() != "4" ?true:false %>' Text="Edit"></asp:LinkButton>
                                                         <asp:LinkButton runat="server" CommandName="View" ID="btnView" CssClass="btn btn-warning" OnClick="btnView_Click" Visible='<%#Eval("ProjectStatusId").ToString() == "4" ?true:false %>' Text="View"></asp:LinkButton>
+
+
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

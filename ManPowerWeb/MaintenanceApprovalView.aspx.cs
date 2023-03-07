@@ -36,7 +36,7 @@ namespace ManPowerWeb
                     vNo.Text = i.VehicleNumber;
                     description.Text = i.RequestDescription.ToString();
 
-                    if(i.CategoryId == 1)
+                    if (i.CategoryId == 1)
                     {
                         category.Text = "Repare";
                     }
@@ -79,7 +79,7 @@ namespace ManPowerWeb
             string id = Request.QueryString["id"];
 
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 2, Convert.ToInt32(Session["UserId"]),"");
+            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 2, Convert.ToInt32(Session["UserId"]), "");
 
             if (result == 0)
             {
@@ -98,7 +98,7 @@ namespace ManPowerWeb
             string id = Request.QueryString["id"];
 
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 3, Convert.ToInt32(Session["UserId"]),rejectReason.Text);
+            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 3, Convert.ToInt32(Session["UserId"]), rejectReason.Text);
 
             if (result == 0)
             {

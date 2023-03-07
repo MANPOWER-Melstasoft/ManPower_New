@@ -218,7 +218,7 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>VNOP Number : </label>
+                                            <label>W & OP Number : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="vnop" runat="server" ReadOnly="true" CssClass="form-control form-control-user"></asp:TextBox>

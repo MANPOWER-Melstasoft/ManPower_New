@@ -73,6 +73,8 @@ namespace ManPowerWeb
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
 
+            List<ProgramPlan> programPlansList = plansList.Where(x => x.ProgramPlanId == programPlansListBind.ProgramPlanId).ToList();
+
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             systemUser = systemUserController.GetSystemUser(programPlansListBind._ProgramTarget.CreatedBy, false, false, false);
 
@@ -109,6 +111,19 @@ namespace ManPowerWeb
             txtActualOutput.Text = programPlansListBind.ActualOutput.ToString();
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
             txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
+
+
+
+            if (programPlansListBind.FinancialSource != "")
+            {
+                gvFileResourses.DataSource = programPlansList;
+                gvFileResourses.DataBind();
+            }
+            else
+            {
+                lblListOfUploadedFiles.Text = "N/A";
+            }
+
 
 
 
@@ -178,6 +193,11 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
+        }
+
+        protected void btnView_Click1(object sender, EventArgs e)
+        {
+
         }
     }
 }

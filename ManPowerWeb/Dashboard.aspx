@@ -12,7 +12,7 @@
 
         <!-- Content Row -->
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                                                       || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                                                              || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div class="row">
@@ -20,7 +20,11 @@
             <!-- No of Employees -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
+                    <% if (lblNumberOfEmp.Text.ToString() != "N/A")
+                        {
+                    %>
                     <a href="UserList.aspx" style="text-decoration: none; cursor: pointer">
+                        <%} %>
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
@@ -36,11 +40,15 @@
                                 </div>
                             </div>
                         </div>
+                        <% if (lblNumberOfEmp.Text.ToString() != "N/A")
+                            {
+                        %>
                     </a>
+                    <%} %>
                 </div>
             </div>
 
-            <!-- This month Targets -->
+            <%--<!-- This month Targets -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <asp:UpdatePanel runat="server" ID="updatePanel6">
                     <ContentTemplate>
@@ -116,10 +124,136 @@
                         <asp:Timer ID="timer7" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+            </div>--%>
+
+
+            <%} %>
+
+
+            <% if (Session["UserTypeId"].ToString() == "3")
+                {
+            %>
+
+            <!-- Recommendation 1 DME 21 -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <% if (lblrec1DME21.Text.ToString() != "N/A")
+                    {%>
+                <a href="Recommend1DME21.aspx" style="text-decoration: none; cursor: pointer">
+                    <%} %>
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Recommendation 1 DME 21
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <asp:Label ID="lblrec1DME21" runat="server" Text="N/A"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% if (lblrec1DME21.Text.ToString() != "N/A")
+                        {%>
+                </a>
+                <%} %>
+            </div>
+
+            <!-- Recommendation 1 DME 22 -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <% if (lblrec1DME22.Text.ToString() != "N/A")
+                    {%>
+                <a href="dme22rec1.aspx" style="text-decoration: none; cursor: pointer">
+                    <%} %>
+                    <div class="card border-left-info shadow h-100 py-2" data-toggle="modal">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Recommendation 1 DME 22
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <asp:Label ID="lblrec1DME22" runat="server" Text="N/A"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% if (lblrec1DME22.Text.ToString() != "N/A")
+                        { %>
+                </a>
+                <%} %>
+            </div>
+
+            <!-- Completed Programs -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel15">
+                    <ContentTemplate>
+                        <div class="card border-left-warning shadow h-100 py-2" data-toggle="modal" data-target="#comProgrm" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Completed Programs
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="Label4" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer15" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+            <!-- Pending Annual Targets -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel5">
+                    <ContentTemplate>
+                        <div class="card border-left-primary shadow h-100 py-2" data-toggle="modal" data-target="#PenAnnulTarget" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Pending Annual Targets
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="Label1" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer5" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
 
         </div>
 
+        <%} %>
+
+
+
+        <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
+                                                              || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+            {
+        %>
         <div>
             <div class="d-sm-flex align-items-center justify-content-between mt-4">
                 <h1 runat="server" id="DME21Heading" class="h4 mb-0 text-gray-800" visible="false">Users who haven't submitted DME 21 for Next Month
@@ -147,7 +281,7 @@
 
         <!-- Content Row -->
         <% if (Session["UserTypeId"].ToString() == "6"
-                                                       || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                                                              || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
             {
         %>
 
@@ -290,7 +424,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                                                       || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+                                                                                    || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -711,6 +845,82 @@
     </div>
     <%--end dialog box--%>
 
+
+
+
+
+
+    <%--Planing User--%>
+
+    <%--dialog box comProgrm--%>
+    <div class="modal" id="comProgrm" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">View Completed Programs</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="GridView3"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+                                <asp:BoundField DataField="StaffLeaveId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="_EMployeeDetails.LastName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="LeaveDate" HeaderText="Leave Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" ApplyFormatInEditMode="true" />
+                            </Columns>
+
+                            <EmptyDataTemplate>No Vote Allocation To Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box--%>
+
+    <%--dialog box PenAnnulTarget--%>
+    <div class="modal" id="PenAnnulTarget" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">View Pending Annual Targets</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="GridView4"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+                                <asp:BoundField DataField="MainId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="employee.LastName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="ActionTakenDate" HeaderText="Approved Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                            </Columns>
+                            <EmptyDataTemplate>No Programs to Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box--%>
 
 
 

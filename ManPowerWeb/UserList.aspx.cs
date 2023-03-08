@@ -24,7 +24,7 @@ namespace ManPowerWeb
         {
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
-            if (Session["UserTypeId"].ToString() == "1")
+            if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2")
             {
                 systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]) && x.UserTypeId == 4 && x.UserTypeId == 5 && x.UserTypeId == 14);
                 gvUser.DataSource = systemUserList;

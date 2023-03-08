@@ -26,6 +26,9 @@
             </div>
         </div>
     </div>
+    <div>
+        <asp:Label ID="lblMSG" runat="server" Text=""></asp:Label>
+    </div>
     <div class="card">
         <div class="table-responsive">
             <asp:GridView ID="gvDme23" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"

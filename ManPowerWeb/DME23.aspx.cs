@@ -28,12 +28,18 @@ namespace ManPowerWeb
             userId = Session["UserId"].ToString();
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);
 
-            BindMonth();
-            bindDataSource();
+            if (!IsPostBack)
+            {
+                BindMonth();
+                bindDataSource();
+            }
+
         }
 
         private void bindDataSource()
         {
+            lblMSG.Text = string.Empty;
+
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
 
             DataTable programPlan = programPlanController.getProgramPlan(depId);
@@ -78,23 +84,57 @@ namespace ManPowerWeb
 
             if (txtProgram != "")
             {
-                programPlan.DefaultView.RowFilter = "Program_Name LIKE '%" + txtProgram + "%' AND MONTH(Date) =" + month;
+                var filteredRows = from row in programPlan.AsEnumerable()
+                                   where row.Field<DateTime>("Date").Month == month && row.Field<string>("Program_Name").ToLower().Contains(txtProgram.ToLower())
+                                   select row;
 
-                gvDme23.DataSource = programPlan;
-                gvDme23.DataBind();
+                if (filteredRows.Count() != 0)
+                {
+                    lblMSG.Text = string.Empty;
+                    DataTable filteredDt = filteredRows.CopyToDataTable();
+                    gvDme23.DataSource = filteredDt;
+                    gvDme23.DataBind();
+                }
+
+                else
+                {
+                    DataTable dt = null;
+                    gvDme23.DataSource = dt;
+                    gvDme23.DataBind();
+                    lblMSG.Text = "No Data to Show";
+                }
             }
 
             else
             {
-                programPlan.DefaultView.RowFilter = "MONTH(Date) =" + month;
+                //programPlan.DefaultView.RowFilter = "MONTH(Date) =" + month;
 
-                gvDme23.DataSource = programPlan;
-                gvDme23.DataBind();
+                var filteredRows = from row in programPlan.AsEnumerable()
+                                   where row.Field<DateTime>("Date").Month == month
+                                   select row;
+
+                if (filteredRows.Count() != 0)
+                {
+                    lblMSG.Text = string.Empty;
+                    DataTable filteredDt = filteredRows.CopyToDataTable();
+                    gvDme23.DataSource = filteredDt;
+                    gvDme23.DataBind();
+                }
+
+                else
+                {
+                    DataTable dt = null;
+                    gvDme23.DataSource = dt;
+                    gvDme23.DataBind();
+                    lblMSG.Text = "No Data to Show";
+                }
+
             }
         }
 
         protected void btnGetAll_Click(object sender, EventArgs e)
         {
+            txtName.Text = string.Empty;
             bindDataSource();
         }
 

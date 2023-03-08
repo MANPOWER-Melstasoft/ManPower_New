@@ -182,6 +182,7 @@ namespace ManPowerWeb
             BindAdminCardData();
             BindPlnUserCardData();
             BindPlnHeadCardData();
+            BindDistrictHeadCardData();
 
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
@@ -190,7 +191,7 @@ namespace ManPowerWeb
                 systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]));
                 lblNumberOfEmp.Text = systemUserList.Count.ToString();
             }
-            if (Session["UserTypeId"].ToString() == "2")
+            else
             {
                 SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, false);
                 List<SystemUser> systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();
@@ -357,6 +358,25 @@ namespace ManPowerWeb
             lblTUCP.Text = programTargetsListFilterTotalUpComming.Count.ToString();
             gvTotalUpComingProgrm.DataSource = programTargetsListFilterTotalUpComming;
             gvTotalUpComingProgrm.DataBind();
+
+
+
+            //--------------------- COMPLETED PROGRAMMS ---------------------------------------
+            List<ProgramPlan> ProgramPlanlist = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
+
+            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+            List<ProgramAssignee> asignee = programAssigneeController.GetAllProgramAssignee(false, true, false);
+
+            List<ProgramPlan> ProgramPlanlistFinal = new List<ProgramPlan>();
+            foreach (var asigne in asignee.Where(x => x.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"])))
+            {
+                foreach (var plans in ProgramPlanlist.Where(x => x.ProjectStatusId == 4 && x.ProgramTargetId == asigne.ProgramTargetId))
+                {
+                    ProgramPlanlistFinal.Add(plans);
+                }
+            }
+            lblCompletedProgrm.Text = ProgramPlanlistFinal.Count().ToString();
+
         }
 
         protected void BindAdminCardData()
@@ -401,7 +421,7 @@ namespace ManPowerWeb
             int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
             TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
             List<TaskAllocation> taskAllocations = taskAllocationController.GetRecommend1TaskAllocation(positionID);
-            lblAppVehicle.Text = taskAllocations.Count.ToString();
+            lblrec1DME21.Text = taskAllocations.Count.ToString();
 
             //--------------------- DME22 ---------------------------------------
             List<TaskAllocation> taskAllocationList22Final = new List<TaskAllocation>();
@@ -414,7 +434,7 @@ namespace ManPowerWeb
                     taskAllocationList22Final.Add(item);
                 }
             }
-            lblAppLeave.Text = taskAllocationList22Final.Count.ToString();
+            lblrec1DME22.Text = taskAllocationList22Final.Count.ToString();
 
 
             //--------------------- TRAINING REQUEST ---------------------------------------
@@ -424,14 +444,6 @@ namespace ManPowerWeb
             lblAppTrain.Text = trainingRequests.Count.ToString();
             gvTraininReq.DataSource = trainingRequests;
             gvTraininReq.DataBind();
-
-            //--------------------- APPROVED RESIGNATIONS ---------------------------------------
-            TransfersRetirementResignationMainController transfersRetirementResignationMainController = ControllerFactory.CreateTransfersRetirementResignationMainController();
-            List<TransfersRetirementResignationMain> transfersRetirementResignationMains = transfersRetirementResignationMainController.GetAllTransfersRetirementResignation(false);
-            transfersRetirementResignationMains = transfersRetirementResignationMains.Where(x => x.RequestTypeId == 2).ToList();
-            lblAppResign.Text = transfersRetirementResignationMains.Count.ToString();
-            gvAppResign.DataSource = transfersRetirementResignationMains;
-            gvAppResign.DataBind();
 
         }
 

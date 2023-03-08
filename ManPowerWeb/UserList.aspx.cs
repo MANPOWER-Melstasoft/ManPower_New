@@ -26,10 +26,10 @@ namespace ManPowerWeb
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
             if (Session["UserTypeId"].ToString() == "1")
             {
-                systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]));
+                systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]) && x.UserTypeId == 4 && x.UserTypeId == 5 && x.UserTypeId == 14);
                 gvUser.DataSource = systemUserList;
             }
-            if (Session["UserTypeId"].ToString() == "2")
+            else
             {
                 SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, false);
                 List<SystemUser> systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();

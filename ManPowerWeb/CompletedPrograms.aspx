@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CompletedPrograms.aspx.cs" Inherits="ManPowerWeb.CompletedPrograms" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
+
     <div class="container">
         <div class="card m-4 p-4">
             <h2>Completed Programs</h2>

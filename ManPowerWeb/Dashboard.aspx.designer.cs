@@ -33,31 +33,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label lblNumberOfEmp;
 
         /// <summary>
-        /// updatePanel15 control.
+        /// lblCompletedProgrm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePanel15;
-
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// timer15 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.Timer timer15;
+        protected global::System.Web.UI.WebControls.Label lblCompletedProgrm;
 
         /// <summary>
         /// lblrec1DME21 control.

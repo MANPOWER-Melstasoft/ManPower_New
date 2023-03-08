@@ -181,6 +181,7 @@ namespace ManPowerWeb
         {
             BindAdminCardData();
             BindPlnUserCardData();
+            BindPlnHeadCardData();
 
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
@@ -326,6 +327,7 @@ namespace ManPowerWeb
                     }
                 }
             }
+
             lblCP.Text = programPlanListComplete.Count.ToString();
             gvCompletedProgrm.DataSource = programPlanListComplete;
             gvCompletedProgrm.DataBind();
@@ -395,21 +397,25 @@ namespace ManPowerWeb
 
         protected void BindPlnUserCardData()
         {
-            //--------------------- VEHICLE MAINTAINCE ---------------------------------------
-            VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            List<VehicleMeintenance> vehicleMeintenances = vehicleMaintenanceController.GetAllVehicleMeintenance();
-            vehicleMeintenances = vehicleMeintenances.Where(x => x.IsApproved == 2).ToList();
-            lblAppVehicle.Text = vehicleMeintenances.Count.ToString();
-            gvVehicleMain.DataSource = vehicleMeintenances;
-            gvVehicleMain.DataBind();
+            //--------------------- DME21 ---------------------------------------
+            int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+            List<TaskAllocation> taskAllocations = taskAllocationController.GetRecommend1TaskAllocation(positionID);
+            lblAppVehicle.Text = taskAllocations.Count.ToString();
 
-            //--------------------- APPROVE LEAVES ---------------------------------------
-            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-            List<StaffLeave> staffLeaves = staffLeaveController.getStaffLeaves(true);
-            staffLeaves = staffLeaves.Where(x => x.ApprovedBy != 0 && x.ApprovedBy != -1).ToList();
-            lblAppLeave.Text = staffLeaves.Count.ToString();
-            gvAppLeave.DataSource = staffLeaves;
-            gvAppLeave.DataBind();
+            //--------------------- DME22 ---------------------------------------
+            List<TaskAllocation> taskAllocationList22Final = new List<TaskAllocation>();
+            List<TaskAllocation> taskAllocationList1 = taskAllocationController.GetAllTaskAllocation(false, true, false, false);
+
+            foreach (var item in taskAllocationList1)
+            {
+                if (item.DME22Rec1By == positionID && item.StatusId == 2011)
+                {
+                    taskAllocationList22Final.Add(item);
+                }
+            }
+            lblAppLeave.Text = taskAllocationList22Final.Count.ToString();
+
 
             //--------------------- TRAINING REQUEST ---------------------------------------
             TrainingRequestsController trainingRequestControllerImpl = ControllerFactory.CreateTrainingRequestsController();
@@ -428,6 +434,41 @@ namespace ManPowerWeb
             gvAppResign.DataBind();
 
         }
+
+        protected void BindPlnHeadCardData()
+        {
+            //--------------------- DME21 ---------------------------------------
+            int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+            List<TaskAllocation> taskAllocations = taskAllocationController.GetTaskAllocationDme21Approve(positionID);
+            lblApproveDme21.Text = taskAllocations.Count.ToString();
+
+            //--------------------- DME22 ---------------------------------------
+            List<TaskAllocation> taskAllocationList22Final = taskAllocationController.GetTaskAllocationDme22Approve(positionID);
+            lblApproveDme22.Text = taskAllocationList22Final.Count.ToString();
+        }
+
+        protected void BindDistrictHeadCardData()
+        {
+            //--------------------- DME21 ---------------------------------------
+            int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+            List<TaskAllocation> taskAllocations = taskAllocationController.GetRecommend2TaskAllocation(positionID);
+            lblRec2Dme21.Text = taskAllocations.Count.ToString();
+
+            //--------------------- DME22 ---------------------------------------
+            List<TaskAllocation> taskAllocationList22 = taskAllocationController.GetAllTaskAllocation(false, true, false, false);
+            List<TaskAllocation> taskAllocationList22Final = new List<TaskAllocation>();
+            foreach (var item in taskAllocationList22)
+            {
+                if (item.DME22Rec1By == positionID && item.StatusId == 2012)
+                {
+                    taskAllocationList22Final.Add(item);
+                }
+            }
+            lblRec2Dme22.Text = taskAllocationList22Final.Count.ToString();
+        }
+
 
         private void bindDialogbox()
         {

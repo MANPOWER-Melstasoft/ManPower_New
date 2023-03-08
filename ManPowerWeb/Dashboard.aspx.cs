@@ -366,6 +366,30 @@ namespace ManPowerWeb
             gvVehicleMain.DataSource = vehicleMeintenances;
             gvVehicleMain.DataBind();
 
+            //--------------------- APPROVE LEAVES ---------------------------------------
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+            List<StaffLeave> staffLeaves = staffLeaveController.getStaffLeaves(true);
+            staffLeaves = staffLeaves.Where(x => x.ApprovedBy != 0 && x.ApprovedBy != -1).ToList();
+            lblAppLeave.Text = staffLeaves.Count.ToString();
+            gvAppLeave.DataSource = staffLeaves;
+            gvAppLeave.DataBind();
+
+            //--------------------- TRAINING REQUEST ---------------------------------------
+            TrainingRequestsController trainingRequestControllerImpl = ControllerFactory.CreateTrainingRequestsController();
+            List<TrainingRequests> trainingRequests = trainingRequestControllerImpl.GetAllTrainingRequests();
+            trainingRequests = trainingRequests.Where(x => x.ProjectStatusId == 1008).ToList();
+            lblAppTrain.Text = trainingRequests.Count.ToString();
+            gvTraininReq.DataSource = trainingRequests;
+            gvTraininReq.DataBind();
+
+            //--------------------- APPROVED RESIGNATIONS ---------------------------------------
+            TransfersRetirementResignationMainController transfersRetirementResignationMainController = ControllerFactory.CreateTransfersRetirementResignationMainController();
+            List<TransfersRetirementResignationMain> transfersRetirementResignationMains = transfersRetirementResignationMainController.GetAllTransfersRetirementResignation(false);
+            transfersRetirementResignationMains = transfersRetirementResignationMains.Where(x => x.RequestTypeId == 2).ToList();
+            lblAppResign.Text = transfersRetirementResignationMains.Count.ToString();
+            gvAppResign.DataSource = transfersRetirementResignationMains;
+            gvAppResign.DataBind();
+
         }
 
         private void bindDialogbox()

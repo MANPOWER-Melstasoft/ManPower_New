@@ -371,7 +371,14 @@ namespace ManPowerWeb
                         taskAllocationDetailObj.TaskAmendments = "";
                         taskAllocationDetailObj.programPlanId = programPlanId;
 
-                        taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+                        int taskAllocationDetailId = taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+
+                        ProjectTask projectTaskobj = new ProjectTask();
+
+                        projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId;
+                        projectTaskobj.ProgramPlanId = programPlanId;
+
+                        projectTaskController.saveProjectTask(projectTaskobj);
 
                         if (response != 0)
                         {
@@ -499,7 +506,12 @@ namespace ManPowerWeb
                     taskAllocationDetailObj.TaskAmendments = "";
                     taskAllocationDetailObj.programPlanId = programPlanId;
 
-                    taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+                    int taskAllocationDetailId1 = taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+
+                    ProjectTask projectTaskobj = new ProjectTask();
+
+                    projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId1;
+                    projectTaskobj.ProgramPlanId = programPlanId;
 
                     if (response != 0)
                     {

@@ -345,6 +345,7 @@ namespace ManPowerWeb
                     }
 
                     ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
+
                     if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
                     {
                         lblDate.Text = "Invalid Date";
@@ -360,8 +361,9 @@ namespace ManPowerWeb
                         int response = programPlanController.UpdateProgramPlan(programPlan, (List<string>)ViewState["projectPlanResourceStringList"]);
 
                         taskAllocationDetailObj.TaskTypeId = 1;
+
                         taskAllocationDetailObj.TaskAllocationId = taskAllocationId;
-                        taskAllocationDetailObj.TaskDescription = "";
+                        taskAllocationDetailObj.TaskDescription = txtProgramName.Text;
                         taskAllocationDetailObj.WorkLocation = txtLocation.Text;
                         taskAllocationDetailObj.Isconmpleated = 0;
                         taskAllocationDetailObj.NotCompleatedReason = "";
@@ -496,7 +498,7 @@ namespace ManPowerWeb
 
                     taskAllocationDetailObj.TaskTypeId = 1;
                     taskAllocationDetailObj.TaskAllocationId = taskAllocationId1;
-                    taskAllocationDetailObj.TaskDescription = "";
+                    taskAllocationDetailObj.TaskDescription = txtProgramName.Text;
                     taskAllocationDetailObj.WorkLocation = txtProgramName.Text;
                     taskAllocationDetailObj.Isconmpleated = 0;
                     taskAllocationDetailObj.NotCompleatedReason = "";

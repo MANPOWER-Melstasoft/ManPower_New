@@ -178,6 +178,7 @@
     <Compile Include="Domain\DependantType.cs" />
     <Compile Include="Domain\Designation.cs" />
     <Compile Include="Domain\DistricDsParent.cs" />
+    <Compile Include="Domain\Notification.cs" />
     <Compile Include="Domain\PaymentVoucher.cs" />
     <Compile Include="Domain\ProgramPlanApprovalDetails.cs" />
     <Compile Include="Domain\RequestorGuarantor.cs" />

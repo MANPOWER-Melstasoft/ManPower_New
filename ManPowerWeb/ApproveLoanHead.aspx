@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="card p-4 m-4">
         <h2>Approve Loan</h2>
-        <asp:GridView runat="server">
+        <asp:GridView runat="server" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger" CssClass="table table-bordered">
             <Columns>
                 <asp:BoundField HeaderText="Id" />
                 <asp:BoundField HeaderText="Employee Name" />
@@ -15,6 +15,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
+            <EmptyDataTemplate>No Records To Show</EmptyDataTemplate>
         </asp:GridView>
     </div>
 

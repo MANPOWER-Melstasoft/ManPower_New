@@ -180,15 +180,18 @@ namespace ManPowerWeb
         protected void BindCardData()
         {
             BindAdminCardData();
+            BindPlnUserCardData();
+            BindPlnHeadCardData();
+            BindDistrictHeadCardData();
 
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
-            if (Session["UserTypeId"].ToString() == "1")
+            if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2")
             {
                 systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]));
                 lblNumberOfEmp.Text = systemUserList.Count.ToString();
             }
-            if (Session["UserTypeId"].ToString() == "2")
+            else
             {
                 SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, false);
                 List<SystemUser> systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();
@@ -196,21 +199,21 @@ namespace ManPowerWeb
             }
 
             //---------------------------- Vote Allocation ----------------------------------------------------------
-            VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
-            List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
-            List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
-            float vCount = 0;
-            foreach (var i in voteAllocationList)
-            {
-                if (i.Year.Year == DateTime.Today.Year)
-                {
-                    vCount += i.Amount;
-                    voteAllocationListFilter.Add(i);
-                }
-            }
-            lblVoteAmount.Text = vCount.ToString("N");
-            gvVoteAllocation.DataSource = voteAllocationListFilter;
-            gvVoteAllocation.DataBind();
+            //VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+            //List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+            //List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
+            //float vCount = 0;
+            //foreach (var i in voteAllocationList)
+            //{
+            //    if (i.Year.Year == DateTime.Today.Year)
+            //    {
+            //        vCount += i.Amount;
+            //        voteAllocationListFilter.Add(i);
+            //    }
+            //}
+            //lblVoteAmount.Text = vCount.ToString("N");
+            //gvVoteAllocation.DataSource = voteAllocationListFilter;
+            //gvVoteAllocation.DataBind();
 
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
@@ -260,9 +263,9 @@ namespace ManPowerWeb
                 }
             }
 
-            lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
-            gvThisMonthTarget.DataSource = programTargetsListFilter;
-            gvThisMonthTarget.DataBind();
+            //lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
+            //gvThisMonthTarget.DataSource = programTargetsListFilter;
+            //gvThisMonthTarget.DataBind();
 
             foreach (var i in programTargetsList)
             {
@@ -286,9 +289,9 @@ namespace ManPowerWeb
                     programTargetsListFilterTotal.Add(i);
                 }
             }
-            lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
-            gvTotalProgrms.DataSource = programTargetsListFilterTotal;
-            gvTotalProgrms.DataBind();
+            //lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
+            //gvTotalProgrms.DataSource = programTargetsListFilterTotal;
+            //gvTotalProgrms.DataBind();
 
             //------------------ THIS MONTH UPCOMING PROGRAMS ---------------------------------------
 
@@ -325,6 +328,7 @@ namespace ManPowerWeb
                     }
                 }
             }
+
             lblCP.Text = programPlanListComplete.Count.ToString();
             gvCompletedProgrm.DataSource = programPlanListComplete;
             gvCompletedProgrm.DataBind();
@@ -354,6 +358,25 @@ namespace ManPowerWeb
             lblTUCP.Text = programTargetsListFilterTotalUpComming.Count.ToString();
             gvTotalUpComingProgrm.DataSource = programTargetsListFilterTotalUpComming;
             gvTotalUpComingProgrm.DataBind();
+
+
+
+            //--------------------- COMPLETED PROGRAMMS ---------------------------------------
+            List<ProgramPlan> ProgramPlanlist = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
+
+            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+            List<ProgramAssignee> asignee = programAssigneeController.GetAllProgramAssignee(false, true, false);
+
+            List<ProgramPlan> ProgramPlanlistFinal = new List<ProgramPlan>();
+            foreach (var asigne in asignee.Where(x => x.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"])))
+            {
+                foreach (var plans in ProgramPlanlist.Where(x => x.ProjectStatusId == 4 && x.ProgramTargetId == asigne.ProgramTargetId))
+                {
+                    ProgramPlanlistFinal.Add(plans);
+                }
+            }
+            lblCompletedProgrm.Text = ProgramPlanlistFinal.Count().ToString();
+
         }
 
         protected void BindAdminCardData()
@@ -391,6 +414,73 @@ namespace ManPowerWeb
             gvAppResign.DataBind();
 
         }
+
+        protected void BindPlnUserCardData()
+        {
+            //--------------------- DME21 ---------------------------------------
+            int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+            List<TaskAllocation> taskAllocations = taskAllocationController.GetRecommend1TaskAllocation(positionID);
+            lblrec1DME21.Text = taskAllocations.Count.ToString();
+
+            //--------------------- DME22 ---------------------------------------
+            List<TaskAllocation> taskAllocationList22Final = new List<TaskAllocation>();
+            List<TaskAllocation> taskAllocationList1 = taskAllocationController.GetAllTaskAllocation(false, true, false, false);
+
+            foreach (var item in taskAllocationList1)
+            {
+                if (item.DME22Rec1By == positionID && item.StatusId == 2011)
+                {
+                    taskAllocationList22Final.Add(item);
+                }
+            }
+            lblrec1DME22.Text = taskAllocationList22Final.Count.ToString();
+
+
+            //--------------------- TRAINING REQUEST ---------------------------------------
+            TrainingRequestsController trainingRequestControllerImpl = ControllerFactory.CreateTrainingRequestsController();
+            List<TrainingRequests> trainingRequests = trainingRequestControllerImpl.GetAllTrainingRequests();
+            trainingRequests = trainingRequests.Where(x => x.ProjectStatusId == 1008).ToList();
+            lblAppTrain.Text = trainingRequests.Count.ToString();
+            gvTraininReq.DataSource = trainingRequests;
+            gvTraininReq.DataBind();
+
+        }
+
+        protected void BindPlnHeadCardData()
+        {
+            //--------------------- DME21 ---------------------------------------
+            int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+            List<TaskAllocation> taskAllocations = taskAllocationController.GetTaskAllocationDme21Approve(positionID);
+            lblApproveDme21.Text = taskAllocations.Count.ToString();
+
+            //--------------------- DME22 ---------------------------------------
+            List<TaskAllocation> taskAllocationList22Final = taskAllocationController.GetTaskAllocationDme22Approve(positionID);
+            lblApproveDme22.Text = taskAllocationList22Final.Count.ToString();
+        }
+
+        protected void BindDistrictHeadCardData()
+        {
+            //--------------------- DME21 ---------------------------------------
+            int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
+            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
+            List<TaskAllocation> taskAllocations = taskAllocationController.GetRecommend2TaskAllocation(positionID);
+            lblRec2Dme21.Text = taskAllocations.Count.ToString();
+
+            //--------------------- DME22 ---------------------------------------
+            List<TaskAllocation> taskAllocationList22 = taskAllocationController.GetAllTaskAllocation(false, true, false, false);
+            List<TaskAllocation> taskAllocationList22Final = new List<TaskAllocation>();
+            foreach (var item in taskAllocationList22)
+            {
+                if (item.DME22Rec1By == positionID && item.StatusId == 2012)
+                {
+                    taskAllocationList22Final.Add(item);
+                }
+            }
+            lblRec2Dme22.Text = taskAllocationList22Final.Count.ToString();
+        }
+
 
         private void bindDialogbox()
         {

@@ -33,31 +33,31 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label lblNumberOfEmp;
 
         /// <summary>
-        /// updatePanel6 control.
+        /// lblCompletedProgrm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePanel6;
+        protected global::System.Web.UI.WebControls.Label lblCompletedProgrm;
 
         /// <summary>
-        /// lblThisMonthTarget control.
+        /// lblrec1DME21 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblThisMonthTarget;
+        protected global::System.Web.UI.WebControls.Label lblrec1DME21;
 
         /// <summary>
-        /// timer6 control.
+        /// lblrec1DME22 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer timer6;
+        protected global::System.Web.UI.WebControls.Label lblrec1DME22;
 
         /// <summary>
         /// updatePanel5 control.
@@ -69,13 +69,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.UpdatePanel updatePanel5;
 
         /// <summary>
-        /// lblVoteAmount control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVoteAmount;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// timer5 control.
@@ -87,49 +87,67 @@ namespace ManPowerWeb
         protected global::System.Web.UI.Timer timer5;
 
         /// <summary>
-        /// updatePanel7 control.
+        /// lblApproveDme21 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePanel7;
+        protected global::System.Web.UI.WebControls.Label lblApproveDme21;
 
         /// <summary>
-        /// lblTotalProgramms control.
+        /// lblApproveDme22 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalProgramms;
+        protected global::System.Web.UI.WebControls.Label lblApproveDme22;
 
         /// <summary>
-        /// timer7 control.
+        /// updatePanel6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer timer7;
+        protected global::System.Web.UI.UpdatePanel updatePanel6;
 
         /// <summary>
-        /// DME21Heading control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DME21Heading;
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// gvUser control.
+        /// timer6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUser;
+        protected global::System.Web.UI.Timer timer6;
+
+        /// <summary>
+        /// lblRec2Dme21 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRec2Dme21;
+
+        /// <summary>
+        /// lblRec2Dme22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRec2Dme22;
 
         /// <summary>
         /// updatePanel4 control.
@@ -267,15 +285,6 @@ namespace ManPowerWeb
         protected global::System.Web.UI.Timer timer8;
 
         /// <summary>
-        /// gvAnnualTarget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAnnualTarget;
-
-        /// <summary>
         /// updatePanel12 control.
         /// </summary>
         /// <remarks>
@@ -384,6 +393,33 @@ namespace ManPowerWeb
         protected global::System.Web.UI.Timer timer11;
 
         /// <summary>
+        /// gvAnnualTarget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAnnualTarget;
+
+        /// <summary>
+        /// DME21Heading control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DME21Heading;
+
+        /// <summary>
+        /// gvUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvUser;
+
+        /// <summary>
         /// gvThisMonthTarget control.
         /// </summary>
         /// <remarks>
@@ -445,6 +481,24 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProgramTargetNotification;
+
+        /// <summary>
+        /// GridView3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView3;
+
+        /// <summary>
+        /// GridView4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView4;
 
         /// <summary>
         /// gvVehicleMain control.

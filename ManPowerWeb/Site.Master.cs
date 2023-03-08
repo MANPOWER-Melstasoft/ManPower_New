@@ -1,6 +1,7 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using Org.BouncyCastle.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
@@ -15,12 +17,14 @@ namespace ManPowerWeb
     public partial class SiteMaster : MasterPage
     {
         public static int divisionId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // FormsAuthentication.SignOut();
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();
+
 
             if (Session["UserId"] != null)
             {
@@ -31,6 +35,8 @@ namespace ManPowerWeb
                         lblName.Text = Session["Name"].ToString();
                         divisionId = Convert.ToInt32(Session["Division"].ToString());
                         BindSideBar();
+
+                        BindNotification();
                     }
                 }
                 else
@@ -171,6 +177,83 @@ namespace ManPowerWeb
 
         }
 
+        protected void BindNotification()
+        {
+            List<ProgramAssignee> asignee = new List<ProgramAssignee>();
+            List<ProgramPlan> ProgramPlanlist = new List<ProgramPlan>();
+            List<ProgramPlan> mylist = new List<ProgramPlan>();
+            List<Notification> notificationlist = new List<Notification>();
+
+
+
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+            ProgramPlanlist = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
+
+            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
+            asignee = programAssigneeController.GetAllProgramAssignee(false, true, false);
+
+
+            foreach (var items in asignee.Where(x => x.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"])))
+            {
+                foreach (var plans in ProgramPlanlist.Where(x => x.ProjectStatusId == 2 && x.ProgramTargetId == items.ProgramTargetId))
+                {
+                    if (plans.Date.AddDays(5) < DateTime.Now)
+                    {
+                        Notification notification = new Notification();
+                        notification.NotificationId = plans.ProgramPlanId;
+                        notification.Date = plans.Date;
+                        notification.Title = plans.ProgramName;
+                        notification.Description = "Not Completed Yet";
+                        notification.IsRead = 1;
+                        notificationlist.Add(notification);
+                        mylist.Add(plans);
+                    }
+
+
+                }
+            }
+            var mySpan = notificationPanel.FindControl("count") as HtmlGenericControl;
+            if (mySpan != null)
+            {
+                // Change the text of the span
+                mySpan.InnerText = notificationlist.Count().ToString();
+            }
+
+            int count = 0;
+
+            foreach (var notification in notificationlist)
+            {
+                count++;
+                var html = string.Format(@"
+                    <a class='dropdown-item d-flex align-items-center' href='#'>
+                        <div class='mr-3'>
+                            <div class='icon-circle bg-primary'>
+                                <i class='fas fa-file-alt text-white'></i>
+                            </div>
+                        </div>
+                    <div>
+                        <div>
+                            <div class='small text-gray-500'>{0}</div>
+                            <span class='font-weight-bold'>{1}</span>
+                        </div>
+                        <div>
+                            <span class='font-weight-bold text-danger'>{2}</span>
+                        </div>
+                      
+                    </div>
+                    </a>
+                
+                ", notification.Date.ToString("MMMM dd, yyyy"), notification.Title, notification.Description);
+
+                // Add HTML code to panel control
+                notificationPanel.Controls.Add(new LiteralControl(html));
+            }
+
+
+        }
+
+
+
 
         protected void btnLogut_Click(object sender, EventArgs e)
         {
@@ -189,6 +272,11 @@ namespace ManPowerWeb
                 Response.Redirect("Login.aspx");
 
             }
+        }
+
+        protected void timer_Tick(object sender, EventArgs e)
+        {
+            BindNotification();
         }
     }
 }

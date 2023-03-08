@@ -10,16 +10,13 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class PlanningRecommendation1 : System.Web.UI.Page
+    public partial class PlanningApproval : System.Web.UI.Page
     {
-
         static List<ProgramPlan> plansList = new List<ProgramPlan>();
         List<ProgramPlanApprovalDetails> ProgramPlanApprovalDetails = new List<ProgramPlanApprovalDetails>();
         List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
-        SystemUser systemUser = new SystemUser();
         List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
-
-
+        SystemUser systemUser = new SystemUser();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -36,8 +33,10 @@ namespace ManPowerWeb
                 chkList.DataBind();
 
                 //End Bind Data To CheckBox List
+
             }
         }
+
 
         private void DataSourceBind()
         {
@@ -47,9 +46,7 @@ namespace ManPowerWeb
             ProgramPlanApprovalDetails = programPlanApprovalDetailsController.GetAll();
 
             plansList = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
-            plansList = plansList.Where(x => x.ProjectStatusId == 2013).ToList();
-
-
+            plansList = plansList.Where(x => x.ProjectStatusId == 2016).ToList();
 
             foreach (var item in plansList)
             {
@@ -73,20 +70,15 @@ namespace ManPowerWeb
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
 
+            ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
+
             List<ProgramPlan> programPlansList = plansList.Where(x => x.ProgramPlanId == programPlansListBind.ProgramPlanId).ToList();
 
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             systemUser = systemUserController.GetSystemUser(programPlansListBind._ProgramTarget.CreatedBy, false, false, false);
 
-            ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
-
-
-
-
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
             projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlansListBind.ProgramPlanId);
-
-
 
             foreach (var item in projectPlanResourcesList)
             {
@@ -99,7 +91,6 @@ namespace ManPowerWeb
                 }
             }
 
-            txtManger.Text = systemUser.Name;
             txtProgramName.Text = programPlansListBind.ProgramName;
             txtDate.Text = programPlansListBind.Date.ToString("yyyy-MM-dd");
             txtBudget.Text = programPlansListBind.ApprovedAmount.ToString();
@@ -110,8 +101,8 @@ namespace ManPowerWeb
             txtActualOutcome.Text = programPlansListBind.Outcome.ToString();
             txtActualOutput.Text = programPlansListBind.ActualOutput.ToString();
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
+            txtManger.Text = systemUser.Name;
             txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
-
 
 
             if (programPlansListBind.FinancialSource != "")
@@ -124,9 +115,6 @@ namespace ManPowerWeb
                 lblListOfUploadedFiles.Text = "N/A";
             }
 
-
-
-
         }
 
         protected void btnRejectReason_Click(object sender, EventArgs e)
@@ -138,13 +126,16 @@ namespace ManPowerWeb
             ProgramPlanApprovalDetails programPlanApprovalDetails = new ProgramPlanApprovalDetails();
 
             programPlanApprovalDetails.ProgramPlanId = programPlanId;
-            programPlanApprovalDetails.ProjectStatus = 2015;
+            programPlanApprovalDetails.ProjectStatus = 7;
 
-            programPlanApprovalDetails.Recommendation1By = Convert.ToInt32(Session["DepUnitPositionId"]);
-            programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
+            programPlanApprovalDetails.Recommendation1By = 0;
+            //programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
 
-            programPlanApprovalDetails.Recommendation2By = 0; ;
-            //  programPlanApprovalDetails.Recommendation2Date =;
+            programPlanApprovalDetails.Recommendation2By = 0;
+            // programPlanApprovalDetails.Recommendation2Date = DateTime.Now;
+
+            programPlanApprovalDetails.ApprovedDate = DateTime.Now;
+            programPlanApprovalDetails.ApprovedBy = Convert.ToInt32(Session["DepUnitPositionId"]);
 
             programPlanApprovalDetails.RejectReason = txtrejectReason.Text;
 
@@ -153,7 +144,7 @@ namespace ManPowerWeb
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation1.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='PlanningApproval.aspx'},2500);", true);
 
             }
             else
@@ -171,13 +162,16 @@ namespace ManPowerWeb
             ProgramPlanApprovalDetails programPlanApprovalDetails = new ProgramPlanApprovalDetails();
 
             programPlanApprovalDetails.ProgramPlanId = programPlanId;
-            programPlanApprovalDetails.ProjectStatus = 2016;
+            programPlanApprovalDetails.ProjectStatus = 4;
 
-            programPlanApprovalDetails.Recommendation1By = Convert.ToInt32(Session["DepUnitPositionId"]);
-            programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
+            programPlanApprovalDetails.Recommendation1By = 0;
+            //programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
 
-            programPlanApprovalDetails.Recommendation2By = Convert.ToInt32(Session["DepUnitParentId"]); ;
-            //  programPlanApprovalDetails.Recommendation2Date =;
+            programPlanApprovalDetails.Recommendation2By = 0;
+            //            programPlanApprovalDetails.Recommendation2Date = DateTime.Now;
+
+            programPlanApprovalDetails.ApprovedBy = Convert.ToInt32(Session["DepUnitPositionId"]);
+            programPlanApprovalDetails.ApprovedDate = DateTime.Now;
 
             programPlanApprovalDetails.RejectReason = "";
 
@@ -186,18 +180,13 @@ namespace ManPowerWeb
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Sent To Recommendation!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation1.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='PlanningApproval.aspx'},2500);", true);
 
             }
             else
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
-        }
-
-        protected void btnView_Click1(object sender, EventArgs e)
-        {
-
         }
     }
 }

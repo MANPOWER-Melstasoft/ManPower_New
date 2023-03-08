@@ -16,5 +16,7 @@ namespace ManPowerCore.Domain
         public int PossitionId { get; set; }
 
         public int DepartmentUnitId { get; set; }
+
+        public int UserTypeId { get; set; }
     }
 }

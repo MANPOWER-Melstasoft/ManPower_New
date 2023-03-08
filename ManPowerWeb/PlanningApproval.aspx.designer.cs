@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class PlanningRecommendation2
+    public partial class PlanningApproval
     {
 
         /// <summary>

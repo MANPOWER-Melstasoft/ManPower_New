@@ -35,9 +35,11 @@ namespace ManPowerCore.Controller
                     {
                         Name = values[0].ToString(),
                         SystemUserId = Convert.ToInt32(values[1]),
-                        PossitionId = Convert.ToInt32(values[2]),
-                        DepartmentUnitId = Convert.ToInt32(values[3]),
-                        ParentId = Convert.ToInt32(values[4]),
+                        UserTypeId = Convert.ToInt32(values[2]),
+                        PossitionId = Convert.ToInt32(values[3]),
+                        DepartmentUnitId = Convert.ToInt32(values[4]),
+                        ParentId = Convert.ToInt32(values[5]),
+
 
 
 

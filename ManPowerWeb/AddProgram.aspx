@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddProgram.aspx.cs" Inherits="ManPowerWeb.AddProgram" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="card o-hidden border-0 shadow-lg my-3">
         <div class="card-header d-flex align-items-center justify-content-center" style="height: 5%">
             <h5 class="text-center  mt-3 mb-3">Add Programs</h5>

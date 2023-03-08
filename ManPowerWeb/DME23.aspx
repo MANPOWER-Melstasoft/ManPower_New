@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DME23.aspx.cs" Inherits="ManPowerWeb.DME23" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <h2>DME23</h2>
     <div class="row mb-5">
         <div class="col-4">
@@ -25,6 +26,9 @@
                 <asp:Button ID="btnGetAll" runat="server" Text="Get All" CssClass="btn btn-primary btn-user btn-block" OnClick="btnGetAll_Click" />
             </div>
         </div>
+    </div>
+    <div>
+        <asp:Label ID="lblMSG" runat="server" Text=""></asp:Label>
     </div>
     <div class="card">
         <div class="table-responsive">

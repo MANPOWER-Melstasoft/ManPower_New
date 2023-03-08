@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Recommend1DME21Render.aspx.cs" Inherits="ManPowerWeb.Recommend1DME21Render" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div cssclass="table-responsive">
         <asp:GridView ID="gvDME21Recommend1" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
             CellPadding="4" ForeColor="#333333" GridLines="None">

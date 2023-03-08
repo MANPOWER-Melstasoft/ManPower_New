@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProgramTargetView.aspx.cs" Inherits="ManPowerWeb.ProgramTargetView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container mb-3" id="mainContainer" runat="server">
         <h2>View Program Target</h2>
         <br />

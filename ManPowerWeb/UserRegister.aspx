@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
 
     <div class="card o-hidden border-0 shadow-lg my-3">
         <div class="card-header d-flex align-items-center justify-content-center" style="height: 5%">

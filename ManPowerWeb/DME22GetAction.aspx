@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DME22GetAction.aspx.cs" Inherits="ManPowerWeb.DME22GetAction" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div>
         <h2 style="margin-bottom: 20px; margin-top: 20px;">DME22 Get Action</h2>
     </div>

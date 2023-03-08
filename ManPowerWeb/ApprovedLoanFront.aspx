@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApprovedLoanFront.aspx.cs" Inherits="ManPowerWeb.ApprovedLoanFront" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card p-4 m-4">
         <h2>Approved Loans</h2>
         <div class="table-responsive mt-3" style="margin-right: 20px; margin-left: 20px; text-align: center">

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveDME22Render.aspx.cs" Inherits="ManPowerWeb.ApproveDME22Render" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div>
         <h2 style="margin-bottom: 20px; margin-top: 20px;">Approve DME22</h2>
     </div>

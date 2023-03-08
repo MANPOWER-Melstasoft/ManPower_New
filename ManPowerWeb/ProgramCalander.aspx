@@ -7,6 +7,7 @@
 
 
 
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container mb-4">
         <div class="card p-4 m-4">
             <h2><b>Program Calendar</b></h2>

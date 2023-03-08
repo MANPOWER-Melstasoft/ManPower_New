@@ -510,7 +510,7 @@ namespace ManPowerWeb
 
                     ProjectTask projectTaskobj = new ProjectTask();
 
-                    projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId;
+                    projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId1;
                     projectTaskobj.ProgramPlanId = programPlanId;
 
                     if (response != 0)

@@ -180,6 +180,7 @@ namespace ManPowerWeb
         protected void BindCardData()
         {
             BindAdminCardData();
+            BindPlnUserCardData();
 
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
@@ -196,21 +197,21 @@ namespace ManPowerWeb
             }
 
             //---------------------------- Vote Allocation ----------------------------------------------------------
-            VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
-            List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
-            List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
-            float vCount = 0;
-            foreach (var i in voteAllocationList)
-            {
-                if (i.Year.Year == DateTime.Today.Year)
-                {
-                    vCount += i.Amount;
-                    voteAllocationListFilter.Add(i);
-                }
-            }
-            lblVoteAmount.Text = vCount.ToString("N");
-            gvVoteAllocation.DataSource = voteAllocationListFilter;
-            gvVoteAllocation.DataBind();
+            //VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+            //List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+            //List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
+            //float vCount = 0;
+            //foreach (var i in voteAllocationList)
+            //{
+            //    if (i.Year.Year == DateTime.Today.Year)
+            //    {
+            //        vCount += i.Amount;
+            //        voteAllocationListFilter.Add(i);
+            //    }
+            //}
+            //lblVoteAmount.Text = vCount.ToString("N");
+            //gvVoteAllocation.DataSource = voteAllocationListFilter;
+            //gvVoteAllocation.DataBind();
 
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
@@ -260,9 +261,9 @@ namespace ManPowerWeb
                 }
             }
 
-            lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
-            gvThisMonthTarget.DataSource = programTargetsListFilter;
-            gvThisMonthTarget.DataBind();
+            //lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
+            //gvThisMonthTarget.DataSource = programTargetsListFilter;
+            //gvThisMonthTarget.DataBind();
 
             foreach (var i in programTargetsList)
             {
@@ -286,9 +287,9 @@ namespace ManPowerWeb
                     programTargetsListFilterTotal.Add(i);
                 }
             }
-            lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
-            gvTotalProgrms.DataSource = programTargetsListFilterTotal;
-            gvTotalProgrms.DataBind();
+            //lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
+            //gvTotalProgrms.DataSource = programTargetsListFilterTotal;
+            //gvTotalProgrms.DataBind();
 
             //------------------ THIS MONTH UPCOMING PROGRAMS ---------------------------------------
 
@@ -357,6 +358,42 @@ namespace ManPowerWeb
         }
 
         protected void BindAdminCardData()
+        {
+            //--------------------- VEHICLE MAINTAINCE ---------------------------------------
+            VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
+            List<VehicleMeintenance> vehicleMeintenances = vehicleMaintenanceController.GetAllVehicleMeintenance();
+            vehicleMeintenances = vehicleMeintenances.Where(x => x.IsApproved == 2).ToList();
+            lblAppVehicle.Text = vehicleMeintenances.Count.ToString();
+            gvVehicleMain.DataSource = vehicleMeintenances;
+            gvVehicleMain.DataBind();
+
+            //--------------------- APPROVE LEAVES ---------------------------------------
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+            List<StaffLeave> staffLeaves = staffLeaveController.getStaffLeaves(true);
+            staffLeaves = staffLeaves.Where(x => x.ApprovedBy != 0 && x.ApprovedBy != -1).ToList();
+            lblAppLeave.Text = staffLeaves.Count.ToString();
+            gvAppLeave.DataSource = staffLeaves;
+            gvAppLeave.DataBind();
+
+            //--------------------- TRAINING REQUEST ---------------------------------------
+            TrainingRequestsController trainingRequestControllerImpl = ControllerFactory.CreateTrainingRequestsController();
+            List<TrainingRequests> trainingRequests = trainingRequestControllerImpl.GetAllTrainingRequests();
+            trainingRequests = trainingRequests.Where(x => x.ProjectStatusId == 1008).ToList();
+            lblAppTrain.Text = trainingRequests.Count.ToString();
+            gvTraininReq.DataSource = trainingRequests;
+            gvTraininReq.DataBind();
+
+            //--------------------- APPROVED RESIGNATIONS ---------------------------------------
+            TransfersRetirementResignationMainController transfersRetirementResignationMainController = ControllerFactory.CreateTransfersRetirementResignationMainController();
+            List<TransfersRetirementResignationMain> transfersRetirementResignationMains = transfersRetirementResignationMainController.GetAllTransfersRetirementResignation(false);
+            transfersRetirementResignationMains = transfersRetirementResignationMains.Where(x => x.RequestTypeId == 2).ToList();
+            lblAppResign.Text = transfersRetirementResignationMains.Count.ToString();
+            gvAppResign.DataSource = transfersRetirementResignationMains;
+            gvAppResign.DataBind();
+
+        }
+
+        protected void BindPlnUserCardData()
         {
             //--------------------- VEHICLE MAINTAINCE ---------------------------------------
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();

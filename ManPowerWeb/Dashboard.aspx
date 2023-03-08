@@ -12,7 +12,7 @@
 
         <!-- Content Row -->
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                         || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                                                       || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div class="row">
@@ -147,7 +147,7 @@
 
         <!-- Content Row -->
         <% if (Session["UserTypeId"].ToString() == "6"
-                         || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                                                       || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
             {
         %>
 
@@ -290,7 +290,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                         || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+                                                       || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -773,18 +773,18 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <asp:GridView runat="server" ID="GridView1"
+                        <asp:GridView runat="server" ID="gvTraininReq"
                             Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
                             CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
                             ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
 
                             <Columns>
 
-                                <asp:BoundField DataField="ProgramTargetId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Outcome" HeaderText="Outcome" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="NoOfProjects" HeaderText="No of Projects" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="EstimatedAmount" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
+                                <asp:BoundField DataField="TrainingRequestsId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Trainingmain.Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="SystemUser.Name" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="Created_Date" HeaderText="Created Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="Accepted_Date" HeaderText="Accepted Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
 
                             </Columns>
                             <EmptyDataTemplate>No This month Targets To Show </EmptyDataTemplate>
@@ -811,15 +811,15 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <asp:GridView runat="server" ID="GridView2"
+                        <asp:GridView runat="server" ID="gvAppLeave"
                             Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
                             CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
                             ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
 
                             <Columns>
-                                <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="VoteNumber" HeaderText="Vote Number" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Amount" HeaderText="Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
+                                <asp:BoundField DataField="StaffLeaveId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="_EMployeeDetails.LastName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="LeaveDate" HeaderText="Leave Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" ApplyFormatInEditMode="true" />
                             </Columns>
 
                             <EmptyDataTemplate>No Vote Allocation To Show </EmptyDataTemplate>
@@ -846,19 +846,16 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <asp:GridView runat="server" ID="GridView3"
+                        <asp:GridView runat="server" ID="gvAppResign"
                             Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
                             CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
                             ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
 
                             <Columns>
-                                <asp:BoundField DataField="ProgramTargetId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="Outcome" HeaderText="Outcome" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="NoOfProjects" HeaderText="No of Projects" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="EstimatedAmount" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
-                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
-                                <asp:BoundField DataField="EndDate" HeaderText="End Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="MainId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="employee.LastName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="ActionTakenDate" HeaderText="Approved Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
                             </Columns>
                             <EmptyDataTemplate>No Programs to Show </EmptyDataTemplate>
                         </asp:GridView>

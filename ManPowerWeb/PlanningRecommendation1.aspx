@@ -244,8 +244,8 @@
                                         <asp:CheckBoxList ID="chkList"
                                             runat="server" CssClass="form-control form-control-user"
                                             RepeatDirection="Vertical" RepeatColumns="1"
-                                            BorderWidth="0" Datafield="description"
-                                            DataValueField="value" Width="250px">
+                                            BorderWidth="0" Datafield="Name"
+                                            DataValueField="ResoursePersonId" Width="250px">
                                         </asp:CheckBoxList>
 
                                     </div>
@@ -263,11 +263,25 @@
                             <div class="row">
                                 <div class="col-sm-4">
 
-                                    <asp:Literal ID="Literal9" runat="server" Text="Upload Documnents"></asp:Literal>
+                                    <asp:Literal ID="Literal9" runat="server" Text="View Documnents"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
-                                    <asp:FileUpload ID="Uploader" CssClass="form-control form-control-user" runat="server" AllowMultiple="true" />
+                                <div class="col">
+                                    <%--<asp:FileUpload ID="Uploader" CssClass="form-control form-control-user" runat="server" AllowMultiple="true" />--%>
                                     <asp:Label ID="lblListOfUploadedFiles" runat="server" />
+                                    <asp:GridView runat="server" ID="gvFileResourses" AutoGenerateColumns="false" CssClass="table table-bordered" ShowHeaderWhenEmpty="true"
+                                        EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+                                        <Columns>
+                                            <asp:BoundField DataField="FinancialSource" HeaderText="File Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                            <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <a href="/SystemDocuments/ProgramPlanResources/<%# Eval("FinancialSource") %>" download>Download</a>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <EmptyDataTemplate>
+                                            No Resourses
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
                                 </div>
                             </div>
                         </div>
@@ -329,4 +343,89 @@
     </div>
 
     <%--------------end of dialog box--------------------%>
+
+
+    <style type="text/css">
+        .scroll_checkboxes {
+            height: 180px;
+            width: fit-content;
+            padding: 5px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .FormText {
+            FONT-SIZE: 11px;
+            FONT-FAMILY: tahoma,sans-serif
+        }
+    </style>
+    <script language="javascript">
+
+        var color = 'White';
+
+        function changeColor(obj) {
+            var rowObject = getParentRow(obj);
+            var parentTable =
+                document.getElementById("<%=chkList.ClientID%>");
+
+            if (color == '') {
+                color = getRowColor();
+            }
+
+            if (obj.checked) {
+                rowObject.style.backgroundColor = '#A3B1D8';
+            }
+            else {
+                rowObject.style.backgroundColor = color;
+                color = 'White';
+            }
+
+            // private method
+            function getRowColor() {
+                if (rowObject.style.backgroundColor == 'White')
+                    return parentTable.style.backgroundColor;
+                else return rowObject.style.backgroundColor;
+            }
+        }
+
+        // This method returns the parent row of the object
+        function getParentRow(obj) {
+            do {
+                obj = obj.parentElement;
+            }
+            while (obj.tagName != "TR")
+            return obj;
+        }
+
+        function TurnCheckBoixGridView(id) {
+            var frm = document.forms[0];
+
+            for (i = 0; i < frm.elements.length; i++) {
+                if (frm.elements[i].type == "checkbox" &&
+                    frm.elements[i].id.indexOf("<%= chkList.ClientID %>") == 0) {
+                    frm.elements[i].checked =
+                        document.getElementById(id).checked;
+                }
+            }
+        }
+
+        function SelectAll(id) {
+            var parentTable = document.getElementById("<%=chkList.ClientID%>");
+            var color
+
+            if (document.getElementById(id).checked) {
+                color = '#A3B1D8'
+            }
+            else {
+                color = 'White'
+            }
+
+            for (i = 0; i < parentTable.rows.length; i++) {
+                parentTable.rows[i].style.backgroundColor = color;
+            }
+            TurnCheckBoixGridView(id);
+        }
+
+    </script>
 </asp:Content>

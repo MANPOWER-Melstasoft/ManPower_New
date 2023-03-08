@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnnualTargetRecomendationView.aspx.cs" Inherits="ManPowerWeb.AnnualTargetRecomendationView" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container mb-3" id="mainContainer" runat="server">
 
 

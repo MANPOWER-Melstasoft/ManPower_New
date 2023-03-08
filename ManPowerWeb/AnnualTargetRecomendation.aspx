@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnnualTargetRecomendation.aspx.cs" Inherits="ManPowerWeb.AnnualTargetRecomendation" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container mb-3">
         <div class="card p-4">
             <h2>Annual Target Recommendation</h2>

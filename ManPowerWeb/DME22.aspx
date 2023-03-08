@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DME22.aspx.cs" Inherits="ManPowerWeb.DME22" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card">
         <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">DME22</h2>
         <div class="row mb-5" style="margin-left: 100px;">

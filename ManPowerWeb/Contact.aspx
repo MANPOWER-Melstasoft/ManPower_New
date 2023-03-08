@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="ManPowerWeb.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <h2><%: Title %>.</h2>
     <h3>Your contact page.</h3>
     <address>

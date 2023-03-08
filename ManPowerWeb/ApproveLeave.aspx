@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveLeave.aspx.cs" Inherits="ManPowerWeb.ApproveLeave" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card  p-4">
             <h2>Approve Leave</h2>

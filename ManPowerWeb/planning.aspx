@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
 
         <div class="card  p-4">

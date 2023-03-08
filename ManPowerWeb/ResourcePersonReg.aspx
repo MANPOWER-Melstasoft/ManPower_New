@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResourcePersonReg.aspx.cs" Inherits="ManPowerWeb.ResourcePersonReg" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container card" style="padding-left: 30px; padding-top: 20px;">
         <h2>Resource Person</h2>
         <br />

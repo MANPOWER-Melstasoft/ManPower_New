@@ -3,7 +3,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container mb-4">
         <asp:Calendar ID="Calendar1" runat="server" BackColor="#FFFFCC" BorderColor="#00000"
             BorderWidth="1px" DayNameFormat="Full" Font-Names="Verdana" Font-Size="14pt"

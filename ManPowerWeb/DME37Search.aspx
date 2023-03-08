@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DME37Search.aspx.cs" Inherits="ManPowerWeb.DME37Search" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card ml-4 p-4">
             <h2>DME 37</h2>

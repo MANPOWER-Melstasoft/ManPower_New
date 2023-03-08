@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <%--  <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>--%>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container" id="mainContainer" runat="server">
         <div class="card m-4 p-4">
             <h2>Add New Target</h2>

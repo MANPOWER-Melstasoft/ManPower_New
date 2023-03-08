@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div>
         <h2 style="margin-bottom: 20px; margin-top: 20px;">Recommendation 1 Of DME22</h2>
     </div>

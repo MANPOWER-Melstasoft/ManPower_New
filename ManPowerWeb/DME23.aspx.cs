@@ -24,6 +24,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             officerName = Session["Name"].ToString();
             userId = Session["UserId"].ToString();
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);

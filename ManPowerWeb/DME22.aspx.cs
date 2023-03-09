@@ -19,6 +19,8 @@ namespace ManPowerWeb
         TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);
             if (!IsPostBack)
             {

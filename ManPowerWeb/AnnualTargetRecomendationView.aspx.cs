@@ -28,7 +28,7 @@ namespace ManPowerWeb
         int year = DateTime.Now.Year;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
             if (!IsPostBack)
             {
@@ -65,19 +65,13 @@ namespace ManPowerWeb
                 bindData();
                 //bindOficerRecomendation();
 
-
-
                 int status = Convert.ToInt32(Request.QueryString["Status"]);
                 if (status == 1)
                 {
                     btnAccept.Visible = true;
                     btnModalReject.Visible = true;
                 }
-
-
             }
-
-
 
         }
 

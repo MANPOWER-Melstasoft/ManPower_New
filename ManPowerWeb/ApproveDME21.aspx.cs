@@ -17,6 +17,8 @@ namespace ManPowerWeb
         List<SystemUser> systemUserList = new List<SystemUser>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
             BindDataSource();
 

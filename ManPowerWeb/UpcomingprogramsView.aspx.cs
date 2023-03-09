@@ -15,12 +15,14 @@ namespace ManPowerWeb
         List<ProgramPlan> pp = new List<ProgramPlan>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             ProgramPlanController controller = ControllerFactory.CreateProgramPlanController();
             pp = controller.GetAllProgramPlan(false, false, false, false, false, false);
 
             string id = Request.QueryString["id"];
 
-            foreach(var i in pp.Where(u => u.ProgramPlanId == int.Parse(id)))
+            foreach (var i in pp.Where(u => u.ProgramPlanId == int.Parse(id)))
             {
                 pName.Text = i.ProgramName;
                 place.Text = i.Location;
@@ -36,7 +38,7 @@ namespace ManPowerWeb
                 amt1.Text = Convert.ToString(i.ApprovedAmount);
                 amt2.Text = Convert.ToString(i.ActualAmount);
 
-                if(i.IsApproved == 1)
+                if (i.IsApproved == 1)
                 {
                     approval.Text = "Yes";
                 }
@@ -44,7 +46,7 @@ namespace ManPowerWeb
                 {
                     approval.Text = "No";
                 }
-                
+
             }
         }
 

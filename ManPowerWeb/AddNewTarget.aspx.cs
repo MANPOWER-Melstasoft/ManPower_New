@@ -34,7 +34,6 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
             DesignationController designationController = ControllerFactory.CreateDesignationController();
             listDesignation = designationController.GetAllDesignation(false, true, false);
 
@@ -48,7 +47,7 @@ namespace ManPowerWeb
             allTargets = programTargetController.GetAllProgramTarget(false, false, false, false);
 
 
-
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
             //diloagBox.Visible = false;
 
@@ -57,12 +56,9 @@ namespace ManPowerWeb
                 BindDataSource();
                 //hideDSDivision();
 
-
                 bindDSDivision();
                 bindProgram();
                 bindOfficerList();
-
-
 
                 bindOficerRecomendation();
                 int year = DateTime.Now.Year;
@@ -73,9 +69,6 @@ namespace ManPowerWeb
                 }
                 //ddlYear.Items.FindByText(year.ToString()).Selected = true;
                 ddlYear.Items.Insert(0, new ListItem("Select Year", ""));
-
-
-
 
             }
 

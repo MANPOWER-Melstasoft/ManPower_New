@@ -54,7 +54,7 @@ namespace ManPowerWeb
             ProgramDisplay.Visible = false;
             OtherDisplay.Visible = false;
 
-            //this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
             if (!IsPostBack)
             {

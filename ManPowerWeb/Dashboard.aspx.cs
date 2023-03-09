@@ -21,6 +21,8 @@ namespace ManPowerWeb
         static List<ProgramTarget> programTargetsListForannulTargetSendToRecommendation = new List<ProgramTarget>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             //----------------------To clear cache in browser ----------------
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);

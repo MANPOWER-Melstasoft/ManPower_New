@@ -69,5 +69,19 @@ namespace ManPowerCore.Domain
 
         [DBField("Bank_Account")]
         public string BankAccount { get; set; }
+
+        [DBField("Certify_By")]
+        public string CertifyUser { get; set; }
+        [DBField("Certify_Date")]
+        public string CertifyDate { get; set; }
+
+        [DBField("Paid_By")]
+        public string CheckBy { get; set; }
+        [DBField("Paid_Date")]
+        public string CheckDate { get; set; }
+
+        [DBField("Status")]
+        public int Status { get; set; }
     }
+
 }

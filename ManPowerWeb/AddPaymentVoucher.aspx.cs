@@ -23,9 +23,13 @@ namespace ManPowerWeb
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {         //----------------------- Decrypt URL ---------------------------------------------------
-                encryptedTicket = Request.QueryString["encrypt"];
-                FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-                loanDetailsId = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["LoanDetailId"]);
+                //if (Request.QueryString["encrypt"] != "")
+                //{
+                //    encryptedTicket = Request.QueryString["encrypt"];
+                //    FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+                //    loanDetailsId = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["LoanDetailId"]);
+                //}
+
 
                 bindDataSource();
             }

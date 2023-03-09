@@ -14,7 +14,7 @@
         <div class="row">
 
             <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                  || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
                 {
             %>
 
@@ -409,7 +409,7 @@
 
             <!-- Content Row -->
             <% if (Session["UserTypeId"].ToString() == "6"
-                 || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                   || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
                 {
             %>
             <!-- This month Upcoming Programs -->
@@ -657,7 +657,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-            || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+              || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -690,7 +690,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-            || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+              || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div>
@@ -990,6 +990,49 @@
     </div>
     <%--end dialog box--%>
 
+    <%--dialog box Annual Target Recommendation Approval--%>
+    <div class="modal" id="AnnualTargetRecommendationApproval" role="dialog">
+        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <h4 class="modal-title">Completed Annual Target Recommendation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:GridView runat="server" ID="gvAnnualTargetSendToRecommendation"
+                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
+                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
+                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+
+                            <Columns>
+                                <asp:TemplateField HeaderText="#" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Title" HeaderText="Program Target Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="RecommendedBy" HeaderText="Approved By" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="RecommendedDate" HeaderText="Date Approved" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btn_View_Annual_Target_Recommendation" runat="server" CssClass="btn btn-success" ToolTip="Mark as Read" OnClick="btn_View_Annual_Target_Recommendation_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <EmptyDataTemplate>No New Completed Annual Target Recommendation To Show </EmptyDataTemplate>
+                        </asp:GridView>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <%--end dialog box Annual Target Recommendation Approval--%>
 
 
 
@@ -1283,53 +1326,4 @@
         </div>
     </div>
     <%--end dialog box--%>
-
-
-
-
-
-
-    <%--dialog box Annual Target Recommendation Approval--%>
-    <div class="modal" id="AnnualTargetRecommendationApproval" role="dialog">
-        <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header text-center">
-
-                    <h4 class="modal-title">Completed Annual Target Recommendation</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <asp:GridView runat="server" ID="gvAnnualTargetSendToRecommendation"
-                            Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
-                            CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
-                            ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
-
-                            <Columns>
-                                <asp:TemplateField HeaderText="#" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="Title" HeaderText="Program Target Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="RecommendedBy" HeaderText="Approved By" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="RecommendedDate" HeaderText="Date Approved" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btn_View_Annual_Target_Recommendation" runat="server" CssClass="btn btn-success" ToolTip="Mark as Read" OnClick="btn_View_Annual_Target_Recommendation_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                            <EmptyDataTemplate>No New Completed Annual Target Recommendation To Show </EmptyDataTemplate>
-                        </asp:GridView>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <%--end dialog box Annual Target Recommendation Approval--%>
 </asp:Content>

@@ -483,6 +483,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvProgramTargetNotification;
 
         /// <summary>
+        /// gvAnnualTargetSendToRecommendation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAnnualTargetSendToRecommendation;
+
+        /// <summary>
         /// gvRecAnnualTar control.
         /// </summary>
         /// <remarks>
@@ -535,14 +544,5 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAppResign;
-
-        /// <summary>
-        /// gvAnnualTargetSendToRecommendation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAnnualTargetSendToRecommendation;
     }
 }

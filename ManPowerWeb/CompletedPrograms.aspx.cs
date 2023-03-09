@@ -48,10 +48,11 @@ namespace ManPowerWeb
             //listProgramType = programTypeController.GetAllProgramType(false);
 
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
-            ProgramPlanlist = programPlanController.GetAllProgramPlan(false, false, false, false, false, false);
+            ProgramPlanlist = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
 
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
-            asignee = programAssigneeController.GetAllProgramAssignee(true, true, false);
+            asignee = programAssigneeController.GetAllProgramAssignee(false, true, false);
+
 
 
             foreach (var asignee in asignee.Where(x => x.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"])))
@@ -79,6 +80,7 @@ namespace ManPowerWeb
             ViewState["mylist"] = mylist;
             GridView1.DataSource = mylist;
             GridView1.DataBind();
+            mylist.Clear();
 
         }
 

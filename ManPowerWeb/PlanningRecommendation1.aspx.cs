@@ -16,6 +16,9 @@ namespace ManPowerWeb
         static List<ProgramPlan> plansList = new List<ProgramPlan>();
         List<ProgramPlanApprovalDetails> ProgramPlanApprovalDetails = new List<ProgramPlanApprovalDetails>();
         List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
+        SystemUser systemUser = new SystemUser();
+        List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +26,16 @@ namespace ManPowerWeb
             {
                 DataSourceBind();
 
+                ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
+                resourcePeopleList = resourcePersonController.GetAllResourcePerson(false);
 
+                //Bind Data To CheckBox List
+                chkList.DataSource = resourcePeopleList;
+                chkList.DataValueField = "ResoursePersonId";
+                chkList.DataTextField = "Name";
+                chkList.DataBind();
+
+                //End Bind Data To CheckBox List
             }
         }
 
@@ -34,8 +46,10 @@ namespace ManPowerWeb
 
             ProgramPlanApprovalDetails = programPlanApprovalDetailsController.GetAll();
 
-            plansList = programPlanController.GetAllProgramPlan();
+            plansList = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
             plansList = plansList.Where(x => x.ProjectStatusId == 2013).ToList();
+
+
 
             foreach (var item in plansList)
             {
@@ -59,10 +73,20 @@ namespace ManPowerWeb
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
 
+            List<ProgramPlan> programPlansList = plansList.Where(x => x.ProgramPlanId == programPlansListBind.ProgramPlanId).ToList();
+
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            systemUser = systemUserController.GetSystemUser(programPlansListBind._ProgramTarget.CreatedBy, false, false, false);
+
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
+
+
+
 
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
             projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlansListBind.ProgramPlanId);
+
+
 
             foreach (var item in projectPlanResourcesList)
             {
@@ -75,6 +99,7 @@ namespace ManPowerWeb
                 }
             }
 
+            txtManger.Text = systemUser.Name;
             txtProgramName.Text = programPlansListBind.ProgramName;
             txtDate.Text = programPlansListBind.Date.ToString("yyyy-MM-dd");
             txtBudget.Text = programPlansListBind.ApprovedAmount.ToString();
@@ -85,6 +110,20 @@ namespace ManPowerWeb
             txtActualOutcome.Text = programPlansListBind.Outcome.ToString();
             txtActualOutput.Text = programPlansListBind.ActualOutput.ToString();
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
+            txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
+
+
+
+            if (programPlansListBind.FinancialSource != "")
+            {
+                gvFileResourses.DataSource = programPlansList;
+                gvFileResourses.DataBind();
+            }
+            else
+            {
+                lblListOfUploadedFiles.Text = "N/A";
+            }
+
 
 
 
@@ -154,6 +193,11 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
+        }
+
+        protected void btnView_Click1(object sender, EventArgs e)
+        {
+
         }
     }
 }

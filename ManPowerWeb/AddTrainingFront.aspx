@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddTrainingFront.aspx.cs" Inherits="ManPowerWeb.AddTrainingFront1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="card">
         <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Training Details</h2>
         <div class="col-sm-4">

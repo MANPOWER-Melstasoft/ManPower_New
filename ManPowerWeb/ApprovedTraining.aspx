@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApprovedTraining.aspx.cs" Inherits="ManPowerWeb.ApprovedTraining" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card">
         <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Approved Trainings</h2>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">

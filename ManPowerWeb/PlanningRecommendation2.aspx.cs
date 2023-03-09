@@ -15,6 +15,8 @@ namespace ManPowerWeb
         static List<ProgramPlan> plansList = new List<ProgramPlan>();
         List<ProgramPlanApprovalDetails> ProgramPlanApprovalDetails = new List<ProgramPlanApprovalDetails>();
         List<ProjectPlanResource> projectPlanResourcesList = new List<ProjectPlanResource>();
+        List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
+        SystemUser systemUser = new SystemUser();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,7 +24,16 @@ namespace ManPowerWeb
             {
                 DataSourceBind();
 
+                ResourcePersonController resourcePersonController = ControllerFactory.CreateResourcePersonController();
+                resourcePeopleList = resourcePersonController.GetAllResourcePerson(false);
 
+                //Bind Data To CheckBox List
+                chkList.DataSource = resourcePeopleList;
+                chkList.DataValueField = "ResoursePersonId";
+                chkList.DataTextField = "Name";
+                chkList.DataBind();
+
+                //End Bind Data To CheckBox List
             }
         }
 
@@ -33,7 +44,7 @@ namespace ManPowerWeb
 
             ProgramPlanApprovalDetails = programPlanApprovalDetailsController.GetAll();
 
-            plansList = programPlanController.GetAllProgramPlan();
+            plansList = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
             plansList = plansList.Where(x => x.ProjectStatusId == 2016).ToList();
 
             foreach (var item in plansList)
@@ -57,6 +68,11 @@ namespace ManPowerWeb
 
             ProgramPlan programPlansListBind = new ProgramPlan();
             programPlansListBind = plansList[rowIndex];
+
+            List<ProgramPlan> programPlansList = plansList.Where(x => x.ProgramPlanId == programPlansListBind.ProgramPlanId).ToList();
+
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            systemUser = systemUserController.GetSystemUser(programPlansListBind._ProgramTarget.CreatedBy, false, false, false);
 
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
 
@@ -84,6 +100,19 @@ namespace ManPowerWeb
             txtActualOutcome.Text = programPlansListBind.Outcome.ToString();
             txtActualOutput.Text = programPlansListBind.ActualOutput.ToString();
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
+            txtManger.Text = systemUser.Name;
+            txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
+
+
+            if (programPlansListBind.FinancialSource != "")
+            {
+                gvFileResourses.DataSource = programPlansList;
+                gvFileResourses.DataBind();
+            }
+            else
+            {
+                lblListOfUploadedFiles.Text = "N/A";
+            }
 
 
 
@@ -131,13 +160,16 @@ namespace ManPowerWeb
             ProgramPlanApprovalDetails programPlanApprovalDetails = new ProgramPlanApprovalDetails();
 
             programPlanApprovalDetails.ProgramPlanId = programPlanId;
-            programPlanApprovalDetails.ProjectStatus = 4;
+            programPlanApprovalDetails.ProjectStatus = 2017;
 
             programPlanApprovalDetails.Recommendation1By = 0;
             //programPlanApprovalDetails.Recommendation1Date = DateTime.Now;
 
-            programPlanApprovalDetails.Recommendation2By = Convert.ToInt32(Session["DepUnitPositionId"]); ;
+            programPlanApprovalDetails.Recommendation2By = Convert.ToInt32(Session["DepUnitPositionId"]);
             programPlanApprovalDetails.Recommendation2Date = DateTime.Now;
+
+            programPlanApprovalDetails.ApprovedBy = Convert.ToInt32(Session["DepUnitParentId"]);
+            //programPlanApprovalDetails.ApprovedDate = DateTime.Now;
 
             programPlanApprovalDetails.RejectReason = "";
 
@@ -146,7 +178,7 @@ namespace ManPowerWeb
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation2.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Send To Recommendation Succesfully!', 'success');window.setTimeout(function(){window.location='PlanningRecommendation2.aspx'},2500);", true);
 
             }
             else

@@ -52,7 +52,8 @@ namespace ManPowerWeb
 
                 }
 
-
+                DivAfterComplete.Visible = false;
+                divUplaod.Visible = false;
 
                 dataSource();
             }
@@ -126,10 +127,18 @@ namespace ManPowerWeb
 
             txtEstimateAmount.Text = programTarget.EstimatedAmount.ToString();
 
-            if (programPlansListBind[0].Date < DateTime.Now)
+            if (programPlansListBind[0].Date <= DateTime.Now)
             {
+                if (programPlansListBind[0].ProjectStatusId == 1)
+                {
+                    btnSave.Visible = true;
+                }
+                else
+                {
+                    btnSave.Visible = false;
+                }
 
-                btnSave.Visible = false;
+
             }
             else
             {
@@ -144,10 +153,17 @@ namespace ManPowerWeb
 
             }
 
-            if (programPlansListBind[0].ProjectStatusId == 4)
+            if (programPlansListBind[0].ProjectStatusId == 4 || programPlansListBind[0].ProjectStatusId == 1)
             {
                 btnSendToRecommendation.Visible = false;
 
+
+            }
+
+            if (programPlansListBind[0].Date < DateTime.Now && programPlansListBind[0].ProjectStatusId != 1)
+            {
+                DivAfterComplete.Visible = true;
+                divUplaod.Visible = true;
             }
 
 
@@ -179,10 +195,14 @@ namespace ManPowerWeb
 
             List<TaskAllocationDetail> taskAllocationDetailList1 = taskAllocationDetailController.GetAllTaskAllocationDetail();
 
+            ProjectTaskController projectTaskController = ControllerFactory.CreateProjectTaskController();
+
             foreach (var item in taskAllocationDetailList1)
             {
+
                 if (item.TaskTypeId == 1 && item.programPlanId == programPlanId)
                 {
+                    projectTaskController.DeletefromProgramPlanId(item.programPlanId);
                     taskAllocationDetailController.DeleteTaskAllocationDetail(item.TaskAllocationDetailId);
                 }
             }
@@ -325,6 +345,7 @@ namespace ManPowerWeb
                     }
 
                     ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
+
                     if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
                     {
                         lblDate.Text = "Invalid Date";
@@ -340,8 +361,9 @@ namespace ManPowerWeb
                         int response = programPlanController.UpdateProgramPlan(programPlan, (List<string>)ViewState["projectPlanResourceStringList"]);
 
                         taskAllocationDetailObj.TaskTypeId = 1;
+
                         taskAllocationDetailObj.TaskAllocationId = taskAllocationId;
-                        taskAllocationDetailObj.TaskDescription = "";
+                        taskAllocationDetailObj.TaskDescription = txtProgramName.Text;
                         taskAllocationDetailObj.WorkLocation = txtLocation.Text;
                         taskAllocationDetailObj.Isconmpleated = 0;
                         taskAllocationDetailObj.NotCompleatedReason = "";
@@ -351,7 +373,14 @@ namespace ManPowerWeb
                         taskAllocationDetailObj.TaskAmendments = "";
                         taskAllocationDetailObj.programPlanId = programPlanId;
 
-                        taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+                        int taskAllocationDetailId = taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+
+                        ProjectTask projectTaskobj = new ProjectTask();
+
+                        projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId;
+                        projectTaskobj.ProgramPlanId = programPlanId;
+
+                        projectTaskController.saveProjectTask(projectTaskobj);
 
                         if (response != 0)
                         {
@@ -469,7 +498,7 @@ namespace ManPowerWeb
 
                     taskAllocationDetailObj.TaskTypeId = 1;
                     taskAllocationDetailObj.TaskAllocationId = taskAllocationId1;
-                    taskAllocationDetailObj.TaskDescription = "";
+                    taskAllocationDetailObj.TaskDescription = txtProgramName.Text;
                     taskAllocationDetailObj.WorkLocation = txtProgramName.Text;
                     taskAllocationDetailObj.Isconmpleated = 0;
                     taskAllocationDetailObj.NotCompleatedReason = "";
@@ -479,7 +508,12 @@ namespace ManPowerWeb
                     taskAllocationDetailObj.TaskAmendments = "";
                     taskAllocationDetailObj.programPlanId = programPlanId;
 
-                    taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+                    int taskAllocationDetailId1 = taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
+
+                    ProjectTask projectTaskobj = new ProjectTask();
+
+                    projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId1;
+                    projectTaskobj.ProgramPlanId = programPlanId;
 
                     if (response != 0)
                     {
@@ -561,8 +595,16 @@ namespace ManPowerWeb
             }
         }
 
+        protected void txtFemaleCount_TextChanged(object sender, EventArgs e)
+        {
+            txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
+        }
 
+        protected void txtMaleCount_TextChanged(object sender, EventArgs e)
+        {
+            txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
 
+        }
     }
 
 

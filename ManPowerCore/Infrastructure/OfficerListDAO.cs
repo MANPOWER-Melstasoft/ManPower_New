@@ -22,7 +22,7 @@ namespace ManPowerCore.Infrastructure
             DataTable TabaleOfficer = new DataTable();
 
 
-            dBConnection.cmd.CommandText = "Select Company_User.Name,Company_User.Id,Department_Unit_Possitions.Possitions_Id,Department_Unit_Possitions.Department_Unit_Id,Department_Unit.Parent_Id From Company_User INNER JOIN Department_Unit_Possitions ON Company_User.Id=Department_Unit_Possitions.System_User_Id INNER JOIN Department_Unit ON Department_Unit.Id=Department_Unit_Possitions.Department_Unit_Id;";
+            dBConnection.cmd.CommandText = "Select Company_User.Name,Company_User.Id,Company_User.User_Type_Id,Department_Unit_Possitions.Possitions_Id,Department_Unit_Possitions.Department_Unit_Id,Department_Unit.Parent_Id From Company_User INNER JOIN Department_Unit_Possitions ON Company_User.Id=Department_Unit_Possitions.System_User_Id INNER JOIN Department_Unit ON Department_Unit.Id=Department_Unit_Possitions.Department_Unit_Id;";
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(dBConnection.cmd);
             dataAdapter.Fill(TabaleOfficer);

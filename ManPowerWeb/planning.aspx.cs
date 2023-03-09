@@ -85,7 +85,7 @@ namespace ManPowerWeb
 
             gvAnnaualPlan.DataBind();
             gvAnnaualPlan.Columns[1].Visible = false;
-            gvAnnaualPlan.Columns[7].Visible = false;
+            gvAnnaualPlan.Columns[8].Visible = false;
 
         }
 
@@ -190,10 +190,10 @@ namespace ManPowerWeb
                 lbl.Text = programPlansList.Count.ToString();
                 gvPlanDetails.DataSource = programPlansList;
                 gvPlanDetails.DataBind();
-                if (lbl.Text != "" && e.Row.Cells[8].Text != "")
+                if (lbl.Text != "" && e.Row.Cells[9].Text != "")
                 {
 
-                    if (Convert.ToInt32(lbl.Text) < Convert.ToInt32(e.Row.Cells[9].Text))
+                    if (Convert.ToInt32(lbl.Text) < Convert.ToInt32(e.Row.Cells[10].Text))
                     {
                         button.Enabled = true;
 
@@ -290,7 +290,7 @@ namespace ManPowerWeb
                 TableCell cell = e.Row.Cells[0];
                 string cellValue = cell.Text;
 
-                if (Convert.ToDateTime(e.Row.Cells[2].Text) < DateTime.Now)
+                if (Convert.ToDateTime(e.Row.Cells[2].Text) < DateTime.Now && e.Row.Cells[6].Text == "In Progress")
                 {
                     LinkButton childEditButton = (LinkButton)e.Row.FindControl("btnEdit");
                     childEditButton.Text = "Enter Program Details";

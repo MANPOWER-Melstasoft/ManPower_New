@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SpecialProgram.aspx.cs" Inherits="ManPowerWeb.SpecialProgram" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container"></div>
     <div class="card ml-4 p-4">
         <h2><b>Add Special Program</b></h2>

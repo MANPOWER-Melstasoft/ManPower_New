@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CompletedPrograms.aspx.cs" Inherits="ManPowerWeb.CompletedPrograms" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
+
     <div class="container">
         <div class="card m-4 p-4">
             <h2>Completed Programs</h2>
@@ -73,6 +76,8 @@
                 CellPadding="4" GridLines="None" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging"
                 ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                 <Columns>
+                    <asp:BoundField DataField="_ProgramTarget.Title" HeaderText="Program Target Name" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="ProgramName" HeaderText="Program Name" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Date" HeaderText="Date" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="Location" HeaderText="Location" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="ApprovedDate" HeaderText="Approved Date" HeaderStyle-CssClass="table-dark" />
@@ -80,7 +85,7 @@
                     <asp:BoundField DataField="FemaleCount" HeaderText="Female Count" HeaderStyle-CssClass="table-dark" />
                     <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
+                            <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info"
                                 a href='<%#"CompletedProgramsView.aspx?id="+DataBinder.Eval(Container.DataItem,"ProgramPlanId") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>

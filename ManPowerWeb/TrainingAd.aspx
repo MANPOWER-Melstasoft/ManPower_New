@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TrainingAd.aspx.cs" Inherits="ManPowerWeb.TrainingAd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="contrainer" style="margin-left: 200px; margin-right: 200px;">
         <asp:ListView ID="lvTrainingAd" runat="server">
             <ItemTemplate>

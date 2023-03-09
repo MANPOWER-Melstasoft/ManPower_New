@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RequestLoanFront.aspx.cs" Inherits="ManPowerWeb.RequestLoanFront" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card">
         <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Apply Loan</h2>
         <div class="card-body">

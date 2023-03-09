@@ -94,8 +94,8 @@ namespace ManPowerWeb
 
         public void BindDataTable()
         {
-            var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
-            var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();
+            var ListProgramTargetName = districtTASummariesListFinal.Select(x => x.ProgramTargetName).Distinct();
+            var ListDistrict = districtTASummariesListFinal.Select(x => x.Location).Distinct();
 
             List<string> headers = new List<string>() { "Target", "Online", "Physical", "Total", "No. of beneficiaries" };
 
@@ -273,6 +273,7 @@ namespace ManPowerWeb
         }
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
+            BindDataSource();
 
             Response.Clear();
             Response.Buffer = true;

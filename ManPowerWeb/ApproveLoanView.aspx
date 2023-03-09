@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveLoanView.aspx.cs" Inherits="ManPowerWeb.ApproveLoanView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card o-hidden border-0 shadow-lg my-3 p-4">
 
         <h2>Approve Loan</h2>

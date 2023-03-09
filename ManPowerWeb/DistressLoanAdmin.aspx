@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DistressLoanAdmin.aspx.cs" Inherits="ManPowerWeb.DistressLoanAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card m-4 p-4">
         <h2>Distress Loan Admin Section</h2>
         <div class="table-responsive mt-4" style="width: 100%; padding-left: 40px; padding-right: 40px;">

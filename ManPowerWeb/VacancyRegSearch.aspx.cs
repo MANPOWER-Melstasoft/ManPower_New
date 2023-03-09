@@ -15,13 +15,15 @@ namespace ManPowerWeb
     {
         int currentYear = DateTime.Today.Year;
         string[] career = { "Management", "Skilled", "Non-Skilled", "Technical", "Non-Technical" };
-        int[] year = { (DateTime.Today.Year - 1),DateTime.Today.Year, (DateTime.Today.Year + 1), (DateTime.Today.Year + 2 )};
+        int[] year = { (DateTime.Today.Year - 1), DateTime.Today.Year, (DateTime.Today.Year + 1), (DateTime.Today.Year + 2) };
 
         List<CompanyVecansyRegistationDetails> cc = new List<CompanyVecansyRegistationDetails>();
         List<CompanyVecansyRegistationDetails> newList = new List<CompanyVecansyRegistationDetails>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 BindDataSource();
@@ -40,7 +42,7 @@ namespace ManPowerWeb
             GridView1.DataSource = cc;
             GridView1.DataBind();
 
-            ddlYear.DataSource = year; 
+            ddlYear.DataSource = year;
             ddlYear.DataBind();
 
             ddlPosition.DataSource = career;
@@ -70,7 +72,7 @@ namespace ManPowerWeb
             GridViewRow gridViewRow = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            string url = "VacancyRegView.aspx?" + "id=" +cc[index].CompanyVacansyRegistationDetailsId;
+            string url = "VacancyRegView.aspx?" + "id=" + cc[index].CompanyVacansyRegistationDetailsId;
             Response.Redirect(url);
         }
     }

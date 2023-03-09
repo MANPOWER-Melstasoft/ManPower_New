@@ -37,7 +37,7 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
             BindDataSource();
         }
@@ -80,7 +80,7 @@ namespace ManPowerWeb
             DateTime date = Convert.ToDateTime(TextBox4.Text);
 
             myList = (List<ProgramTarget>)ViewState["myList"];
-            GridView1.DataSource = myList.Where(u => u.StartDate.Date == date.Date && u.ProgramTypeId == int.Parse( ddl1.SelectedValue));
+            GridView1.DataSource = myList.Where(u => u.StartDate.Date == date.Date && u.ProgramTypeId == int.Parse(ddl1.SelectedValue));
             GridView1.DataBind();
         }
 

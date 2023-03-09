@@ -17,6 +17,7 @@ namespace ManPowerWeb
         int employeId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
             employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
 

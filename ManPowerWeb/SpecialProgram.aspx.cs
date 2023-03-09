@@ -18,6 +18,8 @@ namespace ManPowerWeb
         TaskAllocationDetail taskAllocationDetail = new TaskAllocationDetail();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             int positionId = Convert.ToInt32(Session["DepUnitPositionId"]);
 
             TaskAllocationController allocation = ControllerFactory.CreateTaskAllocationController();

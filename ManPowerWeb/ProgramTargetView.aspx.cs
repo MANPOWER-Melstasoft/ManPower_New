@@ -18,16 +18,18 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             string id = Request.QueryString["id"];
 
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
-            pa = programAssigneeController.GetProgramAssignee(int.Parse(id),true,false,false);
+            pa = programAssigneeController.GetProgramAssignee(int.Parse(id), true, false, false);
 
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-            pt = programTargetController.GetProgramTarget(int.Parse(id),false, false, true, false) ;
+            pt = programTargetController.GetProgramTarget(int.Parse(id), false, false, true, false);
 
             ProgramController programCntroller = ControllerFactory.CreateProgramController();
-            p = programCntroller.GetProgram(pt.ProgramId,false);
+            p = programCntroller.GetProgram(pt.ProgramId, false);
 
             if (pt.ProgramTypeId == 1)
             {

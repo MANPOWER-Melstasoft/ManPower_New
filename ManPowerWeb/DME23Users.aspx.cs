@@ -20,6 +20,8 @@ namespace ManPowerWeb
 
         public void BindDataSource()
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
 
             systemUserList = systemUserController.GetAllSystemUser(true, false, false);

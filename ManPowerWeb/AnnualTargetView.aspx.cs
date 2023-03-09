@@ -30,6 +30,7 @@ namespace ManPowerWeb
         List<DepartmentUnit> listDSDivision = new List<DepartmentUnit>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
             //----------------------- Decrypt URL ---------------------------------------------------
 

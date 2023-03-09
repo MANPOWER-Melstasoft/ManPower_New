@@ -18,6 +18,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (userPrevilage.checkPrevilage(Convert.ToInt32(Session["UserId"]), functionId))
             {
                 if (!IsPostBack)

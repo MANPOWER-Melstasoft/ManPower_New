@@ -14,7 +14,7 @@
         <div class="row">
 
             <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                            || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
                 {
             %>
 
@@ -235,7 +235,7 @@
                                             Pending Annual Targets
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <asp:Label ID="Label1" runat="server" Text="N/A"></asp:Label>
+                                            <asp:Label ID="lblPenAnnTar" runat="server" Text="N/A"></asp:Label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -253,7 +253,7 @@
 
 
 
-            <% if (Session["UserTypeId"].ToString() == "1")
+            <% if (Session["UserTypeId"].ToString() == "2")
                 {
             %>
             <!-- Approve DME 21 -->
@@ -318,7 +318,7 @@
             <div class="col-xl-3 col-md-6 mb-4">
                 <asp:UpdatePanel runat="server" ID="updatePanel6">
                     <ContentTemplate>
-                        <div class="card border-left-primary shadow h-100 py-2" data-toggle="modal" data-target="#PenAnnulTarget" data-ui-class="a-fadeUp" style="cursor: pointer">
+                        <div class="card border-left-primary shadow h-100 py-2" data-toggle="modal" data-target="#RecAnnulTarget" data-ui-class="a-fadeUp" style="cursor: pointer">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
@@ -326,7 +326,7 @@
                                             Recommendation Annual Targets
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <asp:Label ID="Label5" runat="server" Text="N/A"></asp:Label>
+                                            <asp:Label ID="lblRecAnnualTar" runat="server" Text="N/A"></asp:Label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -409,7 +409,7 @@
 
             <!-- Content Row -->
             <% if (Session["UserTypeId"].ToString() == "6"
-                          || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                 || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
                 {
             %>
             <!-- This month Upcoming Programs -->
@@ -657,7 +657,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                       || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+            || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -690,7 +690,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                        || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+            || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div>
@@ -994,34 +994,60 @@
 
 
 
+    <%--Planing Admin--%>
 
-    <%--Planing User--%>
-
-    <%--dialog box comProgrm--%>
-    <div class="modal" id="comProgrm" role="dialog">
+    <%--dialog box RecAnnulTarget--%>
+    <div class="modal" id="RecAnnulTarget" role="dialog">
         <div class="modal-dialog modal-lg modal-fullscreen-lg-down">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header text-center">
 
-                    <h4 class="modal-title">View Completed Programs</h4>
+                    <h4 class="modal-title">View Recommendation Annual Targets</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div>
-                        <asp:GridView runat="server" ID="GridView3"
+                        <asp:GridView runat="server" ID="gvRecAnnualTar"
                             Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
                             CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
                             ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
 
                             <Columns>
-                                <asp:BoundField DataField="StaffLeaveId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="_EMployeeDetails.LastName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="LeaveDate" HeaderText="Leave Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" ApplyFormatInEditMode="true" />
-                            </Columns>
+                                <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="TargetYear" HeaderText="YEAR" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="EndDate" HeaderText="End Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="TargetMonth" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "1" ?true:false %>' Text="January">  </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "2" ?true:false %>' Text="February">  </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "3" ?true:false %>' Text="March"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "4" ?true:false %>' Text="April"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "5" ?true:false %>' Text="May"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "6" ?true:false %>' Text="June"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "7" ?true:false %>' Text="July"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "8" ?true:false %>' Text="August"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "9" ?true:false %>' Text="September"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "10" ?true:false %>' Text="October"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "11" ?true:false %>' Text="November"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "12" ?true:false %>' Text="December"> </asp:Label>
 
-                            <EmptyDataTemplate>No Vote Allocation To Show </EmptyDataTemplate>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Title" HeaderText="TITLE" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "0" ?true:false %>' Text="Not Send to Recommendation" ForeColor="Blue"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "2" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "3" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <EmptyDataTemplate>No Targets to Show </EmptyDataTemplate>
                         </asp:GridView>
                     </div>
                 </div>
@@ -1031,6 +1057,14 @@
         </div>
     </div>
     <%--end dialog box--%>
+
+
+
+
+
+
+
+    <%--Planing User--%>
 
     <%--dialog box PenAnnulTarget--%>
     <div class="modal" id="PenAnnulTarget" role="dialog">
@@ -1045,18 +1079,45 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <asp:GridView runat="server" ID="GridView4"
+                        <asp:GridView runat="server" ID="gvPenAnnualTar"
                             Style="margin-top: 30px;" AutoGenerateColumns="False" CssClass="table table-bordered"
                             CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center"
                             ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
 
                             <Columns>
-                                <asp:BoundField DataField="MainId" HeaderText="Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="employee.LastName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                                <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
-                                <asp:BoundField DataField="ActionTakenDate" HeaderText="Approved Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="ProgramTargetId" HeaderText="ID" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="TargetYear" HeaderText="YEAR" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:BoundField DataField="EndDate" HeaderText="End Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
+                                <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="TargetMonth" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "1" ?true:false %>' Text="January">  </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "2" ?true:false %>' Text="February">  </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "3" ?true:false %>' Text="March"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "4" ?true:false %>' Text="April"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "5" ?true:false %>' Text="May"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "6" ?true:false %>' Text="June"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "7" ?true:false %>' Text="July"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "8" ?true:false %>' Text="August"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "9" ?true:false %>' Text="September"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "10" ?true:false %>' Text="October"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "11" ?true:false %>' Text="November"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("TargetMonth").ToString() == "12" ?true:false %>' Text="December"> </asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Title" HeaderText="TITLE" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">
+                                    <ItemTemplate>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "0" ?true:false %>' Text="Not Send to Recommendation" ForeColor="Blue"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "2" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
+                                        <asp:Label runat="server" Visible='<%#Eval("IsRecommended").ToString() == "3" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
+
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
-                            <EmptyDataTemplate>No Programs to Show </EmptyDataTemplate>
+                            <EmptyDataTemplate>No Targets to Show </EmptyDataTemplate>
                         </asp:GridView>
                     </div>
                 </div>

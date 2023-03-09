@@ -14,7 +14,7 @@
         <div class="row">
 
             <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                                              || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
                 {
             %>
 
@@ -253,7 +253,7 @@
 
 
 
-            <% if (Session["UserTypeId"].ToString() == "1")
+            <% if (Session["UserTypeId"].ToString() == "2")
                 {
             %>
             <!-- Approve DME 21 -->
@@ -409,7 +409,7 @@
 
             <!-- Content Row -->
             <% if (Session["UserTypeId"].ToString() == "6"
-                                            || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                 || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
                 {
             %>
             <!-- This month Upcoming Programs -->
@@ -657,7 +657,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                                         || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+            || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -690,7 +690,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                                          || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+            || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div>

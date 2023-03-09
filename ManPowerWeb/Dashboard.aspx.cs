@@ -459,6 +459,15 @@ namespace ManPowerWeb
             //--------------------- DME22 ---------------------------------------
             List<TaskAllocation> taskAllocationList22Final = taskAllocationController.GetTaskAllocationDme22Approve(positionID);
             lblApproveDme22.Text = taskAllocationList22Final.Count.ToString();
+
+            //--------------------- ANNUAL TARGET ---------------------------------------
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
+
+            programTargetsList = programTargetsList.Where(x => x.IsRecommended == 1 && x.RecommendedBy == Convert.ToInt32(Session["UserId"])).ToList();
+            lblRecAnnualTar.Text = programTargetsList.Count.ToString();
+            gvRecAnnualTar.DataSource = programTargetsList;
+            gvRecAnnualTar.DataBind();
         }
 
         protected void BindDistrictHeadCardData()

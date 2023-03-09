@@ -69,13 +69,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.UpdatePanel updatePanel5;
 
         /// <summary>
-        /// Label1 control.
+        /// lblPenAnnTar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblPenAnnTar;
 
         /// <summary>
         /// timer5 control.
@@ -483,22 +483,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvProgramTargetNotification;
 
         /// <summary>
-        /// GridView3 control.
+        /// gvPenAnnualTar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
-
-        /// <summary>
-        /// GridView4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView4;
+        protected global::System.Web.UI.WebControls.GridView gvPenAnnualTar;
 
         /// <summary>
         /// gvVehicleMain control.

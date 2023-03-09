@@ -437,13 +437,14 @@ namespace ManPowerWeb
             lblrec1DME22.Text = taskAllocationList22Final.Count.ToString();
 
 
-            //--------------------- TRAINING REQUEST ---------------------------------------
-            TrainingRequestsController trainingRequestControllerImpl = ControllerFactory.CreateTrainingRequestsController();
-            List<TrainingRequests> trainingRequests = trainingRequestControllerImpl.GetAllTrainingRequests();
-            trainingRequests = trainingRequests.Where(x => x.ProjectStatusId == 1008).ToList();
-            lblAppTrain.Text = trainingRequests.Count.ToString();
-            gvTraininReq.DataSource = trainingRequests;
-            gvTraininReq.DataBind();
+            //--------------------- ANNUAL TARGET ---------------------------------------
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
+
+            programTargetsList = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
+            lblPenAnnTar.Text = programTargetsList.Count.ToString();
+            gvPenAnnualTar.DataSource = programTargetsList;
+            gvPenAnnualTar.DataBind();
 
         }
 

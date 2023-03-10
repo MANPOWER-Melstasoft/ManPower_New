@@ -27,8 +27,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Cheque_Number, Total_Amount, Created_User, Created_Date, Bank_Account,Status) " +
-                "VALUES (@SupplierId, @VoucherNumber, @VoucherDate, @PayeeName, @PayeeAddress, @ChequeNumber, @TotalAmount, @CreatedUser, @CreatedDate, @BankAccount,@Status)";
+            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Cheque_Number, Total_Amount, Created_User, Created_Date, Bank_Account,Bank_Name,Bank_BranchStatus) " +
+                "VALUES (@SupplierId, @VoucherNumber, @VoucherDate, @PayeeName, @PayeeAddress, @ChequeNumber, @TotalAmount, @CreatedUser, @CreatedDate, @BankAccount,@BankName,@BankBranch,@Status)";
 
             dbConnection.cmd.Parameters.AddWithValue("@SupplierId", paymentVoucher.SupplierId);
             dbConnection.cmd.Parameters.AddWithValue("@VoucherNumber", paymentVoucher.VoucherNumber);
@@ -49,6 +49,9 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", paymentVoucher.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", paymentVoucher.CreatedDate);
             dbConnection.cmd.Parameters.AddWithValue("@BankAccount", paymentVoucher.BankAccount);
+            dbConnection.cmd.Parameters.AddWithValue("@BankName", paymentVoucher.BankName);
+            dbConnection.cmd.Parameters.AddWithValue("@BankBranch", paymentVoucher.BankBranch);
+
 
             //dbConnection.cmd.Parameters.AddWithValue("@CheckBy", paymentVoucher.CheckBy);
             //dbConnection.cmd.Parameters.AddWithValue("@CheckDate", paymentVoucher.CheckDate);

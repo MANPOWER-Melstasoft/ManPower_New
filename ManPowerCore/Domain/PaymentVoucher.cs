@@ -87,6 +87,12 @@ namespace ManPowerCore.Domain
 
         [DBField("Status")]
         public int Status { get; set; }
+
+        [DBField("Bank_Name")]
+        public String BankName { get; set; }
+
+        [DBField("Bank_Branch")]
+        public string BankBranch { get; set; }
     }
 
 }

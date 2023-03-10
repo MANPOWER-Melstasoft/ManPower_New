@@ -15,6 +15,8 @@ namespace ManPowerCore.Controller
 
         int Update(PaymentVoucher paymentVoucher);
 
+        int UpdateStatus(int Status, string User, DateTime Date, int Id);
+
         List<PaymentVoucher> GetAllPaymentVoucher();
     }
 
@@ -48,6 +50,25 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return paymentVoucherDAO.Update(paymentVoucher, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateStatus(int Status, string User, DateTime Date, int Id)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return paymentVoucherDAO.UpdateStatus(Status, User, Date, Id, dBConnection);
             }
             catch (Exception)
             {

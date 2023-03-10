@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
 
         int Update(PaymentVoucher paymentVoucher, DBConnection dbConnection);
 
+        int UpdateStatus(int Status, string User, DateTime Date, int Id, DBConnection dbConnection);
+
         List<PaymentVoucher> GetAllPaymentVoucher(DBConnection dbConnection);
     }
 
@@ -111,6 +113,40 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<PaymentVoucher>(dbConnection.dr);
+        }
+
+        public int UpdateStatus(int Status, string User, DateTime Date, int Id, DBConnection dbConnection)
+        {
+            int output = 0;
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+
+            dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Recommended_By=@User,Reconmmended_Date=@Date WHERE Id=@Id";
+
+
+            dbConnection.cmd.Parameters.AddWithValue("@Id", Id);
+            dbConnection.cmd.Parameters.AddWithValue("@Status", Status);
+            dbConnection.cmd.Parameters.AddWithValue("@Date", Date);
+            dbConnection.cmd.Parameters.AddWithValue("@User", User);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@RecommendedUser", paymentVoucher.RecommendedUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@RecommendedDate", paymentVoucher.RecommendedDate);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CanceledDate", paymentVoucher.CanceledDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@CanceledUser", paymentVoucher.CanceledUser);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckBy", paymentVoucher.CheckBy);
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckDate", paymentVoucher.CheckDate);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyUser", paymentVoucher.CertifyUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyDate", paymentVoucher.CertifyDate);
+
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+
+            return output;
+
         }
     }
 }

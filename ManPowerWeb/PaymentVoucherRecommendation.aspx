@@ -372,10 +372,11 @@
                 </div>
             </div>
             <div>
+                <div class="row mb-3  mt-5">
 
-
-                <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger mr-3" />
-                <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success btn-user " />
+                    <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger mr-3" OnClick="btnReject_Click" />
+                    <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success btn-user " OnClick="btnApprove_Click" />
+                </div>
             </div>
             <div class="col-sm-6 m-3">
                 <asp:Label ID="lblSuccessMsg" runat="server" Text="" ForeColor="#33cc33"></asp:Label>

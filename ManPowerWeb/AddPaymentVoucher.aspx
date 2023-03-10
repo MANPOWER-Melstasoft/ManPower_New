@@ -365,7 +365,7 @@
 
                         <div class="row mb-3  mt-5">
                             <asp:Button ID="btnSubmit" runat="server" Text="Send To Recommendation" CssClass="btn btn-success mr-3" ValidationGroup="1" OnClick="btnSubmit_Click" />
-                            <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger btn-user " OnClick="btnReject_Click" />
+                            <%--<asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger btn-user " OnClick="btnReject_Click" />--%>
                         </div>
 
                     </div>

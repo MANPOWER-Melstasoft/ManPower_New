@@ -104,7 +104,7 @@ namespace ManPowerWeb
             paymentVoucher.CreatedDate = DateTime.Now;
 
             paymentVoucher.CreatedUser = Session["UserId"].ToString();
-            paymentVoucher.Status = 1;
+            paymentVoucher.Status = 2;
 
             PaymentVoucherController paymentVoucherController = ControllerFactory.CreatePaymentVoucherController();
 

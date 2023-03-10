@@ -136,201 +136,214 @@
                             </div>
                         </div>
                     </div>
-                    <%-- Voucher Autorized --%>
+                    <div hidden="hidden">
+                        <%-- Voucher Autorized --%>
+
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal7" runat="server" Text="Is Voucher Autorized"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:RadioButtonList ID="rbIsVoucherAuthorized" runat="server" AutoPostBack="true">
+                                            <asp:ListItem Value="1">Yes</asp:ListItem>
+                                            <asp:ListItem Value="2">No</asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% if (rbIsVoucherAuthorized.SelectedValue == "1")
+                            { %>
+
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal8" runat="server" Text="Voucher Autorized Date"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:TextBox ID="txtVAutorizedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal9" runat="server" Text="Voucher Autorized Name"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:TextBox ID="txtVAutorizedName" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <%-- Voucher Autorized End--%>
+
+
+                        <%-- Payee Autorized --%>
+
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal10" runat="server" Text="Is Pay Autorized"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:RadioButtonList ID="rbPayAutorized" runat="server" AutoPostBack="true">
+                                            <asp:ListItem Value="1">Yes</asp:ListItem>
+                                            <asp:ListItem Value="2">No</asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% if (rbPayAutorized.SelectedValue == "1")
+                            { %>
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal11" runat="server" Text="Pay Autorized Date"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:TextBox ID="txtPayAutorizedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal12" runat="server" Text="Pay Autorized Name"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:TextBox ID="txtPayAutorizedName" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <%-- Payee Autorized End--%>
+
+                        <%-- Cancel Autorized --%>
+
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal13" runat="server" Text="Is Cancel"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:RadioButtonList ID="rbIsCanceled" runat="server" AutoPostBack="true">
+                                            <asp:ListItem Value="1">Yes</asp:ListItem>
+                                            <asp:ListItem Value="2">No</asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <% if (rbIsCanceled.SelectedValue == "1")
+                            { %>
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal14" runat="server" Text="Cancel Date"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:TextBox ID="txtCancelDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3 ms-1 mt-3">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <asp:Literal ID="Literal15" runat="server" Text="Cancel Name"></asp:Literal>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <asp:TextBox ID="txtCancelName" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <div class="d-flex text-danger">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <%-- Cancel End--%>
+                    </div>
+                    <h3>Bank Details</h3>
 
                     <div class="row mb-3 ms-1 mt-3">
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <asp:Literal ID="Literal7" runat="server" Text="Is Voucher Autorized"></asp:Literal>
+                                    <asp:Literal ID="Literal17" runat="server" Text="Bank Name"></asp:Literal>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <asp:RadioButtonList ID="rbIsVoucherAuthorized" runat="server" AutoPostBack="true">
-                                        <asp:ListItem Value="1">Yes</asp:ListItem>
-                                        <asp:ListItem Value="2">No</asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ValidationGroup="1"
-                                            ControlToValidate="rbIsVoucherAuthorized" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
+                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <% if (rbIsVoucherAuthorized.SelectedValue == "1")
-                        { %>
 
-                    <div class="row mb-3 ms-1 mt-3">
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <asp:Literal ID="Literal8" runat="server" Text="Voucher Autorized Date"></asp:Literal>
+                                    <asp:Literal ID="Literal18" runat="server" Text="Bank Branch Name"></asp:Literal>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <asp:TextBox ID="txtVAutorizedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtVAutorizedDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
+                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal9" runat="server" Text="Voucher Autorized Name"></asp:Literal>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <asp:TextBox ID="txtVAutorizedName" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtVAutorizedName" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
-
-                    <%-- Voucher Autorized End--%>
-
-
-                    <%-- Payee Autorized --%>
-
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal10" runat="server" Text="Is Pay Autorized"></asp:Literal>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <asp:RadioButtonList ID="rbPayAutorized" runat="server" AutoPostBack="true">
-                                        <asp:ListItem Value="1">Yes</asp:ListItem>
-                                        <asp:ListItem Value="2">No</asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="1"
-                                            ControlToValidate="rbPayAutorized" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% if (rbPayAutorized.SelectedValue == "1")
-                        { %>
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal11" runat="server" Text="Pay Autorized Date"></asp:Literal>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <asp:TextBox ID="txtPayAutorizedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtPayAutorizedDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal12" runat="server" Text="Pay Autorized Name"></asp:Literal>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <asp:TextBox ID="txtPayAutorizedName" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtPayAutorizedName" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
-
-                    <%-- Payee Autorized End--%>
-
-                    <%-- Cancel Autorized --%>
-
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal13" runat="server" Text="Is Cancel"></asp:Literal>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <asp:RadioButtonList ID="rbIsCanceled" runat="server" AutoPostBack="true">
-                                        <asp:ListItem Value="1">Yes</asp:ListItem>
-                                        <asp:ListItem Value="2">No</asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ValidationGroup="1"
-                                            ControlToValidate="rbIsCanceled" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <% if (rbIsCanceled.SelectedValue == "1")
-                        { %>
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal14" runat="server" Text="Cancel Date"></asp:Literal>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <asp:TextBox ID="txtCancelDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtCancelDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3 ms-1 mt-3">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <asp:Literal ID="Literal15" runat="server" Text="Cancel Name"></asp:Literal>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <asp:TextBox ID="txtCancelName" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
-                                    <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtCancelName" ErrorMessage="Required">*</asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
-
-                    <%-- Cancel End--%>
 
 
                     <div class="row mb-3 ms-1 mt-3">
@@ -343,8 +356,6 @@
                                 <div class="col-md-6">
                                     <asp:TextBox ID="txtBankAcc" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <div class="d-flex text-danger">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ValidationGroup="1"
-                                            ControlToValidate="txtBankAcc" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -352,9 +363,11 @@
                     </div>
                     <div>
 
+                        <div class="row mb-3  mt-5">
+                            <asp:Button ID="btnSubmit" runat="server" Text="Send To Recommendation" CssClass="btn btn-success mr-3" ValidationGroup="1" OnClick="btnSubmit_Click" />
+                            <%--<asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger btn-user " OnClick="btnReject_Click" />--%>
+                        </div>
 
-                        <asp:Button ID="btnSubmit" runat="server" Text="Add" CssClass="btn btn-primary mr-3" ValidationGroup="1" OnClick="btnSubmit_Click" />
-                        <asp:Button ID="btnSendToRecommendation" runat="server" Text="Send To Recommendation" CssClass="btn btn-success btn-user " OnClick="btnSendToRecommendation_Click" />
                     </div>
                     <div class="col-sm-6 m-3">
                         <asp:Label ID="lblSuccessMsg" runat="server" Text="" ForeColor="#33cc33"></asp:Label>
@@ -365,7 +378,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSubmit" />
-            <asp:PostBackTrigger ControlID="btnSendToRecommendation" />
+            <asp:PostBackTrigger ControlID="btnReject" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

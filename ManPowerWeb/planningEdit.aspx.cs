@@ -35,6 +35,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             name = Session["Name"].ToString();
             programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
             programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);

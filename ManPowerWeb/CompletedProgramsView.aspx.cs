@@ -17,6 +17,8 @@ namespace ManPowerWeb
         List<ProgramPlan> pp = new List<ProgramPlan>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             ProgramPlanController controller = ControllerFactory.CreateProgramPlanController();
             pp = controller.GetAllProgramPlan(false, false, false, false, false, false);
 

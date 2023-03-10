@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    
+
     public partial class VehicleMeintenanceSearch : System.Web.UI.Page
     {
         List<VehicleMeintenance> vehicleMeintenances = new List<VehicleMeintenance>();
@@ -21,6 +21,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 BindDataSource();
@@ -47,7 +49,7 @@ namespace ManPowerWeb
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            if(date.Text == null)
+            if (date.Text == null)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Please Enter a Date to proceed');", true);
             }
@@ -72,7 +74,7 @@ namespace ManPowerWeb
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if(e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 if (e.Row.Cells[3].Text == "0")
                 {

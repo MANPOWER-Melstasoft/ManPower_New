@@ -19,6 +19,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 dataSource();
@@ -38,48 +40,48 @@ namespace ManPowerWeb
 
             string id = Request.QueryString["id"];
 
-                foreach (var i in vehicleMeintenances.Where(u => u.VehicleMeintenanceId == int.Parse(id)))
+            foreach (var i in vehicleMeintenances.Where(u => u.VehicleMeintenanceId == int.Parse(id)))
+            {
+                fielNo.Text = i.FileNo;
+                date.Text = i.RequestDate.ToString();
+                category.Text = i.CategoryId.ToString();
+                requestedBy.Text = i.RequestDate.ToString();
+                vNo.Text = i.VehicleNumber;
+                description.Text = i.RequestDescription.ToString();
+
+                if (i.CategoryId == 1)
                 {
-                    fielNo.Text = i.FileNo;
-                    date.Text = i.RequestDate.ToString();
-                    category.Text = i.CategoryId.ToString();
-                    requestedBy.Text = i.RequestDate.ToString();
-                    vNo.Text = i.VehicleNumber;
-                    description.Text = i.RequestDescription.ToString();
+                    category.Text = "Repare";
+                }
+                else
+                {
+                    category.Text = "Service";
+                }
 
-                    if(i.CategoryId == 1)
-                    {
-                        category.Text = "Repare";
-                    }
-                    else
-                    {
-                        category.Text = "Service";
-                    }
+                if (i.IsApproved == 0)
+                {
+                    approval.Text = "Not Approved";
+                }
+                else if (i.IsApproved == 1)
+                {
+                    approval.Text = "Pending Approval";
+                }
 
-                    if (i.IsApproved == 0)
-                    {
-                        approval.Text = "Not Approved";
-                    }
-                    else if (i.IsApproved == 1)
-                    {
-                        approval.Text = "Pending Approval";
-                    }
+                else if (i.IsApproved == 2)
+                {
+                    approval.Text = "Request Approved";
+                }
 
-                    else if (i.IsApproved == 2)
-                    {
-                        approval.Text = "Request Approved";
-                    }
+                else if (i.IsApproved == 3)
+                {
+                    approval.Text = "Request Rejected";
+                    reject.Visible = true;
+                }
 
-                    else if (i.IsApproved == 3)
-                    {
-                        approval.Text = "Request Rejected";
-                        reject.Visible = true;
-                    }
-
-                    if(i.IsApproved == 1 || i.IsApproved == 2 || i.IsApproved == 3)
-                    {
-                        appBtn.Enabled = false;
-                    }
+                if (i.IsApproved == 1 || i.IsApproved == 2 || i.IsApproved == 3)
+                {
+                    appBtn.Enabled = false;
+                }
 
             }
 
@@ -106,9 +108,9 @@ namespace ManPowerWeb
             string id = Request.QueryString["id"];
 
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id),1,int.Parse(ddlOfficer.SelectedValue),"");
+            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 1, int.Parse(ddlOfficer.SelectedValue), "");
 
-            if(result == 0)
+            if (result == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something Went Wrong !');", true);
             }

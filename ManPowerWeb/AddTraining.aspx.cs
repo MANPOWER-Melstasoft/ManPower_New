@@ -22,6 +22,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             trainingMainId = Convert.ToInt32(Request.QueryString["TrainingMainId"]);
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);
 

@@ -27,6 +27,8 @@ namespace ManPowerWeb
         public TaskAllocation taskAllocationObj = new TaskAllocation();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             taskAllocationId = Convert.ToInt32(Request.QueryString["taskAllocationId"]);
 
             if (!IsPostBack)

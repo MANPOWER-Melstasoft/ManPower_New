@@ -69,13 +69,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.UpdatePanel updatePanel5;
 
         /// <summary>
-        /// Label1 control.
+        /// lblPenAnnTar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblPenAnnTar;
 
         /// <summary>
         /// timer5 control.
@@ -114,13 +114,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.UpdatePanel updatePanel6;
 
         /// <summary>
-        /// Label5 control.
+        /// lblRecAnnualTar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lblRecAnnualTar;
 
         /// <summary>
         /// timer6 control.
@@ -483,22 +483,31 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.GridView gvProgramTargetNotification;
 
         /// <summary>
-        /// GridView3 control.
+        /// gvAnnualTargetSendToRecommendation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.GridView gvAnnualTargetSendToRecommendation;
 
         /// <summary>
-        /// GridView4 control.
+        /// gvRecAnnualTar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView4;
+        protected global::System.Web.UI.WebControls.GridView gvRecAnnualTar;
+
+        /// <summary>
+        /// gvPenAnnualTar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPenAnnualTar;
 
         /// <summary>
         /// gvVehicleMain control.
@@ -535,14 +544,5 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAppResign;
-
-        /// <summary>
-        /// gvAnnualTargetSendToRecommendation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAnnualTargetSendToRecommendation;
     }
 }

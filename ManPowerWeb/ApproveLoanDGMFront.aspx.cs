@@ -21,6 +21,8 @@ namespace ManPowerWeb
 
         public void BindDataSource()
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             loanDetailList = loanDetailsController.GetAllLoanDetailWithStatus(true, true);
             loanDetailList = loanDetailList.Where(x => x.ApprovalStatusId == 2).ToList();
 

@@ -22,6 +22,8 @@ namespace ManPowerWeb
 
         public void BindDataSource()
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             taskAllocationID = Convert.ToInt32(Request.QueryString["taskAllocationID"]);
 
             TaskAllocationDetailController taskAllocationDetail = ControllerFactory.CreateTaskAllocationDetailController();

@@ -16,6 +16,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             EntrepreneurController entrepreneurctrl = ControllerFactory.CreateEntrepreneurController();
             entrepreneurs = entrepreneurctrl.GetAllEntrepreneur();
             string id = Request.QueryString["id"];
@@ -31,8 +33,8 @@ namespace ManPowerWeb
                 workers.Text = i.NumberOfWorkers.ToString();
                 //district.Text = i.District;
                 //ds.Text = i.DivisionalSecretery;
-                
-                if(i.MarketTypeId == 1)
+
+                if (i.MarketTypeId == 1)
                 {
                     marketType.Text = "Local";
                 }

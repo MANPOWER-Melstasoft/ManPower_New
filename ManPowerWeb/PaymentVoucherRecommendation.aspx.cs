@@ -48,6 +48,7 @@ namespace ManPowerWeb
             txtPAddres.Text = paymentVoucher.PayeeAddress;
             txtChequeNumber.Text = paymentVoucher.ChequeNumber;
             txtTotalAmount.Text = paymentVoucher.TotalAmount.ToString();
+            txtBankAcc.Text = paymentVoucher.BankAccount.ToString();
 
 
         }

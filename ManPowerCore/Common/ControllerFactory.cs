@@ -631,5 +631,11 @@ namespace ManPowerCore.Common
             ProgramPlanApprovalDetailsController programPlanApprovalDetailsController = new ProgramPlanApprovalDetailsControllerImpl();
             return (ProgramPlanApprovalDetailsController)programPlanApprovalDetailsController;
         }
+
+        public static VoucherStatusController CreateVoucherStatusController()
+        {
+            VoucherStatusController voucherStatusController = new VoucherStatusControllerImpl();
+            return (VoucherStatusController)voucherStatusController;
+        }
     }
 }

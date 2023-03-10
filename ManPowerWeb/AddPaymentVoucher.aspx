@@ -325,7 +325,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    <asp:TextBox ID="txtBankName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
 
                                 </div>
                             </div>
@@ -338,7 +338,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    <asp:TextBox ID="txtBankBranch" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
 
                                 </div>
                             </div>

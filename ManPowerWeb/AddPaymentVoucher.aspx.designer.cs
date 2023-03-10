@@ -393,13 +393,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal17;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtBankName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtBankName;
 
         /// <summary>
         /// Literal18 control.
@@ -411,13 +411,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal Literal18;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtBankBranch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtBankBranch;
 
         /// <summary>
         /// Literal16 control.

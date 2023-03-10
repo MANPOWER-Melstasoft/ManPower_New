@@ -59,6 +59,7 @@ namespace ManPowerWeb
             paymentVoucher.ChequeNumber = txtChequeNumber.Text;
             paymentVoucher.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
 
+
             //  paymentVoucher.IsVoucherAuthorized = Convert.ToInt32(rbIsVoucherAuthorized.SelectedValue);
             //if (rbIsVoucherAuthorized.SelectedValue == "1")
             //{
@@ -101,6 +102,9 @@ namespace ManPowerWeb
 
 
             paymentVoucher.BankAccount = txtBankAcc.Text;
+            paymentVoucher.BankBranch = txtBankBranch.Text;
+            paymentVoucher.BankName = txtBankName.Text;
+
             paymentVoucher.CreatedDate = DateTime.Now;
 
             paymentVoucher.CreatedUser = Session["UserId"].ToString();

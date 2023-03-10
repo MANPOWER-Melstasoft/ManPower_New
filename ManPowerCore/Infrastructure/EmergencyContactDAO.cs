@@ -30,7 +30,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMERGENCY_CONTACT(EMPLOYEE_ID,CONTACT_PERSON_NME,DEPENDENT_TYPE_TO_EMPLOYEE,ADDRESS_OF_EMEGENCY_PERSON, " +
                 "MOBILE,TELEPHONE,OFFICE_PHONE)" +
-                "VALUES(@EmplId,@Name,@DependentToEmployee,@EmgAddress,@EmgTelephone,@EmgMobile,@OfficePhone)";
+                "VALUES(@EmplId,@Name,@DependentToEmployee,@EmgAddress,@EmgMobile,@EmgTelephone,@OfficePhone)";
 
 
 

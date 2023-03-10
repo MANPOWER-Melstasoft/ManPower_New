@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
 
         int Update(PaymentVoucher paymentVoucher, DBConnection dbConnection);
 
+        int UpdateStatus(int Status, string User, DateTime Date, int Id, DBConnection dbConnection);
+
         List<PaymentVoucher> GetAllPaymentVoucher(DBConnection dbConnection);
     }
 
@@ -25,8 +27,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Cheque_Number, Total_Amount, Is_Voucher_Authorized, Vou_Authorized_Date, Vou_Authorized_User, Is_Pay_Authorized, Pay_Authorized_Date, Pay_Authorized_User, Is_Canceled, Canceled_Date, Canceled_User, Created_User, Created_Date, Bank_Account) " +
-                "VALUES (@SupplierId, @VoucherNumber, @VoucherDate, @PayeeName, @PayeeAddress, @ChequeNumber, @TotalAmount, @IsVoucherAuthorized, @VouAuthorizedDate, @VouAuthorizedUser, @IsPayAuthorized, @PayAuthorizedDate, @PayAuthorizedUser, @IsCanceled, @CanceledDate, @CanceledUser, @CreatedUser, @CreatedDate, @BankAccount)";
+            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Cheque_Number, Total_Amount, Created_User, Created_Date, Bank_Account,Status) " +
+                "VALUES (@SupplierId, @VoucherNumber, @VoucherDate, @PayeeName, @PayeeAddress, @ChequeNumber, @TotalAmount, @CreatedUser, @CreatedDate, @BankAccount,@Status)";
 
             dbConnection.cmd.Parameters.AddWithValue("@SupplierId", paymentVoucher.SupplierId);
             dbConnection.cmd.Parameters.AddWithValue("@VoucherNumber", paymentVoucher.VoucherNumber);
@@ -35,18 +37,24 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@PayeeAddress", paymentVoucher.PayeeAddress);
             dbConnection.cmd.Parameters.AddWithValue("@ChequeNumber", paymentVoucher.ChequeNumber);
             dbConnection.cmd.Parameters.AddWithValue("@TotalAmount", paymentVoucher.TotalAmount);
-            dbConnection.cmd.Parameters.AddWithValue("@IsVoucherAuthorized", paymentVoucher.IsVoucherAuthorized);
-            dbConnection.cmd.Parameters.AddWithValue("@VouAuthorizedDate", paymentVoucher.VouAuthorizedDate);
-            dbConnection.cmd.Parameters.AddWithValue("@VouAuthorizedUser", paymentVoucher.VouAuthorizedUser);
-            dbConnection.cmd.Parameters.AddWithValue("@IsPayAuthorized", paymentVoucher.IsPayAuthorized);
-            dbConnection.cmd.Parameters.AddWithValue("@PayAuthorizedDate", paymentVoucher.PayAuthorizedDate);
-            dbConnection.cmd.Parameters.AddWithValue("@PayAuthorizedUser", paymentVoucher.PayAuthorizedUser);
-            dbConnection.cmd.Parameters.AddWithValue("@IsCanceled", paymentVoucher.IsCanceled);
-            dbConnection.cmd.Parameters.AddWithValue("@CanceledDate", paymentVoucher.CanceledDate);
-            dbConnection.cmd.Parameters.AddWithValue("@CanceledUser", paymentVoucher.CanceledUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@IsVoucherAuthorized", paymentVoucher.IsVoucherAuthorized);
+            //dbConnection.cmd.Parameters.AddWithValue("@VouAuthorizedDate", paymentVoucher.VouAuthorizedDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@VouAuthorizedUser", paymentVoucher.VouAuthorizedUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@IsPayAuthorized", paymentVoucher.IsPayAuthorized);
+            //dbConnection.cmd.Parameters.AddWithValue("@PayAuthorizedDate", paymentVoucher.PayAuthorizedDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@PayAuthorizedUser", paymentVoucher.PayAuthorizedUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@IsCanceled", paymentVoucher.IsCanceled);
+            //dbConnection.cmd.Parameters.AddWithValue("@CanceledDate", paymentVoucher.CanceledDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@CanceledUser", paymentVoucher.CanceledUser);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", paymentVoucher.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", paymentVoucher.CreatedDate);
             dbConnection.cmd.Parameters.AddWithValue("@BankAccount", paymentVoucher.BankAccount);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckBy", paymentVoucher.CheckBy);
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckDate", paymentVoucher.CheckDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyUser", paymentVoucher.CertifyUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyDate", paymentVoucher.CertifyDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Status", paymentVoucher.Status);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
 
@@ -83,6 +91,13 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CanceledUser", paymentVoucher.CanceledUser);
             dbConnection.cmd.Parameters.AddWithValue("@BankAccount", paymentVoucher.BankAccount);
 
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckBy", paymentVoucher.CheckBy);
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckDate", paymentVoucher.CheckDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyUser", paymentVoucher.CertifyUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyDate", paymentVoucher.CertifyDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@Status", paymentVoucher.Status);
+
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
             return output;
@@ -98,6 +113,40 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<PaymentVoucher>(dbConnection.dr);
+        }
+
+        public int UpdateStatus(int Status, string User, DateTime Date, int Id, DBConnection dbConnection)
+        {
+            int output = 0;
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+
+            dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Recommended_By=@User,Reconmmended_Date=@Date WHERE Id=@Id";
+
+
+            dbConnection.cmd.Parameters.AddWithValue("@Id", Id);
+            dbConnection.cmd.Parameters.AddWithValue("@Status", Status);
+            dbConnection.cmd.Parameters.AddWithValue("@Date", Date);
+            dbConnection.cmd.Parameters.AddWithValue("@User", User);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@RecommendedUser", paymentVoucher.RecommendedUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@RecommendedDate", paymentVoucher.RecommendedDate);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CanceledDate", paymentVoucher.CanceledDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@CanceledUser", paymentVoucher.CanceledUser);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckBy", paymentVoucher.CheckBy);
+            //dbConnection.cmd.Parameters.AddWithValue("@CheckDate", paymentVoucher.CheckDate);
+
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyUser", paymentVoucher.CertifyUser);
+            //dbConnection.cmd.Parameters.AddWithValue("@CertifyDate", paymentVoucher.CertifyDate);
+
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+
+            return output;
+
         }
     }
 }

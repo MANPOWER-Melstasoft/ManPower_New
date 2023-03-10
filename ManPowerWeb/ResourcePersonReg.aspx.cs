@@ -18,6 +18,8 @@ namespace ManPowerWeb
         string[] type = { "DME", "External" };
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 ddlType.DataSource = type;

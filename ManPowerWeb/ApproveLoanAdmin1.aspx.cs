@@ -35,6 +35,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             EmpId = Convert.ToInt32(Session["EmpNumber"]);
             loanDetailsId = Convert.ToInt32(Request.QueryString["LoanDetailId"]);
             BindDataSource();

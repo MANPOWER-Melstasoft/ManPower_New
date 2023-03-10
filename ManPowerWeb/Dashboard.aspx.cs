@@ -21,6 +21,8 @@ namespace ManPowerWeb
         static List<ProgramTarget> programTargetsListForannulTargetSendToRecommendation = new List<ProgramTarget>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             //----------------------To clear cache in browser ----------------
 
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -437,13 +439,14 @@ namespace ManPowerWeb
             lblrec1DME22.Text = taskAllocationList22Final.Count.ToString();
 
 
-            //--------------------- TRAINING REQUEST ---------------------------------------
-            TrainingRequestsController trainingRequestControllerImpl = ControllerFactory.CreateTrainingRequestsController();
-            List<TrainingRequests> trainingRequests = trainingRequestControllerImpl.GetAllTrainingRequests();
-            trainingRequests = trainingRequests.Where(x => x.ProjectStatusId == 1008).ToList();
-            lblAppTrain.Text = trainingRequests.Count.ToString();
-            gvTraininReq.DataSource = trainingRequests;
-            gvTraininReq.DataBind();
+            //--------------------- ANNUAL TARGET ---------------------------------------
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
+
+            programTargetsList = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
+            lblPenAnnTar.Text = programTargetsList.Count.ToString();
+            gvPenAnnualTar.DataSource = programTargetsList;
+            gvPenAnnualTar.DataBind();
 
         }
 
@@ -458,6 +461,15 @@ namespace ManPowerWeb
             //--------------------- DME22 ---------------------------------------
             List<TaskAllocation> taskAllocationList22Final = taskAllocationController.GetTaskAllocationDme22Approve(positionID);
             lblApproveDme22.Text = taskAllocationList22Final.Count.ToString();
+
+            //--------------------- ANNUAL TARGET ---------------------------------------
+            ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+            List<ProgramTarget> programTargetsList = programTargetController.GetAllProgramTarget(false, false, false, false);
+
+            programTargetsList = programTargetsList.Where(x => x.IsRecommended == 1 && x.RecommendedBy == Convert.ToInt32(Session["UserId"])).ToList();
+            lblRecAnnualTar.Text = programTargetsList.Count.ToString();
+            gvRecAnnualTar.DataSource = programTargetsList;
+            gvRecAnnualTar.DataBind();
         }
 
         protected void BindDistrictHeadCardData()

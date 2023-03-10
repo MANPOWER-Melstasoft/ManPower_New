@@ -35,14 +35,14 @@ namespace ManPowerCore.Controller
                 //add parent reference
                 DepartmentUnitPositionsDAO departmentUnitPositionsDAO = DAOFactory.CreateDepartmentUnitPositionsDAO();
                 DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
-                List<DepartmentUnitPositions> departmentUnitPositionList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, false);
+                List<DepartmentUnitPositions> departmentUnitPositionList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, false, true, false, true);
 
                 DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionList.Where(x => x.SystemUserId == districDsParent.ParentUserId).Single();
                 List<DepartmentUnitPositions> departmentUnitPositionListNew = new List<DepartmentUnitPositions>();
 
                 foreach (var item in departmentUnitPositionList)
                 {
-                    if (item.DepartmentUnitId == districDsParent.DepartmentId && item._SystemUser.UserTypeId == 2)
+                    if (item.DepartmentUnitId == districDsParent.DepartmentId && item._SystemUser.UserTypeId == 8)
                     {
                         item.ParentId = departmentUnitPositions.DepartmetUnitPossitionsId;
                         departmentUnitPositionListNew.Add(item);
@@ -99,7 +99,7 @@ namespace ManPowerCore.Controller
 
                     foreach (var item in departmentUnitPositionList)
                     {
-                        if (item.DepartmentUnitId == districDsParent.DepartmentId && item._SystemUser.UserTypeId == 2)
+                        if (item.DepartmentUnitId == districDsParent.DepartmentId && item._SystemUser.UserTypeId == 8)
                         {
                             item.ParentId = departmentUnitPositions.DepartmetUnitPossitionsId;
                             departmentUnitPositionListNew.Add(item);

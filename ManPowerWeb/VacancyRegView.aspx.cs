@@ -18,6 +18,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             CompanyVecansyRegistationDetails companyVecansyRegistationDetails = new CompanyVecansyRegistationDetails();
             CompanyVecansyRegistationDetailsController companyVecansyRegistationDetailsController = ControllerFactory.CreateCompanyVecansyRegistationDetailsController();
 
@@ -25,7 +27,7 @@ namespace ManPowerWeb
 
             string id = Request.QueryString["id"];
 
-            foreach(var i in cc.Where(u => u.CompanyVacansyRegistationDetailsId == int.Parse(id)))
+            foreach (var i in cc.Where(u => u.CompanyVacansyRegistationDetailsId == int.Parse(id)))
             {
                 date.Text = i.VDate.ToString();
                 address.Text = i.VAddress;

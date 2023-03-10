@@ -33,6 +33,8 @@ namespace ManPowerWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             date1 = Request.QueryString["date"].ToString();
 
             depId = Convert.ToInt32(Session["DepUnitPositionId"]);

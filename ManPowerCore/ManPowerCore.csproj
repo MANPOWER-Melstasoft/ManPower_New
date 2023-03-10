@@ -150,6 +150,7 @@
     <Compile Include="Controller\VoteLedgerController.cs" />
     <Compile Include="Controller\VoteTypeController.cs" />
     <Compile Include="Controller\VoucherDetailController.cs" />
+    <Compile Include="Controller\VoucherStatusController.cs" />
     <Compile Include="Domain\AccountCode.cs" />
     <Compile Include="Domain\ApprovalType.cs" />
     <Compile Include="Domain\ApprovalHistory.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Domain\TrainingMain.cs" />
     <Compile Include="Domain\TrainingRequests.cs" />
     <Compile Include="Domain\VoucherDetail.cs" />
+    <Compile Include="Domain\VoucherStatus.cs" />
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
     <Compile Include="Infrastructure\ApprovalHistoryDAO.cs" />
     <Compile Include="Infrastructure\ApprovalTypeDAO.cs" />
@@ -354,6 +356,7 @@
     <Compile Include="Infrastructure\VoteLedgerDAO.cs" />
     <Compile Include="Infrastructure\VoteTypeDAO.cs" />
     <Compile Include="Infrastructure\VoucherDetailDAO.cs" />
+    <Compile Include="Infrastructure\VoucherStatusDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

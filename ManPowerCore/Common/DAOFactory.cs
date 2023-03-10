@@ -616,5 +616,11 @@ namespace ManPowerCore.Common
             ProgramPlanApprovalDetailsDAO programPlanApprovalDetailsDAO = new ProgramPlanApprovalDetailsDAOImpl();
             return (ProgramPlanApprovalDetailsDAO)programPlanApprovalDetailsDAO;
         }
+
+        public static VoucherStatusDAO createVoucherStatusDAO()
+        {
+            VoucherStatusDAO voucherStatusDAO = new VoucherStatusDAOSqlImpl();
+            return (VoucherStatusDAO)voucherStatusDAO;
+        }
     }
 }

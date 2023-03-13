@@ -125,9 +125,31 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
+            if (Status == 2 || Status == 3 || Status == 12)
+            {
+                dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Recommended_By=@User,Reconmmended_Date=@Date WHERE Id=@Id";
 
-            dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Recommended_By=@User,Reconmmended_Date=@Date WHERE Id=@Id";
+            }
+            else if (Status == 4 || Status == 5)
+            {
+                dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Vou_Approved_User=@User,Vou_Approved_Date=@Date WHERE Id=@Id";
 
+            }
+            else if (Status == 7 || Status == 8)
+            {
+                dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Pay_Authorized_User=@User,Pay_Authorized_Date=@Date WHERE Id=@Id";
+
+            }
+            else if (Status == 8 || Status == 9)
+            {
+                dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Certify_By=@User,Certify_Date=@Date WHERE Id=@Id";
+
+            }
+            else
+            {
+                dbConnection.cmd.CommandText = "UPDATE Payment_Voucher SET Status=@Status,Paid_By=@User,Paid_Date=@Date WHERE Id=@Id";
+
+            }
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", Id);
             dbConnection.cmd.Parameters.AddWithValue("@Status", Status);

@@ -18,6 +18,8 @@ namespace ManPowerCore.Controller
         int UpdateStatus(int Status, string User, DateTime Date, int Id);
 
         List<PaymentVoucher> GetAllPaymentVoucher();
+
+        List<PaymentVoucher> GetAllPaymentVoucherWithSupplier(bool withStatus);
     }
 
     public class PaymentVoucherControllerImpl : PaymentVoucherController
@@ -88,6 +90,47 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return paymentVoucherDAO.GetAllPaymentVoucher(dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<PaymentVoucher> GetAllPaymentVoucherWithSupplier(bool withStatus)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<PaymentVoucher> paymentVoucherList = paymentVoucherDAO.GetAllPaymentVoucher(dBConnection);
+
+                SupplierController supplierController = ControllerFactory.CreateSupplierController();
+                List<Supplier> supplierList = supplierController.GetAllSupplier();
+
+                foreach (var item in paymentVoucherList)
+                {
+                    item.Supplier = supplierList.Where(x => x.Id == item.SupplierId).Single();
+                }
+
+                if (withStatus)
+                {
+                    VoucherStatusController voucherStatusController = ControllerFactory.CreateVoucherStatusController();
+                    List<VoucherStatus> voucherStatuseList = voucherStatusController.GetAllVoucherStatus();
+
+                    foreach (var item in paymentVoucherList)
+                    {
+                        item.VoucherStatus = voucherStatuseList.Where(x => x.VoucherStatusId == item.Status).Single();
+                    }
+                }
+
+                return paymentVoucherList;
             }
             catch (Exception)
             {

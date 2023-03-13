@@ -28,7 +28,17 @@ namespace ManPowerWeb
 
             paymentVouchersList = paymentVoucherController.GetAllPaymentVoucher();
 
-            gvPaymentVoucher.DataSource = paymentVouchersList;
+            List<PaymentVoucher> paymentVoucherList1 = new List<PaymentVoucher>();
+
+            foreach (var item in paymentVouchersList)
+            {
+                if (item.Status == 1)
+                {
+                    paymentVoucherList1.Add(item);
+                }
+            }
+
+            gvPaymentVoucher.DataSource = paymentVoucherList1;
             gvPaymentVoucher.DataBind();
         }
 

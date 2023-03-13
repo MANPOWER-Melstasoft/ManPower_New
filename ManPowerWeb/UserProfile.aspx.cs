@@ -320,7 +320,8 @@ namespace ManPowerWeb
 
                     if (result1 == 1)
                     {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},1500);", true);
+                        BindDataSource();
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
                     }
                     else
                     {
@@ -342,7 +343,8 @@ namespace ManPowerWeb
 
                     if (result1 == 1)
                     {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+                        BindDataSource();
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');", true);
                     }
                     else
                     {
@@ -364,55 +366,57 @@ namespace ManPowerWeb
             EmergencyContact emp = new EmergencyContact();
             List<EmergencyContact> emergencyContacts = new List<EmergencyContact>();
             emergencyContacts = ec.GetAllEmergencyContact();
+            emergencyContacts = emergencyContacts.Where(u => u.EmployeeId == Convert.ToInt32(Session["EmpNumber"])).ToList();
 
-            foreach (var i in emergencyContacts.Where(u => u.EmployeeId == Convert.ToInt32(Session["EmpNumber"])))
+
+            if (emergencyContacts.Count != 0)
             {
-                if (i != null)
+                emp.Name = ecName.Text;
+                emp.DependentToEmployee = ecRelationship.Text;
+                emp.EmgMobile = ecMobile.Text;
+                emp.EmgTelephone = landLine.Text;
+                emp.EmgAddress = ecAddress.Text;
+                emp.OfficePhone = ecOfficePhone.Text;
+                emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+                emp.DependantTypeId = emergencyContacts[0].DependantTypeId;
+
+                int result1 = ec.UpdateEmergencyContact(emp);
+
+                if (result1 == 1)
                 {
-                    emp.Name = ecName.Text;
-                    emp.DependentToEmployee = ecRelationship.Text;
-                    emp.EmgMobile = ecMobile.Text;
-                    emp.EmgTelephone = landLine.Text;
-                    emp.EmgAddress = ecAddress.Text;
-                    emp.OfficePhone = ecOfficePhone.Text;
-                    emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
-                    emp.DependantTypeId = i.DependantTypeId;
-
-                    int result1 = ec.UpdateEmergencyContact(emp);
-
-                    if (result1 == 1)
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
-                    }
-                    else
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-
-                    }
+                    BindDataSource();
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
                 }
                 else
                 {
-                    emp.Name = ecName.Text;
-                    emp.DependentToEmployee = ecRelationship.Text;
-                    emp.EmgAddress = ecAddress.Text;
-                    emp.EmgTelephone = landLine.Text;
-                    emp.EmgMobile = ecMobile.Text;
-                    emp.OfficePhone = ecOfficePhone.Text;
-                    emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
-                    int result1 = ec.SaveEmergencyContact(emp);
-
-                    if (result1 == 1)
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
-                    }
-                    else
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-
-                    }
                 }
             }
+            else
+            {
+                emp.Name = ecName.Text;
+                emp.DependentToEmployee = ecRelationship.Text;
+                emp.EmgAddress = ecAddress.Text;
+                emp.EmgTelephone = landLine.Text;
+                emp.EmgMobile = ecMobile.Text;
+                emp.OfficePhone = ecOfficePhone.Text;
+                emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+
+                int result1 = ec.SaveEmergencyContact(emp);
+
+                if (result1 == 1)
+                {
+                    BindDataSource();
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+                }
+            }
+
 
 
         }

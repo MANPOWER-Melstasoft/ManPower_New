@@ -23,9 +23,13 @@ namespace ManPowerWeb
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {         //----------------------- Decrypt URL ---------------------------------------------------
-                encryptedTicket = Request.QueryString["encrypt"];
-                FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
-                loanDetailsId = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["LoanDetailId"]);
+                //if (Request.QueryString["encrypt"] != "")
+                //{
+                //    encryptedTicket = Request.QueryString["encrypt"];
+                //    FormsAuthenticationTicket decryptedTicket = FormsAuthentication.Decrypt(encryptedTicket);
+                //    loanDetailsId = Convert.ToInt32(HttpUtility.ParseQueryString(decryptedTicket.UserData)["LoanDetailId"]);
+                //}
+
 
                 bindDataSource();
             }
@@ -55,51 +59,56 @@ namespace ManPowerWeb
             paymentVoucher.ChequeNumber = txtChequeNumber.Text;
             paymentVoucher.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
 
-            paymentVoucher.IsVoucherAuthorized = Convert.ToInt32(rbIsVoucherAuthorized.SelectedValue);
-            if (rbIsVoucherAuthorized.SelectedValue == "1")
-            {
-                paymentVoucher.VouAuthorizedDate = DateTime.Parse(txtVAutorizedDate.Text);
-                paymentVoucher.VouAuthorizedUser = txtVAutorizedName.Text;
-            }
-            else
-            {
-                paymentVoucher.VouAuthorizedDate = DateTime.Parse(txtVAutorizedDate.Text);
-                paymentVoucher.VouAuthorizedUser = null;
-            }
+
+            //  paymentVoucher.IsVoucherAuthorized = Convert.ToInt32(rbIsVoucherAuthorized.SelectedValue);
+            //if (rbIsVoucherAuthorized.SelectedValue == "1")
+            //{
+            //    paymentVoucher.VouAuthorizedDate = DateTime.Parse(txtVAutorizedDate.Text);
+            //    paymentVoucher.VouAuthorizedUser = txtVAutorizedName.Text;
+            //}
+            //else
+            //{
+            //    paymentVoucher.VouAuthorizedDate = DateTime.Parse(txtVAutorizedDate.Text);
+            //    paymentVoucher.VouAuthorizedUser = null;
+            //}
 
 
-            paymentVoucher.IsPayAuthorized = Convert.ToInt32(rbPayAutorized.SelectedValue);
-            if (rbPayAutorized.SelectedValue == "1")
-            {
-                paymentVoucher.PayAuthorizedDate = DateTime.Parse(txtPayAutorizedDate.Text);
-                paymentVoucher.PayAuthorizedUser = txtPayAutorizedName.Text;
-            }
-            else
-            {
-                DateTime? dt = null;
-                paymentVoucher.PayAuthorizedDate = Convert.ToDateTime(dt);
-                paymentVoucher.PayAuthorizedUser = null;
-            }
+            // paymentVoucher.IsPayAuthorized = Convert.ToInt32(rbPayAutorized.SelectedValue);
+            //if (rbPayAutorized.SelectedValue == "1")
+            //{
+            //    paymentVoucher.PayAuthorizedDate = DateTime.Parse(txtPayAutorizedDate.Text);
+            //    paymentVoucher.PayAuthorizedUser = txtPayAutorizedName.Text;
+            //}
+            //else
+            //{
+            //    DateTime? dt = null;
+            //    paymentVoucher.PayAuthorizedDate = Convert.ToDateTime(dt);
+            //    paymentVoucher.PayAuthorizedUser = null;
+            //}
 
 
-            paymentVoucher.IsCanceled = Convert.ToInt32(rbIsCanceled.SelectedValue);
-            if (rbIsCanceled.SelectedValue == "1")
-            {
-                paymentVoucher.CanceledDate = DateTime.Parse(txtCancelDate.Text);
-                paymentVoucher.CanceledUser = txtCancelName.Text;
-            }
-            else
-            {
-                DateTime? dt = null;
-                paymentVoucher.CanceledDate = Convert.ToDateTime(dt);
-                paymentVoucher.CanceledUser = null;
-            }
+            //paymentVoucher.IsCanceled = Convert.ToInt32(rbIsCanceled.SelectedValue);
+            //if (rbIsCanceled.SelectedValue == "1")
+            //{
+            //    paymentVoucher.CanceledDate = DateTime.Parse(txtCancelDate.Text);
+            //    paymentVoucher.CanceledUser = txtCancelName.Text;
+            //}
+            //else
+            //{
+            //    DateTime? dt = null;
+            //    paymentVoucher.CanceledDate = Convert.ToDateTime(dt);
+            //    paymentVoucher.CanceledUser = null;
+            //}
 
 
             paymentVoucher.BankAccount = txtBankAcc.Text;
+            paymentVoucher.BankBranch = txtBankBranch.Text;
+            paymentVoucher.BankName = txtBankName.Text;
+
             paymentVoucher.CreatedDate = DateTime.Now;
 
             paymentVoucher.CreatedUser = Session["UserId"].ToString();
+            paymentVoucher.Status = 2;
 
             PaymentVoucherController paymentVoucherController = ControllerFactory.CreatePaymentVoucherController();
 
@@ -107,6 +116,7 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
+
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Sent!', 'success');window.setTimeout(function(){{window.location='AddPaymentVoucher.aspx?encrypt={0}'}} ,2500);", encryptedTicket), true);
 
             }
@@ -120,8 +130,10 @@ namespace ManPowerWeb
 
         }
 
-        protected void btnSendToRecommendation_Click(object sender, EventArgs e)
+
+        protected void btnReject_Click(object sender, EventArgs e)
         {
+
             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Sent!', 'success');window.setTimeout(function(){{window.location='AddPaymentVoucher.aspx?encrypt={0}'}} ,2500);", encryptedTicket), true);
 
         }

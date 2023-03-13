@@ -34,6 +34,12 @@ namespace ManPowerCore.Domain
         [DBField("Total_Amount")]
         public decimal TotalAmount { get; set; }
 
+        [DBField("Vou_Approved_Date")]
+        public string ApprovedUser { get; set; }
+
+        [DBField("Vou_Approved_Date")]
+        public DateTime ApprovedDate { get; set; }
+
         [DBField("Is_Voucher_Authorized")]
         public int IsVoucherAuthorized { get; set; }
 
@@ -69,5 +75,33 @@ namespace ManPowerCore.Domain
 
         [DBField("Bank_Account")]
         public string BankAccount { get; set; }
+
+        [DBField("Recommended_By")]
+        public string RecommendedUser { get; set; }
+        [DBField("Reconmmended_Date")]
+        public DateTime RecommendedDate { get; set; }
+
+        [DBField("Certify_By")]
+        public string CertifyUser { get; set; }
+        [DBField("Certify_Date")]
+        public DateTime CertifyDate { get; set; }
+
+        [DBField("Paid_By")]
+        public string PaidBy { get; set; }
+        [DBField("Paid_Date")]
+        public DateTime PaidDate { get; set; }
+
+        [DBField("Status")]
+        public int Status { get; set; }
+
+        [DBField("Bank_Name")]
+        public String BankName { get; set; }
+
+        [DBField("Bank_Branch")]
+        public string BankBranch { get; set; }
+
+        public Supplier Supplier { get; set; } = new Supplier();
+        public VoucherStatus VoucherStatus { get; set; } = new VoucherStatus();
     }
+
 }

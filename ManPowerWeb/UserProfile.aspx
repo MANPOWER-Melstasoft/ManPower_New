@@ -35,18 +35,40 @@
 
                             <h3>Add My Personal Details </h3>
 
-                            <div class="row mt-5">
+                            <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Last Name : </label>
+                                            <label>File Number : </label>
                                         </div>
                                         <div class="col-6">
-                                            <asp:TextBox ID="lname" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:TextBox ID="fileNo" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ValidationGroup="emp" ID="RegularExpressionValidator2" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
+                                            Invalid Number
+                                            </asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="row mt-4">
+                                <div class="col-2">
+                                    <label>Full Name : </label>
+                                </div>
+                                <div class="col-2">
+                                    <asp:DropDownList ID="ddlMR" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                </div>
+                                <div class="col-7">
+                                    <asp:TextBox ID="nameOfInitials" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="nameOfInitials" ID="RequiredFieldValidator22" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ValidationGroup="emp" ID="RegularExpressionValidator13" ControlToValidate="nameOfInitials" runat="server" ForeColor="Red" ValidationExpression="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+									Invalid Name</asp:RegularExpressionValidator>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -54,37 +76,118 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="initial" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="initial" ID="RequiredFieldValidator23" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Last Name : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="lname" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="lname" ID="RequiredFieldValidator24" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ValidationGroup="emp" ID="RegularExpressionValidator12" ControlToValidate="lname" runat="server" ForeColor="Red" ValidationExpression="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$">
+									Invalid Name</asp:RegularExpressionValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Date of Birth : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="dob" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="dob" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Pension Date : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="pensionDate" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>NIC : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="nic" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="nic" ID="RequiredFieldValidator25" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ValidationGroup="emp" ID="RegularExpressionValidator8" ControlToValidate="nic" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
+							Invalid NIC</asp:RegularExpressionValidator>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>NIC Issued Date : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="nicIssuedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Designation : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:DropDownList ID="ddlEmpDesignation" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ControlToValidate="ddlEmpDesignation" ID="RequiredFieldValidator29" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="row mt-5">
+                            <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Name with Initials : </label>
+                                            <label>Marital Status : </label>
                                         </div>
                                         <div class="col-6">
-                                            <asp:TextBox ID="nameOfInitials" runat="server" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
                                             <label>Gender : </label>
                                         </div>
                                         <div class="col-6">
-                                            <asp:TextBox ID="gen" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                            <asp:DropDownList ID="ddlGender" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row mt-5">
+                            <%-- <div class="row mt-5">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -106,63 +209,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
 
                             <div class="row mt-5">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Date of Birth : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:TextBox ID="dob" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ControlToValidate="dob" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Marital Status : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:DropDownList ID="ddlMaritalStatus" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row mt-4">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>NIC : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:TextBox ID="nic" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator8" ControlToValidate="nic" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^([0-9]{9}[x|X|v|V]|[0-9]{12})$">
-							        Invalid NIC</asp:RegularExpressionValidator>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>NIC Issued Date : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:TextBox ID="nicIssuedDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ControlToValidate="nicIssuedDate" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -170,12 +219,15 @@
                                         </div>
                                         <div class="col-6">
                                             <asp:TextBox ID="empPassport" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator9" ControlToValidate="empPassport" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^(?!^0+$)[a-zA-Z0-9]{3,20}$">
+                                            <asp:RegularExpressionValidator ValidationGroup="emp" ID="RegularExpressionValidator9" ControlToValidate="empPassport" runat="server" ErrorMessage="Invalid Email" ForeColor="Red" ValidationExpression="^(?!^0+$)[a-zA-Z0-9]{3,20}$">
 							        Invalid Passport</asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
+
+                            <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -186,10 +238,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-
-                            <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -200,21 +249,34 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="row mt-5">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Absorb : </label>
+                                            <label>ED Completion Date : </label>
                                         </div>
                                         <div class="col-6">
-                                            <asp:TextBox ID="absorb" runat="server" ReadOnly="true" CssClass="form-control form-control-user" />
+                                            <asp:TextBox ID="txtEDComDate" runat="server" CssClass="form-control form-control-user" TextMode="Date" ReadOnly="true"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="txtEDComDate" ID="RequiredFieldValidator30" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Salary Number : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:TextBox ID="txtSalaryNum" runat="server" CssClass="form-control form-control-user" ReadOnly="true"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ControlToValidate="txtSalaryNum" ID="RequiredFieldValidator32" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-                            <div class="row mt-5">
+                            <div class="row mt-4">
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -238,33 +300,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-4">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>File Number : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:TextBox ID="fileNo" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                            <asp:RegularExpressionValidator ValidationGroup="pDetail" ID="RegularExpressionValidator2" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
-                                Invalid Number
-                                            </asp:RegularExpressionValidator>
-                                        </div>
-                                    </div>
-                                </div>
 
-
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Pension Date : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:TextBox ID="pensionDate" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
                             <%----------------------------------------------------------------------------%>
@@ -272,7 +308,7 @@
 
                             <div class="row mt-5 mb-4">
                                 <div class="col-2">
-                                    <asp:Button runat="server" ID="btnSubmit1" ValidationGroup="pDetail" Text="Update" CssClass="btn btn-primary btn-user btn-block" />
+                                    <asp:Button runat="server" ID="btnSubmit1" ValidationGroup="emp" OnClick="submitEmployee" Text="Update" CssClass="btn btn-primary btn-user btn-block" />
                                 </div>
                             </div>
                         </ContentTemplate>

@@ -15,17 +15,18 @@ namespace ManPowerWeb
     public partial class UserProfile : System.Web.UI.Page
     {
         string[] mmStatus = { "Married", "Single" };
-
+        string[] gen = { "Male", "Female" };
         string[] eduStatus = { "Completed", "Not Completed" };
         string[] isResigned = { "Yes", "No" };
         string[] absorbStatus = { "Yes", "Not Relevent" };
+        string[] title = { "Mr", "Mrs", "Ms", "Master", "Other" };
         int[] yearslist = { };
 
         int id = 0;
 
         List<Ethnicity> ethnicityList = new List<Ethnicity>();
         List<Religion> religionList = new List<Religion>();
-        Employee emp = new Employee();
+        static Employee emp = new Employee();
         List<Ethnicity> ethnicities = new List<Ethnicity>();
         List<Religion> religions = new List<Religion>();
         List<DepartmentUnit> departmentUnits = new List<DepartmentUnit>();
@@ -160,42 +161,60 @@ namespace ManPowerWeb
             ddlEmpDetails.DataBind();
             ddlEmpDetails.Items.Insert(0, new ListItem("- Select -", ""));
 
+            ddlEmpDesignation.DataSource = designation;
+            ddlEmpDesignation.DataValueField = "DesignationId";
+            ddlEmpDesignation.DataTextField = "DesigntionName";
+            ddlEmpDesignation.DataBind();
+
             ddlDesignation.DataSource = designation;
             ddlDesignation.DataValueField = "DesignationId";
             ddlDesignation.DataTextField = "DesigntionName";
             ddlDesignation.DataBind();
 
-            ddlEthnicity.DataSource = ethnicityList;
-            ddlEthnicity.DataValueField = "EthnicityId";
-            ddlEthnicity.DataTextField = "EthnicityName";
-            ddlEthnicity.DataBind();
+            //ddlEthnicity.DataSource = ethnicityList;
+            //ddlEthnicity.DataValueField = "EthnicityId";
+            //ddlEthnicity.DataTextField = "EthnicityName";
+            //ddlEthnicity.DataBind();
 
-            ddlReligion.DataSource = religionList;
-            ddlReligion.DataValueField = "ReligionId";
-            ddlReligion.DataTextField = "ReligionName";
-            ddlReligion.DataBind();
+            //ddlReligion.DataSource = religionList;
+            //ddlReligion.DataValueField = "ReligionId";
+            //ddlReligion.DataTextField = "ReligionName";
+            //ddlReligion.DataBind();
 
             ddlMaritalStatus.DataSource = mmStatus;
             ddlMaritalStatus.DataBind();
 
+            ddlGender.DataSource = gen;
+            ddlGender.DataBind();
+
+            ddlMR.DataSource = title;
+            ddlMR.DataBind();
+
             idNo.Text = Session["EmpNumber"].ToString();
 
+            ddlMR.SelectedValue = emp.Title;
             lname.Text = emp.LastName;
             initial.Text = emp.EmpInitials;
             nameOfInitials.Text = emp.NameWithInitials;
-            gen.Text = emp.EmpGender;
+            ddlGender.SelectedValue = emp.EmpGender;
+            ddlEmpDesignation.SelectedValue = emp.DesignationId.ToString();
             dob.Text = emp.DOB.ToString("yyyy-MM-dd");
             ddlMaritalStatus.SelectedValue = emp.MaritalStatus;
             nic.Text = emp.EmployeeNIC;
-            nicIssuedDate.Text = emp.NicIssueDate.ToString("yyyy-MM-dd");
+            if (emp.NicIssueDate.ToString("yyyy-MM-dd") != "0001-01-01")
+            {
+                nicIssuedDate.Text = emp.NicIssueDate.ToString("yyyy-MM-dd");
+            }
             empPassport.Text = emp.EmployeePassportNumber;
-            absorb.Text = emp.EpmAbsorb;
-            ddlEthnicity.SelectedIndex = emp.EthnicityId - 1;
-            ddlReligion.SelectedIndex = emp.ReligionId - 1;
+            //absorb.Text = emp.EpmAbsorb;
+            txtEDComDate.Text = emp.EDCompletionDate.ToString("yyyy-MM-dd");
+            txtSalaryNum.Text = emp.SalaryNo;
+            //ddlEthnicity.SelectedIndex = emp.EthnicityId - 1;
+            //ddlReligion.SelectedIndex = emp.ReligionId - 1;
             vnop.Text = emp.VNOPNo.ToString();
             appointmenLetterNo.Text = emp.AppointmentNo.ToString();
             fileNo.Text = emp.FileNo.ToString();
-            pensionDate.Text = emp.PensionDate.ToString();
+            pensionDate.Text = emp.PensionDate.ToString("yyyy-MM-dd");
 
             foreach (var i in departmentUnits.Where(u => u.DepartmentUnitId == emp.DistrictId))
             {
@@ -236,45 +255,37 @@ namespace ManPowerWeb
             filter = departmentUnitController.GetAllDepartmentUnit(false, false);
 
             EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
-            Employee emp = new Employee();
+            Employee empUp = new Employee();
 
-            emp.ReligionId = 0;
-            emp.EthnicityId = 0;
-            emp.EmployeeNIC = nic.Text;
-            emp.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
-            emp.EmployeePassportNumber = empPassport.Text;
-            emp.EmpInitials = initial.Text;
-            emp.LastName = lname.Text;
-            emp.NameWithInitials = nameOfInitials.Text;
-            emp.MaritalStatus = ddlMaritalStatus.SelectedValue;
-            emp.SupervisorId = 0;
-            emp.ManagerId = 0;
+            //emp.ReligionId = 0;
+            //emp.EthnicityId = 0;
+            empUp.EmployeeId = emp.EmployeeId;
+            empUp.EmployeeNIC = nic.Text;
+            if (nicIssuedDate.Text != "")
+            {
+                empUp.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
+            }
+            empUp.EmployeePassportNumber = empPassport.Text;
+            empUp.Title = ddlMR.SelectedValue;
+            empUp.EmpInitials = initial.Text;
+            empUp.LastName = lname.Text;
+            empUp.NameWithInitials = nameOfInitials.Text;
+            empUp.EmpGender = ddlGender.SelectedValue;
+            empUp.DOB = Convert.ToDateTime(dob.Text);
+            empUp.MaritalStatus = ddlMaritalStatus.SelectedValue;
+            //emp.SupervisorId = 0;
+            //emp.ManagerId = 0;
 
-            //emp._Dependant = (List<Dependant>)ViewState["dependant"];
-            //emp._EmploymentDetails = (List<EmploymentDetails>)ViewState["employmentDetails"]; ;
-            //emp._EducationDetails = (List<EducationDetails>)ViewState["educationDetails"];
-            //emp._EmployeeServices = (List<EmployeeServices>)ViewState["employeeServices"];
-
-            //emp._EmergencyContact.Name = ecName.Text;
-            //emp._EmergencyContact.DependentToEmployee = ecRelationship.Text;
-            //emp._EmergencyContact.EmgAddress = ecAddress.Text;
-            //emp._EmergencyContact.EmgTelephone = int.Parse(landLine.Text);
-            //emp._EmergencyContact.EmgMobile = int.Parse(ecMobile.Text);
-            //emp._EmergencyContact.OfficePhone = int.Parse(ecOfficePhone.Text);
-
-            //emp._EmployeeContact.EmpAddress = address.Text;
-            //emp._EmployeeContact.EmpTelephone = int.Parse(telephone.Text);
-            //emp._EmployeeContact.PostalCode = int.Parse(postalCode.Text);
-            //emp._EmployeeContact.EmpEmail = email.Text;
-            //emp._EmployeeContact.OfficePhone = int.Parse(EmpOfficePhone.Text);
-            //emp._EmployeeContact.MobileNumber = int.Parse(EmpMobilePhone.Text);
+            empUp.PensionDate = Convert.ToDateTime(pensionDate.Text);
+            empUp.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
 
 
-            int result1 = employeeController.SaveEmployee(emp);
+            int result1 = employeeController.UpdateEmployee(empUp);
 
             if (result1 == 1)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='PersonalFiles.aspx'},2500);", true);
+                BindDataSource();
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
             }
             else
             {
@@ -309,7 +320,8 @@ namespace ManPowerWeb
 
                     if (result1 == 1)
                     {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},1500);", true);
+                        BindDataSource();
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
                     }
                     else
                     {
@@ -331,7 +343,8 @@ namespace ManPowerWeb
 
                     if (result1 == 1)
                     {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+                        BindDataSource();
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');", true);
                     }
                     else
                     {
@@ -353,55 +366,57 @@ namespace ManPowerWeb
             EmergencyContact emp = new EmergencyContact();
             List<EmergencyContact> emergencyContacts = new List<EmergencyContact>();
             emergencyContacts = ec.GetAllEmergencyContact();
+            emergencyContacts = emergencyContacts.Where(u => u.EmployeeId == Convert.ToInt32(Session["EmpNumber"])).ToList();
 
-            foreach (var i in emergencyContacts.Where(u => u.EmployeeId == Convert.ToInt32(Session["EmpNumber"])))
+
+            if (emergencyContacts.Count != 0)
             {
-                if (i != null)
+                emp.Name = ecName.Text;
+                emp.DependentToEmployee = ecRelationship.Text;
+                emp.EmgMobile = ecMobile.Text;
+                emp.EmgTelephone = landLine.Text;
+                emp.EmgAddress = ecAddress.Text;
+                emp.OfficePhone = ecOfficePhone.Text;
+                emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+                emp.DependantTypeId = emergencyContacts[0].DependantTypeId;
+
+                int result1 = ec.UpdateEmergencyContact(emp);
+
+                if (result1 == 1)
                 {
-                    emp.Name = ecName.Text;
-                    emp.DependentToEmployee = ecRelationship.Text;
-                    emp.EmgMobile = ecMobile.Text;
-                    emp.EmgTelephone = landLine.Text;
-                    emp.EmgAddress = ecAddress.Text;
-                    emp.OfficePhone = ecOfficePhone.Text;
-                    emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
-                    emp.DependantTypeId = i.DependantTypeId;
-
-                    int result1 = ec.UpdateEmergencyContact(emp);
-
-                    if (result1 == 1)
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
-                    }
-                    else
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-
-                    }
+                    BindDataSource();
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');", true);
                 }
                 else
                 {
-                    emp.Name = ecName.Text;
-                    emp.DependentToEmployee = ecRelationship.Text;
-                    emp.EmgAddress = ecAddress.Text;
-                    emp.EmgTelephone = landLine.Text;
-                    emp.EmgMobile = ecMobile.Text;
-                    emp.OfficePhone = ecOfficePhone.Text;
-                    emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
-                    int result1 = ec.SaveEmergencyContact(emp);
-
-                    if (result1 == 1)
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
-                    }
-                    else
-                    {
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
-
-                    }
                 }
             }
+            else
+            {
+                emp.Name = ecName.Text;
+                emp.DependentToEmployee = ecRelationship.Text;
+                emp.EmgAddress = ecAddress.Text;
+                emp.EmgTelephone = landLine.Text;
+                emp.EmgMobile = ecMobile.Text;
+                emp.OfficePhone = ecOfficePhone.Text;
+                emp.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+
+                int result1 = ec.SaveEmergencyContact(emp);
+
+                if (result1 == 1)
+                {
+                    BindDataSource();
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Added Succesfully!', 'success');", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
+                }
+            }
+
 
 
         }

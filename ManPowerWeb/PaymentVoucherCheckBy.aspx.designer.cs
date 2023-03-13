@@ -11,26 +11,26 @@ namespace ManPowerWeb
 {
 
 
-    public partial class AddPaymentVoucher
+    public partial class PaymentVoucherCheckBy
     {
 
         /// <summary>
-        /// scriptmanger control.
+        /// sc1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scriptmanger;
+        protected global::System.Web.UI.ScriptManager sc1;
 
         /// <summary>
-        /// updatepannel1 control.
+        /// gvPaymentVoucher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatepannel1;
+        protected global::System.Web.UI.WebControls.GridView gvPaymentVoucher;
 
         /// <summary>
         /// lblName control.
@@ -42,13 +42,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal lblName;
 
         /// <summary>
-        /// ddlSupplier control.
+        /// txtSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
+        protected global::System.Web.UI.WebControls.TextBox txtSupplier;
 
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -240,6 +240,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.RadioButtonList rbIsVoucherAuthorized;
 
         /// <summary>
+        /// RequiredFieldValidator8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
+
+        /// <summary>
         /// Literal8 control.
         /// </summary>
         /// <remarks>
@@ -256,6 +265,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVAutorizedDate;
+
+        /// <summary>
+        /// RequiredFieldValidator9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
 
         /// <summary>
         /// Literal9 control.
@@ -276,6 +294,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtVAutorizedName;
 
         /// <summary>
+        /// RequiredFieldValidator10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator10;
+
+        /// <summary>
         /// Literal10 control.
         /// </summary>
         /// <remarks>
@@ -292,6 +319,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rbPayAutorized;
+
+        /// <summary>
+        /// RequiredFieldValidator11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator11;
 
         /// <summary>
         /// Literal11 control.
@@ -312,6 +348,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtPayAutorizedDate;
 
         /// <summary>
+        /// RequiredFieldValidator12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator12;
+
+        /// <summary>
         /// Literal12 control.
         /// </summary>
         /// <remarks>
@@ -328,6 +373,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPayAutorizedName;
+
+        /// <summary>
+        /// RequiredFieldValidator13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator13;
 
         /// <summary>
         /// Literal13 control.
@@ -348,6 +402,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.RadioButtonList rbIsCanceled;
 
         /// <summary>
+        /// RequiredFieldValidator14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator14;
+
+        /// <summary>
         /// Literal14 control.
         /// </summary>
         /// <remarks>
@@ -366,6 +429,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtCancelDate;
 
         /// <summary>
+        /// RequiredFieldValidator15 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator15;
+
+        /// <summary>
         /// Literal15 control.
         /// </summary>
         /// <remarks>
@@ -382,6 +454,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCancelName;
+
+        /// <summary>
+        /// RequiredFieldValidator16 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator16;
 
         /// <summary>
         /// Literal17 control.
@@ -438,13 +519,22 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox txtBankAcc;
 
         /// <summary>
-        /// btnSubmit control.
+        /// btnReject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Button btnReject;
+
+        /// <summary>
+        /// btnApprove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnApprove;
 
         /// <summary>
         /// lblSuccessMsg control.

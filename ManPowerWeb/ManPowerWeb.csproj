@@ -147,6 +147,10 @@
     <Content Include="DME22Rec2Render.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LoanReport.aspx" />
+    <Content Include="PaymentVoucherApproval.aspx" />
+    <Content Include="PaymentVoucherCertify.aspx" />
+    <Content Include="PaymentVoucherCheckBy.aspx" />
+    <Content Include="PaymentVoucherFinancePayment.aspx" />
     <Content Include="PaymentVoucherRecommendation.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="PersonalFilesListView.aspx" />
@@ -2232,6 +2236,34 @@
     </Compile>
     <Compile Include="LoanReport.aspx.designer.cs">
       <DependentUpon>LoanReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucherApproval.aspx.cs">
+      <DependentUpon>PaymentVoucherApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVoucherApproval.aspx.designer.cs">
+      <DependentUpon>PaymentVoucherApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucherCertify.aspx.cs">
+      <DependentUpon>PaymentVoucherCertify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVoucherCertify.aspx.designer.cs">
+      <DependentUpon>PaymentVoucherCertify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucherCheckBy.aspx.cs">
+      <DependentUpon>PaymentVoucherCheckBy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVoucherCheckBy.aspx.designer.cs">
+      <DependentUpon>PaymentVoucherCheckBy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucherFinancePayment.aspx.cs">
+      <DependentUpon>PaymentVoucherFinancePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVoucherFinancePayment.aspx.designer.cs">
+      <DependentUpon>PaymentVoucherFinancePayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentVoucherRecommendation.aspx.cs">
       <DependentUpon>PaymentVoucherRecommendation.aspx</DependentUpon>

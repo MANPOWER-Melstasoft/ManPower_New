@@ -25,7 +25,7 @@ namespace ManPowerWeb
         {
             PaymentVoucherController paymentVoucherController = ControllerFactory.CreatePaymentVoucherController();
 
-            paymentVouchersList = paymentVoucherController.GetAllPaymentVoucher();
+            paymentVouchersList = paymentVoucherController.GetAllPaymentVoucherWithSupplier(true);
 
             gvPaymentVoucher.DataSource = paymentVouchersList;
             gvPaymentVoucher.DataBind();
@@ -43,7 +43,7 @@ namespace ManPowerWeb
 
 
             ViewState["Id"] = paymentVouchersList[rowIndex].Id;
-            ddlSupplier.SelectedValue = paymentVoucher.SupplierId.ToString();
+            txtSupplier.Text = paymentVoucher.Supplier.Name;
             txtVNumber.Text = paymentVoucher.VoucherNumber;
             txtVDate.Text = paymentVoucher.VoucherDate.ToString("yyyy-MM-dd");
             txtPName.Text = paymentVoucher.PayeeName;
@@ -51,8 +51,10 @@ namespace ManPowerWeb
             txtChequeNumber.Text = paymentVoucher.ChequeNumber;
             txtTotalAmount.Text = paymentVoucher.TotalAmount.ToString();
             txtBankAcc.Text = paymentVoucher.BankAccount.ToString();
-            txtBankBranch.Text = paymentVoucher.BankBranch.ToString();
-            txtBankName.Text = paymentVoucher.BankName.ToString();
+            if (paymentVoucher.BankBranch != null)
+                txtBankBranch.Text = paymentVoucher.BankBranch.ToString();
+            if (paymentVoucher.BankName != null)
+                txtBankName.Text = paymentVoucher.BankName.ToString();
 
         }
 

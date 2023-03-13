@@ -37,10 +37,10 @@
                         </div>
 
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control form-control-user"></asp:DropDownList>
+                            <asp:TextBox ID="txtSupplier" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="1"
-                                    ControlToValidate="ddlSupplier" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                    ControlToValidate="txtSupplier" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
                     </div>
@@ -404,7 +404,7 @@
                 <div class="row mb-3  mt-5">
 
                     <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger mr-3" OnClick="btnReject_Click" />
-                    <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success btn-user " OnClick="btnApprove_Click" />
+                    <asp:Button ID="btnApprove" runat="server" Text="Certify" CssClass="btn btn-success btn-user " OnClick="btnApprove_Click" />
                 </div>
             </div>
             <div class="col-sm-6 m-3">

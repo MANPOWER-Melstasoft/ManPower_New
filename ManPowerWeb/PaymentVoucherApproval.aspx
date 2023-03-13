@@ -35,12 +35,11 @@
                         <div class="col-sm-3">
                             <asp:Literal ID="lblName" runat="server" Text="Supplier"></asp:Literal>
                         </div>
-
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control form-control-user"></asp:DropDownList>
+                            <asp:TextBox ID="txtSupplier" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <div class="d-flex text-danger">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="1"
-                                    ControlToValidate="ddlSupplier" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                    ControlToValidate="txtSupplier" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
                     </div>

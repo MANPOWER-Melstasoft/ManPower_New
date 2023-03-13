@@ -42,13 +42,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal lblName;
 
         /// <summary>
-        /// ddlSupplier control.
+        /// txtSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
+        protected global::System.Web.UI.WebControls.TextBox txtSupplier;
 
         /// <summary>
         /// RequiredFieldValidator2 control.

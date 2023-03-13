@@ -27,13 +27,13 @@
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="Payment Id" />
                     <asp:BoundField DataField="VoucherNumber" HeaderText="Voucher No." />
-                    <asp:BoundField DataField="VoucherDate" HeaderText="Voucher Date" />
+                    <asp:BoundField DataField="VoucherDate" HeaderText="Voucher Date" DataFormatString="{0:dd-MM-yyyy}" />
                     <asp:BoundField DataField="PayeeName" HeaderText="Payee Name" />
                     <asp:BoundField DataField="PayeeAddress" HeaderText="Payee Address" />
                     <asp:BoundField DataField="VoucherStatus.StatusName" HeaderText="Status" />
                     <asp:TemplateField HeaderText="View Details">
                         <ItemTemplate>
-                            <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btvView" runat="server">View Details</asp:LinkButton>
+                            <asp:LinkButton CssClass="btn btn-outline-secondary" ID="btvView" runat="server" OnClick="btvView_Click">View Details</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

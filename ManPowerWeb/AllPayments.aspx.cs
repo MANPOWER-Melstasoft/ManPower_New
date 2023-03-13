@@ -34,7 +34,6 @@ namespace ManPowerWeb
             string keyWord = txtKeyWord.Text;
 
             paymentVoucherList = paymentVoucherList.Where(x => x.VoucherNumber.ToLower().Contains(keyWord.ToLower())
-            || x.TotalAmount == Convert.ToInt32(keyWord)
             || x.PayeeName.ToLower().Contains(keyWord.ToLower())
             || x.PayeeAddress.ToLower().Contains(keyWord.ToLower())).ToList();
 
@@ -48,6 +47,16 @@ namespace ManPowerWeb
         {
             BindDataSource();
             txtKeyWord.Text = string.Empty;
+        }
+
+        protected void btvView_Click(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string url = "AllPaymentsRender.aspx?" + "paymentVoucherID=" + paymentVoucherList[rowIndex].Id;
+            Response.Redirect(url);
         }
     }
 }

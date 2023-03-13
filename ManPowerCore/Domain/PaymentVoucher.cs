@@ -93,6 +93,9 @@ namespace ManPowerCore.Domain
 
         [DBField("Bank_Branch")]
         public string BankBranch { get; set; }
+
+        public Supplier Supplier { get; set; } = new Supplier();
+        public VoucherStatus VoucherStatus { get; set; } = new VoucherStatus();
     }
 
 }

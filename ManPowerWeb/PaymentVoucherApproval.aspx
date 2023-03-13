@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentVoucherRecommendation.aspx.cs" Inherits="ManPowerWeb.PaymentVoucherRecommendation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentVoucherApproval.aspx.cs" Inherits="ManPowerWeb.PaymentVoucherApproval" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -11,7 +11,7 @@
                 ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger" AutoGenerateColumns="false">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="ID" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
-                    <asp:BoundField DataField="Supplier.Name" HeaderText="Supplier Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                    <asp:BoundField DataField="SupplierId" HeaderText="Supplier Id" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="VoucherNumber" HeaderText="Voucher Number" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="PayeeName" HeaderText="PayeeName" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
@@ -35,7 +35,6 @@
                         <div class="col-sm-3">
                             <asp:Literal ID="lblName" runat="server" Text="Supplier"></asp:Literal>
                         </div>
-
                         <div class="col-md-6">
                             <asp:TextBox ID="txtSupplier" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <div class="d-flex text-danger">
@@ -404,7 +403,7 @@
                 <div class="row mb-3  mt-5">
 
                     <asp:Button ID="btnReject" runat="server" Text="Reject" CssClass="btn btn-danger mr-3" OnClick="btnReject_Click" />
-                    <asp:Button ID="btnApprove" runat="server" Text="Send to Approval" CssClass="btn btn-success btn-user " OnClick="btnApprove_Click" />
+                    <asp:Button ID="btnApprove" runat="server" Text="Approve" CssClass="btn btn-success btn-user " OnClick="btnApprove_Click" />
                 </div>
             </div>
             <div class="col-sm-6 m-3">

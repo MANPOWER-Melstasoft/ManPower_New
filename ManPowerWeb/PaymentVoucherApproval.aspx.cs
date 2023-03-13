@@ -10,9 +10,8 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class PaymentVoucherRecommendation : System.Web.UI.Page
+    public partial class PaymentVoucherApproval : System.Web.UI.Page
     {
-
         static List<PaymentVoucher> paymentVouchersList = new List<PaymentVoucher>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,17 +27,7 @@ namespace ManPowerWeb
 
             paymentVouchersList = paymentVoucherController.GetAllPaymentVoucherWithSupplier(true);
 
-            List<PaymentVoucher> paymentVoucherList1 = new List<PaymentVoucher>();
-
-            foreach (var item in paymentVouchersList)
-            {
-                if (item.Status == 1)
-                {
-                    paymentVoucherList1.Add(item);
-                }
-            }
-
-            gvPaymentVoucher.DataSource = paymentVoucherList1;
+            gvPaymentVoucher.DataSource = paymentVouchersList;
             gvPaymentVoucher.DataBind();
         }
 
@@ -73,23 +62,23 @@ namespace ManPowerWeb
         {
             PaymentVoucher paymentVoucher = new PaymentVoucher();
             paymentVoucher.Id = Convert.ToInt32(ViewState["Id"]);
-            paymentVoucher.Status = 3;
-            paymentVoucher.RecommendedUser = Session["UserId"].ToString();
-            paymentVoucher.RecommendedDate = DateTime.Now;
+            paymentVoucher.Status = 5;
+            paymentVoucher.ApprovedUser = Session["UserId"].ToString();
+            paymentVoucher.ApprovedDate = DateTime.Now;
 
             PaymentVoucherController paymentVoucherController = ControllerFactory.CreatePaymentVoucherController();
-            int response = paymentVoucherController.UpdateStatus(paymentVoucher.Status, paymentVoucher.RecommendedUser, paymentVoucher.RecommendedDate, paymentVoucher.Id);
+            int response = paymentVoucherController.UpdateStatus(paymentVoucher.Status, paymentVoucher.ApprovedUser, paymentVoucher.ApprovedDate, paymentVoucher.Id);
 
 
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Rejected!', 'success');window.setTimeout(function(){{window.location='PaymentVoucherRecommendation.aspx'}} ,2500);"), true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Rejected!', 'success');window.setTimeout(function(){{window.location='PaymentVoucherApproval.aspx'}} ,2500);"), true);
 
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Error!', 'Something Went Wrong!', 'error');window.setTimeout(function(){{window.location='PaymentVoucherRecommendation.aspx'}} ,2500);"), true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Error!', 'Something Went Wrong!', 'error');window.setTimeout(function(){{window.location='PaymentVoucherApproval.aspx'}} ,2500);"), true);
             }
 
         }
@@ -98,23 +87,23 @@ namespace ManPowerWeb
         {
             PaymentVoucher paymentVoucher = new PaymentVoucher();
             paymentVoucher.Id = Convert.ToInt32(ViewState["Id"]);
-            paymentVoucher.Status = 12;
-            paymentVoucher.RecommendedUser = Session["UserId"].ToString();
-            paymentVoucher.RecommendedDate = DateTime.Now;
+            paymentVoucher.Status = 4;
+            paymentVoucher.ApprovedUser = Session["UserId"].ToString();
+            paymentVoucher.ApprovedDate = DateTime.Now;
 
             PaymentVoucherController paymentVoucherController = ControllerFactory.CreatePaymentVoucherController();
-            int response = paymentVoucherController.UpdateStatus(paymentVoucher.Status, paymentVoucher.RecommendedUser, paymentVoucher.RecommendedDate, paymentVoucher.Id);
+            int response = paymentVoucherController.UpdateStatus(paymentVoucher.Status, paymentVoucher.ApprovedUser, paymentVoucher.ApprovedDate, paymentVoucher.Id);
 
 
             if (response != 0)
             {
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Approved!', 'success');window.setTimeout(function(){{window.location='PaymentVoucherRecommendation.aspx'}} ,2500);"), true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Approved!', 'success');window.setTimeout(function(){{window.location='PaymentVoucherApproval.aspx'}} ,2500);"), true);
 
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Error!', 'Something Went Wrong!', 'error');window.setTimeout(function(){{window.location='PaymentVoucherRecommendation.aspx'}} ,2500);"), true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Error!', 'Something Went Wrong!', 'error');window.setTimeout(function(){{window.location='PaymentVoucherApproval.aspx'}} ,2500);"), true);
             }
 
         }

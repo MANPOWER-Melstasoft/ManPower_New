@@ -52,7 +52,8 @@ namespace ManPowerWeb
             txtChequeNumber.Text = paymentVoucher.ChequeNumber;
             txtTotalAmount.Text = paymentVoucher.TotalAmount.ToString();
             txtBankAcc.Text = paymentVoucher.BankAccount.ToString();
-
+            txtBankBranch.Text = paymentVoucher.BankBranch.ToString();
+            txtBankName.Text = paymentVoucher.BankName.ToString();
 
         }
 

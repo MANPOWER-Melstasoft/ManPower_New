@@ -354,6 +354,37 @@
             </div>
 
 
+            <h3>Bank Details</h3>
+
+            <div class="row mb-3 ms-1 mt-3">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal17" runat="server" Text="Bank Name"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtBankName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <asp:Literal ID="Literal18" runat="server" Text="Bank Branch Name"></asp:Literal>
+                        </div>
+
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txtBankBranch" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="row mb-3 ms-1 mt-3">
                 <div class="col-sm-6">
                     <div class="row">
@@ -364,8 +395,6 @@
                         <div class="col-md-6">
                             <asp:TextBox ID="txtBankAcc" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <div class="d-flex text-danger">
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ValidationGroup="1"
-                                    ControlToValidate="txtBankAcc" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                             </div>
                         </div>
                     </div>

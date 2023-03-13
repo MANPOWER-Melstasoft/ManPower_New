@@ -378,7 +378,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnSubmit" />
-            <asp:PostBackTrigger ControlID="btnReject" />
+            <%--<asp:PostBackTrigger ControlID="btnReject" />--%>
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

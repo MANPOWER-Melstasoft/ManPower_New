@@ -62,7 +62,7 @@ namespace ManPowerCore.Infrastructure
             }
             else
             {
-                dbConnection.cmd.Parameters.AddWithValue("@ApprovedDate", programPlanApprovalDetails.Recommendation2Date);
+                dbConnection.cmd.Parameters.AddWithValue("@ApprovedDate", programPlanApprovalDetails.ApprovedDate);
 
             }
             dbConnection.cmd.Parameters.AddWithValue("@RejectReason", programPlanApprovalDetails.RejectReason);

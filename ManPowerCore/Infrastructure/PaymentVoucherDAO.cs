@@ -27,7 +27,7 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Cheque_Number, Total_Amount, Created_User, Created_Date, Bank_Account,Bank_Name,Bank_BranchStatus) " +
+            dbConnection.cmd.CommandText = "INSERT INTO Payment_Voucher (Supplier_Id, Voucher_Number, Voucher_Date, Payee_Name, Payee_Address, Cheque_Number, Total_Amount, Created_User, Created_Date, Bank_Account,Bank_Name,Bank_Branch,Status) " +
                 "VALUES (@SupplierId, @VoucherNumber, @VoucherDate, @PayeeName, @PayeeAddress, @ChequeNumber, @TotalAmount, @CreatedUser, @CreatedDate, @BankAccount,@BankName,@BankBranch,@Status)";
 
             dbConnection.cmd.Parameters.AddWithValue("@SupplierId", paymentVoucher.SupplierId);

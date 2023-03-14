@@ -147,6 +147,7 @@
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="PaymentVoucherRecommendation.aspx" />
+    <Content Include="PaymentVoucherReport.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="PersonalFilesListView.aspx" />
     <Content Include="PlanningApproval.aspx" />
@@ -2231,6 +2232,13 @@
     </Compile>
     <Compile Include="PaymentVoucherRecommendation.aspx.designer.cs">
       <DependentUpon>PaymentVoucherRecommendation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucherReport.aspx.cs">
+      <DependentUpon>PaymentVoucherReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVoucherReport.aspx.designer.cs">
+      <DependentUpon>PaymentVoucherReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="PersonalFilesList.aspx.cs">
       <DependentUpon>PersonalFilesList.aspx</DependentUpon>

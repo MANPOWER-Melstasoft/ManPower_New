@@ -9,6 +9,9 @@
             <div class="col-4">
                 <asp:TextBox ID="txtKeyWord" runat="server" placeholder="Enter Keyword" CssClass="form-control form-control-user"></asp:TextBox>
             </div>
+            <div class="col-3">
+                <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control form-control-user" DataTextField="monthName" DataValueField="monthNumber"></asp:DropDownList>
+            </div>
             <div class="col-2">
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSearch_Click" />
             </div>

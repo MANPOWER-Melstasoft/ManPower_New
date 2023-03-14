@@ -24,7 +24,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE_SERVICES(SERVICE_TYPE_ID,EMPLOYEE_ID,APPOINTMENT_DATE,DATE_ASSUMED_DUTY, " +
-                "CONFIRMED, Confirmed_Date, EB_Completed_Date_Grade_1, EB_Completed_Date_Grade_2, EB_Completed_Date_Grade_3)" +
+                "CONFIRMED, Confirmed_Date, EB_Completed_Date_Grade_3, EB_Completed_Date_Grade_2, EB_Completed_Date_Grade_1)" +
                 "VALUES(@ServicesTypeId,@EId,@AppointmentDate,@DateAssumedDuty,@ServiceConfirmed,@ServiceConfirmedDate," +
                 "@EBCompletedDateGrade1,@EBCompletedDateGrade2,@EBCompletedDateGrade3)";
 

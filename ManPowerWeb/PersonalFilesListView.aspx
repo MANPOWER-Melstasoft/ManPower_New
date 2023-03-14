@@ -593,7 +593,7 @@
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-4">
-                                    <label>Select Company Name: </label>
+                                    <label>Select Previous Work Place : </label>
                                 </div>
                                 <div class="col-6">
                                     <asp:DropDownList ID="ddlEmpDetails" runat="server" OnSelectedIndexChanged="ddlEmpDetails_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>

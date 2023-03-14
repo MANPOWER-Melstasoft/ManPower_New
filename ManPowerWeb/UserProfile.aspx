@@ -368,8 +368,6 @@
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="telephone" ValidationGroup="contact"
                                                 ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
-                                            <asp:RequiredFieldValidator ControlToValidate="telephone" ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator"
-                                                ValidationGroup="contact" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -553,7 +551,7 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Select Company Name: </label>
+                                            <label>Select Previous Work Place : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:DropDownList ID="ddlEmpDetails" runat="server" OnSelectedIndexChanged="ddlEmpDetails_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>

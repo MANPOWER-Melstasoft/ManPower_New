@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager>
     <div class="card m-4 p-4">
-        <h2>Program Plan Recommendation </h2>
+        <h2>Program Plan Recommendation  </h2>
         <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
             <asp:GridView Style="margin-top: 30px;" ID="gvProgramPlan" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                 CellPadding="4" GridLines="None" AllowPaging="true" PageSize="5" HeaderStyle-HorizontalAlign="Center"
@@ -294,7 +294,7 @@
 
                                 </div>
                                 <div class="col-sm-2">
-                                    <asp:Button runat="server" ID="btnSendToRecommendation" Text="Send To Recommendation" CssClass="btn btn-success " OnClick="btnSendToRecommendation_Click" />
+                                    <asp:Button runat="server" ID="btnSendToRecommendation" Text="Send To Approval" CssClass="btn btn-success " OnClick="btnSendToRecommendation_Click" />
 
                                 </div>
                             </div>

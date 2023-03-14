@@ -130,6 +130,8 @@
     <Content Include="AddSupplierType.aspx" />
     <Content Include="AddTraining.aspx" />
     <Content Include="AddTrainingFront.aspx" />
+    <Content Include="AllPayments.aspx" />
+    <Content Include="AllPaymentsRender.aspx" />
     <Content Include="ApprovedLoanFront.aspx" />
     <Content Include="ApprovedLoansView.aspx" />
     <Content Include="ApproveLoan.aspx" />
@@ -151,6 +153,7 @@
     <Content Include="PaymentVoucherCheckBy.aspx" />
     <Content Include="PaymentVoucherFinancePayment.aspx" />
     <Content Include="PaymentVoucherRecommendation.aspx" />
+    <Content Include="PaymentVoucherReport.aspx" />
     <Content Include="PersonalFilesList.aspx" />
     <Content Include="PersonalFilesListView.aspx" />
     <Content Include="PlanningApproval.aspx" />
@@ -2117,6 +2120,20 @@
     <Compile Include="AddTrainingFront.aspx.designer.cs">
       <DependentUpon>AddTrainingFront.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AllPayments.aspx.cs">
+      <DependentUpon>AllPayments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllPayments.aspx.designer.cs">
+      <DependentUpon>AllPayments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllPaymentsRender.aspx.cs">
+      <DependentUpon>AllPaymentsRender.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllPaymentsRender.aspx.designer.cs">
+      <DependentUpon>AllPaymentsRender.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApprovedLoanFront.aspx.cs">
       <DependentUpon>ApprovedLoanFront.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2263,6 +2280,13 @@
     </Compile>
     <Compile Include="PaymentVoucherRecommendation.aspx.designer.cs">
       <DependentUpon>PaymentVoucherRecommendation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucherReport.aspx.cs">
+      <DependentUpon>PaymentVoucherReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVoucherReport.aspx.designer.cs">
+      <DependentUpon>PaymentVoucherReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="PersonalFilesList.aspx.cs">
       <DependentUpon>PersonalFilesList.aspx</DependentUpon>

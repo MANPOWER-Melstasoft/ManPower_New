@@ -48,7 +48,7 @@ namespace ManPowerWeb
             ProgramPlanApprovalDetails = programPlanApprovalDetailsController.GetAll();
 
             plansList = programPlanController.GetAllProgramPlan(false, false, true, false, false, false);
-            plansList = plansList.Where(x => x.ProjectStatusId == 2016).ToList();
+            plansList = plansList.Where(x => x.ProjectStatusId == 2017).ToList();
 
             foreach (var item in plansList)
             {

@@ -277,7 +277,6 @@
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="telephone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="telephone" ID="RequiredFieldValidator31" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Invalid Mobile Number."
                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="telephone" ValidationGroup="1"
                                 ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
@@ -508,7 +507,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-5">
-                            <label>EB Completed Date Grade 1 : </label>
+                            <label>EB Completed Date Grade 3 : </label>
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="txtEBDate1" runat="server" AutoPostBack="true" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
@@ -535,7 +534,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-5">
-                            <label>EB Completed Date Grade 3 : </label>
+                            <label>EB Completed Date Grade 1 : </label>
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="txtEBDate3" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
@@ -624,7 +623,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
-                            <label>Company Name : </label>
+                            <label>Previous Work Place : </label>
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="companyName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>

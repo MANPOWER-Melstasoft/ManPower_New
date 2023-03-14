@@ -238,7 +238,7 @@ namespace ManPowerWeb
                     programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
                     programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
                     //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'You Have a task on That Date! (DME21)', 'error');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Failed!', 'You Have a task on That Date! (DME21)', 'error');window.setTimeout(function(){{window.location='planningEdit.aspx?encrypt={0}'}} ,2500);", programPlanId), true);
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Failed!', 'You Have a task on That Date! (DME21)', 'error');window.setTimeout(function(){{window.location='planningEdit.aspx?ProgramTargetId={0}&ProgramplanId={1}'}} ,2500);", programTargetId, programPlanId), true);
                 }
 
                 else

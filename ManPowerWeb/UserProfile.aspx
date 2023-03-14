@@ -368,8 +368,6 @@
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="telephone" ValidationGroup="contact"
                                                 ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
-                                            <asp:RequiredFieldValidator ControlToValidate="telephone" ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator"
-                                                ValidationGroup="contact" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>

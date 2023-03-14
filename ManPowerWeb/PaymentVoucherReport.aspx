@@ -63,7 +63,7 @@
 
                         <asp:BoundField DataField="BankAccount" HeaderText="Bank Account" />
                         <asp:BoundField DataField="BankName" HeaderText="Bank Name" />
-                        <asp:BoundField DataField="Bank Branch" HeaderText="Bank Branch" />
+                        <asp:BoundField DataField="BankBranch" HeaderText="Bank Branch" />
                         <asp:BoundField DataField="VoucherStatus.StatusName" HeaderText="Voucher Status" />
 
                     </Columns>

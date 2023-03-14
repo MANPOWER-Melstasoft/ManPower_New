@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class PaymentVoucherRecommendation
+    public partial class PaymentVoucherCertify
     {
 
         /// <summary>

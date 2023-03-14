@@ -450,7 +450,7 @@
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-5">
-                                    <label>EB Completed Date Grade 1 : </label>
+                                    <label>EB Completed Date Grade 3 : </label>
                                 </div>
                                 <div class="col-6">
                                     <asp:TextBox ID="txtEBDate1" runat="server" AutoPostBack="true" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
@@ -477,7 +477,7 @@
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-5">
-                                    <label>EB Completed Date Grade 3 : </label>
+                                    <label>EB Completed Date Grade 1 : </label>
                                 </div>
                                 <div class="col-6">
                                     <asp:TextBox ID="txtEBDate3" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>

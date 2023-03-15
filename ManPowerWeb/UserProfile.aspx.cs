@@ -207,7 +207,7 @@ namespace ManPowerWeb
             }
             empPassport.Text = emp.EmployeePassportNumber;
             //absorb.Text = emp.EpmAbsorb;
-            txtEDComDate.Text = emp.EDCompletionDate.ToString("yyyy-MM-dd");
+            //txtEDComDate.Text = emp.EDCompletionDate.ToString("yyyy-MM-dd");
             txtSalaryNum.Text = emp.SalaryNo;
             //ddlEthnicity.SelectedIndex = emp.EthnicityId - 1;
             //ddlReligion.SelectedIndex = emp.ReligionId - 1;
@@ -278,7 +278,10 @@ namespace ManPowerWeb
 
             empUp.PensionDate = Convert.ToDateTime(pensionDate.Text);
             empUp.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
-
+            empUp.FileNo = fileNo.Text;
+            empUp.SalaryNo = txtSalaryNum.Text;
+            empUp.VNOPNo = vnop.Text;
+            empUp.AppointmentNo = appointmenLetterNo.Text;
 
             int result1 = employeeController.UpdateEmployee(empUp);
 

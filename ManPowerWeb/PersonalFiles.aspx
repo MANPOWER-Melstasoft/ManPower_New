@@ -18,11 +18,8 @@
                             <label>File Number : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="fileNo" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator1" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
-                                Invalid Number
-                            </asp:RegularExpressionValidator>
                         </div>
                     </div>
                 </div>
@@ -214,11 +211,9 @@
                             <label>W & OP Number : </label>
                         </div>
                         <div class="col-6">
-                            <asp:TextBox ID="vnop" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="vnop" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                             <asp:RequiredFieldValidator ControlToValidate="vnop" ID="RequiredFieldValidator11" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ValidationGroup="1" ID="RegularExpressionValidator2" ControlToValidate="vnop" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
-                                Invalid Number
-                            </asp:RegularExpressionValidator>
+
                         </div>
                     </div>
                 </div>

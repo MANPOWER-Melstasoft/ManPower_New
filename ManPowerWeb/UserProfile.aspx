@@ -44,9 +44,6 @@
                                         <div class="col-6">
                                             <asp:TextBox ID="fileNo" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                             <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ValidationGroup="emp" ID="RegularExpressionValidator2" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
-                                            Invalid Number
-                                            </asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>

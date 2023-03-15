@@ -278,7 +278,10 @@ namespace ManPowerWeb
 
             empUp.PensionDate = Convert.ToDateTime(pensionDate.Text);
             empUp.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
-
+            empUp.FileNo = fileNo.Text;
+            empUp.SalaryNo = txtSalaryNum.Text;
+            empUp.VNOPNo = vnop.Text;
+            empUp.AppointmentNo = appointmenLetterNo.Text;
 
             int result1 = employeeController.UpdateEmployee(empUp);
 

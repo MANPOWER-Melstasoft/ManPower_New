@@ -83,10 +83,10 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Title = @Title, Gender = @EmpGender, Pension_Date = @PensionDate, " +
-                "NIC = @EmployeeNIC, Initial = @EmpInitials, Date_Of_Birth = @DOB, PASSPORT_NUMBER = @EmployeePassportNumber, " +
+            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Title = @Title, Gender = @EmpGender, Pension_Date = @PensionDate, VNOP_No = @VNOPNo, " +
+                "NIC = @EmployeeNIC, Initial = @EmpInitials, Date_Of_Birth = @DOB, PASSPORT_NUMBER = @EmployeePassportNumber, Appointment_No = @AppointmentNo, " +
                 "Last_Name = @LastName, Name_Denote_By_Initial = @NameWithInitials, Marital_Status = @MaritalStatus, NIC_ISSUE_DATE = @NicIssueDate, " +
-                "Designation_Id = @DesignationId WHERE ID = @EmployeeId";
+                "Designation_Id = @DesignationId, File_No = @FileNo , Salary_Num = @SalaryNo WHERE ID = @EmployeeId";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@Title", emp.Title);
@@ -101,6 +101,10 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@PensionDate", emp.PensionDate);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeePassportNumber", emp.EmployeePassportNumber);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", emp.EmployeeId);
+            dbConnection.cmd.Parameters.AddWithValue("@VNOPNo", emp.VNOPNo);
+            dbConnection.cmd.Parameters.AddWithValue("@AppointmentNo", emp.AppointmentNo);
+            dbConnection.cmd.Parameters.AddWithValue("@FileNo", emp.FileNo);
+            dbConnection.cmd.Parameters.AddWithValue("@SalaryNo", emp.SalaryNo);
             if (emp.NicIssueDate.ToShortDateString() == "01/01/0001")
             {
                 dbConnection.cmd.Parameters.AddWithValue("@NicIssueDate", SqlDateTime.Null);

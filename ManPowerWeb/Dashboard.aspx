@@ -14,7 +14,7 @@
         <div class="row">
 
             <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                  || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                              || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
                 {
             %>
 
@@ -409,7 +409,7 @@
 
             <!-- Content Row -->
             <% if (Session["UserTypeId"].ToString() == "6"
-                   || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                               || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
                 {
             %>
             <!-- This month Upcoming Programs -->
@@ -516,6 +516,7 @@
                 </asp:UpdatePanel>
             </div>
 
+            <!-- Annual Target Recommendation Approval -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <asp:UpdatePanel runat="server" ID="updatePanel8">
                     <ContentTemplate>
@@ -537,6 +538,58 @@
                             </div>
                         </div>
                         <asp:Timer ID="timer8" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+            <!-- DME 21-->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel7">
+                    <ContentTemplate>
+                        <div class="card border-left-warning shadow h-100 py-2" data-toggle="modal" data-target="#DME21" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            DME 21 Status
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="Label1" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-bullseye fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer7" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+
+            <!-- DME 22-->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <asp:UpdatePanel runat="server" ID="updatePanel13">
+                    <ContentTemplate>
+                        <div class="card border-left-info shadow h-100 py-2" data-toggle="modal" data-target="#DME22" data-ui-class="a-fadeUp" style="cursor: pointer">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            DME 22 Status
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <asp:Label ID="Label2" runat="server" Text="N/A"></asp:Label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-bullseye fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <asp:Timer ID="timer13" runat="server" OnTick="timer1_Tick" Interval="120000"></asp:Timer>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
@@ -657,7 +710,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-              || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+                          || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -690,7 +743,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-              || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                          || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div>

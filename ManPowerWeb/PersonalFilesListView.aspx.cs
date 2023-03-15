@@ -165,7 +165,7 @@ namespace ManPowerWeb
             nic.Text = employee.EmployeeNIC;
             ddlEmpDesignation.SelectedValue = employee.DesignationId.ToString();
             ddlDistrict.SelectedValue = employee.DistrictId.ToString();
-            txtEDComDate.Text = employee.EDCompletionDate.ToString("yyyy-MM-dd");
+            //txtEDComDate.Text = employee.EDCompletionDate.ToString("yyyy-MM-dd");
             txtSalaryNum.Text = employee.SalaryNo;
             vnop.Text = employee.VNOPNo.ToString();
             appointmenLetterNo.Text = employee.AppointmentNo.ToString();
@@ -397,7 +397,7 @@ namespace ManPowerWeb
             employee.EmployeeNIC = nic.Text;
             employee.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
             employee.DistrictId = int.Parse(ddlDistrict.SelectedValue);
-            employee.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
+            //employee.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
             employee.SalaryNo = txtSalaryNum.Text;
             employee.VNOPNo = int.Parse(vnop.Text);
             employee.AppointmentNo = int.Parse(appointmenLetterNo.Text);

@@ -285,24 +285,6 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox dsDivision;
 
         /// <summary>
-        /// txtEDComDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEDComDate;
-
-        /// <summary>
-        /// RequiredFieldValidator30 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator30;
-
-        /// <summary>
         /// txtSalaryNum control.
         /// </summary>
         /// <remarks>

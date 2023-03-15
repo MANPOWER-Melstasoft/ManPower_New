@@ -188,7 +188,7 @@
 
 
                     <div class="row mt-4">
-                        <div class="col-6">
+                        <%--<div class="col-6">
                             <div class="row">
                                 <div class="col-4">
                                     <label>ED Completion Date : </label>
@@ -198,7 +198,7 @@
                                     <asp:RequiredFieldValidator ControlToValidate="txtEDComDate" ID="RequiredFieldValidator30" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="10" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-4">

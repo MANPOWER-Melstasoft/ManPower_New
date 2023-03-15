@@ -33,12 +33,12 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO EMPLOYEE (Religion_Id, Ethnicity_Id, NIC, Passport_Number, Title" +
                                             ",Initial,Last_Name,Name_Denote_By_Initial,Gender,Date_Of_Birth" +
                                             ",Marital_Status,Supervisor_Id,Manager_Id,DSDivision_Id,District_Id,Unit_Type, " +
-                                            " Pension_Date,VNOP_No,Appointment_No,File_No, Designation_Id, Salary_Num, ED_Completion_Date) " +
+                                            " Pension_Date,VNOP_No,Appointment_No,File_No, Designation_Id, Salary_Num) " +
 
                                             "VALUES(@ReligionId, @EthnicityId, @EmployeeNIC, @EmployeePassportNumber, @Title " +
                                             ",@EmpInitials, @LastName, @NameWithInitials, @EmpGender, @DOB " +
                                             ",@MaritalStatus, @SupervisorId, @ManagerId, @DSDivisionId, @DistrictId, @UnitType " +
-                                            ",@PensionDate, @VNOPNo, @AppointmentNo, @FileNo, @DesignationId, @SalaryNo, @EDCompletionDate) " +
+                                            ",@PensionDate, @VNOPNo, @AppointmentNo, @FileNo, @DesignationId, @SalaryNo) " +
                                             "SELECT SCOPE_IDENTITY() ";
 
 
@@ -67,7 +67,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@FileNo", emp.FileNo);
             dbConnection.cmd.Parameters.AddWithValue("@DesignationId", emp.DesignationId);
             dbConnection.cmd.Parameters.AddWithValue("@SalaryNo", emp.SalaryNo);
-            dbConnection.cmd.Parameters.AddWithValue("@EDCompletionDate", emp.EDCompletionDate);
+            //dbConnection.cmd.Parameters.AddWithValue("@EDCompletionDate", emp.EDCompletionDate);
             //dbConnection.cmd.Parameters.AddWithValue("@EpmAbsorb", emp.EpmAbsorb);
             //dbConnection.cmd.Parameters.AddWithValue("@EmpNo", emp.EmpNo);
 

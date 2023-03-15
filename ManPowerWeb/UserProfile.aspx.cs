@@ -207,7 +207,7 @@ namespace ManPowerWeb
             }
             empPassport.Text = emp.EmployeePassportNumber;
             //absorb.Text = emp.EpmAbsorb;
-            txtEDComDate.Text = emp.EDCompletionDate.ToString("yyyy-MM-dd");
+            //txtEDComDate.Text = emp.EDCompletionDate.ToString("yyyy-MM-dd");
             txtSalaryNum.Text = emp.SalaryNo;
             //ddlEthnicity.SelectedIndex = emp.EthnicityId - 1;
             //ddlReligion.SelectedIndex = emp.ReligionId - 1;

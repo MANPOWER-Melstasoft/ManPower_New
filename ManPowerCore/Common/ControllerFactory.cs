@@ -637,5 +637,17 @@ namespace ManPowerCore.Common
             VoucherStatusController voucherStatusController = new VoucherStatusControllerImpl();
             return (VoucherStatusController)voucherStatusController;
         }
+
+        public static SalaryIncrementController CreateSalaryIncrementController()
+        {
+            SalaryIncrementController salaryIncrementController = new SalaryIncrementControllerImpl();
+            return (SalaryIncrementController)salaryIncrementController;
+        }
+
+        public static SalaryIncrementStatusController CreateSalaryIncrementStatusController()
+        {
+            SalaryIncrementStatusController salaryIncrementStatusController = new SalaryIncrementStatusControllerImpl();
+            return (SalaryIncrementStatusController)salaryIncrementStatusController;
+        }
     }
 }

@@ -44,9 +44,6 @@
                                         <div class="col-6">
                                             <asp:TextBox ID="fileNo" ReadOnly="true" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                             <asp:RequiredFieldValidator ControlToValidate="fileNo" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="emp" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ValidationGroup="emp" ID="RegularExpressionValidator2" ControlToValidate="fileNo" runat="server" ForeColor="Red" ValidationExpression="^\d+$">
-                                            Invalid Number
-                                            </asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +249,7 @@
                             </div>
 
                             <div class="row mt-5">
-                                <div class="col-6">
+                                <%-- <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
                                             <label>ED Completion Date : </label>
@@ -262,7 +259,7 @@
                                             <asp:RequiredFieldValidator ControlToValidate="txtEDComDate" ID="RequiredFieldValidator30" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -368,8 +365,6 @@
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="telephone" ValidationGroup="contact"
                                                 ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
-                                            <asp:RequiredFieldValidator ControlToValidate="telephone" ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator"
-                                                ValidationGroup="contact" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -553,7 +548,7 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Select Company Name: </label>
+                                            <label>Select Previous Work Place : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:DropDownList ID="ddlEmpDetails" runat="server" OnSelectedIndexChanged="ddlEmpDetails_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>

@@ -157,7 +157,7 @@ namespace ManPowerWeb
             ddlMR.SelectedValue = employee.Title;
             ddlGender.SelectedValue = employee.EmpGender;
             ddlMaritalStatus.SelectedValue = employee.MaritalStatus;
-            fileNo.Text = employee.FileNo.ToString();
+            fileNo.Text = employee.FileNo;
             nameOfInitials.Text = employee.NameWithInitials;
             initial.Text = employee.EmpInitials;
             lname.Text = employee.LastName;
@@ -165,10 +165,16 @@ namespace ManPowerWeb
             nic.Text = employee.EmployeeNIC;
             ddlEmpDesignation.SelectedValue = employee.DesignationId.ToString();
             ddlDistrict.SelectedValue = employee.DistrictId.ToString();
-            txtEDComDate.Text = employee.EDCompletionDate.ToString("yyyy-MM-dd");
+            //txtEDComDate.Text = employee.EDCompletionDate.ToString("yyyy-MM-dd");
             txtSalaryNum.Text = employee.SalaryNo;
-            vnop.Text = employee.VNOPNo.ToString();
-            appointmenLetterNo.Text = employee.AppointmentNo.ToString();
+            vnop.Text = employee.VNOPNo;
+            appointmenLetterNo.Text = employee.AppointmentNo;
+            empPassport.Text = employee.EmployeePassportNumber;
+
+            if (employee.NicIssueDate.ToString("yyyy-MM-dd") != "0001-01-01")
+            {
+                nicIssuedDate.Text = employee.NicIssueDate.ToString("yyyy-MM-dd");
+            }
 
             if (employee.UnitType == 3)
             {
@@ -389,7 +395,7 @@ namespace ManPowerWeb
             employee.Title = ddlMR.SelectedValue;
             employee.EmpGender = ddlGender.SelectedValue;
             employee.MaritalStatus = ddlMaritalStatus.SelectedValue;
-            employee.FileNo = int.Parse(fileNo.Text);
+            employee.FileNo = fileNo.Text;
             employee.NameWithInitials = nameOfInitials.Text;
             employee.EmpInitials = initial.Text;
             employee.LastName = lname.Text;
@@ -397,11 +403,16 @@ namespace ManPowerWeb
             employee.EmployeeNIC = nic.Text;
             employee.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
             employee.DistrictId = int.Parse(ddlDistrict.SelectedValue);
-            employee.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
+            employee.EmployeePassportNumber = empPassport.Text;
             employee.SalaryNo = txtSalaryNum.Text;
-            employee.VNOPNo = int.Parse(vnop.Text);
-            employee.AppointmentNo = int.Parse(appointmenLetterNo.Text);
+            employee.VNOPNo = vnop.Text;
+            employee.AppointmentNo = appointmenLetterNo.Text;
             employee.PensionDate = Convert.ToDateTime(dob.Text).AddYears(60);
+
+            if (nicIssuedDate.Text != "")
+            {
+                employee.NicIssueDate = Convert.ToDateTime(nicIssuedDate.Text);
+            }
 
             if (ddlDS.SelectedValue != "")
             {

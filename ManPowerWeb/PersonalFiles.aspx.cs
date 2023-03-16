@@ -539,12 +539,12 @@ namespace ManPowerWeb
             emp.DistrictId = int.Parse(ddlDistrict.SelectedValue);
             //emp.EpmAbsorb = ddlAbsorb.SelectedValue;
             emp.PensionDate = Convert.ToDateTime(dob.Text).AddYears(60);
-            emp.VNOPNo = int.Parse(vnop.Text);
-            emp.FileNo = int.Parse(fileNo.Text);
-            emp.AppointmentNo = int.Parse(appointmenLetterNo.Text);
+            emp.VNOPNo = vnop.Text;
+            emp.FileNo = fileNo.Text;
+            emp.AppointmentNo = appointmenLetterNo.Text;
             emp.DesignationId = int.Parse(ddlEmpDesignation.SelectedValue);
             emp.SalaryNo = txtSalaryNum.Text;
-            emp.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
+            //emp.EDCompletionDate = Convert.ToDateTime(txtEDComDate.Text);
 
             if (ddlDS.SelectedValue != "")
             {
@@ -689,14 +689,7 @@ namespace ManPowerWeb
         {
             if (Convert.ToDateTime(dob.Text) >= DateTime.Today)
             {
-                if (Convert.ToDateTime(txtEDComDate.Text) >= DateTime.Today)
-                {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'ED Completion Date is Invaid!', 'error');", true);
-                }
-                else
-                {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth is Invaid!', 'error');", true);
-                }
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Date of Birth is Invaid!', 'error');", true);
             }
             else
             {

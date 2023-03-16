@@ -122,6 +122,8 @@
     <Compile Include="Controller\RetirementTypeController.cs" />
     <Compile Include="Controller\RetirementTypeController.cs" />
     <Compile Include="Controller\ReverseReasonController.cs" />
+    <Compile Include="Controller\SalaryIncrementController.cs" />
+    <Compile Include="Controller\SalaryIncrementStatusController.cs" />
     <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\StaffLeaveAllocationController.cs" />
     <Compile Include="Controller\StaffLeaveController.cs" />
@@ -183,6 +185,8 @@
     <Compile Include="Domain\PaymentVoucher.cs" />
     <Compile Include="Domain\ProgramPlanApprovalDetails.cs" />
     <Compile Include="Domain\RequestorGuarantor.cs" />
+    <Compile Include="Domain\SalaryIncrement.cs" />
+    <Compile Include="Domain\SalaryIncrementStatus.cs" />
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
@@ -328,6 +332,8 @@
     <Compile Include="Infrastructure\RetirementDAO.cs" />
     <Compile Include="Infrastructure\RetirementTypeDAO.cs" />
     <Compile Include="Infrastructure\ReverseReasonDAO.cs" />
+    <Compile Include="Infrastructure\SalaryIncrementDAO.cs" />
+    <Compile Include="Infrastructure\SalaryIncrementStatusDAO.cs" />
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveDAO.cs" />

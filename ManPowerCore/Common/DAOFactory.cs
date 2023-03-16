@@ -622,5 +622,17 @@ namespace ManPowerCore.Common
             VoucherStatusDAO voucherStatusDAO = new VoucherStatusDAOSqlImpl();
             return (VoucherStatusDAO)voucherStatusDAO;
         }
+
+        public static SalaryIncrementDAO createSalaryIncrementDAO()
+        {
+            SalaryIncrementDAO salaryIncrementDAO = new SalaryIncrementDAOSqlImpl();
+            return (SalaryIncrementDAO)salaryIncrementDAO;
+        }
+
+        public static SalaryIncrementStatusDAO createSalaryIncrementStatusDAO()
+        {
+            SalaryIncrementStatusDAO salaryIncrementStatusDAO = new SalaryIncrementStatusDAOSqlImpl();
+            return (SalaryIncrementStatusDAO)salaryIncrementStatusDAO;
+        }
     }
 }

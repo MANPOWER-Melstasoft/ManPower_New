@@ -126,6 +126,7 @@
     <Content Include="AddPaymentVoucher.aspx" />
     <Content Include="AddPosition.aspx" />
     <Content Include="AddProgram.aspx" />
+    <Content Include="AddSalaryIncrement.aspx" />
     <Content Include="AddSupplier.aspx" />
     <Content Include="AddSupplierType.aspx" />
     <Content Include="AddTraining.aspx" />
@@ -163,6 +164,7 @@
     <Content Include="RequestLoanFront.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="ResourcePersonList.aspx" />
+    <Content Include="SalaryIncrements.aspx" />
     <Content Include="SystemFunctions.aspx" />
     <Content Include="TrainingFront.aspx" />
     <Content Include="AddTransfersRetirementResignation.aspx" />
@@ -2092,6 +2094,13 @@
     <Compile Include="AddProgram.aspx.designer.cs">
       <DependentUpon>AddProgram.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddSalaryIncrement.aspx.cs">
+      <DependentUpon>AddSalaryIncrement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSalaryIncrement.aspx.designer.cs">
+      <DependentUpon>AddSalaryIncrement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddSupplier.aspx.cs">
       <DependentUpon>AddSupplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2350,6 +2359,13 @@
     </Compile>
     <Compile Include="ResourcePersonList.aspx.designer.cs">
       <DependentUpon>ResourcePersonList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SalaryIncrements.aspx.cs">
+      <DependentUpon>SalaryIncrements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SalaryIncrements.aspx.designer.cs">
+      <DependentUpon>SalaryIncrements.aspx</DependentUpon>
     </Compile>
     <Compile Include="SystemFunctions.aspx.cs">
       <DependentUpon>SystemFunctions.aspx</DependentUpon>

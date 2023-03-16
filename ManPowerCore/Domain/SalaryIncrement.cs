@@ -35,6 +35,8 @@ namespace ManPowerCore.Domain
         [DBField("Total_Salary")]
         public float TotalSalary { get; set; }
 
+        public Employee Employee { get; set; }
 
+        public SalaryIncrementStatus SalaryIncrementStatus { get; set; }
     }
 }

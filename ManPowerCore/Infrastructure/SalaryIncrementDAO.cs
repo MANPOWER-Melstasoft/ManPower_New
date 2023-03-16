@@ -78,3 +78,4 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.ReadCollection<SalaryIncrement>(dbConnection.dr);
         }
     }
+}

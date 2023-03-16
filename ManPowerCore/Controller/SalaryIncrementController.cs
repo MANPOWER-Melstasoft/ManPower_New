@@ -65,7 +65,27 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return salaryIncrementDAO.GetAllSalaryIncrement(dBConnection);
+
+                List<SalaryIncrement> salaryIncrementList = salaryIncrementDAO.GetAllSalaryIncrement(dBConnection);
+
+                EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+                List<Employee> employeeList = employeeController.GetAllEmployees();
+
+                SalaryIncrementStatusController salaryIncrementStatusController = ControllerFactory.CreateSalaryIncrementStatusController();
+                List<SalaryIncrementStatus> salaryIncrementStatusList = salaryIncrementStatusController.GetAllSalaryIncrementStatus();
+
+                foreach (var item in salaryIncrementList)
+                {
+                    item.SalaryIncrementStatus = salaryIncrementStatusList.Where(x => x.Id == item.SalaryIncrementStatusId).Single();
+                }
+
+                foreach (var item in salaryIncrementList)
+                {
+                    item.Employee = employeeList.Where(x => x.EmployeeId == item.EmployeeId).Single();
+                }
+
+
+                return salaryIncrementList;
             }
             catch (Exception)
             {

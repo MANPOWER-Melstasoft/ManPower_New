@@ -11,7 +11,10 @@
                 <asp:TextBox ID="txtkeyword" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
             </div>
             <div class="col-sm-2">
-                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary btn-user btn-block">Search</asp:LinkButton>
+                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSearch_Click">Search</asp:LinkButton>
+            </div>
+            <div class="col-sm-2">
+                <asp:LinkButton ID="btnGetAll" runat="server" CssClass="btn btn-primary btn-user btn-block" OnClick="btnGetAll_Click">Get All</asp:LinkButton>
             </div>
         </div>
         <div class="row mb-5" style="margin-left: 100px;">
@@ -24,9 +27,13 @@
                 CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField HeaderText="Year" />
-                    <asp:BoundField HeaderText="Month" />
-                    <asp:BoundField HeaderText="Status" />
+                    <asp:BoundField DataField="EmployeeId" HeaderText="Employee Id" />
+                    <asp:BoundField DataField="Employee.LastName" HeaderText="Employee Name" />
+                    <asp:BoundField DataField="CreatedDate" HeaderText="Date" DataFormatString="{0:yyyy-MM-dd}" />
+                    <asp:BoundField DataField="BasicSalary" HeaderText="Basic Salary" />
+                    <asp:BoundField DataField="Allowances" HeaderText="Allowances" />
+                    <asp:BoundField DataField="TotalSalary" HeaderText="Total Salary" />
+                    <asp:BoundField DataField="SalaryIncrementStatus.StatusName" HeaderText="Status" />
                 </Columns>
             </asp:GridView>
         </div>

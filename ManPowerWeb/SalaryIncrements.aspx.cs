@@ -28,5 +28,26 @@ namespace ManPowerWeb
             string url = "AddSalaryIncrement.aspx";
             Response.Redirect(url);
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string keyword = txtkeyword.Text;
+
+            if (keyword != "")
+            {
+                salaryIncrementList = salaryIncrementList.Where(x => x.Employee.LastName.ToLower().Contains(keyword.ToLower())).ToList();
+            }
+            gvSalaryIncrement.DataSource = salaryIncrementList;
+            gvSalaryIncrement.DataBind();
+
+            txtkeyword.Text = string.Empty;
+        }
+
+        protected void btnGetAll_Click(object sender, EventArgs e)
+        {
+            salaryIncrementList = salaryIncrementController.GetAllSalaryIncrement();
+            gvSalaryIncrement.DataSource = salaryIncrementList;
+            gvSalaryIncrement.DataBind();
+        }
     }
 }

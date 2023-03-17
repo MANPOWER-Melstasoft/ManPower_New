@@ -263,25 +263,14 @@ namespace ManPowerWeb
                     programPlan.FinancialSource = "";
                     programPlan.ProgramCategoryId = 1;
                     programPlan.Location = txtLocation.Text;
-                    if (txtActualOutcome.Text != "")
-                    {
-                        programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
 
-                    }
-                    else
-                    {
-                        programPlan.Outcome = 0;
-                    }
+                    programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
+
+
                     programPlan.Output = 0;
 
-                    if (txtActualOutput.Text != "")
-                    {
-                        programPlan.ActualOutput = Convert.ToInt32(txtActualOutput.Text);
-                    }
-                    else
-                    {
-                        programPlan.ActualOutput = 0;
-                    }
+                    programPlan.ActualOutput = Convert.ToInt32(txtActualOutput.Text);
+
 
                     programPlan.IsApproved = 0;
                     programPlan.ApprovedBy = "";
@@ -300,34 +289,9 @@ namespace ManPowerWeb
 
                     }
 
-                    if (txtExpenditure.Text != "")
-                    {
-                        programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
-                    }
-                    else
-                    {
-                        programPlan.ActualAmount = 0;
-                    }
-
-                    if (txtMaleCount.Text != "")
-                    {
-                        programPlan.MaleCount = int.Parse(txtMaleCount.Text);
-                    }
-                    else
-                    {
-                        programPlan.MaleCount = 0;
-                    }
-                    if (txtFemaleCount.Text != "")
-                    {
-                        programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
-                    }
-                    else
-                    {
-                        programPlan.FemaleCount = 0;
-                    }
-
-
-
+                    programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
+                    programPlan.MaleCount = int.Parse(txtMaleCount.Text);
+                    programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
                     programPlan.Remark = "";
                     programPlan.ProgramTargetId = programTargetId;
                     programPlan.Coordinater = "";
@@ -352,7 +316,14 @@ namespace ManPowerWeb
 
                     ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
 
-                    if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
+                    //Check this later
+                    //if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
+                    //{
+                    //    lblDate.Text = "Invalid Date";
+                    //    validationflag = false;
+                    //}
+
+                    if (DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
                     {
                         lblDate.Text = "Invalid Date";
                         validationflag = false;
@@ -418,7 +389,6 @@ namespace ManPowerWeb
                 //  programTargets = programTargetController.GetAllProgramTargetWithPlan();
 
                 programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
-                programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
                 programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
 
 
@@ -449,22 +419,8 @@ namespace ManPowerWeb
 
                 }
                 programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
-                if (txtMaleCount.Text != "")
-                {
-                    programPlan.MaleCount = int.Parse(txtMaleCount.Text);
-                }
-                else
-                {
-                    programPlan.MaleCount = 0;
-                }
-                if (txtFemaleCount.Text != "")
-                {
-                    programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
-                }
-                else
-                {
-                    programPlan.FemaleCount = 0;
-                }
+                programPlan.MaleCount = int.Parse(txtMaleCount.Text);
+                programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
                 programPlan.Remark = "";
                 programPlan.ProgramTargetId = programTargetId;
                 programPlan.Coordinater = "";

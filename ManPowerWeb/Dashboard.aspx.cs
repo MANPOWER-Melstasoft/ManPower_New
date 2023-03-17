@@ -422,24 +422,58 @@ namespace ManPowerWeb
 
         protected void BindOtherUserCardData()
         {
+            ProjectStatusController projectStatusController = ControllerFactory.CreateProjectStatusController();
+            List<ProjectStatus> ProjectStatus = projectStatusController.GetAllProjectStatus(false);
+
             //--------------------- DME21 ---------------------------------------
             int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
             TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
             List<TaskAllocation> taskAllocations = taskAllocationController.GetAllTaskAllocationByDepartmentUnitPositionId(positionID);
-            lblrec1DME21.Text = taskAllocations.Count.ToString();
+
+            DateTime Now = DateTime.Now;
+            DateTime NextMonth = Now.AddMonths(1);
+
+            string status21 = "N/A";
+            string status22 = "N/A";
+
+            foreach (var item in taskAllocations)
+            {
+                if (item.TaskYearMonth.Month == NextMonth.Month)
+                {
+                    if (item.StatusId == 0)
+                    {
+                        status21 = "Planing";
+                    }
+                    else
+                    {
+                        status21 = ProjectStatus.Where(x => x.ProjectStatusId == item.StatusId).Single().ProjectStatusName;
+                    }
+                    break;
+                }
+            }
+
+            lbldme21status.Text = status21;
 
             //--------------------- DME22 ---------------------------------------
             List<TaskAllocation> taskAllocationList22Final = new List<TaskAllocation>();
-            List<TaskAllocation> taskAllocationList1 = taskAllocationController.GetAllTaskAllocation(false, true, false, false);
+            List<TaskAllocation> taskAllocationList1 = taskAllocationController.GetAllTaskAllocationByDepartmentUnitPositionId(positionID);
 
             foreach (var item in taskAllocationList1)
             {
-                if (item.DME22Rec1By == positionID && item.StatusId == 2011)
+                if (item.TaskYearMonth.Month == Now.Month && item.DME22Rec1By != 0)
                 {
-                    taskAllocationList22Final.Add(item);
+                    if (item.StatusId == 0)
+                    {
+                        status22 = "Planing";
+                    }
+                    else
+                    {
+                        status22 = ProjectStatus.Where(x => x.ProjectStatusId == item.StatusId).Single().ProjectStatusName;
+                    }
+                    break;
                 }
             }
-            lblrec1DME22.Text = taskAllocationList22Final.Count.ToString();
+            lbldme22status.Text = status22;
 
         }
 

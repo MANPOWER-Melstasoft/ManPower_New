@@ -683,7 +683,7 @@
                                 <asp:ListItem Value="1">Yes</asp:ListItem>
                                 <asp:ListItem Value="2">No</asp:ListItem>
                             </asp:RadioButtonList>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="reseg" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="reseg" ValidationGroup="2" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
@@ -723,7 +723,12 @@
                         <asp:BoundField HeaderText="Company Name" DataField="CompanyName" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Start Date" DataField="StartDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
                         <asp:BoundField HeaderText="End Date" DataField="EndDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
-                        <asp:BoundField HeaderText="Retirement Date" DataField="RetirementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
+                        <asp:TemplateField HeaderText="Retirement Date" HeaderStyle-CssClass="table-dark">
+                            <ItemTemplate>
+                                <asp:Label runat="server" Visible='<%#((DateTime)Eval("RetirementDate")).ToString() != "01/01/0001 12:00:00 AM" ?true:false %>' Text='<%#((DateTime)Eval("RetirementDate")).ToString("yyyy-MM-dd")%>'> </asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <%--<asp:BoundField HeaderText="Retirement Date" DataField="RetirementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />--%>
                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
                             <ItemTemplate>
                                 <asp:LinkButton CssClass="btn btn-danger" ID="btnAction" runat="server" OnClick="RemoveEmployDetails">Remove</asp:LinkButton>

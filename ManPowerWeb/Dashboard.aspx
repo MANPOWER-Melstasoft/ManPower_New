@@ -14,7 +14,7 @@
         <div class="row">
 
             <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                              || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                                || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
                 {
             %>
 
@@ -409,7 +409,7 @@
 
             <!-- Content Row -->
             <% if (Session["UserTypeId"].ToString() == "6"
-                               || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                                 || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
                 {
             %>
             <!-- This month Upcoming Programs -->
@@ -554,7 +554,7 @@
                                             DME 21 Status
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <asp:Label ID="Label1" runat="server" Text="N/A"></asp:Label>
+                                            <asp:Label ID="lbldme21status" runat="server" Text="N/A"></asp:Label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -580,7 +580,7 @@
                                             DME 22 Status
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <asp:Label ID="Label2" runat="server" Text="N/A"></asp:Label>
+                                            <asp:Label ID="lbldme22status" runat="server" Text="N/A"></asp:Label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -710,7 +710,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                          || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+                            || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -743,7 +743,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                          || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                            || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div>

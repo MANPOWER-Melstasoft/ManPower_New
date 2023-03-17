@@ -53,13 +53,13 @@ namespace ManPowerCore.Domain
         public DateTime PensionDate { get; set; }
 
         [DBField("VNOP_NO")]
-        public int VNOPNo { get; set; }
+        public string VNOPNo { get; set; }
 
         [DBField("APPOINTMENT_NO")]
-        public int AppointmentNo { get; set; }
+        public string AppointmentNo { get; set; }
 
         [DBField("FILE_NO")]
-        public int FileNo { get; set; }
+        public string FileNo { get; set; }
 
         [DBField("EMP_NO")]
         public int EmpNo { get; set; }

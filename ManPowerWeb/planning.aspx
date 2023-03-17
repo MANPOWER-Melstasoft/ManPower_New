@@ -97,14 +97,14 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField DataField="_ProgramTarget.ProgramTargetId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField DataField="_ProgramTarget.Title" HeaderText="Title" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.Title" HeaderText="Title" HeaderStyle-Width="150px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.Description" HeaderText="Description" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetYear" HeaderText="Target Year" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.TargetMonth" HeaderText="Target Month" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField DataField="_ProgramTarget.StartDate" HeaderText="Start Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField DataField="_ProgramTarget.EndDate" HeaderText="End Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.StartDate" HeaderText="Start Date" HeaderStyle-Width="100px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" DataFormatString="{0:dd-MM-yyyy}" />
+                    <asp:BoundField DataField="_ProgramTarget.EndDate" HeaderText="End Date" HeaderStyle-Width="100px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" DataFormatString="{0:dd-MM-yyyy}" />
                     <asp:BoundField DataField="_ProgramTarget.EstimatedAmount" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
-                    <asp:BoundField DataField="_ProgramTarget.Instractions" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:BoundField DataField="_ProgramTarget.Instractions" HeaderStyle-Width="150px" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.NoOfProjects" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:TemplateField HeaderText="Planned Count" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
                         <ItemTemplate>
@@ -112,7 +112,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="ACTION" HeaderStyle-Width="300px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
+                    <asp:TemplateField HeaderText="ACTION" HeaderStyle-Width="250px" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:LinkButton runat="server" ID="btnAddPlan" CssClass="btn btn-success" OnClick="btnAddPlan_Click">Add Program Plan</asp:LinkButton>
                         </ItemTemplate>
@@ -146,7 +146,7 @@
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" HeaderStyle-Width="150px">
+                                                <asp:TemplateField HeaderText="ACTION" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
                                                     <ItemTemplate>
 
                                                         <asp:LinkButton runat="server" CommandName="Edit" ID="btnEdit" CssClass="btn btn-warning" OnClick="btnEdit_Click" Visible='<%#Convert.ToInt32(Eval("ProjectStatusId")) < 4 ?true:false %>' Text="Edit"></asp:LinkButton>

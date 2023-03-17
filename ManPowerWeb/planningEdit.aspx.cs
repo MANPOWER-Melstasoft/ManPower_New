@@ -449,8 +449,22 @@ namespace ManPowerWeb
 
                 }
                 programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
-                programPlan.MaleCount = int.Parse(txtMaleCount.Text);
-                programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
+                if (txtMaleCount.Text != "")
+                {
+                    programPlan.MaleCount = int.Parse(txtMaleCount.Text);
+                }
+                else
+                {
+                    programPlan.MaleCount = 0;
+                }
+                if (txtFemaleCount.Text != "")
+                {
+                    programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
+                }
+                else
+                {
+                    programPlan.FemaleCount = 0;
+                }
                 programPlan.Remark = "";
                 programPlan.ProgramTargetId = programTargetId;
                 programPlan.Coordinater = "";

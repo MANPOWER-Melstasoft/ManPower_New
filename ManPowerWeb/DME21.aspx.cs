@@ -17,7 +17,7 @@ namespace ManPowerWeb
         private int month = DateTime.Now.AddMonths(1).Month;
         public DateTime monthYear = DateTime.Now.AddMonths(1);
         private string monthName = DateTime.Now.AddMonths(1).ToString("MMMM");
-        List<TaskAllocationDetail> taskallocationDetailList1 = new List<TaskAllocationDetail>();
+        static List<TaskAllocationDetail> taskallocationDetailList1 = new List<TaskAllocationDetail>();
 
         List<TaskAllocation> taskAllocationList;
 
@@ -29,7 +29,10 @@ namespace ManPowerWeb
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
-            BindDataSource();
+            if (!IsPostBack)
+            {
+                BindDataSource();
+            }
         }
 
         public void BindDataSource()
@@ -61,6 +64,7 @@ namespace ManPowerWeb
                 }
             }
 
+            taskallocationDetailList1 = taskallocationDetailList1.OrderBy(x => x.StartTime).ToList();
             DME21GridView.DataSource = taskallocationDetailList1;
             DME21GridView.DataBind();
 
@@ -159,6 +163,61 @@ namespace ManPowerWeb
 
             string url = "DME21Front.aspx";
             Response.Redirect(url);
+        }
+
+        protected void btnAdd_Click1(object sender, EventArgs e)
+        {
+
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            taskallocationDetailList1.Add(new TaskAllocationDetail() { StartTime = taskallocationDetailList1[rowIndex].StartTime.Date });
+
+            taskallocationDetailList1 = taskallocationDetailList1.OrderBy(x => x.StartTime).ToList();
+            DME21GridView.DataSource = taskallocationDetailList1;
+            DME21GridView.DataBind();
+
+            foreach (GridViewRow row in DME21GridView.Rows)
+            {
+                if (row.Cells[1].Text == "&nbsp;")
+                {
+                    ((LinkButton)row.FindControl("btnAdd")).Enabled = true;
+                    ((LinkButton)row.FindControl("btnEdit")).Enabled = false;
+                    ((LinkButton)row.FindControl("btnEdit")).CssClass = "btn btn-outline-secondary disabled";
+                }
+                else
+                {
+                    ((LinkButton)row.FindControl("btnAdd")).Enabled = false;
+                    ((LinkButton)row.FindControl("btnEdit")).Enabled = true;
+                    ((LinkButton)row.FindControl("btnAdd")).CssClass = "btn btn-outline-secondary disabled";
+                }
+            }
+
+            int flag1 = 0;
+
+            foreach (var item in taskallocationDetailList1)
+            {
+                if (item.TaskTypeId == 0)
+                {
+                    flag1 = 1;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            if (flag1 == 0)
+            {
+                btnApproval.Enabled = true;
+                btnApproval.CssClass = "btn btn-outline-secondary";
+            }
+            else
+            {
+                btnApproval.Enabled = false;
+                btnApproval.CssClass = "btn btn-outline-secondary disabled";
+            }
         }
     }
 }

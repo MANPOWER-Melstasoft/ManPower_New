@@ -14,7 +14,7 @@
         <div class="row">
 
             <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                                      || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                                        || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
                 {
             %>
 
@@ -419,7 +419,7 @@
 
             <!-- Content Row -->
             <% if (Session["UserTypeId"].ToString() == "6"
-                                       || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                                         || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
                 {
             %>
             <!-- This month Upcoming Programs -->
@@ -720,7 +720,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                                  || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+                                    || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -740,6 +740,12 @@
                             <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                             <asp:BoundField DataField="Outcome" HeaderText="Outcome" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                             <asp:BoundField DataField="NoOfProjects" HeaderText="No of Projects" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                            <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="Beneficiary Count">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Visible='<%#Eval("BeneficiaryCount").ToString() != "0" ?true:false %>' Text='<%#Eval("BeneficiaryCount").ToString()%>'> </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("BeneficiaryCount").ToString() == "0" ?true:false %>' Text="N/A"> </asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="EstimatedAmount" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
                             <asp:BoundField DataField="StartDate" HeaderText="Start Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
                             <asp:BoundField DataField="EndDate" HeaderText="End Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
@@ -753,7 +759,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                                  || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                                    || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div>

@@ -40,6 +40,9 @@ namespace ManPowerCore.Domain
         [DBField("NO_OF_PROJECTS")]
         public int NoOfProjects { get; set; }
 
+        [DBField("Beneficiary_Count")]
+        public int BeneficiaryCount { get; set; }
+
         [DBField("ESTIMATED_AMOUNT")]
         public float EstimatedAmount { get; set; }
 

@@ -175,8 +175,10 @@ namespace ManPowerWeb
 
         }
 
-        private void save(bool IsSendToRec)
+        private int save(bool IsSendToRec)
         {
+            int retVal = 0;
+
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
             ProgramAssignee programAssigneeObj = new ProgramAssignee();
             int depid;
@@ -266,6 +268,12 @@ namespace ManPowerWeb
                 if (txtActualOutcome.Text != "")
                 {
                     programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
+                    programPlan.ProgramName = txtProgramName.Text;
+                    programPlan.FinancialSource = "";
+                    programPlan.ProgramCategoryId = 1;
+                    programPlan.Location = txtLocation.Text;
+
+                    programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
 
                 }
                 else
@@ -273,6 +281,8 @@ namespace ManPowerWeb
                     programPlan.Outcome = 0;
                 }
                 programPlan.Output = 0;
+
+                    programPlan.Output = 0;
 
                 if (txtActualOutput.Text != "")
                 {
@@ -282,11 +292,17 @@ namespace ManPowerWeb
                 {
                     programPlan.ActualOutput = 0;
                 }
+                    programPlan.ActualOutput = Convert.ToInt32(txtActualOutput.Text);
 
                 programPlan.IsApproved = 0;
                 programPlan.ApprovedBy = "";
                 programPlan.ApprovedDate = DateTime.Now;
                 programPlan.TotalEstimatedAmount = (float)Convert.ToDouble(txtEstimateAmount.Text);
+
+                    programPlan.IsApproved = 0;
+                    programPlan.ApprovedBy = "";
+                    programPlan.ApprovedDate = DateTime.Now;
+                    programPlan.TotalEstimatedAmount = (float)Convert.ToDouble(txtEstimateAmount.Text);
 
                 if ((float)Convert.ToDouble(txtEstimateAmount.Text) >= (float)Convert.ToDouble(txtBudget.Text))
                 {
@@ -332,6 +348,13 @@ namespace ManPowerWeb
                 programPlan.ProgramTargetId = programTargetId;
                 programPlan.Coordinater = "";
                 programPlan.ProgramPlanId = programPlanId;
+                    programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
+                    programPlan.MaleCount = int.Parse(txtMaleCount.Text);
+                    programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
+                    programPlan.Remark = "";
+                    programPlan.ProgramTargetId = programTargetId;
+                    programPlan.Coordinater = "";
+                    programPlan.ProgramPlanId = programPlanId;
 
 
                 if (Uploader.HasFile)
@@ -357,6 +380,18 @@ namespace ManPowerWeb
                     lblDate.Text = "Invalid Date";
                     validationflag = false;
                 }
+                    //Check this later
+                    //if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
+                    //{
+                    //    lblDate.Text = "Invalid Date";
+                    //    validationflag = false;
+                    //}
+
+                    if (DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
+                    {
+                        lblDate.Text = "Invalid Date";
+                        validationflag = false;
+                    }
 
 
                 if (validationflag)
@@ -403,6 +438,14 @@ namespace ManPowerWeb
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
                     }
                 }
+                            retVal = 1;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+                            retVal = 0;
+                        }
+                    }
 
                 //}
             }
@@ -417,7 +460,6 @@ namespace ManPowerWeb
                 //   ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
                 //  programTargets = programTargetController.GetAllProgramTargetWithPlan();
 
-                programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
                 programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
                 programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
 
@@ -527,15 +569,19 @@ namespace ManPowerWeb
                         {
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
                         }
-
+                        retVal = 1;
                     }
                     else
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+                        retVal = 0;
                     }
                 }
 
             }
+
+            return retVal;
+
         }
         protected void btnSave_Click1(object sender, EventArgs e)
         {
@@ -568,7 +614,7 @@ namespace ManPowerWeb
         protected void btnSendToRecommendation_Click(object sender, EventArgs e)
         {
             IsSendToRec = true;
-            save(IsSendToRec);
+            int res = save(IsSendToRec);
 
             programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
 
@@ -587,18 +633,27 @@ namespace ManPowerWeb
 
             programPlanApprovalDetails.RejectReason = "";
 
-            int response = programPlanApprovalDetailsController.Save(programPlanApprovalDetails);
-
-            if (response != 0)
+            if (res == 1)
             {
+                int response = programPlanApprovalDetailsController.Save(programPlanApprovalDetails);
 
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Send To Recommendation!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
+                if (response != 0)
+                {
 
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Send To Recommendation!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
+
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+                }
             }
             else
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
+
+
         }
 
         protected void txtFemaleCount_TextChanged(object sender, EventArgs e)

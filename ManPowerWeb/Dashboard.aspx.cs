@@ -215,7 +215,7 @@ namespace ManPowerWeb
             foreach (var i in programTargetsList)
             {
                 flagProgrmTarget = 0;
-                if (i.TargetMonth == DateTime.Today.Month || (i.StartDate <= DateTime.Now && i.EndDate >= DateTime.Now))
+                if (i.TargetMonth == DateTime.Today.Month || (i.StartDate <= DateTime.Now && i.EndDate >= DateTime.Now) && i.IsRecommended == 2)
                 {
                     foreach (var item in i._ProgramAssignee)
                     {
@@ -232,21 +232,21 @@ namespace ManPowerWeb
             }
 
 
-            foreach (var i in programTargetsList)
-            {
-                flagProgrmTarget = 0;
-                foreach (var item in i._ProgramAssignee)
-                {
-                    if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
-                    {
-                        flagProgrmTarget = 1;
-                    }
-                }
-                if (flagProgrmTarget == 1)
-                {
-                    programTargetsListFilterTotal.Add(i);
-                }
-            }
+            //foreach (var i in programTargetsList)
+            //{
+            //    flagProgrmTarget = 0;
+            //    foreach (var item in i._ProgramAssignee)
+            //    {
+            //        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+            //        {
+            //            flagProgrmTarget = 1;
+            //        }
+            //    }
+            //    if (flagProgrmTarget == 1)
+            //    {
+            //        programTargetsListFilterTotal.Add(i);
+            //    }
+            //}
             //lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
             //gvTotalProgrms.DataSource = programTargetsListFilterTotal;
             //gvTotalProgrms.DataBind();

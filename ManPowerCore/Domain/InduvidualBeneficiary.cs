@@ -62,6 +62,15 @@ namespace ManPowerCore.Domain
         [DBField("Created_User")]
         public int CreatedUser { get; set; }
 
+        [DBField("IsPlan")]
+        public int IsPlan { get; set; }
+
+        [DBField("PlanId")]
+        public int PlanId { get; set; }
+
+        [DBField("Other")]
+        public string Other { get; set; }
+
         public SystemUser systemCreatedUser { get; set; }
     }
 }

@@ -106,6 +106,12 @@
                     <asp:BoundField DataField="_ProgramTarget.EstimatedAmount" HeaderText="Estimate Amount" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.Instractions" HeaderStyle-Width="150px" HeaderText="Instruction" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
                     <asp:BoundField DataField="_ProgramTarget.NoOfProjects" HeaderText="No of Projects" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center" />
+                    <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="Beneficiary Count">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Visible='<%#Eval("_ProgramTarget.BeneficiaryCount").ToString() != "0" ?true:false %>' Text='<%#Eval("_ProgramTarget.BeneficiaryCount").ToString()%>'> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("_ProgramTarget.BeneficiaryCount").ToString() == "0" ?true:false %>' Text="N/A"> </asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Planned Count" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="center">
                         <ItemTemplate>
                             <asp:Label runat="server" ID="lblPlannedCount"></asp:Label>

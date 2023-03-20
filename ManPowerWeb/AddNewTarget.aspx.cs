@@ -303,7 +303,19 @@ namespace ManPowerWeb
             programTarget.Description = txtDescription.Text;
             programTarget.Instractions = txtInstructions.Text;
             programTarget.VoteNumber = ddlVote.SelectedValue;
-            programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
+
+            if (ddlProgram.SelectedValue == "7" || ddlProgram.SelectedValue == "8" || ddlProgram.SelectedValue == "9"
+               || ddlProgram.SelectedValue == "10" || ddlProgram.SelectedValue == "11" || ddlProgram.SelectedValue == "12")
+            {
+                programTarget.NoOfProjects = 1;
+                programTarget.BeneficiaryCount = Convert.ToInt32(txtBeneCount.Text);
+            }
+            else
+            {
+                programTarget.NoOfProjects = Convert.ToInt32(txtPhysicalCount.Text);
+                programTarget.BeneficiaryCount = 0;
+            }
+
             programTarget.EstimatedAmount = (float)Convert.ToDouble(txtFinancialCount.Text);
             programTarget.TargetYear = Convert.ToInt32(ddlYear.SelectedValue);
             programTarget.Period_Type = ddlType.SelectedValue;

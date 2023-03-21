@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class MaintenanceApproval : System.Web.UI.Page
+    public partial class MaintenanceRecomand : System.Web.UI.Page
     {
         List<VehicleMeintenance> vehicleMeintenances = new List<VehicleMeintenance>();
         List<VehicleMeintenance> searchList = new List<VehicleMeintenance>();
@@ -42,17 +42,17 @@ namespace ManPowerWeb
 
 
 
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 2 && u.ApprovedBy == Convert.ToInt32(Session["UserId"])))
+            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 1 && u.RecomandBy == Convert.ToInt32(Session["UserId"])))
             {
                 searchList.Add(i);
             }
 
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 3 && u.ApprovedBy == Convert.ToInt32(Session["UserId"])))
+            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 3 && u.RecomandBy == Convert.ToInt32(Session["UserId"])))
             {
                 searchList.Add(i);
             }
 
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 1))
+            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 0))
             {
                 searchList.Add(i);
             }
@@ -82,5 +82,6 @@ namespace ManPowerWeb
         {
 
         }
+
     }
 }

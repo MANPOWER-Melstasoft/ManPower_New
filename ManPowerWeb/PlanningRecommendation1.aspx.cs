@@ -85,8 +85,8 @@ namespace ManPowerWeb
 
             //get Employee Details With DS Division
 
-            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
-            departmentUnitPositionsList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, true, true, false, true);
+            EmployeeDetailsFromProgramPlanController employeeDetailsFromProgramPlanController = ControllerFactory.CreateEmployeeDetailsFromProgramPlanController();
+            EmployeeDetailsFromProgramPlan employeeDetailsFromProgramPlan = employeeDetailsFromProgramPlanController.GetAllEmployeeDetailsFromProgramPlansByProgramPlanId(programPlansListBind.ProgramPlanId);
 
 
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();

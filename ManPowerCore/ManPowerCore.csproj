@@ -79,6 +79,7 @@
     <Compile Include="Controller\EmergencyContactController.cs" />
     <Compile Include="Controller\EmployeeContactController.cs" />
     <Compile Include="Controller\EmployeeController.cs" />
+    <Compile Include="Controller\EmployeeDetailsFromProgramPlanController.cs" />
     <Compile Include="Controller\EmployeeServiceController.cs" />
     <Compile Include="Controller\EmploymentDetailsController.cs" />
     <Compile Include="Controller\EntrepreneurController.cs" />
@@ -291,6 +292,7 @@
     <Compile Include="Infrastructure\EmergencyContactDAO.cs" />
     <Compile Include="Infrastructure\EmployeeContactDAO.cs" />
     <Compile Include="Infrastructure\EmployeeDAO.cs" />
+    <Compile Include="Infrastructure\EmployeeDetailsFromProgramPlanDAO.cs" />
     <Compile Include="Infrastructure\EmployeeServicesDAO.cs" />
     <Compile Include="Infrastructure\EmploymentDetailsDAO.cs" />
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />

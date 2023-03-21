@@ -19,6 +19,8 @@ namespace ManPowerWeb
         SystemUser systemUser = new SystemUser();
         List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
 
+        List<DepartmentUnitPositions> departmentUnitPositionsList = new List<DepartmentUnitPositions>();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,7 +54,6 @@ namespace ManPowerWeb
             plansList = plansList.Where(x => x.ProjectStatusId == 2013).ToList();
 
 
-
             foreach (var item in plansList)
             {
 
@@ -82,7 +83,10 @@ namespace ManPowerWeb
 
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
 
+            //get Employee Details With DS Division
 
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            departmentUnitPositionsList = departmentUnitPositionsController.GetAllDepartmentUnitPositions(false, true, true, false, true);
 
 
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();

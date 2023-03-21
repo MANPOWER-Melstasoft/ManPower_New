@@ -47,26 +47,13 @@ namespace ManPowerCore.Infrastructure
 
 
             dbConnection.cmd.Parameters.Clear();
-            if (induvidualBeneficiary.IsPlan == 1)
-            {
-                dbConnection.cmd.CommandText = "INSERT INTO INDUVIDUAL_BENEFICIARY(ID,NIC, NAME, GENDER, DATE_OF_BIRTH , PERSONAL_ADDRESS, EMAIL, JOB_PREFERENCE, " +
-                                                "CONTACT_NUMBER, WHATSAPP_NUMBER, SCHOOL_NAME, ADDRESS_OF_SCHOOL, GRADE, PARENT_NIC, IS_IN_SCHOOL, IS_ACTIVE, " +
-                                                "Created_User, IsPlan, PlanId) " +
+            dbConnection.cmd.CommandText = "INSERT INTO INDUVIDUAL_BENEFICIARY(ID,NIC, NAME, GENDER, DATE_OF_BIRTH , PERSONAL_ADDRESS, EMAIL, JOB_PREFERENCE, " +
+                                            "CONTACT_NUMBER, WHATSAPP_NUMBER, SCHOOL_NAME, ADDRESS_OF_SCHOOL, GRADE, PARENT_NIC, IS_IN_SCHOOL, IS_ACTIVE, Created_User) " +
 
-                                               "VALUES(@BenificiaryId,@BeneficiaryNic ,@InduvidualBeneficiaryName, @BeneficiaryGender, " +
-                                               "@DateOfBirth, @PersonalAddress, @BeneficiaryEmail, @JobPreference, @ContactNumber, @WhatsappNumber, @SchoolName, " +
-                                               " @AddressOfSchool, @SchoolGrade, @ParentNic, @IsSchoolStudent, @IsActive, @CreatedUser, @IsPlan, @PlanId)";
-            }
-            else
-            {
-                dbConnection.cmd.CommandText = "INSERT INTO INDUVIDUAL_BENEFICIARY(ID,NIC, NAME, GENDER, DATE_OF_BIRTH , PERSONAL_ADDRESS, EMAIL, JOB_PREFERENCE, " +
-                                                               "CONTACT_NUMBER, WHATSAPP_NUMBER, SCHOOL_NAME, ADDRESS_OF_SCHOOL, GRADE, PARENT_NIC, IS_IN_SCHOOL, IS_ACTIVE, " +
-                                                               "Created_User, IsPlan, Other) " +
+                                           "VALUES(@BenificiaryId,@BeneficiaryNic ,@InduvidualBeneficiaryName, @BeneficiaryGender, " +
+                                           "@DateOfBirth, @PersonalAddress, @BeneficiaryEmail, @JobPreference, @ContactNumber, @WhatsappNumber, @SchoolName, " +
+                                           " @AddressOfSchool, @SchoolGrade, @ParentNic, @IsSchoolStudent, @IsActive, @CreatedUser)";
 
-                                                              "VALUES(@BenificiaryId,@BeneficiaryNic ,@InduvidualBeneficiaryName, @BeneficiaryGender, " +
-                                                              "@DateOfBirth, @PersonalAddress, @BeneficiaryEmail, @JobPreference, @ContactNumber, @WhatsappNumber, @SchoolName, " +
-                                                              " @AddressOfSchool, @SchoolGrade, @ParentNic, @IsSchoolStudent, @IsActive, @CreatedUser, @IsPlan, @Other)";
-            }
 
             dbConnection.cmd.Parameters.AddWithValue("@BenificiaryId", induvidualBeneficiary.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryNic", induvidualBeneficiary.BeneficiaryNic);
@@ -85,9 +72,6 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@IsSchoolStudent", induvidualBeneficiary.IsSchoolStudent);
             dbConnection.cmd.Parameters.AddWithValue("@IsActive", 1);
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", induvidualBeneficiary.CreatedUser);
-            dbConnection.cmd.Parameters.AddWithValue("@IsPlan", induvidualBeneficiary.IsPlan);
-            dbConnection.cmd.Parameters.AddWithValue("@PlanId", induvidualBeneficiary.PlanId);
-            dbConnection.cmd.Parameters.AddWithValue("@Other", induvidualBeneficiary.Other);
 
             dbConnection.cmd.ExecuteNonQuery();
 
@@ -107,7 +91,7 @@ namespace ManPowerCore.Infrastructure
                                             " GENDER = @BeneficiaryGender, DATE_OF_BIRTH =  @DateOfBirth, PERSONAL_ADDRESS = @PersonalAddress, " +
                                             " EMAIL = @BeneficiaryEmail , JOB_PREFERENCE = @JobPreference , CONTACT_NUMBER = @ContactNumber, WHATSAPP_NUMBER = @WhatsappNumber, " +
                                             "SCHOOL_NAME =  @SchoolName, ADDRESS_OF_SCHOOL = @AddressOfSchool, GRADE = @SchoolGrade " +
-                                            ", PARENT_NIC = @ParentNic, IS_IN_SCHOOL = @IsSchoolStudent, IsPlan = @IsPlan, PlanId = @PlanId, Other = @Other WHERE ID = @BenificiaryId";
+                                            ", PARENT_NIC = @ParentNic, IS_IN_SCHOOL = @IsSchoolStudent WHERE ID = @BenificiaryId";
 
             dbConnection.cmd.Parameters.AddWithValue("@BenificiaryId", induvidualBeneficiary.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryNic", induvidualBeneficiary.BeneficiaryNic);
@@ -124,9 +108,6 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@SchoolGrade", induvidualBeneficiary.SchoolGrade);
             dbConnection.cmd.Parameters.AddWithValue("@ParentNic", induvidualBeneficiary.ParentNic);
             dbConnection.cmd.Parameters.AddWithValue("@IsSchoolStudent", induvidualBeneficiary.IsSchoolStudent);
-            dbConnection.cmd.Parameters.AddWithValue("@IsPlan", induvidualBeneficiary.IsPlan);
-            dbConnection.cmd.Parameters.AddWithValue("@PlanId", induvidualBeneficiary.PlanId);
-            dbConnection.cmd.Parameters.AddWithValue("@Other", induvidualBeneficiary.Other);
 
             dbConnection.cmd.ExecuteNonQuery();
 

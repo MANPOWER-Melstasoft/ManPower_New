@@ -367,35 +367,12 @@ namespace ManPowerWeb
                             return 0;
                         }
                     }
-                    //----------------------------------------------------------
-                    //---------------- For Administrator Head ------------------
+                    //-----------------------------------------------------
+                    //---------------- For Administrator ------------------
                     if (userType == 14)
                     {
                         parentId = DGMparentId;
                         return parentId;
-                    }
-                    //-------------------------------------------------------
-                    //---------------- For Administrator User ---------------
-                    if (userType == 15)
-                    {
-                        foreach (var x in departmentUnitPositionsList)
-                        {
-                            if (x._SystemUser.UserTypeId == 14)
-                            {
-                                parentId = x.DepartmetUnitPossitionsId;
-                                break;
-                            }
-                        }
-                        if (parentId != 0)
-                        {
-                            return parentId;
-                        }
-                        else
-                        {
-                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'You Should Create a Administrator Head Account First' , 'error');", true);
-                            ErrorMsg = "You Should Create a Administrator Head Account First";
-                            return 0;
-                        }
                     }
                     //-----------------------------------------------------
                     else
@@ -634,29 +611,6 @@ namespace ManPowerWeb
                 }
             }
 
-            //-------------- For Administrator Head ------------------
-            if (Convert.ToInt32(ddlUserType.SelectedValue) == 14)
-            {
-                flag = 0;
-                foreach (var x in departmentUnitPositionsList)
-                {
-                    if (x._SystemUser.UserTypeId == 14)
-                    {
-                        flag = 1;
-                        break;
-                    }
-                }
-                if (flag == 1)
-                {
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Only One Administrator Head Account Can be Created!', 'error');", true);
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
             else
             {
                 return true;
@@ -697,7 +651,7 @@ namespace ManPowerWeb
             else
             {
                 if (userTypeId == 1 || userTypeId == 2 || userTypeId == 3 || userTypeId == 4 || userTypeId == 5 ||
-                    userTypeId == 10 || userTypeId == 11 || userTypeId == 12 || userTypeId == 13 || userTypeId == 14 || userTypeId == 15)
+                    userTypeId == 10 || userTypeId == 11 || userTypeId == 12 || userTypeId == 13 || userTypeId == 14)
                 {
                     return true;
                 }
@@ -710,6 +664,7 @@ namespace ManPowerWeb
 
 
         }
+
 
         private bool CheckExistsEmpNum(int Number, SystemUserController s)
         {

@@ -212,37 +212,7 @@
 
             <%} %>
 
-            <div class="row mt-4 pl-3">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>From Program : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:RadioButtonList ID="confirmation" runat="server" AutoPostBack="true">
-                                <asp:ListItem Value="1" Selected="True">Yes</asp:ListItem>
-                                <asp:ListItem Value="0">No</asp:ListItem>
-                            </asp:RadioButtonList>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="confirmation" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
 
-                <%if (confirmation.SelectedValue == "1")
-                    { %>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            <label>Select Program Plane : </label>
-                        </div>
-                        <div class="col-6">
-                            <asp:DropDownList ID="ddlPlan" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                            <asp:RequiredFieldValidator ControlToValidate="ddlPlan" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-                </div>
-                <%} %>
-            </div>
 
 
             <div class="row mt-5">

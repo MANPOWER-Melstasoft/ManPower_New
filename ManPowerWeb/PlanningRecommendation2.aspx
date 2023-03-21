@@ -294,7 +294,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
 
-                                    <asp:Literal ID="Literal9" runat="server" Text="Upload Documnents"></asp:Literal>
+                                    <asp:Literal ID="Literal9" runat="server" Text="View Documnents"></asp:Literal>
                                 </div>
                                 <div class="col-md-6">
                                     <asp:Label ID="lblListOfUploadedFiles" runat="server" />

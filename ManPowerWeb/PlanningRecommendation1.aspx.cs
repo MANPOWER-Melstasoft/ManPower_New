@@ -121,7 +121,7 @@ namespace ManPowerWeb
             txtEmployeeDivison.Text = employeeDetailsFromProgramPlan.DivisionName;
 
 
-            if (programPlansListBind.FinancialSource != "")
+            if (programPlansListBind.FinancialSource != "" && programPlansListBind.FinancialSource != null)
             {
                 gvFileResourses.DataSource = programPlansList;
                 gvFileResourses.DataBind();

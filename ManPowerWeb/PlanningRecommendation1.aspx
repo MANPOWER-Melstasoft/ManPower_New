@@ -26,8 +26,39 @@
     <div class="card m-4 p-4">
         <asp:UpdatePanel runat="server" ID="up1">
             <ContentTemplate>
+                <h2>Employee Details</h2>
+                <div class="row mb-3 ms-1 mt-5">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal15" runat="server" Text="Employee Name"></asp:Literal>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:TextBox runat="server" ID="txtEmployeeName" CssClass="form-control form-control-user"></asp:TextBox>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+
+                                <asp:Literal ID="Literal16" runat="server" Text="Employee Division"></asp:Literal>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:TextBox runat="server" ID="txtEmployeeDivison" CssClass="form-control form-control-user"></asp:TextBox>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <h2>Program Plan Details</h2>
-                <div class="mt-3">
+                <div class="mt-5">
                     <div class="row mb-3 ms-1">
 
                         <div class="col-sm-6">
@@ -36,7 +67,7 @@
 
                                     <asp:Literal ID="Literal3" runat="server" Text="Program Name"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtProgramName" CssClass="form-control form-control-user"></asp:TextBox>
 
 
@@ -50,7 +81,7 @@
 
                                     <asp:Literal ID="Literal4" runat="server" Text="Manager"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtManger" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
 
 
@@ -72,7 +103,7 @@
 
                                     <asp:Literal ID="Literal1" runat="server" Text="Date "></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtDate" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
 
                                 </div>
@@ -85,7 +116,7 @@
 
                                     <asp:Literal ID="Literal2" runat="server" Text="Location"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtLocation" CssClass="form-control form-control-user"></asp:TextBox>
 
 
@@ -108,7 +139,7 @@
 
                                     <asp:Literal ID="Literal10" runat="server" Text="Estimate Amount"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtEstimateAmount" CssClass="form-control form-control-user" TextMode="Number" Enabled="false"></asp:TextBox>
 
                                 </div>
@@ -121,7 +152,7 @@
 
                                     <asp:Literal ID="Literal5" runat="server" Text="Budget"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtBudget" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
 
                                 </div>
@@ -141,7 +172,7 @@
 
                                     <asp:Literal ID="Literal6" runat="server" Text="Male Count"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtMaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
 
                                 </div>
@@ -154,7 +185,7 @@
 
                                     <asp:Literal ID="Literal7" runat="server" Text="Female Count"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtFemaleCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
 
                                 </div>
@@ -172,7 +203,7 @@
 
                                     <asp:Literal ID="Literal12" runat="server" Text="Total Count"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtTotalCount" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
 
                                 </div>
@@ -184,7 +215,7 @@
 
                                     <asp:Literal ID="Literal8" runat="server" Text="Total Expenditure"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtExpenditure" CssClass="form-control form-control-user"></asp:TextBox>
 
                                 </div>
@@ -204,7 +235,7 @@
 
                                     <asp:Literal ID="Literal13" runat="server" Text="Actual Output"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtActualOutput" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
 
                                 </div>
@@ -217,7 +248,7 @@
 
                                     <asp:Literal ID="Literal14" runat="server" Text="Actual Outcome"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <asp:TextBox runat="server" ID="txtActualOutcome" CssClass="form-control form-control-user"></asp:TextBox>
 
                                 </div>
@@ -238,7 +269,7 @@
 
                                     <asp:Literal ID="Literal11" runat="server" Text="Resource Person"></asp:Literal>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <div class="form-control form-control-user scroll_checkboxes">
                                         <asp:CheckBoxList ID="chkList"

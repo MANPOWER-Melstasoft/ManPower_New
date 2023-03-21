@@ -19,7 +19,6 @@ namespace ManPowerWeb
         SystemUser systemUser = new SystemUser();
         List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
 
-        List<DepartmentUnitPositions> departmentUnitPositionsList = new List<DepartmentUnitPositions>();
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -118,6 +117,8 @@ namespace ManPowerWeb
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
             txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
 
+            txtEmployeeName.Text = employeeDetailsFromProgramPlan.EmployeeName;
+            txtEmployeeDivison.Text = employeeDetailsFromProgramPlan.DivisionName;
 
 
             if (programPlansListBind.FinancialSource != "")

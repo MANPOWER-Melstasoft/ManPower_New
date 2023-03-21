@@ -142,7 +142,7 @@
                                 <asp:Literal ID="Literal9" runat="server" Text="Program"></asp:Literal>
                             </div>
                             <div class="col-md-6">
-                                <asp:DropDownList ID="ddlProgram" runat="server" CssClass="form-control form-control-user" Width="250px">
+                                <asp:DropDownList ID="ddlProgram" runat="server" CssClass="form-control form-control-user" AutoPostBack="true" Width="250px">
                                 </asp:DropDownList>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlProgram" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
@@ -285,6 +285,40 @@
                     </div>
                 </div>
 
+                <%if (ddlProgram.SelectedValue == "7" || ddlProgram.SelectedValue == "8" || ddlProgram.SelectedValue == "9"
+                        || ddlProgram.SelectedValue == "10" || ddlProgram.SelectedValue == "11" || ddlProgram.SelectedValue == "12")
+                    { %>
+                <div class="row mb-3 ms-1">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal23" runat="server" Text="Physical Count"></asp:Literal>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtPhysicalCount1" Width="250px" runat="server" CssClass="form-control form-control-user" value="1" ReadOnly="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtPhysicalCount" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal24" runat="server" Text="Benificiary Count"></asp:Literal>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtBeneCount" Width="250px" runat="server" CssClass="form-control form-control-user" TextMode="Number" min="0"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="txtPhysicalCount" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}
+                    else
+                    { %>
+
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">
                         <div class="row mb-3">
@@ -299,6 +333,7 @@
                         </div>
                     </div>
                 </div>
+                <%} %>
 
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">

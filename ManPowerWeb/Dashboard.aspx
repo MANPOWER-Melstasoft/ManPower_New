@@ -14,7 +14,7 @@
         <div class="row">
 
             <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                                || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                                        || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
                 {
             %>
 
@@ -47,37 +47,6 @@
                     </a>
                     <%} %>
                 </div>
-            </div>
-
-            <!-- Completed Programs -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <% if (lblCompletedProgrm.Text.ToString() != "0")
-                    {
-                %>
-                <a href="CompletedPrograms.aspx" style="text-decoration: none; cursor: pointer">
-                    <%} %>
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        Completed Programs
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        <asp:Label ID="lblCompletedProgrm" runat="server" Text="N/A"></asp:Label>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% if (lblCompletedProgrm.Text.ToString() != "0")
-                        {
-                    %>
-                </a>
-                <%} %>
             </div>
 
             <%--<!-- This month Targets -->
@@ -160,6 +129,47 @@
 
 
             <%} %>
+
+
+
+
+            <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                {
+            %>
+            <!-- Completed Programs -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <% if (lblCompletedProgrm.Text.ToString() != "0")
+                    {
+                %>
+                <a href="CompletedPrograms.aspx" style="text-decoration: none; cursor: pointer">
+                    <%} %>
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Completed Programs
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <asp:Label ID="lblCompletedProgrm" runat="server" Text="N/A"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% if (lblCompletedProgrm.Text.ToString() != "0")
+                        {
+                    %>
+                </a>
+                <%} %>
+            </div>
+
+            <%} %>
+
+
 
 
             <% if (Session["UserTypeId"].ToString() == "3")
@@ -409,7 +419,7 @@
 
             <!-- Content Row -->
             <% if (Session["UserTypeId"].ToString() == "6"
-                                 || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
+                                         || Session["UserTypeId"].ToString() == "7" || Session["UserTypeId"].ToString() == "9")
                 {
             %>
             <!-- This month Upcoming Programs -->
@@ -710,7 +720,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "6" || Session["UserTypeId"].ToString() == "7"
-                            || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
+                                    || Session["UserTypeId"].ToString() == "8" || Session["UserTypeId"].ToString() == "9")
             {
         %>
         <div class="card m-4 p-4">
@@ -730,6 +740,12 @@
                             <asp:BoundField DataField="Title" HeaderText="Title" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                             <asp:BoundField DataField="Outcome" HeaderText="Outcome" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
                             <asp:BoundField DataField="NoOfProjects" HeaderText="No of Projects" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                            <asp:TemplateField HeaderStyle-CssClass="table-dark" HeaderText="Beneficiary Count">
+                                <ItemTemplate>
+                                    <asp:Label runat="server" Visible='<%#Eval("BeneficiaryCount").ToString() != "0" ?true:false %>' Text='<%#Eval("BeneficiaryCount").ToString()%>'> </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("BeneficiaryCount").ToString() == "0" ?true:false %>' Text="N/A"> </asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="EstimatedAmount" HeaderText="Estimated Amount" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="Rs {0:N2}" ApplyFormatInEditMode="true" />
                             <asp:BoundField DataField="StartDate" HeaderText="Start Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
                             <asp:BoundField DataField="EndDate" HeaderText="End Date" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MMM-yyyy}" />
@@ -743,7 +759,7 @@
 
 
         <% if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2"
-                            || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
+                                    || Session["UserTypeId"].ToString() == "3" || Session["UserTypeId"].ToString() == "8")
             {
         %>
         <div>

@@ -20,6 +20,7 @@ namespace ManPowerWeb
         List<ResourcePerson> resourcePeopleList = new List<ResourcePerson>();
 
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -52,7 +53,6 @@ namespace ManPowerWeb
             plansList = plansList.Where(x => x.ProjectStatusId == 2013).ToList();
 
 
-
             foreach (var item in plansList)
             {
 
@@ -82,7 +82,10 @@ namespace ManPowerWeb
 
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
 
+            //get Employee Details With DS Division
 
+            EmployeeDetailsFromProgramPlanController employeeDetailsFromProgramPlanController = ControllerFactory.CreateEmployeeDetailsFromProgramPlanController();
+            EmployeeDetailsFromProgramPlan employeeDetailsFromProgramPlan = employeeDetailsFromProgramPlanController.GetAllEmployeeDetailsFromProgramPlansByProgramPlanId(programPlansListBind.ProgramPlanId);
 
 
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
@@ -114,9 +117,11 @@ namespace ManPowerWeb
             txtExpenditure.Text = programPlansListBind.ActualAmount.ToString();
             txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
 
+            txtEmployeeName.Text = employeeDetailsFromProgramPlan.EmployeeName;
+            txtEmployeeDivison.Text = employeeDetailsFromProgramPlan.DivisionName;
 
 
-            if (programPlansListBind.FinancialSource != "")
+            if (programPlansListBind.FinancialSource != "" && programPlansListBind.FinancialSource != null)
             {
                 gvFileResourses.DataSource = programPlansList;
                 gvFileResourses.DataBind();

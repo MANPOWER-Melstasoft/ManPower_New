@@ -82,6 +82,11 @@ namespace ManPowerWeb
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
             projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlansListBind.ProgramPlanId);
 
+            //get Employee Details With DS Division
+
+            EmployeeDetailsFromProgramPlanController employeeDetailsFromProgramPlanController = ControllerFactory.CreateEmployeeDetailsFromProgramPlanController();
+            EmployeeDetailsFromProgramPlan employeeDetailsFromProgramPlan = employeeDetailsFromProgramPlanController.GetAllEmployeeDetailsFromProgramPlansByProgramPlanId(programPlansListBind.ProgramPlanId);
+
             foreach (var item in projectPlanResourcesList)
             {
                 for (int i = 0; i < chkList.Items.Count; i++)
@@ -106,8 +111,10 @@ namespace ManPowerWeb
             txtManger.Text = systemUser.Name;
             txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
 
+            txtEmployeeName.Text = employeeDetailsFromProgramPlan.EmployeeName;
+            txtEmployeeDivison.Text = employeeDetailsFromProgramPlan.DivisionName;
 
-            if (programPlansListBind.FinancialSource != "")
+            if (programPlansListBind.FinancialSource != "" && programPlansListBind.FinancialSource != null)
             {
                 gvFileResourses.DataSource = programPlansList;
                 gvFileResourses.DataBind();

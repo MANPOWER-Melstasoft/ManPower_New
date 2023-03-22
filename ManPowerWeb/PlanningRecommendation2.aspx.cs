@@ -78,6 +78,11 @@ namespace ManPowerWeb
 
             ViewState["ProgramPlanId"] = plansList[rowIndex].ProgramPlanId;
 
+            //get Employee Details With DS Division
+
+            EmployeeDetailsFromProgramPlanController employeeDetailsFromProgramPlanController = ControllerFactory.CreateEmployeeDetailsFromProgramPlanController();
+            EmployeeDetailsFromProgramPlan employeeDetailsFromProgramPlan = employeeDetailsFromProgramPlanController.GetAllEmployeeDetailsFromProgramPlansByProgramPlanId(programPlansListBind.ProgramPlanId);
+
             ProjectPlanResourceController projectPlanResourceController = ControllerFactory.CreateProjectPlanResourceController();
             projectPlanResourcesList = projectPlanResourceController.GetAllProjectPlanResourcesByProgramPlanId(programPlansListBind.ProgramPlanId);
 
@@ -105,8 +110,10 @@ namespace ManPowerWeb
             txtManger.Text = systemUser.Name;
             txtEstimateAmount.Text = programPlansListBind._ProgramTarget.EstimatedAmount.ToString();
 
+            txtEmployeeName.Text = employeeDetailsFromProgramPlan.EmployeeName;
+            txtEmployeeDivison.Text = employeeDetailsFromProgramPlan.DivisionName;
 
-            if (programPlansListBind.FinancialSource != "")
+            if (programPlansListBind.FinancialSource != "" && programPlansListBind.FinancialSource != null)
             {
                 gvFileResourses.DataSource = programPlansList;
                 gvFileResourses.DataBind();

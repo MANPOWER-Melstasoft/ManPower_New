@@ -149,6 +149,7 @@
     <Content Include="DME22Rec2Render.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LoanReport.aspx" />
+    <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="PaymentVoucherApproval.aspx" />
     <Content Include="PaymentVoucherCertify.aspx" />
     <Content Include="PaymentVoucherCheckBy.aspx" />
@@ -2254,6 +2255,13 @@
     </Compile>
     <Compile Include="LoanReport.aspx.designer.cs">
       <DependentUpon>LoanReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRecomand.aspx.cs">
+      <DependentUpon>MaintenanceRecomand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRecomand.aspx.designer.cs">
+      <DependentUpon>MaintenanceRecomand.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentVoucherApproval.aspx.cs">
       <DependentUpon>PaymentVoucherApproval.aspx</DependentUpon>

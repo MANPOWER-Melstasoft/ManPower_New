@@ -33,28 +33,6 @@ namespace ManPowerWeb
 
             ddl2.DataSource = scl;
             ddl2.DataBind();
-
-
-
-            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
-            List<ProgramPlan> programPlansList = new List<ProgramPlan>();
-
-            ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
-            List<ProgramAssignee> programAssigneesList = programAssigneeController.GetAllProgramAssignee(true, true, false);
-
-            foreach (var items in programAssigneesList)
-            {
-                if (items._DepartmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
-                {
-                    List<ProgramPlan> programPlan = programPlanController.GetProgramPlanByProgramTargetId(items.ProgramTargetId);
-                    programPlansList.AddRange(programPlan);
-                }
-            }
-            ddlPlan.DataSource = programPlansList;
-            ddlPlan.DataValueField = "ProgramPlanId";
-            ddlPlan.DataTextField = "ProgramName";
-            ddlPlan.DataBind();
-            ddlPlan.Items.Insert(0, new ListItem("-- select Program Plan --", ""));
         }
 
 
@@ -81,17 +59,6 @@ namespace ManPowerWeb
             induvidualBeneficiary.ContactNumber = contact.Text;
             induvidualBeneficiary.WhatsappNumber = whatsapp.Text;
             induvidualBeneficiary.CreatedUser = Convert.ToInt32(Session["UserId"]);
-            induvidualBeneficiary.IsPlan = Convert.ToInt32(confirmation.SelectedValue);
-            if (induvidualBeneficiary.IsPlan == 1)
-            {
-                induvidualBeneficiary.PlanId = Convert.ToInt32(ddlPlan.SelectedValue);
-                induvidualBeneficiary.Other = "";
-            }
-            else
-            {
-                induvidualBeneficiary.PlanId = 0;
-                induvidualBeneficiary.Other = "Other";
-            }
 
 
 

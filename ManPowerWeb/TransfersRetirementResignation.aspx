@@ -9,7 +9,7 @@
             <ContentTemplate>
 
                 <div class="card p-4">
-                    <h2>Transfers / Retirement / Resignation</h2>
+                    <h2>Transfers </h2>
 
                     <div class="mt-3">
 
@@ -27,7 +27,7 @@
                             <div class="col-sm-2"></div>
 
                             <div class="col-sm-4 align-content-end">
-                                <asp:Button ID="btnAddNewTarget" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Add Transfers / Retirement / Resignation" OnClick="btnAddNewTarget_Click" />
+                                <asp:Button ID="btnAddNewTarget" runat="server" CssClass="btn btn-primary btn-user btn-block" Text="Add New Transfers" OnClick="btnAddNewTarget_Click" />
                             </div>
                         </div>
 

@@ -1,9 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceApproval.aspx.cs" Inherits="ManPowerWeb.MaintenanceApproval" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceRecomand.aspx.cs" Inherits="ManPowerWeb.MaintenanceRecomand" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
-        <h2>Vehicle Maintenance Requests Approvals</h2>
+        <h2>Vehicle Maintenance Requests Recomandation</h2>
         <br />
         <br />
 
@@ -53,8 +56,8 @@
                     <asp:BoundField HeaderText="Description" DataField="RequestDescription" HeaderStyle-CssClass="table-dark" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
-                            <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "0" ?true:false %>' Text="Not Send to Recommendation" ForeColor="Blue"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "0" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "1" ?true:false %>' Text="Send to Approval" ForeColor="Black"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "2" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "3" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
                         </ItemTemplate>
@@ -63,11 +66,12 @@
                     <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
                             <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
-                                a href='<%#"MaintenanceApprovalView.aspx?id="+DataBinder.Eval(Container.DataItem,"VehicleMeintenanceId") %>' />
+                                a href='<%#"MaintenanceRecomandView.aspx?id="+DataBinder.Eval(Container.DataItem,"VehicleMeintenanceId") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
     </div>
+
 </asp:Content>

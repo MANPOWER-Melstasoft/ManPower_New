@@ -55,17 +55,6 @@ namespace ManPowerWeb
                     jobType.Text = i.JobPreference;
                     contact.Text = i.ContactNumber;
                     whatsapp.Text = i.WhatsappNumber;
-                    txtProPlan.Text = "-";
-                    if (i.IsPlan == 0)
-                    {
-                        txtProPlan.Text = i.Other;
-                    }
-                    else if (i.IsPlan == 1)
-                    {
-                        ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
-                        ProgramPlan programPlan = programPlanController.GetProgramPlanById(i.PlanId);
-                        txtProPlan.Text = programPlan.ProgramName;
-                    }
 
 
                     if (String.IsNullOrEmpty(i.SchoolName))

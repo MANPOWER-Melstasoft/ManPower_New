@@ -120,9 +120,21 @@ namespace ManPowerCore.Controller
 
                 StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
 
-                return staffLeaveDAO.updateStaffLeave(staffLeave, dBConnection);
+                if (staffLeave.LeaveStatusId == 2)
+                {
+                    return staffLeaveDAO.updateStaffLeaveRecommendation(staffLeave, dBConnection);
 
+                }
+                else if (staffLeave.LeaveStatusId == -1)
+                {
+                    return staffLeaveDAO.updateStaffLeaveReject(staffLeave, dBConnection);
 
+                }
+                else
+                {
+                    return staffLeaveDAO.updateStaffLeave(staffLeave, dBConnection);
+
+                }
 
 
             }

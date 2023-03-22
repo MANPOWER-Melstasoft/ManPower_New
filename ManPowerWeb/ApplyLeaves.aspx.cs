@@ -151,7 +151,7 @@ namespace ManPowerWeb
                 staffLeave.LeaveDocument = "";
             }
 
-
+            staffLeave.LeaveStatusId = 2;
 
             if (validation)
             {
@@ -281,7 +281,15 @@ namespace ManPowerWeb
                 }
                 else
                 {
-                    day = day.AddDays(1);
+                    if (day.DayOfWeek == DayOfWeek.Friday)
+                    {
+                        day = day.AddDays(3);
+                    }
+                    else
+                    {
+                        day = day.AddDays(1);
+                    }
+
                 }
 
             }

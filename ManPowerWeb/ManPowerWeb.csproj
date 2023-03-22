@@ -162,6 +162,8 @@
     <Content Include="PlanningApproval.aspx" />
     <Content Include="PlanningRecommendation1.aspx" />
     <Content Include="PlanningRecommendation2.aspx" />
+    <Content Include="RecommendationLeave.aspx" />
+    <Content Include="RecommendationLeaveView.aspx" />
     <Content Include="RequestLoan.aspx" />
     <Content Include="RequestLoanFront.aspx" />
     <Content Include="ResetPassword.aspx" />
@@ -2347,6 +2349,20 @@
     </Compile>
     <Compile Include="PlanningRecommendation2.aspx.designer.cs">
       <DependentUpon>PlanningRecommendation2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLeave.aspx.cs">
+      <DependentUpon>RecommendationLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLeave.aspx.designer.cs">
+      <DependentUpon>RecommendationLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLeaveView.aspx.cs">
+      <DependentUpon>RecommendationLeaveView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLeaveView.aspx.designer.cs">
+      <DependentUpon>RecommendationLeaveView.aspx</DependentUpon>
     </Compile>
     <Compile Include="RequestLoan.aspx.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>

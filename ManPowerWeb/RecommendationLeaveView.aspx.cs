@@ -10,12 +10,10 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveLeaveView : System.Web.UI.Page
+    public partial class RecommendationLeaveView : System.Web.UI.Page
     {
-
         StaffLeave staffLeave = new StaffLeave();
         List<LeaveType> leavesTypeList = new List<LeaveType>();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -45,7 +43,7 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-            if (staffLeave.LeaveStatusId == 3)
+            if (staffLeave.LeaveStatusId == 2)
             {
                 btnApprove.Visible = true;
                 btnModalReject.Visible = true;
@@ -57,7 +55,6 @@ namespace ManPowerWeb
                 btnApprove.Visible = false;
                 btnModalReject.Visible = false;
             }
-
         }
 
         protected void btnViewLeave_Click(object sender, EventArgs e)
@@ -67,39 +64,13 @@ namespace ManPowerWeb
 
         }
 
-        //protected void btnReject_Click(object sender, EventArgs e)
-        //{
-        //    StaffLeave staffLeave = new StaffLeave();
-        //    staffLeave.ApprovedBy = -1;
-        //    staffLeave.ApprovedDate = DateTime.Now;
-        //    staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
-
-        //    StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-
-        //    int response = staffLeaveController.updateStaffLeaves(staffLeave);
-
-        //    if (response != 0)
-        //    {
-        //        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
-
-        //    }
-        //    else
-        //    {
-        //        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
-
-        //    }
-
-
-
-        //}
-
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             StaffLeave staffLeave = new StaffLeave();
-            staffLeave.ApprovedBy = Convert.ToInt32(Session["UserId"]);
-            staffLeave.ApprovedDate = DateTime.Now;
+            staffLeave.RecommendedBy = Convert.ToInt32(Session["UserId"]);
+            staffLeave.RecomennededDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
-            staffLeave.LeaveStatusId = 4;
+            staffLeave.LeaveStatusId = 3;
             staffLeave.RejectReason = "";
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
@@ -108,11 +79,11 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Sent To Approval!', 'success');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
 
 
             }
@@ -123,8 +94,8 @@ namespace ManPowerWeb
         protected void btnReject_Click(object sender, EventArgs e)
         {
             StaffLeave staffLeave = new StaffLeave();
-            staffLeave.ApprovedBy = -1;
-            staffLeave.ApprovedDate = DateTime.Now;
+            staffLeave.RecommendedBy = -1;
+            staffLeave.RecomennededDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
             staffLeave.LeaveStatusId = 5;
             staffLeave.RejectReason = txtrejectReason.Text;
@@ -135,19 +106,19 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
 
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
 
             }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("approveleave.aspx");
+            Response.Redirect("RecommendationLeave.aspx");
 
         }
     }

@@ -151,7 +151,7 @@ namespace ManPowerWeb
                 staffLeave.LeaveDocument = "";
             }
 
-
+            staffLeave.LeaveStatusId = 2;
 
             if (validation)
             {

@@ -7,7 +7,7 @@
 
 
         <div class="card ml-4 p-4">
-            <h2>Add New Transfers / Retirement / Resignation</h2>
+            <h2>Add New Transfers</h2>
             <br />
             <div class="form-group">
 
@@ -94,7 +94,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="New Department : "></asp:Literal>
+                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Requested Work Place : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:DropDownList ID="ddlDepartment" Width="250px" runat="server" CssClass="form-control form-control-user">

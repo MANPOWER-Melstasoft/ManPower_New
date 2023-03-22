@@ -4,7 +4,7 @@
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card p-4">
-            <h2>Approve Transfers / Retirement / Resignation</h2>
+            <h2>Approve Transfers</h2>
 
             <div class="mt-3">
 

@@ -12,6 +12,7 @@ namespace ManPowerCore.Controller
     public interface MaintenanceCategoryController
     {
         List<MaintenanceCategory> GetAllMaintenanceCategory();
+        MaintenanceCategory GetMaintenanceCategory(int id);
     }
 
     public class MaintenanceCategoryControllerImpl : MaintenanceCategoryController
@@ -26,6 +27,26 @@ namespace ManPowerCore.Controller
             {
                 MaintenanceCategoryDAO MaintenanceCategoryDAO = DAOFactory.CreateMaintenanceCategoryDAO();
                 return MaintenanceCategoryDAO.GetAllMaintenanceCategory(dbConnection);
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
+        MaintenanceCategory MaintenanceCategoryController.GetMaintenanceCategory(int id)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                MaintenanceCategoryDAO MaintenanceCategoryDAO = DAOFactory.CreateMaintenanceCategoryDAO();
+                return MaintenanceCategoryDAO.GetMaintenanceCategory(id, dbConnection);
             }
             catch (Exception ex)
             {

@@ -100,6 +100,7 @@ namespace ManPowerWeb
             staffLeave.ApprovedDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
             staffLeave.LeaveStatusId = 4;
+            staffLeave.RejectReason = "";
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 
@@ -107,7 +108,7 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Approved Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
             }
             else
             {
@@ -126,6 +127,7 @@ namespace ManPowerWeb
             staffLeave.ApprovedDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
             staffLeave.LeaveStatusId = 5;
+            staffLeave.RejectReason = txtrejectReason.Text;
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 

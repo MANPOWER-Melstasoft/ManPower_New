@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace ManPowerCore.Infrastructure
         int updateStaffLeave(StaffLeave staffLeave, DBConnection dbConnection);
 
         int updateStaffLeaveRecommendation(StaffLeave staffLeave, DBConnection dbConnection);
+
+        int updateStaffLeaveReject(StaffLeave staffLeave, DBConnection dbConnection);
     }
     public class StaffLeaveDAOSqlImpl : StaffLeaveDAO
     {
@@ -89,8 +92,18 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeave.StaffLeaveId);
             dbConnection.cmd.Parameters.AddWithValue("@ApprovedBy", staffLeave.ApprovedBy);
-            dbConnection.cmd.Parameters.AddWithValue("@ApproveDate", staffLeave.ApprovedDate);
+            if (staffLeave.ApprovedDate.Year != 1)
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@ApproveDate", staffLeave.ApprovedDate);
+
+            }
+            else
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@ApproveDate", SqlDateTime.Null);
+
+            }
             dbConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
+
 
 
             return dbConnection.cmd.ExecuteNonQuery();
@@ -107,8 +120,35 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeave.StaffLeaveId);
             dbConnection.cmd.Parameters.AddWithValue("@RecommendedBy", staffLeave.RecommendedBy);
-            dbConnection.cmd.Parameters.AddWithValue("@RecomennededDate", staffLeave.RecomennededDate);
+
+            if (staffLeave.RecomennededDate.Year != 1)
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@RecomennededDate", staffLeave.RecomennededDate);
+
+            }
+            else
+            {
+                dbConnection.cmd.Parameters.AddWithValue("@RecomennededDate", SqlDateTime.Null);
+
+            }
             dbConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
+
+
+            return dbConnection.cmd.ExecuteNonQuery();
+        }
+
+        public int updateStaffLeaveReject(StaffLeave staffLeave, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE Staff_Leave SET Leave_Status_Id=@LeaveStatusId,Reject_Reason=@RejectReason WHERE Id=@StaffLeaveId ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeave.StaffLeaveId);
+
+            dbConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
+            dbConnection.cmd.Parameters.AddWithValue("@RejectReason", staffLeave.RejectReason);
 
 
             return dbConnection.cmd.ExecuteNonQuery();

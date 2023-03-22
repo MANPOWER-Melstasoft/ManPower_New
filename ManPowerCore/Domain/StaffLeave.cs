@@ -55,6 +55,9 @@ namespace ManPowerCore.Domain
         [DBField("To_Time")]
         public DateTime ToTime { get; set; }
 
+        [DBField("Reject_Reason")]
+        public string RejectReason { get; set; }
+
         public Employee _EMployeeDetails { get; set; }
 
 

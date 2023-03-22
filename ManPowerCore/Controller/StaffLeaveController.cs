@@ -125,6 +125,11 @@ namespace ManPowerCore.Controller
                     return staffLeaveDAO.updateStaffLeaveRecommendation(staffLeave, dBConnection);
 
                 }
+                else if (staffLeave.LeaveStatusId == -1)
+                {
+                    return staffLeaveDAO.updateStaffLeaveReject(staffLeave, dBConnection);
+
+                }
                 else
                 {
                     return staffLeaveDAO.updateStaffLeave(staffLeave, dBConnection);

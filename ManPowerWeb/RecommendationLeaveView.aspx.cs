@@ -43,7 +43,7 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-            if (staffLeave.ApprovedBy == 0)
+            if (staffLeave.LeaveStatusId == 2)
             {
                 btnApprove.Visible = true;
                 btnModalReject.Visible = true;
@@ -71,6 +71,7 @@ namespace ManPowerWeb
             staffLeave.RecomennededDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
             staffLeave.LeaveStatusId = 3;
+            staffLeave.RejectReason = "";
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 
@@ -78,7 +79,7 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Sent To Recommendation!', 'success');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Sent To Approval!', 'success');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
             }
             else
             {
@@ -97,6 +98,7 @@ namespace ManPowerWeb
             staffLeave.RecomennededDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
             staffLeave.LeaveStatusId = 5;
+            staffLeave.RejectReason = txtrejectReason.Text;
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 

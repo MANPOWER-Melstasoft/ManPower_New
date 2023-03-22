@@ -45,7 +45,7 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-            if (staffLeave.ApprovedBy == 0)
+            if (staffLeave.LeaveStatusId == 3)
             {
                 btnApprove.Visible = true;
                 btnModalReject.Visible = true;

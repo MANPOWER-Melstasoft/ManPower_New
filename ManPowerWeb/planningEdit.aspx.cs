@@ -156,11 +156,9 @@ namespace ManPowerWeb
 
             }
 
-            if (programPlansListBind[0].ProjectStatusId == 4 || programPlansListBind[0].ProjectStatusId == 1)
+            if (programPlansListBind[0].ProjectStatusId == 4 || programPlansListBind[0].ProjectStatusId == 1 || programPlansListBind[0].ProjectStatusId >= 2013)
             {
                 btnSendToRecommendation.Visible = false;
-
-
             }
 
             if (programPlansListBind[0].Date < DateTime.Now && programPlansListBind[0].ProjectStatusId != 1)

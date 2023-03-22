@@ -150,7 +150,7 @@
                                 <button runat="server" id="btnModalReject" type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
                             </div>
                             <div class="col-sm-2">
-                                <asp:Button runat="server" ID="btnApprove" Text="Send To Recommendation" CssClass="btn btn-primary" OnClick="btnApprove_Click" />
+                                <asp:Button runat="server" ID="btnApprove" Text="Send To Approval" CssClass="btn btn-primary" OnClick="btnApprove_Click" />
                             </div>
 
 

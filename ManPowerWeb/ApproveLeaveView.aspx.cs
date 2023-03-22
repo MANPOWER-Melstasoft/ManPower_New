@@ -99,6 +99,7 @@ namespace ManPowerWeb
             staffLeave.ApprovedBy = Convert.ToInt32(Session["UserId"]);
             staffLeave.ApprovedDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+            staffLeave.LeaveStatusId = 4;
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 
@@ -124,6 +125,7 @@ namespace ManPowerWeb
             staffLeave.ApprovedBy = -1;
             staffLeave.ApprovedDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+            staffLeave.LeaveStatusId = 5;
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 

@@ -18,6 +18,8 @@ namespace ManPowerCore.Infrastructure
         StaffLeave getStaffLeaveById(int id, DBConnection dbConnection);
 
         int updateStaffLeave(StaffLeave staffLeave, DBConnection dbConnection);
+
+        int updateStaffLeaveRecommendation(StaffLeave staffLeave, DBConnection dbConnection);
     }
     public class StaffLeaveDAOSqlImpl : StaffLeaveDAO
     {
@@ -83,11 +85,30 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE Staff_Leave SET Approved_By=@ApprovedBy, Approved_Date=@ApproveDate WHERE Id=@StaffLeaveId ";
+            dbConnection.cmd.CommandText = "UPDATE Staff_Leave SET Approved_By=@ApprovedBy, Approved_Date=@ApproveDate,Leave_Status_Id=@LeaveStatusId WHERE Id=@StaffLeaveId ";
 
             dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeave.StaffLeaveId);
             dbConnection.cmd.Parameters.AddWithValue("@ApprovedBy", staffLeave.ApprovedBy);
             dbConnection.cmd.Parameters.AddWithValue("@ApproveDate", staffLeave.ApprovedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
+
+
+            return dbConnection.cmd.ExecuteNonQuery();
+        }
+
+
+        public int updateStaffLeaveRecommendation(StaffLeave staffLeave, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE Staff_Leave SET Recommended_BY=@RecommendedBy, Recommended_Date=@RecomennededDate,Leave_Status_Id=@LeaveStatusId WHERE Id=@StaffLeaveId ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeave.StaffLeaveId);
+            dbConnection.cmd.Parameters.AddWithValue("@RecommendedBy", staffLeave.RecommendedBy);
+            dbConnection.cmd.Parameters.AddWithValue("@RecomennededDate", staffLeave.RecomennededDate);
+            dbConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
 
 
             return dbConnection.cmd.ExecuteNonQuery();

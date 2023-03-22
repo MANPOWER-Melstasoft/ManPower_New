@@ -70,6 +70,7 @@ namespace ManPowerWeb
             staffLeave.RecommendedBy = Convert.ToInt32(Session["UserId"]);
             staffLeave.RecomennededDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+            staffLeave.LeaveStatusId = 3;
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 
@@ -92,9 +93,10 @@ namespace ManPowerWeb
         protected void btnReject_Click(object sender, EventArgs e)
         {
             StaffLeave staffLeave = new StaffLeave();
-            staffLeave.ApprovedBy = -1;
-            staffLeave.ApprovedDate = DateTime.Now;
+            staffLeave.RecommendedBy = -1;
+            staffLeave.RecomennededDate = DateTime.Now;
             staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+            staffLeave.LeaveStatusId = 5;
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 

@@ -128,7 +128,6 @@ namespace ManPowerWeb
             txtStratDate.Text = myList[0].StartDate.ToString("yyyy-MM-dd");
             txtEndDate.Text = myList[0].EndDate.ToString("yyyy-MM-dd");
             txtRemarks.Text = myList[0].Remarks.ToString();
-            txtBeneCount.Text = myList[0].BeneficiaryCount.ToString();
 
             txtOutputDes.Text = myList[0].Output_Description;
             txtOutcomeDes.Text = myList[0].Outcome_Description;

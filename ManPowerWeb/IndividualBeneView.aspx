@@ -134,13 +134,6 @@
                 <asp:TextBox ID="parentNic" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
             </div>
 
-            <div class="col-2">
-                <label>Program Plan : </label>
-            </div>
-            <div class="col-3">
-                <asp:TextBox ID="txtProPlan" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-            </div>
-
         </div>
 
         <div class="row mb-5 mt-5">

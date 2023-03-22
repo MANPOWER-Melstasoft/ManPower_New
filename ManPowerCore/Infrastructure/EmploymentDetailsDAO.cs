@@ -2,7 +2,6 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,15 +41,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@StartDate", empDetails.StartDate);
             dbConnection.cmd.Parameters.AddWithValue("@EndDate", empDetails.EndDate);
             dbConnection.cmd.Parameters.AddWithValue("@IsResigned", empDetails.IsResigned);
-            if (empDetails.RetirementDate.ToShortDateString() == "01/01/0001")
-            {
-                dbConnection.cmd.Parameters.AddWithValue("@RetirementDate", SqlDateTime.Null);
-            }
-            else
-            {
-                dbConnection.cmd.Parameters.AddWithValue("@RetirementDate", empDetails.RetirementDate);
-            }
-
+            dbConnection.cmd.Parameters.AddWithValue("@RetirementDate", empDetails.RetirementDate);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

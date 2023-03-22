@@ -288,7 +288,7 @@
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-2">
-                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" BackColor="#212529" BorderColor="#212529" />
+                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" ValidationGroup="1" BackColor="#212529" BorderColor="#212529" />
                         </div>
 
                         <div class="col-sm-2">

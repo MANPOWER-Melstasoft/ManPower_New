@@ -269,22 +269,6 @@
                             </div>
                         </div>
                     </div>
-                    <%if (ddlProgram.SelectedValue == "7" || ddlProgram.SelectedValue == "8" || ddlProgram.SelectedValue == "9"
-                                || ddlProgram.SelectedValue == "10" || ddlProgram.SelectedValue == "11" || ddlProgram.SelectedValue == "12")
-                        { %>
-                    <div class="col-sm-6">
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <asp:Literal ID="Literal24" runat="server" Text="Benificiary Count"></asp:Literal>
-                            </div>
-                            <div class="col-md-6">
-                                <asp:TextBox ID="txtBeneCount" Width="250px" runat="server" CssClass="form-control form-control-user" ReadOnly="true"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="txtPhysicalCount" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
-
-                            </div>
-                        </div>
-                    </div>
-                    <%} %>
                 </div>
 
                 <div class="row mb-3 ms-1">

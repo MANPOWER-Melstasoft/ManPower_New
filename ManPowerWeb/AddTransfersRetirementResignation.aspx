@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddTransfersRetirementResignation.aspx.cs" Inherits="ManPowerWeb.AddTransfersRetirementResignation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
     <div class="container mb-3" id="mainContainer" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 

@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class ApproveLeaveView
+    public partial class RecommendationLeaveView
     {
 
         /// <summary>

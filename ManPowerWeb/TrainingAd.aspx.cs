@@ -65,7 +65,7 @@ namespace ManPowerWeb
 
             List<TrainingRequests> trainingRequestsList1 = new List<TrainingRequests>();
 
-            trainingRequestsList1 = trainingRequestsController.GetAllTrainingRequests();
+            trainingRequestsList1 = trainingRequestsController.GetAllTrainingRequestsBiMainId(trainingMainId);
 
             int flag = 0;
 
@@ -104,8 +104,7 @@ namespace ManPowerWeb
             trainingRequests.ProjectStatusId = 1;
             trainingRequests.Created_User = depId;
             trainingRequests.Created_Date = DateTime.Now;
-            trainingRequests.Accepted_User = ParenId;
-            trainingRequests.Accepted_Date = DateTime.Now;
+
 
             output = trainingRequestsController.Save(trainingRequests);
 
@@ -131,13 +130,11 @@ namespace ManPowerWeb
 
             TrainingRequests trainingRequests1 = new TrainingRequests();
 
-            trainingRequestsList1 = trainingRequestsController.GetAllTrainingRequests();
+            trainingRequestsList1 = trainingRequestsController.GetAllTrainingRequestsBiMainId(trainingMainId);
 
             trainingRequests1 = trainingRequestsList1.Where(x => x.Created_User == depId && x.Is_Active == 1).Single();
 
-            trainingRequests1.Is_Active = 0;
-
-            output = trainingRequestsController.Update(trainingRequests1);
+            output = trainingRequestsController.Delete(trainingRequests1);
 
             if (output == 1)
             {

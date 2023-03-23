@@ -20,6 +20,8 @@ namespace ManPowerWeb
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
+            MaintenanceCategoryController maintenanceCategoryController = ControllerFactory.CreateMaintenanceCategoryController();
+
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
             vehicleMeintenances = vehicleMaintenanceController.GetAllVehicleMeintenance();
 
@@ -27,6 +29,9 @@ namespace ManPowerWeb
             systemUsers = systemUserController.GetAllSystemUser(false, false, false);
 
             string id = Request.QueryString["id"];
+
+            butonA.Visible = false;
+            butonR.Visible = false;
 
             foreach (var j in systemUsers.Where(u => u.SystemUserId == Convert.ToInt32(Session["UserId"])))
             {
@@ -38,21 +43,17 @@ namespace ManPowerWeb
                     vNo.Text = i.VehicleNumber;
                     description.Text = i.RequestDescription.ToString();
 
-                    if (i.CategoryId == 1)
-                    {
-                        category.Text = "Repare";
-                    }
-                    else
-                    {
-                        category.Text = "Service";
-                    }
+                    MaintenanceCategory maintenanceCategory = maintenanceCategoryController.GetMaintenanceCategory(i.CategoryId);
+                    category.Text = maintenanceCategory.MaintenanceCategoryName;
 
                     if (i.IsApproved == 0)
                     {
-                        approval.Text = "Not Approved";
+                        approval.Text = "Not Recommended";
                     }
                     else if (i.IsApproved == 1)
                     {
+                        butonA.Visible = true;
+                        butonR.Visible = true;
                         approval.Text = "Pending Approval";
                     }
 
@@ -83,14 +84,14 @@ namespace ManPowerWeb
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
             int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 2, Convert.ToInt32(Session["UserId"]), "");
 
-            if (result == 0)
+            if (result == 1)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something Went Wrong !');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Request Approved..!', 'success');window.setTimeout(function(){window.location='MaintenanceApproval.aspx'},2500);", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Sending to Recommondation..');", true);
-                Response.Redirect("VehicleMeintenanceSearch.aspx");
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
             }
 
         }
@@ -102,14 +103,14 @@ namespace ManPowerWeb
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
             int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 3, Convert.ToInt32(Session["UserId"]), rejectReason.Text);
 
-            if (result == 0)
+            if (result == 1)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Something Went Wrong !');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Request Rejected..!', 'success');window.setTimeout(function(){window.location='MaintenanceApproval.aspx'},2500);", true);
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Sending to Recommondation..');", true);
-                Response.Redirect("VehicleMeintenanceSearch.aspx");
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+
             }
 
         }

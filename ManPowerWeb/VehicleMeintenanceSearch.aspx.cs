@@ -78,7 +78,7 @@ namespace ManPowerWeb
             {
                 if (e.Row.Cells[3].Text == "0")
                 {
-                    e.Row.Cells[3].Text = "Not sent to Approvals";
+                    e.Row.Cells[3].Text = "Pending Recommendation";
                 }
                 else if (e.Row.Cells[3].Text == "1")
                 {

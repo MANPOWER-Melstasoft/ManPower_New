@@ -85,12 +85,13 @@
             <div class="col-2">
                 <asp:Button runat="server" ID="Button3" Text="Back" OnClick="isClicked" CssClass="btn btn-primary btn-user btn-block" />
             </div>
-            <div class="col-2">
+            <div class="col-2" id="butonA" runat="server">
                 <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="Accept" CssClass="btn btn-success btn-user btn-block" />
             </div>
-            <div class="col-2">
+            <div class="col-2" id="butonR" runat="server">
                 <button type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
             </div>
+
         </div>
         <br />
 

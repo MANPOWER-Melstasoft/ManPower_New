@@ -649,5 +649,11 @@ namespace ManPowerCore.Common
             SalaryIncrementStatusController salaryIncrementStatusController = new SalaryIncrementStatusControllerImpl();
             return (SalaryIncrementStatusController)salaryIncrementStatusController;
         }
+
+        public static EmployeeDetailsFromProgramPlanController CreateEmployeeDetailsFromProgramPlanController()
+        {
+            EmployeeDetailsFromProgramPlanController employeeDetailsFromProgramPlanController = new EmployeeDetailsFromProgramPlanImpl();
+            return (EmployeeDetailsFromProgramPlanController)employeeDetailsFromProgramPlanController;
+        }
     }
 }

@@ -138,20 +138,24 @@
                 </div>
 
                 <div class="row mb-3 ms-1">
-                    <div class="col-sm-6 d-flex">
-                        <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary btn-user btn-block" OnClick="btnBack_Click" />
-                        </div>
-                        <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnApprove" Text="Approve" CssClass="btn btn-primary btn-user btn-block" OnClick="btnApprove_Click" />
-                        </div>
-                        <div class="col-sm-4">
-                            <button runat="server" id="btnModalReject" type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary" OnClick="btnBack_Click" BackColor="#212529" BorderColor="#212529" />
+                            </div>
+                            <div class="col-sm-2">
+                                <button runat="server" id="btnModalReject" type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <asp:Button runat="server" ID="btnApprove" Text="Approve" CssClass="btn btn-primary" OnClick="btnApprove_Click" />
+                            </div>
+
+
+
 
                         </div>
-
-
-
                     </div>
                 </div>
             </div>

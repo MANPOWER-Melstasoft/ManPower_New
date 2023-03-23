@@ -14,8 +14,8 @@
                     <asp:BoundField DataField="systemuser.Name" HeaderText="Employee Name" />
                     <asp:BoundField DataField="Trainingmain.TrainingMainId" HeaderText="Training ID" />
                     <asp:BoundField DataField="Trainingmain.Title" HeaderText="Title" />
-                    <asp:BoundField DataField="Trainingmain.Start_Date" HeaderText="Start Date" />
-                    <asp:BoundField DataField="Trainingmain.End_date" HeaderText="End Date" />
+                    <asp:BoundField DataField="Trainingmain.Start_Date" HeaderText="Start Date" DataFormatString="{0:dd-MM-yyyy}" />
+                    <asp:BoundField DataField="Trainingmain.End_date" HeaderText="End Date" DataFormatString="{0:dd-MM-yyyy}" />
                     <asp:BoundField DataField="Trainingmain.Member_Count" HeaderText="Member Count" />
                     <asp:TemplateField HeaderText="Approve">
                         <ItemTemplate>

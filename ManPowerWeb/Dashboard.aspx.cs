@@ -185,7 +185,6 @@ namespace ManPowerWeb
             BindPlnUserCardData();
             BindPlnHeadCardData();
             BindDistrictHeadCardData();
-            BindOtherUserCardData();
 
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
@@ -201,9 +200,36 @@ namespace ManPowerWeb
                 lblNumberOfEmp.Text = systemUserListFilter.Count.ToString();
             }
 
+            //---------------------------- Vote Allocation ----------------------------------------------------------
+            //VoteAllocationController voteAllocationController = ControllerFactory.CreateVoteAllocationController();
+            //List<VoteAllocation> voteAllocationList = voteAllocationController.GetAllVoteAllocation(false);
+            //List<VoteAllocation> voteAllocationListFilter = new List<VoteAllocation>();
+            //float vCount = 0;
+            //foreach (var i in voteAllocationList)
+            //{
+            //    if (i.Year.Year == DateTime.Today.Year)
+            //    {
+            //        vCount += i.Amount;
+            //        voteAllocationListFilter.Add(i);
+            //    }
+            //}
+            //lblVoteAmount.Text = vCount.ToString("N");
+            //gvVoteAllocation.DataSource = voteAllocationListFilter;
+            //gvVoteAllocation.DataBind();
+
+
             ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
             List<ProgramPlan> programPlanList = programPlanController.GetAllProgramPlan();
+            //List<ProgramPlan> programPlanFilter = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year).ToList();
 
+            //List<ProgramPlan> programPlanFilterUCTM = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.Date.Month == DateTime.Today.Month && x.ActualOutput == 0).ToList();
+            //lblUCTM.Text = programPlanFilterUCTM.Count.ToString();
+
+            //List<ProgramPlan> programPlanFilterCP = programPlanList.Where(x => x.ActualOutput != 0).ToList();
+            //lblCP.Text = programPlanFilterCP.Count.ToString();
+
+            //List<ProgramPlan> programPlanFilterTUCP = programPlanList.Where(x => x.Date.Year == DateTime.Today.Year && x.ActualOutput == 0).ToList();
+            //lblTUCP.Text = programPlanFilterTUCP.Count.ToString();
 
             //------------------------------------- This month Target --------------------------------------------------------------
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
@@ -215,7 +241,38 @@ namespace ManPowerWeb
             foreach (var i in programTargetsList)
             {
                 flagProgrmTarget = 0;
-                if (i.TargetMonth == DateTime.Today.Month || (i.StartDate <= DateTime.Now && i.EndDate >= DateTime.Now) && i.IsRecommended == 2)
+                if (i.TargetMonth == DateTime.Today.Month || (i.StartDate <= DateTime.Now && i.EndDate >= DateTime.Now))
+                {
+                    if (Session["UserTypeId"].ToString() != "1")
+                    {
+                        foreach (var item in i._ProgramAssignee)
+                        {
+                            if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                            {
+                                flagProgrmTarget = 1;
+                            }
+                        }
+                    }
+                    if (Session["UserTypeId"].ToString() == "1")
+                    {
+                        flagProgrmTarget = 1;
+                    }
+
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListFilter.Add(i);
+                }
+            }
+
+            //lblThisMonthTarget.Text = programTargetsListFilter.Count.ToString();
+            //gvThisMonthTarget.DataSource = programTargetsListFilter;
+            //gvThisMonthTarget.DataBind();
+
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                if (Session["UserTypeId"].ToString() != "1")
                 {
                     foreach (var item in i._ProgramAssignee)
                     {
@@ -225,28 +282,15 @@ namespace ManPowerWeb
                         }
                     }
                 }
+                if (Session["UserTypeId"].ToString() == "1")
+                {
+                    flagProgrmTarget = 1;
+                }
                 if (flagProgrmTarget == 1)
                 {
-                    programTargetsListFilter.Add(i);
+                    programTargetsListFilterTotal.Add(i);
                 }
             }
-
-
-            //foreach (var i in programTargetsList)
-            //{
-            //    flagProgrmTarget = 0;
-            //    foreach (var item in i._ProgramAssignee)
-            //    {
-            //        if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
-            //        {
-            //            flagProgrmTarget = 1;
-            //        }
-            //    }
-            //    if (flagProgrmTarget == 1)
-            //    {
-            //        programTargetsListFilterTotal.Add(i);
-            //    }
-            //}
             //lblTotalProgramms.Text = programTargetsListFilterTotal.Count.ToString();
             //gvTotalProgrms.DataSource = programTargetsListFilterTotal;
             //gvTotalProgrms.DataBind();
@@ -257,6 +301,39 @@ namespace ManPowerWeb
             gvthisMonthProgram.DataSource = programTargetsListFilter;
             gvthisMonthProgram.DataBind();
 
+
+            //-------------------------- NO OF COMPLETED PROGRAMS ---------------------------------
+            List<ProgramPlan> programPlanListComplete = new List<ProgramPlan>();
+            List<ProgramTarget> programTargetsListComplete = new List<ProgramTarget>();
+            foreach (var i in programTargetsList)
+            {
+                flagProgrmTarget = 0;
+                foreach (var item in i._ProgramAssignee)
+                {
+                    if (item.DepartmentUnitPossitionsId == Convert.ToInt32(Session["DepUnitPositionId"]))
+                    {
+                        flagProgrmTarget = 1;
+                    }
+                }
+                if (flagProgrmTarget == 1)
+                {
+                    programTargetsListComplete.Add(i);
+                }
+            }
+            foreach (var item1 in programTargetsListComplete)
+            {
+                foreach (var item2 in item1._ProgramPlan)
+                {
+                    if (item2.ProjectStatusId == 4)
+                    {
+                        programPlanListComplete.Add(item2);
+                    }
+                }
+            }
+
+            lblCP.Text = programPlanListComplete.Count.ToString();
+            gvCompletedProgrm.DataSource = programPlanListComplete;
+            gvCompletedProgrm.DataBind();
 
             //--------------------- TOTAL UPCOMING PROGRAMS ---------------------------------------
             List<ProgramTarget> programTargetsListFilterTotalUpComming = new List<ProgramTarget>();
@@ -301,10 +378,6 @@ namespace ManPowerWeb
                 }
             }
             lblCompletedProgrm.Text = ProgramPlanlistFinal.Count().ToString();
-
-            lblCP.Text = ProgramPlanlistFinal.Count.ToString();
-            gvCompletedProgrm.DataSource = ProgramPlanlistFinal;
-            gvCompletedProgrm.DataBind();
 
         }
 
@@ -420,63 +493,6 @@ namespace ManPowerWeb
             lblRec2Dme22.Text = taskAllocationList22Final.Count.ToString();
         }
 
-        protected void BindOtherUserCardData()
-        {
-            ProjectStatusController projectStatusController = ControllerFactory.CreateProjectStatusController();
-            List<ProjectStatus> ProjectStatus = projectStatusController.GetAllProjectStatus(false);
-
-            //--------------------- DME21 ---------------------------------------
-            int positionID = Convert.ToInt32(Session["DepUnitPositionId"]);
-            TaskAllocationController taskAllocationController = ControllerFactory.CreateTaskAllocationController();
-            List<TaskAllocation> taskAllocations = taskAllocationController.GetAllTaskAllocationByDepartmentUnitPositionId(positionID);
-
-            DateTime Now = DateTime.Now;
-            DateTime NextMonth = Now.AddMonths(1);
-
-            string status21 = "N/A";
-            string status22 = "N/A";
-
-            foreach (var item in taskAllocations)
-            {
-                if (item.TaskYearMonth.Month == NextMonth.Month)
-                {
-                    if (item.StatusId == 0)
-                    {
-                        status21 = "Planing";
-                    }
-                    else
-                    {
-                        status21 = ProjectStatus.Where(x => x.ProjectStatusId == item.StatusId).Single().ProjectStatusName;
-                    }
-                    break;
-                }
-            }
-
-            lbldme21status.Text = status21;
-
-            //--------------------- DME22 ---------------------------------------
-            List<TaskAllocation> taskAllocationList22Final = new List<TaskAllocation>();
-            List<TaskAllocation> taskAllocationList1 = taskAllocationController.GetAllTaskAllocationByDepartmentUnitPositionId(positionID);
-
-            foreach (var item in taskAllocationList1)
-            {
-                if (item.TaskYearMonth.Month == Now.Month && item.DME22Rec1By != 0)
-                {
-                    if (item.StatusId == 0)
-                    {
-                        status22 = "Planing";
-                    }
-                    else
-                    {
-                        status22 = ProjectStatus.Where(x => x.ProjectStatusId == item.StatusId).Single().ProjectStatusName;
-                    }
-                    break;
-                }
-            }
-            lbldme22status.Text = status22;
-
-        }
-
 
         private void bindDialogbox()
         {
@@ -531,7 +547,7 @@ namespace ManPowerWeb
             foreach (var i in programTargetsList)
             {
                 flagProgrmTarget = 0;
-                if (i.TargetYear == DateTime.Today.Year && i.IsRecommended == 2)
+                if (i.TargetYear == DateTime.Today.Year)
                 {
                     foreach (var item in i._ProgramAssignee)
                     {

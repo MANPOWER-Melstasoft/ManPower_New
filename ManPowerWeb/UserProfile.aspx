@@ -33,7 +33,7 @@
                     <asp:UpdatePanel ID="UpdatePanel8" runat="server">
                         <ContentTemplate>
 
-                            <h3>Personal Details </h3>
+                            <h3>Add My Personal Details </h3>
 
                             <div class="row mt-4">
                                 <div class="col-6">
@@ -345,7 +345,7 @@
                                             <asp:TextBox ID="EmpMobilePhone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="EmpMobilePhone" ValidationGroup="contact"
-                                                ForeColor="Red" Display="Dynamic">Invalid Mobile Phone Number</asp:RegularExpressionValidator>
+                                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
                                             <asp:RequiredFieldValidator ControlToValidate="EmpMobilePhone" ID="RequiredFieldValidator15" runat="server" ErrorMessage="RequiredFieldValidator"
                                                 ValidationGroup="contact" ForeColor="Red">*</asp:RequiredFieldValidator>
                                         </div>
@@ -395,7 +395,7 @@
                                             <asp:TextBox ID="EmpOfficePhone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="EmpOfficePhone" ValidationGroup="contact"
-                                                ForeColor="Red" Display="Dynamic">Invalid Office Phone Number</asp:RegularExpressionValidator>
+                                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -490,7 +490,7 @@
                                             <asp:TextBox ID="landLine" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="landLine" ValidationGroup="5"
-                                                ForeColor="Red" Display="Dynamic">Invalid Telephone Number</asp:RegularExpressionValidator>
+                                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -517,7 +517,7 @@
                                             <asp:TextBox ID="ecOfficePhone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Mobile Number."
                                                 ValidationExpression="^([0-9]{10})$" ControlToValidate="ecOfficePhone" ValidationGroup="5"
-                                                ForeColor="Red" Display="Dynamic">Invalid Office Phone Number</asp:RegularExpressionValidator>
+                                                ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                 </div>

@@ -96,6 +96,15 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
+        /// butonA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl butonA;
+
+        /// <summary>
         /// acceptBtn control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace ManPowerWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button acceptBtn;
+
+        /// <summary>
+        /// butonR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl butonR;
 
         /// <summary>
         /// rejectReason control.

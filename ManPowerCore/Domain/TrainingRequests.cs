@@ -31,6 +31,12 @@ namespace ManPowerCore.Domain
         [DBField("Accepted_user")]
         public int Accepted_User { get; set; }
 
+        [DBField("Recommend_date")]
+        public DateTime Recommend_date { get; set; }
+
+        [DBField("Recommend_user")]
+        public int Recommend_user { get; set; }
+
         [DBField("Is_Active")]
         public int Is_Active { get; set; }
 

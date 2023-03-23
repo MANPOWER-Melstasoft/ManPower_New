@@ -206,27 +206,22 @@ namespace ManPowerWeb
 
             if (ddlStatus.SelectedValue == "0")
             {
-                programTargetsList = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListNotRecommended"];
             }
             else if (ddlStatus.SelectedValue == "1")
             {
-                programTargetsList = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListPending"];
             }
             else if (ddlStatus.SelectedValue == "2")
             {
-                programTargetsList = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListApproved"];
             }
             else if (ddlStatus.SelectedValue == "3")
             {
-                programTargetsList = programTargetsList.Where(x => x.IsRecommended == 0).ToList();
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsListRejected"];
             }
             else
             {
-                BindDataSource();
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["programTargetsList"];
             }
 

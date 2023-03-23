@@ -634,5 +634,11 @@ namespace ManPowerCore.Common
             SalaryIncrementStatusDAO salaryIncrementStatusDAO = new SalaryIncrementStatusDAOSqlImpl();
             return (SalaryIncrementStatusDAO)salaryIncrementStatusDAO;
         }
+
+        public static EmployeeDetailsFromProgramPlanDAO CreateemployeeDetailsFromProgramPlanDAO()
+        {
+            EmployeeDetailsFromProgramPlanDAO employeeDetailsFromProgramPlanDAO = new EmployeeDetailsFromProgramPlanDAOSqlImpl();
+            return (EmployeeDetailsFromProgramPlanDAO)employeeDetailsFromProgramPlanDAO;
+        }
     }
 }

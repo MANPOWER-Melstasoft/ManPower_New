@@ -343,6 +343,17 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 int results = employeeDAO.AcInAcEmployee(EmpId, isActive, dBConnection);
 
+                if (results != 0)
+                {
+                    SystemUserDAO systemUserDAO = DAOFactory.CreateSystemUserDAO();
+                    SystemUser systemUser = systemUserDAO.CheckEmpNumberExists(EmpId, dBConnection);
+
+                    if (systemUser.SystemUserId != 0)
+                    {
+                        results = systemUserDAO.AcInAcUser(systemUser.SystemUserId, isActive, dBConnection);
+                    }
+                }
+
                 return results;
             }
             catch (Exception)

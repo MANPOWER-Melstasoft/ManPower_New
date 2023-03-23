@@ -42,7 +42,17 @@ namespace ManPowerWeb
 
 
 
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 1 && u.ApprovedBy == Convert.ToInt32(Session["UserId"])))
+            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 2 && u.ApprovedBy == Convert.ToInt32(Session["UserId"])))
+            {
+                searchList.Add(i);
+            }
+
+            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 3 && u.ApprovedBy == Convert.ToInt32(Session["UserId"])))
+            {
+                searchList.Add(i);
+            }
+
+            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 1))
             {
                 searchList.Add(i);
             }
@@ -54,13 +64,14 @@ namespace ManPowerWeb
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            DateTime searchDate = Convert.ToDateTime(date.Text);
-            if (searchDate == null)
+
+            if (date.Text == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Please Enter a Date to proceed');", true);
             }
             else
             {
+                DateTime searchDate = Convert.ToDateTime(date.Text);
                 UserSearchList = (List<VehicleMeintenance>)ViewState["searchList"];
                 GridView1.DataSource = UserSearchList.Where(u => u.RequestDate.Date == searchDate.Date && u.CategoryId == int.Parse(ddlCategory.SelectedValue));
                 GridView1.DataBind();

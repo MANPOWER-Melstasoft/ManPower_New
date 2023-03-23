@@ -156,11 +156,9 @@ namespace ManPowerWeb
 
             }
 
-            if (programPlansListBind[0].ProjectStatusId == 4 || programPlansListBind[0].ProjectStatusId == 1)
+            if (programPlansListBind[0].ProjectStatusId == 4 || programPlansListBind[0].ProjectStatusId == 1 || programPlansListBind[0].ProjectStatusId >= 2013)
             {
                 btnSendToRecommendation.Visible = false;
-
-
             }
 
             if (programPlansListBind[0].Date < DateTime.Now && programPlansListBind[0].ProjectStatusId != 1)
@@ -175,10 +173,8 @@ namespace ManPowerWeb
 
         }
 
-        private int save(bool IsSendToRec)
+        private void save(bool IsSendToRec)
         {
-            int retVal = 0;
-
             ProgramAssigneeController programAssigneeController = ControllerFactory.CreateProgramAssigneeController();
             ProgramAssignee programAssigneeObj = new ProgramAssignee();
             int depid;
@@ -227,158 +223,186 @@ namespace ManPowerWeb
             {
                 List<TaskAllocationDetail> taskAllocationDetailList = taskAllocationDetailController.GetAllTaskAllocationDetailByTaskAllocationId(taskAllocationId);
 
-                foreach (var item in taskAllocationDetailList)
+                //foreach (var item in taskAllocationDetailList)
+                //{
+                //    if (item.StartTime.Year == Convert.ToDateTime(txtDate.Text).Year && item.StartTime.Month == Convert.ToDateTime(txtDate.Text).Month && item.StartTime.Date == Convert.ToDateTime(txtDate.Text).Date)
+                //    {
+                //        flag1 = 1; break;
+                //    }
+                //}
+
+                //if (flag1 == 1)
+                //{
+                //    programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
+                //    programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+                //    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'You Have a task on That Date! (DME21)', 'error');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
+                //    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Failed!', 'You Have a task on That Date! (DME21)', 'error');window.setTimeout(function(){{window.location='planningEdit.aspx?ProgramTargetId={0}&ProgramplanId={1}'}} ,2500);", programTargetId, programPlanId), true);
+                //}
+
+                //else
+                //{
+                bool validationflag = false;
+                ProgramPlan programPlan = new ProgramPlan();
+                ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+
+
+                //   ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
+                //  programTargets = programTargetController.GetAllProgramTargetWithPlan();
+
+                programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
+                programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
+                programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+
+
+
+                programPlan.ProjectStatusId = 2;
+
+                programPlan.ProgramName = txtProgramName.Text;
+                programPlan.FinancialSource = "";
+                programPlan.ProgramCategoryId = 1;
+                programPlan.Location = txtLocation.Text;
+                if (txtActualOutcome.Text != "")
                 {
-                    if (item.StartTime.Year == Convert.ToDateTime(txtDate.Text).Year && item.StartTime.Month == Convert.ToDateTime(txtDate.Text).Month && item.StartTime.Date == Convert.ToDateTime(txtDate.Text).Date)
+                    programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
+
+                }
+                else
+                {
+                    programPlan.Outcome = 0;
+                }
+                programPlan.Output = 0;
+
+                if (txtActualOutput.Text != "")
+                {
+                    programPlan.ActualOutput = Convert.ToInt32(txtActualOutput.Text);
+                }
+                else
+                {
+                    programPlan.ActualOutput = 0;
+                }
+
+                programPlan.IsApproved = 0;
+                programPlan.ApprovedBy = "";
+                programPlan.ApprovedDate = DateTime.Now;
+                programPlan.TotalEstimatedAmount = (float)Convert.ToDouble(txtEstimateAmount.Text);
+
+                if ((float)Convert.ToDouble(txtEstimateAmount.Text) >= (float)Convert.ToDouble(txtBudget.Text))
+                {
+                    programPlan.ApprovedAmount = (float)Convert.ToDouble(txtBudget.Text);
+                    validationflag = true;
+                }
+                else
+                {
+                    lblBudget.Text = "Invalid Budget";
+                    validationflag = false;
+
+                }
+
+                if (txtExpenditure.Text != "")
+                {
+                    programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
+                }
+                else
+                {
+                    programPlan.ActualAmount = 0;
+                }
+
+                if (txtMaleCount.Text != "")
+                {
+                    programPlan.MaleCount = int.Parse(txtMaleCount.Text);
+                }
+                else
+                {
+                    programPlan.MaleCount = 0;
+                }
+                if (txtFemaleCount.Text != "")
+                {
+                    programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
+                }
+                else
+                {
+                    programPlan.FemaleCount = 0;
+                }
+
+
+
+                programPlan.Remark = "";
+                programPlan.ProgramTargetId = programTargetId;
+                programPlan.Coordinater = "";
+                programPlan.ProgramPlanId = programPlanId;
+
+
+                if (Uploader.HasFile)
+                {
+                    HttpFileCollection uploadFiles = Request.Files;
+                    for (int i = 0; i < uploadFiles.Count; i++)
                     {
-                        flag1 = 1; break;
+                        HttpPostedFile uploadFile = uploadFiles[i];
+                        if (uploadFile.ContentLength > 0)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/ProgramPlanResources/") + uploadFile.FileName);
+                            lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+                            programPlan.FinancialSource = uploadFile.FileName;
+
+                        }
                     }
                 }
 
-                if (flag1 == 1)
+                ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
+
+                if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
                 {
-                    programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
-                    programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
-                    //ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'You Have a task on That Date! (DME21)', 'error');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Failed!', 'You Have a task on That Date! (DME21)', 'error');window.setTimeout(function(){{window.location='planningEdit.aspx?ProgramTargetId={0}&ProgramplanId={1}'}} ,2500);", programTargetId, programPlanId), true);
+                    lblDate.Text = "Invalid Date";
+                    validationflag = false;
                 }
 
-                else
+
+                if (validationflag)
                 {
-                    bool validationflag = false;
-                    ProgramPlan programPlan = new ProgramPlan();
-                    ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+                    programPlan.Date = DateTime.Parse(txtDate.Text);
 
 
-                    //   ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
-                    //  programTargets = programTargetController.GetAllProgramTargetWithPlan();
+                    int response = programPlanController.UpdateProgramPlan(programPlan, (List<string>)ViewState["projectPlanResourceStringList"]);
 
-                    programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
-                    programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
-                    programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
+                    taskAllocationDetailObj.TaskTypeId = 1;
 
+                    taskAllocationDetailObj.TaskAllocationId = taskAllocationId;
+                    taskAllocationDetailObj.TaskDescription = txtProgramName.Text;
+                    taskAllocationDetailObj.WorkLocation = txtLocation.Text;
+                    taskAllocationDetailObj.Isconmpleated = 0;
+                    taskAllocationDetailObj.NotCompleatedReason = "";
+                    taskAllocationDetailObj.StartTime = Convert.ToDateTime(txtDate.Text);
+                    taskAllocationDetailObj.EndTime = DateTime.Today;
+                    taskAllocationDetailObj.TaskRemarks = "";
+                    taskAllocationDetailObj.TaskAmendments = "";
+                    taskAllocationDetailObj.programPlanId = programPlanId;
 
+                    int taskAllocationDetailId = taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
 
-                    programPlan.ProjectStatusId = 2;
+                    ProjectTask projectTaskobj = new ProjectTask();
 
-                    programPlan.ProgramName = txtProgramName.Text;
-                    programPlan.FinancialSource = "";
-                    programPlan.ProgramCategoryId = 1;
-                    programPlan.Location = txtLocation.Text;
+                    projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId;
+                    projectTaskobj.ProgramPlanId = programPlanId;
 
-                    programPlan.Outcome = Convert.ToInt32(txtActualOutcome.Text);
+                    projectTaskController.saveProjectTask(projectTaskobj);
 
-
-                    programPlan.Output = 0;
-
-                    programPlan.ActualOutput = Convert.ToInt32(txtActualOutput.Text);
-
-
-                    programPlan.IsApproved = 0;
-                    programPlan.ApprovedBy = "";
-                    programPlan.ApprovedDate = DateTime.Now;
-                    programPlan.TotalEstimatedAmount = (float)Convert.ToDouble(txtEstimateAmount.Text);
-
-                    if ((float)Convert.ToDouble(txtEstimateAmount.Text) >= (float)Convert.ToDouble(txtBudget.Text))
+                    if (response != 0)
                     {
-                        programPlan.ApprovedAmount = (float)Convert.ToDouble(txtBudget.Text);
-                        validationflag = true;
+                        if (!IsSendToRec)
+                        {
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
+
+                        }
+
+
                     }
                     else
                     {
-                        lblBudget.Text = "Invalid Budget";
-                        validationflag = false;
-
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
                     }
-
-                    programPlan.ActualAmount = float.Parse(txtExpenditure.Text);
-                    programPlan.MaleCount = int.Parse(txtMaleCount.Text);
-                    programPlan.FemaleCount = int.Parse(txtFemaleCount.Text);
-                    programPlan.Remark = "";
-                    programPlan.ProgramTargetId = programTargetId;
-                    programPlan.Coordinater = "";
-                    programPlan.ProgramPlanId = programPlanId;
-
-
-                    if (Uploader.HasFile)
-                    {
-                        HttpFileCollection uploadFiles = Request.Files;
-                        for (int i = 0; i < uploadFiles.Count; i++)
-                        {
-                            HttpPostedFile uploadFile = uploadFiles[i];
-                            if (uploadFile.ContentLength > 0)
-                            {
-                                uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/ProgramPlanResources/") + uploadFile.FileName);
-                                lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
-                                programPlan.FinancialSource = uploadFile.FileName;
-
-                            }
-                        }
-                    }
-
-                    ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
-
-                    //Check this later
-                    //if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
-                    //{
-                    //    lblDate.Text = "Invalid Date";
-                    //    validationflag = false;
-                    //}
-
-                    if (DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
-                    {
-                        lblDate.Text = "Invalid Date";
-                        validationflag = false;
-                    }
-
-
-                    if (validationflag)
-                    {
-                        programPlan.Date = DateTime.Parse(txtDate.Text);
-
-
-                        int response = programPlanController.UpdateProgramPlan(programPlan, (List<string>)ViewState["projectPlanResourceStringList"]);
-
-                        taskAllocationDetailObj.TaskTypeId = 1;
-
-                        taskAllocationDetailObj.TaskAllocationId = taskAllocationId;
-                        taskAllocationDetailObj.TaskDescription = txtProgramName.Text;
-                        taskAllocationDetailObj.WorkLocation = txtLocation.Text;
-                        taskAllocationDetailObj.Isconmpleated = 0;
-                        taskAllocationDetailObj.NotCompleatedReason = "";
-                        taskAllocationDetailObj.StartTime = Convert.ToDateTime(txtDate.Text);
-                        taskAllocationDetailObj.EndTime = DateTime.Today;
-                        taskAllocationDetailObj.TaskRemarks = "";
-                        taskAllocationDetailObj.TaskAmendments = "";
-                        taskAllocationDetailObj.programPlanId = programPlanId;
-
-                        int taskAllocationDetailId = taskAllocationDetailController.SaveTaskAllocationDetail(taskAllocationDetailObj);
-
-                        ProjectTask projectTaskobj = new ProjectTask();
-
-                        projectTaskobj.TaskAllocationDetailId = taskAllocationDetailId;
-                        projectTaskobj.ProgramPlanId = programPlanId;
-
-                        projectTaskController.saveProjectTask(projectTaskobj);
-
-                        if (response != 0)
-                        {
-                            if (!IsSendToRec)
-                            {
-                                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
-
-                            }
-
-                            retVal = 1;
-                        }
-                        else
-                        {
-                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
-                            retVal = 0;
-                        }
-                    }
-
                 }
+
+                //}
             }
 
             else
@@ -391,6 +415,7 @@ namespace ManPowerWeb
                 //   ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
                 //  programTargets = programTargetController.GetAllProgramTargetWithPlan();
 
+                programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
                 programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
                 programTargetId = Convert.ToInt32(Request.QueryString["ProgramTargetId"]);
 
@@ -500,19 +525,15 @@ namespace ManPowerWeb
                         {
                             ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'You Added Succesfully!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
                         }
-                        retVal = 1;
+
                     }
                     else
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
-                        retVal = 0;
                     }
                 }
 
             }
-
-            return retVal;
-
         }
         protected void btnSave_Click1(object sender, EventArgs e)
         {
@@ -545,7 +566,7 @@ namespace ManPowerWeb
         protected void btnSendToRecommendation_Click(object sender, EventArgs e)
         {
             IsSendToRec = true;
-            int res = save(IsSendToRec);
+            save(IsSendToRec);
 
             programPlanId = Convert.ToInt32(Request.QueryString["ProgramplanId"]);
 
@@ -564,27 +585,18 @@ namespace ManPowerWeb
 
             programPlanApprovalDetails.RejectReason = "";
 
-            if (res == 1)
+            int response = programPlanApprovalDetailsController.Save(programPlanApprovalDetails);
+
+            if (response != 0)
             {
-                int response = programPlanApprovalDetailsController.Save(programPlanApprovalDetails);
 
-                if (response != 0)
-                {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Send To Recommendation!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
 
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Send To Recommendation!', 'success');window.setTimeout(function(){window.location='planning.aspx'},2500);", true);
-
-                }
-                else
-                {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
-                }
             }
             else
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
-
-
         }
 
         protected void txtFemaleCount_TextChanged(object sender, EventArgs e)

@@ -12,7 +12,8 @@ namespace ManPowerCore.Infrastructure
     {
         int Save(TransfersRetirementResignationMain obj, DBConnection dbConnection);
         int Delete(int id, DBConnection dbConnection);
-        int Update(TransfersRetirementResignationMain obj, DBConnection dbConnection);
+        int Approve(TransfersRetirementResignationMain obj, DBConnection dbConnection);
+        int Recommend(TransfersRetirementResignationMain obj, DBConnection dbConnection);
         List<TransfersRetirementResignationMain> GetAllTransfersRetirementResignation(bool with0, DBConnection dbConnection);
         TransfersRetirementResignationMain GetTransfersRetirementResignation(int Id, DBConnection dbConnection);
     }
@@ -45,7 +46,7 @@ namespace ManPowerCore.Infrastructure
             return output;
         }
 
-        public int Update(TransfersRetirementResignationMain obj, DBConnection dbConnection)
+        public int Approve(TransfersRetirementResignationMain obj, DBConnection dbConnection)
         {
             int output = 0;
 
@@ -54,7 +55,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "UPDATE Transfers_Retirement_Resignation_Main SET Request_Type_Id = @RequestTypeId, Status_Id = @StatusId," +
                 "Employee_ID= @EmployeeId, Created_Date = @CreatedDate, Created_User = @CreatedUser, Documents = @Documents, Parent_Id = @ParentId," +
                 "Parent_Action = @ParentAction, Action_Taken_User_Id = @ActionTakenUserId, Action_Taken_Date = @ActionTakenDate, Reason = @Reason, " +
-                "Remarks = @Remarks, Recomend_Parent_Id = @RecomendParentId WHERE ID = @Id ";
+                "Remarks = @Remarks WHERE ID = @Id ";
 
             dbConnection.cmd.Parameters.AddWithValue("@Id", obj.MainId);
             dbConnection.cmd.Parameters.AddWithValue("@RequestTypeId", obj.RequestTypeId);
@@ -64,10 +65,37 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", obj.CreatedUser);
             dbConnection.cmd.Parameters.AddWithValue("@Documents", obj.Documents);
             dbConnection.cmd.Parameters.AddWithValue("@ParentId", obj.ParentId);
-            dbConnection.cmd.Parameters.AddWithValue("@RecomendParentId", obj.RecomendParentId);
             dbConnection.cmd.Parameters.AddWithValue("@ParentAction", obj.ParentAction);
             dbConnection.cmd.Parameters.AddWithValue("@ActionTakenUserId", obj.ActionTakenUserId);
             dbConnection.cmd.Parameters.AddWithValue("@ActionTakenDate", obj.ActionTakenDate);
+            dbConnection.cmd.Parameters.AddWithValue("@Reason", obj.Reason);
+            dbConnection.cmd.Parameters.AddWithValue("@Remarks", obj.Remarks);
+
+            output = dbConnection.cmd.ExecuteNonQuery();
+
+            return output;
+        }
+
+        public int Recommend(TransfersRetirementResignationMain obj, DBConnection dbConnection)
+        {
+            int output = 0;
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.CommandText = "UPDATE Transfers_Retirement_Resignation_Main SET Request_Type_Id = @RequestTypeId, Status_Id = @StatusId," +
+                "Employee_ID= @EmployeeId, Created_Date = @CreatedDate, Created_User = @CreatedUser, Documents = @Documents," +
+                "Parent_Action = @ParentAction, Reason = @Reason, " +
+                "Remarks = @Remarks, Recomend_Parent_Id = @RecomendParentId WHERE ID = @Id ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@Id", obj.MainId);
+            dbConnection.cmd.Parameters.AddWithValue("@RequestTypeId", obj.RequestTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@StatusId", obj.StatusId);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", obj.EmployeeId);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", obj.CreatedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", obj.CreatedUser);
+            dbConnection.cmd.Parameters.AddWithValue("@Documents", obj.Documents);
+            dbConnection.cmd.Parameters.AddWithValue("@RecomendParentId", obj.RecomendParentId);
+            dbConnection.cmd.Parameters.AddWithValue("@ParentAction", obj.ParentAction);
             dbConnection.cmd.Parameters.AddWithValue("@Reason", obj.Reason);
             dbConnection.cmd.Parameters.AddWithValue("@Remarks", obj.Remarks);
 

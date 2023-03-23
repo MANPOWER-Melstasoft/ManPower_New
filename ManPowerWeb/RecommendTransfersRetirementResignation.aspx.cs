@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveTransfersRetirementResignation : System.Web.UI.Page
+    public partial class RecommendTransfersRetirementResignation : System.Web.UI.Page
     {
         static List<TransfersRetirementResignationMain> mainList;
         static List<TransfersRetirementResignationMain> filterList;
@@ -38,41 +38,39 @@ namespace ManPowerWeb
             List<TransfersRetirementResignationMain> mainListIn = main.GetAllTransfersRetirementResignation(false);
             mainList = new List<TransfersRetirementResignationMain>();
 
-            foreach (var item in mainListIn)
-            {
-                if (item.RecomendParentId != 0)
-                {
-                    mainList.Add(item);
-                }
-                //if (item.ParentId != 0 && item.ParentId != 1)
-                //{
-                //    departmentUnitPositions = departmentUnitPositionsController.GetDepartmentUnitPositions(item.ParentId, false, false, false, false, false);
-                //    if (departmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
-                //    {
-                //        mainList.Add(item);
-                //    }
-                //}
-                //else
-                //{
-                //    //--------------------- get all requests with no parent id to admin------------------------
-                //    if (departmentUnitPositionsCheckAdmint._DepartmentUnit.DepartmentUnitTypeId == 1 && Convert.ToInt32(Session["UserTypeId"]) == 1)
-                //    {
-                //        mainList.Add(item);
-                //    }
-                //}
+            //foreach (var item in mainListIn)
+            //{
+            //    if (item.ParentId != 0 && item.ParentId != 1)
+            //    {
+            //        departmentUnitPositions = departmentUnitPositionsController.GetDepartmentUnitPositions(item.ParentId, false, false, false, false, false);
+            //        if (departmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
+            //        {
+            //            mainList.Add(item);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        //--------------------- get all requests with no parent id to admin------------------------
+            //        if (departmentUnitPositionsCheckAdmint._DepartmentUnit.DepartmentUnitTypeId == 1 && Convert.ToInt32(Session["UserTypeId"]) == 1)
+            //        {
+            //            mainList.Add(item);
+            //        }
+            //    }
 
-                //if (item.RecomendParentId != 0 && item.RecomendParentId != 1)
-                //{
-                //    departmentUnitPositions = departmentUnitPositionsController.GetDepartmentUnitPositions(item.RecomendParentId, false, false, false, false, false);
-                //    if (departmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
-                //    {
-                //        mainList.Add(item);
-                //    }
-                //}
+            //    if (item.RecomendParentId != 0 && item.RecomendParentId != 1)
+            //    {
+            //        departmentUnitPositions = departmentUnitPositionsController.GetDepartmentUnitPositions(item.RecomendParentId, false, false, false, false, false);
+            //        if (departmentUnitPositions.SystemUserId == Convert.ToInt32(Session["UserId"]))
+            //        {
+            //            mainList.Add(item);
+            //        }
+            //    }
 
-            }
+            //}
 
-            filterList = mainList;
+
+            mainList = mainListIn.ToList();
+            filterList = mainList.ToList();
 
             GridView1.DataSource = filterList;
             GridView1.DataBind();
@@ -81,13 +79,14 @@ namespace ManPowerWeb
 
         private void BindDdlStatus()
         {
+            TransfersRetirementResignationStatusController statusController = ControllerFactory.CreateTransfersRetirementResignationStatusController();
+            List<TransfersRetirementResignationStatus> status = statusController.GetAllStatus(false);
 
+            ddlStatus.DataSource = status;
+            ddlStatus.DataValueField = "Id";
+            ddlStatus.DataTextField = "StatusName";
+            ddlStatus.DataBind();
             ddlStatus.Items.Insert(0, new ListItem("All", ""));
-
-            ddlStatus.Items.Insert(1, new ListItem("Pending", "5"));
-            ddlStatus.Items.Insert(1, new ListItem("Approve", "1"));
-            ddlStatus.Items.Insert(2, new ListItem("Reverse", "4"));
-            ddlStatus.Items.Insert(3, new ListItem("Reject", "3"));
         }
 
         private void BindDdlType()
@@ -108,7 +107,7 @@ namespace ManPowerWeb
             int pagesize = GridView1.PageSize;
             int pageindex = GridView1.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
-            Response.Redirect("ApproveTransfersRetirementResignationView.aspx?Id=" + filterList[rowIndex].MainId);
+            Response.Redirect("RecommendTransfersRetirementResignationView.aspx?Id=" + filterList[rowIndex].MainId);
 
         }
 
@@ -362,7 +361,5 @@ namespace ManPowerWeb
             }
             GridView1.DataBind();
         }
-
-
     }
 }

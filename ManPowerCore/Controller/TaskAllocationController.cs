@@ -150,6 +150,15 @@ namespace ManPowerCore.Controller
                     item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                 }
 
+                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+
+                List<DepartmentUnit> departmentUnitList = departmentUnitController.GetAllDepartmentUnit(false, false);
+
+                foreach (var item in list)
+                {
+                    item.departmentUnit = departmentUnitList.Where(x => x.DepartmentUnitId == item._DepartmentUnitPositions.DepartmentUnitId).Single();
+                }
+
                 return list;
             }
             catch (Exception)
@@ -181,6 +190,15 @@ namespace ManPowerCore.Controller
                 foreach (var item in list)
                 {
                     item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
+                }
+
+                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+
+                List<DepartmentUnit> departmentUnitList = departmentUnitController.GetAllDepartmentUnit(false, false);
+
+                foreach (var item in list)
+                {
+                    item.departmentUnit = departmentUnitList.Where(x => x.DepartmentUnitId == item._DepartmentUnitPositions.DepartmentUnitId).Single();
                 }
 
                 return list;
@@ -410,6 +428,8 @@ namespace ManPowerCore.Controller
 
                 systemUserList = SystemUser.GetAllSystemUser(false, false, false);
 
+
+
                 foreach (var item in list)
                 {
                     item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
@@ -418,6 +438,15 @@ namespace ManPowerCore.Controller
                 foreach (var item in list)
                 {
                     item._SystemUser = systemUserList.Where(x => x.SystemUserId == item._DepartmentUnitPositions.SystemUserId).Single();
+                }
+
+                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+
+                List<DepartmentUnit> departmentUnitList = departmentUnitController.GetAllDepartmentUnit(false, false);
+
+                foreach (var item in list)
+                {
+                    item.departmentUnit = departmentUnitList.Where(x => x.DepartmentUnitId == item._DepartmentUnitPositions.DepartmentUnitId).Single();
                 }
 
                 return list;
@@ -455,6 +484,10 @@ namespace ManPowerCore.Controller
 
                 systemUserList = SystemUser.GetAllSystemUser(false, false, false);
 
+                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+
+                List<DepartmentUnit> departmentUnitList = departmentUnitController.GetAllDepartmentUnit(false, false);
+
                 foreach (var item in list)
                 {
                     item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
@@ -463,6 +496,11 @@ namespace ManPowerCore.Controller
                 foreach (var item in list)
                 {
                     item._SystemUser = systemUserList.Where(x => x.SystemUserId == item._DepartmentUnitPositions.SystemUserId).Single();
+                }
+
+                foreach (var item in list)
+                {
+                    item.departmentUnit = departmentUnitList.Where(x => x.DepartmentUnitId == item._DepartmentUnitPositions.DepartmentUnitId).Single();
                 }
 
                 return list;

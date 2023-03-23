@@ -11,6 +11,7 @@
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="_SystemUser.Name" HeaderText="Username" />
+                    <asp:BoundField DataField="departmentUnit.Name" HeaderText="Division" />
                     <asp:BoundField DataField="TaskYearMonth.Year" HeaderText="Year" />
                     <asp:BoundField DataField="TaskYearMonth.Month" HeaderText="Month" />
                     <asp:TemplateField HeaderText="Get Action">

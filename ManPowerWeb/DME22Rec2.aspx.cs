@@ -31,6 +31,16 @@ namespace ManPowerWeb
             List<TaskAllocation> taskAllocationList1 = allocation.GetAllTaskAllocation(false, true, false, false);
             systemUserList = SystemUser.GetAllSystemUser(false, false, false);
 
+            DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+
+            List<DepartmentUnit> departmentUnitList = departmentUnitController.GetAllDepartmentUnit(false, false);
+
+            foreach (var item in taskAllocationList1)
+            {
+                item.departmentUnit = departmentUnitList.Where(x => x.DepartmentUnitId == item._DepartmentUnitPositions.DepartmentUnitId).Single();
+            }
+
+
             foreach (var item in taskAllocationList1)
             {
                 if (item.DME22Rec1By == positionID && item.StatusId == 2012)

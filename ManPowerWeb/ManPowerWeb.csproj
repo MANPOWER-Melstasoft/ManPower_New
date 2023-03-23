@@ -150,6 +150,7 @@
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
+    <Content Include="MaintenanceRecomandView.aspx" />
     <Content Include="PaymentVoucherApproval.aspx" />
     <Content Include="PaymentVoucherCertify.aspx" />
     <Content Include="PaymentVoucherCheckBy.aspx" />
@@ -161,6 +162,9 @@
     <Content Include="PlanningApproval.aspx" />
     <Content Include="PlanningRecommendation1.aspx" />
     <Content Include="PlanningRecommendation2.aspx" />
+    <Content Include="RecommendationLeave.aspx" />
+    <Content Include="RecommendationLeaveView.aspx" />
+    <Content Include="RecommendationTrainingRequest.aspx" />
     <Content Include="RequestLoan.aspx" />
     <Content Include="RequestLoanFront.aspx" />
     <Content Include="ResetPassword.aspx" />
@@ -2263,6 +2267,13 @@
     <Compile Include="MaintenanceRecomand.aspx.designer.cs">
       <DependentUpon>MaintenanceRecomand.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MaintenanceRecomandView.aspx.cs">
+      <DependentUpon>MaintenanceRecomandView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRecomandView.aspx.designer.cs">
+      <DependentUpon>MaintenanceRecomandView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentVoucherApproval.aspx.cs">
       <DependentUpon>PaymentVoucherApproval.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2339,6 +2350,27 @@
     </Compile>
     <Compile Include="PlanningRecommendation2.aspx.designer.cs">
       <DependentUpon>PlanningRecommendation2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLeave.aspx.cs">
+      <DependentUpon>RecommendationLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLeave.aspx.designer.cs">
+      <DependentUpon>RecommendationLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLeaveView.aspx.cs">
+      <DependentUpon>RecommendationLeaveView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLeaveView.aspx.designer.cs">
+      <DependentUpon>RecommendationLeaveView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationTrainingRequest.aspx.cs">
+      <DependentUpon>RecommendationTrainingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationTrainingRequest.aspx.designer.cs">
+      <DependentUpon>RecommendationTrainingRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="RequestLoan.aspx.cs">
       <DependentUpon>RequestLoan.aspx</DependentUpon>

@@ -15,6 +15,8 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateApprovals(int id, int approval, int officer, string reason, DBConnection dbConnection);
 
+        int UpdateRecommandationStatus(int id, int approval, int officer, string reason, DBConnection dbConnection);
+
         List<VehicleMeintenance> GetAllVehicleMeintenance(DBConnection dbConnection);
     }
 
@@ -70,11 +72,29 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, APPROVED_BY = @officer, REJECTED_REASON = @reason WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, APPROVED_BY = @officer, Approved_date = @date, REJECTED_REASON = @reason WHERE ID = " + id + " ";
 
             dbConnection.cmd.Parameters.AddWithValue("@approvalStatus", approvalStatus);
             dbConnection.cmd.Parameters.AddWithValue("@officer", officer);
             dbConnection.cmd.Parameters.AddWithValue("@reason", reason);
+            dbConnection.cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
+        }
+
+        public int UpdateRecommandationStatus(int id, int approval, int officer, string reason, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, Recomand_By = @officer, Recomand_Date = @date, REJECTED_REASON = @reason WHERE ID = " + id + " ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@approvalStatus", approval);
+            dbConnection.cmd.Parameters.AddWithValue("@officer", officer);
+            dbConnection.cmd.Parameters.AddWithValue("@reason", reason);
+            dbConnection.cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

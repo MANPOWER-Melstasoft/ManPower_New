@@ -32,6 +32,8 @@ namespace ManPowerWeb
 
         private void dataSource()
         {
+            MaintenanceCategoryController maintenanceCategoryController = ControllerFactory.CreateMaintenanceCategoryController();
+
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
             vehicleMeintenances = vehicleMaintenanceController.GetAllVehicleMeintenance();
 
@@ -49,14 +51,8 @@ namespace ManPowerWeb
                 vNo.Text = i.VehicleNumber;
                 description.Text = i.RequestDescription.ToString();
 
-                if (i.CategoryId == 1)
-                {
-                    category.Text = "Repare";
-                }
-                else
-                {
-                    category.Text = "Service";
-                }
+                MaintenanceCategory maintenanceCategory = maintenanceCategoryController.GetMaintenanceCategory(i.CategoryId);
+                category.Text = maintenanceCategory.MaintenanceCategoryName;
 
                 if (i.IsApproved == 0)
                 {

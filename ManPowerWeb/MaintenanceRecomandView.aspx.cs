@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class MaintenanceApprovalView : System.Web.UI.Page
+    public partial class MaintenanceRecomandView : System.Web.UI.Page
     {
         List<VehicleMeintenance> vehicleMeintenances = new List<VehicleMeintenance>();
         List<SystemUser> systemUsers = new List<SystemUser>();
@@ -19,6 +19,7 @@ namespace ManPowerWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
 
             MaintenanceCategoryController maintenanceCategoryController = ControllerFactory.CreateMaintenanceCategoryController();
 
@@ -48,12 +49,13 @@ namespace ManPowerWeb
 
                     if (i.IsApproved == 0)
                     {
+                        butonA.Visible = true;
+                        butonR.Visible = true;
+
                         approval.Text = "Not Recommended";
                     }
                     else if (i.IsApproved == 1)
                     {
-                        butonA.Visible = true;
-                        butonR.Visible = true;
                         approval.Text = "Pending Approval";
                     }
 
@@ -66,7 +68,6 @@ namespace ManPowerWeb
                     {
                         approval.Text = "Request Rejected";
                     }
-
                 }
             }
 
@@ -74,7 +75,7 @@ namespace ManPowerWeb
 
         protected void isClicked(object sender, EventArgs e)
         {
-            Response.Redirect("MaintenanceApproval.aspx");
+            Response.Redirect("MaintenanceRecomand.aspx");
         }
 
         protected void Accept(object sender, EventArgs e)
@@ -82,11 +83,11 @@ namespace ManPowerWeb
             string id = Request.QueryString["id"];
 
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 2, Convert.ToInt32(Session["UserId"]), "");
+            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 1, Convert.ToInt32(Session["UserId"]), "");
 
             if (result == 1)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Request Approved..!', 'success');window.setTimeout(function(){window.location='MaintenanceApproval.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Sending to Approval..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecomand.aspx'},2500);", true);
             }
             else
             {
@@ -101,11 +102,11 @@ namespace ManPowerWeb
             string id = Request.QueryString["id"];
 
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 3, Convert.ToInt32(Session["UserId"]), rejectReason.Text);
+            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 3, Convert.ToInt32(Session["UserId"]), rejectReason.Text);
 
             if (result == 1)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Request Rejected..!', 'success');window.setTimeout(function(){window.location='MaintenanceApproval.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Request Rejected..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecomand.aspx'},2500);", true);
             }
             else
             {
@@ -114,5 +115,6 @@ namespace ManPowerWeb
             }
 
         }
+
     }
 }

@@ -1,9 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveTrainingRequest.aspx.cs" Inherits="ManPowerWeb.ApproveTrainingRequest" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RecommendationTrainingRequest.aspx.cs" Inherits="ManPowerWeb.RecommendationTrainingRequest" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card">
-        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Approve/Reject Training Requests</h2>
+        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Recommendation Training Requests</h2>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">
             <asp:GridView ID="gvApproveTraining" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
                 CellPadding="4" ForeColor="#333333" GridLines="None">
@@ -17,9 +19,9 @@
                     <asp:BoundField DataField="Trainingmain.Start_Date" HeaderText="Start Date" DataFormatString="{0:dd-MM-yyyy}" />
                     <asp:BoundField DataField="Trainingmain.End_date" HeaderText="End Date" DataFormatString="{0:dd-MM-yyyy}" />
                     <asp:BoundField DataField="Trainingmain.Member_Count" HeaderText="Member Count" />
-                    <asp:TemplateField HeaderText="Approve">
+                    <asp:TemplateField HeaderText="Recommend">
                         <ItemTemplate>
-                            <asp:LinkButton CssClass="btn btn-outline-success" ID="btnApprove" runat="server" Style="width: 150px;" OnClick="btnApprove_Click">Approve</asp:LinkButton>
+                            <asp:LinkButton CssClass="btn btn-outline-success" ID="btnApprove" runat="server" Style="width: 150px;" OnClick="btnApprove_Click">Recommend</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Reject">

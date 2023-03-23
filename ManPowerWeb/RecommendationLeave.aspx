@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveLeave.aspx.cs" Inherits="ManPowerWeb.ApproveLeave" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RecommendationLeave.aspx.cs" Inherits="ManPowerWeb.RecommendationLeave" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card  p-4">
-            <h2>Approve Leave</h2>
+            <h2>Leave Recommendation</h2>
 
 
             <div class="mt-3">
@@ -114,6 +116,4 @@
         </div>
 
     </div>
-
-
 </asp:Content>

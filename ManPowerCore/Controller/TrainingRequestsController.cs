@@ -15,7 +15,12 @@ namespace ManPowerCore.Controller
 
         int Update(TrainingRequests trainingRequests);
 
+        int UpdateRec(TrainingRequests trainingRequests);
+        int Delete(TrainingRequests trainingRequests);
+
         List<TrainingRequests> GetAllTrainingRequests();
+
+        List<TrainingRequests> GetAllTrainingRequestsBiMainId(int id);
 
         List<TrainingRequests> GetAllTrainingRequestsWithDetail();
     }
@@ -62,6 +67,44 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public int Delete(TrainingRequests trainingRequests)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return trainingRequestsDAO.Delete(trainingRequests, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+
+        public int UpdateRec(TrainingRequests trainingRequests)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return trainingRequestsDAO.UpdateRec(trainingRequests, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
         public List<TrainingRequests> GetAllTrainingRequests()
         {
             try
@@ -98,6 +141,45 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
         }
+
+        public List<TrainingRequests> GetAllTrainingRequestsBiMainId(int id)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                List<TrainingRequests> trainingRequestsList = trainingRequestsDAO.GetAllTrainingRequestsBiMainId(id, dBConnection);
+                if (trainingRequestsList.Count != 0)
+                {
+                    TrainingMainController trainingMainController = ControllerFactory.CreateTrainingMainController();
+                    List<TrainingMain> TrainingMainList = trainingMainController.GetAllTrainingMain();
+
+                    SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+                    List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
+
+                    foreach (var item in trainingRequestsList)
+                    {
+                        item.Trainingmain = TrainingMainList.Where(x => x.TrainingMainId == item.TrainingMainId).Single();
+                    }
+
+                    foreach (var item in trainingRequestsList)
+                    {
+                        item.SystemUser = systemUserList.Where(x => x._DepartmentUnitPositions.DepartmetUnitPossitionsId == item.Created_User).Single();
+                    }
+                }
+                return trainingRequestsList;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
 
         public List<TrainingRequests> GetAllTrainingRequestsWithDetail()
         {

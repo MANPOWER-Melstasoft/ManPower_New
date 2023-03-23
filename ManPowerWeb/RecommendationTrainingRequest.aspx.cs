@@ -10,13 +10,12 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveTrainingRequest : System.Web.UI.Page
+    public partial class RecommendationTrainingRequest : System.Web.UI.Page
     {
         List<TrainingRequests> trainingRequestsList = new List<TrainingRequests>();
-
         TrainingRequests trainingRequestObj = new TrainingRequests();
-
         public int depPositionID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -24,12 +23,13 @@ namespace ManPowerWeb
             depPositionID = Convert.ToInt32(Session["DepUnitPositionId"]);
             BindDataSource();
         }
+
         public void BindDataSource()
         {
             TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
             trainingRequestsList = trainingRequestsController.GetAllTrainingRequestsWithDetail();
 
-            trainingRequestsList = trainingRequestsList.Where(x => x.Accepted_User == depPositionID && x.Is_Active == 1 && x.ProjectStatusId == 2 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
+            trainingRequestsList = trainingRequestsList.Where(x => x.Accepted_User == depPositionID && x.Is_Active == 1 && x.ProjectStatusId == 1 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
 
             gvApproveTraining.DataSource = trainingRequestsList;
             gvApproveTraining.DataBind();
@@ -45,8 +45,8 @@ namespace ManPowerWeb
 
             trainingRequestObj = trainingRequestsList[rowIndex];
 
-            trainingRequestObj.Accepted_Date = DateTime.Now;
-            trainingRequestObj.ProjectStatusId = 1008;
+            trainingRequestObj.Recommend_date = DateTime.Now;
+            trainingRequestObj.ProjectStatusId = 2;
 
             trainingRequestsController.Update(trainingRequestObj);
 
@@ -64,7 +64,7 @@ namespace ManPowerWeb
 
             trainingRequestObj = trainingRequestsList[rowIndex];
 
-            trainingRequestObj.Accepted_Date = DateTime.Now;
+            trainingRequestObj.Recommend_date = DateTime.Now;
             trainingRequestObj.ProjectStatusId = 7;
 
             trainingRequestsController.Update(trainingRequestObj);

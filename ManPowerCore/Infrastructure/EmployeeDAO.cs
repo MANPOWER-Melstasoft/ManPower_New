@@ -163,9 +163,6 @@ namespace ManPowerCore.Infrastructure
         {
 
             if (dbConnection.dr != null)
-                dbConnection.dr.Close();
-
-            if (dbConnection.dr != null)
                 dbConnection.dr.Close(); dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Is_Active = @Is_Active  WHERE ID = @EmployeeId";

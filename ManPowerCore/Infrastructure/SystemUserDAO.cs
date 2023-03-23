@@ -26,6 +26,8 @@ namespace ManPowerCore.Infrastructure
         int UpdateLastLoginDate(SystemUser systemuser, DBConnection dbConnection);
         SystemUser CheckEmpNumberExists(int Number, DBConnection dbConnection);
         int ChangePassword(SystemUser systemuser, DBConnection dbConnection);
+
+        int AcInAcUser(int EmpId, int isActive, DBConnection dbConnection);
     }
 
     public class SystemUserDAOImpl : SystemUserDAO
@@ -153,7 +155,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM COMPANY_USER WHERE USER_NAME = '" + runUserName + "' ";
+            dbConnection.cmd.CommandText = "SELECT * FROM COMPANY_USER WHERE USER_NAME = '" + runUserName + "' AND Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -258,6 +260,21 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "UPDATE COMPANY_USER SET User_Password = '" + systemuser.UserPwd + "' WHERE ID = " + systemuser.SystemUserId;
 
             return dbConnection.cmd.ExecuteNonQuery();
+        }
+
+        public int AcInAcUser(int EmpId, int isActive, DBConnection dbConnection)
+        {
+
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close(); dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE COMPANY_USER SET Is_Active = @Is_Active  WHERE ID = @EmployeeId";
+
+            dbConnection.cmd.Parameters.AddWithValue("@Is_Active", isActive);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", EmpId);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace ManPowerWeb
             TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
             trainingRequestsList = trainingRequestsController.GetAllTrainingRequestsWithDetail();
 
-            trainingRequestsList = trainingRequestsList.Where(x => x.Accepted_User == depPositionID && x.Is_Active == 1 && x.ProjectStatusId == 1 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
+            trainingRequestsList = trainingRequestsList.Where(x => x.Is_Active == 1 && x.ProjectStatusId == 1 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
 
             gvApproveTraining.DataSource = trainingRequestsList;
             gvApproveTraining.DataBind();
@@ -45,13 +45,21 @@ namespace ManPowerWeb
 
             trainingRequestObj = trainingRequestsList[rowIndex];
 
+            trainingRequestObj.Recommend_user = depPositionID;
             trainingRequestObj.Recommend_date = DateTime.Now;
             trainingRequestObj.ProjectStatusId = 2;
 
-            trainingRequestsController.Update(trainingRequestObj);
+            int result = trainingRequestsController.UpdateRec(trainingRequestObj);
+            if (result == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Sending to Approval..!', 'success');window.setTimeout(function(){window.location='RecommendationTrainingRequest.aspx'},1500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
-            string url = "approvetrainingrequest.aspx";
-            Response.Redirect(url);
+            }
+
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
@@ -64,13 +72,20 @@ namespace ManPowerWeb
 
             trainingRequestObj = trainingRequestsList[rowIndex];
 
+            trainingRequestObj.Recommend_user = depPositionID;
             trainingRequestObj.Recommend_date = DateTime.Now;
             trainingRequestObj.ProjectStatusId = 7;
 
-            trainingRequestsController.Update(trainingRequestObj);
+            int result = trainingRequestsController.UpdateRec(trainingRequestObj);
+            if (result == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected..!', 'success');window.setTimeout(function(){window.location='RecommendationTrainingRequest.aspx'},1500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
-            string url = "approvetrainingrequest.aspx";
-            Response.Redirect(url);
+            }
         }
     }
 }

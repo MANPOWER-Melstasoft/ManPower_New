@@ -86,7 +86,6 @@ namespace ManPowerCore.Controller
             }
         }
 
-
         public int UpdateRec(TrainingRequests trainingRequests)
         {
             try
@@ -105,6 +104,7 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
         }
+
         public List<TrainingRequests> GetAllTrainingRequests()
         {
             try

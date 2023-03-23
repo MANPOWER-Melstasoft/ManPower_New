@@ -13,10 +13,9 @@ namespace ManPowerWeb
     public partial class ApproveTrainingRequest : System.Web.UI.Page
     {
         List<TrainingRequests> trainingRequestsList = new List<TrainingRequests>();
-
         TrainingRequests trainingRequestObj = new TrainingRequests();
+        static int depPositionID;
 
-        public int depPositionID;
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -29,7 +28,7 @@ namespace ManPowerWeb
             TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
             trainingRequestsList = trainingRequestsController.GetAllTrainingRequestsWithDetail();
 
-            trainingRequestsList = trainingRequestsList.Where(x => x.Accepted_User == depPositionID && x.Is_Active == 1 && x.ProjectStatusId == 2 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
+            trainingRequestsList = trainingRequestsList.Where(x => x.Is_Active == 1 && x.ProjectStatusId == 2 && x.Trainingmain.Start_Date > DateTime.Now).ToList();
 
             gvApproveTraining.DataSource = trainingRequestsList;
             gvApproveTraining.DataBind();
@@ -45,13 +44,21 @@ namespace ManPowerWeb
 
             trainingRequestObj = trainingRequestsList[rowIndex];
 
+            trainingRequestObj.Accepted_User = depPositionID;
             trainingRequestObj.Accepted_Date = DateTime.Now;
             trainingRequestObj.ProjectStatusId = 1008;
 
-            trainingRequestsController.Update(trainingRequestObj);
+            int result = trainingRequestsController.Update(trainingRequestObj);
+            if (result == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Approved..!', 'success');window.setTimeout(function(){window.location='approvetrainingrequest.aspx'},1500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
-            string url = "approvetrainingrequest.aspx";
-            Response.Redirect(url);
+            }
+
         }
 
         protected void btnReject_Click(object sender, EventArgs e)
@@ -64,13 +71,20 @@ namespace ManPowerWeb
 
             trainingRequestObj = trainingRequestsList[rowIndex];
 
+            trainingRequestObj.Accepted_User = depPositionID;
             trainingRequestObj.Accepted_Date = DateTime.Now;
             trainingRequestObj.ProjectStatusId = 7;
 
-            trainingRequestsController.Update(trainingRequestObj);
+            int result = trainingRequestsController.Update(trainingRequestObj);
+            if (result == 1)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Rejected..!', 'success');window.setTimeout(function(){window.location='approvetrainingrequest.aspx'},1500);", true);
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
-            string url = "approvetrainingrequest.aspx";
-            Response.Redirect(url);
+            }
         }
     }
 }

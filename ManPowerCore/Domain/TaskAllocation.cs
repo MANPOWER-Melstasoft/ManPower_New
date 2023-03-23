@@ -63,5 +63,7 @@ namespace ManPowerCore.Domain
         public TaskType _TaskType { get; set; } = new TaskType();
         public SystemUser _SystemUser { get; set; } = new SystemUser();
 
+        public DepartmentUnit departmentUnit { get; set; }
+
     }
 }

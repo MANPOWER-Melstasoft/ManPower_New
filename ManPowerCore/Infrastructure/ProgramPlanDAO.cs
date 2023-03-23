@@ -281,7 +281,7 @@ namespace ManPowerCore.Infrastructure
                 "union all " +
                 "select b.Id, b.Program_Id, 0 as an, b.No_Of_Projects, b.Vote_Number, b.Period_Type as qt, 0 as ml from Program_Target b " +
                 "INNER JOIN Program_Assignee c ON c.Program_Target_Id = b.Id " +
-                "WHERE c.Department_Unit_Possitions_Id = 2027 and b.Period_Type = 2 " +
+                "WHERE c.Department_Unit_Possitions_Id = " + DepId + " and b.Period_Type = 2 " +
                 "union all " +
                 "select b.Id, b.Program_Id, 0 as an, 0 as qt, b.No_Of_Projects, b.Vote_Number, b.Period_Type as ml from Program_Target b " +
                 "INNER JOIN Program_Assignee c ON c.Program_Target_Id = b.Id " +

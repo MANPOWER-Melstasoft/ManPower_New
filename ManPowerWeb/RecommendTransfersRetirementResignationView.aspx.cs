@@ -10,13 +10,14 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApproveTransfersRetirementResignationView : System.Web.UI.Page
+    public partial class RecommendTransfersRetirementResignationView : System.Web.UI.Page
     {
         static int Id;
         static int typeId;
         static string document;
         static TransfersRetirementResignationMain trrmainObj = new TransfersRetirementResignationMain();
         static List<SystemUser> AssignUserList = new List<SystemUser>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -27,7 +28,6 @@ namespace ManPowerWeb
                 {
                     Id = Convert.ToInt32(Request.QueryString["Id"]);
                     BindStatus();
-                    BindAction();
                     BindAssignUser();
                     BindReverseReason();
                     BindData();
@@ -60,7 +60,11 @@ namespace ManPowerWeb
             lblDocument.Text = trrmainObj.Documents;
             document = trrmainObj.Documents;
 
-            if (trrmainObj.StatusId == 2)
+            if (trrmainObj.StatusId == 1)
+            {
+                btnSubmit.Visible = true;
+            }
+            else if (trrmainObj.StatusId == 2)
             {
                 ddlUpdateStatus.SelectedValue = "1";
             }
@@ -103,7 +107,6 @@ namespace ManPowerWeb
             else if (trrmainObj.StatusId == 5)
             {
                 ddlUpdateStatus.SelectedValue = "0";
-                btnSubmit.Visible = true;
             }
 
             if (trrmainObj.RequestTypeId == 1)
@@ -158,7 +161,7 @@ namespace ManPowerWeb
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ApproveTransfersRetirementResignation.aspx");
+            Response.Redirect("RecommendTransfersRetirementResignation.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -168,13 +171,14 @@ namespace ManPowerWeb
 
             trrmainObj.ActionTakenUserId = Convert.ToInt32(Session["UserId"]);
             trrmainObj.ActionTakenDate = DateTime.Today;
+            trrmainObj.RecomendParentId = Convert.ToInt32(Session["UserId"]);
             trrmainObj.Remarks = "";
             trrmainObj.Reason = "";
 
-            if (ddlUpdateStatus.SelectedItem.Text == "Approve")
+            if (ddlUpdateStatus.SelectedItem.Text == "Send to Approval")
             {
-                trrmainObj.StatusId = 2;
-                trrmainObj.ParentAction = "Approve";
+                trrmainObj.StatusId = 5;
+                trrmainObj.ParentAction = ddlAction.SelectedItem.Text;
             }
             if (ddlUpdateStatus.SelectedItem.Text == "Reverse")
             {
@@ -188,11 +192,11 @@ namespace ManPowerWeb
                 trrmainObj.Remarks = txtRejectRemark.Text;
             }
 
-            output = transfersRetirementResignationMainController.Update(trrmainObj);
+            output = transfersRetirementResignationMainController.Recommend(trrmainObj);
 
             if (output == 1)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Record Updated Succesfully!', 'success');window.setTimeout(function(){window.location='ApproveTransfersRetirementResignation.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Record Updated Succesfully!', 'success');window.setTimeout(function(){window.location='RecommendTransfersRetirementResignation.aspx'},2500);", true);
             }
             else
             {
@@ -247,22 +251,9 @@ namespace ManPowerWeb
         {
             ddlUpdateStatus.Items.Insert(0, new ListItem("-- select status --", ""));
 
-            ddlUpdateStatus.Items.Insert(1, new ListItem("Approve", "1"));
+            ddlUpdateStatus.Items.Insert(1, new ListItem("Send to Approval", "1"));
             ddlUpdateStatus.Items.Insert(2, new ListItem("Reverse", "4"));
             ddlUpdateStatus.Items.Insert(3, new ListItem("Reject", "3"));
-        }
-
-        private void BindAction()
-        {
-            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            List<SystemUser> systemUsers = systemUserController.GetAllSystemUser(true, false, false);
-            AssignUserList = systemUsers.Where(x => x.UserTypeId == 1 && x._DepartmentUnitPositions.DepartmentUnitId == 1).ToList();
-
-            ddlAssignUser.DataSource = AssignUserList;
-            ddlAssignUser.DataValueField = "SystemUserId";
-            ddlAssignUser.DataTextField = "Name";
-            ddlAssignUser.DataBind();
-            ddlAssignUser.Items.Insert(0, new ListItem("-- select user --", ""));
         }
 
         private void BindAssignUser()

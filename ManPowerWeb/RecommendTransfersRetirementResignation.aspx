@@ -1,10 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveTransfersRetirementResignation.aspx.cs" Inherits="ManPowerWeb.ApproveTransfersRetirementResignation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RecommendTransfersRetirementResignation.aspx.cs" Inherits="ManPowerWeb.RecommendTransfersRetirementResignation" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card p-4">
-            <h2>Approve Transfers</h2>
+            <h2>Recommend Transfers</h2>
 
             <div class="mt-3">
 
@@ -44,7 +47,7 @@
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Approved" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Reverse" ?true:false %>' Text="Reverse" ForeColor="Orange"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Rejected" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Send to Approval" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Send to Approval" ?true:false %>' Text="Send to Approval" ForeColor="Black"> </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
 

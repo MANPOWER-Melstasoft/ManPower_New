@@ -15,6 +15,7 @@ namespace ManPowerCore.Controller
         int Save(TransfersRetirementResignationMain obj);
         int Delete(int id);
         int Update(TransfersRetirementResignationMain obj);
+        int Recommend(TransfersRetirementResignationMain obj);
         List<TransfersRetirementResignationMain> GetAllTransfersRetirementResignation(bool with0);
         TransfersRetirementResignationMain GetTransfersRetirementResignation(int Id);
     }
@@ -48,7 +49,26 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return transfersRetirementResignationMainDAO.Update(obj, dBConnection);
+                return transfersRetirementResignationMainDAO.Approve(obj, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int Recommend(TransfersRetirementResignationMain obj)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return transfersRetirementResignationMainDAO.Recommend(obj, dBConnection);
             }
             catch (Exception)
             {

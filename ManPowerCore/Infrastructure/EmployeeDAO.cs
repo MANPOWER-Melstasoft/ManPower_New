@@ -18,7 +18,10 @@ namespace ManPowerCore.Infrastructure
         int SaveEmployee(Employee emp, DBConnection dbConnection);
 
         int UpdateEmployee(Employee emp, DBConnection dbConnection);
+
         int AcInAcEmployee(int EmpId, int isActive, DBConnection dbConnection);
+
+        int ChanngeDepartment(Employee emp, DBConnection dbConnection);
     }
 
     public class EmployeeDAOImpl : EmployeeDAO
@@ -169,6 +172,24 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.Parameters.AddWithValue("@Is_Active", isActive);
             dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", EmpId);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
+        }
+
+        public int ChanngeDepartment(Employee emp, DBConnection dbConnection)
+        {
+
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close(); dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET DSDivision_Id = @DSDivisionId, District_Id = @DistrictId, " +
+                "Unit_Type = @UnitType  WHERE ID = @EmployeeId";
+
+            dbConnection.cmd.Parameters.AddWithValue("@DSDivisionId", emp.DSDivisionId);
+            dbConnection.cmd.Parameters.AddWithValue("@DistrictId", emp.DistrictId);
+            dbConnection.cmd.Parameters.AddWithValue("@UnitType", emp.UnitType);
+            dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", emp.EmployeeId);
 
             dbConnection.cmd.ExecuteNonQuery();
             return 1;

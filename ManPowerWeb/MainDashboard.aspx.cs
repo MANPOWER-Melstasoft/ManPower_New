@@ -19,7 +19,7 @@ namespace ManPowerWeb
 
         protected void btnHR_Click(object sender, EventArgs e)
         {
-            if (Session["UserTypeId"].ToString() == "5" || Session["UserTypeId"].ToString() == "14")
+            if (Session["UserTypeId"].ToString() == "5" || Session["UserTypeId"].ToString() == "14" || Session["UserTypeId"].ToString() == "15")
             {
                 Session["Division"] = 1;
                 Response.Redirect("Dashboard.aspx");

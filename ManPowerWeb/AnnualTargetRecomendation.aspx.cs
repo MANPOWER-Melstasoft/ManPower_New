@@ -13,7 +13,8 @@ namespace ManPowerWeb
     public partial class AnnualTargetRecomendation : System.Web.UI.Page
     {
         List<ProgramTarget> myList = new List<ProgramTarget>();
-        List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
+        static List<ProgramTarget> programTargetsList = new List<ProgramTarget>();
+        static List<ProgramTarget> programTargetsListFilter = new List<ProgramTarget>();
 
 
         List<ProgramTarget> programTargetsListPending = new List<ProgramTarget>();
@@ -36,6 +37,7 @@ namespace ManPowerWeb
             ProgramTargetController programTargetController = ControllerFactory.CreateProgramTargetController();
             programTargetsList = programTargetController.GetAllProgramTarget(true, true, true, true);
             programTargetsList = programTargetsList.Where(x => x.RecommendedBy == Convert.ToInt32(Session["UserId"])).ToList();
+            programTargetsListFilter = programTargetsList.ToList();
             ViewState["All"] = programTargetsList;
             ViewState["pending"] = programTargetsList.Where(x => x.IsRecommended == 1).ToList();
             ViewState["Approved"] = programTargetsList.Where(x => x.IsRecommended == 2).ToList();
@@ -64,12 +66,12 @@ namespace ManPowerWeb
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            bindSource();
+            //bindSource();
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int pagesize = GridView1.PageSize;
             int pageindex = GridView1.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
-            Response.Redirect("AnnualTargetRecomendationView.aspx?ProgramTargetId=" + programTargetsList[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsList[rowIndex].IsRecommended);
+            Response.Redirect("AnnualTargetRecomendationView.aspx?ProgramTargetId=" + programTargetsListFilter[rowIndex].ProgramTargetId.ToString() + "&Status=" + programTargetsListFilter[rowIndex].IsRecommended);
 
         }
 
@@ -86,18 +88,22 @@ namespace ManPowerWeb
             if (ddlStatus.SelectedValue == "0")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["All"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["All"];
             }
             else if (ddlStatus.SelectedValue == "1")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["pending"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["pending"];
             }
             else if (ddlStatus.SelectedValue == "2")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["Approved"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["Approved"];
             }
             else
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["Rejected"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["Rejected"];
             }
             GridView1.DataBind();
 

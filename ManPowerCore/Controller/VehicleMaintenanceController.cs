@@ -92,7 +92,17 @@ namespace ManPowerCore.Controller
             DBConnection dbConnection = new DBConnection();
             try
             {
-                return vehicleMaintenanceDAO.GetAllVehicleMeintenance(dbConnection);
+                List<VehicleMeintenance> vehicleMeintenanceList = vehicleMaintenanceDAO.GetAllVehicleMeintenance(dbConnection);
+
+                EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+                List<Employee> employeeList = employeeController.GetAllEmployees();
+
+                foreach (var item in vehicleMeintenanceList)
+                {
+                    item.Employee = employeeList.Where(x => x.EmployeeId == item.EmpId).Single();
+                }
+
+                return vehicleMeintenanceList;
             }
             catch (Exception ex)
             {

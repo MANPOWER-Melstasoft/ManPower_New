@@ -39,7 +39,7 @@ namespace ManPowerWeb
                 {
                     fielNo.Text = i.FileNo;
                     date.Text = i.RequestDate.ToString();
-                    requestedBy.Text = i.RequestDate.ToString();
+                    requestedBy.Text = i.Employee.NameWithInitials.ToString();
                     vNo.Text = i.VehicleNumber;
                     description.Text = i.RequestDescription.ToString();
 

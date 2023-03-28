@@ -57,5 +57,7 @@ namespace ManPowerCore.Domain
 
         [DBField("Rejected_Reason")]
         public string RejectedReason { get; set; }
+
+        public Employee Employee { get; set; }
     }
 }

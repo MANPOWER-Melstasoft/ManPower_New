@@ -65,7 +65,7 @@ namespace ManPowerWeb
                 trainingMain.Content = txtDescription.Text;
                 trainingMain.Member_Count = Convert.ToInt32(txtCount.Text);
 
-                if (trainingMain.Start_Date > DateTime.Now && trainingMain.End_date >= trainingMain.Start_Date)
+                if (trainingMain.Start_Date >= DateTime.Now && trainingMain.End_date >= trainingMain.Start_Date)
                 {
                     if (FileUploader.HasFile)
                     {

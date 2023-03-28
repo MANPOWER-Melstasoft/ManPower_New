@@ -125,10 +125,13 @@ namespace ManPowerWeb
             {
                 gvFileResourses.DataSource = programPlansList;
                 gvFileResourses.DataBind();
+
             }
             else
             {
-                lblListOfUploadedFiles.Text = "N/A";
+                gvFileResourses.DataSource = null;
+                gvFileResourses.DataBind();
+
             }
 
 

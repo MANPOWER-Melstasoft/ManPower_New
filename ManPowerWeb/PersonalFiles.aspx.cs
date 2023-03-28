@@ -409,7 +409,7 @@ namespace ManPowerWeb
                         StartDate = Convert.ToDateTime(sDate.Text),
                         EndDate = calcuatedDate,
                         IsResigned = int.Parse(reseg.SelectedValue),
-                        RetirementDate = DateTime.Today,
+                        //RetirementDate = DateTime.Today,
 
                     });
                 }
@@ -442,7 +442,7 @@ namespace ManPowerWeb
                         StartDate = Convert.ToDateTime(sDate.Text),
                         EndDate = calcuatedDate,
                         IsResigned = int.Parse(reseg.SelectedValue),
-                        RetirementDate = DateTime.Today,
+                        //RetirementDate = DateTime.Today,
 
                     });
                 }
@@ -479,7 +479,7 @@ namespace ManPowerWeb
                             StartDate = Convert.ToDateTime(sDate.Text),
                             EndDate = Convert.ToDateTime(eDate.Text),
                             IsResigned = int.Parse(reseg.SelectedValue),
-                            RetirementDate = DateTime.Today,
+                            //RetirementDate = DateTime.Today,
 
                         });
                     }

@@ -51,7 +51,7 @@
                     <asp:BoundField HeaderText="Res. person Subject Area/Topic" />
                     <asp:BoundField DataField="Vote_Number" HeaderText="Vote Number" />
                     <asp:BoundField DataField="Approved_Amount" HeaderText="Expenditure" />
-                    <asp:BoundField DataField="Financial_Source" HeaderText="Financial Source" />
+                    <asp:BoundField DataField="Financial_Source" HeaderText="Attachments" />
                     <asp:BoundField HeaderText="Job Refferal Count" />
                     <asp:BoundField HeaderText="Job Placement Count" />
                     <asp:BoundField HeaderText="Training Refferal Count" />

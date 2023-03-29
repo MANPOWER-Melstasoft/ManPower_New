@@ -46,18 +46,22 @@ namespace ManPowerWeb
             if (ddlStatus.SelectedValue == "0")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["All"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["All"];
             }
             else if (ddlStatus.SelectedValue == "1")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["pending"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["pending"];
             }
             else if (ddlStatus.SelectedValue == "2")
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["Approved"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["Approved"];
             }
             else
             {
                 GridView1.DataSource = (List<ProgramTarget>)ViewState["Rejected"];
+                programTargetsListFilter = (List<ProgramTarget>)ViewState["Rejected"];
             }
             GridView1.DataBind();
 

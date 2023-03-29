@@ -196,5 +196,11 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
         }
+
+        protected void gvProgramPlan_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProgramPlan.PageIndex = e.NewPageIndex;
+            this.DataSourceBind();
+        }
     }
 }

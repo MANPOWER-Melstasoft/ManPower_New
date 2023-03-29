@@ -209,5 +209,11 @@ namespace ManPowerWeb
         {
 
         }
+
+        protected void gvProgramPlan_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProgramPlan.PageIndex = e.NewPageIndex;
+            this.DataSourceBind();
+        }
     }
 }

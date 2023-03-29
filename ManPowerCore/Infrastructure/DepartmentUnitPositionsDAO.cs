@@ -13,6 +13,8 @@ namespace ManPowerCore.Infrastructure
         int SaveDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions, DBConnection dbConnection);
         int UpdateDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions, DBConnection dbConnection);
 
+        int UpdateSytemUserIdByDepartment_Unit_Position_Id(int SystemUserId, int Department_Unit_Position_Id, DBConnection dbConnection);
+
         DepartmentUnitPositions departmentUnitPositionsWIthSystemUser(int programTargetid, DBConnection dbConnection);
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(DBConnection dbConnection);
         DepartmentUnitPositions GetDepartmentUnitPositions(int id, DBConnection dbConnection);
@@ -79,7 +81,18 @@ namespace ManPowerCore.Infrastructure
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
+        public int UpdateSytemUserIdByDepartment_Unit_Position_Id(int SystemUserId, int Department_Unit_Position_Id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
 
+            dbConnection.cmd.CommandText = "UPDATE DEPARTMENT_UNIT_POSSITIONS SET SYSTEM_USER_ID = @SystemUserId WHERE Id = @Department_Unit_Position_Id";
+
+            dbConnection.cmd.Parameters.AddWithValue("@SystemUserId", SystemUserId);
+            dbConnection.cmd.Parameters.AddWithValue("@Department_Unit_Position_Id", Department_Unit_Position_Id);
+
+            return dbConnection.cmd.ExecuteNonQuery();
+        }
 
         public List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(DBConnection dbConnection)
         {

@@ -282,6 +282,35 @@
                 </div>
             </div>
 
+            <div class="row mb-3 ms-1" id="divViewUplaod" runat="server" visible="false">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <asp:Literal ID="Literal15" runat="server" Text="View Documnents"></asp:Literal>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:Label ID="Label1" runat="server" />
+                            <asp:GridView runat="server" ID="gvFileResourses" AutoGenerateColumns="false" CssClass="table table-bordered" ShowHeaderWhenEmpty="true"
+                                EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+                                <Columns>
+                                    <asp:BoundField DataField="FinancialSource" HeaderText="File Name" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
+                                    <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <a href="/SystemDocuments/ProgramPlanResources/<%# Eval("FinancialSource") %>" download>Download</a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <EmptyDataTemplate>
+                                    No Resourses To Show
+                                </EmptyDataTemplate>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
             <div class="row mb-3 ms-1 mt-5">
 

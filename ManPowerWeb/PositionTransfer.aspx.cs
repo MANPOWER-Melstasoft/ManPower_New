@@ -57,22 +57,30 @@ namespace ManPowerWeb
             int employeeId = Convert.ToInt32(ddlRetire.SelectedValue);
             employeeObject = employeeController.GetEmployeeById(employeeId);
 
+
+
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             List<SystemUser> systemUsers = new List<SystemUser>();
             systemUsers = systemUserController.GetAllSystemUser(true, false, false);
 
+            //get retirment Employee Systemuser Id
+
+            var retireEmployeeSystemUserDetails = systemUsers.Where(x => x.EmpNumber == employeeId).Single();
+            int retireEmployeeSystemUserId = retireEmployeeSystemUserDetails.SystemUserId;
+
+            ViewState["retireEmployeedepUnitPosId"] = retireEmployeeSystemUserDetails._DepartmentUnitPositions.DepartmetUnitPossitionsId;
+
             if (employeeObject.UnitType == 3)
             {
-                systemUsers = systemUsers.Where(x => x._DepartmentUnitPositions.DepartmentUnitId == employeeObject.DSDivisionId).ToList();
+                systemUsers = systemUsers.Where(x => x._DepartmentUnitPositions.DepartmentUnitId == employeeObject.DSDivisionId && x.SystemUserId != retireEmployeeSystemUserId).ToList();
 
             }
             else
             {
-                systemUsers = systemUsers.Where(x => x._DepartmentUnitPositions.DepartmentUnitId == employeeObject.DistrictId).ToList();
+                systemUsers = systemUsers.Where(x => x._DepartmentUnitPositions.DepartmentUnitId == employeeObject.DistrictId && x.SystemUserId != retireEmployeeSystemUserId).ToList();
 
             }
 
-            List<Employee> employeesTransferList = new List<Employee>();
 
             ddlTransfer.DataSource = systemUsers;
             ddlTransfer.DataValueField = "SystemUserId";
@@ -84,6 +92,26 @@ namespace ManPowerWeb
 
 
 
+        }
+
+        protected void btnTransfer_Click(object sender, EventArgs e)
+        {
+            DepartmentUnitPositionsController departmentUnitPositionsController = ControllerFactory.CreateDepartmentUnitPositionsController();
+            int systemUserId = Convert.ToInt32(ddlTransfer.SelectedValue);
+            int depUnitPosId = Convert.ToInt32(ViewState["retireEmployeedepUnitPosId"]);
+
+            int response = departmentUnitPositionsController.UpdateSytemUserIdByDepartment_Unit_PositionId(systemUserId, depUnitPosId);
+
+            if (response != 0)
+            {
+
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Transferd!', 'success');window.setTimeout(function(){{window.location='PositionTransfer.aspx'}} ,2500);"), true);
+
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", string.Format("swal('Success!', 'Successfully Transferd!', 'success');window.setTimeout(function(){{window.location='PositionTransfer.aspx'}} ,2500);"), true);
+            }
         }
     }
 }

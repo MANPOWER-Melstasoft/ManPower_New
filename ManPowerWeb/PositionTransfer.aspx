@@ -15,6 +15,7 @@
                     </div>
                     <div class="col-sm-6">
                         <asp:DropDownList runat="server" ID="ddlRetire" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlRetire_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlRetire" BackColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>
@@ -25,6 +26,8 @@
                     </div>
                     <div class="col-sm-6">
                         <asp:DropDownList runat="server" ID="ddlTransfer" CssClass="form-control form-control-user"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlTransfer" BackColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+
                     </div>
                 </div>
             </div>
@@ -36,7 +39,7 @@
                 <div class="row">
 
                     <div class="col-sm-6">
-                        <asp:Button runat="server" ID="btnTransfer" CssClass="btn btn-primary " Text="Transfer"></asp:Button>
+                        <asp:Button runat="server" ID="btnTransfer" CssClass="btn btn-primary " Text="Transfer" OnClick="btnTransfer_Click" ValidationGroup="1"></asp:Button>
                     </div>
                 </div>
             </div>

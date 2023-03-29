@@ -44,6 +44,7 @@ namespace ManPowerWeb
 
 
 
+
         private void bindGrid(bool ifSearch)
         {
 
@@ -123,7 +124,13 @@ namespace ManPowerWeb
             programPlan.FemaleCount = 0;
             programPlan.Remark = "";
             programPlan.ProgramTargetId = programTargetsStates[rowIndex].ProgramTargetId;
+
+            //lblprogramtarget.Text = programTargetsStates[rowIndex].ProgramTargetId.ToString();
+
             programPlan.ProgramName = programTargetsStates[rowIndex]._ProgramTarget.Description;
+
+            //lblProgramName.Text = programTargetsStates[rowIndex]._ProgramTarget.Description;
+
             programPlan.Coordinater = "";
 
             programPlanController.SaveProgramPlan(programPlan);
@@ -132,6 +139,12 @@ namespace ManPowerWeb
 
 
 
+        }
+
+        protected void myFunction()
+        {
+            // your code to execute after the user clicks OK here
+            Response.Redirect("planning.aspx");
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -181,6 +194,8 @@ namespace ManPowerWeb
 
                 LinkButton button = (LinkButton)e.Row.FindControl("btnAddPlan");
 
+                CheckBox chkBtnAdd = (CheckBox)e.Row.FindControl("chkBtnAdd");
+
                 Label lbl = e.Row.FindControl("lblPlannedCount") as Label;
 
 
@@ -198,18 +213,14 @@ namespace ManPowerWeb
                     if (Convert.ToInt32(lbl.Text) < Convert.ToInt32(e.Row.Cells[10].Text))
                     {
                         button.Enabled = true;
-
+                        chkBtnAdd.Visible = false;
                     }
                     else
                     {
-                        button.Enabled = false;
-
+                        button.Visible = false;
+                        chkBtnAdd.Visible = true;
                     }
                 }
-
-
-
-
             }
 
         }
@@ -300,10 +311,61 @@ namespace ManPowerWeb
             }
         }
 
+        //protected void btnConfirm_Click(object sender, EventArgs e)
+        //{
+
+        //    programTargetsStates = (List<ProgramAssignee>)(ViewState["programTargetsStates"]);
+        //    ProgramPlan programPlan = new ProgramPlan();
+        //    ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
 
 
 
+        //    programPlan.Date = DateTime.Now;
+        //    programPlan.ProjectStatusId = 1;
+        //    programPlan.ProgramName = "";
+        //    programPlan.FinancialSource = "";
+        //    programPlan.ProgramCategoryId = 1;
+        //    programPlan.Location = "";
+        //    programPlan.Outcome = 0;
+        //    programPlan.Output = 0;
+        //    programPlan.ActualOutput = 0;
+        //    programPlan.IsApproved = 0;
+        //    programPlan.ApprovedBy = "";
+        //    programPlan.ApprovedDate = DateTime.Now;
+        //    programPlan.TotalEstimatedAmount = 0;
+        //    programPlan.ApprovedAmount = 0;
+        //    programPlan.ActualAmount = 0;
+        //    programPlan.MaleCount = 0;
+        //    programPlan.FemaleCount = 0;
+        //    programPlan.Remark = "";
+        //    programPlan.ProgramTargetId = Convert.ToInt32(lblprogramtarget.Text);
+        //    programPlan.ProgramName = lblProgramName.Text;
+        //    programPlan.Coordinater = "";
 
+        //    programPlanController.SaveProgramPlan(programPlan);
+
+        //    Response.Redirect(Request.RawUrl);
+        //}
+
+        private void GridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void chkBtnAdd_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            GridViewRow gridViewRow = (GridViewRow)checkBox.NamingContainer;
+            LinkButton button = (LinkButton)gridViewRow.FindControl("btnAddPlan");
+            button.Visible = checkBox.Checked;
+
+
+        }
     }
 
     //protected void gvPlanDetails_RowDataBound(object sender, GridViewRowEventArgs e)

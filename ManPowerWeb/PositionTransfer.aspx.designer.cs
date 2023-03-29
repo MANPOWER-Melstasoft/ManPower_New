@@ -24,13 +24,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal txtRetire;
 
         /// <summary>
-        /// ddlRetire control.
+        /// ddlTransferTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRetire;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTransferTo;
 
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -51,13 +51,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal txtTransfer;
 
         /// <summary>
-        /// ddlTransfer control.
+        /// ddlTransferFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTransfer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTransferFrom;
 
         /// <summary>
         /// RequiredFieldValidator2 control.

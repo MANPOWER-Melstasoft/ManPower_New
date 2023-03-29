@@ -11,22 +11,22 @@
             <div class="col">
                 <div class="row">
                     <div class="col-sm-3">
-                        <asp:Literal runat="server" ID="txtRetire" Text="Retire"></asp:Literal>
+                        <asp:Literal runat="server" ID="txtRetire" Text="Transfer To"></asp:Literal>
                     </div>
                     <div class="col-sm-6">
-                        <asp:DropDownList runat="server" ID="ddlRetire" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlRetire_SelectedIndexChanged"></asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlRetire" BackColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                        <asp:DropDownList runat="server" ID="ddlTransferTo" CssClass="form-control form-control-user" AutoPostBack="true" OnSelectedIndexChanged="ddlTransferTo_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlTransferTo" BackColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="row">
                     <div class="col-sm-3">
-                        <asp:Literal runat="server" ID="txtTransfer" Text="Transfer"></asp:Literal>
+                        <asp:Literal runat="server" ID="txtTransfer" Text="Transfer From"></asp:Literal>
                     </div>
                     <div class="col-sm-6">
-                        <asp:DropDownList runat="server" ID="ddlTransfer" CssClass="form-control form-control-user"></asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlTransfer" BackColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+                        <asp:DropDownList runat="server" ID="ddlTransferFrom" CssClass="form-control form-control-user"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="ddlTransferFrom" BackColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
 
                     </div>
                 </div>

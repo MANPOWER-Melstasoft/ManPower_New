@@ -13,6 +13,8 @@ namespace ManPowerCore.Infrastructure
         int SaveDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions, DBConnection dbConnection);
         int UpdateDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions, DBConnection dbConnection);
 
+        int Delete(int positionId, DBConnection dbConnection);
+
         int UpdateSytemUserIdByDepartment_Unit_Position_Id(int SystemUserId, int Department_Unit_Position_Id, DBConnection dbConnection);
 
         DepartmentUnitPositions departmentUnitPositionsWIthSystemUser(int programTargetid, DBConnection dbConnection);
@@ -99,7 +101,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS ";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -112,7 +114,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ParentId =" + ParentID;
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ParentId =" + ParentID + " AND Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -125,7 +127,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ID = " + id + " AND Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -139,7 +141,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE DEPARTMENT_UNIT_ID = " + departmentUnitId + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE DEPARTMENT_UNIT_ID = " + departmentUnitId + " AND Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -152,7 +154,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE SYSTEM_USER_ID = " + systemUserId + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE SYSTEM_USER_ID = " + systemUserId + " AND Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -164,7 +166,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE POSSITIONS_ID = " + possitionId + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE POSSITIONS_ID = " + possitionId + " AND Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -176,7 +178,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE SYSTEM_USER_ID = " + runSystemUserId + " ";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE SYSTEM_USER_ID = " + runSystemUserId + " AND Is_Active = 1";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
@@ -187,11 +189,25 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT System_User_Id FROM Department_Unit_Possitions WHERE Id =(SELECT Department_Unit_Possitions_Id FROM Program_Assignee WHERE Program_Target_Id =" + programTargetid + ")";
+            dbConnection.cmd.CommandText = "SELECT System_User_Id FROM Department_Unit_Possitions WHERE Id =(SELECT Department_Unit_Possitions_Id FROM Program_Assignee WHERE Program_Target_Id =" + programTargetid + ") AND Is_Active = 1";
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.GetSingleOject<DepartmentUnitPositions>(dbConnection.dr);
 
+        }
+
+        public int Delete(int positionId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE DEPARTMENT_UNIT_POSSITIONS SET Is_Active = 0 WHERE Id = @PositionId";
+
+            dbConnection.cmd.Parameters.AddWithValue("@PositionId", positionId);
+
+            return dbConnection.cmd.ExecuteNonQuery();
         }
     }
 }

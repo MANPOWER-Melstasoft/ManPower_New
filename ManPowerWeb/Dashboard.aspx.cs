@@ -181,7 +181,12 @@ namespace ManPowerWeb
 
         protected void BindCardData()
         {
-            BindAdminCardData();
+            if (Convert.ToInt32(Session["UserTypeId"]) == 15 || Convert.ToInt32(Session["UserTypeId"]) == 14)
+            {
+                BindAdminCardData();
+            }
+
+
             BindPlnUserCardData();
             BindPlnHeadCardData();
             BindDistrictHeadCardData();

@@ -49,6 +49,11 @@
                 CellPadding="4" GridLines="None">
                 <Columns>
                     <asp:BoundField HeaderText="Requested Date" DataField="RequestDate" HeaderStyle-CssClass="table-dark" />
+                    <asp:TemplateField HeaderText="Requested User" HeaderStyle-CssClass="table-dark">
+                        <ItemTemplate>
+                            <%# Eval("Employee.EmpInitials") + " " + Eval("Employee.LastName") %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField HeaderText="Vehicle Number" DataField="VehicleNumber" HeaderStyle-CssClass="table-dark" />
                     <asp:BoundField HeaderText="Description" DataField="RequestDescription" HeaderStyle-CssClass="table-dark" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Status" HeaderStyle-CssClass="table-dark">

@@ -52,8 +52,37 @@ namespace ManPowerCore.Controller
         {
             try
             {
+                int output = 0;
                 dBConnection = new DBConnection();
-                return transfersRetirementResignationMainDAO.Approve(obj, dBConnection);
+                output = transfersRetirementResignationMainDAO.Approve(obj, dBConnection);
+
+                if (output == 1 && obj.RequestTypeId == 1)
+                {
+                    EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+                    TransferDAO transferDAO = DAOFactory.CreateTransferDAO();
+                    DepartmentUnitDAO departmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
+
+                    Transfer transfer = transferDAO.GetTransferByMainId(obj.MainId, dBConnection);
+                    DepartmentUnit departmentUnit = departmentUnitDAO.GetDepartmentUnit(transfer.NextDep, dBConnection);
+
+                    Employee employee = new Employee();
+                    employee.EmployeeId = obj.EmployeeId;
+                    employee.UnitType = departmentUnit.DepartmentUnitTypeId;
+                    if (departmentUnit.DepartmentUnitTypeId == 3)
+                    {
+                        employee.DSDivisionId = departmentUnit.DepartmentUnitId;
+                        employee.DistrictId = departmentUnit.ParentId;
+                    }
+                    else
+                    {
+                        employee.DSDivisionId = 0;
+                        employee.DistrictId = departmentUnit.DepartmentUnitId;
+                    }
+
+                    output = employeeDAO.ChanngeDepartment(employee, dBConnection);
+                }
+
+                return output;
             }
             catch (Exception)
             {

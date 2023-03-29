@@ -15,6 +15,10 @@ namespace ManPowerCore.Controller
     {
         int SaveDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions);
         int UpdateDepartmentUnitPositions(DepartmentUnitPositions departmentUnitPositions);
+
+        int Delete(int userId);
+
+        int UpdateSytemUserIdByDepartment_Unit_PositionId(int SystemUserId, int Department_Unit_Position_Id);
         DepartmentUnitPositions departmentUnitPositionsWIthSystemUser(int programTargetid);
 
         List<DepartmentUnitPositions> GetAllDepartmentUnitPositions(bool withTaskAllocation, bool withProgramAssignee, bool withSystemUser, bool withPossitions, bool withDepartmentUnit);
@@ -60,6 +64,34 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 var departmentUnitPositionsDetails = departmentUnitPositionsDAO.UpdateDepartmentUnitPositions(departmentUnitPositions, dBConnection);
                 return departmentUnitPositionsDetails;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateSytemUserIdByDepartment_Unit_PositionId(int SystemUserId, int Department_Unit_Position_Id)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+
+                List<DepartmentUnitPositions> departmentUnitPositionsLit = departmentUnitPositionsDAO.GetAllUsersBySystemUserId(SystemUserId, dBConnection);
+                foreach (var item in departmentUnitPositionsLit)
+                {
+                    departmentUnitPositionsDAO.Delete(item.DepartmetUnitPossitionsId, dBConnection);
+                }
+
+                return departmentUnitPositionsDAO.UpdateSytemUserIdByDepartment_Unit_Position_Id(SystemUserId, Department_Unit_Position_Id, dBConnection);
+
             }
             catch (Exception)
             {
@@ -331,6 +363,24 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public int Delete(int userId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return departmentUnitPositionsDAO.Delete(userId, dBConnection);
+            }
 
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
     }
 }

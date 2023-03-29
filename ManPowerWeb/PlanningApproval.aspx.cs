@@ -121,7 +121,8 @@ namespace ManPowerWeb
             }
             else
             {
-                lblListOfUploadedFiles.Text = "N/A";
+                gvFileResourses.DataSource = null;
+                gvFileResourses.DataBind();
             }
 
         }

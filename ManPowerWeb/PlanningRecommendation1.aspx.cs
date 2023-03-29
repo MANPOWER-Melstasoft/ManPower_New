@@ -125,10 +125,13 @@ namespace ManPowerWeb
             {
                 gvFileResourses.DataSource = programPlansList;
                 gvFileResourses.DataBind();
+
             }
             else
             {
-                lblListOfUploadedFiles.Text = "N/A";
+                gvFileResourses.DataSource = null;
+                gvFileResourses.DataBind();
+
             }
 
 
@@ -205,6 +208,12 @@ namespace ManPowerWeb
         protected void btnView_Click1(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gvProgramPlan_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProgramPlan.PageIndex = e.NewPageIndex;
+            this.DataSourceBind();
         }
     }
 }

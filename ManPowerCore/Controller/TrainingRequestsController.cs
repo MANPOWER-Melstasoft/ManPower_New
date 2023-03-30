@@ -120,12 +120,29 @@ namespace ManPowerCore.Controller
 
                 foreach (var item in trainingRequestsList)
                 {
-                    item.Trainingmain = TrainingMainList.Where(x => x.TrainingMainId == item.TrainingMainId).Single();
+                    foreach (var trm in TrainingMainList)
+                    {
+                        if (trm.TrainingMainId == item.TrainingMainId)
+                        {
+                            item.Trainingmain = trm;
+                            break;
+                        }
+                    }
+
+                    //item.Trainingmain = TrainingMainList.Where(x => x.TrainingMainId == item.TrainingMainId).Single();
                 }
 
                 foreach (var item in trainingRequestsList)
                 {
-                    item.SystemUser = systemUserList.Where(x => x._DepartmentUnitPositions.DepartmetUnitPossitionsId == item.Created_User).Single();
+                    foreach (var su in systemUserList)
+                    {
+                        if (su._DepartmentUnitPositions.DepartmetUnitPossitionsId == item.Created_User)
+                        {
+                            item.SystemUser = su;
+                            break;
+                        }
+                    }
+                    //item.SystemUser = systemUserList.Where(x => x._DepartmentUnitPositions.DepartmetUnitPossitionsId == item.Created_User).Single();
                 }
 
                 return trainingRequestsList;

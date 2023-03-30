@@ -52,9 +52,9 @@
                     <asp:BoundField DataField="Vote_Number" HeaderText="Vote Number" />
                     <asp:BoundField DataField="Approved_Amount" HeaderText="Expenditure" />
                     <asp:BoundField DataField="Financial_Source" HeaderText="Attachments" />
-                    <asp:BoundField HeaderText="Job Refferal Count" />
-                    <asp:BoundField HeaderText="Job Placement Count" />
-                    <asp:BoundField HeaderText="Training Refferal Count" />
+                    <asp:BoundField DataField="Job_Refferals_count" HeaderText="Job Refferal Count" />
+                    <asp:BoundField DataField="Training_Refferals_count" HeaderText="Job Placement Count" />
+                    <asp:BoundField DataField="Career_Key_Test_count" HeaderText="Training Refferal Count" />
                     <asp:BoundField HeaderText="Self Employers Count" />
                     <asp:BoundField HeaderText="Reasons for Difference" />
                     <asp:BoundField HeaderText="Remark" />

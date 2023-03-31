@@ -31,7 +31,7 @@ namespace ManPowerWeb
         {
             DistrictTASummaryController districtTASummaryController = ControllerFactory.CreateDistrictTASummaryController();
 
-            districtTASummariesList = districtTASummaryController.GetDistrictTASummaryReport();
+            districtTASummariesList = districtTASummaryController.GetDSTASummaryReport();
 
             var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
             var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();

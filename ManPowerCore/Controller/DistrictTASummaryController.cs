@@ -12,19 +12,22 @@ namespace ManPowerCore.Controller
 {
     public interface DistrictTASummaryController
     {
-        List<DistrictTASummaryReport> GetDistrictTASummaryReport();
+        List<DistrictTASummaryReport> GetDSTASummaryReport();
+
         List<DistrictTASummaryReport> GetIndividualTASummaryReport();
+
+        List<DistrictTASummaryReport> GetDistrictTASummaryReport();
     }
     public class DistrictTASummaryControllerImpl : DistrictTASummaryController
     {
         DBConnection dBConnection;
         DistrictTASummaryDAO districtTASummaryDAO = DAOFactory.CreateDistrictTASummaryDAO();
-        public List<DistrictTASummaryReport> GetDistrictTASummaryReport()
+        public List<DistrictTASummaryReport> GetDSTASummaryReport()
         {
             try
             {
                 dBConnection = new DBConnection();
-                return districtTASummaryDAO.GetDistrictTASummaryReport(dBConnection);
+                return districtTASummaryDAO.GetDSTASummaryReport(dBConnection);
 
             }
 
@@ -46,6 +49,27 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return districtTASummaryDAO.GetIndividualTASummaryReport(dBConnection);
+
+            }
+
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<DistrictTASummaryReport> GetDistrictTASummaryReport()
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return districtTASummaryDAO.GetDistrictTASummaryReport(dBConnection);
 
             }
 

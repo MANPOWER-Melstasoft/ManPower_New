@@ -1,4 +1,5 @@
-﻿using ManPowerCore.Common;
+﻿using iTextSharp.text;
+using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
@@ -56,12 +57,19 @@ namespace ManPowerWeb
 
             int flag = 0;
 
+            foreach (var item in districtTASummariesList)
+            {
+                if (item.DepType == 3)
+                {
+                    item.DepartmentUnitId = item.ParentId;
+                }
+            }
 
             foreach (var itemProgramTargetName in ListProgramTargetName)
             {
                 foreach (var itemDistrict in ListDistrict)
                 {
-                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName))
+                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName && x.DepartmentUnitId == itemDistrict))
                     {
                         if (listItem.ProjectTypeId == 2)
                         {
@@ -74,23 +82,11 @@ namespace ManPowerWeb
                             listItem.PhysicalCount = 0;
                         }
 
-                        if (listItem.ProgramTargetName == itemProgramTargetName && districtTASummariesListFinal.Count == 0)
+                        if (listItem.ProgramTargetName == itemProgramTargetName && districtTASummariesListFinal.Count == 0 && listItem.DepartmentUnitId == itemDistrict)
                         {
-                            if (listItem.DepType == 3 && listItem.ParentId == itemDistrict)
-                            {
-                                listItem.DepartmentUnitId = listItem.ParentId;
-                                listItem.DepType = 2;
-                                districtTASummariesListFinal.Add(listItem);
-                            }
-                            else if (listItem.DepType != 3 && listItem.DepartmentUnitId == itemDistrict)
-                            {
-                                districtTASummariesListFinal.Add(listItem);
-                            }
-
+                            districtTASummariesListFinal.Add(listItem);
                         }
-                        else if (listItem.ProgramTargetName == itemProgramTargetName &&
-                            ((listItem.DepType == 3 && listItem.ParentId == itemDistrict) || (listItem.DepType != 3 && listItem.DepartmentUnitId == itemDistrict))
-                            && districtTASummariesListFinal.Count > 0)
+                        else if (listItem.ProgramTargetName == itemProgramTargetName && listItem.DepartmentUnitId == itemDistrict && districtTASummariesListFinal.Count > 0)
                         {
                             flag = 0;
                             foreach (var finalListItem in districtTASummariesListFinal)
@@ -110,17 +106,7 @@ namespace ManPowerWeb
                             }
                             if (flag == 0)
                             {
-                                if (listItem.DepType == 3 && listItem.ParentId == itemDistrict)
-                                {
-                                    listItem.DepartmentUnitId = listItem.ParentId;
-                                    listItem.DepType = 2;
-                                    districtTASummariesListFinal.Add(listItem);
-                                }
-                                else if (listItem.DepType != 3 && listItem.DepartmentUnitId == itemDistrict)
-                                {
-                                    districtTASummariesListFinal.Add(listItem);
-                                }
-
+                                districtTASummariesListFinal.Add(listItem);
                             }
                         }
                     }

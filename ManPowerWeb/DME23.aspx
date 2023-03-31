@@ -40,7 +40,13 @@
                     <asp:BoundField DataField="annual_Count" HeaderText="Annual Target" />
                     <asp:BoundField DataField="quartly_count" HeaderText="Quarter Target" />
                     <asp:BoundField DataField="Monthly_count" HeaderText="Monthly Target" />
-                    <asp:BoundField HeaderText="No. of Prog. Conducted" />
+                    <%--<asp:BoundField HeaderText="No. of Prog. Conducted" />--%>
+                    <asp:TemplateField HeaderText="No. of Prog. Conducted" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Visible='<%#Eval("Project_Status_Id").ToString() == "4" ?true:false %>' Text="1">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Project_Status_Id").ToString() != "4" ?true:false %>' Text="N/A">  </asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="Date" HeaderText="Program Date" />
                     <asp:BoundField DataField="Location" HeaderText="Place" />
                     <asp:BoundField DataField="Male_Count" HeaderText="No. of Male beneficiaries" />

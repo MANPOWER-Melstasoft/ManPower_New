@@ -270,7 +270,7 @@ namespace ManPowerCore.Infrastructure
 
             DataTable programPlanList = new DataTable();
 
-            dbConnection.cmd.CommandText = "select e.Name AS Program_Name,a.Id as program_Plan_Id, x.Id, a.Location,a.Date,a.Approved_Amount, x.Program_Id ," +
+            dbConnection.cmd.CommandText = "select e.Name AS Program_Name,a.Id as program_Plan_Id,a.Project_Status_Id, x.Id, a.Location,a.Date,a.Approved_Amount, x.Program_Id ," +
                 "sum(x.an) as annual_Count, sum(x.qt) as quartly_Count,sum(x.ml) as monthly_Count,a.Male_Count," +
                 "a.Female_Count , a.Male_Count + a.Female_Count as total_count, x.Vote_Number,a.Financial_Source," +
                 "g.Person, g.Work_Places , " +
@@ -296,7 +296,7 @@ namespace ManPowerCore.Infrastructure
                 //"LEFT JOIN Training_Refferals i ON i.Program_Plan_Id = a.Id " +
                 //"LEFT JOIN Career_Key_Test_Results k ON k.Program_Plan_Id = a.Id " +
                 "group by x.Program_Id,x.Id ,e.Name,a.Location,a.Date,a.Approved_Amount,a.Male_Count,a.Female_Count," +
-                "x.Vote_Number,a.Financial_Source, g.Person, g.Work_Places,a.Id;";
+                "x.Vote_Number,a.Financial_Source, g.Person, g.Work_Places,a.Id,a.Project_Status_Id;";
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(dbConnection.cmd);
             dataAdapter.Fill(programPlanList);

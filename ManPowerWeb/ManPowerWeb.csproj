@@ -143,6 +143,7 @@
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
     <Content Include="DistressLoanAdmin.aspx" />
+    <Content Include="DistrictTASummaryAll.aspx" />
     <Content Include="DME22Rec1.aspx" />
     <Content Include="DME22Rec1Render.aspx" />
     <Content Include="DME22Rec2.aspx" />
@@ -2220,6 +2221,13 @@
     </Compile>
     <Compile Include="DistressLoanAdmin.aspx.designer.cs">
       <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DistrictTASummaryAll.aspx.cs">
+      <DependentUpon>DistrictTASummaryAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DistrictTASummaryAll.aspx.designer.cs">
+      <DependentUpon>DistrictTASummaryAll.aspx</DependentUpon>
     </Compile>
     <Compile Include="DME22Rec1.aspx.cs">
       <DependentUpon>DME22Rec1.aspx</DependentUpon>

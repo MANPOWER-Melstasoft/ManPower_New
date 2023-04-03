@@ -307,7 +307,16 @@ namespace ManPowerCore.Controller
 
                     foreach (var item in list)
                     {
-                        item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
+                        foreach (var dep in departmentUnitPositionList)
+                        {
+                            if (dep.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId)
+                            {
+                                item._DepartmentUnitPositions = dep;
+                                break;
+                            }
+                        }
+
+                        //item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
                     }
                 }
 

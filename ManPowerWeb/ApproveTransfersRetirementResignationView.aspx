@@ -102,6 +102,29 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3 ms-1" id="FromToDate" runat="server" visible="false">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal22" runat="server" Text="From Date : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:Label ID="fromDate" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal23" runat="server" Text="To Date : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:Label ID="toDate" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
                                     <div class="row mb-3">

@@ -37,6 +37,7 @@
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="Program_Name" HeaderText="program Name" />
+                    <asp:BoundField DataField="ProgramName" HeaderText="program Plan Name" />
                     <asp:BoundField DataField="annual_Count" HeaderText="Annual Target" />
                     <asp:BoundField DataField="quartly_count" HeaderText="Quarter Target" />
                     <asp:BoundField DataField="Monthly_count" HeaderText="Monthly Target" />

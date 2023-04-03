@@ -47,7 +47,7 @@ namespace ManPowerWeb
             {
                 foreach (var itemDistrict in ListDistrict)
                 {
-                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName))
+                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName && x.Location == itemDistrict))
                     {
                         if (listItem.ProjectTypeId == 2)
                         {

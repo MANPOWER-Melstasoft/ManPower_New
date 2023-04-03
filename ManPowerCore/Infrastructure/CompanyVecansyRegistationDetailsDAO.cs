@@ -50,11 +50,12 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO COMPANY_VACANCY_REGISTATION_DETAILS(DATE,ADDRESS,WEBSITE_LINK,BR_NUMBER,JOB_POSITION," +
-                                            "CAREER_PATH,SALARY_LEVEL,NUMBER_OF_VACANCY,NAME,POSITION,CONTACT_NUMBER,WHATSAPP_NUMBER," +
-                                            "LEVELS,EMAIL,Vacancy_District_Id,Vacancy_DS_Division_Id,Company_Name) " +
+            dbConnection.cmd.CommandText = "INSERT INTO COMPANY_VACANCY_REGISTATION_DETAILS" +
+                "(DATE, ADDRESS, WEBSITE_LINK, BR_NUMBER, JOB_POSITION, CAREER_PATH, SALARY_LEVEL, NUMBER_OF_VACANCY, NAME, POSITION, CONTACT_NUMBER, " +
+                "WHATSAPP_NUMBER, LEVELS, EMAIL, Vacancy_District_Id, Vacancy_DS_Division_Id, Company_Name) " +
 
-                                 "VALUES(@VDate,@VAddress,@WebSiteLink,@BusinessRegistationNumber,@JobPosition,@CareerPath,@SalaryLevel,@NumberOfVacancy,@ContactPersonEmail,@ContactPersonPosition,@ContactNumber,@WhatsappNumber,@VLevels,@ContactPersonName,@DistrictId,@DSDivisionId,@CompanyName) ";
+                 "VALUES(@VDate, @VAddress, @WebSiteLink, @BusinessRegistationNumber, @JobPosition, @CareerPath, @SalaryLevel, @NumberOfVacancy, @ContactPersonName, " +
+                 "@ContactPersonPosition, @ContactNumber, @WhatsappNumber, @VLevels, @ContactPersonEmail, @DistrictId, @DSDivisionId, @CompanyName) ";
 
 
             //dbConnection.cmd.Parameters.AddWithValue("@id", id);

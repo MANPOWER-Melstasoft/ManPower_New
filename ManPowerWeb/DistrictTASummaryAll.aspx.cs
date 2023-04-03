@@ -1,4 +1,5 @@
-﻿using ManPowerCore.Common;
+﻿using iTextSharp.text;
+using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
@@ -14,7 +15,10 @@ namespace ManPowerWeb
     public partial class DistrictTASummaryAll : System.Web.UI.Page
     {
         List<DistrictTASummaryReport> districtTASummariesList = new List<DistrictTASummaryReport>();
+        List<int> district = new List<int>();
+        List<DistrictTASummaryReport> districtTASummariesListPre = new List<DistrictTASummaryReport>();
         List<DistrictTASummaryReport> districtTASummariesListFinal = new List<DistrictTASummaryReport>();
+        List<DepartmentUnit> departmentUnits = new List<DepartmentUnit>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,20 +34,42 @@ namespace ManPowerWeb
         public void BindDataSource()
         {
             DistrictTASummaryController districtTASummaryController = ControllerFactory.CreateDistrictTASummaryController();
+            DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
 
+            departmentUnits = departmentUnitController.GetAllDepartmentUnit(false, false);
             districtTASummariesList = districtTASummaryController.GetDistrictTASummaryReport();
 
             var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
-            var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();
+
+            foreach (var item in districtTASummariesList)
+            {
+                if (item.DepType == 2 || item.DepType == 1)
+                {
+                    district.Add(item.DepartmentUnitId);
+                }
+                else
+                {
+                    district.Add(item.ParentId);
+                }
+            }
+
+            var ListDistrict = district.Distinct();
 
             int flag = 0;
 
+            foreach (var item in districtTASummariesList)
+            {
+                if (item.DepType == 3)
+                {
+                    item.DepartmentUnitId = item.ParentId;
+                }
+            }
 
             foreach (var itemProgramTargetName in ListProgramTargetName)
             {
                 foreach (var itemDistrict in ListDistrict)
                 {
-                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName))
+                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName && x.DepartmentUnitId == itemDistrict))
                     {
                         if (listItem.ProjectTypeId == 2)
                         {
@@ -56,17 +82,16 @@ namespace ManPowerWeb
                             listItem.PhysicalCount = 0;
                         }
 
-                        if (listItem.ProgramTargetName == itemProgramTargetName && listItem.Location == itemDistrict && districtTASummariesListFinal.Count == 0)
+                        if (listItem.ProgramTargetName == itemProgramTargetName && districtTASummariesListFinal.Count == 0 && listItem.DepartmentUnitId == itemDistrict)
                         {
                             districtTASummariesListFinal.Add(listItem);
-
                         }
-                        else if (listItem.ProgramTargetName == itemProgramTargetName && listItem.Location == itemDistrict && districtTASummariesListFinal.Count > 0)
+                        else if (listItem.ProgramTargetName == itemProgramTargetName && listItem.DepartmentUnitId == itemDistrict && districtTASummariesListFinal.Count > 0)
                         {
                             flag = 0;
                             foreach (var finalListItem in districtTASummariesListFinal)
                             {
-                                if (finalListItem.ProgramTargetName == itemProgramTargetName && finalListItem.Location == itemDistrict)
+                                if (finalListItem.ProgramTargetName == itemProgramTargetName && finalListItem.DepartmentUnitId == itemDistrict)
                                 {
                                     flag = 1;
 
@@ -76,24 +101,34 @@ namespace ManPowerWeb
                                     finalListItem.PhysicalCount += listItem.PhysicalCount;
                                     finalListItem.OnlineCount += listItem.OnlineCount;
 
-
                                 }
 
                             }
                             if (flag == 0)
                             {
                                 districtTASummariesListFinal.Add(listItem);
-
                             }
                         }
                     }
                 }
             }
+
+            foreach (var item in districtTASummariesListFinal)
+            {
+                item.Location = departmentUnits.Where(x => x.DepartmentUnitId == item.DepartmentUnitId).Single().Name;
+            }
+
             BindDataTable();
             //gvTASummary.DataSource = districtTASummariesListFinal;
             //gvTASummary.DataBind();
         }
+        public void BindDistrict()
+        {
+            foreach (var item in districtTASummariesListPre)
+            {
 
+            }
+        }
         public void BindDataTable()
         {
             var ListProgramTargetName = districtTASummariesListFinal.Select(x => x.ProgramTargetName).Distinct();

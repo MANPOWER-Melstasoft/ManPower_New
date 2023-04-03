@@ -31,7 +31,7 @@ namespace ManPowerWeb
         {
             DistrictTASummaryController districtTASummaryController = ControllerFactory.CreateDistrictTASummaryController();
 
-            districtTASummariesList = districtTASummaryController.GetDistrictTASummaryReport();
+            districtTASummariesList = districtTASummaryController.GetDSTASummaryReport();
 
             var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
             var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();
@@ -43,7 +43,7 @@ namespace ManPowerWeb
             {
                 foreach (var itemDistrict in ListDistrict)
                 {
-                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName))
+                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName && x.Location == itemDistrict))
                     {
                         if (listItem.ProjectTypeId == 2)
                         {

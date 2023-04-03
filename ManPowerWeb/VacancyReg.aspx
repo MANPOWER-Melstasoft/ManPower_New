@@ -12,7 +12,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
-                            <label>Name </label>
+                            <label>Company Name </label>
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="txtName" runat="server" name="place" CssClass="form-control form-control-user"></asp:TextBox>
@@ -140,7 +140,7 @@
                 <div class="col-6">
                     <div class="row ">
                         <div class="col-4">
-                            <asp:Literal ID="Literal1" runat="server" Text="Date"></asp:Literal>
+                            <asp:Literal ID="Literal1" runat="server" Text="Closing Date"></asp:Literal>
                         </div>
                         <div class="col-6">
                             <asp:TextBox ID="date" runat="server" name="date" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
@@ -163,6 +163,8 @@
                                     <asp:RadioButtonList ID="rbDepartmentLocationType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rbDepartmentLocationType_SelectedIndexChanged">
                                         <asp:ListItem Value="1">District Level</asp:ListItem>
                                         <asp:ListItem Value="2">DS Division Level</asp:ListItem>
+                                        <asp:ListItem Value="3">All Island</asp:ListItem>
+
                                     </asp:RadioButtonList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" ControlToValidate="rbDepartmentLocationType" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
 
@@ -179,8 +181,10 @@
                                 </div>
                                 <div class="col-6">
                                     <asp:DropDownList ID="ddlDistrict" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                                    <%if (rbDepartmentLocationType.SelectedValue != "3")
+                                        { %>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="ddlDistrict" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-
+                                    <%} %>
                                 </div>
                             </div>
                         </div>

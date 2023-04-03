@@ -78,6 +78,11 @@ namespace ManPowerWeb
                 ddlDistrict.Enabled = true;
 
             }
+            if (rbDepartmentLocationType.SelectedValue == "3")
+            {
+                ddlDsDivision.Enabled = false;
+                ddlDistrict.Enabled = false;
+            }
 
         }
         protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,16 +150,31 @@ namespace ManPowerWeb
             companyVecansyRegistationDetails.VLevels = ddlLevel.SelectedValue;
             companyVecansyRegistationDetails.ContactPersonEmail = email.Text;
 
-            if (ddlDsDivision.SelectedValue != "")
+            if (rbDepartmentLocationType.SelectedValue == "2")
             {
-                companyVecansyRegistationDetails.VDsId = Convert.ToInt32(ddlDsDivision.SelectedValue);
+                if (ddlDsDivision.SelectedValue != "")
+                {
+                    companyVecansyRegistationDetails.VDsId = Convert.ToInt32(ddlDsDivision.SelectedValue);
 
+                }
+                else
+                {
+                    companyVecansyRegistationDetails.VDistrictId = 0;
+                }
             }
-            else
+
+            if (rbDepartmentLocationType.SelectedValue == "1")
             {
+                companyVecansyRegistationDetails.VDistrictId = Convert.ToInt32(ddlDistrict.SelectedValue);
+            }
+
+            if (rbDepartmentLocationType.SelectedValue == "3")
+            {
+                companyVecansyRegistationDetails.VDsId = 0;
                 companyVecansyRegistationDetails.VDistrictId = 0;
             }
-            companyVecansyRegistationDetails.VDistrictId = Convert.ToInt32(ddlDistrict.SelectedValue);
+
+
             companyVecansyRegistationDetails.CompanyName = txtName.Text;
 
 

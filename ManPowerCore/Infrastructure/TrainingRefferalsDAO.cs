@@ -25,8 +25,8 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO Training_Refferals (Beneficiary_Id, Created_Date, Institute_Name, Training_Course, Contact_Person_Name, Contact_No, Refferals_Date, Created_User) " +
-                "VALUES (@BeneficiaryId, @Date, @InstituteName, @TrainingCourse, @ContactPerson, @ContactNo, @Refferals_Date, @Created_User) SELECT SCOPE_IDENTITY()";
+            dbConnection.cmd.CommandText = "INSERT INTO Training_Refferals (Beneficiary_Id, Created_Date, Institute_Name, Training_Course, Contact_Person_Name, Contact_No, Refferals_Date, Created_User, Program_Plan_Id) " +
+                "VALUES (@BeneficiaryId, @Date, @InstituteName, @TrainingCourse, @ContactPerson, @ContactNo, @Refferals_Date, @Created_User,@Program_Plan_Id) SELECT SCOPE_IDENTITY()";
 
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryId", trainingRefferals.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", trainingRefferals.Date);
@@ -36,6 +36,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@ContactNo", trainingRefferals.ContactNo);
             dbConnection.cmd.Parameters.AddWithValue("@Refferals_Date", trainingRefferals.RefferalsDate);
             dbConnection.cmd.Parameters.AddWithValue("@Created_User", trainingRefferals.CreatedUser);
+            dbConnection.cmd.Parameters.AddWithValue("@Program_Plan_Id", trainingRefferals.Program_Plan_Id);
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 

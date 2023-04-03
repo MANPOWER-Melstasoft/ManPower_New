@@ -41,6 +41,9 @@ namespace ManPowerWeb
                 BindVacanciePosition();
                 bindProgramPlan();
 
+                ddlDsDivision.Enabled = false;
+                ddlDistrict.Enabled = false;
+
                 InduvidualBeneficiaryController beneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
                 beneficiaries = beneficiaryController.GetAllInduvidualBeneficiary(true);
 
@@ -146,8 +149,6 @@ namespace ManPowerWeb
             DepartmentUnitTypeController _DepartmentUnitTypeController = ControllerFactory.CreateDepartmentUnitTypeController();
             listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
 
-
-            listDistrict = _DepartmentUnitTypeController.GetDepartmentUnitType(2, true)._DepartmentUnit;
             ddlDistrict.DataSource = listDistrict;
             ddlDistrict.DataTextField = "Name";
             ddlDistrict.DataValueField = "DepartmentUnitId";
@@ -227,53 +228,97 @@ namespace ManPowerWeb
             careerGuidance.Text = null;
         }
 
+        protected void rbDepartmentLocationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rbDepartmentLocationType.SelectedValue == "1")
+            {
+                bindDistrictDivision();
+                BindVacancies();
+                ddlDistrict.Enabled = true;
+                ddlDsDivision.Enabled = false;
+                ddlDistrict.SelectedIndex = 0;
+                ddlDsDivision.Items.Clear();
+            }
+            if (rbDepartmentLocationType.SelectedValue == "2")
+            {
+                bindDistrictDivision();
+                BindVacancies();
+                ddlDsDivision.Enabled = true;
+                ddlDistrict.Enabled = true;
+
+            }
+            if (rbDepartmentLocationType.SelectedValue == "3")
+            {
+                BindVacancies();
+                ddlDsDivision.Enabled = false;
+                ddlDistrict.Enabled = false;
+                ddlDistrict.Items.Clear();
+                ddlDsDivision.Items.Clear();
+            }
+        }
+
         protected void BindVacancies()
         {
             CompanyVecansyRegistationDetailsController companyVecansyRegistationDetailsController = ControllerFactory.CreateCompanyVecansyRegistationDetailsController();
 
             List<CompanyVecansyRegistationDetails> companyVecansyRegistationDetailsList = companyVecansyRegistationDetailsController.GetAllCompanyVecansyRegistationDetails();
 
-            if (ddlDsDivision.SelectedValue != "")
+            if (rbDepartmentLocationType.SelectedValue != "3")
             {
-                if (ddlPositionType.SelectedValue != "")
+                if (ddlDsDivision.SelectedValue != "")
                 {
-                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue) && x.JobPosition == ddlPositionType.SelectedItem.Text).ToList();
+                    if (ddlPositionType.SelectedValue != "")
+                    {
+                        ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue) && x.JobPosition == ddlPositionType.SelectedItem.Text).ToList();
+
+                    }
+                    else
+                    {
+                        ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue)).ToList();
+
+                    }
+                }
+                else if (ddlDistrict.SelectedValue != "")
+                {
+                    if (ddlPositionType.SelectedValue != "")
+                    {
+                        ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.JobPosition == ddlPositionType.SelectedItem.Text).ToList();
+
+                    }
+                    else
+                    {
+                        ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue)).ToList();
+
+                    }
 
                 }
                 else
                 {
-                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.VDsId == Convert.ToInt32(ddlDsDivision.SelectedValue)).ToList();
+                    if (ddlPositionType.SelectedValue != "")
+                    {
+                        ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.JobPosition == ddlPositionType.SelectedItem.Text);
 
+                    }
+                    else
+                    {
+                        ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList;
+
+                    }
                 }
-            }
-            else if (ddlDistrict.SelectedValue != "")
-            {
-                if (ddlPositionType.SelectedValue != "")
-                {
-                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue) && x.JobPosition == ddlPositionType.SelectedItem.Text).ToList();
-
-                }
-                else
-                {
-                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == Convert.ToInt32(ddlDistrict.SelectedValue)).ToList();
-
-                }
-
             }
             else
             {
                 if (ddlPositionType.SelectedValue != "")
                 {
-                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.JobPosition == ddlPositionType.SelectedItem.Text);
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == 0 && x.VDsId == 0 && x.JobPosition == ddlPositionType.SelectedItem.Text).ToList();
 
                 }
                 else
                 {
-                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList;
+                    ddlCompanyVacancies.DataSource = companyVecansyRegistationDetailsList.Where(x => x.VDistrictId == 0 && x.VDsId == 0).ToList();
 
                 }
             }
-
 
             ddlCompanyVacancies.DataValueField = "CompanyVacansyRegistationDetailsId";
             ddlCompanyVacancies.DataTextField = "CompanyName";
@@ -873,7 +918,6 @@ namespace ManPowerWeb
             ChildGridView2.DataSource = ControllerFactory.CreateTrainingRefferalFeedbackController().GetAllTrainingRefferalFeedback(false);
             ChildGridView2.DataBind();
         }
-
 
 
 

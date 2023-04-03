@@ -121,7 +121,6 @@ namespace ManPowerWeb
 
         protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (ddlStatus.SelectedValue == "1")
             {
                 if (ddltype.SelectedValue == "1")
@@ -135,6 +134,10 @@ namespace ManPowerWeb
                 else if (ddltype.SelectedValue == "3")
                 {
                     filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 3).ToList();
+                }
+                else if (ddltype.SelectedValue == "4")
+                {
+                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 4).ToList();
                 }
                 else
                 {
@@ -156,6 +159,10 @@ namespace ManPowerWeb
                 {
                     filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 3).ToList();
                 }
+                else if (ddltype.SelectedValue == "4")
+                {
+                    filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 4).ToList();
+                }
                 else
                 {
                     filterList = mainList.Where(a => a.StatusId == 2).ToList();
@@ -175,6 +182,10 @@ namespace ManPowerWeb
                 else if (ddltype.SelectedValue == "3")
                 {
                     filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 3).ToList();
+                }
+                else if (ddltype.SelectedValue == "4")
+                {
+                    filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 4).ToList();
                 }
                 else
                 {
@@ -196,6 +207,10 @@ namespace ManPowerWeb
                 {
                     filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 3).ToList();
                 }
+                else if (ddltype.SelectedValue == "4")
+                {
+                    filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 4).ToList();
+                }
                 else
                 {
                     filterList = mainList.Where(a => a.StatusId == 4).ToList();
@@ -216,6 +231,10 @@ namespace ManPowerWeb
                 {
                     filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 3).ToList();
                 }
+                else if (ddltype.SelectedValue == "4")
+                {
+                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 4).ToList();
+                }
                 else
                 {
                     filterList = mainList.Where(a => a.StatusId == 5).ToList();
@@ -235,6 +254,10 @@ namespace ManPowerWeb
                 else if (ddltype.SelectedValue == "3")
                 {
                     filterList = mainList.Where(a => a.RequestTypeId == 3).ToList();
+                }
+                else if (ddltype.SelectedValue == "4")
+                {
+                    filterList = mainList.Where(a => a.RequestTypeId == 4).ToList();
                 }
                 else
                 {
@@ -328,6 +351,34 @@ namespace ManPowerWeb
                 else
                 {
                     filterList = mainList.Where(a => a.RequestTypeId == 3).ToList();
+                }
+                GridView1.DataSource = filterList;
+            }
+            else if (ddltype.SelectedValue == "4")
+            {
+                if (ddlStatus.SelectedValue == "1")
+                {
+                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 1).ToList();
+                }
+                else if (ddlStatus.SelectedValue == "2")
+                {
+                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 2).ToList();
+                }
+                else if (ddlStatus.SelectedValue == "3")
+                {
+                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 3).ToList();
+                }
+                else if (ddlStatus.SelectedValue == "4")
+                {
+                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 4).ToList();
+                }
+                else if (ddlStatus.SelectedValue == "5")
+                {
+                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 5).ToList();
+                }
+                else
+                {
+                    filterList = mainList.Where(a => a.RequestTypeId == 4).ToList();
                 }
                 GridView1.DataSource = filterList;
             }

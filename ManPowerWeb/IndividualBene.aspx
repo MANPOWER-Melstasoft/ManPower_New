@@ -233,7 +233,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-4">
-                            <label>Select Program Plane : </label>
+                            <label>Select Program Plan : </label>
                         </div>
                         <div class="col-6">
                             <asp:DropDownList ID="ddlPlan" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>

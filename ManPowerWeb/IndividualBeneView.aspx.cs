@@ -474,7 +474,16 @@ namespace ManPowerWeb
             careerKeyTestResults.CreatedUser = Session["Name"].ToString();
             careerKeyTestResults.BeneficiaryId = Convert.ToInt32(BenficiaryId);
 
+            if (ddlProgramPlanCarrerKey.SelectedValue != "")
+            {
+                careerKeyTestResults.Program_Plan_Id = Convert.ToInt32(ddlProgramPlanCarrerKey.SelectedValue);
 
+            }
+
+            else
+            {
+                careerKeyTestResults.Program_Plan_Id = 0;
+            }
 
 
             int response = careerKeyTestResultsController.Save(careerKeyTestResults);
@@ -641,6 +650,8 @@ namespace ManPowerWeb
             careerGuidanceFeedback.Remarks = txtRemarksFeedCareer.Text;
             careerGuidanceFeedback.CreatedUser = Session["Name"].ToString();
             careerGuidanceFeedback.Date = DateTime.Today;
+
+
             int output = careerGuidanceFeedbackController.Save(careerGuidanceFeedback);
             if (output != 0)
             {
@@ -677,6 +688,17 @@ namespace ManPowerWeb
             trainingRefferals.ContactNo = contactNo.Text;
             trainingRefferals.RefferalsDate = DateTime.Parse(trainingRefferalDate.Text);
             trainingRefferals.CreatedUser = Session["Name"].ToString();
+
+            if (ddlTrainningProgramplan.SelectedValue != "")
+            {
+                trainingRefferals.Program_Plan_Id = Convert.ToInt32(ddlTrainningProgramplan.SelectedValue);
+
+            }
+
+            else
+            {
+                trainingRefferals.Program_Plan_Id = 0;
+            }
 
             int output = trainingRefferalsController.Save(trainingRefferals);
 

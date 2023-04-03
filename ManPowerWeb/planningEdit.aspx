@@ -325,6 +325,11 @@
 
                         </div>
 
+                        <div class="col-sm-5">
+                            <asp:Button runat="server" ID="AddIndiVidualBene" Text="Add Individual Beneficiarie" CssClass="btn btn-secondary btn-user btn-block" OnClick="AddIndiVidualBene_Click" />
+
+                        </div>
+
                         <%if (DateTime.Now > DateTime.Parse(txtDate.Text) && txtDate.Text != "")
                             {
                         %>

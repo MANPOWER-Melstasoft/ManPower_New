@@ -14,7 +14,7 @@
                     <div class="mb-2 mt-4">
                         <div class="row">
                             <div class="col-4">
-                                <asp:TextBox ID="txtName" runat="server" placeholder="Search by Name or Department" CssClass="form-control form-control-user"></asp:TextBox>
+                                <asp:TextBox ID="txtName" runat="server" placeholder="Search by Name or Department Or NIC" CssClass="form-control form-control-user"></asp:TextBox>
                                 <asp:RequiredFieldValidator ControlToValidate="txtName" ID="RequiredFieldValidator21" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                             </div>
                             <div class="col-2">

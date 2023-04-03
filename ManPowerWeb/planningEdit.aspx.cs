@@ -649,6 +649,12 @@ namespace ManPowerWeb
             txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
 
         }
+
+        protected void AddIndiVidualBene_Click(object sender, EventArgs e)
+        {
+            string url = "IndividualBene.aspx";
+            Response.Redirect(url);
+        }
     }
 
 

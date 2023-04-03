@@ -31,6 +31,10 @@ namespace ManPowerCore.Infrastructure
         List<ProgramPlan> getddlProgramPlan(int depId, int year, DBConnection dBConnection);
 
         DataTable getProgramPlan(int DepID, DBConnection dbConnection);
+
+        int UpdateMaleCount(int ProgramPlanId, DBConnection dbConnection);
+
+        int UpdateFemaleCount(int ProgramPlanId, DBConnection dbConnection);
     }
 
     public class ProgramPlanDAOImpl : ProgramPlanDAO
@@ -303,6 +307,26 @@ namespace ManPowerCore.Infrastructure
 
 
             return programPlanList;
+        }
+
+        public int UpdateMaleCount(int ProgramPlanId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "UPDATE Program_Plan SET Male_Count = Male_Count + 1 where Id =" + ProgramPlanId + ";";
+
+            return dbConnection.cmd.ExecuteNonQuery();
+        }
+
+        public int UpdateFemaleCount(int ProgramPlanId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "UPDATE Program_Plan SET Female_Count = Female_Count + 1 where Id =" + ProgramPlanId + ";";
+
+            return dbConnection.cmd.ExecuteNonQuery();
         }
     }
 }

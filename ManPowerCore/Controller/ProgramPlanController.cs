@@ -31,6 +31,10 @@ namespace ManPowerCore.Controller
         List<ProgramPlan> getddlProgramPlan(int depId, int year);
 
         DataTable getProgramPlan(int DepID);
+
+        int UpdateMaleCount(int ProgramPlanId);
+
+        int UpdateFemaleCount(int ProgramPlanId);
     }
 
     public class ProgramPlanControllerImpl : ProgramPlanController
@@ -371,6 +375,48 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 programPlan = programPlanDAO.GetProgramPlan(id, dBConnection);
                 return programPlan;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateMaleCount(int ProgramPlanId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                programPlanDAO.UpdateMaleCount(ProgramPlanId, dBConnection);
+                return 1;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public int UpdateFemaleCount(int ProgramPlanId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                programPlanDAO.UpdateFemaleCount(ProgramPlanId, dBConnection);
+                return 1;
             }
             catch (Exception)
             {

@@ -37,10 +37,17 @@
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="Program_Name" HeaderText="program Name" />
+                    <asp:BoundField DataField="ProgramName" HeaderText="program Plan Name" />
                     <asp:BoundField DataField="annual_Count" HeaderText="Annual Target" />
                     <asp:BoundField DataField="quartly_count" HeaderText="Quarter Target" />
                     <asp:BoundField DataField="Monthly_count" HeaderText="Monthly Target" />
-                    <asp:BoundField HeaderText="No. of Prog. Conducted" />
+                    <%--<asp:BoundField HeaderText="No. of Prog. Conducted" />--%>
+                    <asp:TemplateField HeaderText="No. of Prog. Conducted" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:Label runat="server" Visible='<%#Eval("Project_Status_Id").ToString() == "4" ?true:false %>' Text="1">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Project_Status_Id").ToString() != "4" ?true:false %>' Text="N/A">  </asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="Date" HeaderText="Program Date" />
                     <asp:BoundField DataField="Location" HeaderText="Place" />
                     <asp:BoundField DataField="Male_Count" HeaderText="No. of Male beneficiaries" />
@@ -51,10 +58,10 @@
                     <asp:BoundField HeaderText="Res. person Subject Area/Topic" />
                     <asp:BoundField DataField="Vote_Number" HeaderText="Vote Number" />
                     <asp:BoundField DataField="Approved_Amount" HeaderText="Expenditure" />
-                    <asp:BoundField DataField="Financial_Source" HeaderText="Financial Source" />
-                    <asp:BoundField HeaderText="Job Refferal Count" />
-                    <asp:BoundField HeaderText="Job Placement Count" />
-                    <asp:BoundField HeaderText="Training Refferal Count" />
+                    <asp:BoundField DataField="Financial_Source" HeaderText="Attachments" />
+                    <asp:BoundField DataField="Job_Refferals_count" HeaderText="Job Refferal Count" />
+                    <asp:BoundField DataField="Training_Refferals_count" HeaderText="Job Placement Count" />
+                    <asp:BoundField DataField="Career_Key_Test_count" HeaderText="Training Refferal Count" />
                     <asp:BoundField HeaderText="Self Employers Count" />
                     <asp:BoundField HeaderText="Reasons for Difference" />
                     <asp:BoundField HeaderText="Remark" />

@@ -107,6 +107,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb-3 ms-1" id="FromToDate" runat="server" visible="false">
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal14" runat="server" Text="From Date : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="reqtxtFromDate" runat="server" ValidationGroup="1"
+                                                    ControlToValidate="txtFromDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal15" runat="server" Text="To Date : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                            <div class="d-flex text-danger">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="1"
+                                                    ControlToValidate="txtToDate" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mb-3 ms-1">
                                 <div class="col-sm-6">
                                     <div class="row mb-3">

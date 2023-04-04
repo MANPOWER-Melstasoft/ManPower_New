@@ -17,7 +17,11 @@ namespace ManPowerCore.Controller
         int Update(TransfersRetirementResignationMain obj);
         int Recommend(TransfersRetirementResignationMain obj);
         List<TransfersRetirementResignationMain> GetAllTransfersRetirementResignation(bool with0);
+
+        List<TransfersRetirementResignationMain> GetAllTransfersRetirementResignationwithEmployeeDetails(bool withEmployeeDetails);
         TransfersRetirementResignationMain GetTransfersRetirementResignation(int Id);
+
+
     }
 
     public class TransfersRetirementResignationMainControllerSqlImpl : TransfersRetirementResignationMainController
@@ -48,8 +52,37 @@ namespace ManPowerCore.Controller
         {
             try
             {
+                int output = 0;
                 dBConnection = new DBConnection();
-                return transfersRetirementResignationMainDAO.Approve(obj, dBConnection);
+                output = transfersRetirementResignationMainDAO.Approve(obj, dBConnection);
+
+                if (output == 1 && obj.RequestTypeId == 1)
+                {
+                    EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+                    TransferDAO transferDAO = DAOFactory.CreateTransferDAO();
+                    DepartmentUnitDAO departmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
+
+                    Transfer transfer = transferDAO.GetTransferByMainId(obj.MainId, dBConnection);
+                    DepartmentUnit departmentUnit = departmentUnitDAO.GetDepartmentUnit(transfer.NextDep, dBConnection);
+
+                    Employee employee = new Employee();
+                    employee.EmployeeId = obj.EmployeeId;
+                    employee.UnitType = departmentUnit.DepartmentUnitTypeId;
+                    if (departmentUnit.DepartmentUnitTypeId == 3)
+                    {
+                        employee.DSDivisionId = departmentUnit.DepartmentUnitId;
+                        employee.DistrictId = departmentUnit.ParentId;
+                    }
+                    else
+                    {
+                        employee.DSDivisionId = 0;
+                        employee.DistrictId = departmentUnit.DepartmentUnitId;
+                    }
+
+                    output = employeeDAO.ChanngeDepartment(employee, dBConnection);
+                }
+
+                return output;
             }
             catch (Exception)
             {
@@ -118,6 +151,37 @@ namespace ManPowerCore.Controller
                     item.requestType = requestTypeDAO.GetRequestType(item.RequestTypeId, dBConnection);
                     item.status = statusDAO.GetStatus(item.StatusId, dBConnection);
                     item.employee = employeeDAO.GetEmployeeById(item.EmployeeId, dBConnection);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<TransfersRetirementResignationMain> GetAllTransfersRetirementResignationwithEmployeeDetails(bool withEmployeeDetails)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                RetirementTypeDAO DAO = DAOFactory.CreateRetirementTypeDAO();
+                List<TransfersRetirementResignationMain> list = transfersRetirementResignationMainDAO.GetAllTransfersRetirementResignation(false, dBConnection);
+
+                EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+                List<Employee> employees = new List<Employee>();
+                employees = employeeDAO.GetAllEmployee(dBConnection);
+
+                foreach (var item in list)
+                {
+                    item.employee = employees.Where(x => x.EmployeeId == item.EmployeeId).Single();
                 }
 
                 return list;

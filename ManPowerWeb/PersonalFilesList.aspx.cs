@@ -40,10 +40,11 @@ namespace ManPowerWeb
             if (txtName.Text != "" && txtName.Text != null)
             {
                 employeesFilter = employees.
-                   Where(x => x.NameWithInitials.ToLower().Contains(txtName.Text) ||
-                   x.EmpInitials.ToLower().Contains(txtName.Text) ||
-                   x._DepartmentUnit.Name.ToLower().Contains(txtName.Text) ||
-                   x.LastName.ToLower().Contains(txtName.Text)).ToList();
+                   Where(x => x.NameWithInitials.ToLower().Contains(txtName.Text.ToLower()) ||
+                   x.EmpInitials.ToLower().Contains(txtName.Text.ToLower()) ||
+                   x._DepartmentUnit.Name.ToLower().Contains(txtName.Text.ToLower()) ||
+                   x.LastName.ToLower().Contains(txtName.Text.ToLower()) ||
+                   x.EmployeeNIC.ToLower().Contains(txtName.Text.ToLower())).ToList();
 
 
                 gvPersonalFiles.DataSource = employeesFilter;

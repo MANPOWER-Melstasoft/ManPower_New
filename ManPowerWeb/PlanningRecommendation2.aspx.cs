@@ -120,7 +120,8 @@ namespace ManPowerWeb
             }
             else
             {
-                lblListOfUploadedFiles.Text = "N/A";
+                gvFileResourses.DataSource = null;
+                gvFileResourses.DataBind();
             }
 
 
@@ -194,6 +195,12 @@ namespace ManPowerWeb
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
             }
+        }
+
+        protected void gvProgramPlan_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProgramPlan.PageIndex = e.NewPageIndex;
+            this.DataSourceBind();
         }
     }
 }

@@ -64,6 +64,8 @@ namespace ManPowerWeb
             InduvidualBeneficiaryController induvidualBeneficiaryController = ControllerFactory.CreateInduvidualBeneficiaryController();
             InduvidualBeneficiary induvidualBeneficiary = new InduvidualBeneficiary();
 
+            ProgramPlanController programPlanController = ControllerFactory.CreateProgramPlanController();
+
             induvidualBeneficiary.BeneficiaryTypeId = 1;
             induvidualBeneficiary.District = "";
             induvidualBeneficiary.DivisionalSecretery = "";
@@ -86,6 +88,16 @@ namespace ManPowerWeb
             {
                 induvidualBeneficiary.PlanId = Convert.ToInt32(ddlPlan.SelectedValue);
                 induvidualBeneficiary.Other = "";
+
+                if (ddl1.SelectedItem.Text == "Male")
+                {
+                    programPlanController.UpdateMaleCount(Convert.ToInt32(ddlPlan.SelectedValue));
+                }
+
+                else
+                {
+                    programPlanController.UpdateFemaleCount(Convert.ToInt32(ddlPlan.SelectedValue));
+                }
             }
             else
             {

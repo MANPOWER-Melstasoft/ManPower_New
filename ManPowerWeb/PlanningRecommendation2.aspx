@@ -8,7 +8,7 @@
         <h2>Program Plan Recommendation  </h2>
         <div class="table-responsive" style="width: 100%; padding-left: 40px; padding-right: 40px;">
             <asp:GridView Style="margin-top: 30px;" ID="gvProgramPlan" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
-                CellPadding="4" GridLines="None" AllowPaging="true" PageSize="5" HeaderStyle-HorizontalAlign="Center"
+                CellPadding="4" GridLines="None" AllowPaging="true" PageSize="5" HeaderStyle-HorizontalAlign="Center" OnPageIndexChanging="gvProgramPlan_PageIndexChanging"
                 ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                 <Columns>
                     <asp:BoundField DataField="ProgramPlanId" HeaderText="ID" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark" />
@@ -309,7 +309,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                         <EmptyDataTemplate>
-                                            No Resourses
+                                            No Resourses To Show
                                         </EmptyDataTemplate>
                                     </asp:GridView>
                                 </div>

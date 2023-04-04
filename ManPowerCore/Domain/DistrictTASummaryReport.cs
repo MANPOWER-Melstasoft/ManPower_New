@@ -35,5 +35,14 @@ namespace ManPowerCore.Domain
         [DBField("Last_Name")]
         public string OfficerName { get; set; }
 
+        [DBField("Department_Unit_Id")]
+        public int DepartmentUnitId { get; set; }
+
+        [DBField("Parent_Id")]
+        public int ParentId { get; set; }
+
+        [DBField("Department_Unit_Type_Id")]
+        public int DepType { get; set; }
+
     }
 }

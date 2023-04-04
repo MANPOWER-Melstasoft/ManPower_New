@@ -6,7 +6,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
         <div class="card p-4 mb-4 mt-5">
-            <h2>Target Achievement District Vise Summary</h2>
+            <h2>Target Achievement DS Division Vise Summary</h2>
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>

@@ -130,6 +130,64 @@ namespace ManPowerWeb
                 }
             }
 
+            //--------------------------------------------------Temporary Attchement--------------------------------------------------------
+
+            if (type == "4")
+            {
+                if (Convert.ToDateTime(txtFromDate.Text) > DateTime.Now.Date && Convert.ToDateTime(txtToDate.Text) > DateTime.Now.Date && Convert.ToDateTime(txtToDate.Text) > Convert.ToDateTime(txtFromDate.Text))
+                {
+                    TransfersRetirementResignationMain transfersRetirementResignationMain = new TransfersRetirementResignationMain();
+                    Transfer transfer = new Transfer();
+
+                    transfersRetirementResignationMain.RequestTypeId = 1;
+                    transfersRetirementResignationMain.StatusId = 1;
+                    transfersRetirementResignationMain.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
+                    transfersRetirementResignationMain.CreatedDate = DateTime.Now;
+                    transfersRetirementResignationMain.CreatedUser = Session["Name"].ToString();
+                    transfersRetirementResignationMain.RequestTypeId = Convert.ToInt32(type);
+                    transfersRetirementResignationMain.ParentId = Convert.ToInt32(Session["DepUnitParentId"]);
+                    transfersRetirementResignationMain.Documents = "";
+
+
+                    if (Uploader.HasFile)
+                    {
+                        HttpFileCollection uploadFiles = Request.Files;
+                        for (int i = 0; i < uploadFiles.Count; i++)
+                        {
+                            HttpPostedFile uploadFile = uploadFiles[i];
+                            if (uploadFile.ContentLength > 0)
+                            {
+                                uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Transfers/") + uploadFile.FileName);
+                                transfersRetirementResignationMain.Documents = uploadFile.FileName;
+
+                            }
+                        }
+                    }
+
+                    transfer.TransferType = ddlTransferType.SelectedValue;
+                    transfer.CurrentDep = lblDepartment.Text;
+                    transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
+                    transfer.Reason = txtReason.Text;
+                    transfer.FromDate = Convert.ToDateTime(txtFromDate.Text);
+                    transfer.ToDate = Convert.ToDateTime(txtToDate.Text);
+
+                    TransferController transferController = ControllerFactory.CreateTransferController();
+                    output = transferController.Save(transfersRetirementResignationMain, transfer);
+                    if (output == 1)
+                    {
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Record Added Succesfully!', 'success');window.setTimeout(function(){window.location='TransfersRetirementResignation.aspx'},2500);", true);
+                    }
+                    else
+                    {
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Record Added Fail!', 'error');", true);
+                    }
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'InValid Date Range!', 'error');", true);
+                }
+            }
+
 
             //--------------------------------------------------Resignation--------------------------------------------------------
 
@@ -248,12 +306,14 @@ namespace ManPowerWeb
                 transferDiv.Visible = false;
                 retirementDiv.Visible = false;
                 resignationDiv.Visible = false;
+                FromToDate.Visible = false;
             }
             if (ddlRequestType.SelectedValue == "1")
             {
                 transferDiv.Visible = true;
                 retirementDiv.Visible = false;
                 resignationDiv.Visible = false;
+                FromToDate.Visible = false;
 
                 BindTransferType();
                 BindDepList();
@@ -263,14 +323,26 @@ namespace ManPowerWeb
                 transferDiv.Visible = false;
                 retirementDiv.Visible = false;
                 resignationDiv.Visible = true;
+                FromToDate.Visible = false;
             }
             if (ddlRequestType.SelectedValue == "3")
             {
                 transferDiv.Visible = false;
                 retirementDiv.Visible = true;
                 resignationDiv.Visible = false;
+                FromToDate.Visible = false;
 
                 BindRetirementType();
+            }
+            if (ddlRequestType.SelectedValue == "4")
+            {
+                transferDiv.Visible = true;
+                retirementDiv.Visible = false;
+                resignationDiv.Visible = false;
+                FromToDate.Visible = true;
+
+                BindTransferType();
+                BindDepList();
             }
         }
 

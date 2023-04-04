@@ -143,6 +143,7 @@
     <Content Include="ApproveLoanHead.aspx" />
     <Content Include="ApproveLoanView.aspx" />
     <Content Include="DistressLoanAdmin.aspx" />
+    <Content Include="DistrictTASummaryAll.aspx" />
     <Content Include="DME22Rec1.aspx" />
     <Content Include="DME22Rec1Render.aspx" />
     <Content Include="DME22Rec2.aspx" />
@@ -162,6 +163,7 @@
     <Content Include="PlanningApproval.aspx" />
     <Content Include="PlanningRecommendation1.aspx" />
     <Content Include="PlanningRecommendation2.aspx" />
+    <Content Include="PositionTransfer.aspx" />
     <Content Include="RecommendationLeave.aspx" />
     <Content Include="RecommendationLeaveView.aspx" />
     <Content Include="RecommendationTrainingRequest.aspx" />
@@ -2220,6 +2222,13 @@
     <Compile Include="DistressLoanAdmin.aspx.designer.cs">
       <DependentUpon>DistressLoanAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DistrictTASummaryAll.aspx.cs">
+      <DependentUpon>DistrictTASummaryAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DistrictTASummaryAll.aspx.designer.cs">
+      <DependentUpon>DistrictTASummaryAll.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DME22Rec1.aspx.cs">
       <DependentUpon>DME22Rec1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2352,6 +2361,13 @@
     </Compile>
     <Compile Include="PlanningRecommendation2.aspx.designer.cs">
       <DependentUpon>PlanningRecommendation2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PositionTransfer.aspx.cs">
+      <DependentUpon>PositionTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PositionTransfer.aspx.designer.cs">
+      <DependentUpon>PositionTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecommendationLeave.aspx.cs">
       <DependentUpon>RecommendationLeave.aspx</DependentUpon>

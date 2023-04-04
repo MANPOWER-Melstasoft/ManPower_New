@@ -159,12 +159,30 @@ namespace ManPowerWeb
             if (programPlansListBind[0].ProjectStatusId == 4 || programPlansListBind[0].ProjectStatusId == 1 || programPlansListBind[0].ProjectStatusId >= 2013)
             {
                 btnSendToRecommendation.Visible = false;
+                if (programPlansListBind[0].ProjectStatusId != 1)
+                {
+                    divViewUplaod.Visible = true;
+                    if (programPlansListBind[0].FinancialSource != "" && programPlansListBind[0].FinancialSource != null)
+                    {
+                        gvFileResourses.DataSource = programPlansListBind;
+                        gvFileResourses.DataBind();
+
+                    }
+                    else
+                    {
+                        gvFileResourses.DataSource = null;
+                        gvFileResourses.DataBind();
+
+                    }
+                }
             }
 
             if (programPlansListBind[0].Date < DateTime.Now && programPlansListBind[0].ProjectStatusId != 1)
             {
                 DivAfterComplete.Visible = true;
-                divUplaod.Visible = true;
+                if (programPlansListBind[0].ProjectStatusId == 2)
+                    divUplaod.Visible = true;
+                //divViewUplaod.Visible = false;
             }
 
 
@@ -352,18 +370,18 @@ namespace ManPowerWeb
 
                 ProgramTarget programTargetState = (ProgramTarget)ViewState["programTarget"];
 
-                    //Check this later
-                    //if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
-                    //{
-                    //    lblDate.Text = "Invalid Date";
-                    //    validationflag = false;
-                    //}
+                //Check this later
+                //if (DateTime.Parse(txtDate.Text) <= DateTime.Now || DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
+                //{
+                //    lblDate.Text = "Invalid Date";
+                //    validationflag = false;
+                //}
 
-                    if (DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
-                    {
-                        lblDate.Text = "Invalid Date";
-                        validationflag = false;
-                    }
+                if (DateTime.Parse(txtDate.Text) <= programTargetState.StartDate || DateTime.Parse(txtDate.Text) >= programTargetState.EndDate)
+                {
+                    lblDate.Text = "Invalid Date";
+                    validationflag = false;
+                }
 
 
                 if (validationflag)
@@ -403,14 +421,14 @@ namespace ManPowerWeb
 
                         }
 
-                            retVal = 1;
-                        }
-                        else
-                        {
-                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
-                            retVal = 0;
-                        }
+                        retVal = 1;
                     }
+                    else
+                    {
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error')", true);
+                        retVal = 0;
+                    }
+                }
 
                 //}
             }
@@ -630,6 +648,12 @@ namespace ManPowerWeb
         {
             txtTotalCount.Text = (Convert.ToInt32(txtFemaleCount.Text) + Convert.ToInt32(txtMaleCount.Text)).ToString();
 
+        }
+
+        protected void AddIndiVidualBene_Click(object sender, EventArgs e)
+        {
+            string url = "IndividualBene.aspx";
+            Response.Redirect(url);
         }
     }
 

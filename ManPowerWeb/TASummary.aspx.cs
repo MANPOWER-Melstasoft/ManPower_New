@@ -47,7 +47,7 @@ namespace ManPowerWeb
             {
                 foreach (var itemDistrict in ListDistrict)
                 {
-                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName))
+                    foreach (var listItem in districtTASummariesList.Where(x => x.ProgramTargetName == itemProgramTargetName && x.Location == itemDistrict))
                     {
                         if (listItem.ProjectTypeId == 2)
                         {
@@ -108,7 +108,7 @@ namespace ManPowerWeb
             var ListProgramTargetName = districtTASummariesList.Select(x => x.ProgramTargetName).Distinct();
             var ListDistrict = districtTASummariesList.Select(x => x.Location).Distinct();
 
-            List<string> headers = new List<string>() { "Target", "Online", "Physical", "Total", "No. of beneficiaries" };
+            List<string> headers = new List<string>() { "", "Online", "Physical", "Total", "No. of beneficiaries" };
 
             TableHeaderRow thr2 = new TableHeaderRow();
             TableHeaderCell thc2 = new TableHeaderCell();
@@ -119,10 +119,15 @@ namespace ManPowerWeb
             TableHeaderRow thr3 = new TableHeaderRow();
             TableHeaderCell thc3 = new TableHeaderCell();
 
+            TableHeaderRow thr4 = new TableHeaderRow();
+            TableHeaderCell thc4 = new TableHeaderCell();
+
             thc1.Text = "";
             thr1.Cells.Add(thc1);
             thc2.Text = "";
             thr2.Cells.Add(thc2);
+            thc4.Text = "";
+            thr4.Cells.Add(thc4);
 
             thc3.Text = "ProgramTargetName";
             thr3.Cells.Add(thc3);
@@ -148,6 +153,20 @@ namespace ManPowerWeb
                     thr2.Font.Bold = true;
                     thr2.Cells.Add(thc2i);
 
+                    TableHeaderCell thc4i = new TableHeaderCell();
+                    thc4i.Text = "Target";
+
+                    TableHeaderCell thc5i = new TableHeaderCell();
+                    thc5i.Text = "Achivement";
+
+                    thr4.HorizontalAlign = HorizontalAlign.Center;
+                    thr4.Font.Size = 12;
+                    thr4.Font.Bold = true;
+
+                    thr4.Cells.Add(thc4i);
+                    thr4.Cells.Add(thc5i);
+
+
                     int count2 = 0;
                     foreach (var headerName in headers)
                     {
@@ -157,6 +176,7 @@ namespace ManPowerWeb
                         thr3.Cells.Add(thc3i);
                     }
                     thc2i.ColumnSpan = count2;
+                    thc5i.ColumnSpan = count2 - 1;
                     total = count1 * count2;
                 }
                 thr1.HorizontalAlign = HorizontalAlign.Center;
@@ -164,8 +184,10 @@ namespace ManPowerWeb
                 thr1.Font.Bold = true;
                 thc1i.ColumnSpan = total;
             }
+
             tblTaSummary.Rows.Add(thr1);
             tblTaSummary.Rows.Add(thr2);
+            tblTaSummary.Rows.Add(thr4);
             tblTaSummary.Rows.Add(thr3);
             // -----------------------------------------------------------------------------------------------
 

@@ -690,6 +690,22 @@
 
                                 </div>
                                 <div class="row mt-5">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label>District</label>
+                                            </div>
+                                            <div class="col-6">
+                                                <asp:RadioButtonList ID="rbDepartmentLocationType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rbDepartmentLocationType_SelectedIndexChanged">
+                                                    <asp:ListItem Value="1">District Level</asp:ListItem>
+                                                    <asp:ListItem Value="2">DS Division Level</asp:ListItem>
+                                                    <asp:ListItem Value="3">All Island</asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-5">
                                     <div class="col-3">
                                         <label>District :</label>
                                     </div>

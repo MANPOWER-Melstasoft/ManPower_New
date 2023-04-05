@@ -173,9 +173,10 @@ namespace ManPowerCore.Controller
 
                 foreach (var x in list)
                 {
-                    x._DepartmentUnitPositions = listDepartmentUnitPositions.Where(u => u.DepartmetUnitPossitionsId == x.DepartmentUnitPossitionsId).Single();
-
-                    x._ProgramTarget = listTarget.Where(u => u.ProgramTargetId == x.ProgramTargetId).Single();
+                    //x._DepartmentUnitPositions = listDepartmentUnitPositions.Where(u => u.DepartmetUnitPossitionsId == x.DepartmentUnitPossitionsId).Single();
+                    x._DepartmentUnitPositions = departmentUnitPositionsDAO.GetDepartmentUnitPositions(x.DepartmentUnitPossitionsId, dBConnection);
+                    //x._ProgramTarget = listTarget.Where(u => u.ProgramTargetId == x.ProgramTargetId).Single();
+                    x._ProgramTarget = programTargetDAO.GetProgramTarget(x.ProgramTargetId, dBConnection);
 
 
                 }

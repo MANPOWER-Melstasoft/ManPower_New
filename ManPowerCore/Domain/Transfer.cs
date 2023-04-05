@@ -31,6 +31,12 @@ namespace ManPowerCore.Domain
         [DBField("Is_Active")]
         public int IsActive { get; set; }
 
+        [DBField("From_Date")]
+        public DateTime FromDate { get; set; }
+
+        [DBField("To_Date")]
+        public DateTime ToDate { get; set; }
+
         public TransfersRetirementResignationMain transfersRetirementResignationMain { get; set; }
     }
 }

@@ -106,7 +106,7 @@ namespace ManPowerWeb
                 btnSubmit.Visible = true;
             }
 
-            if (trrmainObj.RequestTypeId == 1)
+            if (trrmainObj.RequestTypeId == 1 || trrmainObj.RequestTypeId == 4)
             {
                 typeId = 1;
                 transferDiv.Visible = true;
@@ -121,6 +121,20 @@ namespace ManPowerWeb
 
                 DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
                 lblNewDapartment.Text = departmentUnitNext.Name;
+
+                if (trrmainObj.RequestTypeId == 4)
+                {
+                    typeId = 4;
+                    heading.Text = "Temporary Attchement - " + trrmainObj.EmployeeId;
+                    lblRequestType.Text = "Temporary Attchement";
+                    FromToDate.Visible = true;
+
+                    if (transfer.FromDate.ToString("yyyy-MM-dd") != "0001-01-01")
+                    {
+                        fromDate.Text = transfer.FromDate.ToString("yyyy-MM-dd");
+                        toDate.Text = transfer.ToDate.ToString("yyyy-MM-dd");
+                    }
+                }
             }
             if (trrmainObj.RequestTypeId == 2)
             {

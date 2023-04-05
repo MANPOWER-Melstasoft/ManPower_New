@@ -55,7 +55,7 @@ namespace ManPowerWeb
             lblDocument.Text = trrmainObj.Documents;
             document = trrmainObj.Documents;
 
-            if (trrmainObj.RequestTypeId == 1)
+            if (trrmainObj.RequestTypeId == 1 || trrmainObj.RequestTypeId == 4)
             {
                 typeId = 1;
                 transferDiv.Visible = true;
@@ -67,6 +67,20 @@ namespace ManPowerWeb
 
                 lblTransferType.Text = transfer.TransferType;
                 lblTransferReason.Text = transfer.Reason;
+
+                if (trrmainObj.RequestTypeId == 4)
+                {
+                    typeId = 4;
+                    heading.Text = "Temporary Attchement - " + trrmainObj.EmployeeId;
+                    lblRequestType.Text = "Temporary Attchement";
+                    FromToDate.Visible = true;
+
+                    if (transfer.FromDate.ToString("yyyy-MM-dd") != "0001-01-01")
+                    {
+                        fromDate.Text = transfer.FromDate.ToString("yyyy-MM-dd");
+                        toDate.Text = transfer.ToDate.ToString("yyyy-MM-dd");
+                    }
+                }
 
                 DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
                 lblNewDapartment.Text = departmentUnitNext.Name;
@@ -118,7 +132,7 @@ namespace ManPowerWeb
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            if (typeId == 1)
+            if (typeId == 1 || typeId == 4)
             {
                 if (document != "" && document != null)
                 {

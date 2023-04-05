@@ -113,7 +113,8 @@ namespace ManPowerCore.Controller
 
                 foreach (var item in taskAllocationList)
                 {
-                    item._DepartmentUnitPositions = departmentUnitPositions.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
+                    //item._DepartmentUnitPositions = departmentUnitPositions.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
+                    item._DepartmentUnitPositions = departmentUnitPositionsDAO.GetDepartmentUnitPositions(item.DepartmetUnitPossitionsId, dBConnection);
                 }
                 return taskAllocationList;
             }

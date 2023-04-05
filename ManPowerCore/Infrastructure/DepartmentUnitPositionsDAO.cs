@@ -127,7 +127,7 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ID = " + id + " AND Is_Active = 1";
+            dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE ID = " + id;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

@@ -13,12 +13,15 @@ namespace ManPowerCore.Infrastructure
     public interface StaffLeaveDAO
     {
         int saveStaffLeave(StaffLeave staffLeave, DBConnection dBConnection);
+        int saveStaffLeaveDoc(StaffLeave staffLeave, DBConnection dBConnection);
 
         List<StaffLeave> getStaffLeaves(DBConnection dbConnection);
 
         StaffLeave getStaffLeaveById(int id, DBConnection dbConnection);
 
         int updateStaffLeave(StaffLeave staffLeave, DBConnection dbConnection);
+
+        int updateStaffLeaveSubmit(StaffLeave staffLeave, DBConnection dbConnection);
 
         int updateStaffLeaveRecommendation(StaffLeave staffLeave, DBConnection dbConnection);
 
@@ -58,6 +61,27 @@ namespace ManPowerCore.Infrastructure
             return dBConnection.cmd.ExecuteNonQuery();
 
         }
+
+        public int saveStaffLeaveDoc(StaffLeave staffLeave, DBConnection dBConnection)
+        {
+            if (dBConnection.dr != null)
+                dBConnection.dr.Close();
+
+            dBConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+            dBConnection.cmd.Parameters.Clear();
+            dBConnection.cmd.CommandText = "INSERT INTO Staff_Leave (Employee_ID, Leave_Status_Id, Leave_Document)" +
+               " VALUES(@EmpId, @LeaveStatusId, @LeaveDocument);";
+
+
+            dBConnection.cmd.Parameters.AddWithValue("@EmpId", staffLeave.EmployeeId);
+            dBConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
+            dBConnection.cmd.Parameters.AddWithValue("@LeaveDocument", staffLeave.LeaveDocument);
+
+            return dBConnection.cmd.ExecuteNonQuery();
+
+        }
+
         public List<StaffLeave> getStaffLeaves(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
@@ -80,6 +104,37 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.GetSingleOject<StaffLeave>(dbConnection.dr);
+        }
+
+        public int updateStaffLeaveSubmit(StaffLeave staffLeave, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE Staff_Leave SET Day_Type_id = @DayType, Leave_Type_id = @LeaveTypeId, Leave_Date = @LeaveDate, " +
+                "Created_Date = @CreatedDate, Is_Half_Day = @IsHalfDay, Leave_Status_Id = @LeaveStatusId, Reason_For_Leave = @Reason, " +
+                "Resuming_Date = @ResumingDate, No_Of_Leave = @NoLeaves, From_Time = @FromTime, To_Time = @ToTime, Approved_By=@ApprovedBy, " +
+                "Approved_Date=@ApproveDate WHERE ID = @StaffLeaveId;";
+
+            dbConnection.cmd.Parameters.AddWithValue("@DayType", staffLeave.DayTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@LeaveTypeId", staffLeave.LeaveTypeId);
+            dbConnection.cmd.Parameters.AddWithValue("@LeaveDate", staffLeave.LeaveDate);
+            dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", staffLeave.CreatedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@IsHalfDay", staffLeave.IsHalfDay);
+            dbConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
+            dbConnection.cmd.Parameters.AddWithValue("@Reason", staffLeave.ReasonForLeave);
+            dbConnection.cmd.Parameters.AddWithValue("@ResumingDate", staffLeave.ResumingDate);
+            dbConnection.cmd.Parameters.AddWithValue("@NoLeaves", staffLeave.NoOfLeaves);
+            dbConnection.cmd.Parameters.AddWithValue("@FromTime", staffLeave.FromTime);
+            dbConnection.cmd.Parameters.AddWithValue("@ToTime", staffLeave.ToTime);
+            dbConnection.cmd.Parameters.AddWithValue("@ApprovedBy", staffLeave.ApprovedBy);
+            dbConnection.cmd.Parameters.AddWithValue("@ApproveDate", staffLeave.ApprovedDate);
+            dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeave.StaffLeaveId);
+
+            return dbConnection.cmd.ExecuteNonQuery();
         }
 
         public int updateStaffLeave(StaffLeave staffLeave, DBConnection dbConnection)

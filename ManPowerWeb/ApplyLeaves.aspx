@@ -11,7 +11,7 @@
                         CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="center" ShowFooter="false" AllowPaging="true" OnPageIndexChanging="gvMyLeaves_PageIndexChanging" PageSize="5"
                         FooterStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
                         <Columns>
-                            <asp:TemplateField HeaderText="Leave Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                            <%-- <asp:TemplateField HeaderText="Leave Type" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                                 <ItemTemplate>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "1" ?true:false %>' Text="Casual Leave">  </asp:Label>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "2" ?true:false %>' Text="Medical Leave">  </asp:Label>
@@ -20,17 +20,26 @@
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "5" ?true:false %>' Text="Duty Leave">  </asp:Label>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveTypeId").ToString() == "6" ?true:false %>' Text="Leave to Leave"> </asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="LeaveDate" HeaderText="Leave Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="NoOfLeaves" HeaderText="No of Leaves " HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
-                            <asp:BoundField DataField="CreatedDate" HeaderText="Leave Apply Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            </asp:TemplateField>--%>
+                            <%--<asp:BoundField DataField="NoOfLeaves" HeaderText="No of Leaves " HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="CreatedDate" HeaderText="Leave Apply Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />--%>
+
+                            <asp:BoundField DataField="StaffLeaveId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+
                             <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                                 <ItemTemplate>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "5" ?true:false %>' Text="Rejected" ForeColor="Red">  </asp:Label>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "2" ?true:false %>' Text="Send to Recommendation" ForeColor="YellowGreen">  </asp:Label>
-                                    <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "3" ?true:false %>' Text="Send to Approval" ForeColor="YellowGreen">  </asp:Label>
-                                    <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Green">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "3" ?true:false %>' Text="Send to Approval" ForeColor="Green">  </asp:Label>
+                                    <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="YellowGreen">  </asp:Label>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "4" ?true:false %>' Text="Approved" ForeColor="Blue">  </asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Document" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px" target="new"
+                                        a href='<%#"/SystemDocuments/StaffLeaveResources/"+DataBinder.Eval(Container.DataItem,"LeaveDocument") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -42,7 +51,8 @@
                 <div class="card m-4 p-4">
                     <h2><b>Apply Leave</b></h2>
                     <div class="mt-3">
-
+                        <% if (false)
+                            { %>
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
                                 <div class="row">
@@ -218,7 +228,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <% } %>
 
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
@@ -228,7 +238,9 @@
                                         <asp:Literal ID="Literal7" runat="server" Text="Upload Leave Form"></asp:Literal>
                                     </div>
                                     <div class="col-md-6">
-                                        <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="true" />
+                                        <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="false" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="Uploader" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
+
                                         <asp:Label ID="lblListOfUploadedFiles" runat="server" />
                                     </div>
 

@@ -13,6 +13,7 @@ namespace ManPowerCore.Infrastructure
     public interface StaffLeaveDAO
     {
         int saveStaffLeave(StaffLeave staffLeave, DBConnection dBConnection);
+        int saveStaffLeaveDoc(StaffLeave staffLeave, DBConnection dBConnection);
 
         List<StaffLeave> getStaffLeaves(DBConnection dbConnection);
 
@@ -58,6 +59,27 @@ namespace ManPowerCore.Infrastructure
             return dBConnection.cmd.ExecuteNonQuery();
 
         }
+
+        public int saveStaffLeaveDoc(StaffLeave staffLeave, DBConnection dBConnection)
+        {
+            if (dBConnection.dr != null)
+                dBConnection.dr.Close();
+
+            dBConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+            dBConnection.cmd.Parameters.Clear();
+            dBConnection.cmd.CommandText = "INSERT INTO Staff_Leave (Employee_ID, Leave_Status_Id, Leave_Document)" +
+               " VALUES(@EmpId, @LeaveStatusId, @LeaveDocument);";
+
+
+            dBConnection.cmd.Parameters.AddWithValue("@EmpId", staffLeave.EmployeeId);
+            dBConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
+            dBConnection.cmd.Parameters.AddWithValue("@LeaveDocument", staffLeave.LeaveDocument);
+
+            return dBConnection.cmd.ExecuteNonQuery();
+
+        }
+
         public List<StaffLeave> getStaffLeaves(DBConnection dbConnection)
         {
             if (dbConnection.dr != null)

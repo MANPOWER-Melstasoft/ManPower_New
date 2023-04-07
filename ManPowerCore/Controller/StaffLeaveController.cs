@@ -14,6 +14,8 @@ namespace ManPowerCore.Controller
     {
         int saveStaffLeave(StaffLeave staffLeave);
 
+        int saveStaffLeaveDoc(StaffLeave staffLeave);
+
         List<StaffLeave> getStaffLeaves(bool withEmployeeDetails);
 
         int updateStaffLeaves(StaffLeave staffLeave);
@@ -45,6 +47,29 @@ namespace ManPowerCore.Controller
                     dBConnection.Commit();
             }
         }
+
+        public int saveStaffLeaveDoc(StaffLeave staffLeave)
+        {
+
+            try
+            {
+                dBConnection = new DBConnection();
+                return staffLeaveDAO.saveStaffLeaveDoc(staffLeave, dBConnection);
+
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
         public Employee GetemployeeDetailsByEmployeeId(int EmployeeId)
         {
             try

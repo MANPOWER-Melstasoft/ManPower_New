@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -63,71 +64,71 @@ namespace ManPowerWeb
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
             StaffLeave staffLeave = new StaffLeave();
 
-            bool validation = false;
+            bool validation = true;
 
             int response = 0;
 
 
 
-            if (DateTime.Parse(txtDateCommencing.Text) > DateTime.Now)
-            {
-                staffLeave.LeaveDate = DateTime.Parse(txtDateCommencing.Text);
-                validation = true;
+            //if (DateTime.Parse(txtDateCommencing.Text) > DateTime.Now)
+            //{
+            //    staffLeave.LeaveDate = DateTime.Parse(txtDateCommencing.Text);
+            //    validation = true;
 
-            }
-            else
-            {
-                lblDate.Text = "Invalid Date";
-            }
+            //}
+            //else
+            //{
+            //    lblDate.Text = "Invalid Date";
+            //}
 
 
 
-            staffLeave.CreatedDate = DateTime.Now;
-            staffLeave.DayTypeId = int.Parse(ddlDayType.SelectedValue);
+            //staffLeave.CreatedDate = DateTime.Now;
+            //staffLeave.DayTypeId = int.Parse(ddlDayType.SelectedValue);
 
             //must change
             staffLeave.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
 
-            if (ddlDayType.SelectedValue == "3")
-            {
-                staffLeave.IsHalfDay = 0;
-            }
-            else
-            {
-                staffLeave.IsHalfDay = 1;
-            }
+            //if (ddlDayType.SelectedValue == "3")
+            //{
+            //    staffLeave.IsHalfDay = 0;
+            //}
+            //else
+            //{
+            //    staffLeave.IsHalfDay = 1;
+            //}
 
 
-            staffLeave.ReasonForLeave = txtLeaveReason.Text;
-            staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
-            staffLeave.LeaveStatusId = 1;
+            //staffLeave.ReasonForLeave = txtLeaveReason.Text;
+            //staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
+            //staffLeave.LeaveStatusId = 1;
 
-            if (ddlLeaveType.SelectedValue == "4")
-            {
-                staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtFrom.Text));
+            //if (ddlLeaveType.SelectedValue == "4")
+            //{
+            //    staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtFrom.Text));
 
-                staffLeave.ToTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtTo.Text));
-                staffLeave.NoOfLeaves = 0;
-                staffLeave.ResumingDate = DateTime.Parse(txtDateCommencing.Text);
-                if (staffLeave.FromTime < staffLeave.ToTime)
-                {
-                    validation = true;
-                }
-                else
-                {
-                    validation = false;
-                }
+            //    staffLeave.ToTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtTo.Text));
+            //    staffLeave.NoOfLeaves = 0;
+            //    staffLeave.ResumingDate = DateTime.Parse(txtDateCommencing.Text);
+            //    if (staffLeave.FromTime < staffLeave.ToTime)
+            //    {
+            //        validation = true;
+            //    }
+            //    else
+            //    {
+            //        validation = false;
+            //    }
 
 
-            }
-            else
-            {
-                staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text); ;
-                staffLeave.ToTime = DateTime.Parse(txtDateResuming.Text); ;
-                staffLeave.NoOfLeaves = float.Parse(txtNoOfDates.Text);
-                staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
+            //}
+            //else
+            //{
+            //    staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text); ;
+            //    staffLeave.ToTime = DateTime.Parse(txtDateResuming.Text); ;
+            //    staffLeave.NoOfLeaves = float.Parse(txtNoOfDates.Text);
+            //    staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
 
-            }
+            //}
 
 
             if (Uploader.HasFile)
@@ -138,10 +139,18 @@ namespace ManPowerWeb
                     HttpPostedFile uploadFile = uploadFiles[i];
                     if (uploadFile.ContentLength > 0)
                     {
-                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
-                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+                        var originalFileName = Path.GetFileName(uploadFile.FileName); // Get the original filename
+                        var extension = Path.GetExtension(originalFileName); // Get the file extension
+                        var dateTime = DateTime.Now.ToString("yyyyMMddHHmmss"); // Get the current date and time as a string
+                        var newFileName = staffLeave.EmployeeId + "_" + dateTime + extension; // Set the new filename
 
-                        staffLeave.LeaveDocument = uploadFile.FileName;
+                        var path = Path.Combine(Server.MapPath("~/SystemDocuments/StaffLeaveResources/"), newFileName); // Set the file path
+                        uploadFile.SaveAs(path);
+
+                        //uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
+                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", newFileName);
+
+                        staffLeave.LeaveDocument = newFileName;
 
                     }
                 }
@@ -151,11 +160,11 @@ namespace ManPowerWeb
                 staffLeave.LeaveDocument = "";
             }
 
-            staffLeave.LeaveStatusId = 2;
+            staffLeave.LeaveStatusId = 1;
 
             if (validation)
             {
-                response = staffLeaveController.saveStaffLeave(staffLeave);
+                response = staffLeaveController.saveStaffLeaveDoc(staffLeave);
 
             }
 

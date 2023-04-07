@@ -62,5 +62,7 @@ namespace ManPowerCore.Domain
         public Employee employee { get; set; }
 
         public SystemUser systemUser { get; set; }
+
+        public SystemUser ActionTakenUser { get; set; }
     }
 }

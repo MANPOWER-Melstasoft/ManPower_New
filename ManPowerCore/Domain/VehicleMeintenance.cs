@@ -59,5 +59,11 @@ namespace ManPowerCore.Domain
         public string RejectedReason { get; set; }
 
         public Employee Employee { get; set; }
+
+        public SystemUser RequestBy { get; set; }
+
+        public SystemUser RecommendBy { get; set; }
+
+        public SystemUser ApproveBy { get; set; }
     }
 }

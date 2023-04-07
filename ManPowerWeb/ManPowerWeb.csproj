@@ -330,6 +330,7 @@
     <Content Include="TASummary.aspx" />
     <Content Include="testing.aspx" />
     <Content Include="TrainingAd.aspx" />
+    <Content Include="TransferReport.aspx" />
     <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="TransfersRetirementResignationView.aspx" />
     <Content Include="UpcomingPrograms.aspx" />
@@ -342,6 +343,7 @@
     <Content Include="VacancyRegView.aspx" />
     <Content Include="UserPrivileges.aspx" />
     <Content Include="UserRegister.aspx" />
+    <Content Include="VehicleMaintenanceReport.aspx" />
     <Content Include="VehicleMeintenanceSearch.aspx" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
@@ -3001,6 +3003,13 @@
     <Compile Include="TrainingAd.aspx.designer.cs">
       <DependentUpon>TrainingAd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TransferReport.aspx.cs">
+      <DependentUpon>TransferReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransferReport.aspx.designer.cs">
+      <DependentUpon>TransferReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TransfersRetirementResignation.aspx.cs">
       <DependentUpon>TransfersRetirementResignation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3085,6 +3094,13 @@
     </Compile>
     <Compile Include="UserRegister.aspx.designer.cs">
       <DependentUpon>UserRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleMaintenanceReport.aspx.cs">
+      <DependentUpon>VehicleMaintenanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VehicleMaintenanceReport.aspx.designer.cs">
+      <DependentUpon>VehicleMaintenanceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="VehicleMeintenanceSearch.aspx.cs">
       <DependentUpon>VehicleMeintenanceSearch.aspx</DependentUpon>

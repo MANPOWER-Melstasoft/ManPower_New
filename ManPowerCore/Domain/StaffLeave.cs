@@ -59,6 +59,7 @@ namespace ManPowerCore.Domain
         public string RejectReason { get; set; }
 
         public Employee _EMployeeDetails { get; set; }
+        public LeaveType leaveType { get; set; }
 
 
     }

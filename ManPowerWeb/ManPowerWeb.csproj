@@ -330,6 +330,7 @@
     <Content Include="TASummary.aspx" />
     <Content Include="testing.aspx" />
     <Content Include="TrainingAd.aspx" />
+    <Content Include="TrainingReport.aspx" />
     <Content Include="TransferReport.aspx" />
     <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="TransfersRetirementResignationView.aspx" />
@@ -3002,6 +3003,13 @@
     </Compile>
     <Compile Include="TrainingAd.aspx.designer.cs">
       <DependentUpon>TrainingAd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingReport.aspx.cs">
+      <DependentUpon>TrainingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrainingReport.aspx.designer.cs">
+      <DependentUpon>TrainingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="TransferReport.aspx.cs">
       <DependentUpon>TransferReport.aspx</DependentUpon>

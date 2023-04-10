@@ -1,12 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApplyLeaves.aspx.cs" Inherits="ManPowerWeb.ApplyLeaves" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LeaveForm.aspx.cs" Inherits="ManPowerWeb.LeaveForm" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <asp:UpdatePanel runat="server" ID="updatepannel1">
             <ContentTemplate>
                 <div class="card m-4 p-4">
-                    <h2><b>My Leave</b></h2>
+                    <h2><b>Pending Leaves</b></h2>
                     <asp:GridView Style="margin-top: 30px;" ID="gvMyLeaves" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered"
                         CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="center" ShowFooter="false" AllowPaging="true" OnPageIndexChanging="gvMyLeaves_PageIndexChanging" PageSize="5"
                         FooterStyle-HorizontalAlign="Center" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center" EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
@@ -25,7 +28,7 @@
                             <asp:BoundField DataField="CreatedDate" HeaderText="Leave Apply Date" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />--%>
 
                             <asp:BoundField DataField="StaffLeaveId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
-
+                            <asp:BoundField DataField="EmployeeId" HeaderText="Employee Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                                 <ItemTemplate>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "5" ?true:false %>' Text="Rejected" ForeColor="Red">  </asp:Label>
@@ -40,6 +43,11 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px" target="new"
                                         a href='<%#"/SystemDocuments/StaffLeaveResources/"+DataBinder.Eval(Container.DataItem,"LeaveDocument") %>' />
+
+                                    <asp:LinkButton ID="btnChoose" runat="server" CssClass="btn btn-info btn-user btn-block"
+                                        OnClick="btnChoose_Click" Width="100px">
+                                            Choose
+                                    </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -49,10 +57,41 @@
                 </div>
 
                 <div class="card m-4 p-4">
-                    <h2><b>Apply Leave</b></h2>
+                    <h2><b>Submit Leave</b></h2>
                     <div class="mt-3">
-                        <% if (false)
-                            { %>
+
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <asp:Literal ID="Literal11" runat="server" Text="Leave Id"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <asp:TextBox runat="server" ID="txtLeaveId" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ControlToValidate="txtLeaveId" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <asp:Literal ID="Literal10" runat="server" Text="Employee Id"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <asp:TextBox runat="server" ID="txtxEmpId" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="txtxEmpId" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6">
                                 <div class="row">
@@ -68,10 +107,8 @@
 
                                 </div>
                             </div>
-
-
-
                         </div>
+
                         <% if (ddlLeaveType.SelectedValue != "4")
                             { %>
                         <div class="row mb-3 ms-1">
@@ -228,20 +265,18 @@
                                 </div>
                             </div>
                         </div>
-                        <% } %>
 
-                        <div class="row mb-3 ms-1">
+
+                        <div class="row mb-5 ms-1">
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-sm-6">
 
-                                        <asp:Literal ID="Literal7" runat="server" Text="Upload Leave Form"></asp:Literal>
+                                        <asp:Literal ID="Literal7" runat="server" Text="Leave Document"></asp:Literal>
                                     </div>
                                     <div class="col-md-6">
-                                        <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="false" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="Uploader" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-
-                                        <asp:Label ID="lblListOfUploadedFiles" runat="server" />
+                                        <%-- <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="true" />--%>
+                                        <asp:Label ID="lblListOfUploadedFiles" runat="server" Text="N/A" />
                                     </div>
 
                                 </div>
@@ -252,15 +287,14 @@
                                 <div class="row">
 
                                     <div class="col-md-6">
-                                        <asp:Button runat="server" ID="btnApplyLeave" Text="Apply Leave " CssClass="form-control form-control-user btn-primary" OnClick="btnApplyLeave_Click" ValidationGroup="1"></asp:Button>
+                                        <asp:Button runat="server" ID="btnApplyLeave" Text="Submit Leave" CssClass="form-control form-control-user btn-primary" OnClick="btnApplyLeave_Click" ValidationGroup="1"></asp:Button>
 
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <asp:Button runat="server" ID="btnLeaveBalance" Text="View My Leave Balance " CssClass="form-control form-control-user btn-success" OnClick="btnLeaveBalance_Click"></asp:Button>
+                                    <%--<div class="col-md-6">
+                                        <asp:Button runat="server" ID="btnLeaveBalance" Text="" CssClass="form-control form-control-user btn-success" OnClick="btnLeaveBalance_Click"></asp:Button>
 
-                                    </div>
-
+                                    </div>--%>
                                 </div>
                             </div>
 
@@ -276,4 +310,5 @@
             </Triggers>
         </asp:UpdatePanel>
     </div>
+
 </asp:Content>

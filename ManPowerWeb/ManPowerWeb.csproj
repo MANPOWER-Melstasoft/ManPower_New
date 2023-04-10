@@ -149,6 +149,7 @@
     <Content Include="DME22Rec2.aspx" />
     <Content Include="DME22Rec2Render.aspx" />
     <Content Include="IndividualBeneList.aspx" />
+    <Content Include="LeaveForm.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
@@ -2266,6 +2267,13 @@
     </Compile>
     <Compile Include="IndividualBeneList.aspx.designer.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveForm.aspx.cs">
+      <DependentUpon>LeaveForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveForm.aspx.designer.cs">
+      <DependentUpon>LeaveForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoanReport.aspx.cs">
       <DependentUpon>LoanReport.aspx</DependentUpon>

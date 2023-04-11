@@ -54,5 +54,7 @@ namespace ManPowerCore.Domain
         public int Program_Plan_Id { get; set; }
 
         public Beneficiary beneficiary { get; set; }
+
+        public ProgramPlan ProgramPlan { get; set; }
     }
 }

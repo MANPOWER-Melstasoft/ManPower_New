@@ -13,7 +13,7 @@ namespace ManPowerCore.Domain
         [DBField("ID")]
         public int JobRefferalsId { get; set; }
 
-        [DBField("COMPANY_VACANCY_REGISTRATION_ID")]
+        [DBField("Company_Vacancy_Resgistration_Id")]
         public int VacancyRegistrationId { get; set; }
 
         [DBField("BENEFICIARY_ID")]
@@ -49,5 +49,10 @@ namespace ManPowerCore.Domain
         public CompanyVecansyRegistationDetails companyVecansyRegistationDetails { get; set; }
 
         public Beneficiary beneficiary { get; set; }
+
+        public JobCategory JobCategory { get; set; }
+
+        public ProgramPlan ProgramPlan { get; set; }
+
     }
 }

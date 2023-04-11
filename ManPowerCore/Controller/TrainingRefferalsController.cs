@@ -16,6 +16,7 @@ namespace ManPowerCore.Controller
         int Delete(int id);
         List<TrainingRefferals> GetAllTrainingRefferals(bool with0);
         TrainingRefferals GetTrainingRefferals(int id);
+        List<TrainingRefferals> GetAllTrainingRefferalsByBene(int BeneId);
     }
 
     public class TrainingRefferalsControllerSqlImpl : TrainingRefferalsController
@@ -125,6 +126,37 @@ namespace ManPowerCore.Controller
                     dbConnection.Commit();
             }
 
+        }
+
+        public List<TrainingRefferals> GetAllTrainingRefferalsByBene(int BeneId)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                List<TrainingRefferals> trainingRefferals = new List<TrainingRefferals>();
+                trainingRefferals = trainingRefferalsDAO.GetAllTrainingRefferalsByBene(BeneId, dbConnection);
+
+                ProgramPlanDAO programPlanDAO = DAOFactory.CreateProgramPlanDAO();
+                foreach (var item in trainingRefferals)
+                {
+                    if (item.Program_Plan_Id != 0)
+                    {
+                        item.ProgramPlan = programPlanDAO.GetProgramPlan(item.Program_Plan_Id, dbConnection);
+                    }
+                }
+
+                return trainingRefferals;
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
         }
 
     }

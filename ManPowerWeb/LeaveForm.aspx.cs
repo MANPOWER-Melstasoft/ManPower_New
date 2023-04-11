@@ -3,7 +3,6 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class ApplyLeaves : System.Web.UI.Page
+    public partial class LeaveForm : System.Web.UI.Page
     {
         List<LeaveType> leavesTypeList = new List<LeaveType>();
         List<HolidaySheet> holidaySheetsList = new List<HolidaySheet>();
@@ -30,6 +29,8 @@ namespace ManPowerWeb
                 bindgvMyLeaves();
             }
         }
+
+
         private void bindData()
         {
             LeaveTypeController leaveTypeController = ControllerFactory.CreateLeaveTypeController();
@@ -48,9 +49,9 @@ namespace ManPowerWeb
         private void bindgvMyLeaves()
         {
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-            staffLeavesList = staffLeaveController.getStaffLeaves(false);
+            staffLeavesList = staffLeaveController.getStaffLeaves(false).Where(x => x.LeaveStatusId == 1).ToList();
             // ViewState["staffLeavesList"] = staffLeavesList.Where(x => x.EmployeeId == empId);
-            gvMyLeaves.DataSource = staffLeavesList.Where(x => x.EmployeeId == empId).ToList();
+            gvMyLeaves.DataSource = staffLeavesList;
             gvMyLeaves.DataBind();
 
         }
@@ -59,136 +60,146 @@ namespace ManPowerWeb
             gvMyLeaves.PageIndex = e.NewPageIndex;
             bindgvMyLeaves();
         }
+
+        protected void btnChoose_Click(object sender, EventArgs e)
+        {
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int pagesize = gvMyLeaves.PageSize;
+            int pageindex = gvMyLeaves.PageIndex;
+            rowIndex = (pagesize * pageindex) + rowIndex;
+
+            StaffLeave staffLeave = staffLeavesList[rowIndex];
+
+            txtLeaveId.Text = staffLeave.StaffLeaveId.ToString();
+            txtxEmpId.Text = staffLeave.EmployeeId.ToString();
+            lblListOfUploadedFiles.Text = staffLeave.LeaveDocument;
+        }
+
         protected void btnApplyLeave_Click(object sender, EventArgs e)
         {
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
             StaffLeave staffLeave = new StaffLeave();
 
-            bool validation = true;
+            bool validation = false;
 
             int response = 0;
 
 
 
-            //if (DateTime.Parse(txtDateCommencing.Text) > DateTime.Now)
-            //{
-            //    staffLeave.LeaveDate = DateTime.Parse(txtDateCommencing.Text);
-            //    validation = true;
-
-            //}
-            //else
-            //{
-            //    lblDate.Text = "Invalid Date";
-            //}
-
-
-
-            //staffLeave.CreatedDate = DateTime.Now;
-            //staffLeave.DayTypeId = int.Parse(ddlDayType.SelectedValue);
-
-            //must change
-            staffLeave.EmployeeId = Convert.ToInt32(Session["EmpNumber"]);
-
-            //if (ddlDayType.SelectedValue == "3")
-            //{
-            //    staffLeave.IsHalfDay = 0;
-            //}
-            //else
-            //{
-            //    staffLeave.IsHalfDay = 1;
-            //}
-
-
-            //staffLeave.ReasonForLeave = txtLeaveReason.Text;
-            //staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
-            //staffLeave.LeaveStatusId = 1;
-
-            //if (ddlLeaveType.SelectedValue == "4")
-            //{
-            //    staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtFrom.Text));
-
-            //    staffLeave.ToTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtTo.Text));
-            //    staffLeave.NoOfLeaves = 0;
-            //    staffLeave.ResumingDate = DateTime.Parse(txtDateCommencing.Text);
-            //    if (staffLeave.FromTime < staffLeave.ToTime)
-            //    {
-            //        validation = true;
-            //    }
-            //    else
-            //    {
-            //        validation = false;
-            //    }
-
-
-            //}
-            //else
-            //{
-            //    staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text); ;
-            //    staffLeave.ToTime = DateTime.Parse(txtDateResuming.Text); ;
-            //    staffLeave.NoOfLeaves = float.Parse(txtNoOfDates.Text);
-            //    staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
-
-            //}
-
-
-            if (Uploader.HasFile)
+            if (DateTime.Parse(txtDateCommencing.Text) > DateTime.Now)
             {
-                HttpFileCollection uploadFiles = Request.Files;
-                for (int i = 0; i < uploadFiles.Count; i++)
-                {
-                    HttpPostedFile uploadFile = uploadFiles[i];
-                    if (uploadFile.ContentLength > 0)
-                    {
-                        var originalFileName = Path.GetFileName(uploadFile.FileName); // Get the original filename
-                        var extension = Path.GetExtension(originalFileName); // Get the file extension
-                        var dateTime = DateTime.Now.ToString("yyyyMMddHHmmss"); // Get the current date and time as a string
-                        var newFileName = staffLeave.EmployeeId + "_" + dateTime + extension; // Set the new filename
+                staffLeave.LeaveDate = DateTime.Parse(txtDateCommencing.Text);
+                validation = true;
 
-                        var path = Path.Combine(Server.MapPath("~/SystemDocuments/StaffLeaveResources/"), newFileName); // Set the file path
-                        uploadFile.SaveAs(path);
-
-                        //uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
-                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", newFileName);
-
-                        staffLeave.LeaveDocument = newFileName;
-
-                    }
-                }
             }
             else
             {
-                staffLeave.LeaveDocument = "";
+                lblDate.Text = "Invalid Date";
             }
 
-            staffLeave.LeaveStatusId = 1;
+
+
+            staffLeave.CreatedDate = DateTime.Now;
+            staffLeave.DayTypeId = int.Parse(ddlDayType.SelectedValue);
+
+            //must change
+            staffLeave.EmployeeId = Convert.ToInt32(txtxEmpId.Text);
+            staffLeave.StaffLeaveId = Convert.ToInt32(txtLeaveId.Text);
+
+            if (ddlDayType.SelectedValue == "3")
+            {
+                staffLeave.IsHalfDay = 0;
+            }
+            else
+            {
+                staffLeave.IsHalfDay = 1;
+            }
+
+
+            staffLeave.ReasonForLeave = txtLeaveReason.Text;
+            staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
+
+
+            if (ddlLeaveType.SelectedValue == "4")
+            {
+                staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtFrom.Text));
+
+                staffLeave.ToTime = DateTime.Parse(txtDateCommencing.Text).Add(TimeSpan.Parse(txtTo.Text));
+                staffLeave.NoOfLeaves = 0;
+                staffLeave.ResumingDate = DateTime.Parse(txtDateCommencing.Text);
+                if (staffLeave.FromTime < staffLeave.ToTime)
+                {
+                    validation = true;
+                }
+                else
+                {
+                    validation = false;
+                }
+
+
+            }
+            else
+            {
+                staffLeave.FromTime = DateTime.Parse(txtDateCommencing.Text); ;
+                staffLeave.ToTime = DateTime.Parse(txtDateResuming.Text); ;
+                staffLeave.NoOfLeaves = float.Parse(txtNoOfDates.Text);
+                staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
+
+            }
+
+
+            //if (Uploader.HasFile)
+            //{
+            //    HttpFileCollection uploadFiles = Request.Files;
+            //    for (int i = 0; i < uploadFiles.Count; i++)
+            //    {
+            //        HttpPostedFile uploadFile = uploadFiles[i];
+            //        if (uploadFile.ContentLength > 0)
+            //        {
+            //            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
+            //            lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+
+            //            staffLeave.LeaveDocument = uploadFile.FileName;
+
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    staffLeave.LeaveDocument = "";
+            //}
+
+            staffLeave.LeaveStatusId = 4;
+            staffLeave.ApprovedDate = DateTime.Now.Date;
+            staffLeave.ApprovedBy = empId;
 
             if (validation)
             {
-                response = staffLeaveController.saveStaffLeaveDoc(staffLeave);
+                response = staffLeaveController.updateStaffLeavesSubmit(staffLeave);
 
             }
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Leave Apply Succesfully!', 'success');window.setTimeout(function(){window.location='ApplyLeaves.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Leave Apply Succesfully!', 'success');window.setTimeout(function(){window.location='LeaveForm.aspx'},2500);", true);
                 //Response.Redirect(Request.RawUrl);
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApplyLeaves.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='LeaveForm.aspx'},2500);", true);
 
             }
 
 
         }
 
-        protected void btnLeaveBalance_Click(object sender, EventArgs e)
-        {
+        //protected void btnLeaveBalance_Click(object sender, EventArgs e)
+        //{
 
 
-            Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpNumber"]));
+        //    Response.Redirect("LeaveBalance.aspx?EmpId=" + Convert.ToInt32(Session["EmpNumber"]));
 
-        }
+        //}
 
         protected void txtNoOfDates_TextChanged(object sender, EventArgs e)
         {
@@ -304,7 +315,6 @@ namespace ManPowerWeb
             }
             return day;
         }
-
 
     }
 }

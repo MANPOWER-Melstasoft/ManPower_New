@@ -15,6 +15,7 @@ namespace ManPowerCore.Infrastructure
         int Delete(int id, DBConnection dbConnection);
         List<TrainingRefferals> GetAllTrainingRefferals(bool with0, DBConnection dbConnection);
         TrainingRefferals GetTrainingRefferals(int id, DBConnection dbConnection);
+        List<TrainingRefferals> GetAllTrainingRefferalsByBene(int BeneId, DBConnection dbConnection);
     }
 
     public class TrainingRefferalsDAOSqlImmpl : TrainingRefferalsDAO
@@ -116,5 +117,17 @@ namespace ManPowerCore.Infrastructure
             return dataAccessObject.GetSingleOject<TrainingRefferals>(dbConnection.dr);
         }
 
+        public List<TrainingRefferals> GetAllTrainingRefferalsByBene(int BeneId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Training_Refferals WHERE Beneficiary_Id = " + BeneId + " AND Is_Active = 1";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<TrainingRefferals>(dbConnection.dr);
+        }
     }
 }

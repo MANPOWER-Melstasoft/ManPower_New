@@ -86,6 +86,7 @@
     <Compile Include="Controller\EthnicityController.cs" />
     <Compile Include="Controller\GuarantorDetailController.cs" />
     <Compile Include="Controller\HolidaySheetController.cs" />
+    <Compile Include="Controller\individualBeneReportController.cs" />
     <Compile Include="Controller\InduvidualBeneficiaryController.cs" />
     <Compile Include="Controller\JobCategoryController.cs" />
     <Compile Include="Controller\JobPlacementFeedbackController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Domain\DistressLoan.cs" />
     <Compile Include="Domain\EmployeeDetailsFromProgramPlan.cs" />
     <Compile Include="Domain\GuarantorDetail.cs" />
+    <Compile Include="Domain\IndividualBeneReport.cs" />
     <Compile Include="Domain\LoanDetail.cs" />
     <Compile Include="Domain\LoanType.cs" />
     <Compile Include="Domain\ApproveAction.cs" />
@@ -299,6 +301,7 @@
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\GuarantorDetailDAO.cs" />
     <Compile Include="Infrastructure\HolidaySheetDAO.cs" />
+    <Compile Include="Infrastructure\IndividualBeneReportDAO.cs" />
     <Compile Include="Infrastructure\InduvidualBeneficiaryDAO.cs" />
     <Compile Include="Infrastructure\JobCategoryDAO.cs" />
     <Compile Include="Infrastructure\JobPlacementFeedbackDAO.cs" />

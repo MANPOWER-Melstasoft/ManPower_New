@@ -69,6 +69,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
 
         /// <summary>
+        /// lblMSG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMSG;
+
+        /// <summary>
+        /// tblBene control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblBene;
+
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>

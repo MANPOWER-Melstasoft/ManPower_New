@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
         int SaveJobRefferals(JobRefferals jobRefferals, DBConnection dbConnection);
 
         List<JobRefferals> GetAllJobRefferals(DBConnection dbConnection);
+
+        List<JobRefferals> GetAllJobRefferalsByBene(int BeneId, DBConnection dbConnection);
     }
 
     public class JobRefferalsDAOImpl : JobRefferalsDAO
@@ -70,6 +72,19 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM Job_Refferals";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<JobRefferals>(dbConnection.dr);
+
+        }
+
+        public List<JobRefferals> GetAllJobRefferalsByBene(int BeneId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Job_Refferals WHERE Beneficiary_Id = " + BeneId + " AND Is_Active = 1;";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

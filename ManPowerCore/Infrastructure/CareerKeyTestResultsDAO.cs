@@ -15,6 +15,7 @@ namespace ManPowerCore.Infrastructure
         int Delete(int id, DBConnection dbConnection);
         List<CareerKeyTestResults> GetAllCareerKeyTestResults(bool with0, DBConnection dbConnection);
         CareerKeyTestResults GetCareerKeyTestResults(int id, DBConnection dbConnection);
+        List<CareerKeyTestResults> GetAllCareerKeyTestResultsByBene(int BeneId, DBConnection dbConnection);
     }
 
     public class CareerKeyTestResultsDAOSqlImpl : CareerKeyTestResultsDAO
@@ -119,6 +120,19 @@ namespace ManPowerCore.Infrastructure
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.GetSingleOject<CareerKeyTestResults>(dbConnection.dr);
+        }
+
+        public List<CareerKeyTestResults> GetAllCareerKeyTestResultsByBene(int BeneId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Career_Key_Test_Results WHERE Beneficiary_Id = " + BeneId + " AND Is_Active = 1";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<CareerKeyTestResults>(dbConnection.dr);
         }
 
     }

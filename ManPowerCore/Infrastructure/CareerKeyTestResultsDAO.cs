@@ -25,8 +25,17 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO Career_Key_Test_Results (Beneficiary_Id, Created_Date, R, I, A, S, E, C, Provided_Guidance, Held_Date, Created_User, Program_Plan_Id) " +
-                "VALUES (@BeneficiaryId, @Date, @R, @I, @A, @S, @E, @C, @Guidence, @Held_Date, @Created_User, @Program_Plan_Id) SELECT SCOPE_IDENTITY()";
+
+            if (careerKeyTestResults.Program_Plan_Id == 0)
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Career_Key_Test_Results (Beneficiary_Id, Created_Date, R, I, A, S, E, C, Provided_Guidance, Held_Date, Created_User) " +
+                "VALUES (@BeneficiaryId, @Date, @R, @I, @A, @S, @E, @C, @Guidence, @Held_Date, @Created_User) SELECT SCOPE_IDENTITY()";
+            }
+            else
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Career_Key_Test_Results (Beneficiary_Id, Created_Date, R, I, A, S, E, C, Provided_Guidance, Held_Date, Created_User, Program_Plan_Id) " +
+               "VALUES (@BeneficiaryId, @Date, @R, @I, @A, @S, @E, @C, @Guidence, @Held_Date, @Created_User, @Program_Plan_Id) SELECT SCOPE_IDENTITY()";
+            }
 
             dbConnection.cmd.Parameters.AddWithValue("@BeneficiaryId", careerKeyTestResults.BeneficiaryId);
             dbConnection.cmd.Parameters.AddWithValue("@Date", careerKeyTestResults.Date);

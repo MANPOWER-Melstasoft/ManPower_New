@@ -24,10 +24,20 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
-                                            "Remarks,Job_Placement_Date,Career_Guidance,Created_User,Job_Refferals_Date,Program_Plan_Id) " +
-                                           "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
-                                           "@CareerGuidance,@CreatedUser,@RefferalsDate,@ProgramPlanId) ";
+            if (jobRefferals.ProgramPlanId == 0)
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
+                                                          "Remarks,Job_Placement_Date,Career_Guidance,Created_User,Job_Refferals_Date) " +
+                                                         "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
+                                                         "@CareerGuidance,@CreatedUser,@RefferalsDate) ";
+            }
+            else
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
+                                           "Remarks,Job_Placement_Date,Career_Guidance,Created_User,Job_Refferals_Date,Program_Plan_Id) " +
+                                          "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
+                                          "@CareerGuidance,@CreatedUser,@RefferalsDate,@ProgramPlanId) ";
+            }
 
 
             dbConnection.cmd.Parameters.AddWithValue("@VacancyRegistrationId", jobRefferals.VacancyRegistrationId);

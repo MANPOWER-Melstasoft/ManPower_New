@@ -655,5 +655,11 @@ namespace ManPowerCore.Common
             EmployeeDetailsFromProgramPlanController employeeDetailsFromProgramPlanController = new EmployeeDetailsFromProgramPlanImpl();
             return (EmployeeDetailsFromProgramPlanController)employeeDetailsFromProgramPlanController;
         }
+
+        public static IndividualBeneReportController CreateIndividualBeneReportController()
+        {
+            IndividualBeneReportController individualBeneReportController = new IndividualBeneReportControllerSqlImpl();
+            return (IndividualBeneReportController)individualBeneReportController;
+        }
     }
 }

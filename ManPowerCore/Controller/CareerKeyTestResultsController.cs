@@ -16,6 +16,8 @@ namespace ManPowerCore.Controller
         int Delete(int id);
         List<CareerKeyTestResults> GetAllCareerKeyTestResults(bool with0);
         CareerKeyTestResults GetCareerKeyTestResults(int id);
+        List<CareerKeyTestResults> GetAllCareerKeyTestResultsByBene(int BeneId);
+
     }
 
     public class CareerKeyTestResultsControllerSqlImpl : CareerKeyTestResultsController
@@ -114,6 +116,37 @@ namespace ManPowerCore.Controller
                 CareerKeyTestResults careerKeyTestResults = new CareerKeyTestResults();
                 careerKeyTestResults = careerKeyTestResultsDAO.GetCareerKeyTestResults(id, dbConnection);
                 return careerKeyTestResults;
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
+        public List<CareerKeyTestResults> GetAllCareerKeyTestResultsByBene(int BeneId)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                List<CareerKeyTestResults> careerKeyTestResultsList = new List<CareerKeyTestResults>();
+                careerKeyTestResultsList = careerKeyTestResultsDAO.GetAllCareerKeyTestResultsByBene(BeneId, dbConnection);
+
+                ProgramPlanDAO programPlanDAO = DAOFactory.CreateProgramPlanDAO();
+                foreach (var item in careerKeyTestResultsList)
+                {
+                    if (item.Program_Plan_Id != 0)
+                    {
+                        item.ProgramPlan = programPlanDAO.GetProgramPlan(item.Program_Plan_Id, dbConnection);
+                    }
+                }
+
+                return careerKeyTestResultsList;
             }
             catch (Exception ex)
             {

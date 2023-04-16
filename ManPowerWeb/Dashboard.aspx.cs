@@ -507,18 +507,27 @@ namespace ManPowerWeb
         private void bindDialogbox()
         {
             int systemUserId = Convert.ToInt32(Session["UserId"]);
+            try
+            {
+                DepartmentUnitPositionsList = ControllerFactory.CreateDepartmentUnitPositionsController().GetAllUsersBySystemUserId(systemUserId);
 
-            DepartmentUnitPositionsList = ControllerFactory.CreateDepartmentUnitPositionsController().GetAllUsersBySystemUserId(systemUserId);
+                int departmentUnitPositionId = DepartmentUnitPositionsList[0].DepartmetUnitPossitionsId;
 
-            int departmentUnitPositionId = DepartmentUnitPositionsList[0].DepartmetUnitPossitionsId;
+                programTargetsList = ControllerFactory.CreateProgramTargetController().GetAllProgramTarget(false, false, true, false);
 
-            programTargetsList = ControllerFactory.CreateProgramTargetController().GetAllProgramTarget(false, false, true, false);
-
-            programTargetsList = programTargetsList.Where(x => x.IsRecommended == 2 && x._ProgramAssignee[0].DepartmentUnitPossitionsId == departmentUnitPositionId && x._ProgramAssignee[0].Is_View == 0).ToList();
-            lblNoOfNewPTarget.Text = programTargetsList.Count().ToString();
-            programTargetsList = programTargetsList.OrderByDescending(x => x.RecommendedDate).ToList();
-            gvProgramTargetNotification.DataSource = programTargetsList;
-            gvProgramTargetNotification.DataBind();
+                programTargetsList = programTargetsList.Where(x => x.IsRecommended == 2 && x._ProgramAssignee[0].DepartmentUnitPossitionsId == departmentUnitPositionId && x._ProgramAssignee[0].Is_View == 0).ToList();
+                lblNoOfNewPTarget.Text = programTargetsList.Count().ToString();
+                programTargetsList = programTargetsList.OrderByDescending(x => x.RecommendedDate).ToList();
+            }
+            catch (Exception ex)
+            {
+                programTargetsList.Clear();
+            }
+            finally
+            {
+                gvProgramTargetNotification.DataSource = programTargetsList;
+                gvProgramTargetNotification.DataBind();
+            }
         }
 
         protected void btn_View_Click(object sender, EventArgs e)

@@ -37,6 +37,7 @@ namespace ManPowerWeb
                         BindSideBar();
 
                         BindNotification();
+                        BindRemainder();
                     }
                 }
                 else
@@ -249,6 +250,73 @@ namespace ManPowerWeb
                 notificationPanel.Controls.Add(new LiteralControl(html));
             }
 
+
+        }
+
+
+
+        protected void BindRemainder()
+        {
+            EmployeeServiceController employeeServiceController = ControllerFactory.CreateEmployeeServiceController();
+            EmployeeServices employeeServices = employeeServiceController.GetEmployeeServicesByEmpId(Convert.ToInt32(Session["EmpNumber"]));
+
+            DateTime preDate = employeeServices.AppointmentDate; preDate = preDate.AddMonths(11);
+            DateTime afterDate = employeeServices.AppointmentDate; afterDate = afterDate.AddMonths(12);
+
+            if (DateTime.Now >= preDate && DateTime.Now <= afterDate)
+            {
+
+                List<Notification> notificationlist = new List<Notification>();
+
+                Notification notification = new Notification();
+                notification.NotificationId = 1;
+                notification.Date = DateTime.Now.Date;
+                notification.Title = "Salary Increment";
+                notification.Description = "Please Upload Your Salary Increment Documents";
+                notification.IsRead = 1;
+                notificationlist.Add(notification);
+
+                var mySpan = remainderPanel.FindControl("countR") as HtmlGenericControl;
+                if (mySpan != null)
+                {
+                    // Change the text of the span
+                    mySpan.InnerText = notificationlist.Count().ToString();
+                }
+
+                int count = 0;
+
+                foreach (var notifi in notificationlist)
+                {
+                    count++;
+                    var html = string.Format(@"
+                    <a class='dropdown-item d-flex align-items-center' href='#'>
+                        <div class='mr-3'>
+                            <div class='icon-circle bg-primary'>
+                                <i class='fas fa-file-alt text-white'></i>
+                            </div>
+                        </div>
+                    <div>
+                        <div>
+                            <div class='small text-gray-500'>{0}</div>
+                            <span class='font-weight-bold'>{1}</span>
+                        </div>
+                        <div>
+                            <span class='font-weight-bold text-danger'>{2}</span>
+                        </div>
+                      
+                    </div>
+                    </a>
+                
+                ", notifi.Date.ToString("MMMM dd, yyyy"), notifi.Title, notifi.Description);
+
+                    // Add HTML code to panel control
+                    remainderPanel.Controls.Add(new LiteralControl(html));
+                }
+            }
+            else
+            {
+                remaider.Visible = false;
+            }
 
         }
 

@@ -28,8 +28,18 @@ namespace ManPowerCore.Infrastructure
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "INSERT INTO Transfer (Transfers_Retirement_Resignation_Main_Id, Transfer_Type, Current_Dep, Department_Unit_Id, Reason, From_Date, To_Date)" +
-                "VALUES (@MainId, @TransferType, @CurrentDep, @NextDep, @Reason, @FromDate, @ToDate)";
+
+            if (transfer.NextDep != 0)
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Transfer (Transfers_Retirement_Resignation_Main_Id, Transfer_Type, Current_Dep, Department_Unit_Id, Reason, From_Date, To_Date)" +
+                    "VALUES (@MainId, @TransferType, @CurrentDep, @NextDep, @Reason, @FromDate, @ToDate)";
+            }
+            else
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Transfer (Transfers_Retirement_Resignation_Main_Id, Transfer_Type, Current_Dep, Reason, From_Date, To_Date, Request_Work_Place)" +
+               "VALUES (@MainId, @TransferType, @CurrentDep, @Reason, @FromDate, @ToDate, @RequestWorkPlace)";
+
+            }
 
             dbConnection.cmd.Parameters.AddWithValue("@MainId", transfer.MainId);
             dbConnection.cmd.Parameters.AddWithValue("@TransferType", transfer.TransferType);
@@ -54,6 +64,7 @@ namespace ManPowerCore.Infrastructure
             {
                 dbConnection.cmd.Parameters.AddWithValue("@ToDate", transfer.ToDate);
             }
+            dbConnection.cmd.Parameters.AddWithValue("@RequestWorkPlace", transfer.RequestWorkPlace);
 
             output = dbConnection.cmd.ExecuteNonQuery();
             return output;

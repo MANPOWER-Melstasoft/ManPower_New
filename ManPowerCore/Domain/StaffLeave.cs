@@ -61,6 +61,8 @@ namespace ManPowerCore.Domain
         public Employee _EMployeeDetails { get; set; }
         public LeaveType leaveType { get; set; }
 
+        public SystemUser systemUser { get; set; }
+
 
     }
 }

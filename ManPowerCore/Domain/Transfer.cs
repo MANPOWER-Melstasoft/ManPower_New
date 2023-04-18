@@ -37,6 +37,9 @@ namespace ManPowerCore.Domain
         [DBField("To_Date")]
         public DateTime ToDate { get; set; }
 
+        [DBField("Request_Work_Place")]
+        public string RequestWorkPlace { get; set; }
+
         public TransfersRetirementResignationMain transfersRetirementResignationMain { get; set; }
     }
 }

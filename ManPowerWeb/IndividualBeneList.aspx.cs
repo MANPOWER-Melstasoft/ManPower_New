@@ -67,7 +67,7 @@ namespace ManPowerWeb
             List<string> headersBene = new List<string>() {
                 "Benificiary Id", "Nic", "Name", "Gender", "DOB", "Personal Address", "Email", "Job Preference", "Contact Number",
                 "WhatsappNumber", "Is School Student", "School Name", "School Address", "Grade", "Parent Nic",
-                "Career Key Test Id", "R", "I", "A", "S", "E", "C", "Provided Guidance", "Career Key Test Held Date", "Career Key Test Program Plan",
+                "Career Key Test Id", "R", "I", "A", "S", "E", "C", "Provided Guidance", "Test Held Date", "Career Key Test Program Plan",
                  "Training Refferals Id", "Institute Name", "Training Course", "Contact Person", "Training Refferals Date", "Training Refferals Program Plan",
                  "Job Refferals Id", "Company Name", "Career Path", "Job Position", "Career Guidance", "Remarks", "Job Refferals Date", "Job Placement Date",
                 "Job Refferals Program Plan"
@@ -548,24 +548,24 @@ namespace ManPowerWeb
 
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
-            if (beneficiaries.Count > 0 || beneficiariesFinalList.Count > 0)
-            {
-                Response.Clear();
-                Response.Buffer = true;
-                Response.ClearContent();
-                Response.ClearHeaders();
-                Response.Charset = "";
-                string FileName = "Individual Beneficiary List" + DateTime.Now + ".xls";
-                StringWriter strwritter = new StringWriter();
-                HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
-                Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                Response.ContentType = "application/vnd.ms-excel";
-                Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-                tblBene.GridLines = GridLines.Both;
-                tblBene.RenderControl(htmltextwrtter);
-                Response.Write(strwritter.ToString());
-                Response.End();
-            }
+            BindDataSource();
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Individual Beneficiary List" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            tblBene.GridLines = GridLines.Both;
+            tblBene.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
         }
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -2,6 +2,7 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,24 @@ namespace ManPowerCore.Infrastructure
     public interface EmployeeServicesDAO
     {
         int SaveEmployeeServices(EmployeeServices empServices, DBConnection dbConnection);
+
+        EmployeeServices GetEmployeeServicesByEmpId(int empId, DBConnection dbConnection);
     }
 
     public class EmployeeServicesDAOImpl : EmployeeServicesDAO
     {
+        public EmployeeServices GetEmployeeServicesByEmpId(int empId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM EMPLOYEE_SERVICES WHERE Employee_ID = " + empId + " ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.GetSingleOject<EmployeeServices>(dbConnection.dr);
+        }
+
         public int SaveEmployeeServices(EmployeeServices empServices, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)

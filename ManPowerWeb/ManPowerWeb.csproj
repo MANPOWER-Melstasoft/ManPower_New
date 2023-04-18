@@ -133,6 +133,7 @@
     <Content Include="AddTrainingFront.aspx" />
     <Content Include="AllPayments.aspx" />
     <Content Include="AllPaymentsRender.aspx" />
+    <Content Include="Applyleaveheadoffice.aspx" />
     <Content Include="ApprovedLoanFront.aspx" />
     <Content Include="ApprovedLoansView.aspx" />
     <Content Include="ApproveLoan.aspx" />
@@ -2156,6 +2157,13 @@
     </Compile>
     <Compile Include="AllPaymentsRender.aspx.designer.cs">
       <DependentUpon>AllPaymentsRender.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Applyleaveheadoffice.aspx.cs">
+      <DependentUpon>Applyleaveheadoffice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Applyleaveheadoffice.aspx.designer.cs">
+      <DependentUpon>Applyleaveheadoffice.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApprovedLoanFront.aspx.cs">
       <DependentUpon>ApprovedLoanFront.aspx</DependentUpon>

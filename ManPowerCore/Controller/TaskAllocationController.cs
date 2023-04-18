@@ -190,7 +190,7 @@ namespace ManPowerCore.Controller
 
                 foreach (var item in list)
                 {
-                    item._DepartmentUnitPositions = departmentUnitPositionList.Where(x => x.DepartmetUnitPossitionsId == item.DepartmetUnitPossitionsId).Single();
+                    item._DepartmentUnitPositions = _DepartmentUnitPositionsDAO.GetDepartmentUnitPositions(item.DepartmetUnitPossitionsId, dBConnection);
                 }
 
                 DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();

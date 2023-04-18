@@ -59,7 +59,7 @@ namespace ManPowerWeb
             {
                 typeId = 1;
                 transferDiv.Visible = true;
-                heading.Text = "Transfer - " + trrmainObj.EmployeeId;
+                heading.Text = "Transfer - " + Id.ToString();
                 lblRequestType.Text = "Transfer";
 
                 TransferController transferController = ControllerFactory.CreateTransferController();
@@ -71,7 +71,7 @@ namespace ManPowerWeb
                 if (trrmainObj.RequestTypeId == 4)
                 {
                     typeId = 4;
-                    heading.Text = "Temporary Attchement - " + trrmainObj.EmployeeId;
+                    heading.Text = "Temporary Attchement - " + Id.ToString();
                     lblRequestType.Text = "Temporary Attchement";
                     FromToDate.Visible = true;
 
@@ -82,14 +82,21 @@ namespace ManPowerWeb
                     }
                 }
 
-                DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
-                lblNewDapartment.Text = departmentUnitNext.Name;
+                if (transfer.TransferType == "Combine Service")
+                {
+                    lblNewDapartment.Text = transfer.RequestWorkPlace;
+                }
+                else
+                {
+                    DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
+                    lblNewDapartment.Text = departmentUnitNext.Name;
+                }
             }
             if (trrmainObj.RequestTypeId == 2)
             {
                 typeId = 2;
                 resignationDiv.Visible = true;
-                heading.Text = "Resignation - " + trrmainObj.EmployeeId;
+                heading.Text = "Resignation - " + Id.ToString();
                 lblRequestType.Text = "Resignation";
 
                 ResignationController resignationController = ControllerFactory.CreateResignationController();
@@ -102,7 +109,7 @@ namespace ManPowerWeb
             {
                 typeId = 3;
                 retirementDiv.Visible = true;
-                heading.Text = "Retirement - " + trrmainObj.EmployeeId;
+                heading.Text = "Retirement - " + Id.ToString();
                 lblRequestType.Text = "Retirement";
 
                 RetirementController retirementController = ControllerFactory.CreateRetirementController();

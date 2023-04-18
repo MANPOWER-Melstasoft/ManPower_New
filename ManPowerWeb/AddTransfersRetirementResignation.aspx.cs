@@ -115,8 +115,18 @@ namespace ManPowerWeb
 
                 transfer.TransferType = ddlTransferType.SelectedValue;
                 transfer.CurrentDep = lblDepartment.Text;
-                transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
                 transfer.Reason = txtReason.Text;
+
+                if (transfer.TransferType == "Combine Service")
+                {
+                    transfer.NextDep = 0;
+                    transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
+                }
+                else
+                {
+                    transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
+                    transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
+                }
 
                 TransferController transferController = ControllerFactory.CreateTransferController();
                 output = transferController.Save(transfersRetirementResignationMain, transfer);
@@ -170,6 +180,16 @@ namespace ManPowerWeb
                     transfer.Reason = txtReason.Text;
                     transfer.FromDate = Convert.ToDateTime(txtFromDate.Text);
                     transfer.ToDate = Convert.ToDateTime(txtToDate.Text);
+
+                    if (transfer.TransferType == "Combine Service")
+                    {
+                        transfer.NextDep = 0;
+                        transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
+                    }
+                    else
+                    {
+                        transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
+                    }
 
                     TransferController transferController = ControllerFactory.CreateTransferController();
                     output = transferController.Save(transfersRetirementResignationMain, transfer);

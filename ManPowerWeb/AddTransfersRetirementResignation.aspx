@@ -86,11 +86,30 @@
                                             <asp:Literal ID="Literal5" runat="server" Text="Transfer Type : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
-                                            <asp:DropDownList ID="ddlTransferType" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlTransferType" runat="server" AutoPostBack="true" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="1" ControlToValidate="ddlTransferType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
+
+                                <%if (ddlTransferType.SelectedValue == "Combine Service")
+                                    { %>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal16" runat="server" Text="Requested Work Place : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtRequestWorkPlace" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ValidationGroup="1" ControlToValidate="txtRequestWorkPlace" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <%}
+                                    else
+                                    { %>
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
@@ -106,6 +125,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <%}%>
                             </div>
                             <div class="row mb-3 ms-1" id="FromToDate" runat="server" visible="false">
                                 <div class="col-sm-6">

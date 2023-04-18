@@ -111,10 +111,12 @@ namespace ManPowerCore.Controller
                 if (withEmployeeDetails)
                 {
                     EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+                    SystemUserDAO systemUserDAO = DAOFactory.CreateSystemUserDAO();
 
                     foreach (var items in staffLeavesList)
                     {
                         items._EMployeeDetails = employeeDAO.GetEmployeeById(items.EmployeeId, dBConnection);
+                        items.systemUser = systemUserDAO.CheckEmpNumberExists(items.EmployeeId, dBConnection);
                     }
 
 

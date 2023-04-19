@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -136,7 +137,7 @@ namespace ManPowerWeb
                     }
                 }
 
-                if (transfer.TransferType == "Combine Service")
+                if (transfer.TransferType == "External")
                 {
                     lblNewDapartment.Text = transfer.RequestWorkPlace;
                 }
@@ -195,22 +196,63 @@ namespace ManPowerWeb
             trrmainObj.RecomendParentId = Convert.ToInt32(Session["UserId"]);
             trrmainObj.Remarks = "";
             trrmainObj.Reason = "";
+            trrmainObj.ReverseRemarks = "";
+            trrmainObj.RecDocuments = "";
 
             if (ddlUpdateStatus.SelectedItem.Text == "Send to Approval")
             {
                 trrmainObj.StatusId = 5;
                 trrmainObj.ParentAction = ddlAction.SelectedItem.Text;
             }
-            if (ddlUpdateStatus.SelectedItem.Text == "Reverse")
+            if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")
             {
                 trrmainObj.StatusId = 4;
                 trrmainObj.ParentAction = ddlReverseReason.SelectedItem.Text;
+                trrmainObj.ReverseRemarks = txtReverseRemarks.Text;
             }
             if (ddlUpdateStatus.SelectedItem.Text == "Reject")
             {
                 trrmainObj.StatusId = 3;
                 trrmainObj.ParentAction = "Reject";
                 trrmainObj.Remarks = txtRejectRemark.Text;
+            }
+
+            if (OtherUploader.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        var originalFileName = Path.GetFileName(uploadFile.FileName); // Get the original filename
+                        var extension = Path.GetExtension(originalFileName); // Get the file extension
+                        var dateTime = DateTime.Now.ToString("yyyyMMddHHmmss"); // Get the current date and time as a string
+                        var newFileName = trrmainObj.EmployeeId + "_" + dateTime + extension; // Set the new filename
+
+                        if (typeId == 1)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Transfers/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+                        if (typeId == 4)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Transfers/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+                        if (typeId == 2)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Resignation/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+                        if (typeId == 3)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Retirement/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+
+                    }
+                }
             }
 
             output = transfersRetirementResignationMainController.Recommend(trrmainObj);
@@ -227,7 +269,7 @@ namespace ManPowerWeb
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            if (typeId == 1)
+            if (typeId == 1 || typeId == 4)
             {
                 if (document != "" && document != null)
                 {
@@ -273,7 +315,7 @@ namespace ManPowerWeb
             ddlUpdateStatus.Items.Insert(0, new ListItem("-- select status --", ""));
 
             ddlUpdateStatus.Items.Insert(1, new ListItem("Send to Approval", "1"));
-            ddlUpdateStatus.Items.Insert(2, new ListItem("Reverse", "4"));
+            ddlUpdateStatus.Items.Insert(2, new ListItem("Incomplete Application", "4"));
             ddlUpdateStatus.Items.Insert(3, new ListItem("Reject", "3"));
         }
 
@@ -298,7 +340,7 @@ namespace ManPowerWeb
             ddlReverseReason.DataValueField = "Id";
             ddlReverseReason.DataTextField = "ReverseReasonName";
             ddlReverseReason.DataBind();
-            ddlReverseReason.Items.Insert(0, new ListItem("-- select reverse reason --", ""));
+            ddlReverseReason.Items.Insert(0, new ListItem("-- select reason --", ""));
         }
 
         protected void ddlUpdateStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -315,7 +357,7 @@ namespace ManPowerWeb
                 reverse.Visible = false;
                 reject.Visible = false;
             }
-            if (ddlUpdateStatus.SelectedItem.Text == "Reverse")
+            if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")
             {
                 sendtoapp.Visible = false;
                 reverse.Visible = true;

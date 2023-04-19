@@ -69,6 +69,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox vNo;
 
         /// <summary>
+        /// txtMeter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMeter;
+
+        /// <summary>
+        /// txtMiladge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMiladge;
+
+        /// <summary>
         /// description control.
         /// </summary>
         /// <remarks>

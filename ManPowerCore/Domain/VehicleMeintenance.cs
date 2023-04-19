@@ -58,6 +58,12 @@ namespace ManPowerCore.Domain
         [DBField("Rejected_Reason")]
         public string RejectedReason { get; set; }
 
+        [DBField("Vehicle_Meter")]
+        public string VehicleMeter { get; set; }
+
+        [DBField("Mileage")]
+        public string Mileage { get; set; }
+
         public Employee Employee { get; set; }
 
         public SystemUser RequestBy { get; set; }

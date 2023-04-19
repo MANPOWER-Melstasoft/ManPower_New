@@ -59,6 +59,26 @@
 
         <div class="row">
             <div class="col-4">
+                <label>Vehicle Meter :</label>
+            </div>
+            <div class="col-8">
+                <asp:TextBox ID="txtMeter" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-4">
+                <label>Mileage :</label>
+            </div>
+            <div class="col-8">
+                <asp:TextBox ID="txtMiladge" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-4">
                 <label>Description : </label>
             </div>
             <div class="col-8">

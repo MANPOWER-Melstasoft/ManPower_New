@@ -55,6 +55,15 @@ namespace ManPowerCore.Domain
         [DBField("Is_Active")]
         public int IsActive { get; set; }
 
+        [DBField("Reverse_Remarks")]
+        public string ReverseRemarks { get; set; }
+
+        [DBField("Rec_Documents")]
+        public string RecDocuments { get; set; }
+
+        [DBField("Approve_Documents")]
+        public string ApproveDocuments { get; set; }
+
         public RequestType requestType { get; set; }
 
         public TransfersRetirementResignationStatus status { get; set; }

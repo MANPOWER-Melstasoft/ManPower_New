@@ -375,7 +375,7 @@ namespace ManPowerWeb
             ddlDepartment.DataValueField = "DepartmentUnitId";
             ddlDepartment.DataTextField = "Name";
             ddlDepartment.DataBind();
-            ddlDepartment.Items.Insert(0, new ListItem("-- select department --", ""));
+            ddlDepartment.Items.Insert(0, new ListItem("-- department --", ""));
         }
 
         private void BindTransferType()

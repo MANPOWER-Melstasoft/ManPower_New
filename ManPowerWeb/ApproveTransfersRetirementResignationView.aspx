@@ -252,7 +252,7 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <asp:Literal ID="Literal11" runat="server" Text="Upload Documnents"></asp:Literal>
+                                        <asp:Literal ID="Literal11" runat="server" Text="Documnents"></asp:Literal>
                                     </div>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblDocument" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -261,6 +261,25 @@
                                         { %>
                                     <div class="col-sm-4">
                                         <asp:Button runat="server" ID="btnView" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnView_Click" />
+                                    </div>
+                                    <%}  %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal25" runat="server" Text="Recommendation Documnents"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblRecDocument" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                    <%if (lblRecDocument.Text != "" && lblRecDocument.Text != null)
+                                        { %>
+                                    <div class="col-sm-4">
+                                        <asp:Button runat="server" ID="btnViecRecDoc" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnViecRecDoc_Click" />
                                     </div>
                                     <%}  %>
                                 </div>
@@ -351,6 +370,19 @@
                             </div>
                         </div>
 
+                        <div class="row mb-5">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal24" runat="server" Text="Approve Documnents"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:FileUpload ID="OtherUploader" CssClass="btn" runat="server" AllowMultiple="false" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6 d-flex">

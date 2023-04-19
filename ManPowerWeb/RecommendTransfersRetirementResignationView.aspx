@@ -254,7 +254,7 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <asp:Literal ID="Literal11" runat="server" Text="Upload Documnents"></asp:Literal>
+                                        <asp:Literal ID="Literal11" runat="server" Text="Documnents"></asp:Literal>
                                     </div>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblDocument" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -348,6 +348,20 @@
                                         <div class="col-md-4">
                                             <asp:TextBox ID="txtRejectRemark" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal23" runat="server" Text="Recommendation Documnents"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:FileUpload ID="OtherUploader" CssClass="btn" runat="server" AllowMultiple="false" />
+
                                     </div>
                                 </div>
                             </div>

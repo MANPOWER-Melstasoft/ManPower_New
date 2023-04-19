@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -196,6 +197,7 @@ namespace ManPowerWeb
             trrmainObj.Remarks = "";
             trrmainObj.Reason = "";
             trrmainObj.ReverseRemarks = "";
+            trrmainObj.RecDocuments = "";
 
             if (ddlUpdateStatus.SelectedItem.Text == "Send to Approval")
             {
@@ -215,6 +217,44 @@ namespace ManPowerWeb
                 trrmainObj.Remarks = txtRejectRemark.Text;
             }
 
+            if (OtherUploader.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        var originalFileName = Path.GetFileName(uploadFile.FileName); // Get the original filename
+                        var extension = Path.GetExtension(originalFileName); // Get the file extension
+                        var dateTime = DateTime.Now.ToString("yyyyMMddHHmmss"); // Get the current date and time as a string
+                        var newFileName = trrmainObj.EmployeeId + "_" + dateTime + extension; // Set the new filename
+
+                        if (typeId == 1)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Transfers/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+                        if (typeId == 4)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Transfers/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+                        if (typeId == 2)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Resignation/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+                        if (typeId == 3)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Retirement/") + newFileName);
+                            trrmainObj.RecDocuments = newFileName;
+                        }
+
+                    }
+                }
+            }
+
             output = transfersRetirementResignationMainController.Recommend(trrmainObj);
 
             if (output == 1)
@@ -229,7 +269,7 @@ namespace ManPowerWeb
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            if (typeId == 1)
+            if (typeId == 1 || typeId == 4)
             {
                 if (document != "" && document != null)
                 {

@@ -42,6 +42,8 @@ namespace ManPowerWeb
                     requestedBy.Text = i.Employee.NameWithInitials.ToString();
                     vNo.Text = i.VehicleNumber;
                     description.Text = i.RequestDescription.ToString();
+                    txtMeter.Text = i.VehicleMeter;
+                    txtMiladge.Text = i.Mileage;
 
                     MaintenanceCategory maintenanceCategory = maintenanceCategoryController.GetMaintenanceCategory(i.CategoryId);
                     category.Text = maintenanceCategory.MaintenanceCategoryName;

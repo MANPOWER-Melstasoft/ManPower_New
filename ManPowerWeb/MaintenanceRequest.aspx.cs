@@ -57,6 +57,8 @@ namespace ManPowerWeb
             vehicleRequest.EstimatedCost = 0;
             vehicleRequest.EmpId = Convert.ToInt32(Session["EmpNumber"]);
             vehicleRequest.RejectedReason = "";
+            vehicleRequest.VehicleMeter = txtMeter.Text;
+            vehicleRequest.Mileage = txtMiladge.Text;
 
 
             if (Uploader.HasFile)

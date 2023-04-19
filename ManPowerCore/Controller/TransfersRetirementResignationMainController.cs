@@ -204,10 +204,12 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+                TransfersRetirementResignationStatusDAO trmStatusDAO = DAOFactory.CreateTransfersRetirementResignationStatusDAO();
 
                 TransfersRetirementResignationMain transfersRetirementResignationMain = new TransfersRetirementResignationMain();
                 transfersRetirementResignationMain = transfersRetirementResignationMainDAO.GetTransfersRetirementResignation(Id, dBConnection);
                 transfersRetirementResignationMain.employee = employeeDAO.GetEmployeeById(transfersRetirementResignationMain.EmployeeId, dBConnection);
+                transfersRetirementResignationMain.status = trmStatusDAO.GetStatus(transfersRetirementResignationMain.StatusId, dBConnection);
 
                 return transfersRetirementResignationMain;
             }

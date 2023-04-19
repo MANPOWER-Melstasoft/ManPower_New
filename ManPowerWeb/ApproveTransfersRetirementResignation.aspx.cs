@@ -86,7 +86,7 @@ namespace ManPowerWeb
 
             ddlStatus.Items.Insert(1, new ListItem("Pending", "5"));
             ddlStatus.Items.Insert(1, new ListItem("Approve", "1"));
-            ddlStatus.Items.Insert(2, new ListItem("Reverse", "4"));
+            ddlStatus.Items.Insert(2, new ListItem("Incomplete Application", "4"));
             ddlStatus.Items.Insert(3, new ListItem("Reject", "3"));
         }
 
@@ -220,23 +220,23 @@ namespace ManPowerWeb
             {
                 if (ddltype.SelectedValue == "1")
                 {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 1).ToList();
+                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 1).ToList();
                 }
                 else if (ddltype.SelectedValue == "2")
                 {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 2).ToList();
+                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 2).ToList();
                 }
                 else if (ddltype.SelectedValue == "3")
                 {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 3).ToList();
+                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 3).ToList();
                 }
                 else if (ddltype.SelectedValue == "4")
                 {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 4).ToList();
+                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 4).ToList();
                 }
                 else
                 {
-                    filterList = mainList.Where(a => a.StatusId == 1).ToList();
+                    filterList = mainList.Where(a => a.StatusId == 5).ToList();
                 }
                 GridView1.DataSource = filterList;
             }

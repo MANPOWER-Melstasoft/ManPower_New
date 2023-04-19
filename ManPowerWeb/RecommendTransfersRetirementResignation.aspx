@@ -14,9 +14,19 @@
                 <div class="row mb-3 ms-1 mt-3">
 
                     <div class="col-sm-2">
+                        Transfer Type :
+                    </div>
+                    <div class="col-sm-2">
                         <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddltype_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
                     </div>
+
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2">
+                        Status :
+                    </div>
+
                     <div class="col-sm-2">
                         <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
@@ -45,7 +55,7 @@
                         <ItemTemplate>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Pending" ?true:false %>' Text="Pending" ForeColor="Blue"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Approved" ?true:false %>' Text="Approved" ForeColor="Green"> </asp:Label>
-                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Reverse" ?true:false %>' Text="Reverse" ForeColor="Orange"> </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Incomplete Application" ?true:false %>' Text="Incomplete Application" ForeColor="Orange"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Rejected" ?true:false %>' Text="Rejected" ForeColor="red"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("Status.StatusName").ToString() == "Send to Approval" ?true:false %>' Text="Send to Approval" ForeColor="Black"> </asp:Label>
                         </ItemTemplate>

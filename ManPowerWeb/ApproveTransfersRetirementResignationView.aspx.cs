@@ -119,7 +119,7 @@ namespace ManPowerWeb
                 lblTransferType.Text = transfer.TransferType;
                 lblTransferReason.Text = transfer.Reason;
 
-                if (transfer.TransferType == "Combine Service")
+                if (transfer.TransferType == "External")
                 {
                     lblNewDapartment.Text = transfer.RequestWorkPlace;
                 }
@@ -191,16 +191,18 @@ namespace ManPowerWeb
             trrmainObj.ActionTakenDate = DateTime.Today;
             trrmainObj.Remarks = "";
             trrmainObj.Reason = "";
+            trrmainObj.ReverseRemarks = "";
 
             if (ddlUpdateStatus.SelectedItem.Text == "Approve")
             {
                 trrmainObj.StatusId = 2;
                 trrmainObj.ParentAction = "Approve";
             }
-            if (ddlUpdateStatus.SelectedItem.Text == "Reverse")
+            if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")
             {
                 trrmainObj.StatusId = 4;
                 trrmainObj.ParentAction = ddlReverseReason.SelectedItem.Text;
+                trrmainObj.ReverseRemarks = txtReverseRemarks.Text;
             }
             if (ddlUpdateStatus.SelectedItem.Text == "Reject")
             {
@@ -269,7 +271,7 @@ namespace ManPowerWeb
             ddlUpdateStatus.Items.Insert(0, new ListItem("-- select status --", ""));
 
             ddlUpdateStatus.Items.Insert(1, new ListItem("Approve", "1"));
-            ddlUpdateStatus.Items.Insert(2, new ListItem("Reverse", "4"));
+            ddlUpdateStatus.Items.Insert(2, new ListItem("Incomplete Application", "4"));
             ddlUpdateStatus.Items.Insert(3, new ListItem("Reject", "3"));
         }
 
@@ -307,7 +309,7 @@ namespace ManPowerWeb
             ddlReverseReason.DataValueField = "Id";
             ddlReverseReason.DataTextField = "ReverseReasonName";
             ddlReverseReason.DataBind();
-            ddlReverseReason.Items.Insert(0, new ListItem("-- select reverse reason --", ""));
+            ddlReverseReason.Items.Insert(0, new ListItem("-- select reason --", ""));
         }
 
         protected void ddlUpdateStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -324,7 +326,7 @@ namespace ManPowerWeb
                 reverse.Visible = false;
                 reject.Visible = false;
             }
-            if (ddlUpdateStatus.SelectedItem.Text == "Reverse")
+            if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")
             {
                 sendtoapp.Visible = false;
                 reverse.Visible = true;

@@ -537,6 +537,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
+        /// lblReveresRemerks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblReveresRemerks;
+
+        /// <summary>
+        /// txtReverseRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReverseRemarks;
+
+        /// <summary>
         /// reject control.
         /// </summary>
         /// <remarks>

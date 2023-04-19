@@ -82,7 +82,7 @@ namespace ManPowerWeb
                     }
                 }
 
-                if (transfer.TransferType == "Combine Service")
+                if (transfer.TransferType == "External")
                 {
                     lblNewDapartment.Text = transfer.RequestWorkPlace;
                 }

@@ -40,7 +40,7 @@
                     <div class="col-sm-6">
                         <div class="row mb-3">
                             <div class="col-sm-4">
-                                <asp:Literal ID="Literal3" runat="server" Text="Department : "></asp:Literal>
+                                <asp:Literal ID="Literal3" runat="server" Text="Current Work Place : "></asp:Literal>
                             </div>
                             <div class="col-md-4">
                                 <asp:Label ID="lblDepartment" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -93,7 +93,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Requested Work Place : "></asp:Literal>
+                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Preferred Work Place : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblNewDapartment" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -146,7 +146,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="Literal19" runat="server" Text="Joined Date : "></asp:Literal>
+                                            <asp:Literal ID="Literal19" runat="server" Text="First Appointment Date : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblJoinedDate" runat="server" Text="N/A" Width="250px"></asp:Label>

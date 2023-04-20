@@ -15,13 +15,22 @@ namespace ManPowerWeb
 
         StaffLeave staffLeave = new StaffLeave();
         List<LeaveType> leavesTypeList = new List<LeaveType>();
+        int Id, employeId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
-            int employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
-            int Id = Convert.ToInt32(Request.QueryString["Id"]);
+            if (!IsPostBack)
+            {
+                BindData();
+            }
+        }
+
+        private void BindData()
+        {
+            employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
+            Id = Convert.ToInt32(Request.QueryString["Id"]);
 
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
@@ -57,7 +66,6 @@ namespace ManPowerWeb
                 btnApprove.Visible = false;
                 btnModalReject.Visible = false;
             }
-
         }
 
         protected void btnViewLeave_Click(object sender, EventArgs e)

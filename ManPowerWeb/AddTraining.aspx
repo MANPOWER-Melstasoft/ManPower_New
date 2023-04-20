@@ -75,7 +75,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-6" style="padding-left: 60px;">
-                            <asp:Literal ID="lblCount" runat="server" Text="Member Count :"></asp:Literal>
+                            <asp:Literal ID="lblCount" runat="server" Text="Reqiured no Of Applicants :"></asp:Literal>
                         </div>
                         <div class="col-md-6">
                             <asp:TextBox ID="txtCount" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>

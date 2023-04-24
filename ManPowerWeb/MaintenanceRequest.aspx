@@ -73,7 +73,7 @@
                     <label>Vehicle Meter :</label>
                 </div>
                 <div class="col-8">
-                    <asp:TextBox ID="txtMeter" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                    <asp:TextBox ID="txtMeter" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
                     <asp:RequiredFieldValidator ControlToValidate="txtMeter" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                     <label>Previous Vehicle Meter :</label>
                 </div>
                 <div class="col-8">
-                    <asp:TextBox ID="txtPrevMeter" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                    <asp:TextBox ID="txtPrevMeter" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Number" AutoPostBack="true" OnTextChanged="txtPrevMeter_TextChanged"></asp:TextBox>
                     <asp:RequiredFieldValidator ControlToValidate="txtPrevMeter" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </div>
             </div>

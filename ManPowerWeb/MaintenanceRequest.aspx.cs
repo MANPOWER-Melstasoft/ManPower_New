@@ -115,6 +115,9 @@ namespace ManPowerWeb
             requestedBy.Text = null;
             vNo.Text = null;
             description.Text = null;
+            txtPrevMeter.Text = null;
+            txtMiladge.Text = null;
+            txtMeter.Text = null;
         }
 
         protected void isClicked(object sender, EventArgs e)
@@ -122,6 +125,10 @@ namespace ManPowerWeb
             Response.Redirect("VehicleMeintenanceSearch.aspx");
         }
 
+        protected void txtPrevMeter_TextChanged(object sender, EventArgs e)
+        {
+            txtMiladge.Text = (Convert.ToInt32(txtMeter.Text) - Convert.ToInt32(txtPrevMeter.Text)).ToString();
 
+        }
     }
 }

@@ -58,7 +58,7 @@
                         <asp:BoundField HeaderText="Vehicle Number" DataField="VehicleNumber" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Description" DataField="RequestDescription" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Status" DataField="IsApproved" HeaderStyle-CssClass="table-dark" />
-                        <asp:BoundField HeaderText="File Number" DataField="FileNo" HeaderStyle-CssClass="table-dark" />
+                        <%--                        <asp:BoundField HeaderText="File Number" DataField="FileNo" HeaderStyle-CssClass="table-dark hidden" ItemStyle-CssClass="hidden" />--%>
                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark">
                             <ItemTemplate>
                                 <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"

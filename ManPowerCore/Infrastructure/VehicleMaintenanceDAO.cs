@@ -30,10 +30,10 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO VEHICLE_MAINTANCE(Employee_ID,Date,Vehicle_Number,Description," +
-                "Is_Approved,Approved_By,Approved_date,Estimated_Cost,Attachment,Maintenance_Category_Id,Requested_By,File_No,Rejected_Reason, Vehicle_Meter, Mileage) " +
+                "Is_Approved,Approved_By,Approved_date,Estimated_Cost,Attachment,Maintenance_Category_Id,Requested_By,File_No,Rejected_Reason, Vehicle_Meter,Vehicle_Previous_Meter, Mileage) " +
 
             "VALUES(@EmpId,@RequestDate,@VehicleNumber,@RequestDescription,@IsApproved,@ApprovedBy,@ApprovedDate,@EstimatedCost," +
-            "@Attachment,@CategoryId,@RequestedBy,@FileNo,@RejectedReason, @VehicleMeter, @Mileage) ";
+            "@Attachment,@CategoryId,@RequestedBy,@FileNo,@RejectedReason, @VehicleMeter,@VehiclePrevMeter, @Mileage) ";
 
             dbConnection.cmd.Parameters.AddWithValue("@EmpId", vehicleMeintenance.EmpId);
             dbConnection.cmd.Parameters.AddWithValue("@RequestDate", vehicleMeintenance.RequestDate);
@@ -49,6 +49,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@FileNo", vehicleMeintenance.FileNo);
             dbConnection.cmd.Parameters.AddWithValue("@RejectedReason", vehicleMeintenance.RejectedReason);
             dbConnection.cmd.Parameters.AddWithValue("@VehicleMeter", vehicleMeintenance.VehicleMeter);
+            dbConnection.cmd.Parameters.AddWithValue("@VehiclePrevMeter", vehicleMeintenance.VehiclePrevMeter);
             dbConnection.cmd.Parameters.AddWithValue("@Mileage", vehicleMeintenance.Mileage);
 
             dbConnection.cmd.ExecuteNonQuery();

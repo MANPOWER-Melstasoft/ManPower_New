@@ -41,6 +41,7 @@ namespace ManPowerWeb
 
 
 
+
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -60,7 +61,21 @@ namespace ManPowerWeb
             vehicleRequest.EstimatedCost = 0;
             vehicleRequest.EmpId = Convert.ToInt32(Session["EmpNumber"]);
             vehicleRequest.RejectedReason = "";
-            vehicleRequest.VehicleMeter = txtMeter.Text;
+            if (ddlCategory.SelectedValue == "1")
+            {
+                vehicleRequest.VehicleMeter = "";
+                vehicleRequest.VehiclePrevMeter = "";
+            }
+            else
+            {
+                vehicleRequest.VehicleMeter = txtMeter.Text;
+            }
+
+            if (ddlCategory.SelectedValue == "3")
+            {
+                vehicleRequest.VehiclePrevMeter = txtPrevMeter.Text;
+            }
+
             vehicleRequest.Mileage = txtMiladge.Text;
 
 
@@ -106,5 +121,7 @@ namespace ManPowerWeb
         {
             Response.Redirect("VehicleMeintenanceSearch.aspx");
         }
+
+
     }
 }

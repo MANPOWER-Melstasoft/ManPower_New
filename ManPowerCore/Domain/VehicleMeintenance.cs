@@ -61,6 +61,9 @@ namespace ManPowerCore.Domain
         [DBField("Vehicle_Meter")]
         public string VehicleMeter { get; set; }
 
+        [DBField("Vehicle_Previous_Meter")]
+        public string VehiclePrevMeter { get; set; }
+
         [DBField("Mileage")]
         public string Mileage { get; set; }
 

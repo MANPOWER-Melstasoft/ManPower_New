@@ -46,7 +46,7 @@
                     <label>Requested By : </label>
                 </div>
                 <div class="col-8">
-                    <asp:TextBox ID="requestedBy" runat="server" name="place" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                    <asp:TextBox ID="requestedBy" runat="server" name="place" Width="250px" CssClass="form-control form-control-user" Enabled="false"></asp:TextBox>
                     <asp:RequiredFieldValidator ControlToValidate="requestedBy" ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </div>
             </div>
@@ -63,6 +63,11 @@
             </div>
             <br />
 
+            <asp:Label runat="server" ID="lbl"></asp:Label>
+
+            <%if (ddlCategory.SelectedValue != "2")
+                { %>
+
             <div class="row">
                 <div class="col-4">
                     <label>Vehicle Meter :</label>
@@ -72,7 +77,23 @@
                     <asp:RequiredFieldValidator ControlToValidate="txtMeter" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </div>
             </div>
+
+            <%} %>
             <br />
+
+            <%if (ddlCategory.SelectedValue == "3")
+                { %>
+            <div class="row">
+                <div class="col-4">
+                    <label>Previous Vehicle Meter :</label>
+                </div>
+                <div class="col-8">
+                    <asp:TextBox ID="txtPrevMeter" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                    <asp:RequiredFieldValidator ControlToValidate="txtPrevMeter" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                </div>
+            </div>
+
+            <%} %>
 
             <div class="row">
                 <div class="col-4">

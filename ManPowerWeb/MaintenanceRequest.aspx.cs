@@ -61,7 +61,7 @@ namespace ManPowerWeb
             vehicleRequest.EstimatedCost = 0;
             vehicleRequest.EmpId = Convert.ToInt32(Session["EmpNumber"]);
             vehicleRequest.RejectedReason = "";
-            if (ddlCategory.SelectedValue == "1")
+            if (ddlCategory.SelectedValue == "2")
             {
                 vehicleRequest.VehicleMeter = "";
                 vehicleRequest.VehiclePrevMeter = "";
@@ -93,6 +93,29 @@ namespace ManPowerWeb
 
                     }
                 }
+            }
+
+
+            if (FileUpload1.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        //must change the path
+                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Quatations/") + uploadFile.FileName);
+                        lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
+                        vehicleRequest.EngineerFileAttachment = uploadFile.FileName;
+
+                    }
+                }
+            }
+            else
+            {
+                vehicleRequest.EngineerFileAttachment = "";
+
             }
 
             int result1 = vehicleMaintenance.SaveVehicleMeintenance(vehicleRequest);
@@ -129,6 +152,14 @@ namespace ManPowerWeb
         {
             txtMiladge.Text = (Convert.ToInt32(txtMeter.Text) - Convert.ToInt32(txtPrevMeter.Text)).ToString();
 
+        }
+
+        protected void chkEnginerrReommendation_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEnginerrReommendation.Checked == true)
+            {
+                rowEngFileUploader.Visible = true;
+            }
         }
     }
 }

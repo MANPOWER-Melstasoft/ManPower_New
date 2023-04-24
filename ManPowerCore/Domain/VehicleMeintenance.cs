@@ -67,6 +67,10 @@ namespace ManPowerCore.Domain
         [DBField("Mileage")]
         public string Mileage { get; set; }
 
+        [DBField("Enginner_Attachment")]
+
+        public string EngineerFileAttachment { get; set; }
+
         public Employee Employee { get; set; }
 
         public SystemUser RequestBy { get; set; }

@@ -23,6 +23,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 dataSource();
+                requestedBy.Text = Session["Name"].ToString();
             }
         }
 
@@ -36,8 +37,10 @@ namespace ManPowerWeb
             ddlCategory.DataTextField = "MaintenanceCategoryName";
             ddlCategory.DataValueField = "MaintenanceCategoryId";
             ddlCategory.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-- Select --", ""));
 
-            requestedBy.Text = Session["Name"].ToString();
+
+
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -45,7 +48,7 @@ namespace ManPowerWeb
             VehicleMeintenance vehicleRequest = new VehicleMeintenance();
             VehicleMaintenanceController vehicleMaintenance = ControllerFactory.CreateVehicleMaintenanceController();
 
-            vehicleRequest.FileNo = fielNo.Text;
+            vehicleRequest.FileNo = "";
             vehicleRequest.RequestDate = Convert.ToDateTime(date.Text);
             vehicleRequest.CategoryId = int.Parse(ddlCategory.SelectedValue);
             vehicleRequest.ApprovedDate = DateTime.Today;
@@ -92,7 +95,7 @@ namespace ManPowerWeb
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            fielNo.Text = null;
+            //fielNo.Text = null;
             date.Text = null;
             requestedBy.Text = null;
             vNo.Text = null;

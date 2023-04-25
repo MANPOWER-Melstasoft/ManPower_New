@@ -661,5 +661,12 @@ namespace ManPowerCore.Common
             IndividualBeneReportController individualBeneReportController = new IndividualBeneReportControllerSqlImpl();
             return (IndividualBeneReportController)individualBeneReportController;
         }
+
+        public static FuelDetailsController CreateFuelDetailsController()
+        {
+            FuelDetailsController fuelDetailsController = new FuelDetailsControllerImpl();
+            return (FuelDetailsController)fuelDetailsController;
+        }
+
     }
 }

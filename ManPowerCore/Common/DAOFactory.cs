@@ -646,5 +646,11 @@ namespace ManPowerCore.Common
             IndividualBeneReportDAO individualBeneReportDAO = new IndividualBeneReportDAOSqlImpl();
             return (IndividualBeneReportDAO)individualBeneReportDAO;
         }
+
+        public static FuelDetailsDAO CreatefuelDetailsDAO()
+        {
+            FuelDetailsDAO fuelDetailsDAO = new FuelDetailsDAOSqlImpl();
+            return (FuelDetailsDAO)fuelDetailsDAO;
+        }
     }
 }

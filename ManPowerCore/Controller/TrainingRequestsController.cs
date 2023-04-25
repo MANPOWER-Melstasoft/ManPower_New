@@ -4,6 +4,7 @@ using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -226,7 +227,15 @@ namespace ManPowerCore.Controller
 
                 foreach (var item in trainingRequestsList)
                 {
-                    item.SystemUser = systemUserList.Where(x => x._DepartmentUnitPositions.DepartmetUnitPossitionsId == item.Created_User).Single();
+                    //item.SystemUser = systemUserList.Where(x => x._DepartmentUnitPositions.DepartmetUnitPossitionsId == item.Created_User).Single();
+
+                    foreach (var item1 in systemUserList)
+                    {
+                        if (item.Created_User == item1._DepartmentUnitPositions.DepartmetUnitPossitionsId)
+                        {
+                            item.SystemUser = item1;
+                        }
+                    }
                 }
 
                 return trainingRequestsList;

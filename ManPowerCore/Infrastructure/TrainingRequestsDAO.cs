@@ -31,7 +31,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Training_Requests (Training_main_id, Project_status_id, Created_date, Created_user) " +
-                "VALUES (@TrainingMainId, @ProjectStatusId, @CreatedDate, @CreatedUser) ";
+                "VALUES (@TrainingMainId, @ProjectStatusId, @CreatedDate, @CreatedUser) SELECT SCOPE_IDENTITY()";
 
             dbConnection.cmd.Parameters.AddWithValue("@TrainingMainId", trainingRequests.TrainingMainId);
             dbConnection.cmd.Parameters.AddWithValue("@ProjectStatusId", trainingRequests.ProjectStatusId);
@@ -39,7 +39,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", trainingRequests.Created_User);
 
 
-            output = Convert.ToInt32(dbConnection.cmd.ExecuteNonQuery());
+            output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
 
             return output;
         }

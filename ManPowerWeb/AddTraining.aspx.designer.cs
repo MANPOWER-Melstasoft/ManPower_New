@@ -96,6 +96,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.FileUpload FileUploader;
 
         /// <summary>
+        /// Literal1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal1;
+
+        /// <summary>
+        /// FileUploader2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploader2;
+
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

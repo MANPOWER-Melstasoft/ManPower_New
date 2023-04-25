@@ -149,6 +149,7 @@
     <Content Include="DME22Rec1Render.aspx" />
     <Content Include="DME22Rec2.aspx" />
     <Content Include="DME22Rec2Render.aspx" />
+    <Content Include="FuelDetails.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LeaveForm.aspx" />
     <Content Include="LeaveReportAll.aspx" />
@@ -178,6 +179,7 @@
     <Content Include="ResourcePersonList.aspx" />
     <Content Include="SalaryIncrements.aspx" />
     <Content Include="SystemFunctions.aspx" />
+    <Content Include="TrainingAttachmentView.aspx" />
     <Content Include="TrainingFront.aspx" />
     <Content Include="AddTransfersRetirementResignation.aspx" />
     <Content Include="AddVacancyPosition.aspx" />
@@ -2270,6 +2272,13 @@
     <Compile Include="DME22Rec2Render.aspx.designer.cs">
       <DependentUpon>DME22Rec2Render.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FuelDetails.aspx.cs">
+      <DependentUpon>FuelDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FuelDetails.aspx.designer.cs">
+      <DependentUpon>FuelDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IndividualBeneList.aspx.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2472,6 +2481,13 @@
     </Compile>
     <Compile Include="SystemFunctions.aspx.designer.cs">
       <DependentUpon>SystemFunctions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingAttachmentView.aspx.cs">
+      <DependentUpon>TrainingAttachmentView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrainingAttachmentView.aspx.designer.cs">
+      <DependentUpon>TrainingAttachmentView.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrainingFront.aspx.cs">
       <DependentUpon>TrainingFront.aspx</DependentUpon>
@@ -3165,6 +3181,7 @@
     <Folder Include="SystemDocuments\Retirement\" />
     <Folder Include="SystemDocuments\SalarySlips\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
+    <Folder Include="SystemDocuments\TrainingRequestsAttachment\" />
     <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>
   <ItemGroup>

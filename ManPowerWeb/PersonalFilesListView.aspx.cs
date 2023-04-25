@@ -453,7 +453,7 @@ namespace ManPowerWeb
             {
                 //--------------check if department has changed ---------------------------------
                 Employee employeeOld = employeeController.GetEmployeeById(employee.EmployeeId);
-                DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsController.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, true);
+                DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsController.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, false);
 
 
                 if (employeeOld.UnitType != employee.UnitType || employeeOld.DistrictId != employee.DistrictId || employeeOld.DSDivisionId != employee.DSDivisionId)

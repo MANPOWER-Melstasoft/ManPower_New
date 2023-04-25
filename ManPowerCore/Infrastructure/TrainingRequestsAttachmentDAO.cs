@@ -28,7 +28,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandText = "INSERT INTO Training_Request_Attachment (Training_Request_Id, Attchment) VALUES (@trainingRequestsId, @attachment) ";
 
             dbConnection.cmd.Parameters.AddWithValue("@trainingRequestsId", trainingRequestsAttachment.TrainingRequestID);
-            dbConnection.cmd.Parameters.AddWithValue("@attachment", trainingRequestsAttachment.TrainingRequestID);
+            dbConnection.cmd.Parameters.AddWithValue("@attachment", trainingRequestsAttachment.Attachment);
 
 
             output = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());

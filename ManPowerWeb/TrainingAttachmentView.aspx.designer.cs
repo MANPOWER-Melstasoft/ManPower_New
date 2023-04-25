@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class RecommendationTrainingRequest
+    public partial class TrainingAttachmentView
     {
 
         /// <summary>
@@ -24,30 +24,12 @@ namespace ManPowerWeb
         protected global::System.Web.UI.ScriptManager Scriptmanger1;
 
         /// <summary>
-        /// gvApproveTraining control.
+        /// gvAttachments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApproveTraining;
-
-        /// <summary>
-        /// txtrejectReason control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtrejectReason;
-
-        /// <summary>
-        /// btnReject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReject;
+        protected global::System.Web.UI.WebControls.GridView gvAttachments;
     }
 }

@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,7 @@ namespace ManPowerWeb
         public int trainingMainId;
         public int depId;
         public int ParenId;
+        public TrainingRequestsAttachment trainingRequestsAttachment = new TrainingRequestsAttachment();
 
         public List<TrainingMain> trainingMainList = new List<TrainingMain>();
 
@@ -115,9 +117,29 @@ namespace ManPowerWeb
 
             output = trainingRequestsController.Save(trainingRequests);
 
+            TrainingRequestsAttachmentController trainingRequestsAttachmentController = ControllerFactory.CreateTrainingRequestsAttachmentController();
+
+
+
+            foreach (HttpPostedFile file in FileUploader.PostedFiles)
+            {
+                // Get file name and extension
+                string fileName = Path.GetFileName(file.FileName);
+                string fileExtension = Path.GetExtension(fileName);
+
+                // Save file to server
+                string savePath = Server.MapPath("~/SystemDocuments/TrainingRequestsAttachment/" + fileName);
+                file.SaveAs(savePath);
+
+                trainingRequestsAttachment.TrainingRequestID = output;
+                trainingRequestsAttachment.Attachment = fileName;
+
+                trainingRequestsAttachmentController.Save(trainingRequestsAttachment);
+            }
+
             //string url = "TrainingAd.aspx?TrainingMainId=" + trainingMainId;
 
-            if (output == 1)
+            if (output >= 1)
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Applied Succesfully!', 'success');window.setTimeout(function(){window.location='trainingfront.aspx'},2000);", true);
             }

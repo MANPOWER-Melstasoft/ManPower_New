@@ -38,6 +38,7 @@ namespace ManPowerWeb
         public void BindDataSource()
         {
             TrainingMainController trainingMainController = ControllerFactory.CreateTrainingMainController();
+            TrainingMainAttachmentController trainingMainAttachmentController = ControllerFactory.CreateTrainingMainAttachmentController();
 
             trainingMainList = trainingMainController.GetAllTrainingMain();
 
@@ -57,6 +58,12 @@ namespace ManPowerWeb
             lvTrainingAd.DataSource = trainingMainList;
             lvTrainingAd.DataBind();
 
+            List<TrainingMainAttachment> trainingMainAttachmentList = trainingMainAttachmentController.GetAllTrainingMainAttachments();
+
+            trainingMainAttachmentList = trainingMainAttachmentList.Where(x => x.TrainingMainId == trainingMainId).ToList();
+
+            gvAttachments.DataSource = trainingMainAttachmentList;
+            gvAttachments.DataBind();
         }
 
         public void ButtonEnable()

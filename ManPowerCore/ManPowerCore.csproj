@@ -135,10 +135,12 @@
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
     <Compile Include="Controller\TaskTypeController.cs" />
     <Compile Include="Controller\Test.cs" />
+    <Compile Include="Controller\TrainingMainAttachmentController.cs" />
     <Compile Include="Controller\TrainingMainController.cs" />
     <Compile Include="Controller\TrainingRefferalFeedbackController.cs" />
     <Compile Include="Controller\TrainingRefferalsController.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
+    <Compile Include="Controller\TrainingRequestsAttachmentController.cs" />
     <Compile Include="Controller\TrainingRequestsController.cs" />
     <Compile Include="Controller\TransferController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationMainController.cs" />
@@ -192,7 +194,9 @@
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
+    <Compile Include="Domain\TrainingMainAttachment.cs" />
     <Compile Include="Domain\TrainingRequests.cs" />
+    <Compile Include="Domain\TrainingRequestsAttachment.cs" />
     <Compile Include="Domain\VoucherDetail.cs" />
     <Compile Include="Domain\VoucherStatus.cs" />
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
@@ -347,10 +351,12 @@
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
     <Compile Include="Infrastructure\TaskTypeDAO.cs" />
     <Compile Include="Infrastructure\Test.cs" />
+    <Compile Include="Infrastructure\TrainingMainAttachmentDAO.cs" />
     <Compile Include="Infrastructure\TrainingMainDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalFeedbackDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalsDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
+    <Compile Include="Infrastructure\TrainingRequestsAttachmentDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestsDAO.cs" />
     <Compile Include="Infrastructure\TransferDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationMainDAO.cs" />

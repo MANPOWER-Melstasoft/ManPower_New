@@ -640,5 +640,17 @@ namespace ManPowerCore.Common
             EmployeeDetailsFromProgramPlanDAO employeeDetailsFromProgramPlanDAO = new EmployeeDetailsFromProgramPlanDAOSqlImpl();
             return (EmployeeDetailsFromProgramPlanDAO)employeeDetailsFromProgramPlanDAO;
         }
+
+        public static TrainingRequestsAttachmentDAO CreateTrainingRequestsAttachmentDAO()
+        {
+            TrainingRequestsAttachmentDAO trainingRequestsAttachmentDAO = new TrainingRequestsAttachmentDAOSqlImpl();
+            return (TrainingRequestsAttachmentDAO)trainingRequestsAttachmentDAO;
+        }
+
+        public static TrainingMainAttachmentDAO CreateTrainingMainAttachmentDAO()
+        {
+            TrainingMainAttachmentDAO trainingMainAttachmentDAO = new TrainingMainAttachmentDAOSqlImpl();
+            return (TrainingMainAttachmentDAO)trainingMainAttachmentDAO;
+        }
     }
 }

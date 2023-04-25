@@ -655,5 +655,17 @@ namespace ManPowerCore.Common
             EmployeeDetailsFromProgramPlanController employeeDetailsFromProgramPlanController = new EmployeeDetailsFromProgramPlanImpl();
             return (EmployeeDetailsFromProgramPlanController)employeeDetailsFromProgramPlanController;
         }
+
+        public static TrainingMainAttachmentController CreateTrainingMainAttachmentController()
+        {
+            TrainingMainAttachmentController trainingMainAttachmentController = new TrainingMainAttachmentControllerImpl();
+            return (TrainingMainAttachmentController)trainingMainAttachmentController;
+        }
+
+        public static TrainingRequestsAttachmentController CreateTrainingRequestsAttachmentController()
+        {
+            TrainingRequestsAttachmentController trainingRequestsAttachmentController = new TrainingRequestsAttachmentControllerImpl();
+            return (TrainingRequestsAttachmentController)trainingRequestsAttachmentController;
+        }
     }
 }

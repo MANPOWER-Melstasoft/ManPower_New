@@ -39,6 +39,14 @@
                             <asp:FileUpload ID="FileUploader" runat="server" Style="padding-top: 10px;"></asp:FileUpload>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-6" style="padding-left: 60px;">
+                            <asp:Literal ID="Literal1" runat="server" Text="Attachments :"></asp:Literal>
+                        </div>
+                        <div class="col-md-6" style="text-align: center">
+                            <asp:FileUpload ID="FileUploader2" runat="server" AllowMultiple="true" Style="padding-top: 10px;"></asp:FileUpload>
+                        </div>
+                    </div>
                     <div class="row mb-3" style="padding-top: 20px;">
                         <div class="col-sm-6" style="padding-left: 60px;">
                             <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-secondary btn-user " BackColor="#51E567 " BorderColor="#51E567" Style="width: 200px;" OnClick="btnSave_Click" ValidationGroup="1" />

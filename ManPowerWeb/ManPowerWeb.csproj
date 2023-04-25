@@ -3149,6 +3149,7 @@
     <Folder Include="SystemDocuments\Retirement\" />
     <Folder Include="SystemDocuments\SalarySlips\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
+    <Folder Include="SystemDocuments\TrainingRequestsAttachment\" />
     <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>
   <ItemGroup>

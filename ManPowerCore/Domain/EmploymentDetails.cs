@@ -8,42 +8,45 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Domain
 {
-    [Serializable]
-    public class EmploymentDetails
-    {
-        [DBField("ID")]
-        public int EmploymentDetailId { get; set; }
+	[Serializable]
+	public class EmploymentDetails
+	{
+		[DBField("ID")]
+		public int EmploymentDetailId { get; set; }
 
-        [DBField("DESIGNATION_ID")]
-        public int DesignationId { get; set; }
+		[DBField("DESIGNATION_ID")]
+		public int DesignationId { get; set; }
 
-        [DBField("CONTRACT_TYPE_ID")]
-        public int ContractTypeId { get; set; }
+		[DBField("CONTRACT_TYPE_ID")]
+		public int ContractTypeId { get; set; }
 
-        [DBField("EMPLOYEE_ID")]
-        public int EmpID { get; set; }
+		[DBField("EMPLOYEE_ID")]
+		public int EmpID { get; set; }
 
-        [DBField("COMPANY_NAME")]
-        public string CompanyName { get; set; }
+		[DBField("COMPANY_NAME")]
+		public string CompanyName { get; set; }
 
-        [DBField("START_DATE")]
-        public DateTime StartDate { get; set; }
+		[DBField("START_DATE")]
+		public DateTime StartDate { get; set; }
 
-        [DBField("END_DATE")]
-        public DateTime EndDate { get; set; }
+		[DBField("END_DATE")]
+		public DateTime EndDate { get; set; }
 
-        [DBField("IS_RESIGNED")]
-        public int IsResigned { get; set; }
+		[DBField("IS_RESIGNED")]
+		public int IsResigned { get; set; }
 
-        [DBField("RETIREMENT_DATE")]
-        public DateTime RetirementDate { get; set; }
+		[DBField("RETIREMENT_DATE")]
+		public DateTime RetirementDate { get; set; }
 
-        [DBField("EPF_NUMBER")]
-        public int Epf { get; set; }
+		[DBField("EPF_NUMBER")]
+		public int Epf { get; set; }
 
-        [DBField("EMPNO")]
-        public int EmpNumber { get; set; }
+		[DBField("EMPNO")]
+		public int EmpNumber { get; set; }
 
-        //public Employee _Employee { get; set; } = new Employee();
-    }
+		[DBField("EMPLOYEE_NAME")]
+		public string EmpName { get; set; }
+
+		//public Employee _Employee { get; set; } = new Employee();
+	}
 }

@@ -179,6 +179,7 @@
     <Content Include="ResourcePersonList.aspx" />
     <Content Include="SalaryIncrements.aspx" />
     <Content Include="SystemFunctions.aspx" />
+    <Content Include="TrainingAttachmentView.aspx" />
     <Content Include="TrainingFront.aspx" />
     <Content Include="AddTransfersRetirementResignation.aspx" />
     <Content Include="AddVacancyPosition.aspx" />
@@ -2481,6 +2482,13 @@
     <Compile Include="SystemFunctions.aspx.designer.cs">
       <DependentUpon>SystemFunctions.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TrainingAttachmentView.aspx.cs">
+      <DependentUpon>TrainingAttachmentView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrainingAttachmentView.aspx.designer.cs">
+      <DependentUpon>TrainingAttachmentView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TrainingFront.aspx.cs">
       <DependentUpon>TrainingFront.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3173,6 +3181,7 @@
     <Folder Include="SystemDocuments\Retirement\" />
     <Folder Include="SystemDocuments\SalarySlips\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
+    <Folder Include="SystemDocuments\TrainingRequestsAttachment\" />
     <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>
   <ItemGroup>

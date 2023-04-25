@@ -154,7 +154,10 @@ namespace ManPowerCore.Infrastructure
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
+
             dbConnection.cmd.CommandText = "SELECT * FROM DEPARTMENT_UNIT_POSSITIONS WHERE SYSTEM_USER_ID = " + systemUserId + " AND Is_Active = 1";
+
+
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

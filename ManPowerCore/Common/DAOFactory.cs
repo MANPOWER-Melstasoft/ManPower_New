@@ -652,5 +652,17 @@ namespace ManPowerCore.Common
             FuelDetailsDAO fuelDetailsDAO = new FuelDetailsDAOSqlImpl();
             return (FuelDetailsDAO)fuelDetailsDAO;
         }
+
+        public static TrainingRequestsAttachmentDAO CreateTrainingRequestsAttachmentDAO()
+        {
+            TrainingRequestsAttachmentDAO trainingRequestsAttachmentDAO = new TrainingRequestsAttachmentDAOSqlImpl();
+            return (TrainingRequestsAttachmentDAO)trainingRequestsAttachmentDAO;
+        }
+
+        public static TrainingMainAttachmentDAO CreateTrainingMainAttachmentDAO()
+        {
+            TrainingMainAttachmentDAO trainingMainAttachmentDAO = new TrainingMainAttachmentDAOSqlImpl();
+            return (TrainingMainAttachmentDAO)trainingMainAttachmentDAO;
+        }
     }
 }

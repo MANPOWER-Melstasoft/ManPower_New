@@ -57,11 +57,21 @@ namespace ManPowerWeb
 
             staffLeaveAllocation.EmployeesID = Convert.ToInt32(ddlStaff.SelectedValue);
             staffLeaveAllocation.Entitlement = txtEntitlement.Text;
-            //staffLeaveAllocation.LeaveYear = 10;
+            staffLeaveAllocation.LeaveYear = DateTime.Today.Year;
             staffLeaveAllocation.LeaveTypeId = Convert.ToInt32(ddlLeaveType.SelectedValue);
             // staffLeaveAllocation.NoOfDays = 10;
-            staffLeaveAllocation.MonthLimit = float.Parse(txtPerMontLimit.Text);
-            staffLeaveAllocation.MonthLimitAppliedTo = DateTime.Parse(txtAppliedTo.Text);
+            if (txtPerMontLimit.Text != "")
+            {
+                staffLeaveAllocation.MonthLimit = float.Parse(txtPerMontLimit.Text);
+            }
+            else
+            {
+                staffLeaveAllocation.MonthLimit = 0;
+            }
+            if (txtAppliedTo.Text != "")
+            {
+                staffLeaveAllocation.MonthLimitAppliedTo = DateTime.Parse(txtAppliedTo.Text);
+            }
 
             int response = staffLeaveAllocationController.saveStaffLeaveAllocation(staffLeaveAllocation);
 

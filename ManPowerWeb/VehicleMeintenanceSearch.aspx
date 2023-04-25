@@ -33,24 +33,31 @@
             </div>
 
             <div class="row mt-4">
-
-                <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-success mr-3" OnClick="btnSearch_Click" />
-
-
-
-                <asp:Button ID="Button3" runat="server" Text="Reset" CssClass="btn btn-facebook mr-3" OnClick="reset" />
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-success mr-3" OnClick="btnSearch_Click" />
 
 
 
-                <a href="MaintenanceRequest.aspx">
-                    <asp:Button ID="Button2" runat="server" Text="Request Maintenance" CssClass="btn btn-primary" OnClick="isClicked" />
-                </a>
+                            <asp:Button ID="Button3" runat="server" Text="Reset" CssClass="btn btn-facebook mr-3" OnClick="reset" />
 
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-5">
+                            <a href="MaintenanceRequest.aspx">
+                                <asp:Button ID="Button2" runat="server" Text="Request Maintenance" CssClass="btn btn-primary" OnClick="isClicked" />
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
 
-            <div class="table-responsive" style="width: 100%;">
+            <div class="table-responsive mt-3" style="width: 100%;">
                 <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                     CellPadding="4" GridLines="None" OnRowDataBound="GridView1_RowDataBound">
                     <Columns>

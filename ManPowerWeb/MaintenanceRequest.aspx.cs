@@ -20,15 +20,23 @@ namespace ManPowerWeb
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
-            if (!IsPostBack)
+
+            if (Session["UserId"] != null)
             {
-                dataSource();
-                requestedBy.Text = Session["Name"].ToString();
+                if (!IsPostBack)
+                {
+                    dataSource();
+                }
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
             }
         }
 
         private void dataSource()
         {
+            requestedBy.Text = Session["Name"].ToString();
 
             MaintenanceCategoryController maintenanceCategory = ControllerFactory.CreateMaintenanceCategoryController();
             maintenanceCategories = maintenanceCategory.GetAllMaintenanceCategory();
@@ -74,6 +82,11 @@ namespace ManPowerWeb
             if (ddlCategory.SelectedValue == "3")
             {
                 vehicleRequest.VehiclePrevMeter = txtPrevMeter.Text;
+            }
+            else
+            {
+                vehicleRequest.VehiclePrevMeter = "";
+
             }
 
             vehicleRequest.Mileage = txtMiladge.Text;
@@ -127,6 +140,17 @@ namespace ManPowerWeb
             {
                 vehicleRequest.EngineerFileAttachment = "";
 
+            }
+
+            if (txtStartDate.Text != "" && txtEndDate.Text != "")
+            {
+                vehicleRequest.InsuranceStartDate = DateTime.Parse(txtStartDate.Text);
+                vehicleRequest.InsuranceEndDate = DateTime.Parse(txtEndDate.Text);
+            }
+            else
+            {
+                vehicleRequest.InsuranceStartDate = DateTime.MinValue;
+                vehicleRequest.InsuranceEndDate = DateTime.MinValue;
             }
 
             int result1 = vehicleMaintenance.SaveVehicleMeintenance(vehicleRequest);

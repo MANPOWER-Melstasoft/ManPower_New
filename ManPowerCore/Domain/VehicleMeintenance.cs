@@ -74,6 +74,15 @@ namespace ManPowerCore.Domain
         [DBField("Is_Enginner_Recommendatin")]
         public string IsEngineerRecommendation { get; set; }
 
+
+        [DBField("Insurance_Start_Date")]
+        public DateTime InsuranceStartDate { get; set; }
+
+
+        [DBField("Insurance_End_Date")]
+        public DateTime InsuranceEndDate { get; set; }
+
+
         public Employee Employee { get; set; }
 
         public SystemUser RequestBy { get; set; }

@@ -11,10 +11,9 @@
                 <div class="card p-4 mb-5">
 
                     <h2>New Maintenance Request</h2>
-                    <br />
-                    <br />
 
-                    <%-- <div class="row">
+
+                    <%-- <div class="row mt-3">
                 <div class="col-4">
                     <label>File Number : </label>
                 </div>
@@ -25,7 +24,7 @@
             </div>
                     --%>
 
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col-4">
                             <label>Date : </label>
                         </div>
@@ -34,19 +33,49 @@
                             <asp:RequiredFieldValidator ControlToValidate="date" ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <br />
 
-                    <div class="row">
+
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Maintenance Category : </label>
                         </div>
                         <div class="col-8">
                             <asp:DropDownList ID="ddlCategory" Width="250px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
+                            <asp:RequiredFieldValidator ControlToValidate="ddlCategory" ID="RequiredFieldValidator10" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                         </div>
                     </div>
-                    <br />
 
-                    <div class="row">
+
+                    <% if (ddlCategory.SelectedValue == "4")
+                        { %>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label>Insurance Start Date : </label>
+                                </div>
+                                <div class="col-8">
+                                    <asp:TextBox ID="txtStartDate" runat="server" name="place" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="txtStartDate" ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label>Insurance End Date : </label>
+                                </div>
+                                <div class="col-8">
+                                    <asp:TextBox ID="txtEndDate" runat="server" name="place" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ControlToValidate="txtEndDate" ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%} %>
+
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Requested By : </label>
                         </div>
@@ -55,9 +84,9 @@
                             <asp:RequiredFieldValidator ControlToValidate="requestedBy" ID="RequiredFieldValidator3" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <br />
 
-                    <div class="row">
+
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Vehicle Number :</label>
                         </div>
@@ -66,14 +95,15 @@
                             <asp:RequiredFieldValidator ControlToValidate="vNo" ID="RequiredFieldValidator4" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <br />
 
-                    <asp:Label runat="server" ID="lbl"></asp:Label>
+
+
+
 
                     <%if (ddlCategory.SelectedValue != "2")
                         { %>
 
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Vehicle Meter :</label>
                         </div>
@@ -84,11 +114,11 @@
                     </div>
 
                     <%} %>
-                    <br />
+
 
                     <%if (ddlCategory.SelectedValue == "3")
                         { %>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Previous Vehicle Meter :</label>
                         </div>
@@ -100,7 +130,7 @@
 
                     <%} %>
 
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Mileage :</label>
                         </div>
@@ -109,9 +139,9 @@
                             <%--                <asp:RequiredFieldValidator ControlToValidate="txtMiladge" ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>--%>
                         </div>
                     </div>
-                    <br />
 
-                    <div class="row">
+
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Description : </label>
                         </div>
@@ -120,9 +150,9 @@
                             <asp:RequiredFieldValidator ControlToValidate="description" ID="RequiredFieldValidator5" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <br />
 
-                    <div class="row">
+
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Uploads : </label>
                         </div>
@@ -132,10 +162,10 @@
                             <asp:RequiredFieldValidator ControlToValidate="Uploader" ID="RequiredFieldValidator6" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <br />
+
                     <%if (ddlCategory.SelectedValue == "2")
                         { %>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-4">
                             <label>Engineer Recommendation : </label>
                         </div>
@@ -144,10 +174,7 @@
                         </div>
                     </div>
 
-                    <br />
-
-
-                    <div class="row" runat="server" id="rowEngFileUploader" visible="false">
+                    <div class="row mt-3" runat="server" id="rowEngFileUploader" visible="false">
                         <div class="col-4">
                             <label>Engineer Recommendation File Uploads : </label>
                         </div>
@@ -157,11 +184,11 @@
                         </div>
                     </div>
 
-                    <br />
+
                     <%} %>
 
 
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col-2">
                             <asp:Button runat="server" ID="Button3" Text="Back" OnClick="isClicked" CssClass="btn btn-primary btn-user btn-block" BackColor="#212529" BorderColor="#212529" />
                         </div>
@@ -172,7 +199,7 @@
                             <asp:Button runat="server" ID="Button1" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-facebook btn-user btn-block" />
                         </div>
                     </div>
-                    <br />
+
                 </div>
             </div>
 

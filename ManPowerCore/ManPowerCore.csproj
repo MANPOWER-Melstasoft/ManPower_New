@@ -160,6 +160,7 @@
     <Compile Include="Domain\ApprovalHistory.cs" />
     <Compile Include="Domain\DistressLoan.cs" />
     <Compile Include="Domain\EmployeeDetailsFromProgramPlan.cs" />
+    <Compile Include="Domain\FuelDetails.cs" />
     <Compile Include="Domain\GuarantorDetail.cs" />
     <Compile Include="Domain\IndividualBeneReport.cs" />
     <Compile Include="Domain\LoanDetail.cs" />

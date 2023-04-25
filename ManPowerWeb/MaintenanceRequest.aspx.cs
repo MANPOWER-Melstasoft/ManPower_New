@@ -79,6 +79,17 @@ namespace ManPowerWeb
             vehicleRequest.Mileage = txtMiladge.Text;
 
 
+            if (chkEnginerrReommendation.Checked)
+            {
+                vehicleRequest.IsEngineerRecommendation = "1";
+            }
+            else
+            {
+                vehicleRequest.IsEngineerRecommendation = "0";
+
+            }
+
+
             if (Uploader.HasFile)
             {
                 HttpFileCollection uploadFiles = Request.Files;
@@ -122,7 +133,7 @@ namespace ManPowerWeb
 
             if (result1 == 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong !', 'error');window.setTimeout(function(){window.location='MaintenanceRequest.aspx'},2500);", true);
             }
             else
             {

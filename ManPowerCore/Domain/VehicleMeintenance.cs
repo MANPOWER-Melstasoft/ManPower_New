@@ -71,6 +71,9 @@ namespace ManPowerCore.Domain
 
         public string EngineerFileAttachment { get; set; }
 
+        [DBField("Is_Enginner_Recommendatin")]
+        public string IsEngineerRecommendation { get; set; }
+
         public Employee Employee { get; set; }
 
         public SystemUser RequestBy { get; set; }

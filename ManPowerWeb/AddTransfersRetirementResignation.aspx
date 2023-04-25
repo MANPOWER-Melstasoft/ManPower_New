@@ -7,7 +7,7 @@
 
 
         <div class="card ml-4 p-4">
-            <h2>Add New Transfers</h2>
+            <h2>Apply for New Transfers</h2>
             <br />
             <div class="form-group">
 
@@ -38,7 +38,7 @@
                     <div class="col-sm-6">
                         <div class="row mb-3">
                             <div class="col-sm-4">
-                                <asp:Literal ID="Literal3" runat="server" Text="Department : "></asp:Literal>
+                                <asp:Literal ID="Literal3" runat="server" Text="Current Work Place : "></asp:Literal>
                             </div>
                             <div class="col-md-4">
                                 <asp:Label ID="lblDepartment" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -86,15 +86,34 @@
                                             <asp:Literal ID="Literal5" runat="server" Text="Transfer Type : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
-                                            <asp:DropDownList ID="ddlTransferType" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlTransferType" runat="server" AutoPostBack="true" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="1" ControlToValidate="ddlTransferType" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
+
+                                <%if (ddlTransferType.SelectedValue == "External")
+                                    { %>
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Requested Work Place : "></asp:Literal>
+                                            <asp:Literal ID="Literal16" runat="server" Text="Preferred Work Place : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtRequestWorkPlace" runat="server" CssClass="form-control form-control-user" Width="250px"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ValidationGroup="1" ControlToValidate="txtRequestWorkPlace" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <%}
+                                    else
+                                    { %>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Preferred Work Place : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:DropDownList ID="ddlDepartment" Width="250px" runat="server" CssClass="form-control form-control-user">
@@ -106,6 +125,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <%}%>
                             </div>
                             <div class="row mb-3 ms-1" id="FromToDate" runat="server" visible="false">
                                 <div class="col-sm-6">
@@ -158,7 +178,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="Literal19" runat="server" Text="Joined Date : "></asp:Literal>
+                                            <asp:Literal ID="Literal19" runat="server" Text="First Appointment Date : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:TextBox ID="txtJoinedDate" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>

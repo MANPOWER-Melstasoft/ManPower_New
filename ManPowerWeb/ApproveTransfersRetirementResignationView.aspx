@@ -43,7 +43,7 @@
                             <div class="col-sm-6">
                                 <div class="row mb-3">
                                     <div class="col-sm-4">
-                                        <asp:Literal ID="Literal3" runat="server" Text="Department : "></asp:Literal>
+                                        <asp:Literal ID="Literal3" runat="server" Text="Current Work Place : "></asp:Literal>
                                     </div>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblDepartment" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -93,7 +93,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Requested Work Place : "></asp:Literal>
+                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Preferred Work Place : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblNewDapartment" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -146,7 +146,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="Literal19" runat="server" Text="Joined Date : "></asp:Literal>
+                                            <asp:Literal ID="Literal19" runat="server" Text="First Appointment Date : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblJoinedDate" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -252,7 +252,7 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <asp:Literal ID="Literal11" runat="server" Text="Upload Documnents"></asp:Literal>
+                                        <asp:Literal ID="Literal11" runat="server" Text="Documnents"></asp:Literal>
                                     </div>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblDocument" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -261,6 +261,25 @@
                                         { %>
                                     <div class="col-sm-4">
                                         <asp:Button runat="server" ID="btnView" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnView_Click" />
+                                    </div>
+                                    <%}  %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal25" runat="server" Text="Recommendation Documnents"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblRecDocument" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                    <%if (lblRecDocument.Text != "" && lblRecDocument.Text != null)
+                                        { %>
+                                    <div class="col-sm-4">
+                                        <asp:Button runat="server" ID="btnViecRecDoc" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnViecRecDoc_Click" />
                                     </div>
                                     <%}  %>
                                 </div>
@@ -315,11 +334,21 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="Literal15" runat="server" Text="Reverse Reason : "></asp:Literal>
+                                            <asp:Literal ID="Literal15" runat="server" Text="Reason : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:DropDownList ID="ddlReverseReason" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:DropDownList>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="1" ControlToValidate="ddlReverseReason" ForeColor="Red" runat="server" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="lblReveresRemerks" runat="server" Text="Remark : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txtReverseRemarks" runat="server" CssClass="form-control form-control-user" Width="250px" TextMode="MultiLine"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -341,6 +370,19 @@
                             </div>
                         </div>
 
+                        <div class="row mb-5">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal24" runat="server" Text="Approve Documnents"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:FileUpload ID="OtherUploader" CssClass="btn" runat="server" AllowMultiple="false" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row mb-3 ms-1">
                             <div class="col-sm-6 d-flex">

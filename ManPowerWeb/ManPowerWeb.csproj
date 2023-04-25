@@ -133,6 +133,7 @@
     <Content Include="AddTrainingFront.aspx" />
     <Content Include="AllPayments.aspx" />
     <Content Include="AllPaymentsRender.aspx" />
+    <Content Include="Applyleaveheadoffice.aspx" />
     <Content Include="ApprovedLoanFront.aspx" />
     <Content Include="ApprovedLoansView.aspx" />
     <Content Include="ApproveLoan.aspx" />
@@ -148,8 +149,10 @@
     <Content Include="DME22Rec1Render.aspx" />
     <Content Include="DME22Rec2.aspx" />
     <Content Include="DME22Rec2Render.aspx" />
+    <Content Include="FuelDetails.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LeaveForm.aspx" />
+    <Content Include="LeaveReportAll.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
@@ -2157,6 +2160,13 @@
     <Compile Include="AllPaymentsRender.aspx.designer.cs">
       <DependentUpon>AllPaymentsRender.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Applyleaveheadoffice.aspx.cs">
+      <DependentUpon>Applyleaveheadoffice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Applyleaveheadoffice.aspx.designer.cs">
+      <DependentUpon>Applyleaveheadoffice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApprovedLoanFront.aspx.cs">
       <DependentUpon>ApprovedLoanFront.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2262,6 +2272,13 @@
     <Compile Include="DME22Rec2Render.aspx.designer.cs">
       <DependentUpon>DME22Rec2Render.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FuelDetails.aspx.cs">
+      <DependentUpon>FuelDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FuelDetails.aspx.designer.cs">
+      <DependentUpon>FuelDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IndividualBeneList.aspx.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2275,6 +2292,13 @@
     </Compile>
     <Compile Include="LeaveForm.aspx.designer.cs">
       <DependentUpon>LeaveForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportAll.aspx.cs">
+      <DependentUpon>LeaveReportAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportAll.aspx.designer.cs">
+      <DependentUpon>LeaveReportAll.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoanReport.aspx.cs">
       <DependentUpon>LoanReport.aspx</DependentUpon>

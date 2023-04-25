@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,7 @@ namespace ManPowerWeb
         static int Id;
         static int typeId;
         static string document;
+        static string RecDocument;
         static TransfersRetirementResignationMain trrmainObj = new TransfersRetirementResignationMain();
         static List<SystemUser> AssignUserList = new List<SystemUser>();
         protected void Page_Load(object sender, EventArgs e)
@@ -59,6 +61,8 @@ namespace ManPowerWeb
             lblDesignation.Text = systemUser._Designation.DesigntionName;
             lblDocument.Text = trrmainObj.Documents;
             document = trrmainObj.Documents;
+            lblRecDocument.Text = trrmainObj.RecDocuments;
+            RecDocument = trrmainObj.RecDocuments;
 
             if (trrmainObj.StatusId == 2)
             {
@@ -110,7 +114,7 @@ namespace ManPowerWeb
             {
                 typeId = 1;
                 transferDiv.Visible = true;
-                heading.Text = "Transfer - " + trrmainObj.EmployeeId;
+                heading.Text = "Transfer - " + Id.ToString();
                 lblRequestType.Text = "Transfer";
 
                 TransferController transferController = ControllerFactory.CreateTransferController();
@@ -119,13 +123,20 @@ namespace ManPowerWeb
                 lblTransferType.Text = transfer.TransferType;
                 lblTransferReason.Text = transfer.Reason;
 
-                DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
-                lblNewDapartment.Text = departmentUnitNext.Name;
+                if (transfer.TransferType == "External")
+                {
+                    lblNewDapartment.Text = transfer.RequestWorkPlace;
+                }
+                else
+                {
+                    DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
+                    lblNewDapartment.Text = departmentUnitNext.Name;
+                }
 
                 if (trrmainObj.RequestTypeId == 4)
                 {
                     typeId = 4;
-                    heading.Text = "Temporary Attchement - " + trrmainObj.EmployeeId;
+                    heading.Text = "Temporary Attchement - " + Id.ToString();
                     lblRequestType.Text = "Temporary Attchement";
                     FromToDate.Visible = true;
 
@@ -140,7 +151,7 @@ namespace ManPowerWeb
             {
                 typeId = 2;
                 resignationDiv.Visible = true;
-                heading.Text = "Resignation - " + trrmainObj.EmployeeId;
+                heading.Text = "Resignation - " + Id.ToString();
                 lblRequestType.Text = "Resignation";
 
                 ResignationController resignationController = ControllerFactory.CreateResignationController();
@@ -153,7 +164,7 @@ namespace ManPowerWeb
             {
                 typeId = 3;
                 retirementDiv.Visible = true;
-                heading.Text = "Retirement - " + trrmainObj.EmployeeId;
+                heading.Text = "Retirement - " + Id.ToString();
                 lblRequestType.Text = "Retirement";
 
                 RetirementController retirementController = ControllerFactory.CreateRetirementController();
@@ -184,22 +195,63 @@ namespace ManPowerWeb
             trrmainObj.ActionTakenDate = DateTime.Today;
             trrmainObj.Remarks = "";
             trrmainObj.Reason = "";
+            trrmainObj.ReverseRemarks = "";
+            trrmainObj.ApproveDocuments = "";
 
             if (ddlUpdateStatus.SelectedItem.Text == "Approve")
             {
                 trrmainObj.StatusId = 2;
                 trrmainObj.ParentAction = "Approve";
             }
-            if (ddlUpdateStatus.SelectedItem.Text == "Reverse")
+            if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")
             {
                 trrmainObj.StatusId = 4;
                 trrmainObj.ParentAction = ddlReverseReason.SelectedItem.Text;
+                trrmainObj.ReverseRemarks = txtReverseRemarks.Text;
             }
             if (ddlUpdateStatus.SelectedItem.Text == "Reject")
             {
                 trrmainObj.StatusId = 3;
                 trrmainObj.ParentAction = "Reject";
                 trrmainObj.Remarks = txtRejectRemark.Text;
+            }
+
+            if (OtherUploader.HasFile)
+            {
+                HttpFileCollection uploadFiles = Request.Files;
+                for (int i = 0; i < uploadFiles.Count; i++)
+                {
+                    HttpPostedFile uploadFile = uploadFiles[i];
+                    if (uploadFile.ContentLength > 0)
+                    {
+                        var originalFileName = Path.GetFileName(uploadFile.FileName); // Get the original filename
+                        var extension = Path.GetExtension(originalFileName); // Get the file extension
+                        var dateTime = DateTime.Now.ToString("yyyyMMddHHmmss"); // Get the current date and time as a string
+                        var newFileName = trrmainObj.EmployeeId + "_" + dateTime + extension; // Set the new filename
+
+                        if (typeId == 1)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Transfers/") + newFileName);
+                            trrmainObj.ApproveDocuments = newFileName;
+                        }
+                        if (typeId == 4)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Transfers/") + newFileName);
+                            trrmainObj.ApproveDocuments = newFileName;
+                        }
+                        if (typeId == 2)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Resignation/") + newFileName);
+                            trrmainObj.ApproveDocuments = newFileName;
+                        }
+                        if (typeId == 3)
+                        {
+                            uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/Retirement/") + newFileName);
+                            trrmainObj.ApproveDocuments = newFileName;
+                        }
+
+                    }
+                }
             }
 
             output = transfersRetirementResignationMainController.Update(trrmainObj);
@@ -216,7 +268,7 @@ namespace ManPowerWeb
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            if (typeId == 1)
+            if (typeId == 1 || typeId == 4)
             {
                 if (document != "" && document != null)
                 {
@@ -262,7 +314,7 @@ namespace ManPowerWeb
             ddlUpdateStatus.Items.Insert(0, new ListItem("-- select status --", ""));
 
             ddlUpdateStatus.Items.Insert(1, new ListItem("Approve", "1"));
-            ddlUpdateStatus.Items.Insert(2, new ListItem("Reverse", "4"));
+            ddlUpdateStatus.Items.Insert(2, new ListItem("Incomplete Application", "4"));
             ddlUpdateStatus.Items.Insert(3, new ListItem("Reject", "3"));
         }
 
@@ -300,7 +352,7 @@ namespace ManPowerWeb
             ddlReverseReason.DataValueField = "Id";
             ddlReverseReason.DataTextField = "ReverseReasonName";
             ddlReverseReason.DataBind();
-            ddlReverseReason.Items.Insert(0, new ListItem("-- select reverse reason --", ""));
+            ddlReverseReason.Items.Insert(0, new ListItem("-- select reason --", ""));
         }
 
         protected void ddlUpdateStatus_SelectedIndexChanged(object sender, EventArgs e)
@@ -317,7 +369,7 @@ namespace ManPowerWeb
                 reverse.Visible = false;
                 reject.Visible = false;
             }
-            if (ddlUpdateStatus.SelectedItem.Text == "Reverse")
+            if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")
             {
                 sendtoapp.Visible = false;
                 reverse.Visible = true;
@@ -328,6 +380,49 @@ namespace ManPowerWeb
                 sendtoapp.Visible = false;
                 reverse.Visible = false;
                 reject.Visible = true;
+            }
+        }
+
+        protected void btnViecRecDoc_Click(object sender, EventArgs e)
+        {
+            if (typeId == 1 || typeId == 4)
+            {
+                if (RecDocument != "" && RecDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Transfers/" + RecDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + RecDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+            if (typeId == 2)
+            {
+                if (RecDocument != "" && RecDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Resignation/" + RecDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + RecDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+            if (typeId == 3)
+            {
+                if (RecDocument != "" && RecDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Retirement/" + RecDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + RecDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
             }
         }
     }

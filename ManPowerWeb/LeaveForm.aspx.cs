@@ -48,11 +48,21 @@ namespace ManPowerWeb
 
         private void bindgvMyLeaves()
         {
-            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-            staffLeavesList = staffLeaveController.getStaffLeaves(false).Where(x => x.LeaveStatusId == 1).ToList();
-            // ViewState["staffLeavesList"] = staffLeavesList.Where(x => x.EmployeeId == empId);
-            gvMyLeaves.DataSource = staffLeavesList;
-            gvMyLeaves.DataBind();
+            try
+            {
+                StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+                staffLeavesList = staffLeaveController.getStaffLeaves(true).Where(x => x.LeaveStatusId == 1 && x._EMployeeDetails.UnitType != 1).ToList();
+                // ViewState["staffLeavesList"] = staffLeavesList.Where(x => x.EmployeeId == empId);
+            }
+            catch
+            {
+                staffLeavesList.Clear();
+            }
+            finally
+            {
+                gvMyLeaves.DataSource = staffLeavesList;
+                gvMyLeaves.DataBind();
+            }
 
         }
         protected void gvMyLeaves_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -476,8 +476,6 @@ namespace ManPowerWeb
             else
             {
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something went wrong!', 'error')", true);
-
-
             }
         }
 
@@ -737,7 +735,6 @@ namespace ManPowerWeb
             if (ddlTrainningProgramplan.SelectedValue != "")
             {
                 trainingRefferals.Program_Plan_Id = Convert.ToInt32(ddlTrainningProgramplan.SelectedValue);
-
             }
 
             else

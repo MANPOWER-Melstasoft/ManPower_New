@@ -42,6 +42,33 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Literal ltSideBar;
 
         /// <summary>
+        /// remaider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl remaider;
+
+        /// <summary>
+        /// countR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl countR;
+
+        /// <summary>
+        /// remainderPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel remainderPanel;
+
+        /// <summary>
         /// count control.
         /// </summary>
         /// <remarks>

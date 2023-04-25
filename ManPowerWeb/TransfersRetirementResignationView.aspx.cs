@@ -17,6 +17,8 @@ namespace ManPowerWeb
         static int Id;
         static int typeId;
         static string document;
+        static string RecDocument;
+        static string ApproveDocument;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,13 +55,19 @@ namespace ManPowerWeb
             lblDepartment.Text = departmentUnit.Name;
             lblDesignation.Text = systemUser._Designation.DesigntionName;
             lblDocument.Text = trrmainObj.Documents;
+            lblRecDocument.Text = trrmainObj.RecDocuments;
+            lblApproveDocuments.Text = trrmainObj.ApproveDocuments;
+            lblstatus.Text = trrmainObj.status.StatusName;
+
             document = trrmainObj.Documents;
+            RecDocument = trrmainObj.RecDocuments;
+            ApproveDocument = trrmainObj.ApproveDocuments;
 
             if (trrmainObj.RequestTypeId == 1 || trrmainObj.RequestTypeId == 4)
             {
                 typeId = 1;
                 transferDiv.Visible = true;
-                heading.Text = "Transfer - " + trrmainObj.EmployeeId;
+                heading.Text = "Transfer - " + Id.ToString();
                 lblRequestType.Text = "Transfer";
 
                 TransferController transferController = ControllerFactory.CreateTransferController();
@@ -71,7 +79,7 @@ namespace ManPowerWeb
                 if (trrmainObj.RequestTypeId == 4)
                 {
                     typeId = 4;
-                    heading.Text = "Temporary Attchement - " + trrmainObj.EmployeeId;
+                    heading.Text = "Temporary Attchement - " + Id.ToString();
                     lblRequestType.Text = "Temporary Attchement";
                     FromToDate.Visible = true;
 
@@ -82,14 +90,21 @@ namespace ManPowerWeb
                     }
                 }
 
-                DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
-                lblNewDapartment.Text = departmentUnitNext.Name;
+                if (transfer.TransferType == "External")
+                {
+                    lblNewDapartment.Text = transfer.RequestWorkPlace;
+                }
+                else
+                {
+                    DepartmentUnit departmentUnitNext = departmentUnitController.GetDepartmentUnit(transfer.NextDep, false, false);
+                    lblNewDapartment.Text = departmentUnitNext.Name;
+                }
             }
             if (trrmainObj.RequestTypeId == 2)
             {
                 typeId = 2;
                 resignationDiv.Visible = true;
-                heading.Text = "Resignation - " + trrmainObj.EmployeeId;
+                heading.Text = "Resignation - " + Id.ToString();
                 lblRequestType.Text = "Resignation";
 
                 ResignationController resignationController = ControllerFactory.CreateResignationController();
@@ -102,7 +117,7 @@ namespace ManPowerWeb
             {
                 typeId = 3;
                 retirementDiv.Visible = true;
-                heading.Text = "Retirement - " + trrmainObj.EmployeeId;
+                heading.Text = "Retirement - " + Id.ToString();
                 lblRequestType.Text = "Retirement";
 
                 RetirementController retirementController = ControllerFactory.CreateRetirementController();
@@ -173,5 +188,90 @@ namespace ManPowerWeb
             }
         }
 
+        protected void btnViewRec_Click(object sender, EventArgs e)
+        {
+            if (typeId == 1 || typeId == 4)
+            {
+                if (RecDocument != "" && RecDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Transfers/" + RecDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + RecDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+            if (typeId == 2)
+            {
+                if (RecDocument != "" && RecDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Resignation/" + RecDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + RecDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+            if (typeId == 3)
+            {
+                if (RecDocument != "" && RecDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Retirement/" + RecDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + RecDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+        }
+
+        protected void btnViewApp_Click(object sender, EventArgs e)
+        {
+            if (typeId == 1 || typeId == 4)
+            {
+                if (ApproveDocument != "" && ApproveDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Transfers/" + ApproveDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + ApproveDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+            if (typeId == 2)
+            {
+                if (ApproveDocument != "" && ApproveDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Resignation/" + ApproveDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + ApproveDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+            if (typeId == 3)
+            {
+                if (ApproveDocument != "" && ApproveDocument != null)
+                {
+                    string filePathe = Server.MapPath("~/SystemDocuments/Retirement/" + ApproveDocument);
+
+                    Response.Clear();
+                    Response.ContentType = "application/octect-stream";
+                    Response.AppendHeader("content-disposition", "filename = " + ApproveDocument);
+                    Response.TransmitFile(filePathe);
+                    Response.End();
+                }
+            }
+        }
     }
 }

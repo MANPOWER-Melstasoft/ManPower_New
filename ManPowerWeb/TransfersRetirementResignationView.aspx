@@ -40,7 +40,7 @@
                     <div class="col-sm-6">
                         <div class="row mb-3">
                             <div class="col-sm-4">
-                                <asp:Literal ID="Literal3" runat="server" Text="Department : "></asp:Literal>
+                                <asp:Literal ID="Literal3" runat="server" Text="Current Work Place : "></asp:Literal>
                             </div>
                             <div class="col-md-4">
                                 <asp:Label ID="lblDepartment" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -76,6 +76,20 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3 ms-1">
+                            <div class="col-sm-6">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4">
+
+                                        <asp:Literal ID="Literal16" runat="server" Text="Status : "></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblstatus" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <%----------------------------------transferDiv------------------------------------------%>
 
                         <div runat="server" id="transferDiv" visible="false">
@@ -93,7 +107,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Requested Work Place : "></asp:Literal>
+                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Preferred Work Place : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblNewDapartment" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -146,7 +160,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="Literal19" runat="server" Text="Joined Date : "></asp:Literal>
+                                            <asp:Literal ID="Literal19" runat="server" Text="First Appointment Date : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblJoinedDate" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -261,6 +275,44 @@
                                         { %>
                                     <div class="col-sm-4">
                                         <asp:Button runat="server" ID="btnView" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnView_Click" />
+                                    </div>
+                                    <%}  %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal18" runat="server" Text="Recommendation Documnents"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblRecDocument" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                    <%if (lblRecDocument.Text != "" && lblRecDocument.Text != null)
+                                        { %>
+                                    <div class="col-sm-4">
+                                        <asp:Button runat="server" ID="btnViewRec" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnViewRec_Click" />
+                                    </div>
+                                    <%}  %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <asp:Literal ID="Literal21" runat="server" Text="Approve Documnents"></asp:Literal>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblApproveDocuments" runat="server" Text="N/A" Width="250px"></asp:Label>
+                                    </div>
+                                    <%if (lblApproveDocuments.Text != "" && lblApproveDocuments.Text != null)
+                                        { %>
+                                    <div class="col-sm-4">
+                                        <asp:Button runat="server" ID="btnViewApp" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnViewApp_Click" />
                                     </div>
                                     <%}  %>
                                 </div>

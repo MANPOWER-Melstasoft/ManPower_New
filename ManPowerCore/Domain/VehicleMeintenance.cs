@@ -58,6 +58,31 @@ namespace ManPowerCore.Domain
         [DBField("Rejected_Reason")]
         public string RejectedReason { get; set; }
 
+        [DBField("Vehicle_Meter")]
+        public string VehicleMeter { get; set; }
+
+        [DBField("Vehicle_Previous_Meter")]
+        public string VehiclePrevMeter { get; set; }
+
+        [DBField("Mileage")]
+        public string Mileage { get; set; }
+
+        [DBField("Enginner_Attachment")]
+
+        public string EngineerFileAttachment { get; set; }
+
+        [DBField("Is_Enginner_Recommendatin")]
+        public string IsEngineerRecommendation { get; set; }
+
+
+        [DBField("Insurance_Start_Date")]
+        public DateTime InsuranceStartDate { get; set; }
+
+
+        [DBField("Insurance_End_Date")]
+        public DateTime InsuranceEndDate { get; set; }
+
+
         public Employee Employee { get; set; }
 
         public SystemUser RequestBy { get; set; }

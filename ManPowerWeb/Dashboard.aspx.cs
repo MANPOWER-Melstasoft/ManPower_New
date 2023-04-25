@@ -35,7 +35,8 @@ namespace ManPowerWeb
             {
                 if (!IsPostBack)
                 {
-                    if (Convert.ToInt32(Session["UserTypeId"]) == 1 || Convert.ToInt32(Session["UserTypeId"]) == 2)
+                    if (Convert.ToInt32(Session["UserTypeId"]) == 1 || Convert.ToInt32(Session["UserTypeId"]) == 2
+                        || Convert.ToInt32(Session["UserTypeId"]) == 3)
                     {
                         IsNotSubmitDMEParentGV();
                     }
@@ -108,22 +109,40 @@ namespace ManPowerWeb
         {
             if (DateTime.Now.Day > 25)
             {
+                DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
+                List<DepartmentUnit> departmentUnits = departmentUnitController.GetAllDepartmentUnit(false, false);
+
                 SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
                 List<SystemUser> systemUserList = systemUserController.GetAllSystemUser(true, false, false);
                 List<SystemUser> systemUserListFilter = new List<SystemUser>();
                 List<SystemUser> systemUserListFilterFinal = new List<SystemUser>();
 
-                if (Session["UserTypeId"].ToString() == "1")
+                systemUserList.RemoveAll(x => x._DepartmentUnitPositions.DepartmentUnitId == 0);
+
+                foreach (var item in systemUserList)
+                {
+                    item.DepartmentUnitName = departmentUnits.Where(x => x.DepartmentUnitId == item._DepartmentUnitPositions.DepartmentUnitId).Single().Name;
+                }
+
+                if (Session["UserTypeId"].ToString() == "1" || Session["UserTypeId"].ToString() == "2")
                 {
                     systemUserList.RemoveAll(x => x.SystemUserId == Convert.ToInt32(Session["UserId"]));
                     systemUserList.RemoveAll(x => x.UserTypeId == 1);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 2);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 3);
                     systemUserList.RemoveAll(x => x.UserTypeId == 4);
                     systemUserList.RemoveAll(x => x.UserTypeId == 5);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 10);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 11);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 12);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 13);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 14);
+                    systemUserList.RemoveAll(x => x.UserTypeId == 15);
 
                     systemUserListFilter = systemUserList.ToList();
                     systemUserListFilterFinal = systemUserList.ToList();
                 }
-                if (Session["UserTypeId"].ToString() == "2")
+                if (Session["UserTypeId"].ToString() == "3")
                 {
                     SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, false);
                     systemUserListFilter = systemUserList.Where(x => x._DepartmentUnitPositions.ParentId == systemUser._DepartmentUnitPositions.DepartmetUnitPossitionsId).ToList();
@@ -156,6 +175,8 @@ namespace ManPowerWeb
                 {
                     DME21Heading.Visible = true;
                 }
+
+
 
                 gvUser.DataSource = systemUserListFilterFinal;
                 gvUser.DataBind();
@@ -486,18 +507,27 @@ namespace ManPowerWeb
         private void bindDialogbox()
         {
             int systemUserId = Convert.ToInt32(Session["UserId"]);
+            try
+            {
+                DepartmentUnitPositionsList = ControllerFactory.CreateDepartmentUnitPositionsController().GetAllUsersBySystemUserId(systemUserId);
 
-            DepartmentUnitPositionsList = ControllerFactory.CreateDepartmentUnitPositionsController().GetAllUsersBySystemUserId(systemUserId);
+                int departmentUnitPositionId = DepartmentUnitPositionsList[0].DepartmetUnitPossitionsId;
 
-            int departmentUnitPositionId = DepartmentUnitPositionsList[0].DepartmetUnitPossitionsId;
+                programTargetsList = ControllerFactory.CreateProgramTargetController().GetAllProgramTarget(false, false, true, false);
 
-            programTargetsList = ControllerFactory.CreateProgramTargetController().GetAllProgramTarget(false, false, true, false);
-
-            programTargetsList = programTargetsList.Where(x => x.IsRecommended == 2 && x._ProgramAssignee[0].DepartmentUnitPossitionsId == departmentUnitPositionId && x._ProgramAssignee[0].Is_View == 0).ToList();
-            lblNoOfNewPTarget.Text = programTargetsList.Count().ToString();
-            programTargetsList = programTargetsList.OrderByDescending(x => x.RecommendedDate).ToList();
-            gvProgramTargetNotification.DataSource = programTargetsList;
-            gvProgramTargetNotification.DataBind();
+                programTargetsList = programTargetsList.Where(x => x.IsRecommended == 2 && x._ProgramAssignee[0].DepartmentUnitPossitionsId == departmentUnitPositionId && x._ProgramAssignee[0].Is_View == 0).ToList();
+                lblNoOfNewPTarget.Text = programTargetsList.Count().ToString();
+                programTargetsList = programTargetsList.OrderByDescending(x => x.RecommendedDate).ToList();
+            }
+            catch (Exception ex)
+            {
+                programTargetsList.Clear();
+            }
+            finally
+            {
+                gvProgramTargetNotification.DataSource = programTargetsList;
+                gvProgramTargetNotification.DataBind();
+            }
         }
 
         protected void btn_View_Click(object sender, EventArgs e)

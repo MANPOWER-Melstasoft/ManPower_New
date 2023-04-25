@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
         int SaveJobRefferals(JobRefferals jobRefferals, DBConnection dbConnection);
 
         List<JobRefferals> GetAllJobRefferals(DBConnection dbConnection);
+
+        List<JobRefferals> GetAllJobRefferalsByBene(int BeneId, DBConnection dbConnection);
     }
 
     public class JobRefferalsDAOImpl : JobRefferalsDAO
@@ -24,10 +26,20 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
-                                            "Remarks,Job_Placement_Date,Career_Guidance,Created_User,Job_Refferals_Date,Program_Plan_Id) " +
-                                           "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
-                                           "@CareerGuidance,@CreatedUser,@RefferalsDate,@ProgramPlanId) ";
+            if (jobRefferals.ProgramPlanId == 0)
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
+                                                          "Remarks,Job_Placement_Date,Career_Guidance,Created_User,Job_Refferals_Date) " +
+                                                         "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
+                                                         "@CareerGuidance,@CreatedUser,@RefferalsDate) ";
+            }
+            else
+            {
+                dbConnection.cmd.CommandText = "INSERT INTO Job_Refferals(Company_Vacancy_Resgistration_Id,Beneficiary_Id,Job_Category_Id,Created_Date, " +
+                                           "Remarks,Job_Placement_Date,Career_Guidance,Created_User,Job_Refferals_Date,Program_Plan_Id) " +
+                                          "VALUES(@VacancyRegistrationId,@BeneficiaryId,@JobCategoryId,@CereatedDate,@RefferalRemarks,@JobPlacementDate, " +
+                                          "@CareerGuidance,@CreatedUser,@RefferalsDate,@ProgramPlanId) ";
+            }
 
 
             dbConnection.cmd.Parameters.AddWithValue("@VacancyRegistrationId", jobRefferals.VacancyRegistrationId);
@@ -60,6 +72,19 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM Job_Refferals";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<JobRefferals>(dbConnection.dr);
+
+        }
+
+        public List<JobRefferals> GetAllJobRefferalsByBene(int BeneId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Job_Refferals WHERE Beneficiary_Id = " + BeneId + " AND Is_Active = 1;";
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

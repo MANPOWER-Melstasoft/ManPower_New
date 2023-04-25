@@ -67,6 +67,7 @@ namespace ManPowerCore.Domain
 
         public int PossitionsId { get; set; }
         public int DepartmentUnitId { get; set; }
+        public string DepartmentUnitName { get; set; }
         public int ParentId { get; set; }
 
         public DepartmentUnitPositions _DepartmentUnitPositions { get; set; }

@@ -855,7 +855,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="JobRefferalsId" HeaderText="ID" HeaderStyle-CssClass="table-dark" ItemStyle-Width="5%" />
-                                        <asp:BoundField DataField="VacancyRegistrationId" HeaderText="VacancyRegistrationId" HeaderStyle-CssClass="table-dark" ItemStyle-Width="15%" />
+                                        <asp:BoundField DataField="VacancyRegistrationId" HeaderText="Vacancy Registration Id" HeaderStyle-CssClass="table-dark" ItemStyle-Width="15%" />
                                         <asp:BoundField DataField="JobCategoryId" HeaderText="JobCategoryId" HeaderStyle-CssClass="table-dark" ItemStyle-Width="10%" />
                                         <asp:BoundField DataField="JobPlacementDate" HeaderText="JobPlacementDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="15%" />
                                         <asp:BoundField DataField="RefferalsDate" HeaderText="RefferalsDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-Width="15%" />

@@ -29,6 +29,10 @@
 
                             <asp:BoundField DataField="StaffLeaveId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField DataField="EmployeeId" HeaderText="Employee Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="_EMployeeDetails.EmpInitials" HeaderText="Initials" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="_EMployeeDetails.LastName" HeaderText="LastName" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="district.Name" HeaderText="Employee Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="dsDivition.Name" HeaderText="Employee Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="table-dark">
                                 <ItemTemplate>
                                     <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "5" ?true:false %>' Text="Rejected" ForeColor="Red">  </asp:Label>

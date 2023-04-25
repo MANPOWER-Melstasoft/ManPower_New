@@ -89,8 +89,8 @@
                 CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="gvApproveLeave_RowDataBound"
                 AllowPaging="true" OnPageIndexChanging="gvApproveLeave_PageIndexChanging" PageSize="5">
                 <Columns>
-                    <asp:BoundField HeaderText="CREATE DATE" DataField="CreatedDate" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField HeaderText="CONSUMING DATE" DataField="LeaveDate" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField HeaderText="FROM DATE" DataField="FromTime" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField HeaderText="TO DATE" DataField="ToTime" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmployeeNIC" HeaderText="NIC" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.EmpInitials" HeaderText="INITIAL NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField=" _EMployeeDetails.LastName" HeaderText="LAST NAME" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />

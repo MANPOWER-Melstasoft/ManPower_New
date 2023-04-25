@@ -84,6 +84,7 @@
     <Compile Include="Controller\EmploymentDetailsController.cs" />
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
+    <Compile Include="Controller\FuelDetailsController.cs" />
     <Compile Include="Controller\GuarantorDetailController.cs" />
     <Compile Include="Controller\HolidaySheetController.cs" />
     <Compile Include="Controller\individualBeneReportController.cs" />
@@ -136,10 +137,12 @@
     <Compile Include="Controller\TaskAllocationDetailController.cs" />
     <Compile Include="Controller\TaskTypeController.cs" />
     <Compile Include="Controller\Test.cs" />
+    <Compile Include="Controller\TrainingMainAttachmentController.cs" />
     <Compile Include="Controller\TrainingMainController.cs" />
     <Compile Include="Controller\TrainingRefferalFeedbackController.cs" />
     <Compile Include="Controller\TrainingRefferalsController.cs" />
     <Compile Include="Controller\TrainingRequestController.cs" />
+    <Compile Include="Controller\TrainingRequestsAttachmentController.cs" />
     <Compile Include="Controller\TrainingRequestsController.cs" />
     <Compile Include="Controller\TransferController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationMainController.cs" />
@@ -160,6 +163,7 @@
     <Compile Include="Domain\ApprovalHistory.cs" />
     <Compile Include="Domain\DistressLoan.cs" />
     <Compile Include="Domain\EmployeeDetailsFromProgramPlan.cs" />
+    <Compile Include="Domain\FuelDetailsDomain.cs" />
     <Compile Include="Domain\GuarantorDetail.cs" />
     <Compile Include="Domain\IndividualBeneReport.cs" />
     <Compile Include="Domain\LoanDetail.cs" />
@@ -194,7 +198,9 @@
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
+    <Compile Include="Domain\TrainingMainAttachment.cs" />
     <Compile Include="Domain\TrainingRequests.cs" />
+    <Compile Include="Domain\TrainingRequestsAttachment.cs" />
     <Compile Include="Domain\VoucherDetail.cs" />
     <Compile Include="Domain\VoucherStatus.cs" />
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
@@ -299,6 +305,7 @@
     <Compile Include="Infrastructure\EmploymentDetailsDAO.cs" />
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
+    <Compile Include="Infrastructure\FuelDetailsDAO.cs" />
     <Compile Include="Infrastructure\GuarantorDetailDAO.cs" />
     <Compile Include="Infrastructure\HolidaySheetDAO.cs" />
     <Compile Include="Infrastructure\IndividualBeneReportDAO.cs" />
@@ -350,10 +357,12 @@
     <Compile Include="Infrastructure\TaskAllocationDetailDAO.cs" />
     <Compile Include="Infrastructure\TaskTypeDAO.cs" />
     <Compile Include="Infrastructure\Test.cs" />
+    <Compile Include="Infrastructure\TrainingMainAttachmentDAO.cs" />
     <Compile Include="Infrastructure\TrainingMainDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalFeedbackDAO.cs" />
     <Compile Include="Infrastructure\TrainingRefferalsDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestDAO.cs" />
+    <Compile Include="Infrastructure\TrainingRequestsAttachmentDAO.cs" />
     <Compile Include="Infrastructure\TrainingRequestsDAO.cs" />
     <Compile Include="Infrastructure\TransferDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationMainDAO.cs" />

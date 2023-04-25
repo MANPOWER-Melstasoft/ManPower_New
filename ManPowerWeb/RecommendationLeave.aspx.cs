@@ -15,8 +15,9 @@ namespace ManPowerWeb
         List<SystemUser> systemUsers = new List<SystemUser>();
         List<DepartmentUnit> departmentUnitsList = new List<DepartmentUnit>();
         List<Employee> employeesList = new List<Employee>();
-        List<StaffLeave> staffLeaveList = new List<StaffLeave>();
+        static List<StaffLeave> staffLeaveList = new List<StaffLeave>();
         List<StaffLeave> staffLeaveSearchList = new List<StaffLeave>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -125,8 +126,8 @@ namespace ManPowerWeb
             int pageindex = gvApproveLeave.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
 
-            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-            staffLeaveList = staffLeaveController.getStaffLeaves(true);
+            //StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+            //staffLeaveList = staffLeaveController.getStaffLeaves(true);
 
             Response.Redirect("RecommendationLeaveView.aspx?EmpId=" + staffLeaveList[rowIndex].EmployeeId.ToString() + "&Id=" + staffLeaveList[rowIndex].StaffLeaveId);
 

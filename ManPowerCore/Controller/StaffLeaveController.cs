@@ -112,19 +112,26 @@ namespace ManPowerCore.Controller
                 {
                     EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
                     SystemUserDAO systemUserDAO = DAOFactory.CreateSystemUserDAO();
+                    DepartmentUnitDAO departmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
 
                     foreach (var items in staffLeavesList)
                     {
                         items._EMployeeDetails = employeeDAO.GetEmployeeById(items.EmployeeId, dBConnection);
                         items.systemUser = systemUserDAO.CheckEmpNumberExists(items.EmployeeId, dBConnection);
+                        items.district = departmentUnitDAO.GetDepartmentUnit(items._EMployeeDetails.DistrictId, dBConnection);
+                        if (items._EMployeeDetails.UnitType == 3)
+                        {
+                            items.dsDivition = departmentUnitDAO.GetDepartmentUnit(items._EMployeeDetails.DSDivisionId, dBConnection);
+                        }
+                        else
+                        {
+                            items.dsDivition = new DepartmentUnit() { Name = "" };
+                        }
                     }
-
 
                 }
 
                 return staffLeavesList;
-
-
 
             }
             catch (Exception)

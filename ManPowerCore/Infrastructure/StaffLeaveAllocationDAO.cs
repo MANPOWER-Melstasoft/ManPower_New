@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,15 @@ namespace ManPowerCore.Infrastructure
             dBConnection.cmd.Parameters.AddWithValue("@Entitlement", staffLeaveAllocation.Entitlement);
 
             dBConnection.cmd.Parameters.AddWithValue("@MonthLimit", staffLeaveAllocation.MonthLimit);
-            dBConnection.cmd.Parameters.AddWithValue("@AppliedTo", staffLeaveAllocation.MonthLimitAppliedTo);
+
+            if (staffLeaveAllocation.MonthLimitAppliedTo.Year == 1)
+            {
+                dBConnection.cmd.Parameters.AddWithValue("@AppliedTo", SqlDateTime.Null);
+            }
+            else
+            {
+                dBConnection.cmd.Parameters.AddWithValue("@AppliedTo", staffLeaveAllocation.MonthLimitAppliedTo);
+            }
 
 
             return dBConnection.cmd.ExecuteNonQuery();

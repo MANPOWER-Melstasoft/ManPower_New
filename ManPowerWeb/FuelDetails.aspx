@@ -10,14 +10,14 @@
 
         <div class="row mt-3">
             <div class="col-sm-3">
-                <asp:Literal ID="Vehicle_Number" runat="server" Text="Position Name"></asp:Literal>
+                <asp:Literal ID="Vehicle_Number" runat="server" Text="Vehicle Number"></asp:Literal>
             </div>
 
             <div class="col-md-4">
-                <asp:TextBox ID="txtVehicleNmber" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                <asp:TextBox ID="txtVehicleNumber" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                 <div class="d-flex text-danger">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ValidationGroup="1"
-                        ControlToValidate="txtVehicleNmber" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                        ControlToValidate="txtVehicleNumber" ErrorMessage="Required">*</asp:RequiredFieldValidator>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
             </div>
 
             <div class="col-md-4">
-                <asp:TextBox ID="txtOrderNumber" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                <asp:TextBox ID="txtOrderNumber" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                 <div class="d-flex text-danger">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="1"
                         ControlToValidate="txtOrderNumber" ErrorMessage="Required">*</asp:RequiredFieldValidator>
@@ -88,7 +88,7 @@
             <div class="col-sm-3">
                 <div class="row mb-3 ms-1">
                     <div class="col-sm-6">
-                        <asp:Button ID="btnSubmit" runat="server" Text="Create" CssClass="btn btn-primary btn-user btn-block" ValidationGroup="1" />
+                        <asp:Button ID="btnSubmit" runat="server" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmit_Click" ValidationGroup="1" />
                     </div>
                     <div class="col-sm-6">
                         <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529" />

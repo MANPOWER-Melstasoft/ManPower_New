@@ -84,7 +84,8 @@ namespace ManPowerWeb
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-
+            ddlCategory.ClearSelection();
+            date.Text = null;
         }
 
     }

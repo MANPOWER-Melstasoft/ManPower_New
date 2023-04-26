@@ -25,7 +25,13 @@ namespace ManPowerWeb
 
         private void bindDataToDropdown()
         {
-
+            FuelTypeController fuelTypeController = ControllerFactory.CreateFuelTypeController();
+            List<FuelType> fuelTypeList = fuelTypeController.GetFuelTypes();
+            ddlFuelType.DataSource = fuelTypeList;
+            ddlFuelType.DataTextField = "FuelTypeId";
+            ddlFuelType.DataValueField = "Value";
+            ddlFuelType.DataBind();
+            ddlFuelType.Items.Insert(0, new ListItem("-- Select Fule Type --", ""));
             //
 
         }

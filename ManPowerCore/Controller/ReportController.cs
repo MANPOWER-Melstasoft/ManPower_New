@@ -17,6 +17,9 @@ namespace ManPowerCore.Controller
         List<Report> GetLeaveBalance();
 
         List<Report> GetLeaveBalanceByEmployeeId(int EmployeId);
+
+        List<Report> GetLeaveBalanceEmpAndYear(int Emp, int Year);
+
     }
     public class ReportControllerImpl : ReportController
     {
@@ -510,10 +513,6 @@ namespace ManPowerCore.Controller
 
                 }
 
-
-
-
-
             }
             catch (Exception)
             {
@@ -528,6 +527,62 @@ namespace ManPowerCore.Controller
                 }
             }
             return reportFinal;
+        }
+
+        public List<Report> GetLeaveBalanceEmpAndYear(int Emp, int Year)
+        {
+            DBConnection dbConnection = null;
+            List<Report> reportFinal = new List<Report>();
+
+            try
+            {
+                dbConnection = new DBConnection();
+                StaffLeaveAllocationDAO staffLeaveAllocationDAO = DAOFactory.CreateStaffLeaveAllocationDAO();
+                LeaveTypeDAO leaveTypeDAO = DAOFactory.CreateLeaveTypeDAO();
+                ReportDAO reportDAO = DAOFactory.CreateReportDAO();
+
+                List<StaffLeaveAllocation> staffLeaveAllocations = staffLeaveAllocationDAO.getStaffLeaveAllocationByEmpAndYear(Emp, Year, dbConnection);
+
+                foreach (var item in staffLeaveAllocations)
+                {
+                    Report report = new Report();
+                    DataTable tableLeaveA = new DataTable();
+                    DataTable tableLeaveP = new DataTable();
+                    tableLeaveA = reportDAO.GetApprovedLeaveBalance(Emp, Year, item.LeaveTypeId, dbConnection);
+                    tableLeaveP = reportDAO.GetPendingLeaveBalance(Emp, Year, item.LeaveTypeId, dbConnection);
+
+                    report.LeaveType = leaveTypeDAO.GetLeaveTypeById(item.LeaveTypeId, dbConnection).Name;
+                    report.Entitlement = item.Entitlement;
+                    foreach (DataRow row in tableLeaveA.Rows)
+                    {
+                        report.ApprovedLeaves = (double)row["Approved"];
+                    }
+                    foreach (DataRow row in tableLeaveP.Rows)
+                    {
+                        report.PendingApproval = (double)row["Pending"];
+                    }
+
+                    report.LeaveBalannce = Convert.ToDouble(report.Entitlement) - report.ApprovedLeaves;
+
+                    reportFinal.Add(report);
+                }
+
+                return reportFinal;
+
+            }
+            catch (Exception)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Commit();
+                }
+            }
+
         }
     }
 }

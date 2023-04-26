@@ -8,7 +8,7 @@
     <div class="container">
         <div class="card p-4 mb-5">
 
-            <h2>Vehicle Maintenance</h2>
+            <h2>Fuel Details Report</h2>
 
 
             <div class="row mt-4">
@@ -18,7 +18,7 @@
                             <label>Vehicle Number</label>
                         </div>
                         <div class="col-7">
-                            <asp:TextBox ID="txtVehicleNumber" runat="server" name="date" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                            <asp:TextBox ID="txtVehicleNumber" runat="server" name="date" Width="250px" CssClass="form-control form-control-user" placeholder="GL 5534 / GL5534"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -58,16 +58,13 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-6">
+                <div class="col">
                     <div class="row">
-                        <div class="col-5">
-                            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-success mr-3" />
 
+                        <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-success mr-1" OnClick="btnSearch_Click" />
+                        <asp:Button ID="btnclear" runat="server" Text="Clear" CssClass="btn btn-warning mr-1" OnClick="btnclear_Click" />
+                        <asp:Button ID="btnGetAll" runat="server" Text="Get ALL" CssClass="btn btn-facebook mr-3" OnClick="btnGetAll_Click" />
 
-
-                            <asp:Button ID="btnGetAll" runat="server" Text="Get ALL" CssClass="btn btn-facebook mr-3" OnClick="btnGetAll_Click" />
-
-                        </div>
                     </div>
 
                 </div>
@@ -90,6 +87,16 @@
                     </Columns>
                     <EmptyDataTemplate>No records</EmptyDataTemplate>
                 </asp:GridView>
+
+            </div>
+            <div class="row mt-4 mb-5">
+                <div class="col">
+                    <div class="row">
+                        <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick" class="btn btn-success" title="Export To Excel">
+                            <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

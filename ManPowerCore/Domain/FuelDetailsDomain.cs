@@ -32,6 +32,9 @@ namespace ManPowerCore.Domain
         public string OrderNumber { get; set; }
 
 
+        public string FuelTypeName { get; set; }
+
+
     }
 
 }

@@ -11,6 +11,7 @@ namespace ManPowerCore.Infrastructure
     public interface FuelDetailsDAO
     {
         int SaveAll(FuelDetailsDomain fuelDetailsDomain, DBConnection dbConnection);
+        List<FuelDetailsDomain> GetAll(DBConnection dbConnection);
     }
     public class FuelDetailsDAOSqlImpl : FuelDetailsDAO
     {
@@ -35,6 +36,22 @@ namespace ManPowerCore.Infrastructure
 
             return dbConnection.cmd.ExecuteNonQuery();
 
+
+        }
+
+        public List<FuelDetailsDomain> GetAll(DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.CommandText = "SELECT * FROM FUEL_Details";
+
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<FuelDetailsDomain>(dbConnection.dr);
 
         }
     }

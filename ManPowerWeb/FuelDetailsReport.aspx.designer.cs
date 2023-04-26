@@ -24,48 +24,66 @@ namespace ManPowerWeb
         protected global::System.Web.UI.ScriptManager Scriptmanger1;
 
         /// <summary>
-        /// ddlCategory control.
+        /// txtVehicleNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        protected global::System.Web.UI.WebControls.TextBox txtVehicleNumber;
 
         /// <summary>
-        /// date control.
+        /// ddlEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox date;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmployee;
 
         /// <summary>
-        /// Button1 control.
+        /// txtStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox txtStartDate;
 
         /// <summary>
-        /// Button3 control.
+        /// txtEndDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.TextBox txtEndDate;
 
         /// <summary>
-        /// Button2 control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
+        /// btnGetAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGetAll;
+
+        /// <summary>
+        /// gvFuelDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvFuelDetails;
     }
 }

@@ -15,6 +15,8 @@ namespace ManPowerCore.Infrastructure
         int saveStaffLeaveAllocation(StaffLeaveAllocation staffLeaveAllocation, DBConnection dBConnection);
 
         List<StaffLeaveAllocation> getStaffLeaveAllocationByEmpAndYear(int Emp, int Year, DBConnection dBConnection);
+
+        List<StaffLeaveAllocation> getLeaveAllocation(int Year, int Type, int Emp, DBConnection dBConnection);
     }
 
     public class StaffLeaveAllocationDAOSqlImpl : StaffLeaveAllocationDAO
@@ -65,5 +67,24 @@ namespace ManPowerCore.Infrastructure
 
             return dBConnection.cmd.ExecuteNonQuery();
         }
+
+        public List<StaffLeaveAllocation> getLeaveAllocation(int Year, int Type, int Emp, DBConnection dBConnection)
+        {
+            if (dBConnection.dr != null)
+                dBConnection.dr.Close();
+
+            dBConnection.cmd.Parameters.Clear();
+
+            dBConnection.cmd.CommandText = "SELECT sla.Leave_Type_id,sla.Employee_ID,sla.Entitlement FROM Staff_Leave_Allocation sla WHERE sla.Leave_Year = @Year AND sla.Employee_ID = @Emp AND sla.Leave_Type_id = @Type;";
+
+            dBConnection.cmd.Parameters.AddWithValue("@Emp", Emp);
+            dBConnection.cmd.Parameters.AddWithValue("@Year", Year);
+            dBConnection.cmd.Parameters.AddWithValue("@Type", Type);
+
+            dBConnection.dr = dBConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<StaffLeaveAllocation>(dBConnection.dr);
+        }
+
     }
 }

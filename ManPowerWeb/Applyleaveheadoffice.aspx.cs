@@ -97,7 +97,7 @@ namespace ManPowerWeb
 
             staffLeave.ReasonForLeave = txtLeaveReason.Text;
             staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
-            staffLeave.LeaveStatusId = 1;
+
 
             if (ddlLeaveType.SelectedValue == "4")
             {
@@ -143,7 +143,7 @@ namespace ManPowerWeb
                 staffLeave.LeaveDocument = "";
             }
 
-            staffLeave.LeaveStatusId = 2;
+            staffLeave.LeaveStatusId = 1;
 
             if (validation)
             {

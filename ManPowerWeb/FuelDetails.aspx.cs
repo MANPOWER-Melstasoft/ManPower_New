@@ -33,7 +33,18 @@ namespace ManPowerWeb
             ddlFuelType.DataValueField = "FuelTypeId";
             ddlFuelType.DataBind();
             ddlFuelType.Items.Insert(0, new ListItem("-- Select Fule Type --", ""));
-            //
+
+            //Bind To Employee Dropdown
+
+            EmployeeController employeeController = ControllerFactory.CreateEmployeeController();
+            List<Employee> employees = employeeController.GetAllEmployees(true);
+
+            ddlEmployee.DataSource = employees;
+            ddlEmployee.DataTextField = "NameWithInitials";
+            ddlEmployee.DataValueField = "EmployeeId";
+            ddlEmployee.DataBind();
+            ddlEmployee.Items.Insert(0, new ListItem("-- Select Employee --", ""));
+
 
         }
 
@@ -41,13 +52,10 @@ namespace ManPowerWeb
         {
             txtVehicleNumber.Text = null;
             txtDate.Text = null; ;
-
-
             txtLiter.Text = null;
-
-
             txtOrderNumber.Text = null;
             ddlFuelType.ClearSelection();
+            ddlEmployee.ClearSelection();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -64,6 +72,10 @@ namespace ManPowerWeb
             fuelDetailsDomain.OrderNumber = txtOrderNumber.Text;
 
             fuelDetailsDomain.FuelTypeId = Convert.ToInt32(ddlFuelType.SelectedValue);
+
+            fuelDetailsDomain.EmployeeId = Convert.ToInt32(ddlEmployee.SelectedValue);
+
+            fuelDetailsDomain.EmployeeName = ddlEmployee.SelectedItem.ToString();
 
 
             FuelDetailsController fuelDetailsController = ControllerFactory.CreateFuelDetailsController();

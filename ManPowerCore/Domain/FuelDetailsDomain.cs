@@ -13,6 +13,12 @@ namespace ManPowerCore.Domain
         [DBField("Vehicle_Number")]
         public string VehicleNumber { get; set; }
 
+        [DBField("Employee_Name")]
+        public string EmployeeName { get; set; }
+
+        [DBField("Employee_ID")]
+        public int EmployeeId { get; set; }
+
         [DBField("Fuel_Type_Id")]
         public int FuelTypeId { get; set; }
 
@@ -26,10 +32,9 @@ namespace ManPowerCore.Domain
         public string OrderNumber { get; set; }
 
 
+        public string FuelTypeName { get; set; }
+
 
     }
-
-
-
 
 }

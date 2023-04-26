@@ -664,5 +664,11 @@ namespace ManPowerCore.Common
             TrainingMainAttachmentDAO trainingMainAttachmentDAO = new TrainingMainAttachmentDAOSqlImpl();
             return (TrainingMainAttachmentDAO)trainingMainAttachmentDAO;
         }
+
+        public static FuelTypeDAO CreateFuelTypeDAO()
+        {
+            FuelTypeDAO fuelTypeDAO = new FuelTypeDAOSqlImpl();
+            return (FuelTypeDAO)fuelTypeDAO;
+        }
     }
 }

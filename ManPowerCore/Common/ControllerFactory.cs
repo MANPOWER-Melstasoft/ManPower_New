@@ -680,5 +680,11 @@ namespace ManPowerCore.Common
             TrainingRequestsAttachmentController trainingRequestsAttachmentController = new TrainingRequestsAttachmentControllerImpl();
             return (TrainingRequestsAttachmentController)trainingRequestsAttachmentController;
         }
+
+        public static FuelTypeController CreateFuelTypeController()
+        {
+            FuelTypeController fuelTypeController = new FuelTypeControllerImpl();
+            return (FuelTypeController)fuelTypeController;
+        }
     }
 }

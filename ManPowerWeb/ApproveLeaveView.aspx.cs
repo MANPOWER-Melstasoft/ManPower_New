@@ -13,9 +13,9 @@ namespace ManPowerWeb
     public partial class ApproveLeaveView : System.Web.UI.Page
     {
 
-        StaffLeave staffLeave = new StaffLeave();
+        static StaffLeave staffLeave = new StaffLeave();
         List<LeaveType> leavesTypeList = new List<LeaveType>();
-        int Id, employeId;
+        static int Id, employeId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -103,30 +103,51 @@ namespace ManPowerWeb
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
-            StaffLeave staffLeave = new StaffLeave();
-            staffLeave.ApprovedBy = Convert.ToInt32(Session["UserId"]);
-            staffLeave.ApprovedDate = DateTime.Now;
-            staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
-            staffLeave.LeaveStatusId = 4;
-            staffLeave.RejectReason = "";
-
-            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-
-            int response = staffLeaveController.updateStaffLeaves(staffLeave);
-
-            if (response != 0)
+            if (checkLeaveBalance())
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                StaffLeave staffLeave = new StaffLeave();
+                staffLeave.ApprovedBy = Convert.ToInt32(Session["UserId"]);
+                staffLeave.ApprovedDate = DateTime.Now;
+                staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+                staffLeave.LeaveStatusId = 4;
+                staffLeave.RejectReason = "";
+
+                StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+
+                int response = staffLeaveController.updateStaffLeaves(staffLeave);
+
+                if (response != 0)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Approved!', 'success');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
+                }
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='ApproveLeave.aspx'},2500);", true);
-
-
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Not Enough Leaves to Allocate!', 'error');", true);
             }
 
-
         }
+
+        private bool checkLeaveBalance()
+        {
+            int year = DateTime.Today.Year;
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+            decimal response = staffLeaveController.getRemainLeaveByEmpAndYear(employeId, year, staffLeave.LeaveTypeId);
+
+            if (response > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         protected void btnReject_Click(object sender, EventArgs e)
         {

@@ -3,6 +3,7 @@ using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -24,6 +25,8 @@ namespace ManPowerCore.Controller
 
         StaffLeave getStaffLeaveById(int id);
         Employee GetemployeeDetailsByEmployeeId(int EmployeeId);
+
+        decimal getRemainLeaveByEmpAndYear(int Emp, int Year, int LeaveType);
     }
     public class StaffLeaveControllerImpl : StaffLeaveController
     {
@@ -221,6 +224,37 @@ namespace ManPowerCore.Controller
                 return staffLeave;
 
 
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public decimal getRemainLeaveByEmpAndYear(int Emp, int Year, int LeaveType)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                DataTable dataTable = new DataTable();
+                decimal remain = 0;
+                StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
+                dataTable = staffLeaveDAO.getRemainLeaveByEmpAndYear(Emp, Year, LeaveType, dBConnection);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    remain = Convert.ToDecimal(row["Balance"].ToString());
+                    string val = row["Balance"].ToString();
+                }
+
+                return remain;
 
             }
             catch (Exception)

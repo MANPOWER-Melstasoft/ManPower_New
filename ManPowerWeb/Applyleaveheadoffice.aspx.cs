@@ -16,7 +16,7 @@ namespace ManPowerWeb
         List<HolidaySheet> holidaySheetsList = new List<HolidaySheet>();
         static List<StaffLeave> staffLeavesList = new List<StaffLeave>();
 
-        int empId;
+        static int empId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,6 +33,17 @@ namespace ManPowerWeb
         {
             LeaveTypeController leaveTypeController = ControllerFactory.CreateLeaveTypeController();
             leavesTypeList = leaveTypeController.GetAllLeaveTypes();
+            int year = DateTime.Today.Year;
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+
+            decimal casual = staffLeaveController.getRemainLeaveByEmpAndYear(empId, year, 1);
+            decimal medical = staffLeaveController.getRemainLeaveByEmpAndYear(empId, year, 2);
+            decimal lapsed = staffLeaveController.getRemainLeaveByEmpAndYear(empId, year, 7);
+
+            if (casual <= 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 1); }
+            if (medical <= 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 2); }
+            if (lapsed <= 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 7); }
+            if (casual > 0 || medical > 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 7); }
 
             leavesTypeList = leavesTypeList.Where(x => x.IsActive == 1).ToList();
 
@@ -97,7 +108,7 @@ namespace ManPowerWeb
 
             staffLeave.ReasonForLeave = txtLeaveReason.Text;
             staffLeave.LeaveTypeId = int.Parse(ddlLeaveType.SelectedValue);
-            staffLeave.LeaveStatusId = 1;
+
 
             if (ddlLeaveType.SelectedValue == "4")
             {

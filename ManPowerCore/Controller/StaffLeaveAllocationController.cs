@@ -12,6 +12,9 @@ namespace ManPowerCore.Controller
     public interface StaffLeaveAllocationController
     {
         int saveStaffLeaveAllocation(StaffLeaveAllocation staffLeaveAllocation);
+
+        List<StaffLeaveAllocation> getLeaveAllocation(int year, int type, int emp);
+
     }
 
     public class StaffLeaveAllocationControllerImpl : StaffLeaveAllocationController
@@ -24,6 +27,27 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return staffLeaveAllocationDAO.saveStaffLeaveAllocation(staffLeaveAllocation, dBConnection);
+
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
+
+        public List<StaffLeaveAllocation> getLeaveAllocation(int year, int type, int emp)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return staffLeaveAllocationDAO.getLeaveAllocation(year, type, emp, dBConnection);
 
 
             }

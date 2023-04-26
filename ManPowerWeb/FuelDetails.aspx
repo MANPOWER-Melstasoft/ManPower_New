@@ -45,10 +45,12 @@
             </div>
 
             <div class="col-md-4">
-                <asp:TextBox ID="txtLiter" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                <asp:TextBox ID="txtLiter" runat="server" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
                 <div class="d-flex text-danger">
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="1"
                         ControlToValidate="txtLiter" ErrorMessage="Required">*</asp:RequiredFieldValidator>
+                    <asp:RangeValidator runat="server" ControlToValidate="txtLiter" ErrorMessage="Invalid number"
+                        Type="Integer" MinimumValue="1" MaximumValue="1000" ForeColor="Red"></asp:RangeValidator>
                 </div>
             </div>
         </div>
@@ -56,7 +58,7 @@
 
         <div class="row mb-3 ms-1 mt-3">
             <div class="col-sm-3">
-                <asp:Literal ID="Literal3" runat="server" Text="Create Date"></asp:Literal>
+                <asp:Literal ID="Literal3" runat="server" Text="Date"></asp:Literal>
             </div>
 
             <div class="col-md-4">
@@ -90,9 +92,7 @@
                     <div class="col-sm-6">
                         <asp:Button ID="btnSubmit" runat="server" Text="Save" CssClass="btn btn-primary btn-user btn-block" OnClick="btnSubmit_Click" ValidationGroup="1" />
                     </div>
-                    <div class="col-sm-6">
-                        <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-secondary btn-user btn-block" BackColor="#212529" BorderColor="#212529" />
-                    </div>
+
                 </div>
             </div>
         </div>

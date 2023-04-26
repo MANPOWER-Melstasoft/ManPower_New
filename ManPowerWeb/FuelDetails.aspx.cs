@@ -14,9 +14,10 @@ namespace ManPowerWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
-                bindDataSource();
 
                 bindDataToDropdown();
             }
@@ -28,16 +29,25 @@ namespace ManPowerWeb
             FuelTypeController fuelTypeController = ControllerFactory.CreateFuelTypeController();
             List<FuelType> fuelTypeList = fuelTypeController.GetFuelTypes();
             ddlFuelType.DataSource = fuelTypeList;
-            ddlFuelType.DataTextField = "FuelTypeId";
-            ddlFuelType.DataValueField = "Value";
+            ddlFuelType.DataTextField = "FuelTypeName";
+            ddlFuelType.DataValueField = "FuelTypeId";
             ddlFuelType.DataBind();
             ddlFuelType.Items.Insert(0, new ListItem("-- Select Fule Type --", ""));
             //
 
         }
-        private void bindDataSource()
-        {
 
+        private void clear()
+        {
+            txtVehicleNumber.Text = null;
+            txtDate.Text = null; ;
+
+
+            txtLiter.Text = null;
+
+
+            txtOrderNumber.Text = null;
+            ddlFuelType.ClearSelection();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -53,16 +63,21 @@ namespace ManPowerWeb
             //Get OrderNumber
             fuelDetailsDomain.OrderNumber = txtOrderNumber.Text;
 
-            fuelDetailsDomain.FuelTypeId = 1;
+            fuelDetailsDomain.FuelTypeId = Convert.ToInt32(ddlFuelType.SelectedValue);
 
 
             FuelDetailsController fuelDetailsController = ControllerFactory.CreateFuelDetailsController();
-            fuelDetailsController.Save(fuelDetailsDomain);
+            int output = fuelDetailsController.Save(fuelDetailsDomain);
 
-
-
-
-
+            if (output != 0)
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Saved Succesfully!', 'success')", true);
+                clear();
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+            }
         }
     }
 }

@@ -44,7 +44,7 @@ namespace ManPowerWeb
 
                 VehicleMeintenance i = vehicleMeintenances.Where(u => u.VehicleMeintenanceId == int.Parse(id)).Single();
 
-                fielNo.Text = i.FileNo;
+                txtFielNo.Text = i.FileNo;
                 date.Text = i.RequestDate.ToString();
                 requestedBy.Text = i.Employee.NameWithInitials.ToString();
                 vNo.Text = i.VehicleNumber;
@@ -128,9 +128,11 @@ namespace ManPowerWeb
         protected void Accept(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"];
+            string fileNo = txtFielNo.Text;
+
 
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 1, Convert.ToInt32(Session["UserId"]), "");
+            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 1, fileNo, Convert.ToInt32(Session["UserId"]), "");
 
             if (result == 1)
             {
@@ -147,9 +149,10 @@ namespace ManPowerWeb
         protected void Reject(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"];
+            string fileNo = txtFielNo.Text;
 
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 3, Convert.ToInt32(Session["UserId"]), rejectReason.Text);
+            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 3, fileNo, Convert.ToInt32(Session["UserId"]), rejectReason.Text);
 
             if (result == 1)
             {

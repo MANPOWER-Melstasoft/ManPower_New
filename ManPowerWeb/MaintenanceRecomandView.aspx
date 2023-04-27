@@ -16,7 +16,9 @@
                     <label>File Number : </label>
                 </div>
                 <div class="col-8">
-                    <asp:TextBox ID="fielNo" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                    <asp:TextBox ID="txtFielNo" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
+                    <asp:RequiredFieldValidator ControlToValidate="txtFielNo" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                 </div>
             </div>
 
@@ -51,7 +53,6 @@
                         </div>
                         <div class="col-8">
                             <asp:TextBox ID="txtStartDate" runat="server" name="place" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="txtStartDate" ID="RequiredFieldValidator8" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,6 @@
                         </div>
                         <div class="col-8">
                             <asp:TextBox ID="txtEndDate" runat="server" name="place" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
-                            <asp:RequiredFieldValidator ControlToValidate="txtEndDate" ID="RequiredFieldValidator9" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,6 @@
                 </div>
                 <div class="col-8">
                     <asp:TextBox ID="txtMeter" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
-                    <asp:RequiredFieldValidator ControlToValidate="txtMeter" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -114,7 +113,6 @@
                 </div>
                 <div class="col-8">
                     <asp:TextBox ID="txtPrevMeter" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="Number"></asp:TextBox>
-                    <asp:RequiredFieldValidator ControlToValidate="txtPrevMeter" ID="RequiredFieldValidator2" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </div>
             </div>
 
@@ -183,7 +181,7 @@
                     <asp:Button runat="server" ID="Button3" Text="Back" OnClick="isClicked" CssClass="btn btn-primary btn-user btn-block" />
                 </div>
                 <div class="col-2" id="butonA" runat="server">
-                    <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="Accept" CssClass="btn btn-success btn-user btn-block" />
+                    <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="Accept" CssClass="btn btn-success btn-user btn-block" ValidationGroup="1" />
                 </div>
                 <div class="col-2" id="butonR" runat="server">
                     <button type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
@@ -211,7 +209,7 @@
                                         <label>Reason to reject :</label>
                                     </div>
                                     <div class="col-10">
-                                        <asp:TextBox ID="rejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine"></asp:TextBox>
+                                        <asp:TextBox ID="rejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine" ValidationGroup="1"></asp:TextBox>
                                     </div>
                                 </div>
                             </center>

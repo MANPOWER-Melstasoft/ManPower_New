@@ -157,6 +157,7 @@
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
+    <Content Include="MaintenanceRecommendationAD.aspx" />
     <Content Include="PaymentVoucherApproval.aspx" />
     <Content Include="PaymentVoucherCertify.aspx" />
     <Content Include="PaymentVoucherCheckBy.aspx" />
@@ -2328,6 +2329,13 @@
     </Compile>
     <Compile Include="MaintenanceRecomandView.aspx.designer.cs">
       <DependentUpon>MaintenanceRecomandView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRecommendationAD.aspx.cs">
+      <DependentUpon>MaintenanceRecommendationAD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRecommendationAD.aspx.designer.cs">
+      <DependentUpon>MaintenanceRecommendationAD.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentVoucherApproval.aspx.cs">
       <DependentUpon>PaymentVoucherApproval.aspx</DependentUpon>

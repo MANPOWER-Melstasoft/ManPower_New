@@ -64,10 +64,10 @@
                         </asp:TemplateField>
                         <asp:BoundField HeaderText="File Number" DataField="FileNo" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
-                            <%--<ItemTemplate>
+                            <ItemTemplate>
                                 <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
-                                    a href='<%#"MaintenanceRecomandView.aspx?id="+DataBinder.Eval(Container.DataItem,"VehicleMeintenanceId") %>' />
-                            </ItemTemplate>--%>
+                                    a href='<%#"MaintenanceRecommendationADView.aspx?id="+DataBinder.Eval(Container.DataItem,"VehicleMeintenanceId") %>' />
+                            </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>

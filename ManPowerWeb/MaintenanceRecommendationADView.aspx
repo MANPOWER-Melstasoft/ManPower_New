@@ -215,7 +215,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <asp:Button runat="server" ID="Button1" Text="Reject" OnClick="Reject" CssClass="btn btn-danger" Width="100px" />
+                            <asp:Button runat="server" ID="btnReject" Text="Reject" OnClick="btnReject_Click" CssClass="btn btn-danger" Width="100px" />
                         </div>
                     </div>
                 </div>

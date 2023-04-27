@@ -1,13 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceRecomandView.aspx.cs" Inherits="ManPowerWeb.MaintenanceRecomandView" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceRecommendationADView.aspx.cs" Inherits="ManPowerWeb.MaintenanceRecommendationADView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card p-4 mb-5">
-            <h2>Maintenance Request Recommendation</h2>
+            <h2>Maintenance Request Recommendation AD</h2>
 
 
 
@@ -178,10 +177,10 @@
 
             <div class="row mt-4 mb-3">
                 <div class="col-2">
-                    <asp:Button runat="server" ID="Button3" Text="Back" OnClick="isClicked" CssClass="btn btn-primary btn-user btn-block" />
+                    <asp:Button runat="server" ID="btnisClicked" Text="Back" OnClick="btnisClicked_Click" CssClass="btn btn-primary btn-user btn-block" />
                 </div>
                 <div class="col-2" id="butonA" runat="server">
-                    <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="Accept" CssClass="btn btn-success btn-user btn-block" ValidationGroup="1" />
+                    <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="acceptBtn_Click" CssClass="btn btn-success btn-user btn-block" ValidationGroup="1" />
                 </div>
                 <div class="col-2" id="butonR" runat="server">
                     <button type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
@@ -197,7 +196,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Maintenance Request Recommendation AD</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -216,7 +215,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <asp:Button runat="server" ID="Button1" Text="Reject" OnClick="Reject" CssClass="btn btn-danger" Width="100px" />
+                            <asp:Button runat="server" ID="btnReject" Text="Reject" OnClick="btnReject_Click" CssClass="btn btn-danger" Width="100px" />
                         </div>
                     </div>
                 </div>

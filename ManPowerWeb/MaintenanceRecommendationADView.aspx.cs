@@ -3,7 +3,6 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,16 +10,15 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class MaintenanceRecomandView : System.Web.UI.Page
+    public partial class MaintenanceRecommendationADView : System.Web.UI.Page
     {
         List<VehicleMeintenance> vehicleMeintenances = new List<VehicleMeintenance>();
         List<SystemUser> systemUsers = new List<SystemUser>();
         List<SystemUser> fiterList = new List<SystemUser>();
         List<MaintenanceCategory> maintenanceCategories = new List<MaintenanceCategory>();
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
+
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
             if (!IsPostBack)
@@ -101,15 +99,6 @@ namespace ManPowerWeb
 
 
             }
-
-
-
-
-        }
-
-        protected void isClicked(object sender, EventArgs e)
-        {
-            Response.Redirect("MaintenanceRecomand.aspx");
         }
 
         private void dropDownBind()
@@ -125,7 +114,15 @@ namespace ManPowerWeb
             ddlCategory.Items.Insert(0, new ListItem("-- Select --", ""));
         }
 
-        protected void Accept(object sender, EventArgs e)
+
+
+        protected void btnisClicked_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MaintenanceRecommendationAD.aspx");
+
+        }
+
+        protected void acceptBtn_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"];
             string fileNo = txtFielNo.Text;
@@ -143,10 +140,9 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
             }
-
         }
 
-        protected void Reject(object sender, EventArgs e)
+        protected void btnReject_Click(object sender, EventArgs e)
         {
             string id = Request.QueryString["id"];
             string fileNo = txtFielNo.Text;
@@ -163,8 +159,6 @@ namespace ManPowerWeb
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
 
             }
-
         }
-
     }
 }

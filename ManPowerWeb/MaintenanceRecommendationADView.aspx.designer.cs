@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-    public partial class MaintenanceRecomandView
+    public partial class MaintenanceRecommendationADView
     {
 
         /// <summary>
@@ -177,13 +177,13 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Button3 control.
+        /// btnisClicked control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button btnisClicked;
 
         /// <summary>
         /// butonA control.
@@ -222,12 +222,12 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.TextBox rejectReason;
 
         /// <summary>
-        /// Button1 control.
+        /// btnReject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnReject;
     }
 }

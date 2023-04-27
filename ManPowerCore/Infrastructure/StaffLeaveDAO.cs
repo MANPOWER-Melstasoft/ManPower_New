@@ -43,7 +43,7 @@ namespace ManPowerCore.Infrastructure
 
             dBConnection.cmd.Parameters.Clear();
             dBConnection.cmd.CommandText = "INSERT INTO Staff_Leave (Day_Type_id,Leave_Type_id,Employee_ID,Leave_Date,Created_Date,Is_Half_Day,Leave_Status_Id,Reason_For_Leave,Resuming_Date,No_Of_Leave,Leave_Document,From_Time,To_Time)" +
-               " VALUES(@DayType,@LeaveTypeId,@EmpId,@LeaveDate,@CreatedDate,@IsHalfDay,@LeaveStatusId,@Reason,@ResumingDate,@NoLeaves,@LeaveDocument,@FromTime,@ToTime);";
+               " VALUES(@DayType,@LeaveTypeId,@EmpId,@LeaveDate,@CreatedDate,@IsHalfDay,@LeaveStatusId,@Reason,@ResumingDate,@NoLeaves,@LeaveDocument,@FromTime,@ToTime) SELECT SCOPE_IDENTITY();";
 
             dBConnection.cmd.Parameters.AddWithValue("@LeaveTypeId", staffLeave.LeaveTypeId);
             dBConnection.cmd.Parameters.AddWithValue("@NoLeaves", staffLeave.NoOfLeaves);
@@ -63,7 +63,7 @@ namespace ManPowerCore.Infrastructure
 
 
 
-            return dBConnection.cmd.ExecuteNonQuery();
+            return dBConnection.cmd.ExecuteScalar();
 
         }
 

@@ -664,5 +664,11 @@ namespace ManPowerCore.Common
             TrainingMainAttachmentDAO trainingMainAttachmentDAO = new TrainingMainAttachmentDAOSqlImpl();
             return (TrainingMainAttachmentDAO)trainingMainAttachmentDAO;
         }
+
+        public static StaffLeaveDocumentsDAO CreateStaffLeaveDocumentsDAO()
+        {
+            StaffLeaveDocumentsDAO staffLeaveDocumentsDAO = new StaffLeaveDocumentsDAOSqlImpl();
+            return (StaffLeaveDocumentsDAO)staffLeaveDocumentsDAO;
+        }
     }
 }

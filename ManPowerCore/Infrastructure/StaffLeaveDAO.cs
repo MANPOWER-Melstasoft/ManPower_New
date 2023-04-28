@@ -2,7 +2,9 @@
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,9 @@ namespace ManPowerCore.Infrastructure
         int updateStaffLeaveRecommendation(StaffLeave staffLeave, DBConnection dbConnection);
 
         int updateStaffLeaveReject(StaffLeave staffLeave, DBConnection dbConnection);
+
+        DataTable getRemainLeaveByEmpAndYear(int Emp, int Year, int LeaveType, DBConnection dBConnection);
+
     }
     public class StaffLeaveDAOSqlImpl : StaffLeaveDAO
     {
@@ -207,6 +212,27 @@ namespace ManPowerCore.Infrastructure
 
 
             return dbConnection.cmd.ExecuteNonQuery();
+        }
+
+        public DataTable getRemainLeaveByEmpAndYear(int Emp, int Year, int LeaveType, DBConnection dBConnection)
+        {
+            DataTable tableLeaveBalance = new DataTable();
+            if (dBConnection.dr != null)
+                dBConnection.dr.Close();
+
+            dBConnection.cmd.Parameters.Clear();
+            dBConnection.cmd.CommandText = "SELECT (SELECT ISNULL(SUM(CAST(Entitlement AS INT)), 0) FROM Staff_Leave_Allocation " +
+                "WHERE Leave_Type_id = @LeaveType AND Leave_Year = @Year AND Employee_ID = @Emp) - " +
+                "(SELECT ISNULL(SUM(No_Of_Leave), 0) FROM Staff_Leave WHERE Leave_Status_Id = 4 AND Leave_Type_id = @LeaveType AND YEAR(Leave_Date) = @Year AND Employee_ID = @Emp) AS Balance;";
+
+            dBConnection.cmd.Parameters.AddWithValue("@Emp", Emp);
+            dBConnection.cmd.Parameters.AddWithValue("@Year", Year);
+            dBConnection.cmd.Parameters.AddWithValue("@LeaveType", LeaveType);
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(dBConnection.cmd);
+            dataAdapter.Fill(tableLeaveBalance);
+
+            return tableLeaveBalance;
         }
 
 

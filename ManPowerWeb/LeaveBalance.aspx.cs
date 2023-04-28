@@ -24,6 +24,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 bindData();
+                bindDataPre();
                 ViewState["PreviousPage"] = Request.UrlReferrer;
             }
 
@@ -31,8 +32,9 @@ namespace ManPowerWeb
 
         private void bindData()
         {
+            int year = DateTime.Today.Year;
             ReportController reportController = ControllerFactory.CreateReportController();
-            leaveListFromTable = reportController.GetLeaveBalanceByEmployeeId(employeId);
+            leaveListFromTable = reportController.GetLeaveBalanceEmpAndYear(employeId, year);
 
             gvLeaveBalance.DataSource = leaveListFromTable;
             double sumEntiletment = 0;
@@ -54,6 +56,38 @@ namespace ManPowerWeb
             gvLeaveBalance.Columns[4].FooterText = sumLeaveBalance.ToString();
 
             gvLeaveBalance.DataBind();
+
+
+        }
+
+        private void bindDataPre()
+        {
+            int year = DateTime.Today.Year;
+            year--;
+
+            ReportController reportController = ControllerFactory.CreateReportController();
+            leaveListFromTable = reportController.GetLeaveBalanceEmpAndYear(employeId, year);
+
+            gvPreLeave.DataSource = leaveListFromTable;
+            double sumEntiletment = 0;
+            double sumApprovedLeaves = 0;
+            double sumPendingApproval = 0;
+            double sumLeaveBalance = 0;
+
+            foreach (var leave in leaveListFromTable)
+            {
+                sumEntiletment += float.Parse(leave.Entitlement);
+                sumApprovedLeaves += leave.ApprovedLeaves;
+                sumPendingApproval += leave.PendingApproval;
+                sumLeaveBalance += leave.LeaveBalannce;
+            }
+            gvPreLeave.Columns[0].FooterText = "Summary";
+            gvPreLeave.Columns[1].FooterText = sumEntiletment.ToString();
+            gvPreLeave.Columns[2].FooterText = sumApprovedLeaves.ToString();
+            gvPreLeave.Columns[3].FooterText = sumPendingApproval.ToString();
+            gvPreLeave.Columns[4].FooterText = sumLeaveBalance.ToString();
+
+            gvPreLeave.DataBind();
 
 
         }

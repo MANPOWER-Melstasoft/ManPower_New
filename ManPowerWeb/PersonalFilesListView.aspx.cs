@@ -462,11 +462,11 @@ namespace ManPowerWeb
 			SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
 			SystemUser systemUser = systemUserController.CheckEmpNumberExists(employee.EmployeeId);
 
-			if (systemUser.SystemUserId != 0)
-			{
-				//--------------check if department has changed ---------------------------------
-				Employee employeeOld = employeeController.GetEmployeeById(employee.EmployeeId);
-				DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsController.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, true);
+            if (systemUser.SystemUserId != 0)
+            {
+                //--------------check if department has changed ---------------------------------
+                Employee employeeOld = employeeController.GetEmployeeById(employee.EmployeeId);
+                DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsController.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, false);
 
 
 				if (employeeOld.UnitType != employee.UnitType || employeeOld.DistrictId != employee.DistrictId || employeeOld.DSDivisionId != employee.DSDivisionId)

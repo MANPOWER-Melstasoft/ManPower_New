@@ -27,6 +27,7 @@ namespace ManPowerWeb
                 selection.Visible = false;
                 btnChange2.Visible = false;
                 reject.Visible = false;
+                //RowvehiclePrevMeter.Visible = false;
             }
         }
 
@@ -42,46 +43,57 @@ namespace ManPowerWeb
 
             string id = Request.QueryString["id"];
 
-            foreach (var i in vehicleMeintenances.Where(u => u.VehicleMeintenanceId == int.Parse(id)))
+            VehicleMeintenance i = vehicleMeintenances.Where(u => u.VehicleMeintenanceId == int.Parse(id)).Single();
+
+            //fielNo.Text = i.FileNo;
+            date.Text = i.RequestDate.ToString();
+
+            MaintenanceCategory maintenanceCategory = maintenanceCategoryController.GetMaintenanceCategory(i.CategoryId);
+            category.Text = maintenanceCategory.MaintenanceCategoryName;
+
+            requestedBy.Text = i.RequestDate.ToString();
+            vNo.Text = i.VehicleNumber;
+            description.Text = i.RequestDescription.ToString();
+            txtMeter.Text = i.VehicleMeter;
+            txtMiladge.Text = i.Mileage;
+            if (i.CategoryId == 3)
             {
-                fielNo.Text = i.FileNo;
-                date.Text = i.RequestDate.ToString();
-                category.Text = i.CategoryId.ToString();
-                requestedBy.Text = i.RequestDate.ToString();
-                vNo.Text = i.VehicleNumber;
-                description.Text = i.RequestDescription.ToString();
-                txtMeter.Text = i.VehicleMeter;
-                txtMiladge.Text = i.Mileage;
 
-                MaintenanceCategory maintenanceCategory = maintenanceCategoryController.GetMaintenanceCategory(i.CategoryId);
-                category.Text = maintenanceCategory.MaintenanceCategoryName;
-
-                if (i.IsApproved == 0)
-                {
-                    approval.Text = "Not Approved";
-                }
-                else if (i.IsApproved == 1)
-                {
-                    approval.Text = "Pending Approval";
-                }
-
-                else if (i.IsApproved == 2)
-                {
-                    approval.Text = "Request Approved";
-                }
-
-                else if (i.IsApproved == 3)
-                {
-                    approval.Text = "Request Rejected";
-                    reject.Visible = true;
-                }
-
-                if (i.IsApproved == 1 || i.IsApproved == 2 || i.IsApproved == 3)
-                {
-                    appBtn.Enabled = false;
-                }
-
+                txtPrevMeter.Text = i.VehiclePrevMeter;
             }
+            else
+            {
+                RowvehiclePrevMeter.Visible = false;
+            }
+
+
+
+            if (i.IsApproved == 0)
+            {
+                approval.Text = "Not Approved";
+            }
+            else if (i.IsApproved == 1)
+            {
+                approval.Text = "Pending Approval";
+            }
+
+            else if (i.IsApproved == 2)
+            {
+                approval.Text = "Request Approved";
+            }
+
+            else if (i.IsApproved == 3)
+            {
+                approval.Text = "Request Rejected";
+                reject.Visible = true;
+            }
+
+            if (i.IsApproved == 1 || i.IsApproved == 2 || i.IsApproved == 3)
+            {
+                appBtn.Enabled = false;
+            }
+
+
 
             ddlOfficer.DataSource = systemUsers;
             ddlOfficer.DataTextField = "Name";
@@ -117,6 +129,11 @@ namespace ManPowerWeb
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Sending to Recommondation..');", true);
                 Response.Redirect("VehicleMeintenanceSearch.aspx");
             }
+        }
+
+        protected void txtPrevMeter_TextChanged(object sender, EventArgs e)
+        {
+            txtMiladge.Text = (Convert.ToInt32(txtMeter.Text) - Convert.ToInt32(txtPrevMeter.Text)).ToString();
         }
     }
 }

@@ -56,6 +56,7 @@
                                         <asp:TextBox runat="server" ID="txtEntitlement" TextMode="Number" CssClass="form-control form-control-user">
                                         </asp:TextBox>
                                         <asp:RangeValidator ID="RangeValidator1" ControlToValidate="txtEntitlement" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="365" Type="Integer" ForeColor="Red"></asp:RangeValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtEntitlement" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
 
                                     </div>
 
@@ -74,7 +75,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <asp:TextBox runat="server" ID="txtPerMontLimit" CssClass="form-control form-control-user" TextMode="Number" step="0.5"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>--%>
                                         <asp:RangeValidator ID="RangeValidator2" ControlToValidate="txtPerMontLimit" runat="server" ErrorMessage="Invalid Range" MinimumValue="0" MaximumValue="30" Type="Double" ForeColor="Red"></asp:RangeValidator>
 
                                     </div>
@@ -95,9 +96,7 @@
                                     <div class="col-md-6">
                                         <asp:TextBox runat="server" ID="txtAppliedTo" CssClass="form-control form-control-user" TextMode="Date">
                                         </asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtAppliedTo" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-
-
+                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtAppliedTo" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>--%>
                                     </div>
 
                                 </div>

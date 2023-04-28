@@ -65,7 +65,7 @@ namespace ManPowerWeb
             vehicleRequest.RequestedBy = Convert.ToInt32(Session["UserId"]);
             vehicleRequest.VehicleNumber = vNo.Text;
             vehicleRequest.RequestDescription = description.Text;
-            vehicleRequest.IsApproved = 0;
+            vehicleRequest.IsApproved = 1;
             vehicleRequest.EstimatedCost = 0;
             vehicleRequest.EmpId = Convert.ToInt32(Session["EmpNumber"]);
 

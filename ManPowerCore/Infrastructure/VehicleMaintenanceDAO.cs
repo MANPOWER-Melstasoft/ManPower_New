@@ -134,13 +134,15 @@ namespace ManPowerCore.Infrastructure
             return 1;
         }
 
+
+        // Approve By TO and Send TO AD
         public int UpdateRecommandationStatus(int id, int approvalStatus, string fileNo, int officer, string reason, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
                 dbConnection.dr.Close();
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, APPROVED_BY = @officer, Approved_date = @date, File_No=@fileNo,REJECTED_REASON = @reason WHERE ID = " + id + " ";
+            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, Recommend_AD = @officer, Recomand_Date = @date, File_No=@fileNo,REJECTED_REASON = @reason WHERE ID = " + id + " ";
 
             dbConnection.cmd.Parameters.AddWithValue("@approvalStatus", approvalStatus);
             dbConnection.cmd.Parameters.AddWithValue("@officer", officer);

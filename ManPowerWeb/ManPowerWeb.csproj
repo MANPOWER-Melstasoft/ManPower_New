@@ -3199,6 +3199,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="SystemDocuments\DependantDocuments\" />
     <Folder Include="SystemDocuments\DistreesLoanAggrement\" />
+    <Folder Include="SystemDocuments\EducationResources\" />
     <Folder Include="SystemDocuments\ProgramPlanResources\" />
     <Folder Include="SystemDocuments\Quatations\" />
     <Folder Include="SystemDocuments\Resignation\" />

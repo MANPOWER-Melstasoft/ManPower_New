@@ -87,9 +87,9 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE EMPLOYEE SET Title = @Title, Gender = @EmpGender, Pension_Date = @PensionDate, VNOP_No = @VNOPNo, " +
-                "NIC = @EmployeeNIC, Initial = @EmpInitials, Date_Of_Birth = @DOB, PASSPORT_NUMBER = @EmployeePassportNumber, Appointment_No = @AppointmentNo, " +
-                "Last_Name = @LastName, Name_Denote_By_Initial = @NameWithInitials, Marital_Status = @MaritalStatus, NIC_ISSUE_DATE = @NicIssueDate, " +
-                "Designation_Id = @DesignationId, File_No = @FileNo , Salary_Num = @SalaryNo WHERE ID = @EmployeeId";
+                                           "NIC = @EmployeeNIC, Initial = @EmpInitials, Date_Of_Birth = @DOB, PASSPORT_NUMBER = @EmployeePassportNumber, Appointment_No = @AppointmentNo, " +
+                                           "Last_Name = @LastName, Name_Denote_By_Initial = @NameWithInitials, Marital_Status = @MaritalStatus, NIC_ISSUE_DATE = @NicIssueDate, " +
+                                           "Designation_Id = @DesignationId, File_No = @FileNo , Salary_Num = @SalaryNo WHERE ID = @EmployeeId";
 
 
             dbConnection.cmd.Parameters.AddWithValue("@Title", emp.Title);

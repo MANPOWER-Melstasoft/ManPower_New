@@ -589,6 +589,20 @@
             </div>
 
 
+
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-5">
+                            <label>Employee Name : </label>
+                        </div>
+                        <div class="col-6">
+                            <asp:TextBox ID="empName" runat="server" CssClass="form-control form-control-user" TextMode="SingleLine"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row mt-5">
                 <div class="col-6">
                     <div class="row">
@@ -720,6 +734,7 @@
                 <asp:GridView Style="margin-top: 30px;" ID="emplDetailsGV" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                     CellPadding="4" GridLines="None">
                     <Columns>
+                        <asp:BoundField HeaderText="Employee Name" DataField="EmpName" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Company Name" DataField="CompanyName" HeaderStyle-CssClass="table-dark" />
                         <asp:BoundField HeaderText="Start Date" DataField="StartDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />
                         <asp:BoundField HeaderText="End Date" DataField="EndDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:dd-MM-yyyy}" />

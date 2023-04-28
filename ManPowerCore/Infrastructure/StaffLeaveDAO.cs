@@ -36,6 +36,7 @@ namespace ManPowerCore.Infrastructure
     {
         public int saveStaffLeave(StaffLeave staffLeave, DBConnection dBConnection)
         {
+            int output = 0;
             if (dBConnection.dr != null)
                 dBConnection.dr.Close();
 
@@ -61,9 +62,9 @@ namespace ManPowerCore.Infrastructure
             dBConnection.cmd.Parameters.AddWithValue("@FromTime", staffLeave.FromTime);
             dBConnection.cmd.Parameters.AddWithValue("@ToTime", staffLeave.ToTime);
 
+            output = Convert.ToInt32(dBConnection.cmd.ExecuteScalar());
 
-
-            return dBConnection.cmd.ExecuteScalar();
+            return output;
 
         }
 

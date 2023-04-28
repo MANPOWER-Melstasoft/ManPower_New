@@ -26,7 +26,7 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return staffLeaveDocumentsDAO.Save(accountCode, dBConnection);
+                return staffLeaveDocumentsDAO.GetAllDocuments(dBConnection);
             }
             catch (Exception)
             {
@@ -38,6 +38,7 @@ namespace ManPowerCore.Controller
                 if (dBConnection.con.State == System.Data.ConnectionState.Open)
                     dBConnection.Commit();
             }
+
         }
 
         public int Save(StaffLeaveDocuments staffLeaveDocuments)
@@ -45,7 +46,7 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                return staffLeaveDocumentsDAO.GetAllDocuments(dBConnection);
+                return staffLeaveDocumentsDAO.Save(staffLeaveDocuments, dBConnection);
             }
             catch (Exception)
             {

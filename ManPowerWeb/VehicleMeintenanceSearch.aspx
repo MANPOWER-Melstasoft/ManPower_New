@@ -15,7 +15,7 @@
                             <label>Category : </label>
                         </div>
                         <div class="col-7">
-                            <asp:DropDownList ID="ddlCategory" Width="250px" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control">
+                            <asp:DropDownList ID="ddlCategory" Width="250px" runat="server" CssClass="dropdown-toggle form-control">
                             </asp:DropDownList>
                         </div>
                     </div>

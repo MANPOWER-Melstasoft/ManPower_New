@@ -7,7 +7,7 @@
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card p-4 mb-5">
-            <h2>Maintenance Request Recommendation</h2>
+            <h2>Maintenance Request Recommendation Transport Officer</h2>
 
 
 
@@ -137,7 +137,16 @@
                 </div>
             </div>
 
-
+            <div class="row mt-3">
+                <div class="col-4">
+                    <label>Upload Document View : </label>
+                </div>
+                <div class="col-8">
+                    <a id="UploadDoclink" runat="server">
+                        <asp:Label ID="Label2" runat="server" />
+                    </a>
+                </div>
+            </div>
 
 
             <div class="row mt-3 mb-3">
@@ -180,10 +189,10 @@
                 <div class="col-2">
                     <asp:Button runat="server" ID="Button3" Text="Back" OnClick="isClicked" CssClass="btn btn-primary btn-user btn-block" />
                 </div>
-                <div class="col-2" id="butonA" runat="server">
-                    <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="Accept" CssClass="btn btn-success btn-user btn-block" ValidationGroup="1" />
+                <div class="col-2" id="butonA" runat="server" visible="false">
+                    <asp:Button runat="server" ID="acceptBtn" Text="Send To AD" OnClick="Accept" CssClass="btn btn-success btn-user btn-block" ValidationGroup="1" />
                 </div>
-                <div class="col-2" id="butonR" runat="server">
+                <div class="col-2" id="butonR" runat="server" visible="false">
                     <button type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
                 </div>
 
@@ -197,7 +206,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Maintenance Request Recommendation Transport Officer</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -210,13 +219,15 @@
                                     </div>
                                     <div class="col-10">
                                         <asp:TextBox ID="rejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine" ValidationGroup="1"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ControlToValidate="rejectReason" ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                                     </div>
                                 </div>
                             </center>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <asp:Button runat="server" ID="Button1" Text="Reject" OnClick="Reject" CssClass="btn btn-danger" Width="100px" />
+                            <asp:Button runat="server" ID="Button1" Text="Reject" OnClick="Reject" CssClass="btn btn-danger" Width="100px" ValidationGroup="1" />
                         </div>
                     </div>
                 </div>

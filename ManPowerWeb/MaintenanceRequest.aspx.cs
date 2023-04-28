@@ -68,6 +68,7 @@ namespace ManPowerWeb
             vehicleRequest.IsApproved = 0;
             vehicleRequest.EstimatedCost = 0;
             vehicleRequest.EmpId = Convert.ToInt32(Session["EmpNumber"]);
+
             vehicleRequest.RejectedReason = "";
             if (ddlCategory.SelectedValue == "2")
             {
@@ -152,6 +153,11 @@ namespace ManPowerWeb
                 vehicleRequest.InsuranceStartDate = DateTime.MinValue;
                 vehicleRequest.InsuranceEndDate = DateTime.MinValue;
             }
+
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUsersobj = systemUserController.GetAllSystemUser(false, false, false).Where(u => u.UserTypeId != 3 && u.DesignationId == 33).Single();
+
+            vehicleRequest.RecomandBy = systemUsersobj.EmpNumber;
 
             int result1 = vehicleMaintenance.SaveVehicleMeintenance(vehicleRequest);
 

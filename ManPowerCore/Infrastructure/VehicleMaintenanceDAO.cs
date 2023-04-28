@@ -33,10 +33,10 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO VEHICLE_MAINTANCE(Employee_ID,Date,Vehicle_Number,Description," +
-                "Is_Approved,Approved_By,Approved_date,Estimated_Cost,Attachment,Maintenance_Category_Id,Requested_By,File_No,Rejected_Reason, Vehicle_Meter,Vehicle_Previous_Meter, Mileage,Enginner_Attachment,Is_Enginner_Recommendatin,Insurance_Start_Date,Insurance_End_Date) " +
+                "Is_Approved,Approved_By,Approved_date,Estimated_Cost,Attachment,Maintenance_Category_Id,Requested_By,File_No,Rejected_Reason, Vehicle_Meter,Vehicle_Previous_Meter, Mileage,Enginner_Attachment,Is_Enginner_Recommendatin,Insurance_Start_Date,Insurance_End_Date,Recomand_By) " +
 
             "VALUES(@EmpId,@RequestDate,@VehicleNumber,@RequestDescription,@IsApproved,@ApprovedBy,@ApprovedDate,@EstimatedCost," +
-            "@Attachment,@CategoryId,@RequestedBy,@FileNo,@RejectedReason, @VehicleMeter,@VehiclePrevMeter,@Mileage,@EnginnerAttachment,@Is_Enginner_Recommendatin,@InsuranceStartDate,@InsuranceEndDate) ";
+            "@Attachment,@CategoryId,@RequestedBy,@FileNo,@RejectedReason, @VehicleMeter,@VehiclePrevMeter,@Mileage,@EnginnerAttachment,@Is_Enginner_Recommendatin,@InsuranceStartDate,@InsuranceEndDate,@RecommededBy) ";
 
             dbConnection.cmd.Parameters.AddWithValue("@EmpId", vehicleMeintenance.EmpId);
             dbConnection.cmd.Parameters.AddWithValue("@RequestDate", vehicleMeintenance.RequestDate);
@@ -56,6 +56,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@Mileage", vehicleMeintenance.Mileage);
             dbConnection.cmd.Parameters.AddWithValue("@EnginnerAttachment", vehicleMeintenance.EngineerFileAttachment);
             dbConnection.cmd.Parameters.AddWithValue("@Is_Enginner_Recommendatin", vehicleMeintenance.IsEngineerRecommendation);
+            dbConnection.cmd.Parameters.AddWithValue("@RecommededBy", vehicleMeintenance.RecomandBy);
 
             if (vehicleMeintenance.InsuranceStartDate.Year == 1)
             {

@@ -156,7 +156,7 @@
                         <asp:Button runat="server" ID="Button1" Text="Back" OnClick="isClicked" CssClass="btn btn-primary btn-user btn-block" />
                     </div>
                     <div class="col-2">
-                        <asp:Button runat="server" ID="Button2" Text="Send" OnClick="sendToApproval" CssClass="btn btn-danger btn-user btn-block" />
+                        <asp:Button runat="server" ID="Button2" Text="Send Recommendation To TO" OnClick="sendToApproval" CssClass="btn btn-danger" />
                     </div>
                 </div>
                 <br />

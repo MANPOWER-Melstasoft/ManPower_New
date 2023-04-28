@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
+
     <div class="container">
         <div class="card p-4 mb-5">
             <h2>Maintenance Request Recommendation AD</h2>

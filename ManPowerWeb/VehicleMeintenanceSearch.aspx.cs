@@ -76,21 +76,49 @@ namespace ManPowerWeb
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+
+
+                //
+
                 if (e.Row.Cells[3].Text == "0")
                 {
-                    e.Row.Cells[3].Text = "Pending Recommendation";
+
+                    e.Row.Cells[3].Text = "Not Recommended";
                 }
                 else if (e.Row.Cells[3].Text == "1")
                 {
-                    e.Row.Cells[3].Text = "Pending Approvals";
+                    e.Row.Cells[3].Text = "Pending Recommendation To Transport Officer";
                 }
+
                 else if (e.Row.Cells[3].Text == "2")
                 {
-                    e.Row.Cells[3].Text = "Approved";
+                    e.Row.Cells[3].Text = "Pending Recommendation To Assistant Director";
                 }
+
                 else if (e.Row.Cells[3].Text == "3")
                 {
-                    e.Row.Cells[3].Text = "Rejected";
+                    e.Row.Cells[3].Text = "Pending Approval To Director";
+                }
+
+                else if (e.Row.Cells[3].Text == "4")
+                {
+                    e.Row.Cells[3].Text = "Request Approved";
+                }
+
+                else if (e.Row.Cells[3].Text == "5")
+                {
+                    e.Row.Cells[3].Text = "Request Rejected By TO";
+                }
+
+                else if (e.Row.Cells[3].Text == "6")
+                {
+                    e.Row.Cells[3].Text = "Request Rejected By AD";
+                }
+
+
+                else if (e.Row.Cells[3].Text == "7")
+                {
+                    e.Row.Cells[3].Text = "Request Rejected By Director";
                 }
 
             }

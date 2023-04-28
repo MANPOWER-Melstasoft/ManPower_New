@@ -38,8 +38,6 @@ namespace ManPowerWeb
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
             vehicleMeintenances = vehicleMaintenanceController.GetAllVehicleMeintenance();
 
-            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-            systemUsers = systemUserController.GetAllSystemUser(false, false, false).Where(u => u.UserTypeId != 3).ToList();
 
             string id = Request.QueryString["id"];
 
@@ -95,10 +93,6 @@ namespace ManPowerWeb
 
 
 
-            ddlOfficer.DataSource = systemUsers;
-            ddlOfficer.DataTextField = "Name";
-            ddlOfficer.DataValueField = "SystemUserId";
-            ddlOfficer.DataBind();
         }
 
         protected void isClicked(object sender, EventArgs e)
@@ -117,8 +111,12 @@ namespace ManPowerWeb
         {
             string id = Request.QueryString["id"];
 
+
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUsersobj = systemUserController.GetAllSystemUser(false, false, false).Where(u => u.UserTypeId != 3 && u.DesignationId == 33).Single();
+
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 1, int.Parse(ddlOfficer.SelectedValue), "");
+            int result = vehicleMaintenanceController.UpdateApprovalStatus(int.Parse(id), 1, systemUsersobj.EmpNumber, "");
 
             if (result == 0)
             {

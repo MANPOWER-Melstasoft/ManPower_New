@@ -517,6 +517,17 @@ namespace ManPowerWeb
 			Button3.Visible = false;
 			if (ddlEducationDetailsList.SelectedValue != "")
 			{
+				uni.Text = "";
+				index.Text = "";
+				year.Text = "";
+				attempt.Text = "";
+				sub.Text = "";
+				stream.Text = "";
+				grade.Text = "";
+				status.Text = "";
+				eduId.Text = "";
+				lblfileUpload.Text = "";
+
 				Button3.Visible = true;
 				foreach (var i in edu.Where(u => u.EducationTypeId == int.Parse(ddlEducationDetailsList.SelectedValue)))
 				{
@@ -530,6 +541,12 @@ namespace ManPowerWeb
 					stream.Text = i.ExamStream;
 					grade.Text = i.ExamGrade;
 					status.Text = i.ExamStatus;
+					//lblfileUpload.Text = i.Attachment;
+					if (!string.IsNullOrEmpty(i.Attachment))
+					{
+						string filePath = "/SystemDocuments/EducationResources/" + i.Attachment;
+						lblfileUpload.Text = "<a href='" + filePath + "' download>View Document</a>";
+					}
 
 
 					eduId.Text = i.EducationDetailsId.ToString();
@@ -537,22 +554,9 @@ namespace ManPowerWeb
 					Button3.Visible = false;
 					Button5.Visible = true;
 				}
-				foreach (var i in edu.Where(u => u.EducationTypeId != int.Parse(ddlEducationDetailsList.SelectedValue)))
-				{
-					// Reset the values of the UI controls to empty strings or null
-					uni.Text = "";
-					index.Text = "";
-					year.Text = "";
-					attempt.Text = "";
-					sub.Text = "";
-					stream.Text = "";
-					grade.Text = "";
-					status.Text = "";
-					eduId.Text = "";
-				}
 			}
 		}
-		protected void submitEducation(object sender, EventArgs e)
+		protected void updateEducation(object sender, EventArgs e)
 		{
 
 			/*EducationDetailsController ed = ControllerFactory.CreateEducationDetailsController();
@@ -644,6 +648,59 @@ namespace ManPowerWeb
 			}
 
 
+		}
+
+		protected void submitEducation(object sender, EventArgs e)
+		{
+			EducationDetailsController edController = ControllerFactory.CreateEducationDetailsController();
+			EducationDetails educationDetails = new EducationDetails();
+
+			// Update the properties of the Education Details object
+			educationDetails.EmployeeId = emp.EmployeeId;
+			educationDetails.EducationTypeId = int.Parse(ddlEducationDetailsList.SelectedValue);
+			educationDetails.StudiedInstitute = uni.Text;
+			educationDetails.ExamIndex = index.Text;
+
+			if (attempt.Text == "")
+			{
+				educationDetails.NoOfAttempts = 1;
+			}
+			else
+			{
+				educationDetails.NoOfAttempts = int.Parse(attempt.Text);
+			}
+
+			educationDetails.ExamYear = int.Parse(year.Text);
+			educationDetails.ExamSubject = sub.Text;
+			educationDetails.ExamStream = stream.Text;
+			educationDetails.ExamGrade = grade.Text;
+			educationDetails.ExamStatus = status.Text;
+
+			if (fileUpload.HasFile)
+			{
+				HttpPostedFile uploadFile = Request.Files[0];
+
+				uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/EducationResources/") + uploadFile.FileName);
+
+				educationDetails.Attachment = uploadFile.FileName;
+			}
+			else
+			{
+				educationDetails.Attachment = "";
+			}
+
+			// Update the Education Details in the database
+			int result = edController.SaveEducationDetails(educationDetails);
+
+			// Check if the update was successful and display a message to the user
+			if (result == 1)
+			{
+				ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Education Details Added Successfully!', 'success');window.setTimeout(function(){window.location='UserProfile.aspx'},2500);", true);
+			}
+			else
+			{
+				ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Something Went Wrong!', 'error');", true);
+			}
 		}
 
 

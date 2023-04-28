@@ -3,8 +3,10 @@ using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ManPowerCore.Infrastructure
 {
@@ -30,7 +32,7 @@ namespace ManPowerCore.Infrastructure
 
 			dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 			dbConnection.cmd.Parameters.Clear();
-			dbConnection.cmd.CommandText = "INSERT INTO EDUCATION_DETAILS(EMPLOYEE_ID,EDUCATION_TYPE_ID,INSTITUTE,ATTEMPT,YEAR,INDEX_NO,SUBJECT,STREAM,GRADE,STATUS) " +
+			dbConnection.cmd.CommandText = "INSERT INTO EDUCATION_DETAILS(EMPLOYEE_ID,EDUCATION_TYPE_ID,INSTITUTE,ATTEMPT,YEAR,INDEX_NO,SUBJECT,STREAM,GRADE,STATUS,ATTACHMENT) " +
 
 											"VALUES(@EmployeId,@EduTypeId,@Institute,@Attempts,@Year,@Index,@Subject,@Stream,@Grade,@Status,@Attachment) ";
 
@@ -49,9 +51,11 @@ namespace ManPowerCore.Infrastructure
 			dbConnection.cmd.Parameters.AddWithValue("@Attachment", educationDetails.Attachment);
 
 
-			dbConnection.cmd.ExecuteNonQuery();
+			/*dbConnection.cmd.ExecuteNonQuery();
 			dbConnection.cmd.Parameters.Clear();
-			return 1;
+			return 1;*/
+			int result = Convert.ToInt32(dbConnection.cmd.ExecuteScalar());
+			return result;
 		}
 
 		public int UpdateEducationDetails(EducationDetails educationDetails, DBConnection dbConnection)
@@ -116,7 +120,10 @@ namespace ManPowerCore.Infrastructure
 			if (dbConnection.dr != null)
 				dbConnection.dr.Close();
 
-			dbConnection.cmd.CommandText = "SELECT * FROM EDUCATION_DETAILS WHERE EMPLOYEE_ID=" + empId + " ";
+			dbConnection.cmd.CommandText = /*"SELECT * FROM EDUCATION_DETAILS WHERE EMPLOYEE_ID=" + empId + " ";*/
+											" SELECT ED.*,ET.Name AS Education_Type FROM EDUCATION_DETAILS ED " +
+											" INNER JOIN(select ID, Name from Education_Type) ET ON ED.Education_Type_Id = ET.ID " +
+											" WHERE EMPLOYEE_ID = " + empId + " ";
 
 			dbConnection.dr = dbConnection.cmd.ExecuteReader();
 			DataAccessObject dataAccessObject = new DataAccessObject();

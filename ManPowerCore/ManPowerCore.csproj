@@ -143,6 +143,7 @@
     <Compile Include="Controller\TrainingRequestsController.cs" />
     <Compile Include="Controller\TransferController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationMainController.cs" />
+    <Compile Include="Controller\TransfersRetirementResignationMainDocumentController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationStatusController.cs" />
     <Compile Include="Controller\TransferTypeController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
     <Compile Include="Domain\TrainingRequests.cs" />
+    <Compile Include="Domain\TransfersRetirementResignationMainDocuments.cs" />
     <Compile Include="Domain\VoucherDetail.cs" />
     <Compile Include="Domain\VoucherStatus.cs" />
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
@@ -357,6 +359,7 @@
     <Compile Include="Infrastructure\TrainingRequestsDAO.cs" />
     <Compile Include="Infrastructure\TransferDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationMainDAO.cs" />
+    <Compile Include="Infrastructure\TransfersRetirementResignationMainDocumentDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationStatusDAO.cs" />
     <Compile Include="Infrastructure\TransferTypeDAO.cs" />
     <Compile Include="Infrastructure\UserRegistrationDAO.cs" />

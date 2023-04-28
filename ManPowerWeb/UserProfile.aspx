@@ -1101,10 +1101,11 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Upload File: </label>
+                                            <label>Upload File : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control-file"></asp:FileUpload>
+                                            <asp:Label ID="lblfileUpload" runat="server"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -1120,10 +1121,10 @@
 
                             <div class="row mt-5 mb-4">
                                 <div class="col-2">
-                                    <asp:Button runat="server" ID="Button3" Text="Add" CssClass="btn btn-primary btn-user btn-block" />
+                                    <asp:Button runat="server" ID="Button3" Text="Add" OnClick="submitEducation" CssClass="btn btn-primary btn-user btn-block" />
                                 </div>
                                 <div class="col-2">
-                                    <asp:Button runat="server" ID="Button5" Text="Update" OnClick="submitEducation" CssClass="btn btn-primary btn-user btn-block" />
+                                    <asp:Button runat="server" ID="Button5" Text="Update" OnClick="updateEducation" CssClass="btn btn-primary btn-user btn-block" />
                                     <%--ValidationGroup="5"--%>
                                 </div>
                             </div>

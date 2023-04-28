@@ -43,6 +43,9 @@ namespace ManPowerCore.Domain
 
 		[DBField("ATTACHMENT")]
 		public string Attachment { get; set; }
+
+		[DBField("EDUCATION_TYPE")]
+		public string EducationType { get; set; }
 		//public Employee _Employee { get; set; } = new Employee();
 	}
 }

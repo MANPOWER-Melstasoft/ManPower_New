@@ -298,7 +298,7 @@
                                 <asp:Literal ID="Literal11" runat="server" Text="Upload Documnents"></asp:Literal>
                             </div>
                             <div class="col-md-4">
-                                <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="false" />
+                                <asp:FileUpload ID="Uploader" CssClass="btn" runat="server" AllowMultiple="true" />
 
                             </div>
                         </div>

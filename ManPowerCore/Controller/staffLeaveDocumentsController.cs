@@ -14,6 +14,8 @@ namespace ManPowerCore.Controller
         int Save(StaffLeaveDocuments staffLeaveDocuments);
 
         List<StaffLeaveDocuments> GetAllDocuments();
+
+        List<StaffLeaveDocuments> GetAllDocumentsByLeaveId(int staffleaveId);
     }
 
     public class staffLeaveDocumentsControllerImpl : staffLeaveDocumentsController
@@ -27,6 +29,26 @@ namespace ManPowerCore.Controller
             {
                 dBConnection = new DBConnection();
                 return staffLeaveDocumentsDAO.GetAllDocuments(dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+
+        }
+
+        public List<StaffLeaveDocuments> GetAllDocumentsByLeaveId(int staffleaveId)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                return staffLeaveDocumentsDAO.GetAllDocumentsByLeaveId(staffleaveId, dBConnection);
             }
             catch (Exception)
             {

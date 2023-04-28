@@ -13,10 +13,10 @@ namespace ManPowerCore.Domain
         [DBField("ID")]
         public int Id { get; set; }
 
-        [DBField("Employee_ID")]
+        [DBField("Staff_Leave_Id")]
         public int StaffLeaveId { get; set; }
 
-        [DBField("Vehicle_Number")]
+        [DBField("Document")]
         public string Document { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
 
         List<StaffLeaveDocuments> GetAllDocuments(DBConnection dbConnection);
 
+        List<StaffLeaveDocuments> GetAllDocumentsByLeaveId(int staffleaveId, DBConnection dbConnection);
+
     }
 
     public class StaffLeaveDocumentsDAOSqlImpl : StaffLeaveDocumentsDAO
@@ -42,6 +44,18 @@ namespace ManPowerCore.Infrastructure
                 dbConnection.dr.Close();
 
             dbConnection.cmd.CommandText = "SELECT * FROM Staff_Leave_Documents";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<StaffLeaveDocuments>(dbConnection.dr);
+        }
+
+        public List<StaffLeaveDocuments> GetAllDocumentsByLeaveId(int staffleaveId, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM Staff_Leave_Documents WHERE Staff_Leave_Id = " + staffleaveId;
 
             dbConnection.dr = dbConnection.cmd.ExecuteReader();
             DataAccessObject dataAccessObject = new DataAccessObject();

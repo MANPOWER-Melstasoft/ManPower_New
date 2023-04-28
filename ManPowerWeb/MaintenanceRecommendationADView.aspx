@@ -17,7 +17,6 @@
                 </div>
                 <div class="col-8">
                     <asp:TextBox ID="txtFielNo" runat="server" Width="250px" CssClass="form-control form-control-user"></asp:TextBox>
-                    <asp:RequiredFieldValidator ControlToValidate="txtFielNo" ID="RequiredFieldValidator7" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                 </div>
             </div>
@@ -138,6 +137,16 @@
             </div>
 
 
+            <div class="row mt-3">
+                <div class="col-4">
+                    <label>Upload Document View : </label>
+                </div>
+                <div class="col-8">
+                    <a id="UploadDoclink" runat="server">
+                        <asp:Label ID="Label2" runat="server" />
+                    </a>
+                </div>
+            </div>
 
 
             <div class="row mt-3 mb-3">
@@ -181,7 +190,7 @@
                     <asp:Button runat="server" ID="btnisClicked" Text="Back" OnClick="btnisClicked_Click" CssClass="btn btn-primary btn-user btn-block" />
                 </div>
                 <div class="col-2" id="butonA" runat="server">
-                    <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="acceptBtn_Click" CssClass="btn btn-success btn-user btn-block" ValidationGroup="1" />
+                    <asp:Button runat="server" ID="acceptBtn" Text="Approve" OnClick="acceptBtn_Click" CssClass="btn btn-success btn-user btn-block" />
                 </div>
                 <div class="col-2" id="butonR" runat="server">
                     <button type="button" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
@@ -209,14 +218,17 @@
                                         <label>Reason to reject :</label>
                                     </div>
                                     <div class="col-10">
-                                        <asp:TextBox ID="rejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine" ValidationGroup="1"></asp:TextBox>
+                                        <asp:TextBox ID="rejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine" ValidationGroup="2"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ControlToValidate="rejectReason" ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+
+
                                     </div>
                                 </div>
                             </center>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <asp:Button runat="server" ID="btnReject" Text="Reject" OnClick="btnReject_Click" CssClass="btn btn-danger" Width="100px" />
+                            <asp:Button runat="server" ID="btnReject" Text="Reject" OnClick="btnReject_Click" CssClass="btn btn-danger" Width="100px" ValidationGroup="2" />
                         </div>
                     </div>
                 </div>

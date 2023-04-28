@@ -68,20 +68,7 @@ namespace ManPowerWeb
 
 
 
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 1 && u.RecomandBy == Convert.ToInt32(Session["UserId"])))
-            {
-                searchList.Add(i);
-            }
-
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 3 && u.RecomandBy == Convert.ToInt32(Session["UserId"])))
-            {
-                searchList.Add(i);
-            }
-
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 0))
-            {
-                searchList.Add(i);
-            }
+            searchList = vehicleMeintenances.Where(x => x.RecommendADBy == Convert.ToInt32(Session["EmpNumber"]) && x.IsApproved > 1 && x.IsApproved != 5).ToList();
 
             ViewState["searchList"] = searchList;
             GridView1.DataSource = searchList;

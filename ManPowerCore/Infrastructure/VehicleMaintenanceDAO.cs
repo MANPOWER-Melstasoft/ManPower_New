@@ -174,5 +174,7 @@ namespace ManPowerCore.Infrastructure
             return 1;
         }
 
+
+
     }
 }

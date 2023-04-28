@@ -1,4 +1,5 @@
 ﻿//using ManPowerCore.Infrastructure;
+using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using ManPowerCore.Infrastructure;
 using System;
@@ -663,6 +664,24 @@ namespace ManPowerCore.Common
         {
             TrainingMainAttachmentDAO trainingMainAttachmentDAO = new TrainingMainAttachmentDAOSqlImpl();
             return (TrainingMainAttachmentDAO)trainingMainAttachmentDAO;
+        }
+
+        public static FuelTypeDAO CreateFuelTypeDAO()
+        {
+            FuelTypeDAO fuelTypeDAO = new FuelTypeDAOSqlImpl();
+            return (FuelTypeDAO)fuelTypeDAO;
+        }
+
+        //public static IndividualBeneReportDAO createIndividualBeneReportDAO()
+        //{
+        //	IndividualBeneReportDAO individualBeneReportDAO = new IndividualBeneReportDAOSqlImpl();
+        //	return (IndividualBeneReportDAO)individualBeneReportDAO;
+        //}
+
+        public static TransfersRetirementResignationMainDocumentDAO CreateTransfersRetirementResignationMainDocumentDAO()
+        {
+            TransfersRetirementResignationMainDocumentDAO transfersRetirementResignationMainDocumentDAO = new TransfersRetirementResignationMainDocumentDAOSqlImpl();
+            return (TransfersRetirementResignationMainDocumentDAO)transfersRetirementResignationMainDocumentDAO;
         }
 
         public static StaffLeaveDocumentsDAO CreateStaffLeaveDocumentsDAO()

@@ -39,6 +39,7 @@ namespace ManPowerWeb
             ddlCategory.DataTextField = "MaintenanceCategoryName";
             ddlCategory.DataValueField = "MaintenanceCategoryId";
             ddlCategory.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-- Select --", ""));
 
 
 
@@ -64,23 +65,27 @@ namespace ManPowerWeb
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            UserSearchList = (List<VehicleMeintenance>)ViewState["searchList"];
 
-            if (date.Text == "")
+
+            if (ddlCategory.SelectedValue != "")
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Please Enter a Date to proceed');", true);
+                UserSearchList = UserSearchList.Where(x => x.CategoryId == Convert.ToInt32(ddlCategory.SelectedValue)).ToList();
             }
-            else
+
+            if (date.Text != "")
             {
-                DateTime searchDate = Convert.ToDateTime(date.Text);
-                UserSearchList = (List<VehicleMeintenance>)ViewState["searchList"];
-                GridView1.DataSource = UserSearchList.Where(u => u.RequestDate.Date == searchDate.Date && u.CategoryId == int.Parse(ddlCategory.SelectedValue));
-                GridView1.DataBind();
+                UserSearchList = UserSearchList.Where(u => u.RequestDate.Date == DateTime.Parse(date.Text)).ToList();
             }
+            GridView1.DataSource = UserSearchList;
+            GridView1.DataBind();
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
 
+            ddlCategory.ClearSelection();
+            date.Text = null;
         }
     }
 }

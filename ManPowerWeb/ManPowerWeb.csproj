@@ -150,12 +150,15 @@
     <Content Include="DME22Rec2.aspx" />
     <Content Include="DME22Rec2Render.aspx" />
     <Content Include="FuelDetails.aspx" />
+    <Content Include="FuelDetailsReport.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LeaveForm.aspx" />
     <Content Include="LeaveReportAll.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
+    <Content Include="MaintenanceRecommendationAD.aspx" />
+    <Content Include="MaintenanceRecommendationADView.aspx" />
     <Content Include="PaymentVoucherApproval.aspx" />
     <Content Include="PaymentVoucherCertify.aspx" />
     <Content Include="PaymentVoucherCheckBy.aspx" />
@@ -2279,6 +2282,13 @@
     <Compile Include="FuelDetails.aspx.designer.cs">
       <DependentUpon>FuelDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FuelDetailsReport.aspx.cs">
+      <DependentUpon>FuelDetailsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FuelDetailsReport.aspx.designer.cs">
+      <DependentUpon>FuelDetailsReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IndividualBeneList.aspx.cs">
       <DependentUpon>IndividualBeneList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2320,6 +2330,20 @@
     </Compile>
     <Compile Include="MaintenanceRecomandView.aspx.designer.cs">
       <DependentUpon>MaintenanceRecomandView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRecommendationAD.aspx.cs">
+      <DependentUpon>MaintenanceRecommendationAD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRecommendationAD.aspx.designer.cs">
+      <DependentUpon>MaintenanceRecommendationAD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRecommendationADView.aspx.cs">
+      <DependentUpon>MaintenanceRecommendationADView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRecommendationADView.aspx.designer.cs">
+      <DependentUpon>MaintenanceRecommendationADView.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentVoucherApproval.aspx.cs">
       <DependentUpon>PaymentVoucherApproval.aspx</DependentUpon>
@@ -3175,6 +3199,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="SystemDocuments\DependantDocuments\" />
     <Folder Include="SystemDocuments\DistreesLoanAggrement\" />
+    <Folder Include="SystemDocuments\EducationResources\" />
     <Folder Include="SystemDocuments\ProgramPlanResources\" />
     <Folder Include="SystemDocuments\Quatations\" />
     <Folder Include="SystemDocuments\Resignation\" />

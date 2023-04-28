@@ -680,5 +680,23 @@ namespace ManPowerCore.Common
             TrainingRequestsAttachmentController trainingRequestsAttachmentController = new TrainingRequestsAttachmentControllerImpl();
             return (TrainingRequestsAttachmentController)trainingRequestsAttachmentController;
         }
+
+        public static FuelTypeController CreateFuelTypeController()
+        {
+            FuelTypeController fuelTypeController = new FuelTypeControllerImpl();
+            return (FuelTypeController)fuelTypeController;
+        }
+
+        //public static IndividualBeneReportController CreateIndividualBeneReportController()
+        //{
+        //	IndividualBeneReportController individualBeneReportController = new IndividualBeneReportControllerSqlImpl();
+        //	return (IndividualBeneReportController)individualBeneReportController;
+        //}
+
+        public static TransfersRetirementResignationMainDocumentController CreateTransfersRetirementResignationMainDocumentController()
+        {
+            TransfersRetirementResignationMainDocumentController transfersRetirementResignationMainDocumentController = new TransfersRetirementResignationMainDocumentControllerImpl();
+            return (TransfersRetirementResignationMainDocumentController)transfersRetirementResignationMainDocumentController;
+        }
     }
 }

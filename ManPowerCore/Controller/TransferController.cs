@@ -9,120 +9,128 @@ using System.Threading.Tasks;
 
 namespace ManPowerCore.Controller
 {
-    public interface TransferController
-    {
-        int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Transfer transfer);
-        int Delete(int id);
-        int Update(Transfer transfer);
-        List<Transfer> GetAllTransfer(bool with0);
-        Transfer GetTransferByMainId(int Id);
-    }
+	public interface TransferController
+	{
+		int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Transfer transfer, List<string> DocList);
+		int Delete(int id);
+		int Update(Transfer transfer);
+		List<Transfer> GetAllTransfer(bool with0);
+		Transfer GetTransferByMainId(int Id);
+	}
 
-    public class TransferControllerSqlImpl : TransferController
-    {
-        TransferDAO transferDAO = DAOFactory.CreateTransferDAO();
-        DBConnection dBConnection;
+	public class TransferControllerSqlImpl : TransferController
+	{
+		TransferDAO transferDAO = DAOFactory.CreateTransferDAO();
+		DBConnection dBConnection;
 
-        public int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Transfer transfer)
-        {
-            try
-            {
-                int output = 0;
-                dBConnection = new DBConnection();
+		public int Save(TransfersRetirementResignationMain transfersRetirementResignationMain, Transfer transfer, List<string> DocList)
+		{
+			try
+			{
+				int output = 0;
+				dBConnection = new DBConnection();
 
-                TransfersRetirementResignationMainDAO transfersRetirementResignationMainDAO = DAOFactory.CreateTransfersRetirementResignationMainDAO();
-                transfer.MainId = transfersRetirementResignationMainDAO.Save(transfersRetirementResignationMain, dBConnection);
-                output = transferDAO.Save(transfer, dBConnection);
+				TransfersRetirementResignationMainDAO transfersRetirementResignationMainDAO = DAOFactory.CreateTransfersRetirementResignationMainDAO();
+				transfer.MainId = transfersRetirementResignationMainDAO.Save(transfersRetirementResignationMain, dBConnection);
 
-                return output;
-            }
-            catch (Exception)
-            {
-                dBConnection.RollBack();
-                throw;
-            }
-            finally
-            {
-                if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                    dBConnection.Commit();
-            }
-        }
+				output = transferDAO.Save(transfer, dBConnection);
+				if (output != 0 && DocList.Count > 0)
+				{
+					TransfersRetirementResignationMainDocumentDAO transfersRetirementResignationMainDocumentDAO = DAOFactory.CreateTransfersRetirementResignationMainDocumentDAO();
+					foreach (string doc in DocList)
+					{
+						transfersRetirementResignationMainDocumentDAO.saveAll(transfer.MainId, doc, dBConnection);
+					}
+				}
+				return output;
+			}
+			catch (Exception)
+			{
+				dBConnection.RollBack();
+				throw;
+			}
+			finally
+			{
+				if (dBConnection.con.State == System.Data.ConnectionState.Open)
+					dBConnection.Commit();
+			}
+		}
 
-        public int Update(Transfer transfer)
-        {
-            try
-            {
-                dBConnection = new DBConnection();
-                return transferDAO.Update(transfer, dBConnection);
-            }
-            catch (Exception)
-            {
-                dBConnection.RollBack();
-                throw;
-            }
-            finally
-            {
-                if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                    dBConnection.Commit();
-            }
-        }
+		public int Update(Transfer transfer)
+		{
+			try
+			{
+				dBConnection = new DBConnection();
+				return transferDAO.Update(transfer, dBConnection);
+			}
+			catch (Exception)
+			{
+				dBConnection.RollBack();
+				throw;
+			}
+			finally
+			{
+				if (dBConnection.con.State == System.Data.ConnectionState.Open)
+					dBConnection.Commit();
+			}
+		}
 
-        public int Delete(int id)
-        {
-            try
-            {
-                dBConnection = new DBConnection();
-                return transferDAO.Delete(id, dBConnection);
-            }
-            catch (Exception)
-            {
-                dBConnection.RollBack();
-                throw;
-            }
-            finally
-            {
-                if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                    dBConnection.Commit();
-            }
-        }
+		public int Delete(int id)
+		{
+			try
+			{
+				dBConnection = new DBConnection();
+				return transferDAO.Delete(id, dBConnection);
+			}
+			catch (Exception)
+			{
+				dBConnection.RollBack();
+				throw;
+			}
+			finally
+			{
+				if (dBConnection.con.State == System.Data.ConnectionState.Open)
+					dBConnection.Commit();
+			}
+		}
 
-        public List<Transfer> GetAllTransfer(bool with0)
-        {
-            try
-            {
-                dBConnection = new DBConnection();
-                return transferDAO.GetAllTransfer(with0, dBConnection);
-            }
-            catch (Exception)
-            {
-                dBConnection.RollBack();
-                throw;
-            }
-            finally
-            {
-                if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                    dBConnection.Commit();
-            }
-        }
+		public List<Transfer> GetAllTransfer(bool with0)
+		{
+			try
+			{
+				dBConnection = new DBConnection();
+				return transferDAO.GetAllTransfer(with0, dBConnection);
+			}
+			catch (Exception)
+			{
+				dBConnection.RollBack();
+				throw;
+			}
+			finally
+			{
+				if (dBConnection.con.State == System.Data.ConnectionState.Open)
+					dBConnection.Commit();
+			}
+		}
 
-        public Transfer GetTransferByMainId(int Id)
-        {
-            try
-            {
-                dBConnection = new DBConnection();
-                return transferDAO.GetTransferByMainId(Id, dBConnection);
-            }
-            catch (Exception)
-            {
-                dBConnection.RollBack();
-                throw;
-            }
-            finally
-            {
-                if (dBConnection.con.State == System.Data.ConnectionState.Open)
-                    dBConnection.Commit();
-            }
-        }
+		public Transfer GetTransferByMainId(int Id)
+		{
+			try
+			{
+				dBConnection = new DBConnection();
+				return transferDAO.GetTransferByMainId(Id, dBConnection);
+			}
+			catch (Exception)
+			{
+				dBConnection.RollBack();
+				throw;
+			}
+			finally
+			{
+				if (dBConnection.con.State == System.Data.ConnectionState.Open)
+					dBConnection.Commit();
+			}
+		}
 
-    }
+	}
 }

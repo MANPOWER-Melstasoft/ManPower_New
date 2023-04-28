@@ -18,6 +18,8 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateRecommandationStatus(int id, int approval, int officer, string reason, DBConnection dbConnection);
 
+        int UpdateRecommandationStatus(int id, int approvalStatus, string fileNo, int officer, string reason, DBConnection dbConnection);
+
         List<VehicleMeintenance> GetAllVehicleMeintenance(DBConnection dbConnection);
     }
 
@@ -113,6 +115,7 @@ namespace ManPowerCore.Infrastructure
             return 1;
         }
 
+
         public int UpdateRecommandationStatus(int id, int approval, int officer, string reason, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
@@ -129,6 +132,25 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.ExecuteNonQuery();
             return 1;
         }
+
+        public int UpdateRecommandationStatus(int id, int approvalStatus, string fileNo, int officer, string reason, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, APPROVED_BY = @officer, Approved_date = @date, File_No=@fileNo,REJECTED_REASON = @reason WHERE ID = " + id + " ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@approvalStatus", approvalStatus);
+            dbConnection.cmd.Parameters.AddWithValue("@officer", officer);
+            dbConnection.cmd.Parameters.AddWithValue("@reason", reason);
+            dbConnection.cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+            dbConnection.cmd.Parameters.AddWithValue("@fileNo", fileNo);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
+        }
+
 
     }
 }

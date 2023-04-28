@@ -1,0 +1,45 @@
+<div>
+	<table class="table table-bordered" cellspacing="0" cellpadding="4" rules="all" border="1" id="MainContent_gvPersonalFiles" style="color:#333333;border-collapse:collapse;margin-top: 30px;">
+		<tr>
+			<th class="table-dark" scope="col">Employee ID</th><th class="table-dark" scope="col">NIC</th><th class="table-dark" scope="col">Title</th><th class="table-dark" scope="col">Full Name</th><th class="table-dark" scope="col">Initials</th><th class="table-dark" scope="col">Last Name</th><th class="table-dark" scope="col">Gender</th><th class="table-dark" scope="col">DOB</th><th class="table-dark" scope="col">Department</th>
+		</tr><tr>
+			<td>2115</td><td>202543110V</td><td>Mr</td><td>Charuka Ravishan Jayasekara</td><td>C.R</td><td>Jayasekara</td><td>Male</td><td>11-11-2020</td><td> Gampaha</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2116</td><td>958435987V</td><td>Mrs</td><td>Nilusha Chandani Wijewardana</td><td>N.C</td><td>Wijewardana</td><td>Male</td><td>05-04-1995</td><td> Gampaha</td>
+		</tr><tr>
+			<td>2117</td><td>810832113V</td><td>Mr</td><td>Iranga Udesh Bandara</td><td>I.U</td><td>Bandara</td><td>Male</td><td>11-06-1981</td><td>Gampaha</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2118</td><td>947143890V</td><td>Mr</td><td>Hashan Arjuna Wijesinghe</td><td>H.A</td><td>Wijesinghe</td><td>Male</td><td>03-02-1994</td><td>Gampaha</td>
+		</tr><tr>
+			<td>2121</td><td>910292838V</td><td>Mr</td><td>charith viranja senanayake</td><td>C.V</td><td>senanayake</td><td>Male</td><td>06-01-1991</td><td> Gampaha</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2123</td><td>199520023600</td><td>Ms</td><td>Kushanthi Gunathilaka</td><td>K</td><td>Gunathilaka</td><td>Female</td><td>17-02-1995</td><td>Colombo - Head Office</td>
+		</tr><tr>
+			<td>2127</td><td>895478213V</td><td>Mr</td><td>harshana chanaka disanayake</td><td>H.C</td><td>disanayake</td><td>Male</td><td>22-01-1989</td><td> Gampaha</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2128</td><td>925843219V</td><td>Mrs</td><td>upeksha chamini de silva</td><td>U.C</td><td>de silva</td><td>Female</td><td>07-07-1992</td><td> Gampaha</td>
+		</tr><tr>
+			<td>2130</td><td>935640172V</td><td>Ms</td><td>Thrimani Wishwayukthi Rajapaksha Jayagoda</td><td>T.W.R</td><td>Jayagoda</td><td>Female</td><td>04-03-1993</td><td>Colombo - Head Office</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2131</td><td>977853135V</td><td>Ms</td><td>CHAMPA</td><td>C</td><td>CHAMPA</td><td>Female</td><td>17-06-1997</td><td>Kurunagala</td>
+		</tr><tr>
+			<td>2132</td><td>201453135V</td><td>Mrs</td><td>DEEPIKA</td><td>B</td><td>GUNARATHNA</td><td>Female</td><td>14-02-2014</td><td>Colombo - Head Office</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2133</td><td>201553135V</td><td>Mr</td><td>DANUSHKA</td><td>J</td><td>PERERA</td><td>Male</td><td>14-02-2015</td><td>Bingiriya</td>
+		</tr><tr>
+			<td>2134</td><td>200253135V</td><td>Ms</td><td>THUSHARI</td><td>M</td><td>PERERA</td><td>Female</td><td>14-02-2002</td><td>Colombo</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2135</td><td>201553135V</td><td>Ms</td><td>aruni</td><td>n</td><td>perera</td><td>Female</td><td>14-06-2015</td><td>Kaduwela</td>
+		</tr><tr>
+			<td>2137</td><td>874563215V</td><td>Mr</td><td>Danushka Jayawardana</td><td>D</td><td>Jayawardana</td><td>Male</td><td>14-02-2019</td><td>Bingiriya</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2138</td><td>789632145V</td><td>Ms</td><td>Inoka Thushari</td><td>I</td><td>Thushari</td><td>Female</td><td>14-02-2019</td><td>Colombo</td>
+		</tr><tr>
+			<td>2139</td><td>874563214V</td><td>Ms</td><td>Inoka Thushari</td><td>I</td><td>Thushari</td><td>Female</td><td>14-02-2018</td><td>Matara</td>
+		</tr><tr style="color:#284775;background-color:White;">
+			<td>2140</td><td>879632141V</td><td>Ms</td><td>Aruni Sirisena</td><td>A</td><td>Sirisena</td><td>Female</td><td>14-06-2018</td><td>Dikwella</td>
+		</tr><tr>
+			<td>2141</td><td>904251237V</td><td>Ms</td><td>Champa Chandani</td><td>C</td><td>Chandani</td><td>Female</td><td>06-02-2013</td><td>Badulla</td>
+		</tr>
+	</table>
+</div>

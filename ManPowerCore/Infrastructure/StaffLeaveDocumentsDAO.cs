@@ -25,7 +25,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "INSERT INTO Staff_Leave_Documents (Staff_Leave_Id, Document) " +
-                "VALUES (@StaffLeaveId, @Document)";
+                "VALUES (@StaffLeaveId, @Document) SELECT SCOPE_IDENTITY()";
 
             dbConnection.cmd.Parameters.AddWithValue("@StaffLeaveId", staffLeaveDocuments.StaffLeaveId);
             dbConnection.cmd.Parameters.AddWithValue("@Document", staffLeaveDocuments.Document);

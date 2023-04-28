@@ -37,8 +37,21 @@ namespace ManPowerCore.Controller
 
             try
             {
+                int output = 0;
                 dBConnection = new DBConnection();
-                return staffLeaveDAO.saveStaffLeave(staffLeave, dBConnection);
+                output = staffLeaveDAO.saveStaffLeave(staffLeave, dBConnection);
+
+                if (output > 0)
+                {
+                    StaffLeaveDocumentsDAO staffLeaveDocumentsDAO = DAOFactory.CreateStaffLeaveDocumentsDAO();
+                    foreach (var item in staffLeave.documents)
+                    {
+                        item.StaffLeaveId = output;
+                        staffLeaveDocumentsDAO.Save(item, dBConnection);
+                    }
+                }
+
+                return output;
 
 
             }

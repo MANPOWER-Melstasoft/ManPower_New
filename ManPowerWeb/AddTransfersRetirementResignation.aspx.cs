@@ -59,6 +59,10 @@ namespace ManPowerWeb
             Employee employee = employeeController.GetEmployeeById(Convert.ToInt32(Session["EmpNumber"]));
             txtDob.Text = employee.DOB.ToString("yyyy-MM-dd");
 
+            EmployeeContactController employeeContactController = ControllerFactory.CreateEmployeeContactController();
+            List<EmployeeContact> employeeContacts = employeeContactController.GetEmployeeContactById(Convert.ToInt32(Session["EmpNumber"]));
+            lblEmployeeAddress.Text = employeeContacts[0].EmpAddress.ToString();
+
             SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
             SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, true);
 

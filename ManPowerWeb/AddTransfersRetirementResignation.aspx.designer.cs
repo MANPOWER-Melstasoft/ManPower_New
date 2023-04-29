@@ -105,6 +105,24 @@ namespace ManPowerWeb
         protected global::System.Web.UI.WebControls.Label lblDesignation;
 
         /// <summary>
+        /// Literal22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal22;
+
+        /// <summary>
+        /// lblEmployeeAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmployeeAddress;
+
+        /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>

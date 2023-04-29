@@ -18,6 +18,8 @@ namespace ManPowerCore.Controller
         List<EmployeeContact> GetAllEmployeeContact();
 
         EmployeeContact GetEmployeeContact(int id);
+
+        List<EmployeeContact> GetEmployeeContactById(int id);
     }
 
     public class EmployeeContactControllerImpl : EmployeeContactController
@@ -118,6 +120,31 @@ namespace ManPowerCore.Controller
                     dbConnection.Commit();
             }
         }
+
+
+        public List<EmployeeContact> GetEmployeeContactById(int id)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                List<EmployeeContact> empContact = new List<EmployeeContact>();
+                EmployeeContactDAO DAO = DAOFactory.CreateEmployeeContactDAO();
+                empContact = DAO.GetAllEmployeeContactById(id, dbConnection);
+
+                return empContact;
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                return null;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
 
     }
 }

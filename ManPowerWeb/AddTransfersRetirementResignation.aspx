@@ -57,6 +57,23 @@
                     </div>
                 </div>
 
+                
+                <%--Address--%>
+                <div class="row mb-3 ms-1 mt-4">
+                    <div class="col-sm-6">
+                        <div class="row mb-3">
+                            <div class="col-sm-4">
+                                <asp:Literal ID="Literal22" runat="server" Text="Eployee Address : "></asp:Literal>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblEmployeeAddress" runat="server"  Width="250px"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
 

@@ -376,6 +376,18 @@ namespace ManPowerWeb
             ddlDepartment.DataTextField = "Name";
             ddlDepartment.DataBind();
             ddlDepartment.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
+
+            ddlDepartment2.DataSource = departmentUnitType;
+            ddlDepartment2.DataValueField = "DepartmentUnitId";
+            ddlDepartment2.DataTextField = "Name";
+            ddlDepartment2.DataBind();
+            ddlDepartment2.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
+
+            ddlDepartment3.DataSource = departmentUnitType;
+            ddlDepartment3.DataValueField = "DepartmentUnitId";
+            ddlDepartment3.DataTextField = "Name";
+            ddlDepartment3.DataBind();
+            ddlDepartment3.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
         }
 
         private void BindTransferType()

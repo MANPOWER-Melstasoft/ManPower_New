@@ -113,7 +113,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Preferred Work Place : "></asp:Literal>
+                                            <asp:Literal ID="lblDepartmentType" runat="server" Text="Preferred Work Place 01 : "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:DropDownList ID="ddlDepartment" Width="250px" runat="server" CssClass="form-control form-control-user">
@@ -125,6 +125,33 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal18" runat="server" Text="Preferred Work Place 02: "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlDepartment2" Width="250px" runat="server" CssClass="form-control form-control-user">
+                                            </asp:DropDownList>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4">
+                                            <asp:Literal ID="Literal21" runat="server" Text="Preferred Work Place 03 : "></asp:Literal>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:DropDownList ID="ddlDepartment3" Width="250px" runat="server" CssClass="form-control form-control-user">
+                                            </asp:DropDownList>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <%}%>
                             </div>
                             <div class="row mb-3 ms-1" id="FromToDate" runat="server" visible="false">

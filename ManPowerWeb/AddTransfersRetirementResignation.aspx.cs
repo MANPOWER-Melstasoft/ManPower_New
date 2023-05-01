@@ -60,6 +60,7 @@ namespace ManPowerWeb
             txtDob.Text = employee.DOB.ToString("yyyy-MM-dd");
 
             EmployeeContactController employeeContactController = ControllerFactory.CreateEmployeeContactController();
+            
             List<EmployeeContact> employeeContacts = employeeContactController.GetEmployeeContactById(Convert.ToInt32(Session["EmpNumber"]));
             lblEmployeeAddress.Text = employeeContacts[0].EmpAddress.ToString();
 
@@ -124,12 +125,16 @@ namespace ManPowerWeb
                 if (transfer.TransferType == "Combine Service")
                 {
                     transfer.NextDep = 0;
+                    transfer.PreferedWorkPlace2 = 0;
+                    transfer.PreferdWorkPlace3 = 0;
                     transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
                 }
                 else
                 {
                     transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
                     transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
+                    transfer.PreferedWorkPlace2 = Convert.ToInt32(ddlDepartment2.SelectedValue);
+                    transfer.PreferdWorkPlace3 = Convert.ToInt32(ddlDepartment3.SelectedValue);
                 }
 
                 TransferController transferController = ControllerFactory.CreateTransferController();
@@ -188,11 +193,16 @@ namespace ManPowerWeb
                     if (transfer.TransferType == "Combine Service")
                     {
                         transfer.NextDep = 0;
+                        //
+                        //
                         transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
                     }
                     else
                     {
                         transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
+                      //
+                      //
+
                     }
 
                     TransferController transferController = ControllerFactory.CreateTransferController();
@@ -373,7 +383,13 @@ namespace ManPowerWeb
         private void BindDepList()
         {
             DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
+
+            // Retrieve data from DB assign to list
             List<DepartmentUnit> departmentUnitType = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+
+            List<DepartmentUnit> departmentUnitType2 = departmentUnitType;
+
+            List<DepartmentUnit> departmentUnitType3 = departmentUnitType;
 
             ddlDepartment.DataSource = departmentUnitType;
             ddlDepartment.DataValueField = "DepartmentUnitId";
@@ -381,13 +397,13 @@ namespace ManPowerWeb
             ddlDepartment.DataBind();
             ddlDepartment.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
 
-            ddlDepartment2.DataSource = departmentUnitType;
+            ddlDepartment2.DataSource = departmentUnitType2;
             ddlDepartment2.DataValueField = "DepartmentUnitId";
             ddlDepartment2.DataTextField = "Name";
             ddlDepartment2.DataBind();
             ddlDepartment2.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
 
-            ddlDepartment3.DataSource = departmentUnitType;
+            ddlDepartment3.DataSource = departmentUnitType3;
             ddlDepartment3.DataValueField = "DepartmentUnitId";
             ddlDepartment3.DataTextField = "Name";
             ddlDepartment3.DataBind();

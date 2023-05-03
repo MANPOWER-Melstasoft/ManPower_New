@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApproveTransfersRetirementResignation.aspx.cs" Inherits="ManPowerWeb.ApproveTransfersRetirementResignation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="ApproveTransfersRetirementResignation.aspx.cs" Inherits="ManPowerWeb.ApproveTransfersRetirementResignation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
@@ -66,7 +66,15 @@
                 </Columns>
             </asp:GridView>
 
+            <div style="margin-bottom: 40px; margin-left: 20px; margin-top: 20px;">
+                <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success" title="Export To Excel">
+                    <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                </button>
+            </div>
+
         </div>
+
+
 
     </div>
 

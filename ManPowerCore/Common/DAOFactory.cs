@@ -683,5 +683,11 @@ namespace ManPowerCore.Common
             TransfersRetirementResignationMainDocumentDAO transfersRetirementResignationMainDocumentDAO = new TransfersRetirementResignationMainDocumentDAOSqlImpl();
             return (TransfersRetirementResignationMainDocumentDAO)transfersRetirementResignationMainDocumentDAO;
         }
+
+        public static StaffLeaveDocumentsDAO CreateStaffLeaveDocumentsDAO()
+        {
+            StaffLeaveDocumentsDAO staffLeaveDocumentsDAO = new StaffLeaveDocumentsDAOSqlImpl();
+            return (StaffLeaveDocumentsDAO)staffLeaveDocumentsDAO;
+        }
     }
 }

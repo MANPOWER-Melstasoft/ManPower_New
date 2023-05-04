@@ -93,7 +93,7 @@ namespace ManPowerCore.Controller
             try
             {
                 dBConnection = new DBConnection();
-                int result = vehicleMaintenanceDAO.UpdateRecommandationStatus(id, approvalStatus, FileNo, officerID, reason, dBConnection);
+                int result = vehicleMaintenanceDAO.UpdateRecommandationADStatus(id, approvalStatus, FileNo, officerID, reason, dBConnection);
                 return result;
             }
             catch (Exception)

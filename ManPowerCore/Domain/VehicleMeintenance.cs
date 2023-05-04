@@ -34,6 +34,16 @@ namespace ManPowerCore.Domain
         [DBField("Recomand_Date")]
         public DateTime RecomandDate { get; set; }
 
+
+
+        [DBField("Recommend_AD")]
+        public int RecommendADBy { get; set; }
+
+        [DBField("Recommend_AD_Date")]
+        public DateTime RecommendADDate { get; set; }
+
+
+
         [DBField("Approved_By")]
         public int ApprovedBy { get; set; }
 

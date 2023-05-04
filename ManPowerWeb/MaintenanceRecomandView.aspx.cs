@@ -38,8 +38,7 @@ namespace ManPowerWeb
 
                 string id = Request.QueryString["id"];
 
-                butonA.Visible = false;
-                butonR.Visible = false;
+
 
 
                 VehicleMeintenance i = vehicleMeintenances.Where(u => u.VehicleMeintenanceId == int.Parse(id)).Single();
@@ -55,6 +54,10 @@ namespace ManPowerWeb
                 txtMeter.Text = i.VehicleMeter;
                 txtPrevMeter.Text = i.VehiclePrevMeter;
 
+
+                Label2.Text = i.Attachment;
+                UploadDoclink.HRef = "/SystemDocuments/Quatations/" + i.Attachment;
+
                 if (ddlCategory.SelectedValue == "4" && i.InsuranceStartDate.Year != 1 && i.InsuranceEndDate.Year != 1)
                 {
                     txtStartDate.Text = i.InsuranceStartDate.ToShortDateString();
@@ -68,8 +71,8 @@ namespace ManPowerWeb
 
                     if (i.Attachment != "")
                     {
-                        Label1.Text = i.Attachment;
-                        Doclink.HRef = "/SystemDocuments/Quatations/" + i.Attachment;
+                        Label1.Text = i.EngineerFileAttachment;
+                        Doclink.HRef = "/SystemDocuments/Quatations/" + i.EngineerFileAttachment;
                     }
                 }
                 else
@@ -79,24 +82,45 @@ namespace ManPowerWeb
 
                 if (i.IsApproved == 0)
                 {
-                    butonA.Visible = true;
-                    butonR.Visible = true;
 
                     approval.Text = "Not Recommended";
                 }
                 else if (i.IsApproved == 1)
                 {
-                    approval.Text = "Pending Approval";
+                    approval.Text = "Pending Recommendation To Transport Officer";
+                    butonA.Visible = true;
+                    butonR.Visible = true;
                 }
 
                 else if (i.IsApproved == 2)
                 {
-                    approval.Text = "Request Approved";
+                    approval.Text = "Pending Recommendation To Assistant Director";
                 }
 
                 else if (i.IsApproved == 3)
                 {
-                    approval.Text = "Request Rejected";
+                    approval.Text = "Pending Approval To Director";
+                }
+
+                else if (i.IsApproved == 4)
+                {
+                    approval.Text = "Request Approved";
+                }
+
+                else if (i.IsApproved == 5)
+                {
+                    approval.Text = "Request Rejected By TO";
+                }
+
+                else if (i.IsApproved == 6)
+                {
+                    approval.Text = "Request Rejected By AD";
+                }
+
+
+                else if (i.IsApproved == 7)
+                {
+                    approval.Text = "Request Rejected By Director";
                 }
 
 
@@ -131,12 +155,17 @@ namespace ManPowerWeb
             string fileNo = txtFielNo.Text;
 
 
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUsersobj = systemUserController.GetAllSystemUser(false, false, false).Where(u => u.UserTypeId != 3 && u.DesignationId == 34).Single();
+
+
+
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 1, fileNo, Convert.ToInt32(Session["UserId"]), "");
+            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 2, fileNo, systemUsersobj.EmpNumber, "");
 
             if (result == 1)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Sending to Approval..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecomand.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Sending to Recommendation to Assitant Director..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecomand.aspx'},2500);", true);
             }
             else
             {
@@ -151,8 +180,11 @@ namespace ManPowerWeb
             string id = Request.QueryString["id"];
             string fileNo = txtFielNo.Text;
 
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUsersobj = systemUserController.GetAllSystemUser(false, false, false).Where(u => u.UserTypeId != 3 && u.DesignationId == 34).Single();
+
             VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 3, fileNo, Convert.ToInt32(Session["UserId"]), rejectReason.Text);
+            int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 5, fileNo, systemUsersobj.EmpNumber, rejectReason.Text);
 
             if (result == 1)
             {

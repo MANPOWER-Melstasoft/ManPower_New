@@ -171,6 +171,7 @@
     <Content Include="PlanningRecommendation1.aspx" />
     <Content Include="PlanningRecommendation2.aspx" />
     <Content Include="PositionTransfer.aspx" />
+    <Content Include="RecommendationLapsedLeave.aspx" />
     <Content Include="RecommendationLeave.aspx" />
     <Content Include="RecommendationLeaveView.aspx" />
     <Content Include="RecommendationTrainingRequest.aspx" />
@@ -2428,6 +2429,13 @@
     </Compile>
     <Compile Include="PositionTransfer.aspx.designer.cs">
       <DependentUpon>PositionTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeave.aspx.cs">
+      <DependentUpon>RecommendationLapsedLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeave.aspx.designer.cs">
+      <DependentUpon>RecommendationLapsedLeave.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecommendationLeave.aspx.cs">
       <DependentUpon>RecommendationLeave.aspx</DependentUpon>

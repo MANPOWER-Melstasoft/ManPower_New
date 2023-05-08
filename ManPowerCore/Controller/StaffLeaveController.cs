@@ -21,6 +21,8 @@ namespace ManPowerCore.Controller
 
         int updateStaffLeaves(StaffLeave staffLeave);
 
+        int updateStaffLeaveRecommendation(StaffLeave staffLeave);
+
         int updateStaffLeavesSubmit(StaffLeave staffLeave);
 
         StaffLeave getStaffLeaveById(int id);
@@ -166,30 +168,23 @@ namespace ManPowerCore.Controller
 
         public int updateStaffLeaves(StaffLeave staffLeave)
         {
-
             try
             {
                 dBConnection = new DBConnection();
-
                 StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
 
-                if (staffLeave.LeaveStatusId == 2)
+                if (staffLeave.LeaveStatusId == 3 || staffLeave.LeaveStatusId == 7)
                 {
                     return staffLeaveDAO.updateStaffLeaveRecommendation(staffLeave, dBConnection);
-
                 }
                 else if (staffLeave.LeaveStatusId == -1)
                 {
                     return staffLeaveDAO.updateStaffLeaveReject(staffLeave, dBConnection);
-
                 }
                 else
                 {
                     return staffLeaveDAO.updateStaffLeave(staffLeave, dBConnection);
-
                 }
-
-
             }
             catch (Exception)
             {
@@ -203,6 +198,25 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public int updateStaffLeaveRecommendation(StaffLeave staffLeave)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
+                return staffLeaveDAO.updateStaffLeaveRecommendation(staffLeave, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
 
         public int updateStaffLeavesSubmit(StaffLeave staffLeave)
         {

@@ -9,15 +9,13 @@
             <h2>Leave Recommendation</h2>
 
             <div class="row mt-3">
+
                 <div class="col-6">
                     <div class="row mb-3 ms-1">
-
                         <div class="col-sm-6">
-
                             <asp:Literal ID="Literal3" runat="server" Text="Date Of Commencing Leave"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-
                             <asp:TextBox runat="server" ID="txtDateCommencing" CssClass="form-control form-control-user" Enabled="false">
                             </asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtDateCommencing" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
@@ -25,13 +23,10 @@
 
                     </div>
                     <div class="row mb-3 ms-1">
-
                         <div class="col-sm-6">
-
                             <asp:Literal ID="Literal4" runat="server" Text="Number Of Dates"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-
                             <asp:TextBox runat="server" ID="txtNoOfDates" CssClass="form-control form-control-user" TextMode="Number" min="0" Enabled="false">
                             </asp:TextBox>
                             <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtNoOfDates" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
@@ -41,37 +36,26 @@
                     </div>
 
                     <div class="row mb-3 ms-1">
-
                         <div class="col-sm-6">
-
                             <asp:Literal ID="Literal1" runat="server" Text="Date of Resuming"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-
                             <asp:TextBox runat="server" ID="txtDateResuming" CssClass="form-control form-control-user" Enabled="false">
                             </asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtDateResuming" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-
                         </div>
-
                     </div>
                     <div class="row mb-3 ms-1">
-
                         <div class="col-sm-6">
-
                             <asp:Literal ID="Literal2" runat="server" Text="Leave Type"></asp:Literal>
                         </div>
                         <div class="col-md-6">
                             <asp:DropDownList runat="server" ID="ddlLeaveType" CssClass="form-control form-control-user" Enabled="false">
                             </asp:DropDownList>
-
                         </div>
                     </div>
-
                     <div class="row mb-3 ms-1">
-
                         <div class="col-sm-6">
-
                             <asp:Literal ID="Literal6" runat="server" Text="Day Type"></asp:Literal>
                         </div>
                         <div class="col-md-6">
@@ -80,46 +64,20 @@
                                 <asp:ListItem Value="2">Evening-Half</asp:ListItem>
                                 <asp:ListItem Value="3">Full Day</asp:ListItem>
                             </asp:DropDownList>
-
                         </div>
-
                     </div>
                     <div class="row mb-3 ms-1">
-
                         <div class="col-sm-6">
-
                             <asp:Literal ID="Literal5" runat="server" Text="Reason for Leave"></asp:Literal>
                         </div>
                         <div class="col-md-6">
-
                             <asp:TextBox runat="server" ID="txtLeaveReason" CssClass="form-control form-control-user" TextMode="MultiLine" Enabled="false">
                             </asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="txtLeaveReason" runat="server" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="1">*</asp:RequiredFieldValidator>
-
-
                         </div>
-
                     </div>
-
-                    <div class="row mb-3 ms-1">
-
-
-                        <div class="col-sm-2">
-                            <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary" OnClick="btnBack_Click" BackColor="#212529" BorderColor="#212529" />
-                        </div>
-                        <div class="col-sm-2">
-                            <button runat="server" id="btnModalReject" type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
-                        </div>
-                        <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnApprove" Text="Send To Approval" CssClass="btn btn-primary" OnClick="btnApprove_Click" />
-                        </div>
-                        <div class="col-sm-4">
-                            <asp:Button runat="server" ID="btnViewLeave" Text="View Leave Balance" CssClass="btn btn-success btn-user btn-block" OnClick="btnViewLeave_Click" />
-                        </div>
-
-                    </div>
-
                 </div>
+
                 <div class="col-5 ml-5">
 
                     <div class="table-responsive">
@@ -139,6 +97,22 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="row mb-3 ms-1">
+
+                <div class="col-sm-1">
+                    <asp:Button runat="server" ID="btnBack" Text="Back" CssClass="btn btn-primary" OnClick="btnBack_Click" BackColor="#212529" BorderColor="#212529" />
+                </div>
+                <div class="col-sm-1">
+                    <button runat="server" id="btnModalReject" type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModalCenter">Reject</button>
+                </div>
+                <div class="col-sm-4">
+                    <asp:Button runat="server" ID="btnApprove" Text="Send To Approval" CssClass="btn btn-primary" OnClick="btnApprove_Click" />
+                </div>
+                <div class="col-sm-3">
+                    <asp:Button runat="server" ID="btnViewLeave" Text="View Leave Balance" CssClass="btn btn-success btn-user btn-block" OnClick="btnViewLeave_Click" />
+                </div>
+
             </div>
         </div>
     </div>

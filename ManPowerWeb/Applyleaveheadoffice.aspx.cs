@@ -171,6 +171,11 @@ namespace ManPowerWeb
             staffLeave.documents = staffLeaveDocuments;
             staffLeave.LeaveStatusId = 2;
 
+            if (staffLeave.LeaveTypeId == 7)
+            {
+                staffLeave.LeaveStatusId = 6;
+            }
+
             if (validation)
             {
                 response = staffLeaveController.saveStaffLeave(staffLeave);

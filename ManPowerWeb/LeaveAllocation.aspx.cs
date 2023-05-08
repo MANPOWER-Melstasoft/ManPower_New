@@ -51,43 +51,68 @@ namespace ManPowerWeb
 
         protected void btnSaveLeaveAllocation_Click(object sender, EventArgs e)
         {
-            StaffLeaveAllocationController staffLeaveAllocationController = ControllerFactory.CreateStaffLeaveAllocationController();
-            StaffLeaveAllocation staffLeaveAllocation = new StaffLeaveAllocation();
-
-
-            staffLeaveAllocation.EmployeesID = Convert.ToInt32(ddlStaff.SelectedValue);
-            staffLeaveAllocation.Entitlement = txtEntitlement.Text;
-            staffLeaveAllocation.LeaveYear = DateTime.Today.Year;
-            staffLeaveAllocation.LeaveTypeId = Convert.ToInt32(ddlLeaveType.SelectedValue);
-            // staffLeaveAllocation.NoOfDays = 10;
-            if (txtPerMontLimit.Text != "")
+            if (checkExists())
             {
-                staffLeaveAllocation.MonthLimit = float.Parse(txtPerMontLimit.Text);
+                StaffLeaveAllocationController staffLeaveAllocationController = ControllerFactory.CreateStaffLeaveAllocationController();
+                StaffLeaveAllocation staffLeaveAllocation = new StaffLeaveAllocation();
+
+
+                staffLeaveAllocation.EmployeesID = Convert.ToInt32(ddlStaff.SelectedValue);
+                staffLeaveAllocation.Entitlement = txtEntitlement.Text;
+                staffLeaveAllocation.LeaveYear = DateTime.Today.Year;
+                staffLeaveAllocation.LeaveTypeId = Convert.ToInt32(ddlLeaveType.SelectedValue);
+                // staffLeaveAllocation.NoOfDays = 10;
+                if (txtPerMontLimit.Text != "")
+                {
+                    staffLeaveAllocation.MonthLimit = float.Parse(txtPerMontLimit.Text);
+                }
+                else
+                {
+                    staffLeaveAllocation.MonthLimit = 0;
+                }
+                if (txtAppliedTo.Text != "")
+                {
+                    staffLeaveAllocation.MonthLimitAppliedTo = DateTime.Parse(txtAppliedTo.Text);
+                }
+
+                int response = staffLeaveAllocationController.saveStaffLeaveAllocation(staffLeaveAllocation);
+
+                if (response != 0)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Allocated !', 'success');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
+                    //Response.Redirect(Request.RawUrl);
+
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
+
+                }
             }
             else
             {
-                staffLeaveAllocation.MonthLimit = 0;
-            }
-            if (txtAppliedTo.Text != "")
-            {
-                staffLeaveAllocation.MonthLimitAppliedTo = DateTime.Parse(txtAppliedTo.Text);
-            }
-
-            int response = staffLeaveAllocationController.saveStaffLeaveAllocation(staffLeaveAllocation);
-
-            if (response != 0)
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Allocated !', 'success');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
-                //Response.Redirect(Request.RawUrl);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Already Allocated!', 'error')", true);
 
             }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='LeaveAllocation.aspx'},2500);", true);
-
-            }
-
 
         }
+
+        private bool checkExists()
+        {
+            int year = DateTime.Today.Year;
+            StaffLeaveAllocationController staffLeaveAllocationController = ControllerFactory.CreateStaffLeaveAllocationController();
+            List<StaffLeaveAllocation> staffLeaveAllocation = staffLeaveAllocationController.getLeaveAllocation(year, Convert.ToInt32(ddlLeaveType.SelectedValue), Convert.ToInt32(ddlStaff.SelectedValue));
+
+            if (staffLeaveAllocation.Count > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
     }
 }

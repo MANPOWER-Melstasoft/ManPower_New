@@ -67,6 +67,7 @@ namespace ManPowerCore.Domain
 
         public DepartmentUnit district { get; set; }
 
+        public List<StaffLeaveDocuments> documents { get; set; }
 
     }
 }

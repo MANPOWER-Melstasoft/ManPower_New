@@ -32,8 +32,9 @@ namespace ManPowerWeb
 
         private void bindData()
         {
+            int year = DateTime.Today.Year;
             ReportController reportController = ControllerFactory.CreateReportController();
-            leaveListFromTable = reportController.GetLeaveBalanceByEmployeeId(employeId);
+            leaveListFromTable = reportController.GetLeaveBalanceEmpAndYear(employeId, year);
 
             gvLeaveBalance.DataSource = leaveListFromTable;
             double sumEntiletment = 0;
@@ -61,8 +62,11 @@ namespace ManPowerWeb
 
         private void bindDataPre()
         {
+            int year = DateTime.Today.Year;
+            year--;
+
             ReportController reportController = ControllerFactory.CreateReportController();
-            leaveListFromTable = reportController.GetLeaveBalanceByEmployeeId(employeId);
+            leaveListFromTable = reportController.GetLeaveBalanceEmpAndYear(employeId, year);
 
             gvPreLeave.DataSource = leaveListFromTable;
             double sumEntiletment = 0;

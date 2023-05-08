@@ -12,7 +12,7 @@ namespace ManPowerWeb
 {
     public partial class LeaveForm : System.Web.UI.Page
     {
-        List<LeaveType> leavesTypeList = new List<LeaveType>();
+        static List<LeaveType> leavesTypeList = new List<LeaveType>();
         List<HolidaySheet> holidaySheetsList = new List<HolidaySheet>();
         static List<StaffLeave> staffLeavesList = new List<StaffLeave>();
         List<StaffLeaveAllocation> staffLeaveAllocationsList = new List<StaffLeaveAllocation>();
@@ -83,6 +83,26 @@ namespace ManPowerWeb
             txtLeaveId.Text = staffLeave.StaffLeaveId.ToString();
             txtxEmpId.Text = staffLeave.EmployeeId.ToString();
             lblListOfUploadedFiles.Text = staffLeave.LeaveDocument;
+
+            bindData();
+
+            int year = DateTime.Today.Year;
+            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+
+            decimal casual = staffLeaveController.getRemainLeaveByEmpAndYear(staffLeave.EmployeeId, year, 1);
+            decimal medical = staffLeaveController.getRemainLeaveByEmpAndYear(staffLeave.EmployeeId, year, 2);
+            decimal lapsed = staffLeaveController.getRemainLeaveByEmpAndYear(staffLeave.EmployeeId, year, 7);
+
+            if (casual <= 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 1); }
+            if (medical <= 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 2); }
+            if (lapsed <= 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 7); }
+            if (casual > 0 || medical > 0) { leavesTypeList.RemoveAll(x => x.LeaveTypeId == 7); }
+
+            ddlLeaveType.DataSource = leavesTypeList;
+            ddlLeaveType.DataValueField = "LeaveTypeId";
+            ddlLeaveType.DataTextField = "Name";
+            ddlLeaveType.DataBind();
+            ddlLeaveType.Items.Insert(0, new ListItem("Select Leave Type", ""));
         }
 
         protected void btnApplyLeave_Click(object sender, EventArgs e)

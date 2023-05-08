@@ -85,6 +85,7 @@
     <Compile Include="Controller\EntrepreneurController.cs" />
     <Compile Include="Controller\EthnicityController.cs" />
     <Compile Include="Controller\FuelDetailsController.cs" />
+    <Compile Include="Controller\FuelTypeController.cs" />
     <Compile Include="Controller\GuarantorDetailController.cs" />
     <Compile Include="Controller\HolidaySheetController.cs" />
     <Compile Include="Controller\individualBeneReportController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\StaffLeaveAllocationController.cs" />
     <Compile Include="Controller\StaffLeaveController.cs" />
+    <Compile Include="Controller\staffLeaveDocumentsController.cs" />
     <Compile Include="Controller\SupplierController.cs" />
     <Compile Include="Controller\SupplierTypeController.cs" />
     <Compile Include="Controller\SystemUserController.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Controller\TrainingRequestsController.cs" />
     <Compile Include="Controller\TransferController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationMainController.cs" />
+    <Compile Include="Controller\TransfersRetirementResignationMainDocumentController.cs" />
     <Compile Include="Controller\TransfersRetirementResignationStatusController.cs" />
     <Compile Include="Controller\TransferTypeController.cs" />
     <Compile Include="Controller\UserRegistrationController.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Domain\DistressLoan.cs" />
     <Compile Include="Domain\EmployeeDetailsFromProgramPlan.cs" />
     <Compile Include="Domain\FuelDetailsDomain.cs" />
+    <Compile Include="Domain\FuelType.cs" />
     <Compile Include="Domain\GuarantorDetail.cs" />
     <Compile Include="Domain\IndividualBeneReport.cs" />
     <Compile Include="Domain\LoanDetail.cs" />
@@ -195,12 +199,14 @@
     <Compile Include="Domain\RequestorGuarantor.cs" />
     <Compile Include="Domain\SalaryIncrement.cs" />
     <Compile Include="Domain\SalaryIncrementStatus.cs" />
+    <Compile Include="Domain\StaffLeaveDocuments.cs" />
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
     <Compile Include="Domain\TrainingMainAttachment.cs" />
     <Compile Include="Domain\TrainingRequests.cs" />
     <Compile Include="Domain\TrainingRequestsAttachment.cs" />
+    <Compile Include="Domain\TransfersRetirementResignationMainDocuments.cs" />
     <Compile Include="Domain\VoucherDetail.cs" />
     <Compile Include="Domain\VoucherStatus.cs" />
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
@@ -306,6 +312,7 @@
     <Compile Include="Infrastructure\EntrepreneurDAO.cs" />
     <Compile Include="Infrastructure\EthnicityDAO.cs" />
     <Compile Include="Infrastructure\FuelDetailsDAO.cs" />
+    <Compile Include="Infrastructure\FuelTypeDAO.cs" />
     <Compile Include="Infrastructure\GuarantorDetailDAO.cs" />
     <Compile Include="Infrastructure\HolidaySheetDAO.cs" />
     <Compile Include="Infrastructure\IndividualBeneReportDAO.cs" />
@@ -350,6 +357,7 @@
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveDAO.cs" />
+    <Compile Include="Infrastructure\StaffLeaveDocumentsDAO.cs" />
     <Compile Include="Infrastructure\SupplierDAO.cs" />
     <Compile Include="Infrastructure\SupplierTypeDAO.cs" />
     <Compile Include="Infrastructure\SystemUserDAO.cs" />
@@ -366,6 +374,7 @@
     <Compile Include="Infrastructure\TrainingRequestsDAO.cs" />
     <Compile Include="Infrastructure\TransferDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationMainDAO.cs" />
+    <Compile Include="Infrastructure\TransfersRetirementResignationMainDocumentDAO.cs" />
     <Compile Include="Infrastructure\TransfersRetirementResignationStatusDAO.cs" />
     <Compile Include="Infrastructure\TransferTypeDAO.cs" />
     <Compile Include="Infrastructure\UserRegistrationDAO.cs" />

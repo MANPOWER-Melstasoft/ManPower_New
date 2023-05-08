@@ -39,48 +39,39 @@ namespace ManPowerWeb
             ddlCategory.DataTextField = "MaintenanceCategoryName";
             ddlCategory.DataValueField = "MaintenanceCategoryId";
             ddlCategory.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-- Select --", ""));
 
+            searchList = vehicleMeintenances.Where(x => x.RecomandBy == Convert.ToInt32(Session["EmpNumber"]) && x.IsApproved > 0).ToList();
 
-
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 1 && u.RecomandBy == Convert.ToInt32(Session["UserId"])))
-            {
-                searchList.Add(i);
-            }
-
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 3 && u.RecomandBy == Convert.ToInt32(Session["UserId"])))
-            {
-                searchList.Add(i);
-            }
-
-            foreach (var i in vehicleMeintenances.Where(u => u.IsApproved == 0))
-            {
-                searchList.Add(i);
-            }
 
             ViewState["searchList"] = searchList;
             GridView1.DataSource = searchList;
             GridView1.DataBind();
+
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            UserSearchList = (List<VehicleMeintenance>)ViewState["searchList"];
 
-            if (date.Text == "")
+
+            if (ddlCategory.SelectedValue != "")
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Please Enter a Date to proceed');", true);
+                UserSearchList = UserSearchList.Where(x => x.CategoryId == Convert.ToInt32(ddlCategory.SelectedValue)).ToList();
             }
-            else
+
+            if (date.Text != "")
             {
-                DateTime searchDate = Convert.ToDateTime(date.Text);
-                UserSearchList = (List<VehicleMeintenance>)ViewState["searchList"];
-                GridView1.DataSource = UserSearchList.Where(u => u.RequestDate.Date == searchDate.Date && u.CategoryId == int.Parse(ddlCategory.SelectedValue));
-                GridView1.DataBind();
+                UserSearchList = UserSearchList.Where(u => u.RequestDate.Date == DateTime.Parse(date.Text)).ToList();
             }
+            GridView1.DataSource = UserSearchList;
+            GridView1.DataBind();
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-
+            ddlCategory.ClearSelection();
+            date.Text = null;
         }
 
     }

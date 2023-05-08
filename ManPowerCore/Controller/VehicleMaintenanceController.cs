@@ -16,6 +16,7 @@ namespace ManPowerCore.Controller
         int UpdateApprovalStatus(int id, int approvalStatus, int officerID, string reason);
 
         int UpdateRecommandationStatus(int id, int approvalStatus, int officerID, string reason);
+        int UpdateRecommandationStatus(int id, int approvalStatus, string FileNo, int officerID, string reason);
 
         List<VehicleMeintenance> GetAllVehicleMeintenance();
     }
@@ -87,6 +88,25 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public int UpdateRecommandationStatus(int id, int approvalStatus, string FileNo, int officerID, string reason)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                int result = vehicleMaintenanceDAO.UpdateRecommandationADStatus(id, approvalStatus, FileNo, officerID, reason, dBConnection);
+                return result;
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                return 0;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
         public List<VehicleMeintenance> GetAllVehicleMeintenance()
         {
             DBConnection dbConnection = new DBConnection();

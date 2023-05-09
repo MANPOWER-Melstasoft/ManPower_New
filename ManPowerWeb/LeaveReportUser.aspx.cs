@@ -11,8 +11,9 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class LeaveReportAll : System.Web.UI.Page
+    public partial class LeaveReportUser : System.Web.UI.Page
     {
+        static int Id;
         static List<StaffLeave> StaffLeaveList = new List<StaffLeave>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,10 +22,13 @@ namespace ManPowerWeb
 
             if (!IsPostBack)
             {
+                Id = Convert.ToInt32(Session["EmpNumber"]);
                 BindDataSource();
-            }
+                lblEmpId.Text = Id.ToString();
 
+            }
         }
+
 
         public void BindDataSource()
         {
@@ -36,7 +40,7 @@ namespace ManPowerWeb
 
             try
             {
-                StaffLeaveList = StaffLeaveList.Where(x => x.LeaveStatusId == 4).ToList();
+                StaffLeaveList = StaffLeaveList.Where(x => x.LeaveStatusId == 4 && x.EmployeeId == Id).ToList();
 
                 //foreach (var item in StaffLeaveList)
                 //{

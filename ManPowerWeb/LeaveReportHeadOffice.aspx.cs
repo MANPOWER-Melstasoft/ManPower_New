@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class LeaveReportAll : System.Web.UI.Page
+    public partial class LeaveReportHeadOffice : System.Web.UI.Page
     {
         static List<StaffLeave> StaffLeaveList = new List<StaffLeave>();
 
@@ -23,7 +23,6 @@ namespace ManPowerWeb
             {
                 BindDataSource();
             }
-
         }
 
         public void BindDataSource()
@@ -36,7 +35,7 @@ namespace ManPowerWeb
 
             try
             {
-                StaffLeaveList = StaffLeaveList.Where(x => x.LeaveStatusId == 4).ToList();
+                StaffLeaveList = StaffLeaveList.Where(x => x.LeaveStatusId == 4 && x._EMployeeDetails.UnitType == 1).ToList();
 
                 //foreach (var item in StaffLeaveList)
                 //{
@@ -90,6 +89,5 @@ namespace ManPowerWeb
             Response.Write(strwritter.ToString());
             Response.End();
         }
-
     }
 }

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class RecommendationLeaveView : System.Web.UI.Page
+    public partial class RecommendationLapsedLeaveView : System.Web.UI.Page
     {
         static StaffLeave staffLeave = new StaffLeave();
         List<LeaveType> leavesTypeList = new List<LeaveType>();
@@ -53,24 +53,34 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-            if (staffLeave.LeaveStatusId == 6)
+            if (staffLeave.LeaveStatusId == 7)
             {
                 btnModalReject.Visible = true;
-                btnApprove.Text = "Send To Recommendation Admin Clerk";
+                btnApprove.Text = "Send to Recommendation Assistance Director";
+                btnApprove.Visible = true;
+            }
+            else if (staffLeave.LeaveStatusId == 8)
+            {
+                btnModalReject.Visible = true;
+                btnApprove.Text = "Send to Recommendation Director";
+                btnApprove.Visible = true;
+            }
+            else if (staffLeave.LeaveStatusId == 9)
+            {
+                btnModalReject.Visible = true;
+                btnApprove.Text = "Send to Recommendation DG";
+                btnApprove.Visible = true;
+            }
+            else if (staffLeave.LeaveStatusId == 10)
+            {
+                btnModalReject.Visible = true;
+                btnApprove.Text = "Send to Approval";
                 btnApprove.Visible = true;
             }
             else
             {
-                if (staffLeave.LeaveStatusId == 2)
-                {
-                    btnApprove.Visible = true;
-                    btnModalReject.Visible = true;
-                }
-                else
-                {
-                    btnApprove.Visible = false;
-                    btnModalReject.Visible = false;
-                }
+                btnModalReject.Visible = false;
+                btnApprove.Visible = false;
             }
 
             staffLeaveDocumentsController staffLeaveDocumentsController = ControllerFactory.CreateStaffLeaveDocumentsController();
@@ -94,13 +104,26 @@ namespace ManPowerWeb
             staffLeaveNew.RecommendedBy = Convert.ToInt32(Session["UserId"]);
             staffLeaveNew.RecomennededDate = DateTime.Now;
             staffLeaveNew.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
-            staffLeaveNew.LeaveStatusId = 3;
+            //staffLeaveNew.LeaveStatusId = 3;
             staffLeaveNew.RejectReason = "";
 
-            if (staffLeave.LeaveTypeId == 7)
+            if (staffLeave.LeaveStatusId == 7)
             {
-                staffLeaveNew.LeaveStatusId = 7;
+                staffLeaveNew.LeaveStatusId = 8;
             }
+            else if (staffLeave.LeaveStatusId == 8)
+            {
+                staffLeaveNew.LeaveStatusId = 9;
+            }
+            else if (staffLeave.LeaveStatusId == 9)
+            {
+                staffLeaveNew.LeaveStatusId = 10;
+            }
+            else if (staffLeave.LeaveStatusId == 10)
+            {
+                staffLeaveNew.LeaveStatusId = 3;
+            }
+
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 
@@ -108,11 +131,11 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Sent To Approval!', 'success');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Sent To Recommendation!', 'success');window.setTimeout(function(){window.location='RecommendationLapsedLeave.aspx'},2500);", true);
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='RecommendationLapsedLeave.aspx'},2500);", true);
 
 
             }
@@ -135,20 +158,21 @@ namespace ManPowerWeb
 
             if (response != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Succesfully Rejected!', 'success');window.setTimeout(function(){window.location='RecommendationLapsedLeave.aspx'},2500);", true);
 
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='RecommendationLeave.aspx'},2500);", true);
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Failed!', 'Something Went Wrong!', 'error');window.setTimeout(function(){window.location='RecommendationLapsedLeave.aspx'},2500);", true);
 
             }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RecommendationLeave.aspx");
+            Response.Redirect("RecommendationLapsedLeave.aspx");
 
         }
+
     }
 }

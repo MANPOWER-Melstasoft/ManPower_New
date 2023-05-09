@@ -154,6 +154,10 @@
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LeaveForm.aspx" />
     <Content Include="LeaveReportAll.aspx" />
+    <Content Include="LeaveReportDistrictDs.aspx" />
+    <Content Include="LeaveReportHeadOffice.aspx" />
+    <Content Include="LeaveReportUser.aspx" />
+    <Content Include="LeaveReportView.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
@@ -171,6 +175,8 @@
     <Content Include="PlanningRecommendation1.aspx" />
     <Content Include="PlanningRecommendation2.aspx" />
     <Content Include="PositionTransfer.aspx" />
+    <Content Include="RecommendationLapsedLeave.aspx" />
+    <Content Include="RecommendationLapsedLeaveView.aspx" />
     <Content Include="RecommendationLeave.aspx" />
     <Content Include="RecommendationLeaveView.aspx" />
     <Content Include="RecommendationTrainingRequest.aspx" />
@@ -2310,6 +2316,34 @@
     <Compile Include="LeaveReportAll.aspx.designer.cs">
       <DependentUpon>LeaveReportAll.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LeaveReportDistrictDs.aspx.cs">
+      <DependentUpon>LeaveReportDistrictDs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportDistrictDs.aspx.designer.cs">
+      <DependentUpon>LeaveReportDistrictDs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportHeadOffice.aspx.cs">
+      <DependentUpon>LeaveReportHeadOffice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportHeadOffice.aspx.designer.cs">
+      <DependentUpon>LeaveReportHeadOffice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportUser.aspx.cs">
+      <DependentUpon>LeaveReportUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportUser.aspx.designer.cs">
+      <DependentUpon>LeaveReportUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportView.aspx.cs">
+      <DependentUpon>LeaveReportView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportView.aspx.designer.cs">
+      <DependentUpon>LeaveReportView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoanReport.aspx.cs">
       <DependentUpon>LoanReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2428,6 +2462,20 @@
     </Compile>
     <Compile Include="PositionTransfer.aspx.designer.cs">
       <DependentUpon>PositionTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeave.aspx.cs">
+      <DependentUpon>RecommendationLapsedLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeave.aspx.designer.cs">
+      <DependentUpon>RecommendationLapsedLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeaveView.aspx.cs">
+      <DependentUpon>RecommendationLapsedLeaveView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeaveView.aspx.designer.cs">
+      <DependentUpon>RecommendationLapsedLeaveView.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecommendationLeave.aspx.cs">
       <DependentUpon>RecommendationLeave.aspx</DependentUpon>

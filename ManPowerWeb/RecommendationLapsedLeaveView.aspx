@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RecommendationLeaveView.aspx.cs" Inherits="ManPowerWeb.RecommendationLeaveView" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RecommendationLapsedLeaveView.aspx.cs" Inherits="ManPowerWeb.RecommendationLapsedLeaveView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card p-4">
@@ -148,4 +149,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

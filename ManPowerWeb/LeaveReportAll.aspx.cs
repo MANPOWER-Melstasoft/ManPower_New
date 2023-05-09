@@ -29,7 +29,7 @@ namespace ManPowerWeb
         public void BindDataSource()
         {
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-            StaffLeaveList = staffLeaveController.getStaffLeaves(true);
+            StaffLeaveList = staffLeaveController.getStaffLeavesSummary(true);
 
             LeaveTypeController leaveTypeController = ControllerFactory.CreateLeaveTypeController();
             List<LeaveType> LeaveTypeList = leaveTypeController.GetAllLeaveTypes();
@@ -38,10 +38,10 @@ namespace ManPowerWeb
             {
                 StaffLeaveList = StaffLeaveList.Where(x => x.LeaveStatusId == 4).ToList();
 
-                foreach (var item in StaffLeaveList)
-                {
-                    item.leaveType = LeaveTypeList.Where(x => x.LeaveTypeId == item.LeaveTypeId).Single();
-                }
+                //foreach (var item in StaffLeaveList)
+                //{
+                //    item.leaveType = LeaveTypeList.Where(x => x.LeaveTypeId == item.LeaveTypeId).Single();
+                //}
 
             }
             catch (Exception ex)

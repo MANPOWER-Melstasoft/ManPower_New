@@ -15,6 +15,20 @@
 
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
+                    <asp:BoundField DataField="_EMployeeDetails.EmployeeId" HeaderText="Employee Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="_EMployeeDetails.NameWithInitials" HeaderText="Employee Name" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="district.Name" HeaderText="District" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="dsDivition.Name" HeaderText="DS Divition" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="NoOfLeaves" HeaderText="No Of Leaves" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+
+                </Columns>
+            </asp:GridView>
+
+            <%--<asp:GridView ID="gvLeaveReport" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
+                CellPadding="4" ForeColor="#333333" GridLines="None">
+
+                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                <Columns>
                     <asp:BoundField DataField="StaffLeaveId" HeaderText="Id" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Day Type" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
@@ -29,14 +43,14 @@
                     <asp:BoundField DataField="NoOfLeaves" HeaderText="No Of Leaves" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="FromTime" HeaderText="From Time" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="ToTime" HeaderText="To Time" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
-                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Is Hal fDay" HeaderStyle-CssClass="table-dark">
+                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Is Half Day" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
                             <asp:Label runat="server" Visible='<%#Eval("IsHalfDay").ToString() == "1" ?true:false %>' Text="Yes" ForeColor="Blue"> </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("IsHalfDay").ToString() == "0" ?true:false %>' Text="No" ForeColor="Green"> </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-            </asp:GridView>
+            </asp:GridView>--%>
         </div>
         <div style="margin-bottom: 40px; margin-left: 20px; margin-top: 20px;">
             <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success" title="Export To Excel">

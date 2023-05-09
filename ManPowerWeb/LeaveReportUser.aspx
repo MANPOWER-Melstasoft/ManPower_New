@@ -1,13 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LeaveReportAll.aspx.cs" Inherits="ManPowerWeb.LeaveReportAll" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LeaveReportUser.aspx.cs" Inherits="ManPowerWeb.LeaveReportUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card">
 
-        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Leave Report All</h2>
+        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Leave Report Emp -
+            <asp:Label ID="lblEmpId" runat="server" Text="Label"></asp:Label></h2>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">
 
             <asp:GridView ID="gvLeaveReport" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
@@ -38,5 +38,4 @@
 
         </div>
     </div>
-
 </asp:Content>

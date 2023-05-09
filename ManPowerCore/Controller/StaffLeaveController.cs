@@ -138,6 +138,11 @@ namespace ManPowerCore.Controller
                     {
                         items._EMployeeDetails = employeeDAO.GetEmployeeById(items.EmployeeId, dBConnection);
                         items.systemUser = systemUserDAO.CheckEmpNumberExists(items.EmployeeId, dBConnection);
+                        if (items.LeaveStatusId == 4)
+                        {
+                            items.recommendUser = systemUserDAO.GetSystemUser(items.RecommendedBy, dBConnection);
+                            items.approveUser = systemUserDAO.GetSystemUser(items.ApprovedBy, dBConnection);
+                        }
                         items.district = departmentUnitDAO.GetDepartmentUnit(items._EMployeeDetails.DistrictId, dBConnection);
                         if (items._EMployeeDetails.UnitType == 3)
                         {

@@ -1,18 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LeaveReportAll.aspx.cs" Inherits="ManPowerWeb.LeaveReportAll" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LeaveReportDistrictDs.aspx.cs" Inherits="ManPowerWeb.LeaveReportDistrictDs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="card">
 
-        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Leave Report All</h2>
+        <h2 style="text-align: center; margin-bottom: 40px; margin-top: 30px;">Leave Report District & DS Division</h2>
         <div cssclass="table-responsive" style="margin-right: 20px; margin-left: 20px; text-align: center">
 
             <asp:GridView ID="gvLeaveReport" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False"
-                CellPadding="4" ForeColor="#333333" GridLines="None" ShowHeaderWhenEmpty="true" EmptyDataRowStyle-HorizontalAlign="Center"
-                EmptyDataRowStyle-Font-Bold="true" EmptyDataRowStyle-Font-Size="Larger">
+                CellPadding="4" ForeColor="#333333" GridLines="None">
 
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
@@ -27,7 +25,6 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
-                <EmptyDataTemplate>No records</EmptyDataTemplate>
             </asp:GridView>
 
         </div>
@@ -38,5 +35,4 @@
 
         </div>
     </div>
-
 </asp:Content>

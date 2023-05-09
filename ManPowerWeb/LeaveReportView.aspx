@@ -30,6 +30,8 @@
                     <asp:BoundField DataField="NoOfLeaves" HeaderText="No Of Leaves" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="FromTime" HeaderText="From Time" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:BoundField DataField="ToTime" HeaderText="To Time" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="recommendUser.Name" HeaderText="Recommend By" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
+                    <asp:BoundField DataField="approveUser.Name" HeaderText="Approved By" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />
                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Is Half Day" HeaderStyle-CssClass="table-dark">
                         <ItemTemplate>
                             <asp:Label runat="server" Visible='<%#Eval("IsHalfDay").ToString() == "1" ?true:false %>' Text="Yes" ForeColor="Blue"> </asp:Label>

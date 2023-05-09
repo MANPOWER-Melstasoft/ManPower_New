@@ -255,11 +255,12 @@ namespace ManPowerCore.Controller
                 dBConnection = new DBConnection();
                 StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
 
-                if (staffLeave.LeaveStatusId == 3 || staffLeave.LeaveStatusId == 7)
+                if (staffLeave.LeaveStatusId == 3 || staffLeave.LeaveStatusId == 7 || staffLeave.LeaveStatusId == 8
+                    || staffLeave.LeaveStatusId == 9 || staffLeave.LeaveStatusId == 10)
                 {
                     return staffLeaveDAO.updateStaffLeaveRecommendation(staffLeave, dBConnection);
                 }
-                else if (staffLeave.LeaveStatusId == -1)
+                else if (staffLeave.LeaveStatusId == 5)
                 {
                     return staffLeaveDAO.updateStaffLeaveReject(staffLeave, dBConnection);
                 }

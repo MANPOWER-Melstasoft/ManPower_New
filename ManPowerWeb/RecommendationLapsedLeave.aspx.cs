@@ -82,7 +82,7 @@ namespace ManPowerWeb
             //StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
             //staffLeaveList = staffLeaveController.getStaffLeaves(true);
 
-            Response.Redirect("RecommendationLeaveView.aspx?EmpId=" + staffLeaveList[rowIndex].EmployeeId.ToString() + "&Id=" + staffLeaveList[rowIndex].StaffLeaveId);
+            Response.Redirect("RecommendationLapsedLeaveView.aspx?EmpId=" + staffLeaveList[rowIndex].EmployeeId.ToString() + "&Id=" + staffLeaveList[rowIndex].StaffLeaveId);
 
 
         }

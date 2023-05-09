@@ -154,6 +154,7 @@
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LeaveForm.aspx" />
     <Content Include="LeaveReportAll.aspx" />
+    <Content Include="LeaveReportView.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
@@ -2310,6 +2311,13 @@
     </Compile>
     <Compile Include="LeaveReportAll.aspx.designer.cs">
       <DependentUpon>LeaveReportAll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportView.aspx.cs">
+      <DependentUpon>LeaveReportView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportView.aspx.designer.cs">
+      <DependentUpon>LeaveReportView.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoanReport.aspx.cs">
       <DependentUpon>LoanReport.aspx</DependentUpon>

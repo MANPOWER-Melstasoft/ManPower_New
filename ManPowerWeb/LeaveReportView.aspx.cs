@@ -11,8 +11,9 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class LeaveReportAll : System.Web.UI.Page
+    public partial class LeaveReportView : System.Web.UI.Page
     {
+        static int Id;
         static List<StaffLeave> StaffLeaveList = new List<StaffLeave>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -21,27 +22,35 @@ namespace ManPowerWeb
 
             if (!IsPostBack)
             {
-                BindDataSource();
+                if (Request.QueryString["EmpId"] != null)
+                {
+                    Id = Convert.ToInt32(Request.QueryString["EmpId"]);
+                    BindData();
+                    lblEmpId.Text = Id.ToString();
+                }
+                else
+                {
+                    Response.Redirect("404.aspx");
+                }
             }
-
         }
 
-        public void BindDataSource()
+        public void BindData()
         {
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-            StaffLeaveList = staffLeaveController.getStaffLeavesSummary(true);
+            StaffLeaveList = staffLeaveController.getStaffLeaves(true);
 
             LeaveTypeController leaveTypeController = ControllerFactory.CreateLeaveTypeController();
             List<LeaveType> LeaveTypeList = leaveTypeController.GetAllLeaveTypes();
 
             try
             {
-                StaffLeaveList = StaffLeaveList.Where(x => x.LeaveStatusId == 4).ToList();
+                StaffLeaveList = StaffLeaveList.Where(x => x.LeaveStatusId == 4 && x.EmployeeId == Id).ToList();
 
-                //foreach (var item in StaffLeaveList)
-                //{
-                //    item.leaveType = LeaveTypeList.Where(x => x.LeaveTypeId == item.LeaveTypeId).Single();
-                //}
+                foreach (var item in StaffLeaveList)
+                {
+                    item.leaveType = LeaveTypeList.Where(x => x.LeaveTypeId == item.LeaveTypeId).Single();
+                }
 
             }
             catch (Exception ex)
@@ -56,15 +65,6 @@ namespace ManPowerWeb
 
         }
 
-        protected void btnView_Click(object sender, EventArgs e)
-        {
-            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            int pagesize = gvLeaveReport.PageSize;
-            int pageindex = gvLeaveReport.PageIndex;
-            rowIndex = (pagesize * pageindex) + rowIndex;
-            Response.Redirect("LeaveReportView.aspx?EmpId=" + StaffLeaveList[rowIndex].EmployeeId);
-
-        }
 
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -90,6 +90,7 @@ namespace ManPowerWeb
             Response.Write(strwritter.ToString());
             Response.End();
         }
+
 
     }
 }

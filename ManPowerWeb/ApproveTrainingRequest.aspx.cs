@@ -86,5 +86,15 @@ namespace ManPowerWeb
 
             }
         }
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            GridViewRow gv = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string url = "TrainingAttachmentView.aspx?TrainingRequestId=" + trainingRequestsList[rowIndex].TrainingRequestsId;
+            Response.Redirect(url);
+        }
     }
 }

@@ -3,6 +3,7 @@ using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,8 +18,12 @@ namespace ManPowerWeb
         public int depId;
         public string fileName;
         public TrainingMain trainingMain = new TrainingMain();
+        public TrainingMainAttachment trainingMainAttachment = new TrainingMainAttachment();
+        public int trainingMainId1;
 
         TrainingMainController trainingMainController = ControllerFactory.CreateTrainingMainController();
+
+        TrainingMainAttachmentController trainingMainAttachmentController = ControllerFactory.CreateTrainingMainAttachmentController();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -115,7 +120,24 @@ namespace ManPowerWeb
 
                     trainingMain.Post_img = fileName;
 
-                    trainingMainController.Save(trainingMain);
+                    trainingMainId1 = trainingMainController.Save(trainingMain);
+
+                    foreach (HttpPostedFile file in FileUploader2.PostedFiles)
+                    {
+                        // Get file name and extension
+                        string fileName = Path.GetFileName(file.FileName);
+                        string fileExtension = Path.GetExtension(fileName);
+
+                        // Save file to server
+                        string savePath = Server.MapPath("~/SystemDocuments/TrainingMainAttachments/" + fileName);
+                        file.SaveAs(savePath);
+
+                        trainingMainAttachment.TrainingMainId = trainingMainId1;
+                        trainingMainAttachment.Attachment = fileName;
+
+                        trainingMainAttachmentController.Save(trainingMainAttachment);
+                    }
+
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Updated Succesfully!', 'success');window.setTimeout(function(){window.location='AddTrainingFront.aspx'},2500);", true);
 
                 }

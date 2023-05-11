@@ -63,6 +63,15 @@ namespace ManPowerCore.Domain
 
         public SystemUser systemUser { get; set; }
 
+        public DepartmentUnit dsDivition { get; set; }
+
+        public DepartmentUnit district { get; set; }
+
+        public List<StaffLeaveDocuments> documents { get; set; }
+
+        public SystemUser recommendUser { get; set; }
+
+        public SystemUser approveUser { get; set; }
 
     }
 }

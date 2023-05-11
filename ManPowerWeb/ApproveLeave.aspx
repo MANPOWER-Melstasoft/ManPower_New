@@ -99,6 +99,12 @@
                             <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "3" ?true:false %>' Text="Send to Approval" ForeColor="YellowGreen">  </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "1" ?true:false %>' Text="Pending" ForeColor="Green">  </asp:Label>
                             <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "4" ?true:false %>' Text="Approved" ForeColor="Blue">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "6" ?true:false %>' Text="Send to Recommendation" ForeColor="YellowGreen">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "7" ?true:false %>' Text="Send to Recommendation Admin Clerk" ForeColor="YellowGreen">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "8" ?true:false %>' Text="Send to Recommendation Assistance Director" ForeColor="YellowGreen">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "9" ?true:false %>' Text="Send to Recommendation Director" ForeColor="YellowGreen">  </asp:Label>
+                            <asp:Label runat="server" Visible='<%#Eval("LeaveStatusId").ToString() == "10" ?true:false %>' Text="Send to Recommendation DG" ForeColor="YellowGreen">  </asp:Label>
+
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">

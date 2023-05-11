@@ -939,7 +939,7 @@
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-4">
-                                    <label>Select Exam Index: </label>
+                                    <label>Select Education Type : </label>
                                 </div>
                                 <div class="col-6">
                                     <asp:DropDownList ID="ddlEducationDetailsList" runat="server" OnSelectedIndexChanged="ddlEducation_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
@@ -952,7 +952,7 @@
                         {  %>
 
                     <div class="row mt-5">
-                        <div class="col-6">
+                        <%-- <div class="col-6">
                             <div class="row">
                                 <div class="col-4">
                                     <label>Education Type : </label>
@@ -961,7 +961,7 @@
                                     <asp:DropDownList ID="ddlEducation" runat="server" CssClass="dropdown-toggle form-control"></asp:DropDownList>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
 
 
 
@@ -1005,7 +1005,7 @@
 
 
 
-                    <%if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
+                    <%if (ddlEducationDetailsList.SelectedValue == "4" || ddlEducationDetailsList.SelectedValue == "5")
                         {  %>
 
                     <div class="row mt-4">
@@ -1084,6 +1084,20 @@
                                     <div class="col-6">
                                         <asp:TextBox ID="eduId" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label>Uploaded File : </label>
+                                </div>
+                                <div class="col-6">
+                                    <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control-file" Visible="false"></asp:FileUpload>
+                                    <asp:Label ID="lblfileUpload" runat="server"></asp:Label>
                                 </div>
                             </div>
                         </div>

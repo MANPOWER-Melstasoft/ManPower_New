@@ -15,8 +15,9 @@ namespace ManPowerWeb
         List<SystemUser> systemUsers = new List<SystemUser>();
         List<DepartmentUnit> departmentUnitsList = new List<DepartmentUnit>();
         List<Employee> employeesList = new List<Employee>();
-        List<StaffLeave> staffLeaveList = new List<StaffLeave>();
+        static List<StaffLeave> staffLeaveList = new List<StaffLeave>();
         List<StaffLeave> staffLeaveSearchList = new List<StaffLeave>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -52,24 +53,24 @@ namespace ManPowerWeb
             {
                 if (userType == 1 || userType == 2)
                 {
-                    staffLeaveList = staffLeaveList.Where(x => x.LeaveStatusId == 2 && (x.systemUser.UserTypeId == 1 || x.systemUser.UserTypeId == 2
+                    staffLeaveList = staffLeaveList.Where(x => (x.LeaveStatusId == 2 || x.LeaveStatusId == 6) && (x.systemUser.UserTypeId == 1 || x.systemUser.UserTypeId == 2
                     || x.systemUser.UserTypeId == 3 || x.systemUser.UserTypeId == 6 || x.systemUser.UserTypeId == 7 || x.systemUser.UserTypeId == 8 || x.systemUser.UserTypeId == 9)).ToList();
                 }
                 else if (userType == 4)
                 {
-                    staffLeaveList = staffLeaveList.Where(x => x.LeaveStatusId == 2 && x.systemUser.UserTypeId == 4).ToList();
+                    staffLeaveList = staffLeaveList.Where(x => (x.LeaveStatusId == 2 || x.LeaveStatusId == 6) && x.systemUser.UserTypeId == 4).ToList();
                 }
                 else if (userType == 10)
                 {
-                    staffLeaveList = staffLeaveList.Where(x => x.LeaveStatusId == 2 && (x.systemUser.UserTypeId == 10 || x.systemUser.UserTypeId == 11)).ToList();
+                    staffLeaveList = staffLeaveList.Where(x => (x.LeaveStatusId == 2 || x.LeaveStatusId == 6) && (x.systemUser.UserTypeId == 10 || x.systemUser.UserTypeId == 11)).ToList();
                 }
                 else if (userType == 12)
                 {
-                    staffLeaveList = staffLeaveList.Where(x => x.LeaveStatusId == 2 && (x.systemUser.UserTypeId == 12 || x.systemUser.UserTypeId == 13)).ToList();
+                    staffLeaveList = staffLeaveList.Where(x => (x.LeaveStatusId == 2 || x.LeaveStatusId == 6) && (x.systemUser.UserTypeId == 12 || x.systemUser.UserTypeId == 13)).ToList();
                 }
                 else if (userType == 14)
                 {
-                    staffLeaveList = staffLeaveList.Where(x => x.LeaveStatusId == 2 && (x.systemUser.UserTypeId == 14 || x.systemUser.UserTypeId == 15)).ToList();
+                    staffLeaveList = staffLeaveList.Where(x => (x.LeaveStatusId == 2 || x.LeaveStatusId == 6) && (x.systemUser.UserTypeId == 14 || x.systemUser.UserTypeId == 15)).ToList();
                 }
                 else
                 {
@@ -125,8 +126,8 @@ namespace ManPowerWeb
             int pageindex = gvApproveLeave.PageIndex;
             rowIndex = (pagesize * pageindex) + rowIndex;
 
-            StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
-            staffLeaveList = staffLeaveController.getStaffLeaves(true);
+            //StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
+            //staffLeaveList = staffLeaveController.getStaffLeaves(true);
 
             Response.Redirect("RecommendationLeaveView.aspx?EmpId=" + staffLeaveList[rowIndex].EmployeeId.ToString() + "&Id=" + staffLeaveList[rowIndex].StaffLeaveId);
 

@@ -961,7 +961,7 @@
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label>Select Exam Index: </label>
+                                            <label>Education Type : </label>
                                         </div>
                                         <div class="col-6">
                                             <asp:DropDownList ID="ddlEducationDetailsList" runat="server" OnSelectedIndexChanged="ddlEducation_SelectedIndexChanged" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
@@ -974,19 +974,6 @@
                                 {  %>
 
                             <div class="row mt-5">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label>Education Type : </label>
-                                        </div>
-                                        <div class="col-6">
-                                            <asp:DropDownList ID="ddlEducation" runat="server" AutoPostBack="true" CssClass="dropdown-toggle form-control"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
                                 <div class="col-6">
                                     <div class="row">
                                         <div class="col-4">
@@ -1027,7 +1014,7 @@
 
 
 
-                            <%if (ddlEducation.SelectedValue == "4" || ddlEducation.SelectedValue == "5")
+                            <%if (ddlEducationDetailsList.SelectedValue == "4" || ddlEducationDetailsList.SelectedValue == "5")
                                 {  %>
 
                             <div class="row mt-4">
@@ -1110,6 +1097,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label>Upload File : </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control-file"></asp:FileUpload>
+                                            <asp:Label ID="lblfileUpload" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
 
                             <%} %>
@@ -1120,11 +1121,16 @@
 
                             <div class="row mt-5 mb-4">
                                 <div class="col-2">
-                                    <asp:Button runat="server" ID="Button5" Text="Update" ValidationGroup="5" OnClick="submitEducation" CssClass="btn btn-primary btn-user btn-block" />
+                                    <asp:Button runat="server" ID="Button3" Text="Add" OnClick="submitEducation" CssClass="btn btn-primary btn-user btn-block" />
+                                </div>
+                                <div class="col-2">
+                                    <asp:Button runat="server" ID="Button5" Text="Update" OnClick="updateEducation" CssClass="btn btn-primary btn-user btn-block" />
+                                    <%--ValidationGroup="5"--%>
                                 </div>
                             </div>
                         </ContentTemplate>
                         <Triggers>
+                            <asp:PostBackTrigger ControlID="Button3" />
                             <asp:PostBackTrigger ControlID="Button5" />
                         </Triggers>
                     </asp:UpdatePanel>

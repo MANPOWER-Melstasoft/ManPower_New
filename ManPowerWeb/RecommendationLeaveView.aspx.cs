@@ -12,16 +12,26 @@ namespace ManPowerWeb
 {
     public partial class RecommendationLeaveView : System.Web.UI.Page
     {
-        StaffLeave staffLeave = new StaffLeave();
+        static StaffLeave staffLeave = new StaffLeave();
         List<LeaveType> leavesTypeList = new List<LeaveType>();
+        int employeId, Id;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
 
-            int employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
-            int Id = Convert.ToInt32(Request.QueryString["Id"]);
+            if (!IsPostBack)
+            {
+                employeId = Convert.ToInt32(Request.QueryString["EmpId"]);
+                Id = Convert.ToInt32(Request.QueryString["Id"]);
 
+                BindData();
 
+            }
+        }
+
+        private void BindData()
+        {
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
             staffLeave = staffLeaveController.getStaffLeaveById(Id);
 
@@ -43,19 +53,33 @@ namespace ManPowerWeb
             ddlDayType.Text = staffLeave.DayTypeId.ToString();
             txtLeaveReason.Text = staffLeave.ReasonForLeave;
 
-            if (staffLeave.LeaveStatusId == 2)
+            if (staffLeave.LeaveStatusId == 6)
             {
-                btnApprove.Visible = true;
                 btnModalReject.Visible = true;
-
-
+                btnApprove.Text = "Send To Recommendation Admin Clerk";
+                btnApprove.Visible = true;
             }
             else
             {
-                btnApprove.Visible = false;
-                btnModalReject.Visible = false;
+                if (staffLeave.LeaveStatusId == 2)
+                {
+                    btnApprove.Visible = true;
+                    btnModalReject.Visible = true;
+                }
+                else
+                {
+                    btnApprove.Visible = false;
+                    btnModalReject.Visible = false;
+                }
             }
+
+            staffLeaveDocumentsController staffLeaveDocumentsController = ControllerFactory.CreateStaffLeaveDocumentsController();
+            List<StaffLeaveDocuments> staffLeaveDocuments = staffLeaveDocumentsController.GetAllDocumentsByLeaveId(Id);
+
+            gvDocument.DataSource = staffLeaveDocuments;
+            gvDocument.DataBind();
         }
+
 
         protected void btnViewLeave_Click(object sender, EventArgs e)
         {
@@ -66,16 +90,21 @@ namespace ManPowerWeb
 
         protected void btnApprove_Click(object sender, EventArgs e)
         {
-            StaffLeave staffLeave = new StaffLeave();
-            staffLeave.RecommendedBy = Convert.ToInt32(Session["UserId"]);
-            staffLeave.RecomennededDate = DateTime.Now;
-            staffLeave.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
-            staffLeave.LeaveStatusId = 3;
-            staffLeave.RejectReason = "";
+            StaffLeave staffLeaveNew = new StaffLeave();
+            staffLeaveNew.RecommendedBy = Convert.ToInt32(Session["UserId"]);
+            staffLeaveNew.RecomennededDate = DateTime.Now;
+            staffLeaveNew.StaffLeaveId = Convert.ToInt32(Request.QueryString["Id"]);
+            staffLeaveNew.LeaveStatusId = 3;
+            staffLeaveNew.RejectReason = "";
+
+            if (staffLeave.LeaveTypeId == 7)
+            {
+                staffLeaveNew.LeaveStatusId = 7;
+            }
 
             StaffLeaveController staffLeaveController = ControllerFactory.CreateStaffLeaveControllerImpl();
 
-            int response = staffLeaveController.updateStaffLeaves(staffLeave);
+            int response = staffLeaveController.updateStaffLeaves(staffLeaveNew);
 
             if (response != 0)
             {

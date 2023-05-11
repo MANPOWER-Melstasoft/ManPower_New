@@ -661,5 +661,48 @@ namespace ManPowerCore.Common
             IndividualBeneReportController individualBeneReportController = new IndividualBeneReportControllerSqlImpl();
             return (IndividualBeneReportController)individualBeneReportController;
         }
+
+        public static FuelDetailsController CreateFuelDetailsController()
+        {
+            FuelDetailsController fuelDetailsController = new FuelDetailsControllerImpl();
+            return (FuelDetailsController)fuelDetailsController;
+        }
+
+
+        public static TrainingMainAttachmentController CreateTrainingMainAttachmentController()
+        {
+            TrainingMainAttachmentController trainingMainAttachmentController = new TrainingMainAttachmentControllerImpl();
+            return (TrainingMainAttachmentController)trainingMainAttachmentController;
+        }
+
+        public static TrainingRequestsAttachmentController CreateTrainingRequestsAttachmentController()
+        {
+            TrainingRequestsAttachmentController trainingRequestsAttachmentController = new TrainingRequestsAttachmentControllerImpl();
+            return (TrainingRequestsAttachmentController)trainingRequestsAttachmentController;
+        }
+
+        public static FuelTypeController CreateFuelTypeController()
+        {
+            FuelTypeController fuelTypeController = new FuelTypeControllerImpl();
+            return (FuelTypeController)fuelTypeController;
+        }
+
+        //public static IndividualBeneReportController CreateIndividualBeneReportController()
+        //{
+        //	IndividualBeneReportController individualBeneReportController = new IndividualBeneReportControllerSqlImpl();
+        //	return (IndividualBeneReportController)individualBeneReportController;
+        //}
+
+        public static TransfersRetirementResignationMainDocumentController CreateTransfersRetirementResignationMainDocumentController()
+        {
+            TransfersRetirementResignationMainDocumentController transfersRetirementResignationMainDocumentController = new TransfersRetirementResignationMainDocumentControllerImpl();
+            return (TransfersRetirementResignationMainDocumentController)transfersRetirementResignationMainDocumentController;
+        }
+
+        public static staffLeaveDocumentsController CreateStaffLeaveDocumentsController()
+        {
+            staffLeaveDocumentsController staffLeaveDocumentsController = new staffLeaveDocumentsControllerImpl();
+            return (staffLeaveDocumentsController)staffLeaveDocumentsController;
+        }
     }
 }

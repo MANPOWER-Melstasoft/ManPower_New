@@ -18,6 +18,9 @@ namespace ManPowerCore.Infrastructure
 
         int UpdateRecommandationStatus(int id, int approval, int officer, string reason, DBConnection dbConnection);
 
+        int UpdateRecommandationStatus(int id, int approvalStatus, string fileNo, int officer, string reason, DBConnection dbConnection);
+        int UpdateRecommandationADStatus(int id, int approvalStatus, string fileNo, int officer, string reason, DBConnection dbConnection);
+
         List<VehicleMeintenance> GetAllVehicleMeintenance(DBConnection dbConnection);
     }
 
@@ -31,10 +34,10 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO VEHICLE_MAINTANCE(Employee_ID,Date,Vehicle_Number,Description," +
-                "Is_Approved,Approved_By,Approved_date,Estimated_Cost,Attachment,Maintenance_Category_Id,Requested_By,File_No,Rejected_Reason, Vehicle_Meter,Vehicle_Previous_Meter, Mileage,Enginner_Attachment,Is_Enginner_Recommendatin,Insurance_Start_Date,Insurance_End_Date) " +
+                "Is_Approved,Approved_By,Approved_date,Estimated_Cost,Attachment,Maintenance_Category_Id,Requested_By,File_No,Rejected_Reason, Vehicle_Meter,Vehicle_Previous_Meter, Mileage,Enginner_Attachment,Is_Enginner_Recommendatin,Insurance_Start_Date,Insurance_End_Date,Recomand_By) " +
 
             "VALUES(@EmpId,@RequestDate,@VehicleNumber,@RequestDescription,@IsApproved,@ApprovedBy,@ApprovedDate,@EstimatedCost," +
-            "@Attachment,@CategoryId,@RequestedBy,@FileNo,@RejectedReason, @VehicleMeter,@VehiclePrevMeter,@Mileage,@EnginnerAttachment,@Is_Enginner_Recommendatin,@InsuranceStartDate,@InsuranceEndDate) ";
+            "@Attachment,@CategoryId,@RequestedBy,@FileNo,@RejectedReason, @VehicleMeter,@VehiclePrevMeter,@Mileage,@EnginnerAttachment,@Is_Enginner_Recommendatin,@InsuranceStartDate,@InsuranceEndDate,@RecommededBy) ";
 
             dbConnection.cmd.Parameters.AddWithValue("@EmpId", vehicleMeintenance.EmpId);
             dbConnection.cmd.Parameters.AddWithValue("@RequestDate", vehicleMeintenance.RequestDate);
@@ -54,6 +57,7 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@Mileage", vehicleMeintenance.Mileage);
             dbConnection.cmd.Parameters.AddWithValue("@EnginnerAttachment", vehicleMeintenance.EngineerFileAttachment);
             dbConnection.cmd.Parameters.AddWithValue("@Is_Enginner_Recommendatin", vehicleMeintenance.IsEngineerRecommendation);
+            dbConnection.cmd.Parameters.AddWithValue("@RecommededBy", vehicleMeintenance.RecomandBy);
 
             if (vehicleMeintenance.InsuranceStartDate.Year == 1)
             {
@@ -113,6 +117,7 @@ namespace ManPowerCore.Infrastructure
             return 1;
         }
 
+
         public int UpdateRecommandationStatus(int id, int approval, int officer, string reason, DBConnection dbConnection)
         {
             if (dbConnection.dr != null)
@@ -129,6 +134,47 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.ExecuteNonQuery();
             return 1;
         }
+
+
+        // Approve By TO and Send TO AD
+        public int UpdateRecommandationStatus(int id, int approvalStatus, string fileNo, int officer, string reason, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, Recommend_AD = @officer, Recomand_Date = @date, File_No=@fileNo,REJECTED_REASON = @reason WHERE ID = " + id + " ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@approvalStatus", approvalStatus);
+            dbConnection.cmd.Parameters.AddWithValue("@officer", officer);
+            dbConnection.cmd.Parameters.AddWithValue("@reason", reason);
+            dbConnection.cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+            dbConnection.cmd.Parameters.AddWithValue("@fileNo", fileNo);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
+        }
+
+        // Approve By AD and Send TO Director
+        public int UpdateRecommandationADStatus(int id, int approvalStatus, string fileNo, int officer, string reason, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "UPDATE VEHICLE_MAINTANCE SET IS_APPROVED = @approvalStatus, Approved_By = @officer, Recommend_AD_Date = @date, File_No=@fileNo,REJECTED_REASON = @reason WHERE ID = " + id + " ";
+
+            dbConnection.cmd.Parameters.AddWithValue("@approvalStatus", approvalStatus);
+            dbConnection.cmd.Parameters.AddWithValue("@officer", officer);
+            dbConnection.cmd.Parameters.AddWithValue("@reason", reason);
+            dbConnection.cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+            dbConnection.cmd.Parameters.AddWithValue("@fileNo", fileNo);
+
+            dbConnection.cmd.ExecuteNonQuery();
+            return 1;
+        }
+
+
 
     }
 }

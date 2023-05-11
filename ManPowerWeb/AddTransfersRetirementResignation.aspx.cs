@@ -193,8 +193,11 @@ namespace ManPowerWeb
                     if (transfer.TransferType == "Combine Service")
                     {
                         transfer.NextDep = 0;
+
                         //
                         //
+
+
                         transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
                     }
                     else
@@ -311,6 +314,17 @@ namespace ManPowerWeb
                 }
                 else
                 {
+                    retirement.JoinedDate = DateTime.Parse(txtJoinedDate.Text);
+                    retirement.Remark = txtRetirementRemark.Text;
+                    if (ddlRetirementType.SelectedItem.Text == "Other")
+                    {
+                        retirement.RetirementType = txtRetirementOther.Text;
+                    }
+                    else
+                    {
+                        retirement.RetirementType = ddlRetirementType.SelectedValue;
+                    }
+                    retirement.Reason = txtRetirementReason.Text;
                     retirement.RetirementType = ddlRetirementType.SelectedValue;
                 }
                 retirement.Reason = txtRetirementReason.Text;

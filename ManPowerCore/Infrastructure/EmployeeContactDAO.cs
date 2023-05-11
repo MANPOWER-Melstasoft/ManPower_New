@@ -14,6 +14,8 @@ namespace ManPowerCore.Infrastructure
 
         EmployeeContact GetEmployeeContactById(int id, DBConnection dbConnection);
 
+        List<EmployeeContact> GetAllEmployeeContactById(int id,DBConnection dbConnection);
+
         int SaveEmployeeContact(EmployeeContact empContact, DBConnection dbConnection);
 
         int UpdateEmployeeContact(EmployeeContact empContact, DBConnection dbConnection);
@@ -81,6 +83,18 @@ namespace ManPowerCore.Infrastructure
             DataAccessObject dataAccessObject = new DataAccessObject();
             return dataAccessObject.ReadCollection<EmployeeContact>(dbConnection.dr);
 
+        }
+
+        public List<EmployeeContact> GetAllEmployeeContactById(int id, DBConnection dbConnection)
+        {
+            if (dbConnection.dr != null)
+                dbConnection.dr.Close();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM EMPLOYEE_CONTACT WHERE EMPLOYEE_ID =" + id + " ";
+
+            dbConnection.dr = dbConnection.cmd.ExecuteReader();
+            DataAccessObject dataAccessObject = new DataAccessObject();
+            return dataAccessObject.ReadCollection<EmployeeContact>(dbConnection.dr);
         }
 
         public EmployeeContact GetEmployeeContactById(int id, DBConnection dbConnection)

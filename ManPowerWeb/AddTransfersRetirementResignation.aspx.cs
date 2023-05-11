@@ -59,8 +59,13 @@ namespace ManPowerWeb
 			Employee employee = employeeController.GetEmployeeById(Convert.ToInt32(Session["EmpNumber"]));
 			txtDob.Text = employee.DOB.ToString("yyyy-MM-dd");
 
-			SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
-			SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, true);
+            EmployeeContactController employeeContactController = ControllerFactory.CreateEmployeeContactController();
+            
+            List<EmployeeContact> employeeContacts = employeeContactController.GetEmployeeContactById(Convert.ToInt32(Session["EmpNumber"]));
+            lblEmployeeAddress.Text = employeeContacts[0].EmpAddress.ToString();
+
+            SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
+            SystemUser systemUser = systemUserController.GetSystemUser(Convert.ToInt32(Session["UserId"]), true, false, true);
 
 			DepartmentUnitController departmentUnitController = ControllerFactory.CreateDepartmentUnitController();
 			DepartmentUnit departmentUnit = departmentUnitController.GetDepartmentUnit(systemUser._DepartmentUnitPositions.DepartmentUnitId, true, false);
@@ -119,16 +124,20 @@ namespace ManPowerWeb
 				transfer.CurrentDep = lblDepartment.Text;
 				transfer.Reason = txtReason.Text;
 
-				if (transfer.TransferType == "Combine Service")
-				{
-					transfer.NextDep = 0;
-					transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
-				}
-				else
-				{
-					transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
-					transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
-				}
+                if (transfer.TransferType == "Combine Service")
+                {
+                    transfer.NextDep = 0;
+                    transfer.PreferedWorkPlace2 = 0;
+                    transfer.PreferdWorkPlace3 = 0;
+                    transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
+                }
+                else
+                {
+                    transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
+                    transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
+                    transfer.PreferedWorkPlace2 = Convert.ToInt32(ddlDepartment2.SelectedValue);
+                    transfer.PreferdWorkPlace3 = Convert.ToInt32(ddlDepartment3.SelectedValue);
+                }
 
 				TransferController transferController = ControllerFactory.CreateTransferController();
 				output = transferController.Save(transfersRetirementResignationMain, transfer, DocList);
@@ -184,15 +193,23 @@ namespace ManPowerWeb
 					transfer.FromDate = Convert.ToDateTime(txtFromDate.Text);
 					transfer.ToDate = Convert.ToDateTime(txtToDate.Text);
 
-					if (transfer.TransferType == "Combine Service")
-					{
-						transfer.NextDep = 0;
-						transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
-					}
-					else
-					{
-						transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
-					}
+                    if (transfer.TransferType == "Combine Service")
+                    {
+                        transfer.NextDep = 0;
+
+                        //
+                        //
+
+
+                        transfer.RequestWorkPlace = txtRequestWorkPlace.Text;
+                    }
+                    else
+                    {
+                        transfer.NextDep = Convert.ToInt32(ddlDepartment.SelectedValue);
+                      //
+                      //
+
+                    }
 
 					TransferController transferController = ControllerFactory.CreateTransferController();
 					output = transferController.Save(transfersRetirementResignationMain, transfer, DocList);
@@ -296,17 +313,28 @@ namespace ManPowerWeb
 					}
 				}
 
-				retirement.JoinedDate = DateTime.Parse(txtJoinedDate.Text);
-				retirement.Remark = txtRetirementRemark.Text;
-				if (ddlRetirementType.SelectedItem.Text == "Other")
-				{
-					retirement.RetirementType = txtRetirementOther.Text;
-				}
-				else
-				{
-					retirement.RetirementType = ddlRetirementType.SelectedValue;
-				}
-				retirement.Reason = txtRetirementReason.Text;
+                retirement.JoinedDate = DateTime.Parse(txtJoinedDate.Text);
+                retirement.Remark = txtRetirementRemark.Text;
+                if (ddlRetirementType.SelectedItem.Text == "Other")
+                {
+                    retirement.RetirementType = txtRetirementOther.Text;
+                }
+                else
+                {
+                    retirement.JoinedDate = DateTime.Parse(txtJoinedDate.Text);
+                    retirement.Remark = txtRetirementRemark.Text;
+                    if (ddlRetirementType.SelectedItem.Text == "Other")
+                    {
+                        retirement.RetirementType = txtRetirementOther.Text;
+                    }
+                    else
+                    {
+                        retirement.RetirementType = ddlRetirementType.SelectedValue;
+                    }
+                    retirement.Reason = txtRetirementReason.Text;
+                    retirement.RetirementType = ddlRetirementType.SelectedValue;
+                }
+                retirement.Reason = txtRetirementReason.Text;
 
 				RetirementController retirementController = ControllerFactory.CreateRetirementController();
 				output = retirementController.Save(transfersRetirementResignationMain, retirement, DocList);
@@ -373,17 +401,35 @@ namespace ManPowerWeb
 			}
 		}
 
-		private void BindDepList()
-		{
-			DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
-			List<DepartmentUnit> departmentUnitType = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+        private void BindDepList()
+        {
+            DepartmentUnitController departmentUnitTypeController = ControllerFactory.CreateDepartmentUnitController();
 
-			ddlDepartment.DataSource = departmentUnitType;
-			ddlDepartment.DataValueField = "DepartmentUnitId";
-			ddlDepartment.DataTextField = "Name";
-			ddlDepartment.DataBind();
-			ddlDepartment.Items.Insert(0, new ListItem("-- department --", ""));
-		}
+            // Retrieve data from DB assign to list
+            List<DepartmentUnit> departmentUnitType = departmentUnitTypeController.GetAllDepartmentUnit(false, false);
+
+            List<DepartmentUnit> departmentUnitType2 = departmentUnitType;
+
+            List<DepartmentUnit> departmentUnitType3 = departmentUnitType;
+
+            ddlDepartment.DataSource = departmentUnitType;
+            ddlDepartment.DataValueField = "DepartmentUnitId";
+            ddlDepartment.DataTextField = "Name";
+            ddlDepartment.DataBind();
+            ddlDepartment.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
+
+            ddlDepartment2.DataSource = departmentUnitType2;
+            ddlDepartment2.DataValueField = "DepartmentUnitId";
+            ddlDepartment2.DataTextField = "Name";
+            ddlDepartment2.DataBind();
+            ddlDepartment2.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
+
+            ddlDepartment3.DataSource = departmentUnitType3;
+            ddlDepartment3.DataValueField = "DepartmentUnitId";
+            ddlDepartment3.DataTextField = "Name";
+            ddlDepartment3.DataBind();
+            ddlDepartment3.Items.Insert(0, new ListItem("-- Select prefered work place --", ""));
+        }
 
 		private void BindTransferType()
 		{

@@ -31,8 +31,9 @@ namespace ManPowerCore.Infrastructure
 
             if (transfer.NextDep != 0)
             {
-                dbConnection.cmd.CommandText = "INSERT INTO Transfer (Transfers_Retirement_Resignation_Main_Id, Transfer_Type, Current_Dep, Department_Unit_Id, Reason, From_Date, To_Date)" +
-                    "VALUES (@MainId, @TransferType, @CurrentDep, @NextDep, @Reason, @FromDate, @ToDate)";
+
+                dbConnection.cmd.CommandText = "INSERT INTO Transfer (Transfers_Retirement_Resignation_Main_Id, Transfer_Type, Current_Dep, Department_Unit_Id, Reason, From_Date, To_Date,Prefered_Work_Place2,Prefered_Work_Place3)" +
+                    "VALUES (@MainId, @TransferType, @CurrentDep, @NextDep, @Reason, @FromDate, @ToDate,@PreferedWorkPlace2,@PreferdWorkPlace3)";
             }
             else
             {
@@ -46,6 +47,10 @@ namespace ManPowerCore.Infrastructure
             dbConnection.cmd.Parameters.AddWithValue("@CurrentDep", transfer.CurrentDep);
             dbConnection.cmd.Parameters.AddWithValue("@NextDep", transfer.NextDep);
             dbConnection.cmd.Parameters.AddWithValue("@Reason", transfer.Reason);
+
+            dbConnection.cmd.Parameters.AddWithValue("@PreferedWorkPlace2", transfer.PreferedWorkPlace2);
+            dbConnection.cmd.Parameters.AddWithValue("@PreferdWorkPlace3", transfer.PreferdWorkPlace3);
+
 
             if (transfer.FromDate.Year == 1)
             {

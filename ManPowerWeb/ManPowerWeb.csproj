@@ -149,6 +149,7 @@
     <Content Include="DME22Rec1Render.aspx" />
     <Content Include="DME22Rec2.aspx" />
     <Content Include="DME22Rec2Render.aspx" />
+    <Content Include="EmployeePreviousWorkplace.aspx" />
     <Content Include="FuelDetails.aspx" />
     <Content Include="FuelDetailsReport.aspx" />
     <Content Include="IndividualBeneList.aspx" />
@@ -2280,6 +2281,13 @@
     </Compile>
     <Compile Include="DME22Rec2Render.aspx.designer.cs">
       <DependentUpon>DME22Rec2Render.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeePreviousWorkplace.aspx.cs">
+      <DependentUpon>EmployeePreviousWorkplace.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePreviousWorkplace.aspx.designer.cs">
+      <DependentUpon>EmployeePreviousWorkplace.aspx</DependentUpon>
     </Compile>
     <Compile Include="FuelDetails.aspx.cs">
       <DependentUpon>FuelDetails.aspx</DependentUpon>

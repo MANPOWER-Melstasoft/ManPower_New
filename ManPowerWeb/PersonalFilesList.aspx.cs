@@ -77,7 +77,7 @@ namespace ManPowerWeb
 		{
 			if (employees.Count > 0)
 			{
-				gvPersonalFiles.Columns[9].Visible = false;
+				gvPersonalFiles.Columns[6].Visible = false;
 				Response.Clear();
 				Response.Buffer = true;
 				Response.ClearContent();

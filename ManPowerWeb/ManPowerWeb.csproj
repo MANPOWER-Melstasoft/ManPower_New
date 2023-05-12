@@ -149,6 +149,7 @@
     <Content Include="DME22Rec1Render.aspx" />
     <Content Include="DME22Rec2.aspx" />
     <Content Include="DME22Rec2Render.aspx" />
+    <Content Include="EmployeePreviousWorkplace.aspx" />
     <Content Include="FuelDetails.aspx" />
     <Content Include="FuelDetailsReport.aspx" />
     <Content Include="IndividualBeneList.aspx" />
@@ -259,7 +260,6 @@
     <Content Include="IndividualBeneSearch.aspx" />
     <Content Include="IndividualBeneView.aspx" />
     <Content Include="js\mdb.min.js.map" />
-    <Content Include="EmployeePreviousWorkPlace.apx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="img\undraw_posting_photo.svg" />
     <Content Include="img\undraw_profile.svg" />
@@ -2276,11 +2276,12 @@
     <Compile Include="DME22Rec2Render.aspx.designer.cs">
       <DependentUpon>DME22Rec2Render.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmployeePreviousWorkPlace.apx.cs">
+    <Compile Include="EmployeePreviousWorkplace.aspx.cs">
+      <DependentUpon>EmployeePreviousWorkplace.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EmployeePreviousWorkPlace.apx.designer.cs">
-      <DependentUpon>EmployeePreviousWorkPlace.apx.cs</DependentUpon>
+    <Compile Include="EmployeePreviousWorkplace.aspx.designer.cs">
+      <DependentUpon>EmployeePreviousWorkplace.aspx</DependentUpon>
     </Compile>
     <Compile Include="FuelDetails.aspx.cs">
       <DependentUpon>FuelDetails.aspx</DependentUpon>

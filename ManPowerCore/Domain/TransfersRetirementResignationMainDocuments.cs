@@ -16,7 +16,12 @@ namespace ManPowerCore.Domain
 		public int TransfersRetirementResignationMainId { get; set; }
 
 		[DBField("Document_Name")]
-		public int DocumentName { get; set; }
+		public string DocumentName { get; set; }
+
+		[DBField("Is_Active")]
+		public int IsActive { get; set; }
+
+		public TransfersRetirementResignationMain transfersRetirementResignationMain { get; set; }
 
 	}
 }

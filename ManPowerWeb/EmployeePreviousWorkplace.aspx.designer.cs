@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-	public partial class ApproveTransfersRetirementResignation
+	public partial class EmployeePreviousWorkplaces
 	{
 
 		/// <summary>
@@ -33,31 +33,13 @@ namespace ManPowerWeb
 		protected global::System.Web.UI.WebControls.TextBox txtName;
 
 		/// <summary>
-		/// ddltype control.
+		/// txtEmpID control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList ddltype;
-
-		/// <summary>
-		/// ddlStatus control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
-
-		/// <summary>
-		/// date control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox date;
+		protected global::System.Web.UI.WebControls.TextBox txtEmpID;
 
 		/// <summary>
 		/// Button1 control.
@@ -69,30 +51,21 @@ namespace ManPowerWeb
 		protected global::System.Web.UI.WebControls.Button Button1;
 
 		/// <summary>
-		/// btnReset control.
+		/// gvPreviousWorkplace control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnReset;
+		protected global::System.Web.UI.WebControls.GridView gvPreviousWorkplace;
 
 		/// <summary>
-		/// GridView1 control.
+		/// btnExcell control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.GridView GridView1;
-
-		/// <summary>
-		/// btnRun control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
+		protected global::System.Web.UI.HtmlControls.HtmlButton btnExcell;
 	}
 }

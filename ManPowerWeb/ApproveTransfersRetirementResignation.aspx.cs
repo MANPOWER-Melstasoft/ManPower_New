@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace ManPowerWeb
 {
@@ -422,7 +423,7 @@ namespace ManPowerWeb
 		{
 			/*filterList = mainList;*/
 
-
+			GridView1.Columns[6].Visible = false;
 			GridView1.DataSource = filterList;
 			GridView1.DataBind();
 
@@ -444,6 +445,31 @@ namespace ManPowerWeb
 			GridView1.RenderControl(htmltextwrtter);
 			Response.Write(strwritter.ToString());
 			Response.End();
+		}
+
+		protected void btnSearch_Click(object sender, EventArgs e)
+		{
+			if (txtName.Text != "")
+			{
+				filterList = mainList.Where(x => x.employee.LastName.ToLower() == txtName.Text.ToLower()).ToList();
+			}
+
+
+			if (date.Text != "")
+			{
+				filterList = mainList.Where(u => u.CreatedDate.Date == DateTime.Parse(date.Text)).ToList();
+			}
+			GridView1.DataSource = filterList;
+			GridView1.DataBind();
+		}
+
+		protected void btnReset_Click(object sender, EventArgs e)
+		{
+			txtName.Text = null;
+			ddltype.ClearSelection();
+			ddlStatus.ClearSelection();
+			date.Text = null;
+			BindDataSource();
 		}
 
 

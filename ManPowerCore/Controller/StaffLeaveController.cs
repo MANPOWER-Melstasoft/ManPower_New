@@ -19,7 +19,11 @@ namespace ManPowerCore.Controller
 
         List<StaffLeave> getStaffLeaves(bool withEmployeeDetails);
 
+        List<StaffLeave> getStaffLeavesSummary(bool withEmployeeDetails);
+
         int updateStaffLeaves(StaffLeave staffLeave);
+
+        int updateStaffLeaveRecommendation(StaffLeave staffLeave);
 
         int updateStaffLeavesSubmit(StaffLeave staffLeave);
 
@@ -37,8 +41,21 @@ namespace ManPowerCore.Controller
 
             try
             {
+                int output = 0;
                 dBConnection = new DBConnection();
-                return staffLeaveDAO.saveStaffLeave(staffLeave, dBConnection);
+                output = staffLeaveDAO.saveStaffLeave(staffLeave, dBConnection);
+
+                if (output > 0)
+                {
+                    StaffLeaveDocumentsDAO staffLeaveDocumentsDAO = DAOFactory.CreateStaffLeaveDocumentsDAO();
+                    foreach (var item in staffLeave.documents)
+                    {
+                        item.StaffLeaveId = output;
+                        staffLeaveDocumentsDAO.Save(item, dBConnection);
+                    }
+                }
+
+                return output;
 
 
             }
@@ -121,6 +138,11 @@ namespace ManPowerCore.Controller
                     {
                         items._EMployeeDetails = employeeDAO.GetEmployeeById(items.EmployeeId, dBConnection);
                         items.systemUser = systemUserDAO.CheckEmpNumberExists(items.EmployeeId, dBConnection);
+                        if (items.LeaveStatusId == 4)
+                        {
+                            items.recommendUser = systemUserDAO.GetSystemUser(items.RecommendedBy, dBConnection);
+                            items.approveUser = systemUserDAO.GetSystemUser(items.ApprovedBy, dBConnection);
+                        }
                         items.district = departmentUnitDAO.GetDepartmentUnit(items._EMployeeDetails.DistrictId, dBConnection);
                         if (items._EMployeeDetails.UnitType == 3)
                         {
@@ -147,36 +169,105 @@ namespace ManPowerCore.Controller
                 if (dBConnection.con.State == System.Data.ConnectionState.Open)
                     dBConnection.Commit();
             }
+        }
+
+
+        public List<StaffLeave> getStaffLeavesSummary(bool withEmployeeDetails)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
+                List<StaffLeave> staffLeavesList = new List<StaffLeave>();
+                List<StaffLeave> staffLeavesListLoop = new List<StaffLeave>();
+                List<StaffLeave> staffLeavesListFinal = new List<StaffLeave>();
+
+                staffLeavesList = staffLeaveDAO.getStaffLeaves(dBConnection);
+                var EmpId = staffLeavesList.Select(x => x.EmployeeId).Distinct();
+
+                foreach (var emp in EmpId)
+                {
+                    StaffLeave staffLeavesObj = new StaffLeave();
+                    int flag = 0;
+                    staffLeavesListLoop = staffLeavesList.Where(x => x.EmployeeId == emp).ToList();
+                    foreach (var item in staffLeavesListLoop)
+                    {
+                        if (item.LeaveStatusId == 4)
+                        {
+                            flag = 1;
+                            staffLeavesObj.StaffLeaveId = item.StaffLeaveId;
+                            staffLeavesObj.EmployeeId = item.EmployeeId;
+                            staffLeavesObj.NoOfLeaves += item.NoOfLeaves;
+                            staffLeavesObj.LeaveStatusId = item.LeaveStatusId;
+                        }
+                    }
+                    if (flag == 1)
+                    {
+                        staffLeavesListFinal.Add(staffLeavesObj);
+                    }
+                }
+
+                if (withEmployeeDetails)
+                {
+                    EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
+                    SystemUserDAO systemUserDAO = DAOFactory.CreateSystemUserDAO();
+                    DepartmentUnitDAO departmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
+
+                    foreach (var items in staffLeavesListFinal)
+                    {
+                        items._EMployeeDetails = employeeDAO.GetEmployeeById(items.EmployeeId, dBConnection);
+                        items.systemUser = systemUserDAO.CheckEmpNumberExists(items.EmployeeId, dBConnection);
+                        items.district = departmentUnitDAO.GetDepartmentUnit(items._EMployeeDetails.DistrictId, dBConnection);
+                        if (items._EMployeeDetails.UnitType == 3)
+                        {
+                            items.dsDivition = departmentUnitDAO.GetDepartmentUnit(items._EMployeeDetails.DSDivisionId, dBConnection);
+                        }
+                        else
+                        {
+                            items.dsDivition = new DepartmentUnit() { Name = "" };
+                        }
+                    }
+
+                }
+
+                return staffLeavesListFinal;
+
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
 
 
         }
 
+
         public int updateStaffLeaves(StaffLeave staffLeave)
         {
-
             try
             {
                 dBConnection = new DBConnection();
-
                 StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
 
-                if (staffLeave.LeaveStatusId == 2)
+                if (staffLeave.LeaveStatusId == 3 || staffLeave.LeaveStatusId == 7 || staffLeave.LeaveStatusId == 8
+                    || staffLeave.LeaveStatusId == 9 || staffLeave.LeaveStatusId == 10)
                 {
                     return staffLeaveDAO.updateStaffLeaveRecommendation(staffLeave, dBConnection);
-
                 }
-                else if (staffLeave.LeaveStatusId == -1)
+                else if (staffLeave.LeaveStatusId == 5)
                 {
                     return staffLeaveDAO.updateStaffLeaveReject(staffLeave, dBConnection);
-
                 }
                 else
                 {
                     return staffLeaveDAO.updateStaffLeave(staffLeave, dBConnection);
-
                 }
-
-
             }
             catch (Exception)
             {
@@ -190,6 +281,25 @@ namespace ManPowerCore.Controller
             }
         }
 
+        public int updateStaffLeaveRecommendation(StaffLeave staffLeave)
+        {
+            try
+            {
+                dBConnection = new DBConnection();
+                StaffLeaveDAO staffLeaveDAO = DAOFactory.CreateStaffLeaveDAO();
+                return staffLeaveDAO.updateStaffLeaveRecommendation(staffLeave, dBConnection);
+            }
+            catch (Exception)
+            {
+                dBConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dBConnection.con.State == System.Data.ConnectionState.Open)
+                    dBConnection.Commit();
+            }
+        }
 
         public int updateStaffLeavesSubmit(StaffLeave staffLeave)
         {

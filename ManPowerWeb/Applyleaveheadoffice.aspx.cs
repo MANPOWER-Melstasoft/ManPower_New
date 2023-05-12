@@ -1,8 +1,10 @@
 ﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -133,7 +135,7 @@ namespace ManPowerWeb
                 staffLeave.ResumingDate = DateTime.Parse(txtDateResuming.Text);
             }
 
-
+            List<StaffLeaveDocuments> staffLeaveDocuments = new List<StaffLeaveDocuments>();
             if (Uploader.HasFile)
             {
                 HttpFileCollection uploadFiles = Request.Files;
@@ -142,10 +144,22 @@ namespace ManPowerWeb
                     HttpPostedFile uploadFile = uploadFiles[i];
                     if (uploadFile.ContentLength > 0)
                     {
-                        uploadFile.SaveAs(Server.MapPath("~/SystemDocuments/StaffLeaveResources/") + uploadFile.FileName);
+                        StaffLeaveDocuments doc = new StaffLeaveDocuments();
+
+                        var originalFileName = Path.GetFileName(uploadFile.FileName); // Get the original filename
+                        var extension = Path.GetExtension(originalFileName); // Get the file extension
+                        var dateTime = DateTime.Now.ToString("yyyyMMddHHmmss"); // Get the current date and time as a string
+                        var newFileName = staffLeave.EmployeeId + "_" + dateTime + extension; // Set the new filename
+
+                        var path = Path.Combine(Server.MapPath("~/SystemDocuments/StaffLeaveResources/"), newFileName); // Set the file path
+                        uploadFile.SaveAs(path);
+
+
                         lblListOfUploadedFiles.Text += String.Format("{0}<br />", uploadFile.FileName);
 
-                        staffLeave.LeaveDocument = uploadFile.FileName;
+                        doc.Document = newFileName;
+
+                        staffLeaveDocuments.Add(doc);
                     }
                 }
             }
@@ -154,7 +168,13 @@ namespace ManPowerWeb
                 staffLeave.LeaveDocument = "";
             }
 
+            staffLeave.documents = staffLeaveDocuments;
             staffLeave.LeaveStatusId = 2;
+
+            if (staffLeave.LeaveTypeId == 7)
+            {
+                staffLeave.LeaveStatusId = 6;
+            }
 
             if (validation)
             {

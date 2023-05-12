@@ -132,6 +132,7 @@
     <Compile Include="Controller\ServiceTypeController.cs" />
     <Compile Include="Controller\StaffLeaveAllocationController.cs" />
     <Compile Include="Controller\StaffLeaveController.cs" />
+    <Compile Include="Controller\staffLeaveDocumentsController.cs" />
     <Compile Include="Controller\SupplierController.cs" />
     <Compile Include="Controller\SupplierTypeController.cs" />
     <Compile Include="Controller\SystemUserController.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Domain\RequestorGuarantor.cs" />
     <Compile Include="Domain\SalaryIncrement.cs" />
     <Compile Include="Domain\SalaryIncrementStatus.cs" />
+    <Compile Include="Domain\StaffLeaveDocuments.cs" />
     <Compile Include="Domain\Supplier.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TrainingMain.cs" />
@@ -358,6 +360,7 @@
     <Compile Include="Infrastructure\ServiceTypeDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveAllocationDAO.cs" />
     <Compile Include="Infrastructure\StaffLeaveDAO.cs" />
+    <Compile Include="Infrastructure\StaffLeaveDocumentsDAO.cs" />
     <Compile Include="Infrastructure\SupplierDAO.cs" />
     <Compile Include="Infrastructure\SupplierTypeDAO.cs" />
     <Compile Include="Infrastructure\SystemUserDAO.cs" />

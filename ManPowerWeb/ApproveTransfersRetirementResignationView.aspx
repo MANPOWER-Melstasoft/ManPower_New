@@ -170,7 +170,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="Literal7" runat="server" Text="Retirement Type : "></asp:Literal>
+                                            <asp:Literal ID="Literal7" runat="server" Text="Service Category: "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblRetirementType" runat="server" Text="N/A" Width="250px"></asp:Label>

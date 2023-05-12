@@ -699,6 +699,18 @@ namespace ManPowerCore.Common
 			return (TransfersRetirementResignationMainDocumentController)transfersRetirementResignationMainDocumentController;
 		}
 
+		public static staffLeaveDocumentsController CreateStaffLeaveDocumentsController()
+		{
+			staffLeaveDocumentsController staffLeaveDocumentsController = new staffLeaveDocumentsControllerImpl();
+			return (staffLeaveDocumentsController)staffLeaveDocumentsController;
+		}
+
+		public static TransfersRetirementResignationMainDocumentController CreateTransfersRetirementResignationMainDocumentController()
+		{
+			TransfersRetirementResignationMainDocumentController transfersRetirementResignationMainDocumentController = new TransfersRetirementResignationMainDocumentControllerImpl();
+			return (TransfersRetirementResignationMainDocumentController)transfersRetirementResignationMainDocumentController;
+		}
+
 		public static EmployeePreviousWorkplaceController CreateEmployeePreviousWorkplaceController()
 		{
 			EmployeePreviousWorkplaceController employeePreviousWorkplaceController = new EmployeePreviousWorkplaceControllerImpl();

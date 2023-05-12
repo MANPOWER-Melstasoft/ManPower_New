@@ -36,14 +36,15 @@ namespace ManPowerCore.Infrastructure
     {
         public int saveStaffLeave(StaffLeave staffLeave, DBConnection dBConnection)
         {
+            int output = 0;
             if (dBConnection.dr != null)
                 dBConnection.dr.Close();
 
             dBConnection.cmd.CommandType = System.Data.CommandType.Text;
 
             dBConnection.cmd.Parameters.Clear();
-            dBConnection.cmd.CommandText = "INSERT INTO Staff_Leave (Day_Type_id,Leave_Type_id,Employee_ID,Leave_Date,Created_Date,Is_Half_Day,Leave_Status_Id,Reason_For_Leave,Resuming_Date,No_Of_Leave,Leave_Document,From_Time,To_Time)" +
-               " VALUES(@DayType,@LeaveTypeId,@EmpId,@LeaveDate,@CreatedDate,@IsHalfDay,@LeaveStatusId,@Reason,@ResumingDate,@NoLeaves,@LeaveDocument,@FromTime,@ToTime);";
+            dBConnection.cmd.CommandText = "INSERT INTO Staff_Leave (Day_Type_id,Leave_Type_id,Employee_ID,Leave_Date,Created_Date,Is_Half_Day,Leave_Status_Id,Reason_For_Leave,Resuming_Date,No_Of_Leave,From_Time,To_Time)" +
+               " VALUES(@DayType,@LeaveTypeId,@EmpId,@LeaveDate,@CreatedDate,@IsHalfDay,@LeaveStatusId,@Reason,@ResumingDate,@NoLeaves,@FromTime,@ToTime) SELECT SCOPE_IDENTITY();";
 
             dBConnection.cmd.Parameters.AddWithValue("@LeaveTypeId", staffLeave.LeaveTypeId);
             dBConnection.cmd.Parameters.AddWithValue("@NoLeaves", staffLeave.NoOfLeaves);
@@ -55,15 +56,15 @@ namespace ManPowerCore.Infrastructure
 
             dBConnection.cmd.Parameters.AddWithValue("@CreatedDate", staffLeave.CreatedDate);
             dBConnection.cmd.Parameters.AddWithValue("@IsHalfDay", staffLeave.IsHalfDay);
-            dBConnection.cmd.Parameters.AddWithValue("@LeaveDocument", staffLeave.LeaveDocument);
+            //dBConnection.cmd.Parameters.AddWithValue("@LeaveDocument", staffLeave.LeaveDocument);
             dBConnection.cmd.Parameters.AddWithValue("@LeaveStatusId", staffLeave.LeaveStatusId);
 
             dBConnection.cmd.Parameters.AddWithValue("@FromTime", staffLeave.FromTime);
             dBConnection.cmd.Parameters.AddWithValue("@ToTime", staffLeave.ToTime);
 
+            output = Convert.ToInt32(dBConnection.cmd.ExecuteScalar());
 
-
-            return dBConnection.cmd.ExecuteNonQuery();
+            return output;
 
         }
 

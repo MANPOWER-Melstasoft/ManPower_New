@@ -66,6 +66,13 @@ namespace ManPowerWeb
                 btnApprove.Visible = false;
                 btnModalReject.Visible = false;
             }
+
+            staffLeaveDocumentsController staffLeaveDocumentsController = ControllerFactory.CreateStaffLeaveDocumentsController();
+            List<StaffLeaveDocuments> staffLeaveDocuments = staffLeaveDocumentsController.GetAllDocumentsByLeaveId(Id);
+
+            gvDocument.DataSource = staffLeaveDocuments;
+            gvDocument.DataBind();
+
         }
 
         protected void btnViewLeave_Click(object sender, EventArgs e)

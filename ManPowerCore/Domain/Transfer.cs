@@ -25,6 +25,12 @@ namespace ManPowerCore.Domain
         [DBField("Department_Unit_Id")]
         public int NextDep { get; set; }
 
+        [DBField("Prefered_Work_Place2")]
+        public int PreferedWorkPlace2 { get; set; }
+
+        [DBField("Prefered_Work_Place3")]
+        public int PreferdWorkPlace3 { get; set; }
+
         [DBField("Reason")]
         public string Reason { get; set; }
 

@@ -218,8 +218,8 @@
                                         <label>Reason to reject :</label>
                                     </div>
                                     <div class="col-10">
-                                        <asp:TextBox ID="rejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine" ValidationGroup="1"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ControlToValidate="rejectReason" ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="1" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                        <asp:TextBox ID="rejectReason" runat="server" Width="250px" CssClass="form-control form-control-user" TextMode="MultiLine" ValidationGroup="2"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ControlToValidate="rejectReason" ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="2" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <asp:Button runat="server" ID="Button1" Text="Reject" OnClick="Reject" CssClass="btn btn-danger" Width="100px" ValidationGroup="1" />
+                            <asp:Button runat="server" ID="Button1" Text="Reject" OnClick="Reject" CssClass="btn btn-danger" Width="100px" ValidationGroup="2" />
                         </div>
                     </div>
                 </div>

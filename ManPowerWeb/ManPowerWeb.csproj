@@ -355,6 +355,7 @@
     <Content Include="UserList.aspx" />
     <Content Include="UserProfile.aspx" />
     <Content Include="UserRolePrivileges.aspx" />
+    <Content Include="UserTrainingReport.aspx" />
     <Content Include="VacancyReg.aspx" />
     <Content Include="VacancyRegSearch.aspx" />
     <Content Include="VacancyRegView.aspx" />
@@ -3195,6 +3196,13 @@
     </Compile>
     <Compile Include="UserRolePrivileges.aspx.designer.cs">
       <DependentUpon>UserRolePrivileges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserTrainingReport.aspx.cs">
+      <DependentUpon>UserTrainingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserTrainingReport.aspx.designer.cs">
+      <DependentUpon>UserTrainingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="VacancyReg.aspx.cs">
       <DependentUpon>VacancyReg.aspx</DependentUpon>

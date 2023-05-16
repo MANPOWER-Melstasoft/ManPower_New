@@ -53,7 +53,7 @@ namespace ManPowerCore.Infrastructure
 			dbConnection.cmd.Parameters.Clear();
 			dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 			dbConnection.cmd.CommandText = "UPDATE Transfers_Retirement_Resignation_Main SET Request_Type_Id = @RequestTypeId, Status_Id = @StatusId," +
-				"Employee_ID= @EmployeeId, Created_Date = @CreatedDate, Created_User = @CreatedUser, Documents = @Documents, Parent_Id = @ParentId," +
+				"Employee_ID= @EmployeeId, Created_Date = @CreatedDate, Created_User = @CreatedUser, Parent_Id = @ParentId," +
 				"Parent_Action = @ParentAction, Action_Taken_User_Id = @ActionTakenUserId, Action_Taken_Date = @ActionTakenDate, Reason = @Reason, " +
 				"Reverse_Remarks = @ReverseRemarks, Approve_Documents = @ApproveDocuments, Remarks = @Remarks WHERE ID = @Id ";
 
@@ -63,7 +63,7 @@ namespace ManPowerCore.Infrastructure
 			dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", obj.EmployeeId);
 			dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", obj.CreatedDate);
 			dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", obj.CreatedUser);
-			dbConnection.cmd.Parameters.AddWithValue("@Documents", obj.Documents);
+			//dbConnection.cmd.Parameters.AddWithValue("@Documents", obj.Documents);
 			dbConnection.cmd.Parameters.AddWithValue("@ParentId", obj.ParentId);
 			dbConnection.cmd.Parameters.AddWithValue("@ParentAction", obj.ParentAction);
 			dbConnection.cmd.Parameters.AddWithValue("@ActionTakenUserId", obj.ActionTakenUserId);
@@ -85,7 +85,7 @@ namespace ManPowerCore.Infrastructure
 			dbConnection.cmd.Parameters.Clear();
 			dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 			dbConnection.cmd.CommandText = "UPDATE Transfers_Retirement_Resignation_Main SET Request_Type_Id = @RequestTypeId, Status_Id = @StatusId," +
-				"Employee_ID= @EmployeeId, Created_Date = @CreatedDate, Created_User = @CreatedUser, Documents = @Documents," +
+				"Employee_ID= @EmployeeId, Created_Date = @CreatedDate, Created_User = @CreatedUser," +
 				"Parent_Action = @ParentAction, Reason = @Reason, Reverse_Remarks = @ReverseRemarks, Rec_Documents = @RecDocuments, " +
 				"Remarks = @Remarks, Recomend_Parent_Id = @RecomendParentId WHERE ID = @Id ";
 
@@ -95,7 +95,7 @@ namespace ManPowerCore.Infrastructure
 			dbConnection.cmd.Parameters.AddWithValue("@EmployeeId", obj.EmployeeId);
 			dbConnection.cmd.Parameters.AddWithValue("@CreatedDate", obj.CreatedDate);
 			dbConnection.cmd.Parameters.AddWithValue("@CreatedUser", obj.CreatedUser);
-			dbConnection.cmd.Parameters.AddWithValue("@Documents", obj.Documents);
+			//dbConnection.cmd.Parameters.AddWithValue("@Documents", obj.Documents);
 			dbConnection.cmd.Parameters.AddWithValue("@RecomendParentId", obj.RecomendParentId);
 			dbConnection.cmd.Parameters.AddWithValue("@ParentAction", obj.ParentAction);
 			dbConnection.cmd.Parameters.AddWithValue("@Reason", obj.Reason);

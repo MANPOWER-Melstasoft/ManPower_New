@@ -149,11 +149,16 @@
     <Content Include="DME22Rec1Render.aspx" />
     <Content Include="DME22Rec2.aspx" />
     <Content Include="DME22Rec2Render.aspx" />
+    <Content Include="EmployeePreviousWorkplace.aspx" />
     <Content Include="FuelDetails.aspx" />
     <Content Include="FuelDetailsReport.aspx" />
     <Content Include="IndividualBeneList.aspx" />
     <Content Include="LeaveForm.aspx" />
     <Content Include="LeaveReportAll.aspx" />
+    <Content Include="LeaveReportDistrictDs.aspx" />
+    <Content Include="LeaveReportHeadOffice.aspx" />
+    <Content Include="LeaveReportUser.aspx" />
+    <Content Include="LeaveReportView.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
@@ -171,9 +176,13 @@
     <Content Include="PlanningRecommendation1.aspx" />
     <Content Include="PlanningRecommendation2.aspx" />
     <Content Include="PositionTransfer.aspx" />
+    <Content Include="RecommendationLapsedLeave.aspx" />
+    <Content Include="RecommendationLapsedLeaveView.aspx" />
     <Content Include="RecommendationLeave.aspx" />
     <Content Include="RecommendationLeaveView.aspx" />
     <Content Include="RecommendationTrainingRequest.aspx" />
+    <Content Include="RecommendNextTransfersRetirementResignation.aspx" />
+    <Content Include="RecommendNextTransfersRetirementResignationView.aspx" />
     <Content Include="RecommendTransfersRetirementResignation.aspx" />
     <Content Include="RecommendTransfersRetirementResignationView.aspx" />
     <Content Include="RequestLoan.aspx" />
@@ -346,6 +355,7 @@
     <Content Include="UserList.aspx" />
     <Content Include="UserProfile.aspx" />
     <Content Include="UserRolePrivileges.aspx" />
+    <Content Include="UserTrainingReport.aspx" />
     <Content Include="VacancyReg.aspx" />
     <Content Include="VacancyRegSearch.aspx" />
     <Content Include="VacancyRegView.aspx" />
@@ -2275,6 +2285,13 @@
     <Compile Include="DME22Rec2Render.aspx.designer.cs">
       <DependentUpon>DME22Rec2Render.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EmployeePreviousWorkplace.aspx.cs">
+      <DependentUpon>EmployeePreviousWorkplace.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeePreviousWorkplace.aspx.designer.cs">
+      <DependentUpon>EmployeePreviousWorkplace.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FuelDetails.aspx.cs">
       <DependentUpon>FuelDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2309,6 +2326,34 @@
     </Compile>
     <Compile Include="LeaveReportAll.aspx.designer.cs">
       <DependentUpon>LeaveReportAll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportDistrictDs.aspx.cs">
+      <DependentUpon>LeaveReportDistrictDs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportDistrictDs.aspx.designer.cs">
+      <DependentUpon>LeaveReportDistrictDs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportHeadOffice.aspx.cs">
+      <DependentUpon>LeaveReportHeadOffice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportHeadOffice.aspx.designer.cs">
+      <DependentUpon>LeaveReportHeadOffice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportUser.aspx.cs">
+      <DependentUpon>LeaveReportUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportUser.aspx.designer.cs">
+      <DependentUpon>LeaveReportUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReportView.aspx.cs">
+      <DependentUpon>LeaveReportView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReportView.aspx.designer.cs">
+      <DependentUpon>LeaveReportView.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoanReport.aspx.cs">
       <DependentUpon>LoanReport.aspx</DependentUpon>
@@ -2429,6 +2474,20 @@
     <Compile Include="PositionTransfer.aspx.designer.cs">
       <DependentUpon>PositionTransfer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RecommendationLapsedLeave.aspx.cs">
+      <DependentUpon>RecommendationLapsedLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeave.aspx.designer.cs">
+      <DependentUpon>RecommendationLapsedLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeaveView.aspx.cs">
+      <DependentUpon>RecommendationLapsedLeaveView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendationLapsedLeaveView.aspx.designer.cs">
+      <DependentUpon>RecommendationLapsedLeaveView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RecommendationLeave.aspx.cs">
       <DependentUpon>RecommendationLeave.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2449,6 +2508,20 @@
     </Compile>
     <Compile Include="RecommendationTrainingRequest.aspx.designer.cs">
       <DependentUpon>RecommendationTrainingRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignation.aspx.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignationView.aspx.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignationView.aspx.designer.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignationView.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecommendTransfersRetirementResignation.aspx.cs">
       <DependentUpon>RecommendTransfersRetirementResignation.aspx</DependentUpon>
@@ -3123,6 +3196,13 @@
     </Compile>
     <Compile Include="UserRolePrivileges.aspx.designer.cs">
       <DependentUpon>UserRolePrivileges.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserTrainingReport.aspx.cs">
+      <DependentUpon>UserTrainingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserTrainingReport.aspx.designer.cs">
+      <DependentUpon>UserTrainingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="VacancyReg.aspx.cs">
       <DependentUpon>VacancyReg.aspx</DependentUpon>

@@ -201,7 +201,7 @@ namespace ManPowerWeb
 
             if (ddlUpdateStatus.SelectedItem.Text == "Send to Approval")
             {
-                trrmainObj.StatusId = 5;
+                trrmainObj.StatusId = 6;
                 trrmainObj.ParentAction = ddlAction.SelectedItem.Text;
             }
             if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")

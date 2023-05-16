@@ -67,9 +67,27 @@ namespace ManPowerCore.Controller
 					EmployeeDAO employeeDAO = DAOFactory.CreateEmployeeDAO();
 					TransferDAO transferDAO = DAOFactory.CreateTransferDAO();
 					DepartmentUnitDAO departmentUnitDAO = DAOFactory.CreateDepartmentUnitDAO();
+					EmployeePreviousWorkplaceDAO empPreviousWorkplaceDAO = DAOFactory.CreateEmployeePreviousWorkplaceDAO();
 
+					EmployeePreviousWorkplace empPreviousWorkplace = new EmployeePreviousWorkplace();
+					empPreviousWorkplace.TransfersRetirementResignationMainId = obj.MainId;
+					empPreviousWorkplace.EmployeeId = obj.EmployeeId;
+
+
+					Employee Employee = employeeDAO.GetEmployeeById(obj.EmployeeId, dBConnection);
 					Transfer transfer = transferDAO.GetTransferByMainId(obj.MainId, dBConnection);
 					DepartmentUnit departmentUnit = departmentUnitDAO.GetDepartmentUnit(transfer.NextDep, dBConnection);
+
+					if (Employee.UnitType == 3)
+					{
+						empPreviousWorkplace.PreviousWorkplaceId = Employee.DSDivisionId;
+					}
+					else
+					{
+						empPreviousWorkplace.PreviousWorkplaceId = Employee.DistrictId;
+					}
+
+					empPreviousWorkplace.CurrentWorkplaceId = transfer.NextDep;
 
 					Employee employee = new Employee();
 					employee.EmployeeId = obj.EmployeeId;
@@ -86,6 +104,8 @@ namespace ManPowerCore.Controller
 					}
 
 					output = employeeDAO.ChanngeDepartment(employee, dBConnection);
+					output = empPreviousWorkplaceDAO.save(empPreviousWorkplace, dBConnection);
+
 				}
 
 				return output;

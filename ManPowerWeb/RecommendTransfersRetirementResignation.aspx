@@ -23,14 +23,14 @@
 
                     <div class="col-sm-1"></div>
 
-                    <div class="col-sm-2">
+                    <%--<div class="col-sm-2">
                         Status :
                     </div>
 
                     <div class="col-sm-2">
                         <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control form-control-user" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
-                    </div>
+                    </div>--%>
 
                     <div class="col-sm-2"></div>
 

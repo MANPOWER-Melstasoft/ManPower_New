@@ -170,7 +170,7 @@
                                 <div class="col-sm-6">
                                     <div class="row mb-3">
                                         <div class="col-sm-4">
-                                            <asp:Literal ID="Literal7" runat="server" Text="Retirement Type : "></asp:Literal>
+                                            <asp:Literal ID="Literal7" runat="server" Text="Service Category: "></asp:Literal>
                                         </div>
                                         <div class="col-md-4">
                                             <asp:Label ID="lblRetirementType" runat="server" Text="N/A" Width="250px"></asp:Label>
@@ -252,9 +252,9 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <asp:Literal ID="Literal11" runat="server" Text="Documnents"></asp:Literal>
+                                        <asp:Literal ID="Literal11" runat="server" Text="Documents :"></asp:Literal>
                                     </div>
-                                    <div class="col-md-4">
+                                    <%-- <div class="col-md-4">
                                         <asp:Label ID="lblDocument" runat="server" Text="N/A" Width="250px"></asp:Label>
                                     </div>
                                     <%if (lblDocument.Text != "" && lblDocument.Text != null)
@@ -262,7 +262,19 @@
                                     <div class="col-sm-4">
                                         <asp:Button runat="server" ID="btnView" Text="View Document" CssClass="btn btn-secondary btn-user btn-block" OnClick="btnView_Click" />
                                     </div>
-                                    <%}  %>
+                                    <%}  %>--%>
+                                    <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
+                                        CellPadding="4" GridLines="None" AllowPaging="true" PageSize="10" HeaderStyle-HorizontalAlign="Center">
+                                        <Columns>
+                                            <asp:BoundField DataField="DocumentName" HeaderText="Document Name" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+                                            <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:HiddenField ID="hfDocumentId" runat="server" Value='<%# Eval("Id") %>' />
+                                                    <asp:LinkButton ID="btnView" runat="server" Text="View" CssClass="btn btn-success" Width="100px" Height="35px" OnClick="btnView_Click" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
                                 </div>
                             </div>
                         </div>
@@ -398,7 +410,7 @@
 
                     </ContentTemplate>
                     <Triggers>
-                        <asp:PostBackTrigger ControlID="btnView" />
+                        <%--<asp:PostBackTrigger ControlID="btnView" />--%>
                         <asp:PostBackTrigger ControlID="btnSubmit" />
                         <asp:PostBackTrigger ControlID="btnBack" />
                     </Triggers>

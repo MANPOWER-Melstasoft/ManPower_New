@@ -56,6 +56,15 @@ namespace ManPowerWeb
 			ddlStatus.Items.Insert(4, new ListItem("Reject", "7"));
 		}
 
+		protected void btnView_Click(object sender, EventArgs e)
+		{
+			int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+			int pagesize = gvUserTrainingReport.PageSize;
+			int pageindex = gvUserTrainingReport.PageIndex;
+			rowIndex = (pagesize * pageindex) + rowIndex;
+			Response.Redirect("ApprovedTrainingView.aspx?Id=" + filterList[rowIndex].TrainingRequestsId);
+		}
+
 		public override void VerifyRenderingInServerForm(Control control)
 		{
 

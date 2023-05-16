@@ -1,0 +1,11 @@
+<div>
+	<table class="table table-bordered" cellspacing="0" cellpadding="4" rules="all" border="1" id="MainContent_gvPreviousWorkplace" style="border-collapse:collapse;margin-top: 30px;">
+		<tr align="center">
+			<th class="table-dark" scope="col">Transfer ID</th><th class="table-dark" scope="col">Employee ID</th><th class="table-dark" scope="col">Name</th><th class="table-dark" scope="col">Initials</th><th class="table-dark" scope="col">Previous Workplace</th><th class="table-dark" scope="col">Current Workplace</th>
+		</tr><tr>
+			<td align="center">21</td><td align="center">1023</td><td align="center">Perera</td><td align="center">P J</td><td align="center">54</td><td align="center">52</td>
+		</tr><tr>
+			<td align="center">1</td><td align="center">1023</td><td align="center">Perera</td><td align="center">P J</td><td align="center">52</td><td align="center">75</td>
+		</tr>
+	</table>
+</div>

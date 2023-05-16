@@ -181,6 +181,8 @@
     <Content Include="RecommendationLeave.aspx" />
     <Content Include="RecommendationLeaveView.aspx" />
     <Content Include="RecommendationTrainingRequest.aspx" />
+    <Content Include="RecommendNextTransfersRetirementResignation.aspx" />
+    <Content Include="RecommendNextTransfersRetirementResignationView.aspx" />
     <Content Include="RecommendTransfersRetirementResignation.aspx" />
     <Content Include="RecommendTransfersRetirementResignationView.aspx" />
     <Content Include="RequestLoan.aspx" />
@@ -2505,6 +2507,20 @@
     </Compile>
     <Compile Include="RecommendationTrainingRequest.aspx.designer.cs">
       <DependentUpon>RecommendationTrainingRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignation.aspx.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignation.aspx.designer.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignationView.aspx.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecommendNextTransfersRetirementResignationView.aspx.designer.cs">
+      <DependentUpon>RecommendNextTransfersRetirementResignationView.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecommendTransfersRetirementResignation.aspx.cs">
       <DependentUpon>RecommendTransfersRetirementResignation.aspx</DependentUpon>

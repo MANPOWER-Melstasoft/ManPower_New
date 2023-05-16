@@ -22,7 +22,7 @@ namespace ManPowerWeb
             if (!IsPostBack)
             {
                 BindDataSource();
-                BindDdlStatus();
+                //BindDdlStatus();
                 BindDdlType();
             }
         }
@@ -36,6 +36,16 @@ namespace ManPowerWeb
 
             TransfersRetirementResignationMainController main = ControllerFactory.CreateTransfersRetirementResignationMainController();
             List<TransfersRetirementResignationMain> mainListIn = main.GetAllTransfersRetirementResignation(false);
+
+            try
+            {
+                mainListIn = mainListIn.Where(x => x.StatusId == 1).ToList();
+            }
+            catch (Exception ex)
+            {
+                mainListIn.Clear();
+            }
+
             mainList = new List<TransfersRetirementResignationMain>();
 
             //foreach (var item in mainListIn)
@@ -77,17 +87,17 @@ namespace ManPowerWeb
 
         }
 
-        private void BindDdlStatus()
-        {
-            TransfersRetirementResignationStatusController statusController = ControllerFactory.CreateTransfersRetirementResignationStatusController();
-            List<TransfersRetirementResignationStatus> status = statusController.GetAllStatus(false);
+        //private void BindDdlStatus()
+        //{
+        //    TransfersRetirementResignationStatusController statusController = ControllerFactory.CreateTransfersRetirementResignationStatusController();
+        //    List<TransfersRetirementResignationStatus> status = statusController.GetAllStatus(false);
 
-            ddlStatus.DataSource = status;
-            ddlStatus.DataValueField = "Id";
-            ddlStatus.DataTextField = "StatusName";
-            ddlStatus.DataBind();
-            ddlStatus.Items.Insert(0, new ListItem("All", ""));
-        }
+        //    ddlStatus.DataSource = status;
+        //    ddlStatus.DataValueField = "Id";
+        //    ddlStatus.DataTextField = "StatusName";
+        //    ddlStatus.DataBind();
+        //    ddlStatus.Items.Insert(0, new ListItem("All", ""));
+        //}
 
         private void BindDdlType()
         {
@@ -117,300 +127,329 @@ namespace ManPowerWeb
             BindDataSource();
         }
 
-
-
-        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlStatus.SelectedValue == "1")
-            {
-                if (ddltype.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 1).ToList();
-                }
-                else if (ddltype.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 2).ToList();
-                }
-                else if (ddltype.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 3).ToList();
-                }
-                else if (ddltype.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 4).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.StatusId == 1).ToList();
-                }
-                GridView1.DataSource = filterList;
-            }
-            else if (ddlStatus.SelectedValue == "2")
-            {
-                if (ddltype.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 1).ToList();
-                }
-                else if (ddltype.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 2).ToList();
-                }
-                else if (ddltype.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 3).ToList();
-                }
-                else if (ddltype.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 4).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.StatusId == 2).ToList();
-                }
-                GridView1.DataSource = filterList;
-            }
-            else if (ddlStatus.SelectedValue == "3")
-            {
-                if (ddltype.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 1).ToList();
-                }
-                else if (ddltype.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 2).ToList();
-                }
-                else if (ddltype.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 3).ToList();
-                }
-                else if (ddltype.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 4).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.StatusId == 3).ToList();
-                }
-                GridView1.DataSource = filterList;
-            }
-            else if (ddlStatus.SelectedValue == "4")
-            {
-                if (ddltype.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 1).ToList();
-                }
-                else if (ddltype.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 2).ToList();
-                }
-                else if (ddltype.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 3).ToList();
-                }
-                else if (ddltype.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 4).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.StatusId == 4).ToList();
-                }
-                GridView1.DataSource = filterList;
-            }
-            else if (ddlStatus.SelectedValue == "5")
-            {
-                if (ddltype.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 1).ToList();
-                }
-                else if (ddltype.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 2).ToList();
-                }
-                else if (ddltype.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 3).ToList();
-                }
-                else if (ddltype.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 4).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.StatusId == 5).ToList();
-                }
-                GridView1.DataSource = filterList;
-            }
-            else
-            {
-                if (ddltype.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 1).ToList();
-                }
-                else if (ddltype.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 2).ToList();
-                }
-                else if (ddltype.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 3).ToList();
-                }
-                else if (ddltype.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 4).ToList();
-                }
-                else
-                {
-                    filterList = mainList;
-                }
-                GridView1.DataSource = filterList;
-            }
-            GridView1.DataBind();
-        }
-
         protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddltype.SelectedValue == "1")
             {
-                if (ddlStatus.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 1).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 2).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 3).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 4).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "5")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 5).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 1).ToList();
-                }
+                filterList = mainList.Where(a => a.RequestTypeId == 1).ToList();
                 GridView1.DataSource = filterList;
             }
             else if (ddltype.SelectedValue == "2")
             {
-                if (ddlStatus.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 1).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 2).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 3).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 4).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "5")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 5).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 2).ToList();
-                }
+                filterList = mainList.Where(a => a.RequestTypeId == 2).ToList();
                 GridView1.DataSource = filterList;
             }
             else if (ddltype.SelectedValue == "3")
             {
-                if (ddlStatus.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 1).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 2).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 3).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 4).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "5")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 5).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 3).ToList();
-                }
+                filterList = mainList.Where(a => a.RequestTypeId == 3).ToList();
                 GridView1.DataSource = filterList;
             }
             else if (ddltype.SelectedValue == "4")
             {
-                if (ddlStatus.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 1).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 2).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 3).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 4).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "5")
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 5).ToList();
-                }
-                else
-                {
-                    filterList = mainList.Where(a => a.RequestTypeId == 4).ToList();
-                }
+                filterList = mainList.Where(a => a.RequestTypeId == 4).ToList();
                 GridView1.DataSource = filterList;
             }
             else
             {
-                if (ddlStatus.SelectedValue == "1")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 1).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "2")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 2).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "3")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 3).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "4")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 4).ToList();
-                }
-                else if (ddlStatus.SelectedValue == "5")
-                {
-                    filterList = mainList.Where(a => a.StatusId == 5).ToList();
-                }
-                else
-                {
-                    filterList = mainList;
-                }
+                filterList = mainList;
                 GridView1.DataSource = filterList;
             }
             GridView1.DataBind();
         }
+
+
+        //protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ddlStatus.SelectedValue == "1")
+        //    {
+        //        if (ddltype.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 1).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 2).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 3).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 1 && a.RequestTypeId == 4).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 1).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else if (ddlStatus.SelectedValue == "2")
+        //    {
+        //        if (ddltype.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 1).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 2).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 3).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 2 && a.RequestTypeId == 4).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 2).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else if (ddlStatus.SelectedValue == "3")
+        //    {
+        //        if (ddltype.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 1).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 2).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 3).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 3 && a.RequestTypeId == 4).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 3).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else if (ddlStatus.SelectedValue == "4")
+        //    {
+        //        if (ddltype.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 1).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 2).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 3).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 4 && a.RequestTypeId == 4).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 4).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else if (ddlStatus.SelectedValue == "5")
+        //    {
+        //        if (ddltype.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 1).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 2).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 3).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 5 && a.RequestTypeId == 4).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 5).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else
+        //    {
+        //        if (ddltype.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 1).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 2).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 3).ToList();
+        //        }
+        //        else if (ddltype.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 4).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList;
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    GridView1.DataBind();
+        //}
+
+        //protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ddltype.SelectedValue == "1")
+        //    {
+        //        if (ddlStatus.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 1).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 2).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 3).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 4).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "5")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 1 && a.StatusId == 5).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 1).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else if (ddltype.SelectedValue == "2")
+        //    {
+        //        if (ddlStatus.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 1).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 2).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 3).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 4).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "5")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 2 && a.StatusId == 5).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 2).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else if (ddltype.SelectedValue == "3")
+        //    {
+        //        if (ddlStatus.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 1).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 2).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 3).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 4).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "5")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 3 && a.StatusId == 5).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 3).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else if (ddltype.SelectedValue == "4")
+        //    {
+        //        if (ddlStatus.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 1).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 2).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 3).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 4).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "5")
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 4 && a.StatusId == 5).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList.Where(a => a.RequestTypeId == 4).ToList();
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    else
+        //    {
+        //        if (ddlStatus.SelectedValue == "1")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 1).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "2")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 2).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "3")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 3).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "4")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 4).ToList();
+        //        }
+        //        else if (ddlStatus.SelectedValue == "5")
+        //        {
+        //            filterList = mainList.Where(a => a.StatusId == 5).ToList();
+        //        }
+        //        else
+        //        {
+        //            filterList = mainList;
+        //        }
+        //        GridView1.DataSource = filterList;
+        //    }
+        //    GridView1.DataBind();
+        //}
     }
 }

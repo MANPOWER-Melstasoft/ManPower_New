@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-    public partial class RecommendTransfersRetirementResignationView : System.Web.UI.Page
+    public partial class RecommendNextTransfersRetirementResignationView : System.Web.UI.Page
     {
         static int Id;
         static int typeId;
@@ -39,6 +39,7 @@ namespace ManPowerWeb
                 }
             }
         }
+
 
         private void BindData()
         {
@@ -105,7 +106,7 @@ namespace ManPowerWeb
                 }
 
             }
-            else if (trrmainObj.StatusId == 5)
+            else if (trrmainObj.StatusId == 6 || trrmainObj.StatusId == 7)
             {
                 ddlUpdateStatus.SelectedValue = "0";
             }
@@ -183,11 +184,14 @@ namespace ManPowerWeb
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RecommendTransfersRetirementResignation.aspx");
+            Response.Redirect("RecommendNextTransfersRetirementResignation.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            int userType = Convert.ToInt32(Session["UserTypeId"]);
+            int designationId = Convert.ToInt32(Session["DesignationId"]);
+
             int output = 0;
             TransfersRetirementResignationMainController transfersRetirementResignationMainController = ControllerFactory.CreateTransfersRetirementResignationMainController();
 
@@ -201,7 +205,15 @@ namespace ManPowerWeb
 
             if (ddlUpdateStatus.SelectedItem.Text == "Send to Approval")
             {
-                trrmainObj.StatusId = 6;
+                if (designationId == 34)
+                {
+                    trrmainObj.StatusId = 7;
+                }
+                else if (designationId == 5)
+                {
+                    trrmainObj.StatusId = 5;
+                }
+                trrmainObj.StatusId = 0;
                 trrmainObj.ParentAction = ddlAction.SelectedItem.Text;
             }
             if (ddlUpdateStatus.SelectedItem.Text == "Incomplete Application")
@@ -254,16 +266,18 @@ namespace ManPowerWeb
                     }
                 }
             }
-
-            output = transfersRetirementResignationMainController.Recommend(trrmainObj);
-
-            if (output == 1)
+            if (trrmainObj.StatusId != 0)
             {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Record Updated Succesfully!', 'success');window.setTimeout(function(){window.location='RecommendTransfersRetirementResignation.aspx'},2500);", true);
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Record Added Fail!', 'error');", true);
+                output = transfersRetirementResignationMainController.Recommend(trrmainObj);
+
+                if (output == 1)
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Record Updated Succesfully!', 'success');window.setTimeout(function(){window.location='RecommendTransfersRetirementResignation.aspx'},2500);", true);
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Record Added Fail!', 'error');", true);
+                }
             }
         }
 
@@ -370,5 +384,6 @@ namespace ManPowerWeb
                 reject.Visible = true;
             }
         }
+
     }
 }

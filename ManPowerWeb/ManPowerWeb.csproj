@@ -136,6 +136,7 @@
     <Content Include="Applyleaveheadoffice.aspx" />
     <Content Include="ApprovedLoanFront.aspx" />
     <Content Include="ApprovedLoansView.aspx" />
+    <Content Include="ApprovedTrainingView.aspx" />
     <Content Include="ApproveLoan.aspx" />
     <Content Include="ApproveLoanAdmin1.aspx" />
     <Content Include="ApproveLoanAdmin1Front.aspx" />
@@ -2194,6 +2195,13 @@
     <Compile Include="ApprovedLoansView.aspx.designer.cs">
       <DependentUpon>ApprovedLoansView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApprovedTrainingView.aspx.cs">
+      <DependentUpon>ApprovedTrainingView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovedTrainingView.aspx.designer.cs">
+      <DependentUpon>ApprovedTrainingView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveLoan.aspx.cs">
       <DependentUpon>ApproveLoan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3286,6 +3294,7 @@
     <Folder Include="SystemDocuments\Retirement\" />
     <Folder Include="SystemDocuments\SalarySlips\" />
     <Folder Include="SystemDocuments\StaffLeaveResources\" />
+    <Folder Include="SystemDocuments\TrainingCertificates\" />
     <Folder Include="SystemDocuments\TrainingRequestsAttachment\" />
     <Folder Include="SystemDocuments\Transfers\" />
   </ItemGroup>

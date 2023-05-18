@@ -696,5 +696,10 @@ namespace ManPowerCore.Common
 			return (EmployeePreviousWorkplaceDAO)employeePreviousWorkplaceDAO;
 		}
 
+		public static ApprovedTrainingRequestDocumentsDAO CreateApprovedTrainingRequestDocumentsDAO()
+		{
+			ApprovedTrainingRequestDocumentsDAO approvedTrainingRequestDocumentsDAO = new ApprovedTrainingRequestDocumentsDAOSqlImpl();
+			return (ApprovedTrainingRequestDocumentsDAO)approvedTrainingRequestDocumentsDAO;
+		}
 	}
 }

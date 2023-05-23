@@ -53,6 +53,7 @@
     <Compile Include="Controller\ApprovalHistoryController.cs" />
     <Compile Include="Controller\ApprovalTypeController.cs" />
     <Compile Include="Controller\ApproveActionController.cs" />
+    <Compile Include="Controller\ApprovedTrainingRequestDocumentsController.cs" />
     <Compile Include="Controller\AutFunctionController.cs" />
     <Compile Include="Controller\AutSystemRoleFunctionController.cs" />
     <Compile Include="Controller\AutUserFunctionController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Domain\AccountCode.cs" />
     <Compile Include="Domain\ApprovalType.cs" />
     <Compile Include="Domain\ApprovalHistory.cs" />
+    <Compile Include="Domain\ApprovedTrainingRequestDocuments.cs" />
     <Compile Include="Domain\DistressLoan.cs" />
     <Compile Include="Domain\EmployeeDetailsFromProgramPlan.cs" />
     <Compile Include="Domain\EmployeePreviousWorkplaces.cs" />
@@ -214,6 +216,7 @@
     <Compile Include="Infrastructure\AccountCodeDAO.cs" />
     <Compile Include="Infrastructure\ApprovalHistoryDAO.cs" />
     <Compile Include="Infrastructure\ApprovalTypeDAO.cs" />
+    <Compile Include="Infrastructure\ApprovedTrainingRequestDocumentsDAO.cs" />
     <Compile Include="Infrastructure\DistressLoanDAO.cs" />
     <Compile Include="Infrastructure\DistrictTASummaryDAO.cs" />
     <Compile Include="Domain\DistrictTASummaryReport.cs" />

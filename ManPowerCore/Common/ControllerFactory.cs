@@ -711,5 +711,10 @@ namespace ManPowerCore.Common
 			return (EmployeePreviousWorkplaceController)employeePreviousWorkplaceController;
 		}
 
+		public static ApprovedTrainingRequestDocumentsController CreateApprovedTrainingRequestDocumentsController()
+		{
+			ApprovedTrainingRequestDocumentsController approvedTrainingRequestDocumentsController = new ApprovedTrainingRequestDocumentsControllerImpl();
+			return (ApprovedTrainingRequestDocumentsController)approvedTrainingRequestDocumentsController;
+		}
 	}
 }

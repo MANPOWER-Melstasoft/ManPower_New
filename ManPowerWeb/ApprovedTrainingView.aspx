@@ -120,7 +120,7 @@
                                                 <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                                                     <ItemTemplate>
                                                         <asp:HiddenField ID="hfDocumentId" runat="server" Value='<%# Eval("Id") %>' />
-                                                        <asp:LinkButton ID="btnView" runat="server" Text="View" CssClass="btn btn-success" Width="100px" Height="35px" />
+                                                        <asp:LinkButton ID="btnView" runat="server" Text="View" CssClass="btn btn-success" Width="100px" Height="35px" OnClick="btnView_Click" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

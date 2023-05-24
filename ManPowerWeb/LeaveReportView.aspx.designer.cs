@@ -11,43 +11,52 @@ namespace ManPowerWeb
 {
 
 
-    public partial class LeaveReportView
-    {
+	public partial class LeaveReportView
+	{
 
-        /// <summary>
-        /// Scriptmanger1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager Scriptmanger1;
+		/// <summary>
+		/// Scriptmanger1 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.ScriptManager Scriptmanger1;
 
-        /// <summary>
-        /// lblEmpId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpId;
+		/// <summary>
+		/// lblEmpId control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblEmpId;
 
-        /// <summary>
-        /// gvLeaveReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvLeaveReport;
+		/// <summary>
+		/// gvLeaveReport control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.GridView gvLeaveReport;
 
-        /// <summary>
-        /// btnRun control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
-    }
+		/// <summary>
+		/// btnisClicked control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnisClicked;
+
+		/// <summary>
+		/// btnRun control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
+	}
 }

@@ -162,6 +162,8 @@
     <Content Include="LeaveReportView.aspx" />
     <Content Include="LoanReport.aspx" />
     <Content Include="MaintenanceRecomand.aspx" />
+    <Content Include="MaintenanceRecomandationDirector.aspx" />
+    <Content Include="MaintenanceRecomandationDirectorView.aspx" />
     <Content Include="MaintenanceRecomandView.aspx" />
     <Content Include="MaintenanceRecommendationAD.aspx" />
     <Content Include="MaintenanceRecommendationADView.aspx" />
@@ -348,6 +350,7 @@
     <Content Include="testing.aspx" />
     <Content Include="TrainingAd.aspx" />
     <Content Include="TrainingReport.aspx" />
+    <Content Include="TrainingRequestReport.aspx" />
     <Content Include="TransferReport.aspx" />
     <Content Include="TransfersRetirementResignation.aspx" />
     <Content Include="TransfersRetirementResignationView.aspx" />
@@ -2377,6 +2380,20 @@
     <Compile Include="MaintenanceRecomand.aspx.designer.cs">
       <DependentUpon>MaintenanceRecomand.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MaintenanceRecomandationDirector.aspx.cs">
+      <DependentUpon>MaintenanceRecomandationDirector.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRecomandationDirector.aspx.designer.cs">
+      <DependentUpon>MaintenanceRecomandationDirector.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceRecomandationDirectorView.aspx.cs">
+      <DependentUpon>MaintenanceRecomandationDirectorView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaintenanceRecomandationDirectorView.aspx.designer.cs">
+      <DependentUpon>MaintenanceRecomandationDirectorView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MaintenanceRecomandView.aspx.cs">
       <DependentUpon>MaintenanceRecomandView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3147,6 +3164,13 @@
     </Compile>
     <Compile Include="TrainingReport.aspx.designer.cs">
       <DependentUpon>TrainingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrainingRequestReport.aspx.cs">
+      <DependentUpon>TrainingRequestReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrainingRequestReport.aspx.designer.cs">
+      <DependentUpon>TrainingRequestReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="TransferReport.aspx.cs">
       <DependentUpon>TransferReport.aspx</DependentUpon>

@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-	public partial class MaintenanceRecommendationADView
+	public partial class MaintenanceRecomandDirectorView
 	{
 
 		/// <summary>

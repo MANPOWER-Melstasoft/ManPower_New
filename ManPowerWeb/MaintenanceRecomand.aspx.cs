@@ -41,8 +41,11 @@ namespace ManPowerWeb
 			ddlCategory.DataBind();
 			ddlCategory.Items.Insert(0, new ListItem("-- Select --", ""));
 
-			searchList = vehicleMeintenances.Where(x => /*x.RecomandBy == Convert.ToInt32(Session["EmpNumber"]) &&*/ x.IsApproved == 1).ToList();
-
+			/*searchList = vehicleMeintenances.Where(x => *//*x.RecomandBy == Convert.ToInt32(Session["EmpNumber"]) &&*//* x.IsApproved == 1).ToList();*/
+			if (Convert.ToInt32(Session["DesignationId"]) == 33)
+			{
+				searchList = vehicleMeintenances.Where(x => /*x.RecomandBy == Convert.ToInt32(Session["EmpNumber"]) &&*/ x.IsApproved > 0).ToList();
+			}
 
 			ViewState["searchList"] = searchList;
 			GridView1.DataSource = searchList;

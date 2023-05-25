@@ -1,19 +1,17 @@
-﻿using System;
-using System.IO;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using System.Web;
-using Org.BouncyCastle.Ocsp;
-using ManPowerCore.Common;
+﻿using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Data;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-	public partial class UserTrainingReport : System.Web.UI.Page
+	public partial class TrainingRequestReport : System.Web.UI.Page
 	{
 		List<TrainingRequests> trainingRequestsList = new List<TrainingRequests>();
 		List<TrainingRequests> filterList = new List<TrainingRequests>();
@@ -37,12 +35,15 @@ namespace ManPowerWeb
 			TrainingRequestsController trainingRequestsController = ControllerFactory.CreateTrainingRequestsController();
 			trainingRequestsList = trainingRequestsController.GetAllTrainingRequestsWithDetail();
 
-			trainingRequestsList = trainingRequestsList.Where(x => x.Created_User == UserID && x.Is_Active == 1).ToList();
+			trainingRequestsList = trainingRequestsList.Where(x => x.Is_Active == 1).ToList();
 
 			filterList = trainingRequestsList;
 
-			gvUserTrainingReport.DataSource = filterList;
-			gvUserTrainingReport.DataBind();
+			// Reverse the filterList before binding it to the GridView
+			filterList.Reverse();
+
+			gvTrainingRequestReport.DataSource = filterList;
+			gvTrainingRequestReport.DataBind();
 		}
 
 		private void BindDdlStatus()
@@ -56,14 +57,14 @@ namespace ManPowerWeb
 			ddlStatus.Items.Insert(4, new ListItem("Reject", "7"));
 		}
 
-		protected void btnView_Click(object sender, EventArgs e)
+		/*protected void btnView_Click(object sender, EventArgs e)
 		{
 			int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-			int pagesize = gvUserTrainingReport.PageSize;
-			int pageindex = gvUserTrainingReport.PageIndex;
+			int pagesize = gvTrainingRequestReport.PageSize;
+			int pageindex = gvTrainingRequestReport.PageIndex;
 			rowIndex = (pagesize * pageindex) + rowIndex;
 			Response.Redirect("ApprovedTrainingView.aspx?Id=" + filterList[rowIndex].TrainingRequestsId);
-		}
+		}*/
 
 		public override void VerifyRenderingInServerForm(Control control)
 		{
@@ -72,8 +73,7 @@ namespace ManPowerWeb
 		protected void btnExportExcel_Click(object sender, EventArgs e)
 		{
 			// update filterList based on selected status
-			gvUserTrainingReport.Columns[6].Visible = false;
-
+			/*gvTrainingRequestReport.Columns[7].Visible = false;*/
 			if (ddlStatus.SelectedValue == "1")
 			{
 				filterList = trainingRequestsList.Where(a => a.ProjectStatusId == 1).ToList();
@@ -95,8 +95,11 @@ namespace ManPowerWeb
 				filterList = trainingRequestsList;
 			}
 
-			gvUserTrainingReport.DataSource = filterList;
-			gvUserTrainingReport.DataBind();
+			// Reverse the filterList before binding it to the GridView
+			filterList.Reverse();
+
+			gvTrainingRequestReport.DataSource = filterList;
+			gvTrainingRequestReport.DataBind();
 
 
 			Response.Clear();
@@ -104,15 +107,15 @@ namespace ManPowerWeb
 			Response.ClearContent();
 			Response.ClearHeaders();
 			Response.Charset = "";
-			string FileName = "User Training Report" + DateTime.Now + ".xls";
+			string FileName = "Training Request Report" + DateTime.Now + ".xls";
 			StringWriter strwritter = new StringWriter();
 			HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
 			Response.Cache.SetCacheability(HttpCacheability.NoCache);
 			Response.ContentType = "application/vnd.ms-excel";
 			Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
-			gvUserTrainingReport.GridLines = GridLines.Both;
+			gvTrainingRequestReport.GridLines = GridLines.Both;
 			//tblTaSummary.HeaderStyle.Font.Bold = true;
-			gvUserTrainingReport.RenderControl(htmltextwrtter);
+			gvTrainingRequestReport.RenderControl(htmltextwrtter);
 			Response.Write(strwritter.ToString());
 			Response.End();
 		}
@@ -140,8 +143,8 @@ namespace ManPowerWeb
 				filterList = trainingRequestsList;
 			}
 
-			gvUserTrainingReport.DataSource = filterList;
-			gvUserTrainingReport.DataBind();
+			gvTrainingRequestReport.DataSource = filterList;
+			gvTrainingRequestReport.DataBind();
 		}
 	}
 }

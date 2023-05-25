@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceRecommendationADView.aspx.cs" Inherits="ManPowerWeb.MaintenanceRecommendationADView" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceRecomandationDirectorView.aspx.cs" Inherits="ManPowerWeb.MaintenanceRecomandDirectorView" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="card p-4 mb-5">
-            <h2>Maintenance Request Recommendation AD</h2>
+            <h2>Maintenance Request Recommendation Director</h2>
 
 
 

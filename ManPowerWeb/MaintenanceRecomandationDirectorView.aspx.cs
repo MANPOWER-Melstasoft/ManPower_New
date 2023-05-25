@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace ManPowerWeb
 {
-	public partial class MaintenanceRecommendationADView : System.Web.UI.Page
+	public partial class MaintenanceRecomandDirectorView : System.Web.UI.Page
 	{
 		List<VehicleMeintenance> vehicleMeintenances = new List<VehicleMeintenance>();
 		List<SystemUser> systemUsers = new List<SystemUser>();
@@ -92,13 +92,13 @@ namespace ManPowerWeb
 				else if (i.IsApproved == 2)
 				{
 					approval.Text = "Pending Recommendation To Assistant Director";
-					butonA.Visible = true;
-					butonR.Visible = true;
 				}
 
 				else if (i.IsApproved == 3)
 				{
 					approval.Text = "Pending Recommendation To Director";
+					butonA.Visible = true;
+					butonR.Visible = true;
 				}
 
 				else if (i.IsApproved == 4)
@@ -154,7 +154,7 @@ namespace ManPowerWeb
 
 		protected void btnisClicked_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("MaintenanceRecommendationAD.aspx");
+			Response.Redirect("MaintenanceRecomandationDirector.aspx");
 
 		}
 
@@ -165,17 +165,17 @@ namespace ManPowerWeb
 			SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
 			List<SystemUser> listSystemUser = systemUserController.GetAllSystemUser(false, false, false);
 			SystemUser systemUsersobj = new SystemUser();
-			if (listSystemUser.Any(u => u.UserTypeId != 3 && u.DesignationId == 34))
+			if (listSystemUser.Any(u => u.UserTypeId != 3 && u.DesignationId == 5))
 			{
-				systemUsersobj = listSystemUser.Where(u => u.UserTypeId != 3 && u.DesignationId == 34).Single();
+				systemUsersobj = listSystemUser.Where(u => u.UserTypeId != 3 && u.DesignationId == 5).Single();
 			}
 
 			VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-			int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 3, systemUsersobj.EmpNumber, "");
+			int result = vehicleMaintenanceController.UpdateRecommandationADStatus(int.Parse(id), 8, systemUsersobj.EmpNumber, "");
 
 			if (result == 1)
 			{
-				ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Sending to Approval To Director..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecommendationAD.aspx'},2500);", true);
+				ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Sending to Approval To DG..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecomandationDirector.aspx'},2500);", true);
 			}
 			else
 			{
@@ -191,17 +191,17 @@ namespace ManPowerWeb
 			SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
 			List<SystemUser> listSystemUser = systemUserController.GetAllSystemUser(false, false, false);
 			SystemUser systemUsersobj = new SystemUser();
-			if (listSystemUser.Any(u => u.UserTypeId != 3 && u.DesignationId == 34))
+			if (listSystemUser.Any(u => u.UserTypeId != 3 && u.DesignationId == 5))
 			{
-				systemUsersobj = listSystemUser.Where(u => u.UserTypeId != 3 && u.DesignationId == 34).Single();
+				systemUsersobj = listSystemUser.Where(u => u.UserTypeId != 3 && u.DesignationId == 5).Single();
 			}
 
 			VehicleMaintenanceController vehicleMaintenanceController = ControllerFactory.CreateVehicleMaintenanceController();
-			int result = vehicleMaintenanceController.UpdateRecommandationStatus(int.Parse(id), 6, systemUsersobj.EmpNumber, rejectReason.Text);
+			int result = vehicleMaintenanceController.UpdateRecommandationADStatus(int.Parse(id), 6, systemUsersobj.EmpNumber, rejectReason.Text);
 
 			if (result == 1)
 			{
-				ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Request Rejected..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecommendationAD.aspx'},2500);", true);
+				ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Success!', 'Request Rejected..!', 'success');window.setTimeout(function(){window.location='MaintenanceRecomandationDirector.aspx'},2500);", true);
 			}
 			else
 			{

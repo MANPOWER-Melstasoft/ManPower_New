@@ -41,10 +41,18 @@
                 </Columns>
             </asp:GridView>
         </div>
-        <div style="margin-bottom: 40px; margin-left: 20px; margin-top: 20px;">
-            <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success" title="Export To Excel">
-                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
-            </button>
+
+
+        <div class="row mt-1 mb-3">
+            <div style="margin-bottom: 40px; margin-left: 20px; margin-top: 20px;">
+                <asp:Button runat="server" ID="btnisClicked" Text="Back" OnClick="btnisClicked_Click" CssClass="btn btn-primary btn-user btn-block" />
+            </div>
+            <div style="margin-bottom: 40px; margin-left: 40px; margin-top: 20px;">
+                <button runat="server" id="btnRun" onserverclick="btnExportExcel_Click" class="btn btn-success" title="Export To Excel">
+                    <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                </button>
+            </div>
+
 
         </div>
     </div>

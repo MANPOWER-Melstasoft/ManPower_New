@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-	public partial class LeaveReportAll
+	public partial class TrainingRequestReport
 	{
 
 		/// <summary>
@@ -24,58 +24,22 @@ namespace ManPowerWeb
 		protected global::System.Web.UI.ScriptManager Scriptmanger1;
 
 		/// <summary>
-		/// ddlDistrict control.
+		/// ddlStatus control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList ddlDistrict;
+		protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
 		/// <summary>
-		/// empName control.
+		/// gvTrainingRequestReport control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox empName;
-
-		/// <summary>
-		/// empID control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox empID;
-
-		/// <summary>
-		/// Button1 control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button Button1;
-
-		/// <summary>
-		/// btnReset control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button btnReset;
-
-		/// <summary>
-		/// gvLeaveReport control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.GridView gvLeaveReport;
+		protected global::System.Web.UI.WebControls.GridView gvTrainingRequestReport;
 
 		/// <summary>
 		/// btnRun control.

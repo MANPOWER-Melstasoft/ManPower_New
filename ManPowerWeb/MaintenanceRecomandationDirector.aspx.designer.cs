@@ -11,7 +11,7 @@ namespace ManPowerWeb
 {
 
 
-	public partial class LeaveReportAll
+	public partial class MaintenanceRecomandationAD
 	{
 
 		/// <summary>
@@ -24,31 +24,22 @@ namespace ManPowerWeb
 		protected global::System.Web.UI.ScriptManager Scriptmanger1;
 
 		/// <summary>
-		/// ddlDistrict control.
+		/// ddlCategory control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList ddlDistrict;
+		protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
 
 		/// <summary>
-		/// empName control.
+		/// date control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox empName;
-
-		/// <summary>
-		/// empID control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox empID;
+		protected global::System.Web.UI.WebControls.TextBox date;
 
 		/// <summary>
 		/// Button1 control.
@@ -69,21 +60,12 @@ namespace ManPowerWeb
 		protected global::System.Web.UI.WebControls.Button btnReset;
 
 		/// <summary>
-		/// gvLeaveReport control.
+		/// GridView1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.GridView gvLeaveReport;
-
-		/// <summary>
-		/// btnRun control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
+		protected global::System.Web.UI.WebControls.GridView GridView1;
 	}
 }

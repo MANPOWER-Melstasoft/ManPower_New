@@ -1,8 +1,10 @@
-﻿using ManPowerCore.Common;
+﻿using iTextSharp.text;
+using ManPowerCore.Common;
 using ManPowerCore.Controller;
 using ManPowerCore.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -126,6 +128,58 @@ namespace ManPowerWeb
 				else
 				{
 					ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "swal('Error!', 'Record Added Fail!', 'error');", true);
+				}
+			}
+		}
+
+		protected void btnView_Click(object sender, EventArgs e)
+		{
+			int id = Convert.ToInt32(((HiddenField)((LinkButton)sender).NamingContainer.FindControl("hfDocumentId")).Value);
+
+			foreach (var atrdObj in mainList)
+			{
+				if (atrdObj.Id == id)
+				{
+					string filePathe = Server.MapPath("/SystemDocuments/TrainingCertificates/" + atrdObj.Docs);
+
+					string fileExtension = Path.GetExtension(atrdObj.Docs);
+					string contentType;
+
+					switch (fileExtension)
+					{
+						case ".txt":
+							contentType = "text/plain";
+							break;
+						case ".html":
+							contentType = "text/html";
+							break;
+						case ".pdf":
+							contentType = "application/pdf";
+							break;
+						case ".jpg":
+						case ".jpeg":
+							contentType = "image/jpeg";
+							break;
+						case ".png":
+							contentType = "image/png";
+							break;
+						case ".xml":
+							contentType = "application/xml";
+							break;
+						case ".xls":
+							contentType = "application/xls";
+							break;
+						// Add more cases for other file types as needed
+						default:
+							contentType = "application/octet-stream";
+							break;
+					}
+
+					Response.Clear();
+					Response.ContentType = contentType;
+					Response.AppendHeader("content-disposition", "filename = " + atrdObj.Docs);
+					Response.TransmitFile(filePathe);
+					Response.End();
 				}
 			}
 		}

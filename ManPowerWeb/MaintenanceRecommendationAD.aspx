@@ -59,11 +59,13 @@
                                 <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "0" ?true:false %>' Text="Not Recommended" ForeColor="Blue"> </asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "1" ?true:false %>' Text="Pending Recommendation To Transport Officer" ForeColor="Black"> </asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "2" ?true:false %>' Text="Pending Recommendation To Assistant Director" ForeColor="Green"> </asp:Label>
-                                <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "3" ?true:false %>' Text="Pending Approval To Director" ForeColor="red"> </asp:Label>
+                                <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "3" ?true:false %>' Text="Pending Recommendation To Director" ForeColor="red"> </asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "4" ?true:false %>' Text="Request Approved" ForeColor="red"> </asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "5" ?true:false %>' Text="Request Rejected By TO" ForeColor="red"> </asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "6" ?true:false %>' Text="Request Rejected By AD" ForeColor="red"> </asp:Label>
                                 <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "7" ?true:false %>' Text="Request Rejected By Director" ForeColor="red"> </asp:Label>
+                                <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "8" ?true:false %>' Text="Pending Approval from DG" ForeColor="red"> </asp:Label>
+                                <asp:Label runat="server" Visible='<%#Eval("IsApproved").ToString() == "9" ?true:false %>' Text="Request Rejected By DG" ForeColor="red"> </asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField HeaderText="File Number" DataField="FileNo" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center" />

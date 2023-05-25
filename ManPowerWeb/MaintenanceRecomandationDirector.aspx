@@ -1,12 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceApproval.aspx.cs" Inherits="ManPowerWeb.MaintenanceApproval" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MaintenanceRecomandationDirector.aspx.cs" Inherits="ManPowerWeb.MaintenanceRecomandationAD" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" ID="Scriptmanger1"></asp:ScriptManager>
     <div class="container">
         <div class="card p-4 mb-5">
 
-
-            <h2>Vehicle Maintenance Requests Approvals</h2>
+            <h2>Vehicle Maintenance Requests Recomandation Director</h2>
 
 
             <div class="row mt-4 mb-3">
@@ -35,20 +36,18 @@
 
             <div class="row mt-4">
                 <div class="col-6">
-
-                    <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-success" OnClick="btnSearch_Click" Style="width: 120px;" />
+                    <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-success mr-3" OnClick="btnSearch_Click" Style="width: 120px;" />
 
                     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-facebook" OnClick="btnReset_Click" Style="width: 120px;" />
                 </div>
             </div>
-
 
             <div class="table-responsive mt-3" style="width: 100%;">
                 <asp:GridView Style="margin-top: 30px;" ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered"
                     CellPadding="4" GridLines="None" HeaderStyle-HorizontalAlign="Center">
                     <Columns>
                         <asp:BoundField HeaderText="Requested Date" DataField="RequestDate" HeaderStyle-CssClass="table-dark" DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center" />
-                        <asp:TemplateField HeaderText="Requested User" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
+                        <asp:TemplateField HeaderText="Requested User" HeaderStyle-CssClass="table-dark">
                             <ItemTemplate>
                                 <%# Eval("Employee.EmpInitials") + " " + Eval("Employee.LastName") %>
                             </ItemTemplate>
@@ -73,13 +72,12 @@
                         <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="table-dark" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
                                 <asp:LinkButton ID="LinkButton1" runat="server" Text="View" CssClass="btn btn-info" Width="100px"
-                                    a href='<%#"MaintenanceApprovalView.aspx?id="+DataBinder.Eval(Container.DataItem,"VehicleMeintenanceId") %>' />
+                                    a href='<%#"MaintenanceRecomandationDirectorView.aspx?id="+DataBinder.Eval(Container.DataItem,"VehicleMeintenanceId") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
         </div>
-
     </div>
 </asp:Content>

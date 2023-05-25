@@ -555,22 +555,22 @@ namespace ManPowerWeb
 		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
 		/// <summary>
-		/// txtAppoinDate control.
+		/// confirmedDate control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtAppoinDate;
+		protected global::System.Web.UI.WebControls.TextBox confirmedDate;
 
 		/// <summary>
-		/// RequiredFieldValidator27 control.
+		/// lblebg3 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator27;
+		protected global::System.Web.UI.WebControls.Label lblebg3;
 
 		/// <summary>
 		/// txtEBDate1 control.
@@ -598,6 +598,15 @@ namespace ManPowerWeb
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox txtEBDate3;
+
+		/// <summary>
+		/// pnl1 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Panel pnl1;
 
 		/// <summary>
 		/// ecName control.
@@ -679,6 +688,15 @@ namespace ManPowerWeb
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.RegularExpressionValidator revMobNo;
+
+		/// <summary>
+		/// Empty control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label Empty;
 
 		/// <summary>
 		/// ddlEmpDetails control.

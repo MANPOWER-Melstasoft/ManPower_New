@@ -38,6 +38,7 @@ namespace ManPowerWeb
 		List<EmploymentDetails> empDetails = new List<EmploymentDetails>();
 		List<EducationDetails> educationDetails = new List<EducationDetails>();
 		List<ServiceType> serviceTypeList = new List<ServiceType>();
+		EmployeeServices empService = new EmployeeServices();
 
 
 
@@ -58,6 +59,7 @@ namespace ManPowerWeb
 
 				BindData();
 				BindEmpData();
+				bindEmpServiceDetails();
 				bindDSDivision();
 				bindEmpEmergencyContact();
 			}
@@ -380,18 +382,112 @@ namespace ManPowerWeb
 		//------------------------------------------------------
 
 
+		//------------ Emergency Service details --------------
+		private void bindEmpServiceDetails()
+		{
+			EmployeeServiceController employeeServiceController = ControllerFactory.CreateEmployeeServiceController();
+			empService = employeeServiceController.GetEmployeeServicesByEmpId(Convert.ToInt32(EmployeeId));
+
+			ddlService.SelectedIndex = empService.ServicesTypeId;
+			appointmentDate.Text = empService.AppointmentDate.ToString("yyyy-MM-dd");
+			dateAssumedDuty.Text = empService.DateAssumedDuty.ToString();
+			confirmation.SelectedIndex = empService.ServiceConfirmed == 1 ? 0 : 1;
+			confirmedDate.Text = empService.ServiceConfirmedDate.ToString("yyyy-MM-dd");
+			if (empService.EBCompletedDateGrade1 != DateTime.MinValue)
+			{
+				txtEBDate1.Text = empService.EBCompletedDateGrade1.ToString("yyyy-MM-dd");
+			}
+			else
+			{
+				txtEBDate1.Visible = false;
+				lblebg3.Visible = false;
+			}
+			if (empService.EBCompletedDateGrade2 != DateTime.MinValue)
+			{
+				txtEBDate2.Text = empService.EBCompletedDateGrade2.ToString("yyyy-MM-dd");
+			}
+			else
+			{
+				txtEBDate2.Visible = false;
+			}
+			if (empService.EBCompletedDateGrade3 != DateTime.MinValue)
+			{
+				txtEBDate3.Text = empService.EBCompletedDateGrade3.ToString("yyyy-MM-dd");
+			}
+			else
+			{
+				txtEBDate3.Visible = false;
+			}
+		}
+
+		//------------------------------------------------------
+
 		//------------ Emergency Contact details --------------
 		private void bindEmpEmergencyContact()
 		{
 			EmergencyContactController emergencyContactController = ControllerFactory.CreateEmergencyContactController();
 			emergencyContact = emergencyContactController.GetEmergencyContactById(Convert.ToInt32(EmployeeId));
 
-			ecName.Text = emergencyContact.Name;
-			ecRelationship.Text = emergencyContact.DependentToEmployee;
-			ecAddress.Text = emergencyContact.EmgAddress;
-			landLine.Text = emergencyContact.EmgTelephone;
-			ecMobile.Text = emergencyContact.EmgMobile;
-			ecOfficePhone.Text = emergencyContact.OfficePhone;
+			if (emergencyContact.Name != null)
+			{
+				ecName.Text = emergencyContact.Name;
+			}
+			else
+			{
+				ecName.Visible = false;
+			}
+
+			if (emergencyContact.DependentToEmployee != null)
+			{
+				ecRelationship.Text = emergencyContact.DependentToEmployee;
+			}
+			else
+			{
+				ecRelationship.Visible = false;
+			}
+
+			if (emergencyContact.EmgAddress != null)
+			{
+				ecAddress.Text = emergencyContact.EmgAddress;
+			}
+			else
+			{
+				ecAddress.Visible = false;
+			}
+
+			if (emergencyContact.EmgTelephone != null)
+			{
+				landLine.Text = emergencyContact.EmgTelephone;
+			}
+			else
+			{
+				landLine.Visible = false;
+			}
+
+			if (emergencyContact.EmgMobile != null)
+			{
+				ecMobile.Text = emergencyContact.EmgMobile;
+			}
+			else
+			{
+				ecMobile.Visible = false;
+			}
+
+			if (emergencyContact.OfficePhone != null)
+			{
+				ecOfficePhone.Text = emergencyContact.OfficePhone;
+			}
+			else
+			{
+				ecOfficePhone.Visible = false;
+			}
+
+			if (emergencyContact.Name == null && emergencyContact.DependentToEmployee == null && emergencyContact.EmgAddress == null && emergencyContact.EmgTelephone == null && emergencyContact.EmgMobile == null && emergencyContact.OfficePhone == null)
+			{
+				pnl1.Visible = false;
+				Empty.Visible = true;
+			}
+
 		}
 		//----------------------------------------------------
 
@@ -462,11 +558,11 @@ namespace ManPowerWeb
 			SystemUserController systemUserController = ControllerFactory.CreateSystemUserController();
 			SystemUser systemUser = systemUserController.CheckEmpNumberExists(employee.EmployeeId);
 
-            if (systemUser.SystemUserId != 0)
-            {
-                //--------------check if department has changed ---------------------------------
-                Employee employeeOld = employeeController.GetEmployeeById(employee.EmployeeId);
-                DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsController.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, false);
+			if (systemUser.SystemUserId != 0)
+			{
+				//--------------check if department has changed ---------------------------------
+				Employee employeeOld = employeeController.GetEmployeeById(employee.EmployeeId);
+				DepartmentUnitPositions departmentUnitPositions = departmentUnitPositionsController.GetAllDepartmentUnitPositionsBySystemUserId(systemUser.SystemUserId, false);
 
 
 				if (employeeOld.UnitType != employee.UnitType || employeeOld.DistrictId != employee.DistrictId || employeeOld.DSDivisionId != employee.DSDivisionId)

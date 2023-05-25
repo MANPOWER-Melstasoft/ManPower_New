@@ -412,7 +412,7 @@
                                     <label>Date of Appointment: </label>
                                 </div>
                                 <div class="col-6">
-                                    <asp:TextBox ID="appointmentDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    <asp:TextBox ID="appointmentDate" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                     <asp:RequiredFieldValidator ControlToValidate="appointmentDate" ID="RequiredFieldValidator47" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </div>
                             </div>
@@ -456,11 +456,10 @@
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-5">
-                                    <label>Date of Appointment: </label>
+                                    <label>Confirmed Date: </label>
                                 </div>
                                 <div class="col-6">
-                                    <asp:TextBox ID="txtAppoinDate" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ControlToValidate="txtAppoinDate" ID="RequiredFieldValidator27" runat="server" ErrorMessage="RequiredFieldValidator" ValidationGroup="empService" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    <asp:TextBox ID="confirmedDate" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -473,10 +472,10 @@
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-5">
-                                    <label>EB Completed Date Grade 3 : </label>
+                                    <asp:Label ID="lblebg3" runat="server">EB Completed Date Grade 3 : </asp:Label>
                                 </div>
                                 <div class="col-6">
-                                    <asp:TextBox ID="txtEBDate1" runat="server" AutoPostBack="true" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtEBDate1" runat="server" AutoPostBack="true" CssClass="form-control form-control-user"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -488,7 +487,7 @@
                                     <label>EB Completed Date Grade 2 : </label>
                                 </div>
                                 <div class="col-6">
-                                    <asp:TextBox ID="txtEBDate2" runat="server" AutoPostBack="true" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtEBDate2" runat="server" AutoPostBack="true" CssClass="form-control form-control-user"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -503,7 +502,7 @@
                                     <label>EB Completed Date Grade 1 : </label>
                                 </div>
                                 <div class="col-6">
-                                    <asp:TextBox ID="txtEBDate3" runat="server" CssClass="form-control form-control-user" TextMode="Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtEBDate3" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -519,89 +518,92 @@
                     <div class="row mt-5 pl-2 mb-2">
                         <h4><b>Employee Emergency Contact Details</b></h4>
                     </div>
-
-                    <div class="row mt-5">
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-4">
-                                    <label>Name : </label>
+                    <asp:Panel ID="pnl1" runat="server">
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Name : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="ecName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <asp:TextBox ID="ecName" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Home Telephone Number : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="landLine" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Invalid Mobile Number."
+                                            ValidationExpression="^([0-9]{10})$" ControlToValidate="landLine" ValidationGroup="5"
+                                            ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-4">
-                                    <label>Home Telephone Number : </label>
-                                </div>
-                                <div class="col-6">
-                                    <asp:TextBox ID="landLine" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Invalid Mobile Number."
-                                        ValidationExpression="^([0-9]{10})$" ControlToValidate="landLine" ValidationGroup="5"
-                                        ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Relationship To Employee : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="ecRelationship" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-
-                    <div class="row mt-4">
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-4">
-                                    <label>Relationship To Employee : </label>
-                                </div>
-                                <div class="col-6">
-                                    <asp:TextBox ID="ecRelationship" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-4">
-                                    <label>Office Phone Number : </label>
-                                </div>
-                                <div class="col-6">
-                                    <asp:TextBox ID="ecOfficePhone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Mobile Number."
-                                        ValidationExpression="^([0-9]{10})$" ControlToValidate="ecOfficePhone" ValidationGroup="5"
-                                        ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row mt-4">
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-4">
-                                    <label>Address of Emergancy Contact Person : </label>
-                                </div>
-                                <div class="col-6">
-                                    <asp:TextBox ID="ecAddress" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Office Phone Number : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="ecOfficePhone" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Mobile Number."
+                                            ValidationExpression="^([0-9]{10})$" ControlToValidate="ecOfficePhone" ValidationGroup="5"
+                                            ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-4">
-                                    <label>Mobile Number : </label>
-                                </div>
-                                <div class="col-6">
-                                    <asp:TextBox ID="ecMobile" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
-                                    <asp:RegularExpressionValidator ID="revMobNo" runat="server" ErrorMessage="Invalid Mobile Number."
-                                        ValidationExpression="^([0-9]{10})$" ControlToValidate="ecMobile" ValidationGroup="5"
-                                        ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Address of Emergancy Contact Person : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="ecAddress" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label>Mobile Number : </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <asp:TextBox ID="ecMobile" runat="server" CssClass="form-control form-control-user"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="revMobNo" runat="server" ErrorMessage="Invalid Mobile Number."
+                                            ValidationExpression="^([0-9]{10})$" ControlToValidate="ecMobile" ValidationGroup="5"
+                                            ForeColor="Red" Display="Dynamic">Invalid Mobile Number</asp:RegularExpressionValidator>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
+                    </asp:Panel>
+                    <asp:Label ID="Empty" runat="server" Visible="false" Font-Bold="true" ForeColor="Red">No Records</asp:Label>
                 </div>
 
                 <%--------------------------------------------------------------------------------------------------------------%>
